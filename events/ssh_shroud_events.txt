@@ -1,0 +1,1241 @@
+namespace = ssh_shroud
+
+# Shroud Gifts 
+country_event = {
+	id = ssh_shroud.1
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = {
+			has_country_flag = ssh_triangle_temple_triggered
+		}
+		any_owned_planet = {
+			OR = {
+				has_building = building_ssh_triangle_temple
+				has_building = building_ssh_triangle_temple_hive
+				has_building = building_ssh_triangle_temple_machine
+			}
+		}
+	}
+	
+	immediate = {
+		set_country_flag = ssh_triangle_temple_triggered
+		random_owned_planet = {
+			limit = {
+				OR = {
+					has_building = building_ssh_triangle_temple
+					has_building = building_ssh_triangle_temple_hive
+					has_building = building_ssh_triangle_temple_machine
+				}
+			}
+			#ruin_building = building_ssh_triangle_temple
+			add_modifier = {
+				modifier = spiritualist_attraction
+				days = 360
+			}
+		}
+		country_event = {
+			id = ssh_shroud.2
+			days = 5
+		}
+	}
+}
+
+country_event = {
+	id = ssh_shroud.2
+	title = "ssh_shroud.2.name"
+	desc = {
+		text = "ssh_shroud.2.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_shroud.2.desc.hive"
+		trigger = { is_hive_empire = yes }
+	}
+	desc = {
+		text = "ssh_shroud.2.desc.machine"
+		trigger = {
+			is_gestalt = yes
+			is_machine_empire = yes
+		}
+	}
+	picture = GFX_evt_shroudwalker_enclave
+	show_sound = "event_mystic_reveal"
+	location = fromfrom
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_shroud.2.a"
+		custom_tooltip = ssh_shroud.2.a.tooltip
+		# Flavour trigger
+		#trigger = {
+		#	OR = {
+		#		has_ethic = ethic_spiritualist
+		#		has_ethic = ethic_fanatic_spiritualist
+		#		owner_main_species = {
+		#			has_trait = trait_psionic
+		#		}
+		#	}
+		#}
+		hidden_effect = {
+			country_event = {
+				id = ssh_shroud.3
+				days = 30
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = "ssh_shroud.2.b"
+		allow = {
+			always = no
+			#hidden_trigger = {
+			#	NOR = {
+			#		owner_main_species = {
+			#			has_trait = trait_psionic
+			#		}
+			#	}
+			#}
+		}
+		custom_tooltip = ssh_shroud.2.b.tooltip
+	}
+}
+
+country_event = {
+	id = ssh_shroud.3
+	title = "ssh_shroud.3.name"
+	desc = "ssh_shroud.3.desc"
+	picture = GFX_evt_shroudwalker_enclave
+	show_sound = "event_mystic_reveal"
+	location = fromfromfrom
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_shroud.3.a"
+		hidden_effect = {
+			country_event = {
+				id = ssh_shroud.4
+			}
+		}
+	}
+}
+
+# Introduction
+country_event = {
+	id = ssh_shroud.4
+	title = SSH_SHROUD_KNOWN
+	desc = "ssh_shroud.4.desc"
+	show_sound = "event_mystic_reveal_light"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_shroud.4.a
+		hidden_effect = {
+			country_event = { id = "ssh_shroud.5" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_shroud.5
+	title = SSH_SHROUD_KNOWN
+	desc = "ssh_shroud.5.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_shroud.5.a
+		hidden_effect = {
+			country_event = { id = "ssh_shroud.6" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_shroud.6
+	title = SSH_SHROUD_KNOWN
+	desc = "ssh_shroud.6.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_shroud.6.a
+		hidden_effect = {
+			country_event = { id = "ssh_shroud.7" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_shroud.7
+	title = SSH_SHROUD_KNOWN
+	desc = "ssh_shroud.7.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_shroud.7.a
+		enable_special_project = {
+			name = SSH_SHROUD_TEMPLE_CANDIDATE
+			owner = this
+		}
+		#random_owned_megastructure = {
+		#	limit = { is_megastructure_type = mega_temple_5 }
+		#	solar_system = {
+		#		save_event_target_as = ssh_mega_temple_system
+		#	}
+		#}
+		default_hide_option = yes
+	}
+}
+
+# Mega Temple - First Event
+country_event = {
+	id = ssh_shroud.8
+	title = SSH_SHROUD_KNOWN
+	desc = "ssh_shroud.8.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_shroud.8.a
+		hidden_effect = {
+			country_event = { id = "ssh_shroud.9" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_shroud.9
+	title = SSH_SHROUD_KNOWN
+	desc = "ssh_shroud.9.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = {
+				NOT = { is_same_value = from }
+				OR = {
+					ssh_is_regular_shroud_spy_candidate = yes
+					ssh_is_rival_shroud_spy_candidate = yes
+				}
+			}
+			ssh_spy_event_save_countries = yes
+		}
+	}
+
+	option = {
+		name = "[event_target:shroud_spy_country_1.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_1 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_1 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_2.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_2 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_2 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_3.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_3 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_3 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_4.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_4 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_4 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_5.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_5 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_5 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_6.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_6 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_6 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_7.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_7 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_7 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_8.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_8 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_8 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_9.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_9 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_9 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_10.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_10 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_10 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_11.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_11 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_11 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_12.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_12 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_12 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_13.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_13 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_13 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_14.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_14 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_14 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_15.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_15 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_15 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_16.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_16 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_16 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_17.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_17 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_17 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_18.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_18 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_18 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_19.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_19 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_19 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_20.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_20 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_20 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_21.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_21 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_21 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_22.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_22 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_22 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_23.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_23 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_23 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_24.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_24 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_24 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_25.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_25 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_25 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_26.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_26 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_26 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_27.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_27 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_27 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_28.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_28 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_28 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_29.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_29 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_29 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_30.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_30 = { country_event = { id = ssh_shroud.10 } } }
+		trigger = { exists = event_target:shroud_spy_country_30 }
+	}
+	option = {
+		name = "ssh_shroud.9.a"
+		custom_tooltip = "ssh_shroud.9.a.tooltip"
+		trigger = { NOT = { exists = event_target:shroud_spy_country_1 } }
+		hidden_effect = {
+			capital_scope = {
+				solar_system = {
+					set_star_class = sc_ssh_space
+					star = { set_planet_size = 0 }
+					every_system_planet = {
+						limit = {
+							NOR = {
+								is_colony = yes
+								is_star = yes
+							}
+						}
+						change_pc = pc_hoopworld
+					}
+				}
+			}
+			every_system_within_border = {
+				limit = { NOT = { is_capital_system = yes } }
+				destroy_star_system = yes
+			}
+			country_event = {
+				id = crisis.10 # You have triggered the end of the galaxy for your sins
+			}
+			country_event = {
+				id = crisis.1000 # You have triggered the end of the galaxy for your sins x2
+			}
+			country_event = {
+				id = crisis.2005 # You have triggered the end of the galaxy for your sins x3
+			}
+		}
+	}
+	option = {
+		name = "ssh_shroud.9.b"
+		custom_tooltip = "ssh_shroud.9.b.tooltip"
+		trigger = { NOT = { exists = event_target:shroud_spy_country_1 } }
+		hidden_effect = {
+			country_event = {
+				id = ssh_shroud.12
+			}
+		}
+	}
+}
+
+# First Shroud Espionage Event 
+country_event = {
+	id = ssh_shroud.10
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = {
+			add_intel = {
+				who = prev
+				amount = 70
+			}
+			set_timed_country_flag = {
+				flag = ssh_shroud_espionage_high_success
+				days = 5
+			}
+			country_event = {
+				id = ssh_shroud.11
+			}
+		}
+		# Clear the event target list
+		ssh_spy_event_clear_list = yes
+	}
+}
+
+country_event = {
+	id = ssh_shroud.11
+	title = SSH_SHROUD_KNOWN
+	desc = { # Non-Gestalt
+		text = ssh_shroud.11_01.desc
+		trigger = { 
+			from = { NOT = { is_gestalt = yes } }
+		}
+	}
+	desc = { # Gestalt Empire
+		text = ssh_shroud.11_02.desc
+		trigger = { 
+			from = { is_gestalt = yes }
+		}
+	}
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_shroud.11.a"
+		hidden_effect = { country_event = { id = ssh_shroud.12 } }
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_shroud.12
+	title = SSH_SHROUD_KNOWN
+	desc = { # Non-Gestalt
+		text = ssh_shroud.12_01.desc
+		trigger = { 
+			from = { NOT = { is_gestalt = yes } }
+		}
+	}
+	desc = { # Gestalt Empire
+		text = ssh_shroud.12_02.desc
+		trigger = { 
+			from = { is_gestalt = yes }
+		}
+	}
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = ssh_mega_temple_hub_unlocked
+	}
+
+	option = {
+		name = "ssh_shroud.12.a"
+		hidden_effect = { country_event = { id = ssh_on.33 days = 10 } } #Notification about the results
+		default_hide_option = yes
+	}
+}
+
+#########################################################
+### SHROUD INSIGHTS (triggered through Abyssal Anchor ###
+#########################################################
+
+# No Insight gained
+country_event = {
+	id = ssh_shroud.13
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.13.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_shroud.13.a"
+		default_hide_option = yes
+	}
+}
+
+# Collectivist Society
+country_event = {
+	id = ssh_shroud.14
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.14.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_collectivist }
+
+	option = {
+		name = "ssh_shroud.14.a" # aha aha interesting
+		add_resource = {
+			society_research = 1500
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_insight_collectivist } }
+			add_research_option = ssh_tech_insight_collectivist
+		}
+		trigger = {
+			NOT = { is_authoritarian = yes }
+		}
+	}
+
+	option = {
+		name = "ssh_shroud.14.b" # Wow, genius, omg
+		trigger = {
+			OR = {
+				is_egalitarian = yes
+				has_civic = civic_shared_burden # For aesthetic purposes
+				has_civic = civic_worker_coop # For aesthetic purposes
+			}
+		}
+		add_resource = {
+			unity = 7500
+			society_research = 7500
+		}
+		add_modifier = {
+			modifier = faction_approval_very_high
+			years = 15
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_insight_collectivist } }
+			add_research_option = ssh_tech_insight_collectivist
+		}
+	}
+
+	option = {
+		name = "ssh_shroud.14.c" #BS
+		trigger = { is_authoritarian = yes }
+	}
+}
+
+# Agrarian Idyll Society
+country_event = {
+	id = ssh_shroud.15
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.15.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_agrarian }
+
+	option = {
+		name = "ssh_shroud.15.a"
+		trigger = { NOT = { has_civic = civic_agrarian_idyll } }
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_insight_agrarian_idyll } }
+			add_research_option = ssh_tech_insight_agrarian_idyll
+		}
+	}
+
+	option = {
+		name = "ssh_shroud.15.b"
+		trigger = {
+			OR = {
+				has_civic = civic_agrarian_idyll
+				is_ecocentric = yes
+			}
+		}
+		add_resource = { unity = 7500 }
+		add_modifier = {
+			modifier = faction_approval_high
+			years = 15
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_insight_agrarian_idyll } }
+			add_research_option = ssh_tech_insight_agrarian_idyll
+		}
+	}
+}
+
+# Technocratic Society
+country_event = {
+	id = ssh_shroud.16
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.16.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_technocracy }
+
+	option = {
+		name = "ssh_shroud.16.a"
+		trigger = { NOT = { is_spiritualist = yes } }
+		add_resource = {
+			unity = 5000
+		}
+		add_modifier = {
+			modifier = ssh_shroud_insight_technocracy
+			#years = 50
+			days = -1
+		}
+	}
+
+	option = {
+		name = "ssh_shroud.16.b"
+		trigger = { is_spiritualist = yes }
+		add_resource = {
+			unity = 5000
+		}
+	}
+}
+
+
+# Anarchist Society
+country_event = {
+	id = ssh_shroud.17
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.17.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_anarchist }
+
+	option = {
+		name = "ssh_shroud.17.a"
+		add_resource = {
+			unity = 5000
+		}
+		capital_scope = {
+			add_modifier = {
+				modifier = xenophile_unrest
+				years = 10
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_insight_anarchist } }
+			add_research_option = ssh_tech_insight_anarchist
+		}
+	}
+
+	option = {
+		name = "ssh_shroud.17.b"
+		trigger = { is_authoritarian = yes }
+		add_resource = {
+			unity = 5000
+		}
+	}
+}
+
+
+# Inward Perfectionists
+country_event = {
+	id = ssh_shroud.18
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.18.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_inward_perfection }
+
+	option = {
+		name = "ssh_shroud.18.a"
+		add_resource = {
+			unity = 5000
+		}
+		add_modifier = {
+			modifier = ssh_shroud_insight_inward_perfection
+			#years = 50
+			days = -1
+		}
+	}
+
+	option = {
+		name = "ssh_shroud.18.b"
+		trigger = { has_civic = civic_inwards_perfection }
+		add_resource = {
+			unity = 10000
+			society_research = 10000
+		}
+		add_modifier = {
+			modifier = ssh_shroud_insight_inward_perfection
+			#years = 50
+			days = -1
+		}
+	}
+}
+
+
+# Death Cult Society
+country_event = {
+	id = ssh_shroud.19
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.19.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_death_cult }
+
+	option = {
+		name = "ssh_shroud.19.a"
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_insight_death_cult } }
+			add_research_option = ssh_tech_insight_death_cult
+		}
+	}
+
+	option = {
+		name = "ssh_shroud.19.b"
+		trigger = {
+			OR = {
+				has_civic = civic_death_cult
+				has_civic = civic_death_cult_corporate
+				has_civic = civic_memorialist
+			}
+		}
+		add_resource = {
+			society_research = 10000
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_insight_death_cult } }
+			add_research_option = ssh_tech_insight_death_cult
+		}
+	}
+}
+
+### SPECIAL COUNTRIES/INSIGHTS
+# 1984
+country_event = {
+	id = ssh_shroud.20
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.20.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_1984 } 
+
+	option = {
+		name = "ssh_shroud.20.a"
+		hidden_effect = {
+			country_event = {
+				id = ssh_shroud.21
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_shroud.21
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.21.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_shroud.21.a"
+		add_resource = { society_research = 7500 }
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_insight_ingsoc } }
+			add_research_option = ssh_tech_insight_ingsoc
+		}
+	}
+
+	option = {
+		name = "ssh_shroud.21.b"
+		trigger = {
+			OR = {
+				has_civic = civic_dystopian_society
+				has_civic = civic_police_state
+			}
+		}
+		add_resource = {
+			society_research = 10000
+			unity = 5000
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_insight_ingsoc } }
+			add_research_option = ssh_tech_insight_ingsoc
+		}
+	}
+}
+
+# Brave New World
+country_event = {
+	id = ssh_shroud.22
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.22.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_bnw } 
+
+	option = {
+		name = "ssh_shroud.22.a"
+		hidden_effect = {
+			country_event = {
+				id = ssh_shroud.23
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_shroud.23
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.23.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_shroud.23.a"
+		add_resource = { society_research = 7500 }
+		custom_tooltip = "ssh_shroud.23.a.tooltip" #Unlocks planetary decision
+	}
+
+	option = {
+		name = "ssh_shroud.23.b"
+		trigger = {
+			OR = {
+				has_civic = civic_corvee_system
+				has_civic = civic_aristocratic_elite
+				has_civic = civic_slaver_guilds
+				has_civic = civic_pleasure_seekers
+				has_civic = civic_corporate_hedonism
+				has_civic = civic_indentured_assets
+			}
+		}
+		add_resource = {
+			society_research = 10000
+			unity = 5000
+		}
+		custom_tooltip = "ssh_shroud.23.a.tooltip" #Unlocks planetary decision
+	}
+}
+
+# Despicable Neutrals
+country_event = {
+	id = ssh_shroud.24
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.24.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_neutrals }
+
+	option = {
+		name = "ssh_shroud.24.a"
+		add_resource = { society_research = 7500 }
+		if = {
+			limit = {
+				NOR = {
+					has_technology = ssh_tech_insight_neutrals
+					has_civic = civic_fanatic_purifiers
+				}
+			}
+			add_research_option = ssh_tech_insight_neutrals
+		}
+	}
+}
+
+# Prethoryn Scourge
+country_event = {
+	id = ssh_shroud.25
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.25.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_activating_unknown_technology"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_prethoryn }
+
+	option = {
+		name = "ssh_shroud.25.a"
+		custom_tooltip = "ssh_shroud.25.a.tooltip"
+		hidden_effect = {
+			random_list = {
+				10 = {
+					# Lucky you, you got away this time.
+					# Do nothing
+				}
+				90 = {
+					# Unlucky you, you have attracted the swarm
+					# Spawns the prethoryn scourge within a reasonable time (between 5 to 10 years)
+					country_event = { id = crisis.10 days = 1800 random = 3600 }
+					set_global_flag = galactic_crisis_happened
+					set_timed_global_flag = {
+						flag = galactic_crisis_recently_fired
+						years = 12
+					}
+				}
+			}
+		}
+	}
+}
+
+# Unbidden
+country_event = {
+	id = ssh_shroud.26
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.26.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_extradimensional }
+
+	option = {
+		name = "ssh_shroud.26.a"
+		add_resource = { society_research = 10000 }
+		custom_tooltip = "ssh_shroud.26.a.tooltip"
+		if = {
+			limit = {
+				NOT = {
+					has_technology = tech_jump_drive_1
+				}
+			}
+			add_research_option = tech_jump_drive_1
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_technology = tech_arc_emitter_2
+				}
+			}
+			add_research_option = tech_arc_emitter_2
+		}
+	}
+}
+
+# Aeternum
+country_event = {
+	id = ssh_shroud.27
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.27.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_aeternum }
+
+	option = {
+		name = "ssh_shroud.27.a"
+		add_resource = { society_research = 10000 }
+		if = {
+			limit = {
+				NOT = {
+					has_technology = ssh_tech_black_hole_shellworld #Mini Birch :3
+				}
+			}
+			give_technology = { tech = ssh_tech_black_hole_shellworld }
+		}
+		random_owned_leader = {
+			limit = {
+				has_trait = leader_trait_psionic
+				is_councilor = yes
+				NOR = {
+					has_trait = leader_trait_chosen
+					has_trait = leader_trait_eater_chosen
+					has_trait = leader_trait_instrument_chosen
+					has_trait = leader_trait_composer_chosen
+					has_trait = leader_trait_whisperers_chosen
+				}
+			}
+			#add_trait = leader_trait_aggressive #phantom pain psionic trait?
+			# OR: check for system exploded via zro detonator via system flag + scientist present in this system
+			kill_leader = {
+				ruler = yes
+				show_notification = yes
+			}
+		}
+	}
+}
+
+# BLOKKATS
+country_event = {
+	id = ssh_shroud.28
+	title = SSH_SHROUD_UNKNOWN
+	desc = "ssh_shroud.28.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_activating_unknown_technology"
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_has_shroud_insight_blokkats }
+
+	option = {
+		name = "ssh_shroud.28.a"
+		custom_tooltip = "ssh_shroud.28.a.tooltip"
+		# trigger blokkats :) xd
+		hidden_effect = {
+			random_list = {
+				15 = {
+					# Lucky you, lucky you
+				}
+				85 = {
+					ssh_insight_spawn_blokkats = yes # Doom
+				}
+			}
+		}
+	}
+}

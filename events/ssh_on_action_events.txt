@@ -1,0 +1,2072 @@
+namespace = ssh_action
+
+# Planet is turned into nanite world by special bombing stance
+planet_event = {
+	id = ssh_action.1
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_orbital_bombardment_stance = ssh_nanites
+		from = {
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		habitable_planet = yes
+		NOT = {
+			has_planet_flag = megastructure
+		}
+	}
+
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					owner = {
+						is_at_war_with = from
+					}
+				}
+				add_static_war_exhaustion = {
+					attacker = from
+					location = root
+					value_for_planet_destruction = 0.5
+				}
+			}
+			if = {
+				limit = {
+					NAND = {
+						has_origin = origin_progenitor_hive
+						root = { is_capital = yes }
+					}
+				}
+				country_event = { id = ssh_action.2 }
+			}
+			else = {
+				country_event = { id = origin.3265 }
+			}
+		}
+		from = { country_event = { id = ssh_action.3 } }
+		change_pc = pc_gray_goo
+		set_planet_flag = nuked_planet_anomalies_disabled
+		remove_all_buildings = yes
+		reroll_deposits = yes
+		remove_modifier = "natural_beauty"
+		remove_modifier = "atmospheric_aphrodisiac"
+		remove_modifier = "atmospheric_hallucinogen"
+		remove_modifier = "lush_planet"
+		remove_modifier = "dangerous_wildlife"
+		set_planet_flag = nanite_nuked
+	}
+}
+
+# Planet is turned into nanite world by nanite bombing stance (former owner)
+country_event = {
+	id = ssh_action.2
+	title = "ssh_action.2.name"
+	picture = GFX_evt_gray_gooed_planet
+	desc = ssh_action.2.desc
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_action.2.a
+		custom_tooltip = bombed_to_tomb_world
+	}
+}
+
+# Planet is turned into nanite world by nanite bombing stance (bombarder)
+country_event = {
+	id = ssh_action.3
+	title = "ssh_action.3.name"
+	picture = GFX_evt_gray_gooed_planet
+	desc = ssh_action.3.desc
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_ascension_perk = ap_become_the_crisis
+			}
+			complete_crisis_objective = crisobj_destroy_worlds
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		custom_tooltip = bombed_to_tomb_world
+	}
+}
+
+# Megastructure planets are ruined by orbital bombardment
+planet_event = {
+	id = ssh_action.4
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_orbital_bombardment_stance = ssh_nanites
+			has_orbital_bombardment_stance = armageddon
+		}
+		from = {
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		has_planet_flag = megastructure
+	}
+
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					owner = {
+						is_at_war_with = from
+					}
+				}
+				add_static_war_exhaustion = {
+					attacker = from
+					location = root
+					value_for_planet_destruction = 0.5
+				}
+			}
+			if = {
+				limit = {
+					has_origin = origin_progenitor_hive
+					root = { is_capital = yes }
+				}
+				country_event = { id = origin.3265 }
+			}
+		}
+		from = { country_event = { id = ssh_action.5 } }
+		set_planet_flag = nuked_planet_anomalies_disabled
+		remove_all_buildings = yes
+		reroll_deposits = yes
+		remove_modifier = "natural_beauty"
+		remove_modifier = "atmospheric_aphrodisiac"
+		remove_modifier = "atmospheric_hallucinogen"
+		remove_modifier = "lush_planet"
+		remove_modifier = "dangerous_wildlife"
+		# Shellworld
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_shellworld_core
+					is_planet_class = pc_shellworld_core_city
+					is_planet_class = pc_shellworld_core_hive
+					is_planet_class = pc_shellworld_core_machine
+				}
+				has_planet_flag = is_under_shellworld_construction
+			}
+			remove_modifier = "ssh_shellworld_planet_modifier"
+			remove_modifier = "ssh_double_shellworld_planet_modifier"
+			owner = {
+				save_event_target_as = ssh_planet_owner
+			}
+			#set_planet_entity = {
+			#	entity = "barren_planet_01_entity"
+			#}
+			change_pc = pc_nuked
+			remove_planet_flag = shellworld
+			remove_planet_flag = double_shellworld
+			remove_planet_flag = triple_shellworld
+			remove_planet_flag = megastructure
+			set_planet_flag = has_megastructure
+			random_system_megastructure = {
+				limit = { planet = { is_same_value = root } }
+				remove_megastructure = this
+			}
+			#megastructure = {
+			#	remove_megastructure = this
+			#}
+			solar_system = {
+				spawn_megastructure = {
+					name = "Ruined Shellworld"
+					type = shellworld_ruined
+					orbit_angle = 0
+					orbit_distance = 0
+					owner = event_target:ssh_planet_owner
+					planet = root
+				}
+			}
+			# Event
+			owner = { country_event = { id = ssh_action.6 } }
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_shellworld_core
+					is_planet_class = pc_shellworld_core_city
+					is_planet_class = pc_shellworld_core_hive
+					is_planet_class = pc_shellworld_core_machine
+				}
+				NOT = {
+					has_planet_flag = is_under_shellworld_construction
+				}
+			}
+			remove_modifier = "ssh_shellworld_planet_modifier"
+			remove_modifier = "ssh_double_shellworld_planet_modifier"
+			remove_modifier = "ssh_triple_shellworld_planet_modifier"
+			owner = {
+				save_event_target_as = ssh_planet_owner
+			}
+			change_pc = pc_nuked
+			remove_planet_flag = shellworld
+			remove_planet_flag = double_shellworld
+			remove_planet_flag = triple_shellworld
+			remove_planet_flag = megastructure
+			set_planet_flag = has_megastructure
+			#set_planet_entity = {
+			#	entity = "barren_planet_01_entity"
+			#}
+			solar_system = {
+				spawn_megastructure = {
+					name = "Ruined Shellworld"
+					type = shellworld_ruined
+					orbit_angle = 0
+					orbit_distance = 0
+					owner = event_target:ssh_planet_owner
+					planet = root
+				}
+			}
+			# Event
+			owner = { country_event = { id = ssh_action.6 } }
+		}
+		# Gas Giant Shell
+		else_if = {
+			limit = {
+				is_planet_class = pc_gas_giant_shellworld
+			}
+			remove_modifier = "ssh_gas_giant_shellworld_planet_modifier"
+			owner = {
+				save_event_target_as = ssh_planet_owner
+			}
+			change_pc = pc_gas_giant
+			set_planet_size = 28
+			remove_planet_flag = gas_giant_shellworld
+			remove_planet_flag = megastructure
+			set_planet_flag = has_megastructure
+			solar_system = {
+				spawn_megastructure = {
+					name = "Ruined Gas Giant Shellworld"
+					type = "gas_giant_shellworld_ruined"
+					orbit_angle = 0
+					orbit_distance = 0
+					owner = event_target:ssh_planet_owner
+					planet = root
+				}
+			}
+			# Event
+			owner = { country_event = { id = ssh_action.6 } }
+		}
+		# Edersphere
+		else_if = {
+			limit = {
+				is_planet_class = pc_edersphere
+			}
+			#remove edersphere modifier
+			owner = {
+				save_event_target_as = ssh_planet_owner
+			}
+			solar_system = {
+				spawn_megastructure = {
+					name = "Ruined Edersphere"
+					type = "edersphere_ruined"
+					orbit_angle = 0
+					orbit_distance = 0
+					owner = event_target:ssh_planet_owner
+					planet = root
+				}
+			}
+			remove_planet = yes
+			# Event
+			owner = { country_event = { id = ssh_action.7 } }
+		}
+		# Black Hole Shellworld
+		else_if = {
+			limit = {
+				is_planet_class = pc_black_hole_shellworld
+			}
+			remove_modifier = "ssh_black_hole_shellworld_planet_modifier"
+			remove_planet_flag = black_hole_shellworld
+			remove_planet_flag = fe_black_hole_shellworld
+			remove_planet_flag = megastructure
+			set_planet_flag = has_megastructure
+			owner = {
+				save_event_target_as = ssh_planet_owner
+			}
+			solar_system = {
+				spawn_megastructure = {
+					name = "Ruined Black Hole Suprashell"
+					type = "black_hole_shellworld_ruined"
+					orbit_angle = 0
+					orbit_distance = 0
+					owner = event_target:ssh_planet_owner
+					planet = root
+				}
+			}
+			remove_planet = yes
+			# Event
+			owner = { country_event = { id = ssh_action.8 } }
+		}
+		# Stellar Hoop
+		else_if = {
+			limit = {
+				is_planet_class = pc_stellar_hoop
+			}
+			remove_modifier = "ssh_stellar_hoop_planet_modifier"
+			owner = {
+				save_event_target_as = ssh_planet_owner
+			}
+			solar_system = {
+				spawn_megastructure = {
+					name = "Ruined Stellar Hoop"
+					type = "stellar_hoop_ruined"
+					orbit_angle = 0
+					orbit_distance = 0
+					owner = event_target:ssh_planet_owner
+					planet = root
+				}
+			}
+			remove_planet = yes
+			# Event
+			owner = { country_event = { id = ssh_action.9 } }
+		}
+		else = {
+			add_planet_devastation = 50
+		}
+	}
+}
+
+# Planet is turned into nanite world by nanite bombing stance (bombarder)
+country_event = {
+	id = ssh_action.5
+	title = "ssh_action.5.name"
+	picture = GFX_evt_large_explosion
+	desc = ssh_action.5.desc
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_ascension_perk = ap_become_the_crisis
+			}
+			complete_crisis_objective = crisobj_destroy_worlds
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		custom_tooltip = bombed_to_tomb_world
+	}
+}
+
+#  Shellworld destroyed (owner)
+country_event = {
+	id = ssh_action.6
+	title = "ssh_action.6.name"
+	picture = GFX_evt_large_explosion
+	desc = ssh_action.6.desc
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_action.6.a
+	}
+}
+
+#  Edersphere destroyed (owner)
+country_event = {
+	id = ssh_action.7
+	title = "ssh_action.7.name"
+	picture = GFX_evt_large_explosion
+	desc = ssh_action.7.desc
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_action.7.a
+	}
+}
+
+#  Black Hole Suprashell destroyed (owner)
+country_event = {
+	id = ssh_action.8
+	title = "ssh_action.8.name"
+	picture = GFX_evt_large_explosion
+	desc = ssh_action.8.desc
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_action.8.a
+	}
+}
+
+# Stellar Hoop destroyed (owner)
+country_event = {
+	id = ssh_action.9
+	title = "ssh_action.9.name"
+	picture = GFX_evt_large_explosion
+	desc = ssh_action.9.desc
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_action.9.a
+	}
+}
+
+# RUINED MEGASTRUCTURE NOTIFICATIONS
+# Shellworld + Gas Shellworld System
+ship_event = {
+	id = ssh_action.10
+	title = "ssh_action.10.name"
+	desc = "ssh_action.10.desc"
+	picture = GFX_evt_ssh_shellworld
+	show_sound = event_laboratory_sound
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			has_star_flag = ruined_shellworlds_system
+			any_system_megastructure = { is_megastructure_type = shellworld_ruined }
+			any_system_megastructure = { is_megastructure_type = gas_giant_shellworld_ruined }
+		}
+		FROMFROM = { NOT = { is_ai = yes } }
+	}
+	
+	option = {
+		name = "ssh_action.10.a"
+	}
+}
+
+# Edersphere
+ship_event = {
+	id = ssh_action.11
+	title = "ssh_action.11.name"
+	desc = "ssh_action.11.desc"
+	picture = GFX_evt_ssh_edersphere
+	show_sound = event_laboratory_sound
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			has_star_flag = ruined_edersphere_system
+			any_system_megastructure = { is_megastructure_type = edersphere_ruined }
+		}
+		FROMFROM = { NOT = { is_ai = yes } }
+	}
+	
+	option = {
+		name = "ssh_action.11.a"
+	}
+}
+
+# Black Hole Shellworld
+ship_event = {
+	id = ssh_action.12
+	title = "ssh_action.12.name"
+	desc = "ssh_action.12.desc"
+	picture = GFX_evt_ssh_black_hole_shell_3
+	show_sound = event_laboratory_sound
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			has_star_flag = ruined_black_hole_shellworld_system
+			any_system_megastructure = { is_megastructure_type = black_hole_shellworld_ruined }
+		}
+		FROMFROM = { NOT = { is_ai = yes } }
+	}
+	
+	option = {
+		name = "ssh_action.12.a"
+	}
+}
+
+# Hoopworld Primitives
+ship_event = {
+	id = ssh_action.13
+	title = "ssh_action.13.name"
+	desc = "ssh_action.13.desc"
+	picture = GFX_evt_ssh_hoopworld
+	show_sound = event_laboratory_sound
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			has_star_flag = preftl_hoopworld_system
+			any_system_planet = { is_planet_class = pc_hoopworld }
+		}
+		FROMFROM = { NOT = { is_ai = yes } }
+	}
+	
+	option = {
+		name = "ssh_action.13.a"
+	}
+}
+
+# New Leaders Get Brain Symbiosis Trait
+country_event = {
+	id = ssh_action.14
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		from = {
+			species = {
+				has_trait = trait_ssh_brain_symbiosis
+				NOR = {
+					has_trait = trait_cybernetic
+					has_trait = trait_psionic
+					has_trait = trait_latent_psionic
+				}
+			}
+		}
+	}
+
+	immediate = {
+		from = {
+			add_trait = {
+				trait = leader_trait_ssh_brain_symbiosis
+				show_message = no
+			}
+		}
+	}
+}
+
+# New Leaders Get Brain Symbiosis Trait (Hive Minds)
+country_event = {
+	id = ssh_action.15
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		from = {
+			species = {
+				has_trait = trait_ssh_brain_symbiosis_hive
+				NOR = {
+					has_trait = trait_cybernetic
+					has_trait = trait_psionic
+					has_trait = trait_latent_psionic
+				}
+			}
+		}
+	}
+
+	immediate = {
+		from = {
+			add_trait = {
+				trait = leader_trait_ssh_brain_symbiosis_hive
+				show_message = no
+			}
+		}
+	}
+}
+
+# Nanite Disassembler Moon Shrinking: Planet receives catastrophal damage
+# NOTE: I had to make this a country event bc there are no monthly pulse on_actions for planet events
+
+planet_event = {
+	id = ssh_action.16
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		NOR = {
+			# Won't trigger for gas giants & artificial worlds bc of modifiers
+			has_planet_flag = ssh_disassembled_moon_catastrophy # so it won't fire multiple times on the same planet
+			ssh_is_any_gas_giant = yes
+			is_artificial = yes
+		}
+		has_moon = yes
+		any_moon = {
+			has_planet_flag = ssh_active_disassembly_planet
+			has_planet_flag = ssh_shrinking_planet
+			planet_size <= 1
+		}
+	}
+
+	immediate = {
+		save_event_target_as = ssh_shrinking_moon_planet
+		set_planet_flag = ssh_disassembled_moon_catastrophy
+		add_planet_devastation = 90
+		add_modifier = {
+			modifier = unstable_tectonics
+			days = -1
+		}
+		add_modifier = {
+			modifier = hazardous_weather
+			days = -1
+		}
+		add_deposit = d_city_ruins
+		# Notify Owner
+		if = {
+			limit = {
+				is_colony = yes
+				owner = { is_regular_empire = yes }
+			}
+			owner = {
+				country_event = {
+					id = ssh_on.29
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				is_colony = yes
+				owner = { is_primitive = yes }
+			}
+			# Since Primitives don't have the technology necessary to adapt, their colony is instantly destroyed
+			destroy_colony = yes
+			if = {
+				limit = { has_observation_outpost = yes }
+				observation_outpost_owner = {
+					country_event = {
+						id = ssh_on.30
+					}
+				}
+			}
+		}
+	}
+}
+
+# Destroy fleets entering vacuum decay area
+fleet_event = {
+	id = ssh_action.17
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		from = {
+			has_star_flag = ssh_decayed_system
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { is_mobile = yes }
+			set_mia = mia_return_home
+		}
+		else = {
+			owner = {
+				create_message = {
+					type = SHIP_VACUUM_DECAYED
+					localization = MESSAGE_SHIP_VACUUM_DECAYED_TEXT
+					days = 30
+					target = prev.solar_system
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = prev.solar_system
+					}
+				}
+			}
+			kill_leader = { show_notification = yes }
+			destroy_fleet = this
+		}
+	}
+}
+
+# Colony destroyed by vacuum decay
+planet_event = {
+	id = ssh_action.18
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_planet_flag = ssh_vacdec_destroyed_colony
+		owner = { is_ai = no }
+	}
+
+	immediate = {
+		owner = {
+			if = {
+				limit = { has_event_chain = "reality_collapse_chain" }
+				add_event_chain_counter = {
+					event_chain = "reality_collapse_chain"
+					counter = "decayed_colonies"
+					amount = 1
+				}
+			}
+			country_event = {
+				id = ssh_on.47
+			}
+		}
+	}
+}
+
+# Check if all players have escaped the vacdec crisis
+event = {
+	id = ssh_action.19
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = ssh_vacdec_crisis_ongoing
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					is_ai = no
+					NOT = { has_country_flag = ssh_country_escaped_vacdec_crisis }
+				}
+			}
+			# Do Nothing (as at least one player has still not dealt w/ the crisis)
+		}
+		else = {
+			ssh_end_vacdec_crisis = yes
+		}
+	}
+}
+
+# Refugee Wave due to reality collapsing
+#planet_event = {
+#	id = ssh_action.19
+#	is_triggered_only = yes
+#	hide_window = yes
+#
+#	pre_triggers = {
+#		has_owner = yes
+#		has_ground_combat = no
+#	}
+#
+#	trigger = {
+#		has_global_flag = ssh_vacdec_crisis_ongoing
+#		exists = owner
+#		solar_system = { has_star_flag = ssh_vacdec_marked_system }
+#		owner = {
+#			is_gestalt = no
+#			NOT = { has_civic = civic_fanatic_purifiers }
+#		}
+#	}
+#
+#	immediate = {
+#		#### TODO
+#	}
+#}
+
+### Enable SSH Resources for Galactic Market ###
+# Enable resources for Galactic Market
+event = {
+	id = ssh_action.50
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = galactic_market_founded
+
+		OR = {
+			NOT = { is_on_market = sr_hydrogen }
+			NOT = { is_on_market = sr_cultrobium }
+			NOT = { is_on_market = sr_conscious_matter }
+			NOT = { is_on_market = sr_nuclei_soup }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { is_on_market = sr_hydrogen }
+				any_playable_country = {
+					is_galactic_community_member = yes
+					resource_stockpile_compare = { resource = sr_hydrogen value >= 1 }
+				}
+			}
+			enable_on_market = sr_hydrogen
+		}
+		else_if = {
+			limit = {
+				NOT = { is_on_market = sr_cultrobium }
+				any_playable_country = {
+					is_galactic_community_member = yes
+					resource_stockpile_compare = { resource = sr_cultrobium value >= 1 }
+				}
+			}
+			enable_on_market = sr_cultrobium
+		}
+		else_if = {
+			limit = {
+				NOT = { is_on_market = sr_conscious_matter }
+				any_playable_country = {
+					is_galactic_community_member = yes
+					resource_stockpile_compare = { resource = sr_conscious_matter value >= 1 }
+				}
+			}
+			enable_on_market = sr_conscious_matter
+		}
+		else_if = {
+			limit = {
+				NOT = { is_on_market = sr_nuclei_soup }
+				any_playable_country = {
+					is_galactic_community_member = yes
+					resource_stockpile_compare = { resource = sr_nuclei_soup value >= 1 }
+				}
+			}
+			enable_on_market = sr_nuclei_soup
+		}
+	}
+}
+
+# 70-80 Horizon Brain
+country_event = { # Flip Ownership on capturing Starbase - Give option to steal pops/burn them for research/destroy everything
+	id = ssh_action.70
+	title = "ssh_action.70.name"
+	desc = {
+		text = "ssh_action.70_01.desc"
+		trigger = {
+			OR = {
+				has_ascension_perk = ap_synthetic_age
+				has_ascension_perk = ap_synthetic_evolution
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+			}
+		}
+	}
+	desc = {
+		text = "ssh_action.70_02.desc"
+		trigger = {
+			NOR = {
+				has_ascension_perk = ap_synthetic_age
+				has_ascension_perk = ap_synthetic_evolution
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+			}
+		}
+	}
+	picture = GFX_evt_ssh_horizon_brain
+	show_sound = event_criminal_activity
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			is_orbital_ring = no
+			solar_system = {
+				any_system_planet = {
+					is_planet_class = pc_horizon_brain
+				}
+			}
+		}
+	}
+
+	immediate = {
+		from = {
+			solar_system = {
+				random_system_planet = {
+					limit ={
+						is_planet_class = pc_horizon_brain
+					}
+					set_owner = root
+					set_controller = root
+					save_event_target_as = horizon_brain
+				}
+			}
+		}
+	}
+
+	option = { #Keep it along with the pops (Change all pop group living standards) - Only available for cybernetics/synthetics
+		name = ssh_action.70.a
+		trigger = {
+			OR = {
+				has_ascension_perk = ap_synthetic_age
+				has_ascension_perk = ap_synthetic_evolution
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_vr } }
+			give_technology = { tech = ssh_tech_vr }
+		}
+		#hidden_effect = {
+			#event_target:horizon_brain = {
+				#every_owned_pop_group = {
+				#	set_living_standard = {
+				#		type = living_standard_disconnected_drone #####
+				#	}
+				#	#resettle_pop_group = {
+				#	#	POP_GROUP = this
+				#	#	PLANET = owner.capital_scope
+				#	#	PERCENTAGE = 0.5
+				#	#}
+				#	#kill_all_pop = yes
+				#}
+				#spawn_lathe_cracker_effect = yes
+			#}
+		#}
+	}
+
+	option = { #Shut it down & dismantle it (peaceful demise)
+		name = ssh_action.70.b
+		custom_tooltip = ssh_action.70.b_tt
+
+		add_monthly_resource_mult = {
+			resource = engineering_research
+			value = @tier3researchreward
+			min = @tier3researchmin
+			max = @tier3researchmax
+		}
+
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_vr } }
+			add_tech_progress = {
+				tech = ssh_tech_vr
+				progress = 0.75
+			}
+		}
+
+		hidden_effect = {
+			event_target:horizon_brain = {
+				every_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				spawn_horizon_brain_cracker_effect = yes
+			}
+		}
+	}
+
+	option = { # Forcefully dismantle it & study its effect on the still linked pops
+		name =  ssh_action.70.c
+		trigger = {
+			NOR = {
+				is_pacifist = yes
+				is_xenophile = yes
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier3researchreward
+			min = @tier3researchmin
+			max = @tier3researchmax
+		}
+		add_monthly_resource_mult = {
+			resource = engineering_research
+			value = @tier4researchreward
+			min = @tier4researchmin
+			max = @tier5researchmax
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_vr } }
+			add_tech_progress = {
+				tech = ssh_tech_vr
+				progress = 0.75
+			}
+		}
+
+		hidden_effect = {
+			event_target:horizon_brain = {
+				every_owned_pop_group = {
+					kill_all_pop = yes
+				}
+				spawn_horizon_brain_cracker_effect = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_crisis.2011
+	title = "ssh_crisis.2011.name"
+	desc = "ssh_crisis.2011.desc"
+	picture = GFX_evt_ssh_megabrain_stage_3
+	show_sound = "event_red_alert"
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.2011.a
+		trigger = {
+			owner_main_species = {
+				NOR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_crisis.2011.b
+		trigger = {
+			owner_main_species = {
+				OR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+
+# 100 Brain Leviathan
+
+# Entering System
+ship_event = {
+	id = ssh_action.100
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			has_star_flag = ssh_brain_leviathan_system
+			NOT = { has_star_flag = brain_leviathan_slain }
+			OR = {
+				NOT = { has_star_flag = brain_leviathan_spawned }
+				any_fleet_in_system = { is_ship_size = bio_brain } ###?
+			}
+		}
+		owner = { NOT = { has_country_flag = ssh_brain_leviathan_system_entered } }
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = ssh_brain_leviathan_system_entered
+		}
+		if = {
+			limit = {
+				solar_system = {
+					NOT = { has_star_flag = brain_leviathan_spawned }
+				}
+			}
+			solar_system = { save_event_target_as = brain_leviathan_system }
+			owner = {
+				country_event = { id = ssh_action.101 }
+			}
+		}
+	}
+}
+
+# Entering System
+country_event = {
+	id = ssh_action.101
+	title = "ssh_action.101.name"
+	desc = "ssh_action.101.desc"
+	picture = GFX_evt_shattered_planet
+	show_sound = event_activating_unknown_technology ###
+	location = event_target:brain_leviathan_system
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_action.101.a"
+		trigger = {
+			NOR = {
+				has_civic = civic_mining_guilds
+				has_civic = civic_scavengers
+				has_civic = civic_corporate_scavengers
+				has_civic = civic_relentless_industrialists
+				has_civic = civic_corporate_relentless_industrialists
+				has_civic = civic_void_hive
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_rockbreakers
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = "ssh_action.101.b"
+		trigger = {
+			OR = {
+				has_civic = civic_mining_guilds
+				has_civic = civic_scavengers
+				has_civic = civic_corporate_scavengers
+				has_civic = civic_relentless_industrialists
+				has_civic = civic_corporate_relentless_industrialists
+				has_civic = civic_void_hive
+				has_civic = civic_machine_rockbreakers
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = "ssh_action.101.c"
+		trigger = { has_civic = civic_hive_devouring_swarm }
+		default_hide_option = yes
+	}
+}
+
+# Entering System
+ship_event = {
+	id = ssh_action.105
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			has_star_flag = ssh_brain_leviathan_system
+			NOT = { has_star_flag = brain_leviathan_slain }
+			OR = {
+				NOT = { has_star_flag = brain_leviathan_spawned }
+				any_fleet_in_system = { is_ship_size = bio_brain } ###?
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				solar_system = {
+					NOT = { has_star_flag = brain_leviathan_spawned }
+				}
+			}
+			solar_system = {
+				set_star_flag = brain_leviathan_spawned
+				save_event_target_as = brain_leviathan_system
+				random_system_planet = {
+					limit = { is_planet_class = pc_black_hole }
+					create_country = {
+						name = "NAME_Dimensional_Horror" ###
+						type = guardian_horror ###
+						flag = {
+							icon = {
+								category = "zoological"
+								file = "flag_zoological_3.dds"
+							}
+							background = {
+								category = "backgrounds"
+								file = "00_solid.dds"
+							}
+							colors={
+								"red"
+								"red"
+								"null"
+								"null"
+							}
+						}
+					}
+					last_created_country = {
+						save_global_event_target_as = brain_leviathan_country
+						set_country_flag = brain_leviathan_country
+					}
+					create_fleet = {
+						name = "NAME_Dimensional_Horror" ###
+						settings = {
+							spawn_debris = no
+							is_boss = yes
+						}
+						effect = {
+							set_owner = event_target:brain_leviathan_country
+							save_global_event_target_as = brain_leviathan
+							create_ship = {
+								name = "NAME_Dimensional_Horror" ###
+								design = "NAME_Dimensional_Horror" ###
+								effect = { set_disabled = yes }
+							}
+							set_location = {
+								target = PREV
+								distance = 100
+								angle = random
+							}
+						}
+					}
+					last_created_fleet = {
+						create_ambient_object = {
+							type = "horror_spawn_object"
+							location = THIS
+							use_3d_location = yes
+							duration = 10
+						}
+						fleet_event = { id = leviathans.3220 days = 8 } ###
+					}
+				}
+			}
+		}
+		solar_system = { save_event_target_as = brain_leviathan_system }
+		owner = {
+			country_event = { id = story.8 days = 15 }
+			establish_communications_no_message = event_target:brain_leviathan_country
+			country_event = { id = leviathans.3001 } ###
+		}
+	}
+}
+
+### System destroyed by captive star ###
+planet_event = {
+	id = ssh_action.500
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		every_fleet_in_orbit = {
+			set_fleet_flag = captive_star_collision_fleet
+			destroy_fleet = this
+		}
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_reverence_for_life"
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { 
+					flag = resolution_breached_fired_cracker days = 3600 
+				}
+			}
+		}
+		# Generate threat & war exhaustion
+		if = {
+			limit = {
+				exists = space_owner #owner doesn't seem to work
+				space_owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			if = {
+				limit = { solar_system = { any_system_planet = { is_colony = yes } } }
+				add_threat = {
+					who = from.owner
+					amount = 5
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.space_owner #root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.space_owner #root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.space_owner #root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								OR = {
+									is_egalitarian = yes
+									is_xenophile = yes
+									is_ecocentric = yes # The environmental damage!
+								}
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_destroyed_system_with_wmd
+						who = from.owner
+					}
+				}
+				# modifiers for victim
+				owner = {
+					add_opinion_modifier = {
+						modifier = opinion_destroyed_my_colonized_system_with_wmd
+						who = from.owner
+					}
+					if = {
+						limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+						add_modifier = {
+							modifier = ssh_wmd_victim
+							days = 10800 # 30 years
+						}
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+			else = {
+				add_threat = { who = from.owner amount = 1 }
+				space_owner = {
+					add_opinion_modifier = {
+						modifier = opinion_destroyed_my_system_with_wmd
+						who = from.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 0.5
+					}
+				}
+			}
+			# First Usage Notification
+			space_owner = {
+				if = {
+					limit = { NOT = { has_country_flag = system_destroyed_by_wmd } }
+					set_country_flag = system_destroyed_by_wmd
+					country_event = {
+						id = ssh_on.112
+						days = 1
+					}
+				}
+			}
+		}
+		solar_system = {
+			# Message Notification
+			every_playable_country = {
+				limit = {
+					intel_level = {
+						level > low
+						system = prev
+					}
+				}
+				create_message = {
+					type = SYSTEM_DESTROYED_WMD
+					localization = MESSAGE_SYSTEM_DESTROYED_WMD_TEXT
+					days = 30
+					target = prev
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = prev
+					}
+				}
+			}
+			random_system_planet = {
+				limit = { has_modifier = holy_planet }
+				planet_event = { id = planet_destruction.605 }
+			}
+			# Destroy System
+			destroy_star_system_stellar_collision = yes # Creates a white dwarf instead of a black hole
+			# Notification
+			if = {
+				limit = { NOT = { prev.from.owner = { has_country_flag = captive_star_destroyed_system } } }
+				#set_global_flag = captive_star_destroyed_system
+				prev.from.owner = {
+					save_event_target_as = captive_star_owner
+					set_country_flag = captive_star_destroyed_system
+					country_event = {
+						id = ssh_on.83
+						days = 1
+					}
+				}
+				every_country = {
+					limit = {
+						is_ai = no
+						NOT = { is_same_value = event_target:captive_star_owner }
+						prev = {
+							is_surveyed = { # Not sure if this is the right way of checking intel on the system
+								who = prevprev
+								status = yes
+							}
+						}
+					}
+					country_event = {
+						id = ssh_on.84
+						days = 1
+					}
+				}
+			}
+		}
+	}
+}
+# Captive Star destroyed - rogue star in the system!
+country_event = {
+	id = ssh_action.501
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		fromfrom = {
+			#any_owned_ship = { is_ship_size = ssh_captive_star } # Doesnt work for some reason
+			has_fleet_flag = captive_star
+			NOT = { has_fleet_flag = captive_star_collision_fleet }
+		}
+	}
+
+	immediate = {
+		fromfrom = {
+			solar_system = {
+				save_event_target_as = released_star_solar_system
+				if = {
+					limit = { prev = { has_fleet_flag = ssh_captive_star_a } }
+					ssh_spawn_captive_star_planet = { STAR = a_star }
+				}
+				else_if = {
+					limit = { prev = { has_fleet_flag = ssh_captive_star_b } }
+					ssh_spawn_captive_star_planet = { STAR = b_star }
+				}
+				else_if = {
+					limit = { prev = { has_fleet_flag = ssh_captive_star_f } }
+					ssh_spawn_captive_star_planet = { STAR = f_star }
+				}
+				else_if = {
+					limit = { prev = { has_fleet_flag = ssh_captive_star_g } }
+					ssh_spawn_captive_star_planet = { STAR = g_star }
+				}
+				else_if = {
+					limit = { prev = { has_fleet_flag = ssh_captive_star_k } }
+					ssh_spawn_captive_star_planet = { STAR = k_star }
+				}
+				else_if = {
+					limit = { prev = { has_fleet_flag = ssh_captive_star_m } }
+					ssh_spawn_captive_star_planet = { STAR = m_star }
+				}
+				else_if = {
+					limit = { prev = { has_fleet_flag = ssh_captive_star_m_giant } }
+					ssh_spawn_captive_star_planet = { STAR = m_giant_star }
+				}
+				else = { ssh_spawn_captive_star_planet = { STAR = t_star } }
+				every_system_planet = {
+					limit = {
+						NOR = {
+							is_star = yes
+							is_artificial = yes
+							has_planet_flag = megastructure
+							is_colony = yes
+							ssh_is_any_gas_giant = yes
+							ssh_is_special_planet = yes
+							ssh_is_star_pc = yes
+							is_asteroid = yes
+						}
+					}
+					change_pc = pc_molten
+				}
+				every_system_planet = {
+					limit = { is_colony = yes }
+					if = {
+						limit = { owner = { is_country_type = primitive } }
+						if = {
+							limit = { has_observation_outpost = yes }
+							observation_outpost = { destroy_fleet = this }
+						}
+						destroy_colony = yes
+						add_deposit = d_irradiated_ruins
+						add_deposit = d_city_ruins
+						add_deposit = d_city_ruins
+						change_pc = pc_molten
+						add_modifier = {
+							modifier = neutron_bombarded
+							days = 7200
+						}
+					}
+					else = {
+						if = {
+							limit = { has_building = building_planetary_shield_generator }
+							add_planet_devastation = 75
+							while = {
+								count = 3
+								random_owned_pop_group = {
+									kill_pop_group = {
+										pop_group = this
+										amount = 100
+									}
+								}
+							}
+							add_modifier = {
+								modifier = neutron_bombarded
+								days = 3600
+							}
+						}
+						else = {
+							add_planet_devastation = 100
+							add_deposit = d_city_ruins
+							while = {
+								count = 5
+								random_owned_pop_group = {
+									kill_pop_group = {
+										pop_group = this
+										amount = 100
+									}
+								}
+							}
+							add_modifier = {
+								modifier = neutron_bombarded
+								days = 7200
+							}
+						}
+					}
+				}
+			}
+		}
+		# This = owner of fleet 1 (destroyed)
+		country_event = {
+			id = ssh_on.80
+			days = 1
+		}
+		# From = owner of fleet 2 (combatant)
+		from = {
+			country_event = {
+				id = ssh_on.81
+				days = 1
+			}
+		}
+	}
+}
+
+
+### System destroyed by Dark Matter Warhead ###
+planet_event = {
+	id = ssh_action.550
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_reverence_for_life"
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { 
+					flag = resolution_breached_fired_cracker days = 3600 
+				}
+			}
+		}
+		# Generate threat & war exhaustion
+		if = {
+			limit = {
+				exists = space_owner
+				space_owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			if = {
+				limit = { solar_system = { any_system_planet = { is_colony = yes } } }
+				add_threat = {
+					who = from.owner
+					amount = 10
+				}
+				# modifier for allies + those upset by genocide
+				every_country = {
+					limit = {
+						NOR = {
+							is_same_value = from.owner
+							is_same_value = root.space_owner #root.owner
+							AND = {
+								has_federation = yes
+								is_in_federation_with = from.owner
+							}
+						}
+						OR = {
+							has_communications = from.owner
+							has_communications = root.space_owner #root.owner
+						}
+						OR = {
+							AND = {
+								has_federation = yes
+								is_in_federation_with = root.space_owner #root.owner
+							}
+							has_ai_personality = awakened_fallen_empire_xenophile
+							AND = {
+								is_country_type = default
+								#OR = {
+								#	is_egalitarian = yes
+								#	is_xenophile = yes
+								#	is_ecocentric = yes
+								#}
+								NOT = { is_militarist = yes }
+							}
+						}
+					}
+					add_opinion_modifier = {
+						modifier = opinion_destroyed_system_with_wmd
+						who = from.owner
+					}
+				}
+				# modifiers for victim
+				space_owner = {
+					add_opinion_modifier = {
+						modifier = opinion_destroyed_my_colonized_system_with_wmd
+						who = from.owner
+					}
+					if = {
+						limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+						add_modifier = {
+							modifier = ssh_wmd_victim
+							days = 10800 # 30 years
+						}
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1.0
+					}
+				}
+			}
+			else = {
+				add_threat = { who = from.owner amount = 2 }
+				space_owner = {
+					add_opinion_modifier = {
+						modifier = opinion_destroyed_my_system_with_wmd
+						who = from.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 0.5
+					}
+				}
+			}
+			# First Usage Notification
+			space_owner = {
+				if = {
+					limit = { NOT = { has_country_flag = system_destroyed_by_wmd } }
+					set_country_flag = system_destroyed_by_wmd
+					from.owner = { save_event_target_as = system_destroyer_country }
+					country_event = {
+						id = ssh_on.112
+						days = 1
+					}
+				}
+			}
+		}
+		# Notification
+		every_playable_country = {
+			limit = {
+				intel_level = {
+					level > low
+					system = prev.solar_system
+				}
+			}
+			create_message = {
+				type = SYSTEM_DESTROYED_WMD
+				localization = MESSAGE_SYSTEM_DESTROYED_WMD_TEXT
+				days = 30
+				target = prev.solar_system
+				variable = {
+					type = name
+					localization = SYSTEM
+					scope = prev.solar_system
+				}
+			}
+		}
+		every_fleet_in_orbit = { destroy_fleet = this }
+		solar_system = {
+			random_system_planet = {
+				limit = { has_modifier = holy_planet }
+				planet_event = { id = planet_destruction.605 }
+			}
+			destroy_star_system_dark_wmd = yes # Destroys solar system
+			# Check for fleet flag w/ yield
+			# yield = 1 = 1 system
+			# yield = 2 = all neighbouring systems
+			# yield = 3 = all 2 lane neighbouring systems
+		}
+	}
+}
+
+# Missile/Captive Star enters other country's system without quantum catapult
+fleet_event = {
+	id = ssh_action.554
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			is_ship_size = ssh_dark_matter_missile
+			is_ship_size = ssh_captive_star
+		}
+		from = {
+			exists = space_owner
+			space_owner = {
+				#is_regular_empire = yes
+				NOT = { is_same_value = root.owner }
+			}
+		}
+		#solar_system = {
+		#	exists = space_owner
+		#	space_owner = {
+		#		#is_regular_empire = yes
+		#		NOT = { is_same_value = root.owner }
+		#	}
+		#}
+	}
+
+	immediate = {
+		# instead of solar_system, from?
+		from = {
+			owner = {
+				create_message = {
+					type = WMD_DETECTED
+					localization = MESSAGE_WMD_DETECTED_TEXT
+					days = 30
+					target = prev
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = prev
+					}
+				}
+			}
+		}
+	}
+}
+
+# Notification for missiles entering a system (after initial notification to prevent owner spam) (similar to colossus/star eater notifications)
+# apparently from, fromfrom are in fact NOT the systems jumped from/to so I have to manually use solar_system
+fleet_event = {
+	id = ssh_action.555
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			is_ship_size = ssh_dark_matter_missile
+			is_ship_size = ssh_captive_star
+		}
+		#from = {
+		#	exists = space_owner
+		#	space_owner = {
+		#		#is_regular_empire = yes
+		#		NOT = { is_same_value = prevprev.owner }
+		#	}
+		#}
+	}
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				NOT = { is_same_value = prev.owner }
+				intel_level = {
+					level > low
+					system = prev.solar_system
+				}
+			}
+			create_message = {
+				type = WMD_DETECTED
+				localization = MESSAGE_WMD_DETECTED_TEXT
+				days = 30
+				target = prev.solar_system
+				variable = {
+					type = name
+					localization = SYSTEM
+					scope = prev.solar_system
+				}
+			}
+		}
+	}
+}
+
+### Cluster destroyed by Large Dark Matter Warhead ###
+planet_event = {
+	id = ssh_action.600
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		planet_event = { id = ssh_action.550 }
+		solar_system = {
+			every_neighbor_system = { star = { planet_event = { id = ssh_action.550 } } }
+		}
+	}
+}
+
+### System devoured by behemoth brain maw ###
+planet_event = {
+	id = ssh_action.700
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		set_planet_flag = devoured_star
+		if = {
+			limit = {
+				NOR = {
+					from.owner = { has_country_flag = behemoth_crisis_megabrain_ate_star_message }
+					is_planet_class = pc_pulsar
+					is_planet_class = pc_neutron_star
+					is_planet_class = pc_quark_star
+					is_planet_class = pc_black_hole
+				}
+			}
+			from.owner = {
+				set_country_flag = behemoth_crisis_megabrain_ate_star_message
+				country_event = {
+					id = ssh_crisis.3110
+					days = 3
+				}
+			}
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = from.owner }
+					intel_level = {
+						level > low
+						system = prev.solar_system
+					}
+				}
+				country_event = {
+					id = ssh_crisis.3120
+					days = 3
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = { from.owner = { has_country_flag = behemoth_crisis_megabrain_ate_neutron_message } }
+				OR = {
+					is_planet_class = pc_pulsar
+					is_planet_class = pc_neutron_star
+					is_planet_class = pc_quark_star
+				}
+			}
+			from.owner = {
+				set_country_flag = behemoth_crisis_megabrain_ate_neutron_message
+				country_event = {
+					id = ssh_crisis.3111
+					days = 3
+				}
+			}
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = from.owner }
+					intel_level = {
+						level > low
+						system = prev.solar_system
+					}
+				}
+				country_event = {
+					id = ssh_crisis.3121
+					days = 3
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = { from.owner = { has_country_flag = behemoth_crisis_megabrain_ate_blackhole_message } }
+				is_planet_class = pc_black_hole
+			}
+			from.owner = {
+				set_country_flag = behemoth_crisis_megabrain_ate_blackhole_message
+				country_event = {
+					id = ssh_crisis.3112
+					days = 3
+				}
+			}
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = from.owner }
+					intel_level = {
+						level > low
+						system = prev.solar_system
+					}
+				}
+				country_event = {
+					id = ssh_crisis.3122
+					days = 3
+				}
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = { has_modifier = holy_planet }
+				planet_event = { id = planet_destruction.605 }
+			}
+			destroy_star_system_behemoth_brain_maw = yes # Eat solar system
+		}
+		# Notification
+		every_playable_country = {
+			limit = {
+				intel_level = {
+					level > low
+					system = prev.solar_system
+				}
+			}
+			create_message = {
+				type = SYSTEM_DESTROYED_BRAIN_MAW
+				localization = MESSAGE_SYSTEM_DESTROYED_BRAIN_MAW_TEXT
+				days = 30
+				target = prev.solar_system
+				variable = {
+					type = name
+					localization = SYSTEM
+					scope = prev.solar_system
+				}
+			}
+		}
+	}
+}
+# Determine Black Hole Outcome
+planet_event = {
+	id = ssh_action.701
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		is_planet_class = pc_black_hole
+		from.owner = { has_country_flag = behemoth_crisis_megabrain_ate_blackhole_message } # Can't happen first time eating a singularity
+	}
+
+	immediate = {
+		# Determine Outcome - every black hole has 5% chance to consume you
+		# After having devoured 10 black holes, opportunity to get unique galactic core ending
+		from.owner = {
+			if = {
+				limit = { NOT = { is_variable_set = singularities_eaten_amount } }
+				set_variable = {
+					which = singularities_eaten_amount
+					value = 0
+				}
+			}
+			change_variable = {
+				which = singularities_eaten_amount
+				value = 1
+			}
+			if = {
+				limit = {
+					check_variable = {
+						which = singularities_eaten_amount
+						value < 3
+					}
+				}
+				random_list = {
+					1 = {
+						# You die
+						country_event = {
+							id = ssh_crisis.3095
+						}
+					}
+					99 = {
+						# You eat :)
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						which = singularities_eaten_amount
+						value = 3
+					}
+				}
+				random_list = {
+					2 = {
+						# You die
+						country_event = {
+							id = ssh_crisis.3095
+						}
+					}
+					98 = {
+						# You eat & unlock special ending option
+						set_country_flag = behemoth_crisis_megabrain_ending_galcore
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						which = singularities_eaten_amount
+						value > 3
+					}
+					check_variable = {
+						which = singularities_eaten_amount
+						value < 7
+					}
+				}
+				random_list = {
+					5 = {
+						# You die
+						country_event = {
+							id = ssh_crisis.3095
+						}
+					}
+					95 = {
+						# You eat :)
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						which = singularities_eaten_amount
+						value > 6
+					}
+					check_variable = {
+						which = singularities_eaten_amount
+						value < 10
+					}
+				}
+				random_list = {
+					7 = {
+						# You die
+						country_event = {
+							id = ssh_crisis.3095
+						}
+					}
+					93 = {
+						# You eat :)
+					}
+				}
+			}
+			else = {
+				# Value > 10
+				random_list = {
+					10 = {
+						# You die
+						country_event = {
+							id = ssh_crisis.3095
+						}
+					}
+					90 = {
+						# You eat :)
+					}
+				}
+			}
+		}
+	}
+}

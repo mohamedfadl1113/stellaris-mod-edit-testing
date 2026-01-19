@@ -1,0 +1,137 @@
+namespace = precursor
+
+# Vultaum Reality Perforator Activated
+country_event = {
+	id = precursor.105
+	title = "precursor.105.name"
+	desc = "precursor.105.desc"
+	picture = GFX_evt_surreal_visions
+
+	is_triggered_only = yes
+
+	option = {
+		name = "precursor.105.a"
+		hidden_effect = {
+			if = {
+				limit = { has_ascension_perk = ap_hyperdimensional_exodus }
+				complete_crisis_objective = crisobj_use_reality_perforator
+			}
+		}
+		locked_random_list = {
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_1"
+					years = 2
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_2"
+					years = 2
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_3"
+					years = 2
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_4"
+					years = 2
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_1"
+					years = 3
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_2"
+					years = 3
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_3"
+					years = 3
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_4"
+					years = 3
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_1"
+					years = 4
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_2"
+					years = 4
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_3"
+					years = 4
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_4"
+					years = 4
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_1"
+					years = 5
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_2"
+					years = 5
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_3"
+					years = 5
+				}
+			}
+			10 = {
+				add_modifier = {
+					modifier = "reality_perforator_4"
+					years = 5
+				}
+			}
+			5 = {
+				add_modifier = {
+					modifier = "reality_perforator_1"
+					years = 1
+				}
+				add_modifier = {
+					modifier = "reality_perforator_2"
+					years = 1
+				}
+				add_modifier = {
+					modifier = "reality_perforator_3"
+					years = 1
+				}
+				add_modifier = {
+					modifier = "reality_perforator_4"
+					years = 1
+				}
+			}
+		}
+	}
+}

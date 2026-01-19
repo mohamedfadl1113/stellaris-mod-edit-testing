@@ -1,0 +1,4257 @@
+namespace = ssh_crisis
+
+@brain_growth_factor_planet_mult = 10
+@brain_growth_factor_star_mult = 25
+@brain_growth_factor_neutron_mult = 50
+@brain_growth_factor_blackhole_mult = 100
+@brain_growth_factor_from_pop = 0.02
+@brain_growth_factor_monthly_decrease = -10.0
+@brain_growth_factor_from_ship = 0.7
+@brain_growth_factor_from_star_regular = 10
+
+# On becoming an Exodus Empire (Crisis Level 1)
+# Text after taking the hyperdim. ascension exodus perk
+country_event = {
+	id = ssh_crisis.1
+	title = "ssh_crisis.1.name"
+	desc = {
+		text = "ssh_crisis.1_01.desc"
+		trigger = { NOT = { has_civic = civic_machine_servitor } }
+	}
+	desc = {
+		text = "ssh_crisis.1_02.desc"
+		trigger = { has_civic = civic_machine_servitor }
+	}
+	picture = GFX_evt_ssh_fundament_realm
+	show_sound = event_death_cult
+	event_chain = hyperdimensional_exodus_chain
+	location = from
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = {
+		begin_event_chain = {
+			event_chain = hyperdimensional_exodus_chain
+			target = root
+		}
+	}
+	
+	option = {
+		name = "ssh_crisis.1.a"
+		tooltip = {
+			begin_event_chain = {
+				event_chain = hyperdimensional_exodus_chain
+				target = root
+			}
+		}
+		trigger = { NOT = { has_civic = civic_machine_servitor } }
+		add_event_chain_counter = {
+			event_chain = "hyperdimensional_exodus_chain"
+			counter = "hyperdimensional_exodus_chain_level_reached"
+			amount = 1
+		}
+		enable_special_project = {
+			name = "SSH_CRISIS_EXODUS_SPECIAL_PROJECT_1"
+			owner = ROOT
+		}
+		custom_tooltip = new_crisis_perks_tt
+		default_hide_option = yes
+	}
+	option = {
+		name = "ssh_crisis.1.b"
+		tooltip = {
+			begin_event_chain = {
+				event_chain = hyperdimensional_exodus_chain
+				target = root
+			}
+		}
+		trigger = { has_civic = civic_machine_servitor }
+		add_event_chain_counter = {
+			event_chain = "hyperdimensional_exodus_chain"
+			counter = "hyperdimensional_exodus_chain_level_reached"
+			amount = 1
+		}
+		enable_special_project = {
+			name = "SSH_CRISIS_EXODUS_SPECIAL_PROJECT_1"
+			owner = ROOT
+		}
+		custom_tooltip = new_crisis_perks_tt
+		default_hide_option = yes
+	}
+}
+
+# On reaching Crisis Level 2
+country_event = {
+	id = ssh_crisis.2
+	title = "ssh_crisis.2.name"
+	desc = "ssh_crisis.2.desc"
+	picture = GFX_evt_surreal_visions
+	show_sound = event_death_cult
+	event_chain = hyperdimensional_exodus_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.2.a
+		root = {
+			enable_special_project = {
+				name = "SSH_CRISIS_EXODUS_SPECIAL_PROJECT_2"
+				owner = ROOT
+			}
+		}
+		custom_tooltip = new_crisis_perks_tt
+	}
+}
+
+# On reaching Crisis Level 3
+country_event = {
+	id = ssh_crisis.3
+	title = "ssh_crisis.3.name"
+	desc = {
+		text = "ssh_crisis.3_01.desc"
+		trigger = { NOT = { has_civic = civic_machine_servitor } }
+	}
+	desc = {
+		text = "ssh_crisis.3_02.desc"
+		trigger = { has_civic = civic_machine_servitor }
+	}
+	picture = GFX_evt_physics_research
+	show_sound = event_death_cult
+	event_chain = hyperdimensional_exodus_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3.a
+		root = {
+			enable_special_project = {
+				name = "SSH_CRISIS_EXODUS_SPECIAL_PROJECT_3"
+				owner = ROOT
+			}
+		}
+		custom_tooltip = new_crisis_perks_tt
+	}
+}
+
+# On reaching Crisis Level 4
+country_event = {
+	id = ssh_crisis.4
+	title = "ssh_crisis.4.name"
+	desc = {
+		text = "ssh_crisis.4_bio.desc"
+		trigger = {
+			NOR = {
+				has_civic = civic_machine_servitor
+				is_machine_empire = yes
+				is_individual_machine = yes
+			}
+		}
+	}
+	desc = {
+		text = "ssh_crisis.4_servitor.desc"
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+	}
+	desc = {
+		text = "ssh_crisis.4_machine.desc"
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+			OR = {
+				is_machine_empire = yes
+				is_individual_machine = yes
+			}
+		}
+	}
+	picture = GFX_evt_physics_research
+	show_sound = event_death_cult
+	event_chain = hyperdimensional_exodus_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.4.a
+		root = {
+			enable_special_project = {
+				name = "SSH_CRISIS_EXODUS_SPECIAL_PROJECT_4"
+				owner = ROOT
+			}
+			#hidden_effect = {
+			#	set_country_flag = ssh_hyperdim_exodus_stage_4
+			#}
+		}
+		custom_tooltip = new_crisis_perks_tt
+	}
+}
+
+# On reaching Crisis Level 5
+country_event = {
+	id = ssh_crisis.5
+	title = "ssh_crisis.5.name"
+	desc = {
+		text = "ssh_crisis.5_01.desc"
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+		}
+	}
+	desc = {
+		text = "ssh_crisis.5_02.desc"
+		trigger = { has_civic = civic_machine_servitor }
+	}
+	picture = GFX_evt_ssh_dim_tearer
+	show_sound = event_death_cult
+	event_chain = hyperdimensional_exodus_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = ssh_can_build_dim_tearer
+		# All Psionics will notice something
+		every_country = {
+			limit = {
+				NOT = { is_same_value = prev }
+				owner_main_species = {
+					OR = {
+						has_trait = trait_psionic
+						has_trait = trait_ssh_brain_symbiosis
+						has_trait = trait_ssh_brain_symbiosis_hive
+					}	
+				}
+			}
+			country_event = {
+				id = ssh_on.3
+				days = 1
+			}
+		}
+		if = {
+			limit = { is_ai = yes }
+			country_event = {
+				id = ssh_crisis.6
+				days = 25 #maybe 600
+			}
+		}
+	}
+
+	option = {
+		name = ssh_crisis.5.a
+		custom_tooltip = new_crisis_perks_tt
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_crisis.5.b
+		custom_tooltip = new_crisis_perks_tt
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+		default_hide_option = yes
+	}
+}
+
+# AI: Auto-Spawns Dim. Tearer / System
+country_event = {
+	id = ssh_crisis.6
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				capital_star = {
+					NOR = {
+						is_planet_class = pc_black_hole
+						has_planet_flag = has_megastructure
+					}
+				}
+			}
+			capital_scope = {
+				solar_system = {
+					spawn_megastructure = {
+						type = dimensional_tearer_0
+						owner = from
+						planet = star
+					}
+				}
+			}
+		}
+		else = { # Create new system with the dimensional tearer next to capital
+			capital_scope = {
+				spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 0	max_orientation_angle = 270	initializer = "ssh_init_exodus_tearer" }
+				last_created_system = {
+					spawn_megastructure = {
+						type = dimensional_tearer_0
+						owner = from
+						planet = star
+					}
+				}
+			}
+		}
+		#else = {
+		#	random_system_within_border = {
+		#		limit = {
+		#			NOT = { is_star_class = sc_black_hole }
+		#			star = { NOT = { has_planet_flag = has_megastructure } }
+		#		}
+		#		spawn_megastructure = {
+		#			type = dimensional_tearer_0
+		#			owner = from
+		#			planet = star
+		#		}
+		#	}
+		#}
+	}
+}
+
+# Crisis Special Project 1 Completed - Crisis Level 2 Unlocked
+country_event = {
+	id = ssh_crisis.10
+	title = "ssh_crisis.10.name"
+	desc = {
+		text = ssh_crisis.10_01.desc
+		trigger = {
+			NOT = { has_ascension_perk = ap_mind_over_matter }
+		}
+	}
+	desc = {
+		text = ssh_crisis.10_02.desc
+		trigger = {
+			has_ascension_perk = ap_mind_over_matter
+		}
+	}
+	picture = GFX_evt_surreal_visions
+	show_sound = event_necrophage
+	event_chain = hyperdimensional_exodus_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.10.a
+		#trigger = {
+		#	NOT = {
+		#		has_ethic = ethic_gestalt_consciousness
+		#	}
+		#}
+	}
+
+	after = {
+		custom_tooltip = can_advance_crisis_progression
+	}
+}
+
+# Crisis Special Project 2 Completed - Crisis Level 3 Unlocked
+country_event = {
+	id = ssh_crisis.15
+	title = "ssh_crisis.15.name"
+	desc = {
+		text = ssh_crisis.15_01.desc
+		trigger = {
+			NOT = { has_ascension_perk = ap_mind_over_matter }
+			NOT = { has_civic = civic_machine_servitor }
+		}
+	}
+	desc = {
+		text = ssh_crisis.15_02.desc
+		trigger = {
+			has_ascension_perk = ap_mind_over_matter
+			NOT = { has_civic = civic_machine_servitor }
+		}
+	}
+	desc = {
+		text = ssh_crisis.15_02.desc
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+	}
+	picture = GFX_evt_surreal_visions
+	show_sound = event_necrophage
+	event_chain = hyperdimensional_exodus_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.15.a
+	}
+
+	after = {
+		custom_tooltip = can_advance_crisis_progression
+	}
+}
+
+# Crisis Special Project 3 Completed - Crisis Level 4 Unlocked
+country_event = {
+	id = ssh_crisis.20
+	title = "ssh_crisis.20.name"
+	desc = "ssh_crisis.20.desc"
+	picture = GFX_evt_ssh_fundament_realm
+	show_sound = event_death_cult
+	event_chain = hyperdimensional_exodus_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.20.a
+	}
+
+	after = {
+		custom_tooltip = can_advance_crisis_progression
+	}
+}
+
+# Crisis Special Project 4 Completed - Crisis Level 5 Unlocked
+country_event = {
+	id = ssh_crisis.25
+	title = "ssh_crisis.25.name"
+	desc = {
+		text = "ssh_crisis.25_01.desc"
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+		}
+	}
+	desc = {
+		text = "ssh_crisis.25_02.desc"
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+	}
+	picture = GFX_evt_ssh_fundament_tunnels
+	show_sound = event_necrophage
+	event_chain = hyperdimensional_exodus_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.25.a
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_crisis.25.b
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+		default_hide_option = yes
+	}
+
+	after = {
+		custom_tooltip = can_advance_crisis_progression_final
+	}
+}
+
+# Ascension/Exodus
+country_event = {
+	id = ssh_crisis.45
+	title = "ssh_crisis.45.name"
+	desc = {
+		text = "ssh_crisis.45_01.desc"
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+		}
+	}
+	desc = {
+		text = "ssh_crisis.45_02.desc"
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+	}
+	picture = GFX_evt_vortex
+	show_sound = event_death_cult
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_global_flag = ssh_dim_tearer_active # Stop yearly on actions
+		# Restore Room
+		restore_hyperdim_exodus_country_backup_data = yes
+		#trigger_ssh_exodus_species_effect = yes # Unused as empire no longer stays ingame afterwards
+	}
+	
+	option = {
+		name = "ssh_crisis.45.a"
+		custom_tooltip = ssh_crisis.45.a_tt
+		#hidden_effect = {}
+		default_hide_option = yes
+	}
+
+	after = {
+		hidden_effect = {
+			save_event_target_as = ssh_exodus_country
+			#set_update_modifiers_batch = begin
+			set_spawn_system_batch = begin #This has to be done to force the cache to regenerate and so the effect works when rerun - can also be used when removing and adding hyperlanes
+
+			# Exodus Effect
+			trigger_hyperdimensional_exodus = yes # Changes the Tearer System + Adds victory score
+			# Destroy Star Cluster
+			event_target:global_event_country = { country_event = { id = ssh_crisis.49 } }
+
+			#set_update_modifiers_batch = end
+			set_spawn_system_batch = end
+
+			# Post-Exodus Lore/Info
+			country_event = {
+				id = ssh_crisis.50
+				days = 5
+			}
+
+			# Date distortion effect
+			date_distortion = yes
+			event_target:global_event_country = {
+				country_event = { id = crisis.7519 days = 30 }
+			}
+		}
+	}
+}
+
+# Global Event Country: Destroy Star Cluster
+country_event = {
+	id = ssh_crisis.49
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:ssh_exodus_country = {
+			every_system_within_border = {
+				limit = {
+					NOT = { has_star_flag = ssh_dimensional_tearer_system }
+				}
+				remove_star_system = yes
+				random_list = {
+					50 = {
+						# Spawn Fundament Entities
+						if = {
+							limit = { NOT = { exists = event_target:fundament_creatures_country } }
+							create_country = {
+								name = "Hyperdimensional Entities"
+								type = shroud_spirits
+								flag = {
+									icon = {
+										category = "special"
+										file = "extradimensional_02.dds" #the_shroud.dds
+									}
+									background= {
+										category = "backgrounds"
+										file = "00_solid.dds"
+									}
+									colors = {
+										"red_orange"
+										"burgundy"
+										"null"
+										"null"
+									}
+								}
+							}
+							last_created_country = {
+								save_global_event_target_as = fundament_creatures_country
+							}
+						}
+						create_fleet = {
+							name = "Hyperdimensional Entity"
+							settings = {
+								spawn_debris = no
+								is_boss = yes
+							}
+							effect = {
+								set_owner = event_target:fundament_creatures_country
+								set_fleet_flag = crisis_fundament_entity
+								create_ship = {
+									name = "Hyperdimensional Entity"
+									design = "NAME_Corrupted_Avatar"
+								}
+								set_location = {
+									target = prev.star
+									distance = 100
+									angle = random
+								}
+								set_fleet_stance = aggressive
+								set_aggro_range_measure_from = return_point
+								set_aggro_range = 2000
+							}
+						}
+					}
+					50 = {
+						# Nothing
+					}
+				}
+			}
+			# End of the Cycle (Power of Friendship)
+			if = {
+				limit = { has_country_flag = covenant_end_of_the_cycle }
+				every_playable_country = {
+					limit = {
+						NOT = { is_same_value = prev }
+						is_country_type = default
+					}
+					add_opinion_modifier = {
+						modifier = opinion_doomed_us_all
+						who = prev
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = end_of_the_cycle_reckoning }
+						}
+						set_country_flag = end_of_the_cycle_reckoning
+						country_event = { id = utopia.3321 }
+					}
+				}
+				if = {
+					limit = { NOT = { has_country_flag = end_of_the_cycle_reckoning } }
+					random_system_within_border = {
+						limit = { has_star_flag = ssh_dimensional_tearer_system }
+						create_fleet = {
+							name = "NAME_The_End"
+							settings = {
+								spawn_debris = no
+								ai_ignore_strength = yes
+								is_boss = yes
+							}
+							effect = {
+								save_global_event_target_as = the_end_of_the_cycle
+								set_name = {
+									key = "NAME_Absorbed_Species"
+									variable_string = "[Root.GetSpeciesNamePlural]"
+								}
+								set_owner = prevprev # The Exodus Country is the End now #event_target:fundament_creatures_country
+								create_ship = {
+									name = "NAME_Reckoning"
+									design = "NAME_Warped_Consciousness"
+								}
+								set_location = star #event_target:former_capital
+								set_fleet_stance = aggressive
+								set_aggro_range_measure_from = return_point
+								set_aggro_range = 3000
+								if = {
+									limit = {
+										root = {
+											check_variable = {
+												which = "end_power"
+												value < 500
+											}
+										}
+									}
+									add_modifier = {
+										modifier = "absorbed_consciousness_1"
+										days = -1
+									}
+								}
+								else_if = {
+									limit = {
+										root = {
+											check_variable = {
+												which = "end_power"
+												value < 1000
+											}
+										}
+									}
+									add_modifier = {
+										modifier = "absorbed_consciousness_2"
+										days = -1
+									}
+								}
+								else_if = {
+									limit = {
+										root = {
+											check_variable = {
+												which = "end_power"
+												value < 2500
+											}
+										}
+									}
+									add_modifier = {
+										modifier = "absorbed_consciousness_3"
+										days = -1
+									}
+								}
+								else_if = {
+									limit = {
+										root = {
+											check_variable = {
+												which = "end_power"
+												value < 5000
+											}
+										}
+									}
+									add_modifier = {
+										modifier = "absorbed_consciousness_4"
+										days = -1
+									}
+								}
+								else = {
+									add_modifier = {
+										modifier = "absorbed_consciousness_5"
+										days = -1
+									}
+								}
+							}
+						}
+					}
+				}
+				else = {
+					# You are friends with the devil now :)
+					event_target:the_end_of_the_cycle = { set_owner = prev }
+				}
+			}
+		}
+
+		# Notify every other country
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = { is_same_value = event_target:ssh_exodus_country }
+			}
+			country_event = {
+				id = ssh_on.21
+			}
+		}
+	}
+}
+
+# Exodus Event (Win)
+country_event = {
+	id = ssh_crisis.50
+	title = "ssh_crisis.50.name"
+	desc = {
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+			NOT = { has_country_flag = covenant_end_of_the_cycle }
+			NOT = { has_origin = origin_toxic_knights }
+		}
+
+		text = ssh_crisis.50.desc.default
+	}
+	desc = {
+		trigger = { has_civic = civic_machine_servitor }
+
+		text = ssh_crisis.50.desc.servitor
+	}
+	desc = {
+		trigger = {
+			has_country_flag = covenant_end_of_the_cycle # EOTC Covenant
+			#NOT = { has_country_flag = end_of_the_cycle_reckoning } # Pre-Reckoning
+		}
+		text = ssh_crisis.50.desc.eotc
+	}
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = covenant_end_of_the_cycle }
+
+			has_origin = origin_toxic_knights
+		}
+		text = ssh_crisis.50.desc.knights
+	}
+	# Worm In Waiting
+	# Hyperdimensional Civic
+	picture = GFX_evt_vortex
+	show_sound = "event_mystic_reveal_light"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+	
+	option = {
+		name = "ssh_crisis.50.a"
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+			NOT = { has_country_flag = covenant_end_of_the_cycle }
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = "ssh_crisis.50.b"
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = "ssh_crisis.50.eotc"
+		trigger = {
+			has_country_flag = covenant_end_of_the_cycle
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = "ssh_crisis.50.knights"
+		trigger = {
+			NOT = { has_country_flag = covenant_end_of_the_cycle }
+			has_origin = origin_toxic_knights
+		}
+		default_hide_option = yes
+	}
+
+	after = {
+		win = yes
+		
+		hidden_effect = {
+			play_sound = {
+				sound = event_necrophage
+				location = from
+			}
+			# Remove Fundament Gateway Capital
+			capital_scope = {
+				destroy_colony = yes
+				remove_planet = yes
+			}
+		}
+	}
+}
+
+# ssh_crisis.500 - ssh_crisis.1100 -> Interdim. Insights Events
+
+
+### Prethoryn Scourge tries to enter Fundament ###
+# WIP
+
+
+#########################################
+##### Fallen Xenophobe B.I.O. Brain #####
+#########################################
+event = {
+	id = ssh_crisis.2000
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		mid_game_years_passed >= 50
+		end_game_years_passed <= 15
+		has_global_flag = ssh_fallen_xenophobe_megabrain
+		any_country = {
+			is_country_type = fallen_empire # Non Awakened Only
+			has_ethic = ethic_fanatic_xenophobe
+			any_system_within_border = { has_megastructure = mega_brain_fallen_xenophobe } # Check if the Bio brain still exists (e.g. not conquered)
+		}
+		NOT = { has_global_flag = ssh_fallen_xenophobe_megabrain_awakening }
+	}
+
+	immediate = {
+		set_global_flag = ssh_fallen_xenophobe_megabrain_awakening
+		random_country = {
+			limit = { is_fallen_empire_xenophobe = yes }
+			save_event_target_as = fallen_empire_xenophobe
+			random_system_within_border = {
+				limit = { has_megastructure = mega_brain_fallen_xenophobe }
+				random_system_megastructure = {
+					limit = { is_megastructure_type = mega_brain_fallen_xenophobe }
+					upgrade_megastructure_to = mega_brain_fallen_xenophobe_awoken
+				}
+			}
+			country_event = {
+				id = ssh_crisis.2002 #ssh_crisis.502
+				days = 1080 #3 years
+			}
+		}
+		every_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_crisis.2001 #ssh_crisis.501
+				days = 5
+			}
+		}
+	}
+}
+
+# Notification for rest of galaxy
+country_event = {
+	id = ssh_crisis.2001
+	title = "ssh_crisis.2001.name"
+	desc = ssh_crisis.2001.desc
+	picture = GFX_evt_worrying_signal #GFX_evt_ssh_megabrain_stage_2
+	show_sound = "event_yellow_alert"
+	location = event_target:fallen_empire_xenophobe.capital_scope
+	trackable = yes
+	
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.2001.a
+		trigger = {
+			owner_main_species = {
+				NOR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_crisis.2001.b
+		trigger = {
+			owner_main_species = {
+				OR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Determine Outcome
+country_event = {
+	id = ssh_crisis.2002
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		exists = event_target:fallen_empire_xenophobe
+		has_global_flag = ssh_fallen_xenophobe_megabrain_awakening
+		any_system_within_border = { has_megastructure = mega_brain_fallen_xenophobe_awoken } # Check if the Bio brain still exists (e.g. not conquered)
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { exists = event_target:fallen_empire_xenophobe } }
+			save_event_target_as = fallen_empire_xenophobe
+		}
+		random_system_within_border = {
+			limit = { has_megastructure = mega_brain_fallen_xenophobe_awoken }
+			random_system_megastructure = {
+				limit = { is_megastructure_type = mega_brain_fallen_xenophobe_awoken }
+				save_event_target_as = fallen_xenophobe_mega_brain
+			}
+		}
+		random_list = {
+			30 = {
+				# The Good Ending
+				#set_global_flag = ssh_fallen_xenophobe_megabrain_awakening_peaceful
+				every_owned_pop_group = {
+					limit = {
+						is_same_species = root
+						species = {
+							NOT = { has_trait = trait_ssh_brain_symbiosis }
+						}
+					}
+					modify_species = {
+						species = this
+						add_trait = trait_ssh_brain_symbiosis
+					}
+					species = { save_event_target_as = ssh_fallen_brain_symbiosis_species }
+					# Ensure the event target exists, just to be sure
+					if = {
+						limit = {
+							exists = event_target:ssh_fallen_brain_symbiosis_species
+						}
+						owner = {
+							change_dominant_species = {
+								species = event_target:ssh_fallen_brain_symbiosis_species
+								change_all = yes
+							}
+						}
+					}
+				}
+				capital_scope = {
+					solar_system = {
+						create_fleet = {
+							name = "Tamed Brain"
+							settings = {
+								spawn_debris = no
+								is_boss = yes
+							}
+							effect = {
+								set_owner = event_target:fallen_empire_xenophobe
+								set_fleet_flag = controlled_fe_bio_brain
+								create_ship = {
+									name = "Organic Computer"
+									design = "NAME_Bio_Brain"
+								}
+								set_location = {
+									target = event_target:fallen_xenophobe_mega_brain
+									distance = 100
+									angle = random
+								}
+							}
+						}
+						event_target:fallen_xenophobe_mega_brain = {
+							remove_megastructure = this
+						}
+					}
+				}
+				# Trigger Awakening (Same effect as fallen_empires_awakening.1)
+				country_event = {
+					id = ssh_effect.10
+					days = 30
+				}
+			}
+			70 = {
+				# The Bad Ending
+				set_global_flag = ssh_fallen_xenophobe_megabrain_awakening_hostile
+				every_system_within_border = {
+					random_list = {
+						# Sabotaged Fleets
+						50 = {
+							every_fleet_in_system = {
+								limit = {
+									#owner = { is_same_value = event_target:fallen_empire_xenophobe }
+									is_mobile = yes
+								}
+								destroy_fleet = this
+							}
+						}
+						50 = {
+							# No sabotaged Fleets; Fallen Empire wins
+						}
+					}
+				}
+				capital_scope = {
+					solar_system = {
+						create_country = {
+							name = "BIO_BRAIN"
+							type = bio_brain
+							flag = {
+								icon = {
+									category = "special"
+									file = "the_shroud.dds"
+								}
+								background= {
+									category = "backgrounds"
+									file = "00_solid.dds"
+								}
+								colors = {
+									"red"
+									"pink"
+									"null"
+									"null"
+								}
+							}
+						}
+						last_created_country = {
+							save_event_target_as = fallen_xenophobe_bio_brain_country
+							give_technology = {
+								tech = ssh_tech_advanced_dna_resequencing #so it can use ultra virus stance
+							}
+						}
+						create_fleet = {
+							name = "BIO_BRAIN_HOSTILE"
+							settings = {
+								spawn_debris = no
+								is_boss = yes
+							}
+							effect = {
+								set_owner = event_target:fallen_xenophobe_bio_brain_country # Global Event Target
+								set_fleet_flag = fe_xenophobe_bio_brain_hostile
+								create_ship = {
+									name = "BIO_BRAIN_HOSTILE"
+									design = "NAME_Bio_Brain"
+								}
+								set_location = {
+									target = event_target:fallen_xenophobe_mega_brain
+									distance = 100
+									angle = random
+								}
+								set_fleet_stance = aggressive
+								set_aggro_range_measure_from = return_point
+								set_aggro_range = 2000
+							}
+						}
+						event_target:fallen_xenophobe_mega_brain = {
+							remove_megastructure = this
+						}
+					}
+				}
+				# To Balance things out for the brain - one vanilla FE fleet is already enough to beat it
+				every_owned_fleet = {
+					limit = {
+						is_mobile = yes
+					}
+					random_list = {
+						30 = {
+							# Sabotaged by the Brain
+							destroy_fleet = this
+						}
+						40 = {
+							# Infiltrated by the Brain
+							set_owner = event_target:fallen_xenophobe_bio_brain_country
+							set_name = "Absorbed Commanders"
+						}
+						30 = {
+							# Lucky
+						}
+					}
+				}
+			}
+		}
+		# Notify Rest
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_crisis.2003
+			}
+		}
+	}
+}
+# Notification
+country_event = {
+	id = ssh_crisis.2003
+	title = "ssh_crisis.2003.name"
+	desc = {
+		text = "ssh_crisis.2003_01.desc"
+		trigger = { NOT = { has_global_flag = ssh_fallen_xenophobe_megabrain_awakening_hostile } }
+	}
+	desc = {
+		text = "ssh_crisis.2003_02.desc"
+		trigger = { has_global_flag = ssh_fallen_xenophobe_megabrain_awakening_hostile }
+	}
+	picture = GFX_evt_ssh_megabrain_stage_3
+	show_sound = "event_red_alert"
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.2003.a
+		default_hide_option = yes
+	}
+}
+
+# Bio Brain is destroyed by its owners
+country_event = {
+	id = ssh_crisis.2005
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = ssh_fallen_xenophobe_megabrain_awakening_hostile
+		fromfrom = {
+			#any_owned_ship = { is_ship_size = bio_brain }
+			has_fleet_flag = fe_xenophobe_bio_brain_hostile
+		}
+		is_country_type = bio_brain
+		from = {
+			is_country_type = fallen_empire
+			has_ethic = ethic_fanatic_xenophobe
+		}
+	}
+
+	immediate = {
+		# FE Awakens
+		from = {
+			country_event = {
+				id = ssh_effect.10
+				days = 15
+			}
+		}
+		# Notify Rest of Galaxy
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_crisis.2006
+			}
+		}
+	}
+}
+country_event = {
+	id = ssh_crisis.2006
+	title = "ssh_crisis.2006.name"
+	desc = "ssh_crisis.2006.desc"
+	picture = GFX_evt_ssh_megabrain_stage_3
+	show_sound = "event_red_alert"
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.2006.a
+		trigger = {
+			owner_main_species = {
+				NOR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_crisis.2006.b
+		trigger = {
+			owner_main_species = {
+				OR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# FE Starbase destroyed by Brain
+starbase_event = {
+	id = ssh_crisis.2010
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_global_flag = ssh_fallen_xenophobe_megabrain_awakening_hostile
+		NOT = { has_global_flag = ssh_fallen_xenophobe_megabrain_destroyed_starbase }
+		exists = from
+		from.owner = { is_country_type = bio_brain }
+		owner = { is_country_type = fallen_empire }
+	}
+
+	immediate = {
+		set_global_flag = ssh_fallen_xenophobe_megabrain_destroyed_starbase
+		if = {
+			limit = { NOT = { exists = event_target:fallen_empire_xenophobe } }
+			random_country = {
+				limit = {
+					is_country_type = fallen_empire
+					has_ethic = ethic_fanatic_xenophobe
+				}
+				save_event_target_as = fallen_empire_xenophobe
+			}
+		}
+		# FE Awakens
+		owner = { #event_target:fallen_empire_xenophobe
+			country_event = {
+				id = ssh_effect.10
+				days = 5
+			}
+		}
+		# Notify Rest of Galaxy
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_crisis.2011
+			}
+		}
+	}
+}
+country_event = {
+	id = ssh_crisis.2011
+	title = "ssh_crisis.2011.name"
+	desc = "ssh_crisis.2011.desc"
+	picture = GFX_evt_ssh_megabrain_stage_3
+	show_sound = "event_red_alert"
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.2011.a
+		trigger = {
+			owner_main_species = {
+				NOR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_crisis.2011.b
+		trigger = {
+			owner_main_species = {
+				OR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+
+##########################################
+##### Behemoth Fury - BIO Brain Path #####
+##########################################
+# After selecting alternative route - B.I.O. Brain not fully grown yet
+country_event = {
+	id = ssh_crisis.3000
+	title = "ssh_crisis.3000.name"
+	desc = ssh_crisis.3000.desc
+	picture = GFX_evt_behemoth_engineering
+	show_sound = event_necrophage
+	event_chain = behemoth_crisis_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3000.a
+		custom_tooltip = ssh_crisis.3000.a_tt
+	}
+
+	after = {
+		hidden_effect = {
+			set_country_flag = behemoth_crisis_megabrain_needs_to_grow # 2x Chances for BIO Brain to grow
+		}
+	}
+}
+
+# Behemoth Fury - Event when BIO Brain has merged w/ owner (Provide Special Project)
+country_event = {
+	id = ssh_crisis.3010
+	title = "ssh_crisis.3010.name"
+	desc = ssh_crisis.3010.desc
+	picture = GFX_evt_behemoth_engineering
+	show_sound = event_necrophage
+	event_chain = behemoth_crisis_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3010.a
+	}
+
+	after = {
+		# Turn Brain megastructure into Brain vessel
+		hidden_effect = {
+			capital_scope = {
+				create_fleet = {
+					name = "NAME_Brain_Behemoth_fleet"
+					settings = {
+						spawn_debris = no
+					}
+					effect = {
+						set_owner = prevprev
+						#fleet_event = { id = biocrisis.75 days = 450 random = 450 }
+						create_ship = {
+							name = "NAME_Brain_Behemoth_ship"
+							design = "NAME_Brain_Behemoth_01"
+							effect = {
+								set_ship_flag = behemoth_brain_ship
+								#event_target:behemoth_parent_country = {
+								#	set_country_flag = hatched@prev
+								#}
+								set_disable_at_health = 0.01 #?
+							}
+						}
+						set_location = {
+							target = prev
+							distance = 0
+							angle = 0
+							direction = in_system
+						}
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self #or return_point
+						set_aggro_range = 30000
+						set_fleet_bombardment_stance = behemoth_invasion
+					}
+				}
+			}
+			random_owned_megastructure = {
+				limit = { is_megastructure_type = mega_brain_7 }
+				remove_megastructure = this
+			}
+		}
+
+		enable_special_project = {
+			name = BEHEMOTH_CRISIS_SPECIAL_PROJECT_4_MEGABRAIN
+			owner = root
+			location = capital_scope
+		}
+	}
+}
+
+# Event when done researching special project
+# Crisis Special Project 4 Completed - Crisis Level 5 Unlocked
+country_event = {
+	id = ssh_crisis.3015
+	title = "ssh_crisis.3015.name"
+	desc = ssh_crisis.3015.desc
+	picture = GFX_evt_behemoth_engineering
+	show_sound = event_necrophage
+	event_chain = behemoth_crisis_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3015.a
+	}
+
+	after = {
+		custom_tooltip = can_advance_crisis_progression
+		hidden_effect = {
+			set_country_flag = crisis_special_project_4_megabrain_complete # Unlocks final crisis stage
+		}
+	}
+}
+
+# Crisis Level 5
+country_event = {
+	id = ssh_crisis.3020
+	title = "ssh_crisis.3020.name"
+	desc = ssh_crisis.3020.desc
+	picture = GFX_evt_ssh_megabrain_stage_3 #GFX_evt_behemoth_engineering
+	show_sound = event_necrophage
+	event_chain = behemoth_crisis_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3020.a
+		#Start situation
+		start_situation = { type = behemoth_finale_situation_megabrain target = root }
+		begin_event_chain = {
+			event_chain = behemoth_victory_chain_megabrain
+			target = root
+		}
+		# Add pop nerfing modifier - increment at every situation stage
+		add_modifier = {
+			modifier = behemoth_transference
+			days = -1
+		}
+	}
+
+	immediate = {
+		#set_variable = {
+		#	which = pops_transferred
+		#	value = 0
+		#}
+		capital_scope = {
+			save_event_target_as = behemoth_capital
+			#validate_planet_buildings_and_districts = yes
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			set_variable = {
+				which = growth_factor_variable
+				value = 0
+			}
+			# Kill a few pops across country
+			#every_owned_planet = {
+			#	limit = {
+			#		pop_amount > 500
+			#	}
+			#	random_list = {
+			#		20 = {}
+			#		20 = {
+			#			weighted_random_owned_pop_group = {
+			#				kill_single_pop = yes
+			#			}
+			#			owner = {
+			#				change_variable = {
+			#					which = pops_transferred
+			#					value = 100
+			#				}
+			#			}
+			#		}
+			#		20 = {
+			#			while = {
+			#				count = 2
+			#				weighted_random_owned_pop_group = {
+			#					kill_single_pop = yes
+			#				}
+			#			}
+			#			owner = {
+			#				change_variable = {
+			#					which = pops_transferred
+			#					value = 200
+			#				}
+			#			}
+			#		}
+			#		20 = {
+			#			while = {
+			#				count = 3
+			#				weighted_random_owned_pop_group = {
+			#					kill_single_pop = yes
+			#				}
+			#			}
+			#			owner = {
+			#				change_variable = {
+			#					which = pops_transferred
+			#					value = 300
+			#				}
+			#			}
+			#		}
+			#		20 = {
+			#			while = {
+			#				count = 4
+			#				weighted_random_owned_pop_group = {
+			#					kill_single_pop = yes
+			#				}
+			#			}
+			#			owner = {
+			#				change_variable = {
+			#					which = pops_transferred
+			#					value = 400
+			#				}
+			#			}
+			#		}
+			#	}
+			#}
+			# Set up event to kill some transference workers every six months
+			#country_event = { id = biocrisis.255 days = 180 }
+
+			random_owned_fleet = { # Delete the Brain Behemoth that just researched the project
+				limit = {
+					is_ship_size = ssh_brain_behemoth_01
+					solar_system = {
+						is_same_value = root.capital_scope.solar_system
+					}
+				}
+				delete_fleet = this
+			}
+
+			#Swap with a tier 2 Biobrain (now you can finally eat planets yum)
+			event_target:behemoth_capital = {
+				create_fleet = {
+					name = "NAME_Brain_Behemoth_fleet"
+					settings = {
+						spawn_debris = no
+					}
+					effect = {
+						set_owner = root
+						create_ship = {
+							name = "NAME_Brain_Behemoth_ship"
+							design = "NAME_Brain_Behemoth_02"
+							effect = {
+								set_ship_flag = behemoth_brain_ship
+							}
+						}
+						set_location = {
+							target = event_target:behemoth_capital
+							distance = 0
+							angle = 90
+							direction = in_system
+						}
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self #or return_point
+						set_aggro_range = 30000
+						set_fleet_bombardment_stance = behemoth_invasion
+					}
+				}
+			}
+
+			#Make everyone hate you
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+				}
+				establish_communications_no_message = root
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_destroying_galaxy
+				}
+			}
+			every_country = {
+				limit = { is_fallen_empire = yes }
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_destroying_galaxy
+				}
+			}
+			every_playable_country = { #Notify other level 5 Behemoths
+				limit = {
+					NOT = { is_same_value = root }
+					has_menace_perk = menp_behemoth_ever_hungry
+				}
+				country_event = { id = biocrisis.185 days = 1 }
+			}
+			every_playable_country = { #Notify the rest of the galacy
+				limit = {
+					NOT = { is_same_value = root }
+					NOT = { has_menace_perk = menp_behemoth_ever_hungry }
+				}
+				country_event = { id = biocrisis.187 days = 1 }
+			}
+		}
+	}
+}
+
+# Situation Stages - Info
+situation_event = {
+	id = ssh_crisis.3030
+	title = "ssh_crisis.3030.name"
+	desc = ssh_crisis.3030.desc
+	picture = GFX_evt_behemoth_fight
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3030.a
+		custom_tooltip = ssh_crisis.3030.a_tt
+	}
+}
+situation_event = {
+	id = ssh_crisis.3035
+	title = "ssh_crisis.3035.name"
+	desc = ssh_crisis.3035.desc
+	picture = GFX_evt_behemoth_fight
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3035.a
+		custom_tooltip = ssh_crisis.3035.a_tt
+	}
+}
+situation_event = {
+	id = ssh_crisis.3040
+	title = "ssh_crisis.3040.name"
+	desc = ssh_crisis.3040.desc
+	picture = GFX_evt_behemoth_fight
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3040.a
+		custom_tooltip = ssh_crisis.3040.a_tt
+	}
+}
+situation_event = {
+	id = ssh_crisis.3045
+	title = "ssh_crisis.3045.name"
+	desc = ssh_crisis.3045.desc
+	picture = GFX_evt_behemoth_fight
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3045.a
+		custom_tooltip = ssh_crisis.3045.a_tt
+	}
+}
+situation_event = { # End of situation
+	id = ssh_crisis.3050
+	title = "ssh_crisis.3050.name"
+	desc = ssh_crisis.3050.desc
+	picture = GFX_evt_ssh_brain_behemoth_voidspawn
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3050.a
+		trigger = { owner = { NOT = { has_valid_civic = civic_hive_devouring_swarm } } }
+		hidden_effect = {
+			owner = {
+				set_country_flag = behemoth_superweapon
+			}
+			destroy_situation = this
+		}
+		custom_tooltip = ssh_crisis.3050.a.tt
+	}
+	option = {
+		name = ssh_crisis.3050.b
+		trigger = { owner = { has_valid_civic = civic_hive_devouring_swarm } }
+		hidden_effect = {
+			owner = {
+				set_country_flag = behemoth_superweapon
+			}
+			destroy_situation = this
+		}
+		custom_tooltip = ssh_crisis.3050.a.tt
+	}
+}
+
+# Behemoth Brain about to win the game
+#If no other tier 5 behemoth country, no voidspawn, and situation complete.
+country_event = {
+	id = ssh_crisis.3060
+	title = "ssh_crisis.3060.name"
+	desc = ssh_crisis.3060.desc
+	picture = GFX_evt_ssh_brain_behemoth_dominance
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_menace_perk = menp_behemoth_ever_hungry
+		has_country_flag = finished_behemoth_brain_situation
+		NOT = { has_country_flag = behemoth_victory }
+		NOT = { any_situation = { is_situation_type = behemoth_finale_situation_megabrain } }
+		NOT = {
+			any_country = {
+				is_country_type = voidspawn_boss
+			}
+		}
+		NOT = {
+			any_playable_country = {
+				NOT = { is_same_value = root }
+				has_menace_perk = menp_behemoth_ever_hungry
+			}
+		}
+		NOT = { has_special_project = BEHEMOTH_BRAIN_WINNING_PROJECT_GALCORE } # Prevent annual event spam
+	}
+
+	immediate = {
+		save_event_target_as = behemoth_winner
+		set_country_flag = king_of_monsters_achievement
+	}
+
+	option = { # We Won (We are the Apex Predator now)
+		name = ssh_crisis.3060.a
+		custom_tooltip = biocrisis.190.tt
+		hidden_effect = {
+			country_event = { id = ssh_crisis.3061 days = 30 }
+		}
+	}
+
+	option = { #We're not ready just yet
+		name = ssh_crisis.3060.b
+		custom_tooltip = ssh_crisis.3060.b_tt
+		enable_special_project = {
+			name = BEHEMOTH_BRAIN_WINNING_PROJECT
+			owner = root
+		}
+	}
+
+	after = {
+		every_playable_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_ai = no
+			}
+			country_event = { id = biocrisis.192 days = 1 } # Notify others of impending doom
+		}
+	}
+}
+
+# Behemoth Brain Victory
+country_event = {
+	id = ssh_crisis.3061
+	title = "ssh_crisis.3061.name"
+	desc = ssh_crisis.3061.desc
+	picture = GFX_evt_ssh_brain_behemoth_dominance
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	option = { #Stay a while
+		name = ssh_crisis.3061.a
+		custom_tooltip = biocrisis.191.a.tt
+		hidden_effect = {
+			#Turn the country into a hatchling country and buff it
+			set_country_type = behemoth_hatchling
+			add_modifier = {
+				modifier = behemoth_superbuff
+				days = -1
+			}
+			#wipe leaders
+			every_owned_leader = {
+				kill_leader = {
+					show_notification = no
+				}
+			}
+			#wipe stations and civvy ships
+			every_owned_fleet = {
+				limit = {
+					OR = {
+						is_mobile = no
+						is_civilian = yes
+					}
+				}
+				delete_fleet = this
+			}
+
+			#Find the apex bio brain and save it
+			random_owned_fleet = {
+				limit = {
+					is_ship_size = ssh_brain_behemoth_05
+				}
+				save_global_event_target_as = winning_behemoth
+			}
+			every_owned_fleet = { #Order everyone else to follow it
+				limit = {
+					NOT = {
+						is_ship_size = ssh_brain_behemoth_05
+					}
+				}
+				auto_follow_fleet = event_target:winning_behemoth
+			}
+			#Order the behemoth brain to move to the closest not devoured system, eat it, then wait for a bit, then repeat.
+			event_target:winning_behemoth = {
+				closest_system = {
+					limit = {
+						star = {
+							NOT = {
+								has_planet_flag = devoured_star
+							}
+						}
+					}
+					use_bypasses = no
+					random_system_planet = {
+						limit = {
+							is_star = yes
+						}
+						save_event_target_as = behemoth_rage_target
+					}
+				}
+				auto_move_to_planet = {
+					target = event_target:behemoth_rage_target
+					clear_auto_move_on_arrival = no
+				}
+				fleet_event = { id = ssh_crisis.3062 days = 90 } #biocrisis.193 #720
+			}
+		}
+	}
+
+	option = { #Depart the Galaxy
+		name = ssh_crisis.3061.b
+		custom_tooltip = ssh_crisis.3061.b_tt
+		hidden_effect = {
+			observer_event = {
+				id = ssh_crisis.3063
+				days = 5
+			}
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+				}
+				country_event = { id = ssh_crisis.3064 days = 720 }
+			}
+		}
+	}
+
+	option = { #Go confront the [REDACTED]
+		name = ssh_crisis.3061.c
+		custom_tooltip = ssh_crisis.3061.c_tt # What do they taste like?
+		trigger = {
+			has_country_flag = learned_about_redacted
+		}
+		hidden_effect = {
+			set_global_flag = behemoth_brain_chased_hunters
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+				}
+				country_event = { id = ssh_crisis.3065 days = 720 }
+			}
+		}
+	}
+
+	option = { #We're not ready just yet - BLACK HOLE AT THE CENTER (One Final Taste Test)
+		name = ssh_crisis.3061.d
+		custom_tooltip = ssh_crisis.3061.d_tt # :P yum
+		allow = {
+			hidden_trigger = {
+				OR = {
+					has_valid_civic = civic_hive_devouring_swarm
+					has_country_flag = behemoth_crisis_megabrain_ending_galcore
+				}
+			}
+			custom_tooltip = ssh_crisis.3061.d_requirements_tt
+		}
+		hidden_effect = {
+			set_country_flag = behemoth_brain_galcore
+			country_event = {
+				id = ssh_crisis.3070
+			}
+		}
+	}
+
+	after = {
+		if = {
+			limit = { NOT = { has_country_flag = behemoth_brain_galcore } }
+			win = yes
+			hidden_effect = {
+				every_owned_fleet = {
+					limit = {
+						is_mobile = no
+					}
+					delete_fleet = this
+				}
+				set_country_flag = behemoth_victory
+				every_owned_planet = {
+					every_owned_pop_group = {
+						kill_all_pop = yes
+					}
+				}
+				#country_event = { id = biocrisis.194 days = 1800 } #Egg hatcher and feral behemoths grower
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = ssh_crisis.3062
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		#Order the behemoth brain to move to the closest not devoured system, eat it, then wait for a bit, then repeat.
+		solar_system = {
+			star = {
+				planet_event = {
+					id = ssh_action.700
+					days = 90
+				}
+			}
+		}
+		event_target:winning_behemoth = {
+			closest_system = {
+				limit = {
+					star = {
+						NOT = {
+							has_planet_flag = devoured_star
+						}
+					}
+				}
+				use_bypasses = no
+				random_system_planet = {
+					limit = {
+						is_star = yes
+					}
+					save_event_target_as = behemoth_rage_target
+				}
+			}
+			auto_move_to_planet = {
+				target = event_target:behemoth_rage_target
+				clear_auto_move_on_arrival = no
+			}
+			fleet_event = { id = ssh_crisis.3062 days = 90 } #720
+		}
+	}
+}
+
+# Observer Event when brain departs
+observer_event = {
+	id = ssh_crisis.3063
+	title = ssh_crisis.3063.name
+	desc = ssh_crisis.3063.desc
+	picture = GFX_evt_ssh_brain_behemoth_departure
+	show_sound = event_super_explosion
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3063.a
+	}
+}
+# Notification for all countries after brain departure
+country_event = {
+	id = ssh_crisis.3064
+	title = ssh_crisis.3064.name
+	desc = ssh_crisis.3064.desc
+	picture = GFX_evt_physics_research
+	show_sound = event_red_alert
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3064.a
+		add_resource = {
+			physics_research = 25000
+		}
+	}
+}
+
+# Regular Apex Overmind chased Hunters
+country_event = {
+	id = ssh_crisis.3065
+	title = "ssh_crisis.3065.name"
+	desc = {
+		text = "ssh_crisis.3065.desc"
+		trigger = {
+			NOT = { owner_main_species = { has_trait = trait_psionic } }
+		}
+	}
+	desc = {
+		text = "ssh_crisis.3065.desc_psionic"
+		trigger = {
+			#has_ascension_perk = ap_mind_over_matter
+			owner_main_species = { has_trait = trait_psionic }
+		}
+	}
+	picture = GFX_evt_ssh_brain_behemoth_departure
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3065.a
+	}
+
+	after = {
+		# Uh Oh
+		if = {
+			limit = {
+				has_gigastructures = yes
+				NOR = {
+					has_global_flag = blokkats_managed_to_spawn
+					has_global_flag = blokkat_crisis_ongoing
+				}
+			}
+			event_target:global_event_country = {
+				country_event = {
+					id = giga_blokkat.1000
+					days = 15
+				}
+			}
+		}
+		else = {
+			# Lucky
+		}
+	}
+}
+
+# Brain needs to devour the CORE
+country_event = {
+	id = ssh_crisis.3070
+	title = "ssh_crisis.3070.name"
+	desc = ssh_crisis.3070.desc
+	picture = GFX_evt_ssh_black_hole
+	show_sound = event_mystic_reveal_light
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3070.a
+		enable_special_project = {
+			name = BEHEMOTH_BRAIN_WINNING_PROJECT_GALCORE
+			owner = root
+		}
+	}
+}
+# Roll the dice
+#country_event = {
+#	id = ssh_crisis.3071
+#	hide_window = yes
+#	
+#	is_triggered_only = yes
+#
+#	immediate = {
+#		random_list = {
+#			90 = {
+#				# Devoured by the core
+#				country_event = {
+#					id = war_in_heaven.22
+#				}
+#			}
+#			10 = {
+#				# Apex Core
+#				modifier = {
+#					factor = singularities_eaten_amount #var? #value:singularities_eaten_amount?
+#				}
+#			}
+#		}
+#	}
+#}
+country_event = {
+	id = ssh_crisis.3071
+	title = "ssh_crisis.3071.name"
+	desc = ssh_crisis.3071.desc
+	picture = GFX_evt_ssh_black_hole
+	show_sound = event_mystic_reveal_light
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3071.a
+	}
+
+	after = {
+		hidden_effect = {
+			random_list = {
+				85 = {
+					# Devoured by the core
+					country_event = {
+						id = ssh_crisis.3072
+						days = 15
+					}
+					every_playable_country = {
+						limit = { NOT = { is_same_value = from } }
+						country_event = {
+							id = ssh_crisis.3076
+							days = 15
+						}
+					}
+				}
+				15 = {
+					# Apex Core
+					modifier = {
+						factor = singularities_eaten_amount #var? #value:singularities_eaten_amount?
+					}
+					country_event = {
+						id = ssh_crisis.3073
+						days = 15
+					}
+					every_playable_country = {
+						limit = { NOT = { is_same_value = from } }
+						country_event = {
+							id = ssh_crisis.3077
+							days = 15
+						}
+					}
+				}
+			}
+		}
+	}
+}
+# Sucks but thats the reason many have failed before
+country_event = {
+	id = ssh_crisis.3072
+	title = "ssh_crisis.3072.name"
+	desc = ssh_crisis.3072.desc
+	picture = GFX_evt_ssh_brain_behemoth_devoured_by_singularity_2
+	show_sound = event_death_cult
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_planet = {
+			limit = {
+				is_capital = no
+			}
+			destroy_colony = yes
+		}
+		every_owned_ship = {
+			destroy_ship = this
+		}
+	}
+
+	option = {
+		name = ssh_crisis.3072.a
+		custom_tooltip =  ssh_crisis.3072.a_tt
+	}
+
+	after = {
+		destroy_country = yes
+	}
+}
+
+country_event = {
+	id = ssh_crisis.3073
+	title = "ssh_crisis.3073.name"
+	desc = ssh_crisis.3073.desc
+	picture = GFX_evt_ssh_brain_behemoth_devouring_singularity
+	show_sound = event_death_cult
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	option = {
+		name = ssh_crisis.3073.a
+		custom_tooltip = ssh_crisis.3073.a_tt
+		hidden_effect = {
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+				}
+				country_event = {
+					id = ssh_crisis.3078
+					days = 1
+				}
+			}
+			if = { # Spawn Class V Brain Behemoth in the center of the galaxy
+				limit = { any_system = { has_star_flag = giga_galactic_center } }
+				random_system = {
+					limit = { has_star_flag = giga_galactic_center }
+					# Spawn Gargantuan Overmind
+					from = {
+						every_owned_fleet = {
+							delete_fleet = this
+						}
+						set_country_type = behemoth_hatchling
+						spawn_gargantuan_overmind_behemoth = {
+							OWNER = prev
+							TARGET_SYSTEM = last_created_system
+						}
+					}
+				}
+			}
+			else = {
+				no_scope = { spawn_system = { min_distance >= 0 max_distance <= 0 min_orientation_angle = 44 max_orientation_angle = 46 initializer = ssh_init_empty_space	hyperlane = no } }
+				last_created_system = {
+					from = {
+						every_owned_fleet = {
+							delete_fleet = this
+						}
+						set_country_type = behemoth_hatchling
+						spawn_gargantuan_overmind_behemoth = {
+							OWNER = prev
+							TARGET_SYSTEM = last_created_system
+						}
+					}
+				}
+			}
+			#devour_galaxy = yes #Yum # Could crash the game, dont ask me why - at least hyperlane stuff seems to be extremely fragile
+			event_target:global_event_country = { #Yum
+				country_event = { # Devour Galaxy
+					id = ssh_crisis.3074
+					days = 5
+				}
+			}
+		}
+	}
+
+	option = { # Chase the Hunters
+		name = ssh_crisis.3073.b
+		custom_tooltip = ssh_crisis.3073.b_tt
+		trigger = {
+			has_country_flag = learned_about_redacted
+		}
+		hidden_effect = {
+			set_global_flag = gargantuan_overmind_chased_hunters
+			every_owned_fleet = {
+				#limit = { is_mobile = no }
+				delete_fleet = this
+			}
+			set_country_flag = behemoth_victory
+			every_owned_planet = {
+				every_owned_pop_group = {
+					kill_all_pop = yes
+				}
+			}
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+				}
+				country_event = { id = ssh_crisis.3079 days = 3 }
+				country_event = { id = ssh_crisis.3080 days = 720 }
+			}
+			# Empty gigas galactic core, if exists
+			if = {
+				limit = { any_system = { has_star_flag = giga_galactic_center } }
+				random_system = {
+					limit = { has_star_flag = giga_galactic_center }
+					destroy_star_system_behemoth_brain_maw = yes
+				}
+			}
+		}
+	}
+
+	after = {
+		win = yes
+	}
+}
+
+# Devour Galaxy
+country_event = {
+	id = ssh_crisis.3074
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		devour_galaxy = yes
+	}
+}
+
+# Notify others about Brain trying to eat the core
+country_event = {
+	id = ssh_crisis.3075
+	title = "ssh_crisis.3075.name"
+	desc = ssh_crisis.3075.desc
+	picture = GFX_evt_ssh_brain_behemoth_devouring_singularity
+	show_sound = event_necrophage
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3075.a
+	}
+}
+country_event = { # Brain failed
+	id = ssh_crisis.3076
+	title = "ssh_crisis.3076.name"
+	desc = {
+		text = "ssh_crisis.3076.desc"
+		trigger = { NOT = { has_ascension_perk = ap_mind_over_matter } }
+	}
+	desc = {
+		text = "ssh_crisis.3076.desc_psionic"
+		trigger = { has_ascension_perk = ap_mind_over_matter }
+	}
+	picture = GFX_evt_ssh_brain_behemoth_devoured_by_singularity_2
+	show_sound = event_death_cult
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3076.a
+		add_resource = {
+			physics_research = 75000
+			society_research = 50000
+			unity = 80000
+		}
+	}
+}
+country_event = { # Brain succeeded
+	id = ssh_crisis.3077
+	title = "ssh_crisis.3077.name"
+	desc = {
+		text = "ssh_crisis.3077.desc"
+		trigger = { NOT = { has_ascension_perk = ap_mind_over_matter } }
+	}
+	desc = {
+		text = "ssh_crisis.3077.desc_psionic"
+		trigger = { has_ascension_perk = ap_mind_over_matter }
+	}
+	picture = GFX_evt_ssh_brain_behemoth_dominance
+	show_sound = event_death_cult
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3077.a
+	}
+}
+
+# Brain Devours Rest
+country_event = {
+	id = ssh_crisis.3078
+	title = "ssh_crisis.3078.name"
+	desc = ssh_crisis.3078.desc
+	picture = GFX_evt_ssh_brain_behemoth_dominance
+	show_sound = event_death_cult
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3078.a
+	}
+}
+# Brain hunts the hunters
+country_event = {
+	id = ssh_crisis.3079
+	title = "ssh_crisis.3079.name"
+	desc = ssh_crisis.3079.desc
+	picture = GFX_evt_ssh_brain_behemoth_departure_2
+	show_sound = event_death_cult
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3079.a
+	}
+}
+# Intergalactic Transmissions
+country_event = {
+	id = ssh_crisis.3080
+	title = "ssh_crisis.3080.name"
+	desc = ssh_crisis.3080.desc
+	picture = GFX_evt_ssh_brain_behemoth_departure_2
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3080.a
+		enable_special_project = {
+			name = GARGANTUAN_OVERMIND_FATE_PROJECT
+			owner = root
+		}
+	}
+
+	option = {
+		name = UNSETTLING
+	}
+}
+country_event = { # Transmission Deciphered
+	id = ssh_crisis.3081
+	title = "ssh_crisis.3081.name"
+	desc = ssh_crisis.3081.desc
+	picture = GFX_evt_ssh_brain_behemoth_departure
+	show_sound = event_sensor_ping
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3081.a
+		add_resource = {
+			physics_research = 100000
+			society_research = 100000
+		}
+	}
+}
+
+
+
+
+
+
+# Bio Brain got devoured by a black hole (uno reverse)
+country_event = {
+	id = ssh_crisis.3095
+	title = "ssh_crisis.3095.name"
+	desc = ssh_crisis.3095.desc
+	picture = GFX_evt_ssh_brain_behemoth_devoured_by_singularity
+	show_sound = event_necrophage
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3095.a
+	}
+
+	after = {
+		hidden_effect = {
+			every_owned_fleet = { destroy_fleet = this }
+			set_country_flag = behemoth_brain_devoured_by_singularity
+			country_event = {
+				id = ssh_crisis.3099
+			}
+			# Notify others
+			every_playable_country = {
+				limit = { NOT = { is_same_value = prev } }
+				country_event = {
+					id = ssh_crisis.3096
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ssh_crisis.3096
+	title = "ssh_crisis.3096.name"
+	desc = ssh_crisis.3096.desc
+	picture = GFX_evt_ssh_brain_behemoth_devoured_by_singularity
+	show_sound = event_necrophage
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3096.a
+		add_resource = {
+			physics_research = 25000
+			society_research = 15000
+		}
+	}
+}
+
+# BIO Brain dies - Game Over x_x
+country_event = {
+	id = ssh_crisis.3099
+	title = "ssh_crisis.3099.name"
+	desc = ssh_crisis.3099.desc
+	picture = GFX_evt_ssh_megabrain_stage_3 #GFX_evt_behemoth_fight
+	show_sound = event_necrophage
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			owner = { has_country_flag = behemoth_brain_devoured_by_singularity }
+			fromfrom = {
+				OR = {
+					is_ship_size = ssh_brain_behemoth_02
+					is_ship_size = ssh_brain_behemoth_03
+					is_ship_size = ssh_brain_behemoth_04
+					is_ship_size = ssh_brain_behemoth_05
+					is_ship_size = ssh_brain_behemoth_06
+				}
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_planet = {
+			limit = {
+				is_capital = no
+			}
+			destroy_colony = yes
+		}
+		every_owned_ship = {
+			destroy_ship = this
+		}
+	}
+
+	option = {
+		name = ssh_crisis.3099.a
+	}
+
+	after = {
+		destroy_country = yes
+	}
+}
+
+
+# Bio Brain Behemoth devours planet (from on_destroy_planet_with_PLANET_KILLER_BRAIN_MAW) this = planet from = brain
+planet_event = {
+	id = ssh_crisis.3100
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		from = {
+			random_owned_ship = {
+				limit = {
+					has_ship_flag = behemoth_brain_ship
+				}
+				set_timed_ship_flag = { flag = recently_fed days = 720 }
+			}
+			owner = {
+				if = { # failsafe because you can't initialize variables with a script value
+					limit = { NOT = { is_variable_set = growth_factor_variable } }
+					set_variable = {
+						which = growth_factor_variable
+						value = 0
+					}
+				}
+
+				#add the planet value
+				change_variable = {
+					which = growth_factor_variable
+					value = @brain_growth_factor_planet_mult
+				}
+			}
+		}
+
+		set_variable = {  #add 1 per pop too - has to go through a second variable as to not 	overwrite the first when using export_trigger_to_var
+			which = pops_devoured
+			value = 0
+		}
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop_amount
+			variable = pops_devoured
+			rounded = yes
+		}
+		#Food + Conmat Reward
+		from.owner = {
+			add_resource = {
+				food = 25
+				sr_conscious_matter = 10
+				mult = root.pops_devoured
+			}
+			add_resource = {
+				food = 1000
+				mult = root.trigger:planet_size
+			}
+		}
+		multiply_variable = {
+			which = pops_devoured
+			value = @brain_growth_factor_from_pop
+		}
+		from.owner = {
+			change_variable = {
+				which = growth_factor_variable
+				value = prev.pops_devoured
+			}
+		}
+	}
+}
+### System consumed by Behemoth Brain ###
+# Handle variable stuff & opinion modifiers
+planet_event = {
+	id = ssh_crisis.3101
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		from = {
+			random_owned_ship = {
+				limit = {
+					has_ship_flag = behemoth_brain_ship
+				}
+				set_timed_ship_flag = { flag = recently_fed days = 720 }
+			}
+			owner = {
+				save_event_target_as = behemoth_brain_empire
+				if = { # failsafe because you can't initialize variables with a script value
+					limit = { NOT = { is_variable_set = growth_factor_variable } }
+					set_variable = {
+						which = growth_factor_variable
+						value = 0
+					}
+				}
+				#add the planet value
+				if = {
+					limit = {
+						root = {
+							NOR = {
+								is_planet_class = pc_black_hole
+								is_planet_class = pc_neutron_star
+								is_planet_class = pc_pulsar
+								is_planet_class = pc_quark_star
+							}
+						}
+					}
+					change_variable = {
+						which = growth_factor_variable
+						value = @brain_growth_factor_star_mult
+					}
+				}
+				else_if = {
+					limit = {
+						root = {
+							OR = {
+								is_planet_class = pc_neutron_star
+								is_planet_class = pc_pulsar
+								is_planet_class = pc_quark_star
+							}
+						}
+					}
+					change_variable = {
+						which = growth_factor_variable
+						value = @brain_growth_factor_neutron_mult
+					}
+				}
+				else = {
+					change_variable = {
+						which = growth_factor_variable
+						value = @brain_growth_factor_blackhole_mult
+					}
+				}
+			}
+		}
+
+		#if = {
+		#	limit = {
+		#		solar_system = {
+		#			any_system_planet = {
+		#				is_colony = yes
+		#			}
+		#		}
+		#	}
+		#}
+		solar_system = {
+			every_system_planet = {
+				limit = { is_colony = yes } 
+				event_target:behemoth_brain_empire = {
+					set_variable = {  #add 1 per pop too - has to go through a second variable as to not 	overwrite the first when using export_trigger_to_var
+						which = pops_devoured
+						value = 0
+					}
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop_amount
+						variable = pops_devoured
+						rounded = yes
+					}
+
+					#Food + Conmat Reward
+					# from.owner
+					add_resource = {
+						food = 25
+						sr_conscious_matter = 10
+						mult = prev.pops_devoured #root.pops_devoured
+					}
+					add_resource = {
+						food = 1000
+						mult = prev.trigger:planet_size #root
+					}
+					multiply_variable = {
+						which = pops_devoured
+						value = @brain_growth_factor_from_pop
+					}
+					#from.owner = {
+					#	change_variable = { # Pops
+					#		which = growth_factor_variable
+					#		value = prev.pops_devoured
+					#	}
+					#}
+					change_variable = { # Pops
+						which = growth_factor_variable
+						value = prev.pops_devoured
+					}
+				}
+			}
+			every_system_planet = {
+				limit = { is_colony = no }
+				event_target:behemoth_brain_empire = {
+					add_resource = {
+						food = 1000
+						mult = root.trigger:planet_size #root
+					}
+				}
+			}
+		}
+		# Food for consuming neutron stars + singularities - ADDITIONAL to 1k/planet size
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_neutron_star
+					is_planet_class = pc_pulsar
+					is_planet_class = pc_quark_star
+				}
+			}
+			event_target:behemoth_brain_empire = {
+				add_resource = {
+					food = 100000
+					minerals = 100000
+				}
+			}
+		}
+		if = {
+			limit = { is_planet_class = pc_black_hole }
+			event_target:behemoth_brain_empire = {
+				add_resource = {
+					food = 500000
+					minerals = 500000
+				}
+			}
+		}
+		change_variable = {
+			which = growth_factor_variable
+			value = @brain_growth_factor_from_star_regular
+		}
+		add_threat = {
+			who = from.owner
+			amount = 2
+		}
+		# opinion modifier
+		every_playable_country = {
+			limit = {
+				NOR = {
+					is_same_value = from.owner
+					AND = {
+						has_federation = yes
+						is_in_federation_with = from.owner
+					}
+				}
+				has_communications = from.owner
+			}
+			add_opinion_modifier = {
+				modifier = opinion_destroyed_system_with_wmd
+				who = from.owner
+			}
+		}
+	}
+}
+
+# Flavor Text after tasting various celestial bodies
+country_event = {
+	id = ssh_crisis.3110
+	title = "ssh_crisis.3110.name"
+	desc = ssh_crisis.3110.desc
+	picture = GFX_evt_behemoth_fight
+	show_sound = event_necrophage
+	event_chain = behemoth_crisis_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3110.a
+	}
+}
+country_event = { # Neutron
+	id = ssh_crisis.3111
+	title = "ssh_crisis.3111.name"
+	desc = ssh_crisis.3111.desc
+	picture = GFX_evt_behemoth_fight
+	show_sound = event_necrophage
+	event_chain = behemoth_crisis_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3111.a
+	}
+}
+country_event = { # Black Hole
+	id = ssh_crisis.3112
+	title = "ssh_crisis.3112.name"
+	desc = ssh_crisis.3112.desc
+	picture = GFX_evt_ssh_brain_behemoth_devouring_singularity
+	show_sound = event_necrophage
+	event_chain = behemoth_crisis_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3112.a
+	}
+}
+# Notification for all other empires
+country_event = {
+	id = ssh_crisis.3120
+	title = "ssh_crisis.3120.name"
+	desc = ssh_crisis.3120.desc
+	picture = GFX_evt_behemoth_fight
+	show_sound = event_yellow_alert
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3120.a
+	}
+}
+country_event = {
+	id = ssh_crisis.3121
+	title = "ssh_crisis.3121.name"
+	desc = ssh_crisis.3121.desc
+	picture = GFX_evt_behemoth_fight
+	show_sound = event_yellow_alert
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3121.a
+	}
+}
+country_event = {
+	id = ssh_crisis.3122
+	title = "ssh_crisis.3122.name"
+	desc = ssh_crisis.3122.desc
+	picture = GFX_evt_ssh_brain_behemoth_devouring_singularity
+	show_sound = event_yellow_alert
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.3122.a
+	}
+}
+
+
+
+
+
+##################################
+# Additional Cosmogenesis Events #
+##################################
+
+# Diving into a matter decompressor or ruined suprashell singularity (special endings)
+country_event = {
+	id = ssh_crisis.7515
+	title = "ssh_crisis.7515.name"
+	desc = ssh_crisis.7515.desc
+	picture = GFX_evt_horizon_needle
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_fleet = {
+			limit = {
+				has_fleet_flag = cosmogenesis_needle
+			}
+			solar_system = {
+				save_event_target_as = cosmo_ending_system
+			}
+			delete_fleet = this
+		}
+		save_event_target_as = cosmogenesis_empire
+	}
+
+	option = {
+		name = ssh_crisis.7515.a
+	}
+
+	after = {
+		hidden_effect = {
+			#if = {
+			#	limit = { NOT = { has_country_flag = cosmogenesis_empire_dove_into_matdec } }
+			#	set_country_flag = cosmogenesis_empire_dove_into_matdec
+			#	country_event = { id = ssh_crisis.7516 days = 15 }
+			#}
+			#else = {
+			#	country_event = { id = ssh_crisis.7516 days = 15 }
+			#}
+			# Ruined Suprashell System
+			if = {
+				limit = { from.solar_system = { has_star_flag = ruined_black_hole_shellworld_system } }
+				country_event = { id = ssh_crisis.7530 days = 15 }
+			}
+			# Matter Decompressor
+			else = {
+				country_event = { id = ssh_crisis.7516 days = 15 }
+			}
+			every_playable_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+				}
+				country_event = { id = crisis.7517 days = 1 }
+			}
+		}
+	}
+}
+
+# Ending description
+country_event = { # To infinity and beyond the event horizon
+	id = ssh_crisis.7516
+	title = "crisis.7516.name"
+	desc = "crisis.7516.desc.ssh.matter_decompressor"
+	picture = GFX_evt_horizon_needle
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		#event_target:cosmo_ending_system = {
+		#	set_star_flag = cosmo_ending_system
+		#}
+	}
+
+	option = {
+		name = ssh_crisis.7516.a
+		#custom_tooltip = ssh_crisis.7516.tt
+	}
+
+	after = {
+		hidden_effect = {
+			save_event_target_as = cosmogenesis_empire
+			set_country_flag = cosmogenesis_empire_pulled_back
+			make_fallen_empire = yes
+			country_event = { id = ssh_crisis.7517 days = 4 }
+			every_country = {
+				limit = {
+					is_country_type = default
+				}
+				country_event = { id = crisis.7518 days = 5 }
+			}
+			if = {
+				limit = {
+					galaxy_size = tiny
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 18
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = small
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 36
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = medium
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 52
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = large
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 70
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = huge
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 88
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			date_distortion = yes
+			event_target:global_event_country = {
+				country_event = { id = crisis.7519 days = 30 }
+			}
+		}
+	}
+}
+
+country_event = { # Matter Decompressor is now producing food
+	id = ssh_crisis.7517
+	title = "ssh_crisis.7517.name"
+	desc = "ssh_crisis.7517.desc"
+	picture = GFX_evt_horizon_needle
+	show_sound = "event_necrophage"
+	event_chain = cosmogenesis_planet_pickup_chain
+	location = event_target:cosmo_ending_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:cosmo_ending_system = {
+			random_system_megastructure = {
+				limit = {
+					OR = {
+						is_megastructure_type = matter_decompressor_4
+						is_megastructure_type = matter_decompressor_restored
+						is_megastructure_type = matter_decompressor_ruined
+					}
+				}
+				remove_megastructure = this
+			}
+			spawn_megastructure = {
+				type = matter_decompressor_cosmogenesis
+				owner = event_target:cosmogenesis_empire
+			}
+
+			#create_fleet = {
+			#	name = "NAME_Cosmogenesis_Sphere"
+			#	settings = {
+			#		can_disband = no
+			#	}
+			#	effect = {
+			#		set_owner = event_target:cosmogenesis_empire
+			#		set_fleet_flag = cosmogenesis_needle
+			#		create_ship = {
+			#			name = "NAME_Lemniscate"
+			#			design = "NAME_Monadic_Qerr"
+			#		}
+			#		set_location = fromfrom
+			#		set_fleet_stance = evasive
+			#		save_global_event_target_as = cosmogenesis_needle
+			#		add_modifier = {
+			#			modifier = horizon_needle_mod
+			#			days = -1
+			#		}
+			#	}
+			#}
+		}
+	}
+
+	option = {
+		name = ssh_crisis.7517.a
+		custom_tooltip = ssh_crisis.7517.a.tooltip
+	}
+
+	after = {
+		win = yes
+	}
+}
+
+# Ruined Suprashell
+country_event = { # To infinity and beyond the event horizon
+	id = ssh_crisis.7530
+	title = "crisis.7516.name"
+	desc = "crisis.7516.desc.ssh.ruined_suprashell"
+	picture = GFX_evt_horizon_needle
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.7530.a
+		#custom_tooltip = ssh_crisis.7516.tt
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = ssh_crisis.7531
+			}
+		}
+	}
+}
+country_event = {
+	id = ssh_crisis.7531
+	title =  "???"
+	desc = ssh_crisis.7531.desc
+	diplomatic_title = "Unknown Presence"
+	diplomatic = yes
+
+	picture_event_data = {
+		#portrait = from.owner_main_species
+		room = no_video_feed_room
+		#planet_background = event_target:spiritualist_fallen_empire
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_crisis.7531.a" # Who are you
+		default_hide_option = yes
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = ssh_crisis.7532
+			}
+		}
+	}
+}
+country_event = {
+	id = ssh_crisis.7532
+	title =  "???"
+	desc = ssh_crisis.7532.desc
+	diplomatic_title = "Unknown Presence"
+	diplomatic = yes
+
+	picture_event_data = {
+		#portrait = from.owner_main_species
+		room = no_video_feed_room
+		#planet_background = event_target:spiritualist_fallen_empire
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_crisis.7532.a" # What is this place
+		response_text = ssh_crisis.7532.a.response
+		is_dialog_only = yes
+	}
+
+	#option = {
+	#	name = "ssh_crisis.7532.b" # Visitors
+	#	response_text = ssh_crisis.7532.b.response
+	#	is_dialog_only = yes
+	#}
+
+	option = {
+		name = "ssh_crisis.7532.c" # How did you end up here
+		default_hide_option = yes
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = ssh_crisis.7533
+			}
+		}
+	}
+}
+country_event = {
+	id = ssh_crisis.7533
+	title =  "???"
+	desc = ssh_crisis.7533.desc
+	diplomatic_title = "Unknown Presence"
+	diplomatic = yes
+
+	picture_event_data = { room = no_video_feed_room }
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_crisis.7533.a"
+		default_hide_option = yes
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = ssh_crisis.7534
+			}
+		}
+	}
+}
+country_event = {
+	id = ssh_crisis.7534
+	title =  "???"
+	desc = ssh_crisis.7534.desc
+	diplomatic_title = "Unknown Presence"
+	diplomatic = yes
+
+	picture_event_data = { room = no_video_feed_room }
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_crisis.7534.a"
+		response_text = ssh_crisis.7534.a.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = "ssh_crisis.7534.b"
+		response_text = ssh_crisis.7534.b.response
+		is_dialog_only = yes
+	}
+
+	option = {
+		name = "ssh_crisis.7534.c"
+		default_hide_option = yes
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = ssh_crisis.7535
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_crisis.7535
+	title =  "???"
+	desc = ssh_crisis.7535.desc
+	diplomatic_title = "Unknown Presence"
+	diplomatic = yes
+
+	picture_event_data = { room = no_video_feed_room }
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_crisis.7535.a" # Enter the code mines
+		allow = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+		hidden_effect = {
+			set_country_flag = ssh_cosmogenesis_modding_hell
+			country_event = { id = ssh_crisis.7536 }
+		}
+	}
+
+	option = {
+		name = "ssh_crisis.7535.b"
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+		hidden_effect = {
+			set_country_flag = ssh_cosmogenesis_entity_martyr
+			country_event = { id = ssh_crisis.7536 }
+		}
+	}
+
+	option = {
+		name = "ssh_crisis.7535.c"
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+		hidden_effect = {
+			set_country_flag = ssh_cosmogenesis_entity_martyr
+			country_event = { id = ssh_crisis.7536 }
+		}
+	}
+}
+
+# Enter Mines
+country_event = {
+	id = ssh_crisis.7536
+	title =  "???"
+	desc = {
+		text = "ssh_crisis.7536_01.desc"
+		trigger = {
+			has_country_flag = ssh_cosmogenesis_modding_hell
+		}
+	}
+	desc = {
+		text = "ssh_crisis.7536_02.desc"
+		trigger = {
+			has_country_flag = ssh_cosmogenesis_entity_martyr
+		}
+	}
+	diplomatic_title = "Unknown Presence"
+	diplomatic = yes
+
+	picture_event_data = { room = no_video_feed_room }
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_crisis.7536.a"
+		trigger = {
+			has_country_flag = ssh_cosmogenesis_modding_hell
+		}
+		hidden_effect = {
+			country_event = {
+				id = ssh_crisis.7537
+				days = 1
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_crisis.7536.b"
+		trigger = {
+			has_country_flag = ssh_cosmogenesis_entity_martyr
+		}
+		hidden_effect = {
+			country_event = {
+				id = ssh_crisis.7540
+				days = 3
+			}
+		}
+	}
+}
+country_event = { # To infinity and beyond the event horizon - Modding Hell
+	id = ssh_crisis.7537
+	title = "ssh_crisis.7515.name"
+	desc = "ssh_crisis.7537.desc"
+	picture = GFX_evt_horizon_needle
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.7537.a
+		#custom_tooltip = ssh_crisis.7516.tt
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = ssh_crisis.7538
+				days = 15
+			}
+		}
+	}
+}
+country_event = {
+	id = ssh_crisis.7538
+	title = "ssh_crisis.7538.name"
+	desc = "ssh_crisis.7538.desc"
+	picture = GFX_evt_horizon_needle
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.7538.a
+		custom_tooltip = ssh_crisis.7538.a_tt
+	}
+
+	after = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_origin = origin_toxic_knights
+					event_target:cosmo_ending_system = {
+						is_capital_system = yes
+						has_star_flag = cosmogenesis_project
+					}
+				}
+				set_global_flag = no_end_of_cycle
+			}
+			save_event_target_as = cosmogenesis_empire
+			set_country_flag = cosmogenesis_empire_has_won
+			make_fallen_empire = yes
+			every_country = {
+				limit = {
+					is_country_type = default
+				}
+				country_event = { id = crisis.7518 days = 5 }
+			}
+			if = {
+				limit = {
+					galaxy_size = tiny
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 18
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = small
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 36
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = medium
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 52
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = large
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 70
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = huge
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 88
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			date_distortion = yes
+			event_target:global_event_country = {
+				country_event = { id = crisis.7519 days = 30 }
+			}
+		}
+		win = yes
+	}
+}
+
+country_event = { # Saved Entity
+	id = ssh_crisis.7540
+	title = "ssh_crisis.7540.name"
+	desc = {
+		text = "ssh_crisis.7540_01.desc"
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+	desc = {
+		text = "ssh_crisis.7540_02.desc"
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+	picture = GFX_evt_horizon_needle
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.7540.a
+		custom_tooltip = ssh_crisis.7540.a_tt
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+	option = {
+		name = ssh_crisis.7540.b
+		custom_tooltip = ssh_crisis.7540.b_tt
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_origin = origin_toxic_knights
+					event_target:cosmo_ending_system = {
+						is_capital_system = yes
+						has_star_flag = cosmogenesis_project
+					}
+				}
+				set_global_flag = no_end_of_cycle
+			}
+			save_event_target_as = cosmogenesis_empire
+			set_country_flag = cosmogenesis_empire_has_won
+			make_fallen_empire = yes
+			every_country = {
+				limit = {
+					is_country_type = default
+				}
+				country_event = { id = crisis.7518 days = 5 }
+			}
+			if = {
+				limit = {
+					galaxy_size = tiny
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 18
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = small
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 36
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = medium
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 52
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = large
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 70
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = huge
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 88
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			date_distortion = yes
+			event_target:global_event_country = {
+				country_event = { id = crisis.7519 days = 30 }
+			}
+		}
+		win = yes
+	}
+}
+
+
+
+### Diving into the Ark ###
+country_event = {
+	id = ssh_crisis.7600
+	title = "ssh_crisis.7600.name"
+	desc = ssh_crisis.7600.desc
+	picture = GFX_evt_ssh_black_hole_interior #GFX_evt_horizon_needle
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+	location = event_target:ssh_ark_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_fleet = {
+			limit = {
+				has_fleet_flag = cosmogenesis_needle
+			}
+			solar_system = {
+				save_event_target_as = cosmo_ending_system
+			}
+			delete_fleet = this
+		}
+		save_event_target_as = cosmogenesis_empire
+	}
+
+	option = {
+		name = ssh_crisis.7600.a
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = ssh_crisis.7601 days = 15 }
+			every_playable_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+				}
+				country_event = { id = crisis.7517 days = 1 }
+			}
+		}
+	}
+}
+country_event = { # To infinity and beyond the event horizon
+	id = ssh_crisis.7601
+	title = "ssh_crisis.7601.name"
+	desc = {
+		text = "ssh_crisis.7601_01.desc" 
+		trigger = { is_bugged_luminosity_cult = no }
+	}
+	desc = {
+		text = "ssh_crisis.7601_02.desc" 
+		trigger = { is_bugged_luminosity_cult = yes }
+	}
+	picture = GFX_evt_vortex #GFX_evt_astral_rift_whiteout_2
+	show_sound = event_mind_over_matter #event_psionic
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Stop Ark Project
+		remove_global_flag = ssh_ark_project_launched
+		remove_global_flag = ssh_ark_research_stage_completed
+		# Destroy the Ark
+		event_target:ssh_ark_system = {
+			every_system_megastructure = { remove_megastructure = this }
+			destroy_star_system = yes
+			while = {
+				count = 15
+				create_ambient_object = {
+					type = "large_debris_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+				create_ambient_object = {
+					type = "large_debris_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 65
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 25
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 65
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 25
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 65
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 50
+				create_ambient_object = {
+					type = "small_debris_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					entity_offset_height = { min = -0 max = -25 }
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 65
+						angle = random
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ssh_crisis.7601.a
+		trigger = { NOT = { is_bugged_luminosity_cult = yes } }
+	}
+	option = {
+		name = ssh_crisis.7601.b
+		trigger = { is_bugged_luminosity_cult = yes }
+		custom_tooltip = ssh_crisis.7601.b_tt
+	}
+
+	after = {
+		hidden_effect = {
+			save_event_target_as = cosmogenesis_empire
+			set_country_flag = cosmogenesis_empire_has_won
+			make_fallen_empire = yes
+			every_country = {
+				limit = {
+					is_country_type = default
+					NOT = {
+						has_country_flag = ssh_ark_project_country
+					}
+				}
+				country_event = { id = crisis.7518 days = 5 }
+			}
+			every_country = {
+				limit = {
+					is_country_type = default
+					has_country_flag = ssh_ark_project_country
+				}
+				country_event = { id = ssh_crisis.7606 days = 5 }
+			}
+			if = {
+				limit = {
+					galaxy_size = tiny
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 18
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = small
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 36
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = medium
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 52
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = large
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 70
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = huge
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 88
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			date_distortion = yes
+			event_target:global_event_country = {
+				country_event = { id = crisis.7519 days = 30 }
+			}
+		}
+		win = yes
+	}
+}
+# Notify Ark Participants beforehand
+country_event = {
+	id = ssh_crisis.7605
+	title = "ssh_crisis.7605.name"
+	desc = ssh_crisis.7605.desc
+	picture = GFX_evt_horizon_needle
+	show_sound = event_red_alert
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.7605.a
+	}
+}
+# Notify Ark Participants after ark destruction
+country_event = {
+	id = ssh_crisis.7606
+	title = "ssh_crisis.7606.name"
+	desc = ssh_crisis.7606.desc
+	picture = GFX_evt_horizon_needle
+	show_sound = event_necrophage
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.7606.a
+	}
+}
+
+
+########################################
+##### ADDITIONAL CONTINGENCY STUFF #####
+########################################
+# Spawn Captive Star Construction Ship
+### Mega is spawned instead, the ship + fleet event stuff didnt work during testing.
+country_event = {
+	id = ssh_crisis.9000
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = ai_crisis_captive_stars_disabled }
+		has_global_flag = ai_invasion_ongoing
+		is_country_type = ai_empire
+		NOT = {
+			#any_owned_ship = {
+			#	has_ship_flag = ai_crisis_captive_star_constructor
+			#}
+			has_country_flag = ai_crisis_is_constructing_captive_star
+		}
+	}
+	
+	immediate = {
+		set_timed_country_flag = {
+			flag = ai_crisis_is_constructing_captive_star
+			days = 1080
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_captive_star } }
+			give_technology = { tech = ssh_tech_captive_star }
+		}
+		random_system_within_border = {
+			limit = {
+				star = { ssh_is_star_pc = yes }
+				NOR = {
+					ssh_is_special_system = yes
+					any_system_planet = { is_planet_class = pc_ai }
+				}
+			}
+			star = {
+				save_event_target_as = ai_crisis_captive_star_target
+			}
+			spawn_megastructure = {
+				type = captive_star_contingency_0
+				planet = event_target:ai_crisis_captive_star_target
+				owner = prev
+				init_effect = {
+					upgrade_megastructure_to = captive_star_contingency_1
+				}
+			}
+		}
+		#random_owned_planet = {
+		#	limit = { is_planet_class = pc_ai }
+		#	save_event_target_as = ai_crisis_captive_star_constructor_planet
+		#	create_fleet = {
+		#		name = "Captive Star Construction Unit"
+		#		effect = {
+		#			set_owner = event_target:AI_crisis
+		#			create_ship = {
+		#				name = "Dyson Sphere Constructor"
+		#				design = "NAME_AI_Constructor"
+		#				graphical_culture = "ai_01"
+		#				effect = {
+		#					set_ship_flag = ai_crisis_captive_star_constructor
+		#				}
+		#			}
+		#			set_location = {
+		#				target = event_target:ai_crisis_captive_star_constructor_planet
+		#				distance = 0
+		#				angle = 90
+		#				direction = in_system
+		#			}
+		#			save_event_target_as = ai_crisis_captive_star_constructor
+		#			fleet_event = { id = ssh_crisis.9001 days = 90 }
+		#		}
+		#	}
+		#}
+	}
+}
+
+country_event = {
+	id = ssh_crisis.9001
+	title = "ssh_crisis.9001.name"
+	desc = ssh_crisis.9001.desc
+	picture = GFX_evt_ssh_captive_star
+	show_sound = event_yellow_alert
+	trackable = yes
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_crisis.9001.a
+	}
+}
+
+# Contingency Captive Star tracks closest colony
+country_event = {
+	id = ssh_crisis.9005
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		every_owned_fleet = {
+			limit = { has_fleet_flag = captive_star_contingency }
+			closest_system = {
+				limit = {
+					any_system_planet = {
+						is_colony = yes
+						owner = { NOT = { is_same_value = root.owner } }
+					}
+				}
+				#use_bypasses = no
+				random_system_planet = {
+					limit = {
+						is_star = yes
+					}
+					save_event_target_as = contingency_capstar_target
+				}
+			}
+			auto_move_to_planet = {
+				target = event_target:contingency_capstar_target
+				clear_auto_move_on_arrival = no
+			}
+			fleet_event = { id = ssh_crisis.9006 }
+		}
+	}
+}
+fleet_event = {
+	id = ssh_crisis.9006
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# If target reached, kaboom
+		if = {
+			limit = {
+				exists = orbit
+				orbit = {
+					is_same_value = event_target:contingency_capstar_target
+				}
+			}
+			solar_system = { # Kaboom
+				star = {
+					planet_event = {
+						id = ssh_action.500
+						days = 5
+					}
+				}
+			}
+		}
+		else = {
+			auto_move_to_planet = {
+				target = event_target:contingency_capstar_target
+				clear_auto_move_on_arrival = no
+			}
+			### Debug Test
+			#fleet_event = {
+			#	id = ssh_crisis.9006
+			#	days = 35
+			#}
+		}
+	}
+}
+
+# Fired via on_fleet_auto_move_arrival
+country_event = {
+	id = ssh_crisis.9010
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		is_country_type = ai_empire
+		from = {
+			has_fleet_flag = captive_star_contingency
+		}
+	}
+
+	immediate = {
+		from = { fleet_event = { id = ssh_crisis.9006 } }
+	}
+}
+
+#fleet_event = {
+#	id = ssh_crisis.9001
+#	is_triggered_only = yes
+#	hide_window = yes
+#
+#	immediate = {
+#		#Order to move to the closest owned system, start captive star construction, then move to next system
+#		solar_system = {
+#			spawn_megastructure = {
+#				type = captive_star_0
+#				planet = star
+#				owner = from
+#				init_effect = {
+#					upgrade_megastructure_to = captive_star_4 #_1
+#				}
+#			}
+#			every_system_planet = {
+#				limit = { is_star = yes }
+#				set_planet_flag = ai_crisis_capstar_planet
+#			}
+#		}
+#		event_target:ai_crisis_captive_star_constructor = {
+#			closest_system = {
+#				limit = {
+#					has_owner = yes
+#					owner = { is_country_type = ai_empire }
+#					star = {
+#						ssh_is_star_pc = yes
+#						NOR = {
+#							has_planet_flag = has_megastructure
+#							has_planet_flag = ai_crisis_capstar_planet
+#						}
+#					}
+#				}
+#				use_bypasses = no
+#				random_system_planet = {
+#					limit = {
+#						is_star = yes
+#						ssh_is_star_pc = yes
+#					}
+#					save_event_target_as = ai_crisis_capstar_target
+#				}
+#			}
+#			auto_move_to_planet = {
+#				target = event_target:ai_crisis_capstar_target
+#				clear_auto_move_on_arrival = no
+#			}
+#			fleet_event = { id = ssh_crisis.9001 days = 120 } #720 maybe
+#		}
+#	}
+#}

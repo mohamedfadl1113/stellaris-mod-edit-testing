@@ -1,0 +1,672 @@
+namespace = ssh_flavor
+
+# Flavor Events for Shellworlds
+# Social Clashes/Division -> Uppers, Underdwellers
+# Update division events
+country_event = {
+	id = ssh_flavor.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_gestalt = no
+		any_owned_planet = {
+			has_planet_flag = shellworld_social_division
+			#OR = {
+			#	planet_stability < 50
+			#	planet_crime > 25
+			#}
+			NOT = { has_planet_flag = recent_social_division_change }
+		}
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				has_planet_flag = shellworld_social_division
+				NOT = { has_planet_flag = recent_social_division_change }
+			}
+			save_event_target_as = shellworld_social_division_planet
+			# Worsening Conditions
+			if = {
+				limit = {
+					OR = {
+						planet_stability < 50
+						planet_crime > 25
+					}
+				}
+				if = {
+					limit = { has_modifier = ssh_shellworld_division_0_planet_modifier }
+					owner = { country_event = { id = ssh_flavor.15 } }
+				}
+				else_if = {
+					limit = { has_modifier = ssh_shellworld_division_1_planet_modifier }
+					owner = { country_event = { id = ssh_flavor.20 } }
+				}
+				else_if = {
+					limit = { has_modifier = ssh_shellworld_division_2_planet_modifier }
+					owner = { country_event = { id = ssh_flavor.25 } }
+				}
+			}
+			# Improving Conditions
+			else = {
+				owner = {
+					country_event = {
+						id = ssh_flavor.30
+					}
+				}
+			}
+
+			set_timed_planet_flag = {
+				flag = recent_social_division_change
+				days = 1080
+			}
+		}
+	}
+}
+
+# Initiate Division Event
+country_event = {
+	id = ssh_flavor.10
+	title = "ssh_flavor.10.name"
+	desc = "ssh_flavor.10.desc"
+	picture = GFX_evt_alien_segregation #GFX_evt_conclave #GFX_evt_burning_city #GFX_evt_announcement #GFX_evt_alien_propaganda
+	show_sound = "event_criminal_activity"
+	location = event_target:shellworld_social_division_planet
+	trackable = yes
+
+	trigger = {
+		is_gestalt = no
+		any_owned_planet = {
+			OR = {
+				has_planet_flag = shellworld
+				has_planet_flag = double_shellworld
+				has_planet_flag = triple_shellworld
+			}
+			OR = {
+				planet_stability < 50
+				planet_crime > 25
+			}
+			NOR = {
+				has_planet_flag = shellworld_social_division
+				has_planet_flag = shellworld_had_social_division
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				OR = {
+					has_planet_flag = shellworld
+					has_planet_flag = double_shellworld
+					has_planet_flag = triple_shellworld
+				}
+				OR = {
+					planet_stability < 50
+					planet_crime > 25
+				}
+				NOT = { has_planet_flag = shellworld_social_division }
+			}
+			set_planet_flag = shellworld_social_division
+			save_event_target_as = shellworld_social_division_planet
+		}
+	}
+
+	option = {
+		name = ssh_flavor.10.a # Acknowledged
+		trigger = {
+			NOR = {
+				has_civic = civic_aristocratic_elite
+				has_civic = civic_dystopian_society
+				has_civic = civic_feudal_realm
+				has_civic = civic_slaver_guilds
+				has_civic = civic_indentured_assets
+				has_civic = civic_criminal_heritage
+
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+				#has_civic = civic_shared_burden
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_flavor.10.b # Good
+		trigger = {
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+				# Flavor
+				has_civic = civic_aristocratic_elite
+				has_civic = civic_dystopian_society
+				has_civic = civic_feudal_realm
+				has_civic = civic_slaver_guilds
+				has_civic = civic_indentured_assets
+				has_civic = civic_criminal_heritage
+				has_civic = civic_technocracy
+			}
+		}
+		add_resource = { society_research = 10000 }
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_flavor.10.c # Bad
+		trigger = {
+			OR = {
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+				# Flavor
+				has_civic = civic_shared_burden
+				has_civic = civic_worker_coop
+			}
+		}
+		default_hide_option = yes
+	}
+
+	after = {
+		event_target:shellworld_social_division_planet = {
+			add_modifier = {
+				modifier = ssh_shellworld_division_0_planet_modifier
+				days = -1
+			}
+			hidden_effect = {
+				set_timed_planet_flag = {
+					flag = recent_social_division_change
+					days = 1080
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_flavor.15
+	title = "ssh_flavor.15.name"
+	desc = "ssh_flavor.15.desc"
+	picture = GFX_evt_underground_city #GFX_evt_conclave #GFX_evt_burning_city #GFX_evt_announcement #GFX_evt_alien_propaganda
+	show_sound = "event_criminal_activity"
+	location = event_target:shellworld_social_division_planet
+	trackable = yes
+
+	trigger = {
+		is_gestalt = no
+		any_owned_planet = {
+			has_planet_flag = shellworld_social_division
+			OR = {
+				planet_stability < 50
+				planet_crime > 25
+			}
+			NOR = {
+				has_planet_flag = recent_social_division_change
+				has_planet_flag = shellworld_had_social_division
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				has_planet_flag = shellworld_social_division
+				OR = {
+					planet_stability < 50
+					planet_crime > 25
+				}
+				NOR = {
+					has_planet_flag = recent_social_division_change
+					has_planet_flag = shellworld_had_social_division
+				}
+			}
+			save_event_target_as = shellworld_social_division_planet
+			remove_modifier = ssh_shellworld_division_0_planet_modifier
+			add_modifier = {
+				modifier = ssh_shellworld_division_1_planet_modifier
+				days = -1
+			}
+		}
+	}
+
+	option = {
+		name = ssh_flavor.15.a # Acknowledged
+		trigger = {
+			NOR = {
+				has_civic = civic_aristocratic_elite
+				has_civic = civic_dystopian_society
+				has_civic = civic_feudal_realm
+				has_civic = civic_slaver_guilds
+				has_civic = civic_indentured_assets
+				has_civic = civic_criminal_heritage
+
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+				#has_civic = civic_shared_burden
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_flavor.15.b # Good
+		trigger = {
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+				# Flavor
+				has_civic = civic_aristocratic_elite
+				has_civic = civic_dystopian_society
+				has_civic = civic_feudal_realm
+				has_civic = civic_slaver_guilds
+				has_civic = civic_indentured_assets
+				has_civic = civic_criminal_heritage
+				has_civic = civic_technocracy
+			}
+		}
+		add_resource = { society_research = 10000 }
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_flavor.15.c # Bad
+		trigger = {
+			OR = {
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+				# Flavor
+				has_civic = civic_shared_burden
+				has_civic = civic_worker_coop
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_flavor.20
+	title = "ssh_flavor.20.name"
+	desc = "ssh_flavor.20.desc"
+	picture = GFX_evt_conclave
+	show_sound = "event_criminal_activity"
+	location = event_target:shellworld_social_division_planet
+	trackable = yes
+
+	trigger = {
+		is_gestalt = no
+		any_owned_planet = {
+			has_planet_flag = shellworld_social_division
+			OR = {
+				planet_stability < 50
+				planet_crime > 25
+			}
+			NOR = {
+				has_planet_flag = recent_social_division_change
+				has_planet_flag = shellworld_had_social_division
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				has_planet_flag = shellworld_social_division
+				OR = {
+					planet_stability < 50
+					planet_crime > 25
+				}
+				NOR = {
+					has_planet_flag = recent_social_division_change
+					has_planet_flag = shellworld_had_social_division
+				}
+			}
+			save_event_target_as = shellworld_social_division_planet
+			remove_modifier = ssh_shellworld_division_1_planet_modifier
+			add_modifier = {
+				modifier = ssh_shellworld_division_2_planet_modifier
+				days = -1
+			}
+		}
+	}
+
+	option = {
+		name = ssh_flavor.20.a # Acknowledged
+		trigger = {
+			NOR = {
+				has_civic = civic_aristocratic_elite
+				has_civic = civic_dystopian_society
+				has_civic = civic_feudal_realm
+				has_civic = civic_slaver_guilds
+				has_civic = civic_indentured_assets
+				has_civic = civic_criminal_heritage
+
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+				#has_civic = civic_shared_burden
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_flavor.20.b # Good
+		trigger = {
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+				# Flavor
+				has_civic = civic_aristocratic_elite
+				has_civic = civic_dystopian_society
+				has_civic = civic_feudal_realm
+				has_civic = civic_slaver_guilds
+				has_civic = civic_indentured_assets
+				has_civic = civic_criminal_heritage
+				has_civic = civic_technocracy
+			}
+		}
+		add_resource = { society_research = 10000 }
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_flavor.20.c # Bad
+		trigger = {
+			OR = {
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+				# Flavor
+				has_civic = civic_shared_burden
+				has_civic = civic_worker_coop
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Civil War
+country_event = {
+	id = ssh_flavor.25
+	title = "ssh_flavor.25.name"
+	desc = "ssh_flavor.25.desc"
+	picture = GFX_evt_burning_city #evt_undertaker
+	show_sound = "event_red_alert"
+	location = event_target:shellworld_social_division_planet
+	trackable = yes
+
+	trigger = {
+		is_gestalt = no
+		any_owned_planet = {
+			has_planet_flag = shellworld_social_division
+			OR = {
+				planet_stability < 50
+				planet_crime > 25
+			}
+			NOR = {
+				has_planet_flag = recent_social_division_change
+				has_planet_flag = shellworld_had_social_division
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = shellworld_owner_country
+		# Create rebels
+		create_country = {
+			name = "NAME_Shellworld_Rebels"
+			species = prev.owner_main_species
+			type = default
+			ethos = random
+			origin = origin_ssh_shellworld
+			auto_delete = no
+			flag = {
+				icon = {
+					category = "zoological"
+					file = "flag_zoological_10.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "new_dawn.dds"
+				}
+				colors={
+					"red"
+					"black"
+					"null"
+					"null"
+				}
+			}
+			ignore_initial_colony_error = yes
+			effect = {
+				establish_contact = { who = prevprev location = prev }
+				establish_communications_no_message = prevprev
+				save_event_target_as = shellworld_rebel_nation
+			}
+		}
+		last_created_country = {
+			if = {
+				limit = { host_has_dlc = "Megacorp" }
+				change_government = {
+					authority = auth_corporate
+					civics = {
+						civic = civic_criminal_heritage
+					}
+				}
+			}
+			create_leader = {
+				class = commander
+				species = owner_main_species
+				name = random
+				skill = 3
+			}
+		}
+		random_owned_planet = {
+			limit = {
+				has_planet_flag = shellworld_social_division
+				OR = {
+					planet_stability < 50
+					planet_crime > 25
+				}
+				NOR = {
+					has_planet_flag = recent_social_division_change
+					has_planet_flag = shellworld_had_social_division
+				}
+			}
+			save_event_target_as = shellworld_social_division_planet
+			remove_modifier = ssh_shellworld_division_2_planet_modifier
+		}
+	}
+
+	option = {
+		name = ssh_flavor.25.a # Fight
+		custom_tooltip = ssh_flavor.25.a_tt
+		default_hide_option = yes
+		hidden_effect = {
+			event_target:shellworld_rebel_nation = {
+				declare_war = {
+					target = prev
+					name = {
+						key = "NAME_Underweller_War"
+						variable_string = "[This.MainDefender.GetAdj]"
+					}
+					attacker_war_goal = "wg_conquest"
+				}
+			}
+			event_target:shellworld_social_division_planet = {
+				while = {
+					count = 12
+					create_army = {
+						name = "NAME_Invading_Underdwellers"
+						owner = event_target:shellworld_rebel_nation
+						species = event_target:shellworld_rebel_nation.owner_main_species
+						type = assault_army
+						leader = last_created_leader
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = ssh_flavor.25.b # Peace
+		custom_tooltip = ssh_flavor.25.b_tt
+		# Release colony
+		hidden_effect = {
+			event_target:shellworld_social_division_planet = {
+				set_owner = event_target:shellworld_rebel_nation
+			}
+			solar_system = {
+				if = {
+					limit = {
+						exists = starbase
+						NOT = {
+							any_system_colony = { owner = { is_same_value = event_target:shellworld_owner_country } }
+						}
+					}
+					starbase = { set_owner = event_target:shellworld_rebel_nation }
+				}
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			event_target:shellworld_rebel_nation = {
+				country_event = {
+					id = ssh_flavor.26
+					days = 90
+				}
+			}
+		}
+	}
+}
+# Remove Rebels if not successful invasion
+country_event = {
+	id = ssh_flavor.26
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { exists = capital_scope } }
+			destroy_country = yes
+		}
+	}
+}
+
+# Tension Decreased
+country_event = {
+	id = ssh_flavor.30
+	title = "ssh_flavor.30.name"
+	desc = "ssh_flavor.30.desc"
+	picture = GFX_evt_announcement #GFX_evt_alien_propaganda
+	show_sound = "event_criminal_activity"
+	location = event_target:shellworld_social_division_planet
+	trackable = yes
+
+	trigger = {
+		is_gestalt = no
+		any_owned_planet = {
+			has_planet_flag = shellworld_social_division
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				has_planet_flag = shellworld_social_division
+			}
+			if = {
+				limit = { has_modifier = ssh_shellworld_division_2_planet_modifier }
+				remove_modifier = ssh_shellworld_division_2_planet_modifier
+				add_modifier = {
+					modifier = ssh_shellworld_division_1_planet_modifier
+					days = -1
+				}
+			}
+			else_if = {
+				limit = { has_modifier = ssh_shellworld_division_1_planet_modifier }
+				remove_modifier = ssh_shellworld_division_1_planet_modifier
+				add_modifier = {
+					modifier = ssh_shellworld_division_0_planet_modifier
+					days = -1
+				}
+			}
+			else = {
+				remove_modifier = ssh_shellworld_division_0_planet_modifier
+				set_timed_planet_flag = {
+					flag = shellworld_had_social_division
+					days = 3600
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ssh_flavor.30.a # Acknowledged
+		trigger = {
+			NOR = {
+				has_civic = civic_aristocratic_elite
+				has_civic = civic_dystopian_society
+				has_civic = civic_feudal_realm
+				has_civic = civic_slaver_guilds
+				has_civic = civic_indentured_assets
+				has_civic = civic_criminal_heritage
+
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_flavor.30.b # Bad
+		trigger = {
+			OR = {
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_fanatic_authoritarian
+				# Flavor
+				has_civic = civic_aristocratic_elite
+				has_civic = civic_dystopian_society
+				has_civic = civic_feudal_realm
+				has_civic = civic_slaver_guilds
+				has_civic = civic_indentured_assets
+				has_civic = civic_criminal_heritage
+				has_civic = civic_technocracy
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_flavor.30.c # Good
+		trigger = {
+			OR = {
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+				# Flavor
+				has_civic = civic_shared_burden
+				has_civic = civic_worker_coop
+			}
+		}
+		add_resource = { unity = 2500 }
+		default_hide_option = yes
+	}
+}
+
+# Administrative Mess (per each Shell)
+
+# Criminal Underworld/Underlayers
+
+# For Authoritarian Empires: Caste System Establishment? (Spezialantworten für Caste System Civic/Feudal Civic/Oppressive Autocracy)

@@ -1,0 +1,796 @@
+namespace = ssh_megatemple
+
+##### ABYSSAL ANCHOR HUB #####
+country_event = {
+	id = ssh_megatemple.1
+	title = SSH_SHROUD_HUB
+	desc = ssh_megatemple.1.desc
+	#desc = { # Gestalt Empire
+	#	text = ssh_shroud.11_02.desc
+	#	trigger = { 
+	#		from = { is_gestalt = yes }
+	#	}
+	#}
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = this.species
+		room = mega_temple_room
+	}
+
+	#picture_event_data = {
+	#	portrait = shroud1
+	#	room = shroud_room
+	#}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_megatemple.1.a" # Espionage
+		allow = { hidden_trigger = { NOT = { has_country_flag = ssh_shroud_espionage_cooldown } } }
+		hidden_effect = {
+			country_event = {
+				id = ssh_megatemple.3
+			}
+		}
+		ai_chance = {
+			factor = 100
+			# For now AI empires will be limited to espionage
+		}
+	}
+
+	option = {
+		name = "ssh_megatemple.1.b" # Fling Shroud
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = ssh_shroud_espionage_cooldown }
+			}
+			has_technology = ssh_tech_shroud_supernova
+		}
+		hidden_effect = {
+			country_event = {
+				id = ssh_megatemple.7
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_megatemple.1.c" # more info about shroud
+		hidden_effect = {
+			country_event = {
+				id = ssh_megatemple.2
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_megatemple.1.d" #nvm (leave)
+		default_hide_option = yes
+	}
+}
+
+# More Info
+country_event = {
+	id = ssh_megatemple.2
+	title = SSH_SHROUD_HUB
+	desc = ssh_megatemple.2.desc
+	#desc = { # Gestalt Empire
+	#	text = ssh_shroud.11_02.desc
+	#	trigger = { 
+	#		from = { is_gestalt = yes }
+	#	}
+	#}
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	show_sound = "event_mystic_reveal"
+
+	picture_event_data = {
+		portrait = this.species
+		room = mega_temple_room
+	}
+
+	#picture_event_data = {
+	#	portrait = shroud1
+	#	room = shroud_room
+	#}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_megatemple.2.a" # info about the shroud
+		is_dialog_only = yes
+		response_text = "ssh_megatemple.2.a.text"
+	}
+
+	option = {
+		name = "ssh_megatemple.2.b" # how does abyssal anchor work
+		is_dialog_only = yes
+		response_text = "ssh_megatemple.2.b.text"
+	}
+
+	option = {
+		name = "ssh_megatemple.2.c" # how to reach beyond galaxy
+		trigger = { has_technology = ssh_tech_shroud_supernova }
+		is_dialog_only = yes
+		response_text = "ssh_megatemple.2.c.text"
+	}
+
+	option = {
+		name = "ssh_megatemple.2.d" # back
+		hidden_effect = {
+			country_event = {
+				id = ssh_megatemple.1
+			}
+		}
+	}
+}
+
+### Espionage ###
+country_event = {
+	id = ssh_megatemple.3
+	title = SSH_SHROUD_HUB
+	desc = {
+		text = "ssh_megatemple.3_01.desc"
+		trigger = {
+			NOT = {
+				any_playable_country = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_5
+				}
+			}
+		}
+	}
+	desc = {
+		text = "ssh_megatemple.3_02.desc"
+		trigger = {
+			any_playable_country = {
+				has_ascension_perk = ap_become_the_crisis
+				has_crisis_level = crisis_level_5
+			}
+		}
+	}
+	desc = {
+		text = "ssh_megatemple.3_03.desc"
+		trigger = {
+			any_playable_country = {
+				has_ascension_perk = ap_become_the_crisis
+				has_crisis_level = crisis_level_5
+			}
+		}
+	}
+	desc = {
+		text = "ssh_megatemple.3_04.desc"
+		trigger = {
+			any_playable_country = {
+				has_ascension_perk = ap_become_the_crisis
+				has_crisis_level = crisis_level_5
+			}
+		}
+	}
+	desc = {
+		text = "ssh_megatemple.3_05.desc"
+		trigger = {
+			any_playable_country = {
+				has_ascension_perk = ap_become_the_crisis
+				has_crisis_level = crisis_level_5
+			}
+		}
+	}
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = this.species
+		room = mega_temple_room
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_megatemple.3.a" # confirm
+		allow = {
+			hidden_trigger = {
+				NOT = {
+					any_playable_country = {
+						has_ascension_perk = ap_become_the_crisis
+						has_crisis_level = crisis_level_5
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = ssh_megatemple.4
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+
+	option = {
+		name = "ssh_megatemple.3.b" # back
+		hidden_effect = {
+			country_event = {
+				id = ssh_megatemple.1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_megatemple.4
+	title = SSH_SHROUD_UNKNOWN
+	desc = ssh_megatemple.4.desc
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_megatemple.4.a" # Neutral empires
+		hidden_effect = {
+			set_country_flag = ssh_shroud_espionage_regular
+			country_event = {
+				id = ssh_megatemple.5
+			}
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 10
+				num_rivals = 0
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_megatemple.4.b" # Rival empires
+		hidden_effect = {
+			set_country_flag = ssh_shroud_espionage_rival
+			country_event = {
+				id = ssh_megatemple.5
+			}
+		}
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 0
+				num_rivals = 0
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_megatemple.4.c" # Fallen empires
+		hidden_effect = {
+			set_country_flag = ssh_shroud_espionage_fe
+			country_event = {
+				id = ssh_megatemple.5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_megatemple.5
+	title = SSH_SHROUD_KNOWN
+	desc = "ssh_megatemple.5.desc"
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_country_flag = ssh_shroud_espionage_regular }
+			every_country = {
+				limit = {
+					NOT = { is_same_value = from }
+					ssh_is_regular_shroud_spy_candidate = yes
+				}
+				ssh_spy_event_save_countries = yes
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = ssh_shroud_espionage_rival }
+			every_country = {
+				limit = {
+					NOT = { is_same_value = from }
+					ssh_is_rival_shroud_spy_candidate = yes
+				}
+				ssh_spy_event_save_countries = yes
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = ssh_shroud_espionage_fe }
+			every_country = {
+				limit = {
+					NOT = { is_same_value = from }
+					ssh_is_fe_shroud_spy_candidate = yes
+				}
+				ssh_spy_event_save_countries = yes
+			}
+		}
+		else = { #Debug
+			every_country = {
+				limit = { NOT = { is_same_value = from } }
+				ssh_spy_event_save_countries = yes
+			}
+		}
+	}
+
+	option = {
+		name = "[event_target:shroud_spy_country_1.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_1 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_1 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_2.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_2 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_2 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_3.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_3 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_3 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_4.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_4 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_4 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_5.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_5 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_5 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_6.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_6 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_6 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_7.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_7 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_7 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_8.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_8 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_8 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_9.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_9 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_9 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_10.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_10 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_10 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_11.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_11 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_11 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_12.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_12 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_12 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_13.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_13 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_13 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_14.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_14 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_14 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_15.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_15 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_15 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_16.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_16 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_16 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_17.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_17 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_17 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_18.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_18 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_18 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_19.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_19 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_19 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_20.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_20 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_20 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_21.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_21 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_21 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_22.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_22 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_22 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_23.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_23 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_23 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_24.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_24 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_24 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_25.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_25 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_25 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_26.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_26 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_26 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_27.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_27 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_27 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_28.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_28 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_28 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_29.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_29 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_29 }
+	}
+	option = {
+		name = "[event_target:shroud_spy_country_30.GetName]"
+		hidden_effect = { event_target:shroud_spy_country_30 = { country_event = { id = ssh_effect.4 } } }
+		trigger = { exists = event_target:shroud_spy_country_30 }
+	}
+	option = {
+		name = "ssh_megatemple.5.a" #Go Back
+		hidden_effect = {
+			remove_country_flag = ssh_shroud_espionage_regular
+			remove_country_flag = ssh_shroud_espionage_rival
+			remove_country_flag = ssh_shroud_espionage_fe
+			ssh_spy_event_clear_list = yes
+			country_event = {
+				id = ssh_megatemple.4
+			}
+		}
+	}
+}
+
+# Result info - 3 different descriptions depending on how successful
+country_event = {
+	id = ssh_megatemple.6
+	title = SSH_SHROUD_HUB
+	desc = { # Hive Empire - successful
+		text = ssh_megatemple.6_01.desc
+		trigger = { 
+			from = { is_hive_empire = yes }
+			has_country_flag = ssh_shroud_espionage_high_success
+		}
+	}
+	desc = { # Hive Empire - medium success
+		text = ssh_megatemple.6_02.desc
+		trigger = { 
+			from = { is_hive_empire = yes }
+			has_country_flag = ssh_shroud_espionage_medium_success
+		}
+	}
+	desc = { # Hive Empire - low success
+		text = ssh_megatemple.6_03.desc
+		trigger = { 
+			from = { is_hive_empire = yes }
+			has_country_flag = ssh_shroud_espionage_low_success
+		}
+	}
+	desc = { # Machine Empire - successful
+		text = ssh_megatemple.6_04.desc
+		trigger = { 
+			from = { is_machine_empire = yes }
+			has_country_flag = ssh_shroud_espionage_high_success
+		}
+	}
+	desc = { # Machine Empire - medium success
+		text = ssh_megatemple.6_05.desc
+		trigger = { 
+			from = { is_machine_empire = yes }
+			has_country_flag = ssh_shroud_espionage_medium_success
+		}
+	}
+	desc = { # Machine Empire - low success
+		text = ssh_megatemple.6_06.desc
+		trigger = { 
+			from = { is_machine_empire = yes }
+			has_country_flag = ssh_shroud_espionage_low_success
+		}
+	}
+	desc = { # Regular Empire - high success
+		text = ssh_megatemple.6_07.desc
+		trigger = { 
+			from = { is_gestalt = no }
+			has_country_flag = ssh_shroud_espionage_high_success
+		}
+	}
+	desc = { # Regular Empire - medium success
+		text = ssh_megatemple.6_08.desc
+		trigger = { 
+			from = { is_gestalt = no }
+			has_country_flag = ssh_shroud_espionage_medium_success
+		}
+	}
+	desc = { # Regular Empire - low success
+		text = ssh_megatemple.6_09.desc
+		trigger = { 
+			from = { is_gestalt = no }
+			has_country_flag = ssh_shroud_espionage_low_success
+		}
+	}
+	desc = { # Materialist + Xenophile Fallen Empire - high success
+		text = ssh_megatemple.6_10.desc
+		trigger = { 
+			from = {
+				is_fallen_empire = yes
+				NOR = {
+					is_fallen_empire_spiritualist = yes
+					is_fallen_empire_xenophobe = yes
+				}
+			}
+			has_country_flag = ssh_shroud_espionage_high_success
+		}
+	}
+	desc = { # Materialist + Xenophile Fallen Empire - high success
+		text = ssh_megatemple.6_11.desc
+		trigger = { 
+			from = {
+				is_fallen_empire = yes
+				NOR = {
+					is_fallen_empire_spiritualist = yes
+					is_fallen_empire_xenophobe = yes
+				}
+			}
+			has_country_flag = ssh_shroud_espionage_medium_success
+		}
+	}
+	desc = { # Materialist + Xenophile Fallen Empire - high success
+		text = ssh_megatemple.6_12.desc
+		trigger = { 
+			from = {
+				is_fallen_empire = yes
+				NOR = {
+					is_fallen_empire_spiritualist = yes
+					is_fallen_empire_xenophobe = yes
+				}
+			}
+			has_country_flag = ssh_shroud_espionage_low_success
+		}
+	}
+	desc = { # Xenophobe Fallen Empire - high success
+		text = ssh_megatemple.6_13.desc
+		trigger = { 
+			from = {
+				is_fallen_empire_xenophobe = yes
+			}
+			has_country_flag = ssh_shroud_espionage_high_success
+		}
+	}
+	desc = { # Xenophobe Fallen Empire - medium success
+		text = ssh_megatemple.6_14.desc
+		trigger = { 
+			from = {
+				is_fallen_empire_xenophobe = yes
+			}
+			has_country_flag = ssh_shroud_espionage_medium_success
+		}
+	}
+	desc = { # Xenophobe Fallen Empire - low success
+		text = ssh_megatemple.6_15.desc
+		trigger = { 
+			from = {
+				is_fallen_empire_xenophobe = yes
+			}
+			has_country_flag = ssh_shroud_espionage_low_success
+		}
+	}
+	desc = { # Spiritualist Fallen Empire
+		text = ssh_megatemple.6_16.desc
+		trigger = { 
+			from = {
+				is_fallen_empire_spiritualist = yes
+			}
+			has_country_flag = ssh_shroud_espionage_no_success
+		}
+	}
+	desc = { # Nemesis Empire #1
+		text = ssh_megatemple.6_17.desc
+		trigger = { 
+			from = { has_ascension_perk = ap_become_the_crisis }
+			has_country_flag = ssh_shroud_espionage_nemesis_empire
+		}
+	}
+	desc = { # Nemesis Empire #2
+		text = ssh_megatemple.6_18.desc
+		trigger = { 
+			from = { has_ascension_perk = ap_become_the_crisis }
+			has_country_flag = ssh_shroud_espionage_nemesis_empire
+		}
+	}
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_megatemple.6.a" # Acknowledged
+		custom_tooltip = "ssh_megatemple.6.a.tooltip"
+	}
+}
+
+### Shroud Tentacle Fling ###
+country_event = {
+	id = ssh_megatemple.7
+	title = SSH_SHROUD_HUB
+	desc = ssh_megatemple.7.desc
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = this.species
+		room = mega_temple_room
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_megatemple.7.a" # confirm
+		allow = {
+			custom_tooltip = "ssh_megatemple.7.a.tooltip"
+			hidden_trigger = {
+				any_owned_megastructure = { is_megastructure_type = stellar_zro_detonator_ready }
+			}
+		}
+		hidden_effect = {
+			random_system_within_border = {
+				limit = { has_megastructure = stellar_zro_detonator_ready }
+				save_global_event_target_as = zro_detonator_system
+			}
+			country_event = {
+				id = ssh_megatemple.8
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_megatemple.7.b" # back
+		hidden_effect = {
+			country_event = {
+				id = ssh_megatemple.1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_megatemple.8
+	title = SSH_SHROUD_HUB
+	desc = ssh_megatemple.8.desc
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = this.species
+		room = mega_temple_room
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "[event_target:zro_detonator_system.GetName]" # fire
+		allow = {
+			custom_tooltip = "ssh_megatemple.8.a.tooltip"
+			hidden_trigger = {
+				event_target:zro_detonator_system = {
+					any_fleet_in_system = {
+						is_ship_class = shipclass_science_ship
+						leader = {
+							has_trait = leader_trait_psionic
+						}
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:zro_detonator_system = {
+				every_megastructure = {
+					limit = {
+						is_megastructure_type = stellar_zro_detonator_ready
+						planet = { is_star = yes }
+					}
+					upgrade_megastructure_to = stellar_zro_detonator_firing
+				}
+			}
+			clear_global_event_target = zro_detonator_system
+			remove_country_flag = ssh_is_constructing_zro_detonator
+			# Event fired through upgrading to final stage of the (firing) zro detonator
+		}
+	}
+
+	option = {
+		name = "ssh_megatemple.8.b" # back
+		hidden_effect = {
+			clear_global_event_target = zro_detonator_system
+			country_event = {
+				id = ssh_megatemple.7
+			}
+		}
+	}
+}
+
+# When the zro infuser is fully fired/upgraded, on_build_complete an effect event where the random list decides what happens (boons, curses & techs)
+country_event = {
+	id = ssh_megatemple.9
+	title = SSH_SHROUD_UNKNOWN
+	desc = ssh_megatemple.9.desc
+	diplomatic_title = BLANK_STRING
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_megatemple.9.a" # Determine event
+		hidden_effect = {
+			country_event = {
+				id = ssh_effect.5
+			}
+		}
+	}
+}

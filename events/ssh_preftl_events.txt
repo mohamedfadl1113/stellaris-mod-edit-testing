@@ -1,0 +1,546 @@
+namespace = ssh_preftl
+
+# Pre-FTLs notice their moon shrinking (nanite disassembler)
+situation_event = {
+	id = ssh_preftl.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			#is_country_type = primitive #fired through on observation therefore unnecessary
+			NOT = {
+				has_country_flag = ssh_primitive_moon_disassembly_noticed
+				#current_awareness_level = full # only triggers if preftls dont know for sure
+			}
+			capital_scope = {
+				has_anomaly = no
+				has_moon = yes
+				any_moon = {
+					# Check for active nanite disassembler (planet flag)
+					has_planet_flag = ssh_active_disassembly_planet
+					has_planet_flag = ssh_shrinking_planet
+				}
+			}
+		}
+	}
+
+	immediate = {
+		# Set situation flag
+		set_situation_flag = has_ongoing_observation_event_chain
+		# Setting this flag for the duration of the entire event chain
+		# to prevent other observation events from interfering.
+		owner = {
+			set_country_flag = ssh_primitive_moon_disassembly_noticed
+			save_event_target_as = pre_ftl_country
+			capital_scope = {
+				save_event_target_as = pre_ftl_planet
+				owner = { country_event = { id = ssh_preftl.2 days = 10 random = 1 } } #days + random to reduce lag
+			}
+		}
+	}
+}
+
+# Determine Outcome
+country_event = {
+	id = ssh_preftl.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = pre_ftl_country
+		if = {
+			limit = { current_awareness_level = full }
+			# Demand stop of mining operation
+			country_event = {
+				id = ssh_preftl.5
+				days = 5
+				random = 30
+			}
+		}
+		else = {
+			if = {
+				limit = { ssh_is_post_industrial_preftl = yes }
+				set_awareness = 99 #Not 100 so that the other events can fire first before the ingame vanilla reveal screen
+				leader = { save_event_target_as = pre_ftl_leader }
+				# contact event of them asking why we are devouring their moon
+				capital_scope = {
+					if = {
+						limit = { has_observation_outpost = yes }
+						observation_outpost_owner = {
+							country_event = {
+								id = ssh_preftl.4
+							}
+						}
+					}
+				}
+			}
+			else = {
+				add_awareness = 5
+				shift_ethic = ethic_spiritualist
+				capital_scope = {
+					# Spiritualist Modifier
+					add_modifier = {
+						modifier = spiritualist_unrest
+						days = 720
+					}
+					# Notification for Outpost Owner
+					if = {
+						limit = { has_observation_outpost = yes }
+						observation_outpost_owner = {
+							country_event = {
+								id = ssh_preftl.3
+							}
+						}
+					}
+				}
+			}
+		}
+		# Remove situation flag
+		random_situation = {
+			limit = {
+				is_situation_type = pre_ftl_tech_progress_situation
+			}
+			remove_situation_flag = has_ongoing_observation_event_chain
+		}
+	}
+}
+
+country_event = {
+	id = ssh_preftl.3
+	title = "ssh_preftl.3.name"
+	desc = "ssh_preftl.3.desc"
+	picture = GFX_evt_alien_cavemen
+	show_sound = "event_radio_chatter"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_preftl.3.a"
+		default_hide_option = yes
+	}
+
+	option = {
+		name = "ssh_preftl.3.b"
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_machine_terminator
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+		hidden_effect = {
+			event_target:pre_ftl_country = {
+				capital_scope = {
+					every_moon = {
+						limit = {
+							OR = {
+								has_planet_flag = ssh_shrinking_planet
+								has_planet_flag = ssh_active_disassembly_planet
+							}
+						}
+						remove_planet_flag = ssh_active_disassembly_planet
+						remove_planet_flag = ssh_shrinking_planet
+						remove_planet_flag = has_megastructure
+						set_planet_flag = ssh_stopped_operation_planet
+					}
+				}
+				solar_system = {
+					# Every System Megastructure bc some planets have multiple moons which can be harvested at the same time
+					every_system_megastructure = {
+						limit = {
+							OR = {
+								is_megastructure_type = nanite_disassembler_p_rocky
+								is_megastructure_type = nanite_disassembler_p_gas
+								is_megastructure_type = nanite_disassembler_p_artificial
+								is_megastructure_type = nanite_disassembler_p_crystal
+							}
+							planet = {
+								has_planet_flag = ssh_stopped_operation_planet
+							}
+						}
+						this.planet = { remove_planet_flag = ssh_stopped_operation_planet }
+						remove_megastructure = this
+					}
+				}
+			}
+		}
+		# Give the owner the resources they would normally receive after dismantling their finished nanite disassembler
+		owner = {
+			add_resource = {
+				alloys = 7500
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_preftl.4
+	title = "ssh_preftl.4.name"
+	desc = "ssh_preftl.4.desc"
+	picture = GFX_evt_civil_action
+	show_sound = "event_radio_chatter"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_preftl.4.a"
+		hidden_effect = {
+			event_target:pre_ftl_country = {
+				set_awareness = 100 #So that the preftls establish contact after this event message
+			}
+			country_event = {
+				id = ssh_preftl.5
+				days = 30
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Diplo Message - Demand Stop of Mining Operation
+# Introduction
+country_event = {
+	id = ssh_preftl.5
+	title = "Radio Transmission"
+	desc = "ssh_preftl.5.desc"
+	show_sound = "event_radio_chatter"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:pre_ftl_leader
+		room = event_target:pre_ftl_country
+		planet_background = event_target:pre_ftl_planet
+	}
+
+	option = {
+		name = ssh_preftl.5.a #Deal
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_machine_terminator
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+		custom_tooltip = ssh_preftl.5.tooltip
+		owner = {
+			add_resource = {
+				minerals = 2500
+				alloys = 750
+			}
+		}
+		hidden_effect = {
+			event_target:pre_ftl_country = {
+				add_opinion_modifier = {
+					who = from
+					modifier = ssh_opinion_preftl_moon_mining_stopped
+				}
+				capital_scope = {
+					every_moon = {
+						limit = {
+							OR = {
+								has_planet_flag = ssh_shrinking_planet
+								has_planet_flag = ssh_active_disassembly_planet
+							}
+						}
+						remove_planet_flag = ssh_active_disassembly_planet
+						remove_planet_flag = ssh_shrinking_planet
+						remove_planet_flag = has_megastructure
+						set_planet_flag = ssh_stopped_operation_planet
+					}
+				}
+				solar_system = {
+					# Every System Megastructure bc some planets have multiple moons which can be harvested at the same time
+					every_system_megastructure = {
+						limit = {
+							OR = {
+								is_megastructure_type = nanite_disassembler_p_rocky
+								is_megastructure_type = nanite_disassembler_p_gas
+								is_megastructure_type = nanite_disassembler_p_artificial
+								is_megastructure_type = nanite_disassembler_p_crystal
+							}
+							planet = {
+								has_planet_flag = ssh_stopped_operation_planet
+							}
+						}
+						this.planet = { remove_planet_flag = ssh_stopped_operation_planet }
+						remove_megastructure = this
+					}
+					# Give the owner the resources they would normally receive after dismantling their finished nanite disassembler
+					owner = {
+						add_resource = {
+							alloys = 7500
+						}
+					}
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_preftl.5.b #No Deal
+		hidden_effect = {
+			event_target:pre_ftl_country = {
+				shift_ethic = ethic_xenophobe
+				every_owned_pop_group = {
+					pop_group_transfer_ethic = {
+						POP_GROUP = this
+						ETHOS = ethic_xenophobe
+						PERCENTAGE = 1 # 100%
+					}
+				}
+				# Opinion Modifier
+				add_opinion_modifier = {
+					who = from
+					modifier = ssh_opinion_preftl_moon_mining_continued
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ssh_preftl.5.c #Pathetic
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_machine_terminator
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+		hidden_effect = {
+			event_target:pre_ftl_country = {
+				shift_ethic = ethic_fanatic_xenophobe
+				every_owned_pop_group = {
+					pop_group_transfer_ethic = {
+						POP_GROUP = this
+						ETHOS = ethic_fanatic_xenophobe
+						PERCENTAGE = 0.9 # 90%
+					}
+				}
+				# Opinion Modifier
+				add_opinion_modifier = {
+					who = from
+					modifier = ssh_opinion_preftl_moon_mining_continued
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+################# WIP
+
+### HOOPWORLD PREFTLs EVENTS ###
+
+# Philosophy Age: People find out planet is shaped like a donut -> existential crisis
+#situation_event = {
+#	id = ssh_preftl.1
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	trigger = {
+#		owner = {
+#			has_country_flag = preftl_hoopworld_country
+#			NOT = { has_country_flag = kapitali_chain_started }
+#			has_pre_ftl_age = philosophy_age
+#			capital_scope = {
+#				has_observation_outpost = yes
+#				has_anomaly = no
+#				has_planet_flag = kapitali_home_planet
+#			}
+#		}
+#	}
+#
+#	#fire_only_once = yes
+#
+#	immediate = {
+#		set_situation_flag = has_ongoing_observation_event_chain
+#		# Setting this flag for the duration of the entire event chain
+#		# to prevent other observation events from interfering.
+#		owner = {
+#			set_country_flag = kapitali_chain_started
+#			save_event_target_as = pre_ftl_country
+#
+#			capital_scope = {
+#				save_event_target_as = pre_ftl_planet
+#				owner = { country_event = { id = ssh_preftl.2 } }
+#			}
+#		}
+#	}
+#}
+
+# Determine Outcome
+#country_event = {
+#	id = ssh_preftl.2
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	#fire_only_once = yes
+#
+#	immediate = {
+#		shift_ethic = ethic_militarist
+#		shift_ethic = ethic_fanatic_materialist
+#		change_government = {
+#			authority = auth_democratic #more or less anarchy
+#		}
+#		set_pre_ftl_age_effect = { PRE_FTL_AGE = apocalyptic_age }
+#		add_planet_devastation = 100
+#		random_list = {
+#			# Trigger existential crisis
+#			15 = {
+#				modifier = {
+#					factor = 100
+#					has_megacorp = no
+#				}
+#				country_event = {
+#					id = ssh_preftl.4
+#					days = 1000
+#					random = 3600 #10years
+#				}
+#			}
+#			# Corporation Takes Over
+#			85 = {
+#				modifier = {
+#					factor = 0
+#					has_megacorp = no
+#				}
+#				country_event = {
+#					id = ssh_preftl.6
+#					days = 1000
+#					random = 3600
+#				}
+#			}
+#		}
+#		capital_scope = {
+#			if = {
+#				limit = { has_observation_outpost = yes }
+#				observation_outpost_owner = {
+#					country_event = {
+#						id = ssh_preftl.3
+#					}
+#				}
+#			}
+#		}
+#	}
+#}
+
+#country_event = {
+#	id = ssh_preftl.3
+#	title = "ssh_preftl.3.name"
+#	desc = "ssh_preftl.3.desc"
+#	picture = GFX_evt_crisis_declared
+#	show_sound = "event_laboratory_sound"
+#	location = from
+#	trackable = yes
+#
+#	is_triggered_only = yes
+#	
+#	option = {
+#		name = "ssh_preftl.3.a"
+#	}
+#}
+
+# Outcome A
+#country_event = {
+#	id = ssh_preftl.4
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	#fire_only_once = yes
+#
+#	immediate = {
+#		capital_scope = {
+#			every_owned_pop = {
+#				kill_pop = yes
+#			}
+#			destroy_colony = yes
+#			if = {
+#				limit = { has_observation_outpost = yes }
+#				observation_outpost_owner = {
+#					country_event = {
+#						id = ssh_preftl.5
+#					}
+#				}
+#			}
+#		}
+#	}
+#}
+
+#country_event = {
+#	id = ssh_preftl.5
+#	title = "ssh_preftl.5.name"
+#	desc = "ssh_preftl.5.desc"
+#	picture = GFX_evt_burning_city
+#	show_sound = "event_laboratory_sound" ###
+#	location = from
+#	trackable = yes
+#
+#	is_triggered_only = yes
+#	
+#	option = {
+#		name = "ssh_preftl.5.a"
+#	}
+#}
+
+# Outcome B: Zro Cartel/Hardcore Capitalist Clan Takes Over
+#country_event = {
+#	id = ssh_preftl.6
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	#fire_only_once = yes
+#
+#	immediate = {
+#		set_pre_ftl_age_effect = { PRE_FTL_AGE = industrial_age }
+#		change_government = {
+#			authority = auth_corporate
+#			civics = {
+#				civic = civic_corporate_hedonism
+#				civic = civic_atmospheric_pollution
+#			}
+#		}
+#		capital_scope = {
+#			if = {
+#				limit = { has_observation_outpost = yes }
+#				observation_outpost_owner = {
+#					country_event = {
+#						id = ssh_preftl.7
+#					}
+#				}
+#			}
+#		}
+#	}
+#}
+
+#country_event = {
+#	id = ssh_preftl.7
+#	title = "ssh_preftl.7.name"
+#	desc = "ssh_preftl.7.desc"
+#	picture = GFX_evt_burning_city
+#	show_sound = "event_laboratory_sound" ###
+#	location = from
+#	trackable = yes
+#
+#	is_triggered_only = yes
+#	
+#	option = {
+#		name = "ssh_preftl.7.a"
+#	}
+#}
+
+# Atomic Age
+
+# Atomic Age: Repressed Workers construct project orion-like ship to flee to the gas giant's moon
+
+# Project Orion A: Fails, rocket explodes -> tomb world, apocalyptic age
+
+# Project Orion B: Success, communist colony established -> industrial age

@@ -1,0 +1,1370 @@
+namespace = ssh_enclave
+
+# Company Enclave Event
+# via on_custom_diplomacy
+country_event = {
+	id = ssh_enclave.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		#has_marauder_event = no
+		#has_khan_event = no
+		from = {
+			is_country_type = lethal_company
+		}
+	}
+
+	immediate = {
+		#if = {
+		#	limit = {
+		#		NOT = { exists = event_target:company_enclave }
+		#		exists = from.contact_country
+		#	}
+		#	from.contact_country = {
+		#		save_event_target_as = company_enclave
+		#	}
+		#}
+		# Comms denied
+		if = {
+			limit = {
+				OR = {
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_machine_terminator
+				}
+				NOR = {
+					AND = {
+						has_relation_flag = {
+							who = from
+							flag = current_target
+						}
+						from = { is_country_type = lethal_company }
+					}
+				}
+			}
+			country_event = {
+				id = ssh_enclave.19
+				scopes = { from = from }
+			}
+		}
+		# Normal Comms
+		else = {
+			country_event = {
+				id = ssh_enclave.20
+				scopes = { from = from }
+			}
+		}
+	}
+}
+
+# Company Destroyed
+
+# Company Communication Spread
+country_event = {
+	id = ssh_enclave.2
+	hide_window = yes
+
+	trigger = {
+		is_country_type = lethal_company
+		any_relation = {
+			is_country_type = default
+			has_communications = root
+			any_relation = {
+				is_country_type = default
+				NOT = { has_communications = ROOT }
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 160
+	}
+
+	immediate = {
+		random_relation = {
+			limit = {
+				has_communications = root
+				is_country_type = default
+				any_relation = {
+					is_country_type = default
+					NOT = { has_communications = ROOT }
+				}
+			}
+			random_relation = {
+				limit = {
+					is_country_type = default
+					NOT = { has_communications = ROOT }
+				}
+				root = { establish_communications_no_message = prev }
+				country_event = { id = ssh_enclave.5}
+			}
+		}
+	}
+}
+
+# Company Introduction
+country_event = {
+	id = ssh_enclave.5
+	title = "company_enclave_header"
+	desc = "ssh_enclave.5.desc"
+
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:company_enclave
+		room = "company_enclave_room"
+	}
+	is_triggered_only = yes
+
+	immediate = {
+		#if = {
+		#	limit = {
+		#		NOT = { exists = event_target:company_enclave }
+		#		exists = from.contact_country
+		#	}
+		#	from.contact_country = {
+		#		save_event_target_as = company_enclave
+		#	}
+		#}
+		if = {
+			limit = {
+				NOT = { exists = event_target:company_enclave }
+				exists = fromfrom.owner
+			}
+			fromfrom.owner = {
+				owner_species = { save_event_target_as = company_species }
+				save_event_target_as = company_enclave
+			}
+		}
+	}
+
+
+	option = {
+		name = ssh_enclave.5.a
+	}
+}
+
+# Company Communications Denied
+country_event = {
+	id = ssh_enclave.19
+	title = "company_enclave_header"
+
+	desc = {
+		text =  ssh_enclave.19.desc_01
+		trigger = {
+			from = { is_country_type = lethal_company } #has_country_flag = lethal_company
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+	}
+	desc = {
+		text =  ssh_enclave.19.desc_02
+		trigger = {
+			from = { is_country_type = lethal_company }
+			has_valid_civic = civic_fanatic_purifiers
+		}
+	}
+	desc = {
+		text =  ssh_enclave.19.desc_03
+		trigger = {
+			from = { is_country_type = lethal_company }
+			has_valid_civic = civic_machine_terminator
+		}
+	}
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = from
+		room = "company_enclave_room"
+	}
+
+	is_triggered_only = yes
+	force_open = yes
+
+	trigger = {
+		from = { is_country_type = lethal_company }
+		OR = {
+			has_valid_civic = civic_hive_devouring_swarm
+			has_valid_civic = civic_fanatic_purifiers
+			has_valid_civic = civic_machine_terminator
+		}
+		NOR = {
+			AND = {
+				has_relation_flag = {
+					who = from
+					flag = current_target
+				}
+				from = { is_country_type = lethal_company }
+			}
+		}
+	}
+
+	#immediate = {
+	#	random_country = {
+	#		limit = {
+	#			is_country_type = lethal_company
+	#			has_country_flag = marauder_1
+	#		}
+	#		owner_species = { save_event_target_as = marauder_species }
+	#	}
+	#}
+
+	immediate = {
+		#if = {
+		#	limit = {
+		#		NOT = { exists = event_target:company_enclave }
+		#		exists = from.contact_country
+		#	}
+		#	from.contact_country = {
+		#		save_event_target_as = company_enclave
+		#	}
+		#}
+		if = {
+			limit = {
+				NOT = { exists = event_target:company_enclave }
+				exists = from
+			}
+			from = {
+				owner_species = { save_event_target_as = company_species }
+				save_event_target_as = company_enclave
+			}
+		}
+	}
+
+	option = {
+		name =  ssh_enclave.19.a
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+	}
+	option = {
+		name =  ssh_enclave.19.b
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+	}
+	option = {
+		name =  ssh_enclave.19.c
+		trigger = { has_valid_civic = civic_machine_terminator }
+	}
+}
+
+#################
+# COMPANY MENUS #
+#################
+
+# Company Main Menu (Initial)
+country_event = {
+	id = ssh_enclave.20
+	title = "company_enclave_header"
+
+	# Normal Greetings
+	desc = {
+		text = ssh_enclave.20.desc_01
+		trigger = {
+			#event_target:company_enclave = { has_country_flag = marauder_1 }
+			NOT = { has_modifier = company_enclave_assets_contract }
+		}
+	}
+	desc = {
+		text = ssh_enclave.20.desc_02
+		trigger = {
+			#event_target:company_enclave = { has_country_flag = marauder_1 }
+			NOT = { has_modifier = company_enclave_assets_contract }
+		}
+	}
+	desc = {
+		text = ssh_enclave.20.desc_03
+		trigger = {
+			NOT = { has_modifier = company_enclave_assets_contract }
+		}
+	}
+	desc = {
+		text = ssh_enclave.20.desc_04
+		trigger = {
+			NOT = { has_modifier = company_enclave_assets_contract }
+		}
+	}
+	desc = {
+		text = ssh_enclave.20.desc_05
+		trigger = {
+			NOT = { has_modifier = company_enclave_assets_contract }
+			is_gestalt = yes
+		}
+	}
+	desc = {
+		text = ssh_enclave.20.desc_06
+		trigger = {
+			OR = {
+				has_valid_civic = civic_corporate_dominion
+				has_valid_civic = civic_corvee_system
+				has_valid_civic = civic_slaver_guilds
+				has_valid_civic = civic_indentured_assets
+			}
+			NOT = { has_modifier = company_enclave_assets_contract }
+		}
+	}
+	desc = {
+		text = ssh_enclave.20.desc_07
+		trigger = {
+			has_modifier = company_enclave_assets_contract
+		}
+	}
+	desc = {
+		text = ssh_enclave.20.desc_08
+		trigger = {
+			OR = {
+				has_valid_civic = civic_relentless_industrialists
+				has_valid_civic = civic_corporate_relentless_industrialists
+			}
+			NOT = { has_modifier = company_enclave_assets_contract }
+		}
+	}
+	desc = {
+		text = ssh_enclave.20.desc_09
+		trigger = {
+			OR = {
+				has_valid_civic = civic_scavengers
+				has_valid_civic = civic_corporate_scavengers
+			}
+			NOT = { has_modifier = company_enclave_assets_contract }
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:company_enclave
+		room = company_enclave_room
+	}
+
+	is_triggered_only = yes
+	force_open = yes
+	diplomatic = yes
+
+	immediate = {
+		#if = {
+		#	limit = {
+		#		NOT = { exists = event_target:company_enclave }
+		#		exists = from.contact_country
+		#	}
+		#	from.contact_country = {
+		#		save_event_target_as = company_enclave
+		#	}
+		#}
+		if = {
+			limit = {
+				NOT = { exists = event_target:company_enclave }
+				exists = from
+			}
+			from = {
+				owner_species = { save_event_target_as = company_species }
+				save_event_target_as = company_enclave
+			}
+		}
+	}
+
+	# Buy Scrap
+	option = {
+		name = ssh_enclave.20.a
+		trigger = {
+			event_target:company_enclave = {
+				NOT = {
+					has_country_flag = company_enclave_scrap_cooldown
+				}
+			}
+		}
+		custom_tooltip = ssh_enclave.20.a.tooltip
+		hidden_effect = {
+			country_event = { id = ssh_enclave.30 }
+		}
+	}
+	option = {
+		name = ssh_enclave.20.b
+		trigger = {
+			event_target:company_enclave = {
+				has_country_flag = company_enclave_scrap_cooldown
+			}
+		}
+		response_text = ssh_enclave.20.scrap.cooldown.response
+		is_dialog_only = yes
+	}
+
+	# Clean-Up Programme (Remove devastation)
+	option = {
+		name = ssh_enclave.20.c
+		trigger = {
+			event_target:company_enclave = {
+				NOR = {
+					has_country_flag = company_enclave_cleanup_ongoing
+					has_country_flag = company_enclave_cleanup_cooldown
+				}
+			}
+		}
+		allow = {
+			any_planet_within_border = {
+				planet_devastation > 10
+				NOT = { has_orbital_bombardment = yes }
+			}
+		}
+		custom_tooltip = ssh_enclave.20.c.tooltip
+		hidden_effect = {
+			country_event = { id = ssh_enclave.40 }
+		}
+	}
+	option = {
+		name = ssh_enclave.20.d
+		trigger = {
+			event_target:company_enclave = {
+				has_country_flag = company_enclave_cleanup_ongoing
+			}
+		}
+		response_text = ssh_enclave.20.cleanup.ongoing.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = ssh_enclave.20.e
+		trigger = {
+			event_target:company_enclave = {
+				has_country_flag = company_enclave_cleanup_cooldown
+			}
+		}
+		response_text = ssh_enclave.20.cleanup.cooldown.response
+		is_dialog_only = yes
+	}
+
+	# Trade assets
+	option = {
+		name = ssh_enclave.20.f
+		custom_tooltip = ssh_enclave.20.sell_assets.tooltip
+		allow = {
+			any_owned_pop_group = {
+				OR = {
+					has_citizenship_type = { type = citizenship_slavery }
+					has_citizenship_type = { type = citizenship_purge }
+					has_citizenship_type = { type = citizenship_purge_machine }
+					#has_citizenship_type = { type = citizenship_robot_servitude }
+				}
+			}
+			#any_owned_species = {
+			#	OR = {
+			#		has_living_standard = { type = living_standard_servitude }
+			#		has_living_standard = { type = living_standard_none }
+			#	}
+			#}
+		}
+		###### DEBUG ###### event pops up immediately after start
+		hidden_effect = {
+			country_event = { id = ssh_enclave.50 }
+		}
+		ai_chance = {
+			weight = 0
+		}
+	}
+
+	# Hire Leader
+	#option = {
+	#	name = marauder.20.g
+	#	custom_tooltip = hire_mercenary_leader
+	#	hidden_effect = {
+	#		country_event = { id = marauder.40 }
+	#	}
+	#}
+
+	# Company special (for scavenger civic)
+	#option = {
+	#	name = marauder.20.f
+	#	trigger = {
+	#		event_target:current_marauder_diplomacy = { has_country_flag = marauder_2 }
+	#		NOT = { has_country_flag = inquired_about_shrieking }
+	#	}
+	#	hidden_effect = {
+	#		set_country_flag = inquired_about_shrieking
+	#	}
+	#	response_text = marauder.20.f.response
+	#	is_dialog_only = yes
+	#}
+
+	# Terminate communications
+	option = {
+		name = ssh_enclave.20.g
+		default_hide_option = yes
+	}
+}
+
+# Buy Scrap
+country_event = {
+	id = ssh_enclave.30
+	title = "company_enclave_header"
+	desc = "ssh_enclave.30.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:company_enclave
+		room = "company_enclave_room"
+	}
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = ssh_enclave.30.a # Buy Scrap Garage Stockpile
+		trigger = {
+			event_target:company_enclave = {
+				NOT = { has_country_flag = company_enclave_scrap_cooldown }
+			}
+		}
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value > 5500
+			}
+		}
+		add_resource = { energy = -5500 }
+		hidden_effect = {
+			random_list = {
+				15 = {
+					set_country_flag = company_enclave_scrapbox_alloys
+				}
+				15 = {
+					modifier = {
+						factor = 0
+						NOT = { has_technology = ssh_tech_nuclei_modification }
+					}
+					set_country_flag = company_enclave_scrapbox_cultrobium
+				}
+				15 = {
+					set_country_flag = company_enclave_scrapbox_alloys_minerals
+				}
+				15 = {
+					set_country_flag = company_enclave_scrapbox_strategic
+				}
+				15 = {
+					set_country_flag = company_enclave_scrapbox_alloys_food
+				}
+				15 = {
+					set_country_flag = company_enclave_scrapbox_consumer
+				}
+				5 = {
+					set_country_flag = company_enclave_scrapbox_zro
+				}
+				5 = {
+					set_country_flag = company_enclave_scrapbox_nanites_living_metal
+				}
+				5 = {
+					set_country_flag = company_enclave_scrapbox_artifacts
+					modifier = {
+						factor = 0
+						NOT = { host_has_dlc = "Ancient Relics Story Pack" }
+					}
+				}
+				10 = {
+					set_country_flag = company_enclave_scrapbox_corpses
+				}
+			}
+			country_event = {
+				id = ssh_enclave.31
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.30.b
+		hidden_effect = {
+			country_event = {
+				id = ssh_enclave.20 #ssh_enclave.21
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.30.c
+		default_hide_option = yes
+	}
+}
+# Scrap result
+country_event = {
+	id = ssh_enclave.31
+	title = "company_enclave_header"
+	desc = {
+		text = "ssh_enclave.31_01.desc"
+		trigger = { has_country_flag = company_enclave_scrapbox_alloys }
+	}
+	desc = {
+		text = "ssh_enclave.31_02.desc"
+		trigger = { has_country_flag = company_enclave_scrapbox_alloys_minerals }
+	}
+	desc = {
+		text = "ssh_enclave.31_03.desc"
+		trigger = { has_country_flag = company_enclave_scrapbox_strategic }
+	}
+	desc = {
+		text = "ssh_enclave.31_04.desc"
+		trigger = { has_country_flag = company_enclave_scrapbox_alloys_food }
+	}
+	desc = {
+		text = "ssh_enclave.31_05.desc"
+		trigger = { has_country_flag = company_enclave_scrapbox_consumer }
+	}
+	desc = {
+		text = "ssh_enclave.31_06.desc"
+		trigger = { has_country_flag = company_enclave_scrapbox_zro }
+	}
+	desc = {
+		text = "ssh_enclave.31_07.desc"
+		trigger = { has_country_flag = company_enclave_scrapbox_nanites_living_metal }
+	}
+	desc = {
+		text = "ssh_enclave.31_08.desc"
+		trigger = { has_country_flag = company_enclave_scrapbox_artifacts }
+	}
+	desc = {
+		text = "ssh_enclave.31_09.desc"
+		trigger = {
+			has_country_flag = company_enclave_scrapbox_corpses
+			has_global_flag = ssh_page_specimen_found
+		}
+	}
+	desc = {
+		text = "ssh_enclave.31_10.desc"
+		trigger = {
+			has_country_flag = company_enclave_scrapbox_corpses
+			NOT = { has_global_flag = ssh_page_specimen_found }
+		}
+	}
+	desc = {
+		text = "ssh_enclave.31_11.desc"
+		trigger = { has_country_flag = company_enclave_scrapbox_cultrobium }
+	}
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:company_enclave
+		room = "company_enclave_room"
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:company_enclave = {
+			set_timed_country_flag = {
+				flag = company_enclave_scrap_cooldown
+				days = 1080
+			}
+		}
+	}
+
+	option = {
+		name = ssh_enclave.31.a # Re-Animate Employees
+		trigger = {
+			has_country_flag = company_enclave_scrapbox_corpses
+			OR = {
+				has_civic = civic_reanimated_armies
+				has_civic = civic_permanent_employment
+				has_civic = civic_hive_cordyceptic_drones
+				has_ascension_perk = ap_mechromancy
+			}
+		}
+		capital_scope = {
+			# Create pop w/ zombie trait
+			create_pop_group = {
+				#pop_group = event_target:source_pop_group
+				# Create a new Pop Group with the species we just created
+				species = prev.owner_main_species
+				size = 300
+				effect = {
+					species = {
+						modify_species = { add_trait = trait_zombie }
+						#change_species_characteristics = { add_trait = trait_zombie }
+					}
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_corpses NOT = { has_global_flag = ssh_page_specimen_found } }
+			set_global_flag = ssh_page_specimen_found
+			give_specimen = { key = ssh_faceless_stalker_page }
+		}
+		hidden_effect = {
+			ssh_remove_company_scrap_flags = yes
+		}
+	}
+	option = {
+		name = ssh_enclave.31.b
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_alloys }
+			add_resource = {
+				alloys = 8000
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_alloys_minerals }
+			add_resource = {
+				alloys = 1250
+				minerals = 7500
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_strategic }
+			add_resource = {
+				volatile_motes = 750
+				exotic_gases = 750
+				rare_crystals = 750
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_alloys_food }
+			add_resource = {
+				alloys = 950
+				food = 6500
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_consumer }
+			add_resource = {
+				consumer_goods = 4500
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_zro }
+			add_resource = {
+				sr_zro = 550
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_nanites_living_metal }
+			add_resource = {
+				nanites = 550
+				sr_living_metal = 350
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_artifacts }
+			add_resource = {
+				minor_artifacts = 1500
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_cultrobium }
+			add_resource = {
+				alloys = 2500
+				sr_cultrobium = 6500
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_corpses NOT = { has_global_flag = ssh_page_specimen_found } }
+			set_global_flag = ssh_page_specimen_found
+			give_specimen = { key = ssh_faceless_stalker_page }
+		}
+		hidden_effect = {
+			ssh_remove_company_scrap_flags = yes
+			country_event = {
+				id = ssh_enclave.20 #ssh_enclave.21
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.31.c
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_alloys }
+			add_resource = {
+				alloys = 8000
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_alloys_minerals }
+			add_resource = {
+				alloys = 1500
+				minerals = 7500
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_strategic }
+			add_resource = {
+				volatile_motes = 1000
+				exotic_gases = 1000
+				rare_crystals = 1000
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_alloys_food }
+			add_resource = {
+				alloys = 3000
+				food = 6500
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_consumer }
+			add_resource = {
+				consumer_goods = 5500
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_zro }
+			add_resource = {
+				sr_zro = 1000
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_nanites_living_metal }
+			add_resource = {
+				nanites = 1100
+				sr_living_metal = 1000
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_artifacts }
+			add_resource = {
+				minor_artifacts = 3500
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_cultrobium }
+			add_resource = {
+				alloys = 2500
+				sr_cultrobium = 6500
+			}
+		}
+		if = {
+			limit = { has_country_flag = company_enclave_scrapbox_corpses NOT = { has_global_flag = ssh_page_specimen_found } }
+			set_global_flag = ssh_page_specimen_found
+			give_specimen = { key = ssh_faceless_stalker_page }
+		}
+		hidden_effect = {
+			ssh_remove_company_scrap_flags = yes
+		}
+		default_hide_option = yes
+	}
+}
+
+# Clean-Up Operation
+country_event = {
+	id = ssh_enclave.40
+	title = "company_enclave_header"
+	desc = "ssh_enclave.40.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:company_enclave
+		room = "company_enclave_room"
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				planet_devastation > 10
+				NOR = {
+					has_orbital_bombardment = yes
+					has_planet_flag = company_cleanup_planet_1
+					has_planet_flag = company_cleanup_planet_2
+					has_planet_flag = company_cleanup_planet_3
+					has_planet_flag = company_cleanup_planet_4
+					has_planet_flag = company_cleanup_planet_5
+				}
+			}
+			set_planet_flag = company_cleanup_planet_1
+			save_event_target_as = company_cleanup_planet_1
+		}
+		random_owned_planet = {
+			limit = {
+				planet_devastation > 10
+				NOR = {
+					has_orbital_bombardment = yes
+					has_planet_flag = company_cleanup_planet_1
+					has_planet_flag = company_cleanup_planet_2
+					has_planet_flag = company_cleanup_planet_3
+					has_planet_flag = company_cleanup_planet_4
+					has_planet_flag = company_cleanup_planet_5
+				}
+			}
+			set_planet_flag = company_cleanup_planet_2
+			save_event_target_as = company_cleanup_planet_2
+		}
+		random_owned_planet = {
+			limit = {
+				planet_devastation > 10
+				NOR = {
+					has_orbital_bombardment = yes
+					has_planet_flag = company_cleanup_planet_1
+					has_planet_flag = company_cleanup_planet_2
+					has_planet_flag = company_cleanup_planet_3
+					has_planet_flag = company_cleanup_planet_4
+					has_planet_flag = company_cleanup_planet_5
+				}
+			}
+			set_planet_flag = company_cleanup_planet_3
+			save_event_target_as = company_cleanup_planet_3
+		}
+		random_owned_planet = {
+			limit = {
+				planet_devastation > 10
+				NOR = {
+					has_orbital_bombardment = yes
+					has_planet_flag = company_cleanup_planet_1
+					has_planet_flag = company_cleanup_planet_2
+					has_planet_flag = company_cleanup_planet_3
+					has_planet_flag = company_cleanup_planet_4
+					has_planet_flag = company_cleanup_planet_5
+				}
+			}
+			set_planet_flag = company_cleanup_planet_4
+			save_event_target_as = company_cleanup_planet_4
+		}
+		random_owned_planet = {
+			limit = {
+				planet_devastation > 10
+				NOR = {
+					has_orbital_bombardment = yes
+					has_planet_flag = company_cleanup_planet_1
+					has_planet_flag = company_cleanup_planet_2
+					has_planet_flag = company_cleanup_planet_3
+					has_planet_flag = company_cleanup_planet_4
+					has_planet_flag = company_cleanup_planet_5
+				}
+			}
+			set_planet_flag = company_cleanup_planet_5
+			save_event_target_as = company_cleanup_planet_5
+		}
+	}
+
+	option = {
+		name = ssh_enclave.40.a
+		trigger = {
+			exists = event_target:company_cleanup_planet_1
+		}
+		custom_tooltip = ssh_enclave.cleanup.tooltip
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value > 3500
+			}
+		}
+		add_resource = { energy = -3500 }
+		hidden_effect = {
+			event_target:company_cleanup_planet_1 = {
+				planet_event = {
+					id = ssh_enclave.41
+					days = 29
+				}
+			}
+			country_event = {
+				id = ssh_enclave.42 # Notification
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.40.b
+		trigger = {
+			exists = event_target:company_cleanup_planet_2
+		}
+		custom_tooltip = ssh_enclave.cleanup.tooltip
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value > 3500
+			}
+		}
+		add_resource = { energy = -3500 }
+		hidden_effect = {
+			event_target:company_cleanup_planet_2 = {
+				planet_event = {
+					id = ssh_enclave.41
+					days = 29
+				}
+			}
+			country_event = {
+				id = ssh_enclave.42 # Notification
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.40.c
+		trigger = {
+			exists = event_target:company_cleanup_planet_3
+		}
+		custom_tooltip = ssh_enclave.cleanup.tooltip
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value > 3500
+			}
+		}
+		add_resource = { energy = -3500 }
+		hidden_effect = {
+			event_target:company_cleanup_planet_3 = {
+				planet_event = {
+					id = ssh_enclave.41
+					days = 29
+				}
+			}
+			country_event = {
+				id = ssh_enclave.42 # Notification
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.40.d
+		trigger = {
+			exists = event_target:company_cleanup_planet_4
+		}
+		custom_tooltip = ssh_enclave.cleanup.tooltip
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value > 3500
+			}
+		}
+		add_resource = { energy = -3500 }
+		hidden_effect = {
+			event_target:company_cleanup_planet_4 = {
+				planet_event = {
+					id = ssh_enclave.41
+					days = 29
+				}
+			}
+			country_event = {
+				id = ssh_enclave.42 # Notification
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.40.e
+		trigger = {
+			exists = event_target:company_cleanup_planet_5
+		}
+		custom_tooltip = ssh_enclave.cleanup.tooltip
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value > 3500
+			}
+		}
+		add_resource = { energy = -3500 }
+		hidden_effect = {
+			event_target:company_cleanup_planet_5 = {
+				planet_event = {
+					id = ssh_enclave.41
+					days = 29
+				}
+			}
+			country_event = {
+				id = ssh_enclave.42 # Notification
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.40.f
+		hidden_effect = {
+			event_target:company_cleanup_planet_1 = { remove_planet_flag = company_cleanup_planet_1 }
+			event_target:company_cleanup_planet_2 = { remove_planet_flag = company_cleanup_planet_2 }
+			event_target:company_cleanup_planet_3 = { remove_planet_flag = company_cleanup_planet_3 }
+			event_target:company_cleanup_planet_4 = { remove_planet_flag = company_cleanup_planet_4 }
+			event_target:company_cleanup_planet_5 = { remove_planet_flag = company_cleanup_planet_5 }
+			country_event = {
+				id = ssh_enclave.20 #ssh_enclave.21
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.40.g
+		hidden_effect = {
+			event_target:company_cleanup_planet_1 = { remove_planet_flag = company_cleanup_planet_1 }
+			event_target:company_cleanup_planet_2 = { remove_planet_flag = company_cleanup_planet_2 }
+			event_target:company_cleanup_planet_3 = { remove_planet_flag = company_cleanup_planet_3 }
+			event_target:company_cleanup_planet_4 = { remove_planet_flag = company_cleanup_planet_4 }
+			event_target:company_cleanup_planet_5 = { remove_planet_flag = company_cleanup_planet_5 }
+		}
+		default_hide_option = yes
+	}
+}
+
+# Event determine planet clean up outcome - either success or failure (assets missing -> if hostile fauna, increase chances by 70%, no refunds)
+planet_event = {
+	id = ssh_enclave.41
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = planet_owner
+	}
+
+	immediate = {
+		random_list = {
+			75 = {
+				# Success
+				add_planet_devastation = -100
+				planet_owner = {
+					country_event = {
+						id = ssh_enclave.43
+					}
+				}
+			}
+			25 = {
+				modifier = {
+					factor = 3
+					OR = {
+						has_modifier = hostile_animal_life
+						has_modifier = hostile_environment
+						has_modifier = hostile_planet
+					}
+				}
+				# Failure, assets went missing
+				planet_owner = {
+					set_country_flag = company_enclave_cleanup_failed
+					country_event = {
+						id = ssh_enclave.43
+					}
+				}
+			}
+		}
+	}
+}
+
+# Diplo
+country_event = {
+	id = ssh_enclave.42
+	title = "company_enclave_header"
+	desc = "ssh_enclave.42.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:company_enclave
+		room = "company_enclave_room"
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:company_cleanup_planet_1 = { remove_planet_flag = company_cleanup_planet_1 }
+		event_target:company_cleanup_planet_2 = { remove_planet_flag = company_cleanup_planet_2 }
+		event_target:company_cleanup_planet_3 = { remove_planet_flag = company_cleanup_planet_3 }
+		event_target:company_cleanup_planet_4 = { remove_planet_flag = company_cleanup_planet_4 }
+		event_target:company_cleanup_planet_5 = { remove_planet_flag = company_cleanup_planet_5 }
+		event_target:company_enclave = {
+			set_timed_country_flag = {
+				flag = company_enclave_cleanup_ongoing
+				days = 30
+			}
+		}
+	}
+
+	option = {
+		name = ssh_enclave.42.a
+		custom_tooltip = ssh_enclave.cleanup_started.tooltip
+		hidden_effect = {
+			country_event = {
+				id = ssh_enclave.20 #ssh_enclave.21
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.42.b
+		custom_tooltip = ssh_enclave.cleanup_started.tooltip
+		default_hide_option = yes
+	}
+}
+
+# Cleanup Result/Notification
+country_event = {
+	id = ssh_enclave.43
+	title = "company_enclave_header"
+	desc = {
+		text = "ssh_enclave.43_01.desc"
+		trigger = { NOT = { has_country_flag = company_enclave_cleanup_failed } }
+	}
+	desc = {
+		text = "ssh_enclave.43_02.desc"
+		trigger = { has_country_flag = company_enclave_cleanup_failed }
+	}
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:company_enclave
+		room = "company_enclave_room"
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:company_enclave = {
+			set_timed_country_flag = {
+				flag = company_enclave_cleanup_cooldown
+				days = 720
+			}
+		}
+	}
+
+	option = {
+		name = ssh_enclave.43.a
+		trigger = { NOT = { has_country_flag = company_enclave_cleanup_failed } }
+		default_hide_option = yes
+	}
+	
+	option = {
+		name = ssh_enclave.43.b
+		trigger = { has_country_flag = company_enclave_cleanup_failed }
+		hidden_effect = { remove_country_flag = company_enclave_cleanup_failed }
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_enclave.50
+	title = "company_enclave_header"
+	desc = "ssh_enclave.50.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:company_enclave
+		room = "company_enclave_room"
+	}
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = ssh_enclave.50.a # Sell assets
+		allow = {
+			any_owned_pop_group = {
+				OR = {
+					has_citizenship_type = { type = citizenship_slavery }
+					has_citizenship_type = { type = citizenship_purge }
+					has_citizenship_type = { type = citizenship_purge_machine }
+				}
+			}
+			pop_amount >= 100 ### Not sure if this is correct in this scope
+			#capital_scope = {
+			#	num_pops > 1
+			#}
+		}
+		custom_tooltip = ssh_enclave.50.a.tooltip
+		add_resource = { energy = 9000 }
+		###### DEBUG ###### event pops up immediately after start
+		hidden_effect = {
+			random_owned_pop_group = {
+				limit = {
+					OR = {
+						has_citizenship_type = { type = citizenship_slavery }
+						has_citizenship_type = { type = citizenship_purge }
+						# No machines for now
+						#has_citizenship_type = { type = citizenship_purge_machine }
+						#has_living_standard = { type = living_standard_servitude }
+						#has_living_standard = { type = living_standard_none }
+					}
+				}
+				#kill_pop = yes
+				resettle_pop_group = {
+					POP_GROUP = this
+					PLANET = event_target:company_enclave.capital_scope
+					#PERCENTAGE = 1 #100%
+					AMOUNT = 100
+				}
+			}
+			country_event = {
+				id = ssh_enclave.51
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.50.b
+		hidden_effect = {
+			country_event = {
+				id = ssh_enclave.20
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_enclave.51
+	title = "company_enclave_header"
+	desc = "ssh_enclave.51.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:company_enclave
+		room = "company_enclave_room"
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_enclave.51.a
+		hidden_effect = {
+			country_event = {
+				id = ssh_enclave.20
+			}
+		}
+	}
+	option = {
+		name = ssh_enclave.51.b
+		default_hide_option = yes
+	}
+}
+
+
+
+#### Cooking Chef Enclave ####
+
+
+
+#### Artisan Troupe ####
+
+# Positive Comment on first BWC Megastructure
+country_event = {
+	id = ssh_enclave.200
+	title = leviathans.300.name
+	desc = ssh_enclave.200.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		portrait = event_target:artist_enclave_country
+		room = enclave_artist_room
+	}
+	location = event_target:artisan_enclave_system
+
+	trigger = {
+		#NOT = { has_country_flag = received_enclave_comment_bwc }
+		exists = event_target:artist_enclave_country
+	}
+
+	option = {
+		name = ssh_enclave.200.a
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		event_target:artist_enclave_country = {
+			add_opinion_modifier = {
+				who = prev
+				modifier = ssh_opinion_bwc_positive
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_enclave.200.b
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		event_target:artist_enclave_country = {
+			add_opinion_modifier = {
+				who = prev
+				modifier = ssh_opinion_bwc_positive
+			}
+		}
+		default_hide_option = yes
+	}
+}

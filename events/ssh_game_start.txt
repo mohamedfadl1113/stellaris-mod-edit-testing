@@ -1,0 +1,1098 @@
+namespace = ssh_game_start
+
+### Hidden Game Start Event
+event = {
+	id = ssh_game_start.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	#fire_only_once = yes
+
+	immediate = {
+		set_global_flag = sparbles_stellar_hyperconstructs
+
+		### Disable Reality Collapse Crisis - For Now
+		set_global_flag = ssh_vacdec_crisis_deactivated # Till the Ark launch has been fixed/improved
+
+		# Calculate certain mega output values
+		if = {
+			limit = {
+				has_gigastructures = yes
+				has_acot = no
+			}
+			multiply_variable = {
+				which = @mega_brain_young_research_production
+				value = 2.0
+			}
+			multiply_variable = {
+				which = @mega_brain_juvenile_research_production
+				value = 2.0
+			}
+			multiply_variable = {
+				which = @mega_brain_grown_research_production
+				value = 2.0
+			}
+			multiply_variable = {
+				which = @horizon_brain_half_research_production
+				value = 2.0
+			}
+			multiply_variable = {
+				which = @horizon_brain_research_production
+				value = 2.0
+			}
+			# Vacdec Values
+			multiply_variable = { which = @ark_research_stage_1_goal value = 2.0 }
+			multiply_variable = { which = @ark_research_stage_2_goal value = 2.0 }
+			multiply_variable = { which = @ark_research_stage_3_goal value = 2.0 }
+			multiply_variable = { which = @ark_research_stage_4_goal value = 2.0 }
+			multiply_variable = { which = @ark_research_stage_5_goal value = 2.0 }
+		}
+		else_if = {
+			limit = {
+				has_gigastructures = no
+				has_acot = yes
+			}
+			multiply_variable = {
+				which = @mega_brain_young_research_production
+				value = 3.0
+			}
+			multiply_variable = {
+				which = @mega_brain_juvenile_research_production
+				value = 3.0
+			}
+			multiply_variable = {
+				which = @mega_brain_grown_research_production
+				value = 3.0
+			}
+			multiply_variable = {
+				which = @horizon_brain_half_research_production
+				value = 3.0
+			}
+			multiply_variable = {
+				which = @horizon_brain_research_production
+				value = 3.0
+			}
+			# Vacdec Values
+			multiply_variable = { which = @ark_research_stage_1_goal value = 3.0 }
+			multiply_variable = { which = @ark_research_stage_2_goal value = 3.0 }
+			multiply_variable = { which = @ark_research_stage_3_goal value = 3.0 }
+			multiply_variable = { which = @ark_research_stage_4_goal value = 3.0 }
+			multiply_variable = { which = @ark_research_stage_5_goal value = 3.0 }
+		}
+		else_if = {
+			limit = {
+				has_gigastructures = yes
+				has_acot = yes
+			}
+			multiply_variable = {
+				which = @mega_brain_young_research_production
+				value = 4.0
+			}
+			multiply_variable = {
+				which = @mega_brain_juvenile_research_production
+				value = 4.0
+			}
+			multiply_variable = {
+				which = @mega_brain_grown_research_production
+				value = 4.0
+			}
+			multiply_variable = {
+				which = @horizon_brain_half_research_production
+				value = 4.0
+			}
+			multiply_variable = {
+				which = @horizon_brain_research_production
+				value = 4.0
+			}
+			multiply_variable = { which = @ark_research_stage_1_goal value = 4.0 }
+			multiply_variable = { which = @ark_research_stage_2_goal value = 4.0 }
+			multiply_variable = { which = @ark_research_stage_3_goal value = 4.0 }
+			multiply_variable = { which = @ark_research_stage_4_goal value = 4.0 }
+			multiply_variable = { which = @ark_research_stage_5_goal value = 4.0 }
+		}
+		else = {
+			# Dont increase values
+		}
+
+		# Activate/Deactivate Megas etc
+		every_playable_country = {
+			limit = { is_ai = no }
+			#country_event = {
+			#	id = ssh_game_start.6 # Option for nanite AI bonus and other stuff (primitives etc)
+			#	#days = 1
+			#}
+			country_event = {
+				id = ssh_game_start.2
+			}
+		}
+
+		### ORIGINS
+		# Shellworld
+		every_playable_country = {
+			limit = { has_origin = origin_ssh_shellworld }
+			country_event = { id = ssh_origin.1 }
+		}
+		# Gas Giant Shellworld
+		every_playable_country = {
+			limit = { has_origin = origin_ssh_gas_giant_shellworld }
+			country_event = { id = ssh_origin.3 }
+		}
+		# Stellar Hoop
+		every_playable_country = {
+			limit = { has_origin = origin_ssh_stellar_hoop }
+			country_event = { id = ssh_origin.4 }
+		}
+		# Hoopworld
+		every_playable_country = {
+			limit = { has_origin = origin_ssh_hoopworld }
+			country_event = { id = ssh_origin.6 }
+		}
+		# Edersphere
+		every_playable_country = {
+			limit = { has_origin = origin_ssh_edersphere }
+			country_event = { id = ssh_origin.7 }
+		}
+		# Freesphere
+		every_playable_country = {
+			limit = { has_origin = origin_ssh_freesphere }
+			country_event = { id = ssh_origin.8 }
+		}
+		# Dyson Hab
+		every_playable_country = {
+			limit = { has_origin = origin_ssh_habitable_dyson }
+			country_event = { id = ssh_origin.9 }
+		}
+
+		# Special Countries
+		#if = {
+		#	limit = { has_more_primitives = yes }
+		#	random_system = {
+		#		limit = {
+		#			is_fe_cluster = no
+		#			has_star_flag = empire_cluster
+		#		}
+		#		spawn_system = {
+		#			initializer = ssh_preftl_hoopworld_initializer
+		#		}
+		#	}
+		#}
+
+		# Handle Post Initial Stuff
+		event_target:global_event_country = {
+			country_event = {
+				id = ssh_game_start.20
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_game_start.2
+	title = "ssh_game_start.2.name"
+	desc = "ssh_game_start.2.desc"
+	picture = GFX_evt_ssh_party
+	show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.2.a"
+		default_hide_option = yes
+	}
+	
+	option = { 
+		name = "ssh_game_start.2.b"
+		hidden_effect = { country_event = { id = ssh_game_start.6 } }
+	}
+}
+
+
+### Init ### - In addition to vanilla generation
+# this: capital planet
+# from: founder species
+planet_event = {
+	id = ssh_game_start.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_planet_flag = ssh_special_start_planet }
+			ssh_generate_special_start_buildings_and_districts = yes
+			#ssh_generate_start_pops = yes
+			#generate_home_planet_final_pass = yes
+		}
+	}
+}
+
+
+# Planet Modifiers + Visual Stuff (Cloudless gas giants entity)
+event = {
+	id = ssh_game_start.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		if = {
+			limit = { has_planetary_diversity = yes }
+			every_system = {
+				system_event = {
+					id = ssh_game_start.5
+					days = 5 #slight delay so that it triggers AFTER PD's modifiers have spawned
+				}
+			}
+		}
+		every_system = {
+			limit = { any_system_planet = { has_modifier = ssh_cloudless_gas_giant } }
+			every_system_planet = {
+				limit = { has_modifier = ssh_cloudless_gas_giant }
+				#Probably gonna make a custom texture in a future update
+				set_planet_entity = { entity = "ssh_gas_giant_cloudless_entity" }
+			}
+		}
+	}
+}
+
+# Add mega-related modifiers to special Planetary Diversity planets
+system_event = {
+	id = ssh_game_start.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_system_planet = {
+			if = {
+				limit = { has_modifier = pd_hot_gas_giant }
+				add_modifier = {
+					modifier = ssh_hot_gas_giant
+					days = -1
+				}
+			}
+			if = {
+				limit = { has_modifier = pd_cloudless_gas_giant }
+				change_pc = pc_gas_giant # Cloudless Gas Giants spawn as Molten Worlds in PD; changing class to actual gas giants so that shellworlds can be constructed around them
+				add_modifier = {
+					modifier = ssh_cloudless_gas_giant
+					days = -1
+				}
+			}
+			if = {
+				limit = { is_planet_class = pc_dwarf_gas_giant }
+				add_modifier = {
+					modifier = ssh_dwarf_gas_giant
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_game_start.6
+	title = "ssh_game_start.6.name"
+	desc = "ssh_game_start.6.desc"
+	picture = GFX_evt_ssh_party
+	show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.6.a"
+		default_hide_option = yes
+	}
+	
+	# Megastructures
+	option = { 
+		name = "ssh_game_start.6.b" custom_tooltip = "ssh_game_start.6.b.tooltip"
+		hidden_effect = {
+			country_event = {
+				id = ssh_game_start.50
+			}
+		}
+	}
+	# System-Killer-Class Components
+	option = { 
+		name = "ssh_game_start.6.c" custom_tooltip = "ssh_game_start.6.c.tooltip"
+		hidden_effect = {
+			country_event = {
+				id = ssh_game_start.80
+			}
+		}
+	}
+	# Crisis Settings
+	option = { 
+		name = "ssh_game_start.6.d" custom_tooltip = "ssh_game_start.6.d.tooltip"
+		hidden_effect = {
+			country_event = {
+				id = ssh_game_start.7
+			}
+		}
+	}
+	# Hyperdimensional Exodus Settings
+	option = { 
+		name = "ssh_game_start.6.e" custom_tooltip = "ssh_game_start.6.e.tooltip"
+		hidden_effect = {
+			country_event = {
+				id = ssh_game_start.8
+			}
+		}
+	}
+	# Enclave Settings
+	option = { 
+		name = "ssh_game_start.6.f" custom_tooltip = "ssh_game_start.6.f.tooltip"
+		hidden_effect = {
+			country_event = {
+				id = ssh_game_start.9
+			}
+		}
+	}
+	# Ruined Hyperstructures Settings
+	option = { 
+		name = "ssh_game_start.6.g" custom_tooltip = "ssh_game_start.6.g.tooltip"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_ruined_hypers_disabled } } }
+		hidden_effect = {
+			set_global_flag = ssh_ruined_hypers_disabled
+			country_event = {
+				id = ssh_game_start.6
+			}
+		}
+	}
+	# Nanite Bonus for AI
+	option = { 
+		name = "ssh_game_start.6.h" custom_tooltip = "ssh_game_start.6.h.tooltip"
+		allow = {
+			hidden_trigger = {
+				NOT = {
+					has_global_flag = ssh_ai_nanite_boost_enabled
+				}
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_ai_nanite_boost_enabled # Will be triggered via on_mid_game_pulse
+			country_event = {
+				id = ssh_game_start.6
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_game_start.7
+	title = "ssh_game_start.7.name"
+	desc = "ssh_game_start.7.desc"
+	picture = GFX_evt_ssh_party
+	#show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.7.a" # Back
+		hidden_effect = {
+			country_event = {
+				id = ssh_game_start.6
+			}
+		}
+		default_hide_option = yes
+	}
+	
+	# Spawn Chances
+	option = { # Standard Chances
+		name = "ssh_game_start.7.b" custom_tooltip = "ssh_game_start.7.b.tooltip"
+		allow = {
+			hidden_trigger = {
+				NOT = {
+					has_global_flag = ssh_vacdec_crisis_base_spawn_chance
+				}
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_crisis_base_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_base_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_50_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_75_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_double_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_quadruple_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_guaranteed
+			remove_global_flag = ssh_vacdec_crisis_deactivated
+			country_event = {
+				id = ssh_game_start.7
+			}
+		}
+	}
+	option = { # 0% (Deactivated)
+		name = "ssh_game_start.7.c" custom_tooltip = "ssh_game_start.7.c.tooltip"
+		allow = {
+			hidden_trigger = {
+				NOT = { has_global_flag = ssh_vacdec_crisis_deactivated }
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_crisis_deactivated
+			remove_global_flag = ssh_vacdec_crisis_base_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_50_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_75_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_double_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_quadruple_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_guaranteed
+			country_event = {
+				id = ssh_game_start.7
+			}
+		}
+	}
+	option = { # 50%
+		name = "ssh_game_start.7.d" custom_tooltip = "ssh_game_start.7.d.tooltip"
+		allow = {
+			hidden_trigger = {
+				NOT = { has_global_flag = ssh_vacdec_crisis_50_spawn_chance }
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_crisis_50_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_deactivated
+			remove_global_flag = ssh_vacdec_crisis_base_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_75_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_double_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_quadruple_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_guaranteed
+			country_event = {
+				id = ssh_game_start.7
+			}
+		}
+	}
+	option = { # 75%
+		name = "ssh_game_start.7.e" custom_tooltip = "ssh_game_start.7.e.tooltip"
+		allow = {
+			hidden_trigger = {
+				NOT = { has_global_flag = ssh_vacdec_crisis_75_spawn_chance }
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_crisis_75_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_deactivated
+			remove_global_flag = ssh_vacdec_crisis_base_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_50_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_double_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_quadruple_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_guaranteed
+			country_event = {
+				id = ssh_game_start.7
+			}
+		}
+	}
+	option = { # 100%
+		name = "ssh_game_start.7.f" custom_tooltip = "ssh_game_start.7.f.tooltip"
+		allow = {
+			hidden_trigger = {
+				NOT = { has_global_flag = ssh_vacdec_crisis_double_spawn_chance }
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_crisis_double_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_deactivated
+			remove_global_flag = ssh_vacdec_crisis_base_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_50_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_75_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_quadruple_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_guaranteed
+			country_event = {
+				id = ssh_game_start.7
+			}
+		}
+	}
+	option = { # 200%
+		name = "ssh_game_start.7.g" custom_tooltip = "ssh_game_start.7.g.tooltip"
+		allow = {
+			hidden_trigger = {
+				NOT = { has_global_flag = ssh_vacdec_crisis_quadruple_spawn_chance }
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_crisis_quadruple_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_deactivated
+			remove_global_flag = ssh_vacdec_crisis_base_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_50_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_75_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_double_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_guaranteed
+			country_event = {
+				id = ssh_game_start.7
+			}
+		}
+	}
+	option = { # Guarantee
+		name = "ssh_game_start.7.h" custom_tooltip = "ssh_game_start.7.h.tooltip"
+		allow = {
+			hidden_trigger = {
+				NOT = { has_global_flag = ssh_vacdec_crisis_guaranteed }
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_crisis_guaranteed
+			remove_global_flag = ssh_vacdec_crisis_deactivated
+			remove_global_flag = ssh_vacdec_crisis_base_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_50_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_75_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_double_spawn_chance
+			remove_global_flag = ssh_vacdec_crisis_quadruple_spawn_chance
+			country_event = {
+				id = ssh_game_start.7
+			}
+		}
+	}
+}
+
+# Hyperdimensional Exodus Settings
+country_event = {
+	id = ssh_game_start.8
+	title = "ssh_game_start.8.name"
+	desc = "ssh_game_start.8.desc"
+	picture = GFX_evt_ssh_dim_tearer
+	#show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.8.a" # Back
+		hidden_effect = {
+			country_event = {
+				id = ssh_game_start.6
+			}
+		}
+		default_hide_option = yes
+	}
+	
+	# Spawn Chances
+	option = { # Enable
+		name = "ssh_game_start.8.b"
+		allow = {
+			hidden_trigger = { has_global_flag = ssh_dim_tearer_deactivated }
+		}
+		hidden_effect = {
+			remove_global_flag = ssh_dim_tearer_deactivated
+			country_event = {
+				id = ssh_game_start.8
+			}
+		}
+	}
+	option = { # Disable
+		name = "ssh_game_start.8.c"
+		allow = {
+			hidden_trigger = {
+				NOT = { has_global_flag = ssh_dim_tearer_deactivated }
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_dim_tearer_deactivated
+			country_event = {
+				id = ssh_game_start.8
+			}
+		}
+	}
+}
+
+# Enclave Settings
+country_event = {
+	id = ssh_game_start.9
+	title = "ssh_game_start.9.name"
+	desc = "ssh_game_start.9.desc"
+	picture = GFX_evt_ssh_dim_tearer
+	#show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.9.a" # Back
+		hidden_effect = {
+			country_event = {
+				id = ssh_game_start.6
+			}
+		}
+		default_hide_option = yes
+	}
+	
+	# Spawn Chances
+	option = { # Enable
+		name = "ssh_game_start.9.b"
+		custom_tooltip = "ssh_game_start.9.b.tooltip"
+		allow = {
+			hidden_trigger = {
+				OR = {
+					has_global_flag = ssh_company_enclave_disabled
+					has_global_flag = ssh_company_enclave_guaranteed
+				}
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = ssh_company_enclave_guaranteed }
+				remove_global_flag = ssh_company_enclave_guaranteed
+			}
+			if = {
+				limit = { has_global_flag = ssh_company_enclave_disabled }
+				remove_global_flag = ssh_company_enclave_disabled
+			}
+			country_event = {
+				id = ssh_game_start.9
+			}
+		}
+	}
+	option = { # Disable
+		name = "ssh_game_start.9.c"
+		custom_tooltip = "ssh_game_start.9.c.tooltip"
+		allow = {
+			hidden_trigger = {
+				NOT = {
+					has_global_flag = ssh_company_enclave_disabled
+					#has_global_flag = ssh_company_enclave_guaranteed
+				}
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_company_enclave_disabled
+			if = {
+				limit = { has_global_flag = ssh_company_enclave_guaranteed }
+				remove_global_flag = ssh_company_enclave_guaranteed
+			}
+			country_event = {
+				id = ssh_game_start.9
+			}
+		}
+	}
+	option = { # Guarantee
+		name = "ssh_game_start.9.d"
+		custom_tooltip = "ssh_game_start.9.d.tooltip"
+		allow = {
+			hidden_trigger = {
+				NOT = { has_global_flag = ssh_company_enclave_guaranteed }
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_company_enclave_guaranteed
+			if = {
+				limit = { has_global_flag = ssh_company_enclave_disabled }
+				remove_global_flag = ssh_company_enclave_disabled
+			}
+			country_event = {
+				id = ssh_game_start.9
+			}
+		}
+	}
+}
+
+
+
+
+
+# Post Initial Stuff
+country_event = {
+	id = ssh_game_start.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		# Company Enclave
+		if = {
+			limit = {
+				NOR = {
+					has_global_flag = ssh_company_enclave_disabled
+					has_global_flag = ssh_company_enclave_guaranteed
+				}
+			}
+			random_list = {
+				30 = {
+					# Spawn Company
+					ssh_spawn_company_enclave_system = yes
+				}
+				70 = {
+					# No Company
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_company_enclave_guaranteed }
+			ssh_spawn_company_enclave_system = yes
+		}
+		else = {
+			# No Company
+		}
+		# Flavor Stuff
+		if = {
+			limit = { any_system = { has_star_flag = federation_end } }
+			random_system = {
+				limit = { has_star_flag = federation_end }
+				star = {
+					clear_deposits = yes
+					add_deposit = d_dark_matter_deposit_10
+				}
+			}
+		}
+	}
+}
+
+
+#### Megastructure Classes Menu
+country_event = {
+	id = ssh_game_start.50
+	title = "ssh_game_start.50.name"
+	desc = "ssh_game_start.50.desc"
+	picture = GFX_evt_ssh_ark_project
+	show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.50.a" # Back
+		hidden_effect = { country_event = { id = ssh_game_start.6 } }
+		default_hide_option = yes
+	}
+	
+	# Habitable Megas
+	option = { 
+		name = "ssh_game_start.50.b"
+		hidden_effect = { country_event = { id = ssh_game_start.51 } }
+	}
+
+	# Resource Megas
+	option = { 
+		name = "ssh_game_start.50.c"
+		hidden_effect = { country_event = { id = ssh_game_start.52 } }
+	}
+
+	# Ascension Megas
+	option = { 
+		name = "ssh_game_start.50.d"
+		hidden_effect = { country_event = { id = ssh_game_start.53 } }
+	}
+
+	# Other Megas (e.g. System Creator)
+	option = { 
+		name = "ssh_game_start.50.e"
+		hidden_effect = { country_event = { id = ssh_game_start.54 } }
+	}
+}
+# Habitable Megas
+country_event = {
+	id = ssh_game_start.51
+	title = "ssh_game_start.50.name"
+	desc = "ssh_game_start.50.desc"
+	picture = GFX_evt_ssh_ark_project
+	show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.51.a"
+		hidden_effect = { country_event = { id = ssh_game_start.50 } }
+		default_hide_option = yes
+	}
+	
+	# Shellworlds
+	option = { 
+		name = "ssh_game_start.51.b"
+		allow = {
+			hidden_trigger = {
+				NOT = {
+					has_global_flag = ssh_shellworld_deactivated
+				}
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_shellworld_deactivated
+			country_event = {
+				id = ssh_game_start.51
+			}
+		}
+	}
+
+	# Gas Giant Shellworlds
+	option = { 
+		name = "ssh_game_start.51.c"
+		allow = {
+			hidden_trigger = {
+				NOT = {
+					has_global_flag = ssh_gas_giant_shellworld_deactivated
+				}
+			}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_gas_giant_shellworld_deactivated
+			country_event = {
+				id = ssh_game_start.51
+			}
+		}
+	}
+
+	# Edersphere
+	option = { 
+		name = "ssh_game_start.51.d"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_edersphere_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_edersphere_deactivated
+			country_event = {
+				id = ssh_game_start.51
+			}
+		}
+	}
+
+	# Black Hole Shellworld
+	option = { 
+		name = "ssh_game_start.51.e"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_black_hole_suprashell_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_black_hole_suprashell_deactivated
+			country_event = {
+				id = ssh_game_start.51
+			}
+		}
+	}
+
+	# Stellar Hoop
+	option = { 
+		name = "ssh_game_start.51.f"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_black_hole_suprashell_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_black_hole_suprashell_deactivated
+			country_event = {
+				id = ssh_game_start.51
+			}
+		}
+	}
+
+	# BWC Megas
+	option = { 
+		name = "ssh_game_start.51.g" custom_tooltip = "ssh_game_start.51.g.tooltip"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_bwc_megas_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_bwc_megas_deactivated
+			country_event = {
+				id = ssh_game_start.51
+			}
+		}
+	}
+}
+# Resource Megas
+country_event = {
+	id = ssh_game_start.52
+	title = "ssh_game_start.50.name"
+	desc = "ssh_game_start.50.desc"
+	picture = GFX_evt_ssh_ark_project
+	show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.52.a"
+		hidden_effect = { country_event = { id = ssh_game_start.50 } }
+		default_hide_option = yes
+	}
+	
+	# GG Lifter
+	option = { 
+		name = "ssh_game_start.52.b"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_gas_giant_lifter_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_gas_giant_lifter_deactivated
+			country_event = { id = ssh_game_start.52 }
+		}
+	}
+
+	# Nanite Disassemblers
+	option = { 
+		name = "ssh_game_start.52.c"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_nanite_disassemblers_deactivated } } }
+		custom_tooltip = "ssh_game_start.52.c.tooltip"
+		hidden_effect = {
+			set_global_flag = ssh_nanite_disassemblers_deactivated
+			country_event = { id = ssh_game_start.52 }
+		}
+	}
+
+	# Stellar Harvesters
+	option = { 
+		name = "ssh_game_start.52.d"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_stellar_harvester_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_stellar_harvester_deactivated
+			country_event = { id = ssh_game_start.52 }
+		}
+	}
+
+	# Neutronium Compressor
+	option = { 
+		name = "ssh_game_start.52.e"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_neutronium_compressor_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_neutronium_compressor_deactivated
+			country_event = { id = ssh_game_start.52 }
+		}
+	}
+}
+# Ascension Megas
+country_event = {
+	id = ssh_game_start.53
+	title = "ssh_game_start.50.name"
+	desc = "ssh_game_start.50.desc"
+	picture = GFX_evt_ssh_ark_project
+	show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.53.a"
+		hidden_effect = { country_event = { id = ssh_game_start.50 } }
+		default_hide_option = yes
+	}
+	
+	# BIO Brain
+	option = { 
+		name = "ssh_game_start.53.b"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_bio_brain_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_bio_brain_deactivated
+			country_event = { id = ssh_game_start.53 }
+		}
+	}
+
+	# Abyssal Anchor
+	option = { 
+		name = "ssh_game_start.53.c"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_mega_temple_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_mega_temple_deactivated
+			country_event = { id = ssh_game_start.53 }
+		}
+	}
+
+	# Horizon Brain
+	option = { 
+		name = "ssh_game_start.53.d"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_horizon_brain_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_horizon_brain_deactivated
+			country_event = { id = ssh_game_start.53 }
+		}
+	}
+}
+# Other Megas
+country_event = {
+	id = ssh_game_start.54
+	title = "ssh_game_start.50.name"
+	desc = "ssh_game_start.50.desc"
+	picture = GFX_evt_ssh_ark_project
+	show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.54.a"
+		hidden_effect = { country_event = { id = ssh_game_start.50 } }
+		default_hide_option = yes
+	}
+	
+	# Gas Giant Compressor
+	option = { 
+		name = "ssh_game_start.54.b"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_gas_giant_compressor_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_gas_giant_compressor_deactivated
+			country_event = { id = ssh_game_start.54 }
+		}
+	}
+
+	# Interstellar System Creator
+	option = { 
+		name = "ssh_game_start.54.c"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_system_creator_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_system_creator_deactivated
+			country_event = { id = ssh_game_start.54 }
+		}
+	}
+
+	# Captive Star
+	option = { 
+		name = "ssh_game_start.54.d"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_captive_star_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_captive_star_deactivated
+			country_event = { id = ssh_game_start.54 }
+		}
+	}
+}
+
+# System Killer-Components
+country_event = {
+	id = ssh_game_start.80
+	title = "ssh_game_start.80.name"
+	desc = "ssh_game_start.80.desc"
+	picture = GFX_evt_ssh_dark_missile
+	show_sound = event_mystic_reveal
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+
+	option = { 
+		name = "ssh_game_start.80.a"
+		hidden_effect = { country_event = { id = ssh_game_start.6 } }
+		default_hide_option = yes
+	}
+	
+	# Dark Missile
+	option = { 
+		name = "ssh_game_start.80.b"
+		custom_tooltip = "ssh_game_start.80.b_tt"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_dark_missile_deactivated } } }
+		hidden_effect = {
+			set_global_flag = ssh_dark_missile_deactivated
+			country_event = { id = ssh_game_start.80 }
+		}
+	}
+
+	# Large Dark Missile
+	option = { 
+		name = "ssh_game_start.80.c"
+		custom_tooltip = "ssh_game_start.80.c_tt"
+		allow = { hidden_trigger = { NOT = { has_global_flag = ssh_large_dark_missile_activated } } }
+		hidden_effect = {
+			set_global_flag = ssh_large_dark_missile_activated
+			country_event = { id = ssh_game_start.80 }
+		}
+	}
+}

@@ -1,0 +1,34 @@
+namespace = ssh_contact
+
+# Triggered when two empires discover each other
+# This = Empire 1
+# From = Empire 2
+# Fromfromfrom = System where contact occurred
+country_event = {
+	id = ssh_contact.1
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		first_contact_handled = no
+		NOT = { has_communications = from }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				from = {
+					is_country_type = lethal_company
+				}
+			}
+			establish_communications_no_message = from
+			from = { save_event_target_as = contact_empire }
+			country_event = { id = ssh_enclave.5 }
+		}
+		set_timed_relation_flag = {
+			flag = just_encountered
+			who = from
+			days = 5
+		}
+	}
+}

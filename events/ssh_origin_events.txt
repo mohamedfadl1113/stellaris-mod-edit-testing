@@ -1,0 +1,319 @@
+namespace = ssh_origin
+
+### Shellworld
+# Set Up
+country_event = {
+	id = ssh_origin.1
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = shellworld_owner
+		capital_scope = {
+			set_planet_flag = ssh_shellworld_planet_origin
+			#generate_start_pops = yes
+			# Since they dont spawn with farming districts naturally
+			add_deposit = d_fertile_lands
+			add_deposit = d_lush_jungle
+			add_deposit = d_teeming_reef
+			add_deposit = d_submerged_ore_veins
+			add_deposit = d_rich_mountain
+		}
+		country_event = {
+			id = ssh_origin.2
+			days = 5
+		}
+	}
+}
+
+country_event = {
+	id = ssh_origin.2
+	title = "ssh_origin.2.name"
+	desc = "ssh_origin.2.desc"
+	picture = GFX_evt_ssh_shellworld
+	show_sound = event_default
+	location = from
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_origin.2.a"
+		add_resource = {
+			unity = 150
+		}
+		add_modifier = {
+			modifier = ssh_origin_unity_boost
+			days = 360
+		}
+	}
+}
+
+### Gas Giant Shellworld
+# Set Up
+country_event = {
+	id = ssh_origin.3
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = shellworld_owner
+		species = {
+			save_event_target_as = owner_species
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_mine_rare_crystals } }
+			give_technology = {
+				tech = tech_mine_rare_crystals
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_mine_volatile_motes } }
+			give_technology = {
+				tech = tech_mine_volatile_motes
+			}
+		}
+		add_resource = {
+			unity = 150
+		}
+		capital_scope = {
+			set_planet_flag = ssh_gas_giant_shellworld_planet_origin
+		}
+	}
+}
+
+### Stellar Hoop Origin
+# Set Up
+country_event = {
+	id = ssh_origin.4
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = stellar_hoop_owner
+		capital_scope = {
+			set_planet_flag = ssh_stellar_hoop_planet_origin
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_mine_rare_crystals } }
+			give_technology = {
+				tech = tech_mine_rare_crystals
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_hydrogen } }
+			give_technology = {
+				tech = ssh_tech_hydrogen
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_mine_volatile_motes } }
+			give_technology = {
+				tech = tech_mine_volatile_motes
+			}
+		}
+		country_event = {
+			id = ssh_origin.5
+			days = 5
+		}
+	}
+}
+
+country_event = {
+	id = ssh_origin.5
+	title = "ssh_origin.5.name"
+	desc = "ssh_origin.5.desc"
+	picture = GFX_evt_ssh_stellar_hoop
+	show_sound = event_default
+	location = from
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_origin.5.a"
+		trigger = {
+			has_authority = auth_machine_intelligence
+			NOR = {
+				has_civic = civic_machine_assimilator
+				has_civic = civic_machine_terminator
+			}
+		}
+		add_resource = {
+			unity = 150
+		}
+	}
+	option = {
+		name = "ssh_origin.5.b"
+		trigger = { has_civic = civic_machine_assimilator }
+		add_resource = {
+			unity = 150
+		}
+	}
+	option = {
+		name = "ssh_origin.5.c"
+		trigger = { has_civic = civic_machine_terminator }
+		add_resource = {
+			unity = 150
+		}
+	}
+}
+
+### Hoopworld Origin
+# Set Up
+country_event = {
+	id = ssh_origin.6
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = hoopworld_owner
+		if = {
+			limit = { NOT = { has_technology = tech_mine_rare_crystals } }
+			give_technology = {
+				tech = tech_mine_rare_crystals
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_mine_volatile_motes } }
+			give_technology = {
+				tech = tech_mine_volatile_motes
+			}
+		}
+		capital_scope = {
+			set_planet_flag = ssh_hoopworld_planet_origin
+			set_planet_size = 25
+			add_modifier = {
+				modifier = ssh_hoopworld_planet_modifier
+			}
+		}
+	}
+}
+
+### Edersphere Origin
+# Set Up
+country_event = {
+	id = ssh_origin.7
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = edersphere_owner
+		if = {
+			limit = { NOT = { has_technology = tech_mine_rare_crystals } }
+			give_technology = {
+				tech = tech_mine_rare_crystals
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_mine_volatile_motes } }
+			give_technology = {
+				tech = tech_mine_volatile_motes
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_mine_exotic_gases } }
+			add_research_option = tech_mine_exotic_gases
+		}
+		# So that bio empires have a means of food production
+		if = {
+			limit = {
+				country_uses_food = yes
+				#NOR = {
+				#	is_lithoid = yes
+				#	is_machine_empire = yes
+				#}
+			}
+			give_technology = {
+				tech = tech_hydroponics
+			}
+		}
+		add_resource = {
+			unity = 150
+		}
+		capital_scope = {
+			set_planet_flag = ssh_edersphere_planet_origin
+		}
+	}
+}
+
+### Freesphere Origin
+# Set Up
+country_event = {
+	id = ssh_origin.8
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = freesphere_owner
+		if = {
+			limit = { NOT = { has_technology = tech_mine_rare_crystals } }
+			give_technology = {
+				tech = tech_mine_rare_crystals
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_mine_volatile_motes } }
+			give_technology = {
+				tech = tech_mine_volatile_motes
+			}
+		}
+		capital_scope = {
+			set_planet_flag = ssh_freesphere_planet_origin
+			set_planet_size = 20
+			add_modifier = {
+				modifier = ssh_freesphere_planet_modifier
+			}
+		}
+	}
+}
+
+### Dyson Sphere Origin
+# Set Up
+country_event = {
+	id = ssh_origin.9
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = dyson_hab_owner
+		if = {
+			limit = { NOT = { has_technology = tech_mine_rare_crystals } }
+			give_technology = {
+				tech = tech_mine_rare_crystals
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_mine_volatile_motes } }
+			give_technology = {
+				tech = tech_mine_volatile_motes
+			}
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_mine_exotic_gases } }
+			add_research_option = tech_mine_exotic_gases
+		}
+		# So that bio empires have a means of food production
+		if = {
+			limit = {
+				country_uses_food = yes
+			}
+			give_technology = {
+				tech = tech_hydroponics
+			}
+		}
+		add_resource = {
+			unity = 100
+		}
+		capital_scope = {
+			set_planet_flag = ssh_dyson_hab_planet_origin
+		}
+	}
+}

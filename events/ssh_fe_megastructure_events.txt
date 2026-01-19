@@ -1,0 +1,1102 @@
+namespace = ssh_fe_megas
+
+event = {
+	id = ssh_fe_megas.1
+	hide_window = yes
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	trigger = { NOT = { has_global_flag = ssh_fe_megas_set } }
+
+	immediate = {
+		random_country = {
+			limit = { is_country_type = fallen_empire }
+			country_event = {
+				id = ssh_fe_megas.2
+				days = 1
+			}
+		}
+	}
+}
+
+
+country_event = {
+	id = ssh_fe_megas.2
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_global_flag = ssh_fe_megas_set }
+	}
+	
+	immediate = {
+		every_country = {
+			limit = {
+				is_country_type = fallen_empire
+				has_ethic = ethic_fanatic_materialist
+			}
+			country_event = { id = ssh_fe_megas.3 }
+		}
+		every_country = {
+			limit = {
+				is_country_type = fallen_empire
+				has_ethic = ethic_fanatic_xenophile
+			}
+			country_event = { id = ssh_fe_megas.4 }
+		}
+		every_country = {
+			limit = {
+				is_country_type = fallen_empire
+				is_fallen_empire_machine = yes
+				#has_ethic = ethic_gestalt_consciousness
+			}
+			country_event = { id = ssh_fe_megas.6 }
+		}
+		every_country = {
+			limit = {
+				is_country_type = fallen_empire
+				has_ethic = ethic_fanatic_spiritualist
+			}
+			country_event = { id = ssh_fe_megas.7 }
+		}
+		every_country = {
+			limit = {
+				is_country_type = fallen_empire
+				has_ethic = ethic_fanatic_xenophobe
+			}
+			country_event = { id = ssh_fe_megas.5 }
+		}
+		set_global_flag = ssh_fe_megas_set
+	}
+}
+
+country_event = { #Black Hole Suprashell Capital + Neighboring System
+	id = ssh_fe_megas.3
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_country_type = fallen_empire
+		has_ethic = ethic_fanatic_materialist
+	}
+	
+	immediate = {
+		# Ruined Suprashell System
+		random_list = {
+			50 = {
+				random_system_within_border = {
+					limit = { any_neighbor_system = { NOT = { exists = owner } } }
+					spawn_system = { hyperlane = yes min_distance >= 6 max_distance <= 9 min_orientation_angle = 0	max_orientation_angle = 300	initializer = "ssh_ruined_black_hole_shellworld_system" }
+					last_created_system = { set_star_flag = ruined_black_hole_shellworld_system }
+				}
+			}
+			50 = {
+				# Nothing
+			}
+		}
+		# Capital System
+		if = {
+			limit = {
+				capital_scope = {
+					solar_system = {
+						star = {
+							has_any_megastructure = yes #-> If it has any Gigastructures mega already (matrioshka brain), spawn an edersphere instead
+						}
+					}
+				}
+			}
+			capital_scope = {
+				solar_system = {
+					spawn_planet = {
+						class = "pc_edersphere"
+						location = this.star
+						orbit_distance_offset = 100
+						orbit_angle_offset = 30
+						init_effect = {
+							set_name = "The Big One"
+							set_planet_entity = {
+								entity = "ssh_edersphere_planet"
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							set_planet_flag = fe_megastructure
+						}
+					}
+					# Have a gas giant lifter as well
+					if = {
+						limit = { any_system_planet = { ssh_is_any_gas_giant = yes } }
+						random_system_planet = {
+							limit = { ssh_is_any_gas_giant = yes }
+							save_event_target_as = ssh_fe_gas_giant_lifter_planet
+						}
+						spawn_megastructure = {
+							type = gas_giant_lifter_5
+							owner = from
+							planet = event_target:ssh_fe_gas_giant_lifter_planet
+						}
+						space_owner = {
+							every_owned_megastructure = {
+								limit = {
+									is_megastructure_type = gas_giant_lifter_5
+								}
+								upgrade_megastructure_to = gas_giant_lifter_6
+							}
+						}
+					}
+				}
+			}
+		}
+		else = {
+			capital_scope = {
+				solar_system = {
+					set_asteroid_belt = {
+						radius = 0
+					}
+					random_list = {
+						50 = { #75
+							# Black Hole Suprashell
+							every_system_planet = {
+								limit = { is_star = no }
+								remove_planet = yes
+							}
+							random_system_planet = {
+								limit = { is_star = yes }
+								change_pc = pc_black_hole
+								set_planet_entity = {
+									entity = "ssh_black_hole_norings_entity"
+								}
+								set_planet_flag = has_megastructure
+							}
+							set_star_class = sc_ssh_binary_1 #Visual Effect on the Map
+							set_star_flag = fe_materialist_suprashell_capital # Used for cosmogenesis ending
+							spawn_planet = {
+								class = pc_black_hole_shellworld
+								location = star
+								orbit_angle_offset = 0
+								deposit_blockers = none
+								modifiers = none
+								init_effect = {
+									set_name = "Black Hole Suprashell"
+									set_planet_size = 40
+									set_planet_entity = {
+										entity = "ssh_black_hole_shellworld_planet_01_entity"
+									}
+									set_surveyed = {
+										surveyed = yes
+										surveyor = root
+									}
+									set_all_comms_surveyed = yes
+									clear_blockers = yes
+									save_event_target_as = fe_black_hole_shellworld
+									trigger_megastructure_icon = yes
+									set_planet_flag = megastructure
+									set_planet_flag = fe_black_hole_shellworld
+								}
+							}
+							event_target:fe_black_hole_shellworld = {
+								add_modifier = {
+									modifier = "ssh_black_hole_shellworld_planet_modifier"
+									days = -1
+								}
+							}
+							create_species = {
+								name = "Synthetic"
+								class = "ROBOT"
+								portrait = random
+								traits = {
+									trait = "trait_mechanical"
+									trait = "trait_robot_domestic_protocols"
+									trait = "trait_robot_luxurious"
+								}
+							}
+							random_system_planet = {
+								limit = {
+									is_colony = no
+									is_planet_class = pc_black_hole_shellworld
+								}
+								set_name = "The Core"
+								create_pop_group = {
+									#pop_group = this
+									# Create a new Pop Group with the species we just created
+									species = ROOT.owner_species
+									size = 20000
+									ethos = { ethic = ethic_materialist }
+									#effect = { save_event_target_as = new_fe_pop_group }
+								}
+								create_pop_group = {
+									species = last_created_species
+									size = 8000
+									ethos = random
+								}
+								set_owner = ROOT
+								set_capital = yes
+								if = {
+									limit = {
+										any_system = {
+											any_system_planet = {
+												OR = {
+													has_planet_flag = fallen_spiritualist_capital
+													has_planet_flag = fallen_materialist_capital
+													has_planet_flag = fallen_xenophile_capital
+													has_planet_flag = fallen_xenophobe_capital
+													has_planet_flag = fallen_machine_capital
+												}
+											}
+										}
+									}
+									set_planet_flag = fallen_materialist_capital
+								}
+								while = {
+									count = 10
+									add_district = district_ssh_black_hole_shell_city
+								}
+								while = {
+									count = 4
+									add_district = district_ssh_black_hole_shell_urban_1
+								}
+								add_zone = {
+									district = district_ssh_black_hole_shell_urban_1
+									zone = zone_industrial_black_hole_shell
+									zone_slot = 1
+								}
+								while = {
+									count = 4
+									add_district = district_ssh_black_hole_shell_urban_2
+								}
+								add_zone = {
+									district = district_ssh_black_hole_shell_urban_2
+									zone = zone_research_black_hole_shell
+									zone_slot = 1
+								}
+								while = {
+									count = 4
+									add_district = district_ssh_black_hole_shell_urban_3
+								}
+								add_zone = {
+									district = district_ssh_black_hole_shell_urban_3
+									zone = zone_cultrobium_black_hole_shell
+									zone_slot = 1
+								}
+								#while = {
+								#	count = 4
+								#	add_district = district_ssh_black_hole_shell_leisure
+								#	add_district = district_ssh_black_hole_shell_science
+								#}
+								add_building = building_ancient_palace
+								add_building = building_fe_stronghold
+								add_building = building_fe_stronghold
+								add_building = building_fe_stronghold
+								add_building = building_fe_stronghold
+								add_building = building_affluence_center
+								add_building = building_affluence_center
+								add_building = building_affluence_center
+								add_building = building_dimensional_fabricator
+								add_building = building_dimensional_fabricator
+								add_building = building_dimensional_fabricator
+								add_building = building_nano_forge
+								add_building = building_nano_forge
+								add_building = building_nano_forge
+								add_building = building_class_4_singularity
+								add_building = building_class_4_singularity
+							}
+							# Create Star (for light)
+							spawn_planet = {
+								class = pc_m_star
+								location = PREV
+								orbit_distance_offset = 60
+								orbit_angle_offset = 30
+								init_effect = {
+									set_name = "Light Bulb"
+									set_planet_size = 20
+									set_surveyed = {
+										surveyed = yes
+										surveyor = fromfrom
+									}
+									set_all_comms_surveyed = yes
+									clear_blockers = yes
+									save_event_target_as = ssh_fallen_materialist_star
+								}
+							}
+							random = {
+								chance = 25
+								spawn_megastructure = {
+									type = dyson_sphere_ruined
+									owner = fromfrom
+									planet = event_target:ssh_fallen_materialist_star
+								}
+							}
+						}
+						50 = {
+							# Edersphere
+							every_system_planet = {
+								limit = { NOT = { is_star = yes } }
+								remove_planet = yes
+								#set_planet_size = 0
+							}
+							spawn_planet = {
+								class = pc_edersphere
+								location = star
+								orbit_distance = 75
+								orbit_distance_offset = 75
+								orbit_angle_offset = 75
+								deposit_blockers = none
+								modifiers = none
+								init_effect = {
+									set_name = "The Big One"
+									set_surveyed = {
+										surveyed = yes
+										surveyor = root
+									}
+									set_all_comms_surveyed = yes
+									clear_blockers = yes
+									add_modifier = {
+										modifier = ssh_edersphere_planet_modifier
+										days = -1
+									}
+									save_event_target_as = fe_edersphere
+									trigger_megastructure_icon = yes
+									set_planet_flag = megastructure
+									set_planet_flag = fe_edersphere
+								}
+							}
+							create_species = {
+								name = "Synthetic"
+								class = "ROBOT"
+								portrait = random
+								traits = {
+									trait = "trait_mechanical"
+									trait = "trait_robot_domestic_protocols"
+									trait = "trait_robot_luxurious"
+								}
+							}
+							random_system_planet = {
+								limit = {
+									is_colony = no
+									is_planet_class = pc_edersphere
+								}
+								set_name = "The Big One"
+								create_pop_group = {
+									#pop_group = this
+									# Create a new Pop Group with the species we just created
+									species = ROOT.owner_species
+									size = 20000
+									ethos = { ethic = ethic_materialist }
+									#effect = { save_event_target_as = new_fe_pop_group }
+								}
+								create_pop_group = {
+									species = last_created_species
+									size = 8000
+									ethos = random
+								}
+								set_owner = ROOT
+								set_capital = yes
+								if = {
+									limit = {
+										any_system = {
+											any_system_planet = {
+												OR = {
+													has_planet_flag = fallen_spiritualist_capital
+													has_planet_flag = fallen_materialist_capital
+													has_planet_flag = fallen_xenophile_capital
+													has_planet_flag = fallen_xenophobe_capital
+													has_planet_flag = fallen_machine_capital
+												}
+											}
+										}
+									}
+									set_planet_flag = fallen_materialist_capital
+								}
+								while = {
+									count = 10
+									add_district = district_ssh_edersphere_city
+								}
+								#while = {
+								#	count = 4
+								#	add_district = district_ssh_edersphere_research
+								#	add_district = district_ssh_edersphere_administrative
+								#}
+								while = {
+									count = 4
+									add_district = district_ssh_edersphere_urban_1
+								}
+								add_zone = {
+									district = district_ssh_edersphere_urban_1
+									zone = zone_research_edersphere
+									zone_slot = 1
+								}
+								while = {
+									count = 4
+									add_district = district_ssh_edersphere_urban_2
+								}
+								add_zone = {
+									district = district_ssh_edersphere_urban_2
+									zone = zone_unity_edersphere
+									zone_slot = 1
+								}
+								add_building = building_ancient_palace
+								add_building = building_fe_stronghold
+								add_building = building_fe_stronghold
+								add_building = building_fe_stronghold
+								add_building = building_fe_stronghold
+								add_building = building_affluence_center
+								add_building = building_affluence_center
+								add_building = building_affluence_center
+								add_building = building_dimensional_fabricator
+								add_building = building_dimensional_fabricator
+								add_building = building_dimensional_fabricator
+								add_building = building_nano_forge
+								add_building = building_nano_forge
+								add_building = building_nano_forge
+								add_building = building_class_4_singularity
+								add_building = building_class_4_singularity
+							}
+						}
+						0 = { #25
+							# Dyson Sphere
+							random_system_planet = {
+								limit = { is_star = yes }
+								change_pc = pc_black_hole
+								set_planet_entity = {
+									entity = "ssh_black_hole_norings_entity"
+								}
+								set_planet_flag = has_megastructure
+							}
+							set_star_class = sc_black_hole
+							set_star_flag = fe_materialist_suprashell_capital # Used for cosmogenesis ending
+							spawn_megastructure = {
+								type = black_hole_shellworld_ruined
+								owner = fromfrom
+								planet = star
+							}
+							# Create Star
+							spawn_planet = {
+								class = pc_m_star
+								location = PREV
+								orbit_distance_offset = 60
+								orbit_angle_offset = 30
+								init_effect = {
+									set_name = "Light Bulb"
+									set_planet_size = 20
+									set_surveyed = {
+										surveyed = yes
+										surveyor = fromfrom
+									}
+									set_all_comms_surveyed = yes
+									clear_blockers = yes
+									save_event_target_as = ssh_fallen_materialist_star
+								}
+							}
+							spawn_planet = {
+								class = pc_habitable_dyson
+								location = event_target:ssh_fallen_materialist_star
+								orbit_angle_offset = 0
+								deposit_blockers = none
+								modifiers = none
+								init_effect = {
+									set_name = "Core Refuge"
+									set_planet_size = 25
+									set_surveyed = {
+										surveyed = yes
+										surveyor = root
+									}
+									set_all_comms_surveyed = yes
+									clear_blockers = yes
+									save_event_target_as = fe_habitable_dyson
+									trigger_megastructure_icon = yes
+									set_planet_flag = megastructure
+									set_planet_flag = fe_habitable_dyson_sphere
+								}
+							}
+							event_target:fe_habitable_dyson = {
+								add_modifier = {
+									modifier = "ssh_stellar_shellworld_planet_modifier"
+									days = -1
+								}
+							}
+							create_species = {
+								name = "Synthetic"
+								class = "ROBOT"
+								portrait = random
+								traits = {
+									trait = "trait_mechanical"
+									trait = "trait_robot_domestic_protocols"
+									trait = "trait_robot_luxurious"
+								}
+							}
+							random_system_planet = {
+								limit = {
+									is_colony = no
+									is_planet_class = pc_habitable_dyson
+								}
+								set_name = "Core Refuge"
+								create_pop_group = {
+									# Create a new Pop Group with the species we just created
+									species = ROOT.owner_species
+									size = 10000
+									ethos = { ethic = ethic_materialist }
+								}
+								create_pop_group = {
+									# Create a new Pop Group with the species we just created
+									species = last_created_species
+									size = 10000
+									ethos = random
+								}
+								set_owner = ROOT
+								set_capital = yes
+								if = {
+									limit = {
+										any_system = {
+											any_system_planet = {
+												OR = {
+													has_planet_flag = fallen_spiritualist_capital
+													has_planet_flag = fallen_materialist_capital
+													has_planet_flag = fallen_xenophile_capital
+													has_planet_flag = fallen_xenophobe_capital
+													has_planet_flag = fallen_machine_capital
+												}
+											}
+										}
+									}
+									set_planet_flag = fallen_materialist_capital
+								}
+								while = {
+									count = 5
+									add_district = district_ssh_hab_dyson_city
+								}
+								while = {
+									count = 4
+									add_district = district_ssh_hab_dyson_generator
+									add_district = district_ssh_hab_dyson_vr
+								}
+								add_building = building_ancient_palace
+								add_building = building_fe_stronghold
+								add_building = building_fe_stronghold
+								add_building = building_fe_stronghold
+								add_building = building_fe_stronghold
+								add_building = building_affluence_center
+								add_building = building_affluence_center
+								add_building = building_affluence_center
+								add_building = building_dimensional_fabricator
+								add_building = building_dimensional_fabricator
+								add_building = building_dimensional_fabricator
+								add_building = building_nano_forge
+								add_building = building_nano_forge
+								add_building = building_nano_forge
+								add_building = building_class_4_singularity
+								add_building = building_class_4_singularity
+							}
+						}
+					}
+				}
+			}
+		}
+		# Replace all neighbouring systens w/ stripmined ones
+		every_system_within_border = {
+			every_neighbor_system = {
+				limit = {
+					NOR = {
+						has_owner = yes
+						has_star_flag = empire_cluster
+						has_star_flag = marauder_cluster
+						ssh_is_special_system = yes
+					}
+				}
+				every_system_planet = {
+					limit = {
+						NOR = {
+							is_star = yes
+							is_planet_class = pc_gas_giant
+							is_astral_scar = yes
+							is_asteroid = yes
+							is_artificial = yes
+							ssh_is_special_planet = yes
+						}
+					}
+					change_pc = pc_ssh_lava
+					set_planet_size = 5
+				}
+				every_system_planet = {
+					limit = { is_planet_class = pc_gas_giant }
+					change_pc = pc_barren
+					set_planet_size = 8
+					add_modifier = {
+						modifier = chthonian_planet
+						days = -1
+					}
+				}
+			}
+		}
+	}
+}
+
+# Fanatic Xenophile - Hoopworld, Discworld or Freesphere Capital
+country_event = {
+	id = ssh_fe_megas.4
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_country_type = fallen_empire
+		has_ethic = ethic_fanatic_xenophile
+	}
+	
+	immediate = {
+		capital_scope = {
+			save_event_target_as = ssh_fallen_xenophile_capital
+			#remove_planet = yes
+			if = {
+				limit = {
+					owner.species = {
+						OR = {
+							is_species_class = AVI
+							is_species_class = ART
+							is_species_class = AQUATIC
+							is_species_class = FUN
+							is_species_class = PLANT
+						}
+					}
+				}
+				set_name = "The Egg"
+				remove_all_districts = yes
+				change_pc = pc_freesphere
+				add_modifier = {
+					modifier = ssh_freesphere_planet_modifier
+					days = -1
+				}
+				set_planet_size = 15
+				trigger_megastructure_icon = yes
+				set_planet_flag = fe_freesphere
+				set_planet_flag = fallen_xenophile_capital
+				while = {
+					count = 5
+					add_district = district_ssh_bwc_city
+				}
+				while = {
+					count = 2
+					add_district = district_ssh_bwc_farming
+					#add_district = district_ssh_bwc_leisure
+				}
+				while = {
+					count = 2
+					add_district = district_ssh_bwc_urban_1
+				}
+				add_zone = {
+					district = district_ssh_bwc_urban_1
+					zone = zone_industrial_bwc
+					zone_slot = 1
+				}
+				while = {
+					count = 2
+					add_district = district_ssh_bwc_urban_2
+				}
+				add_zone = {
+					district = district_ssh_bwc_urban_2
+					zone = zone_research_bwc
+					zone_slot = 1
+				}
+			}
+			else = {
+				set_name = "Love"
+				remove_all_districts = yes
+				change_pc = pc_discworld
+				add_deposit = d_discorld_deposit
+				add_modifier = {
+					modifier = ssh_discworld_planet_modifier
+					days = -1
+				}
+				set_planet_size = 20
+				trigger_megastructure_icon = yes
+				set_planet_flag = fe_discworld
+				set_planet_flag = fallen_xenophile_capital
+				while = {
+					count = 5
+					add_district = district_ssh_bwc_city
+				}
+				while = {
+					count = 2
+					add_district = district_ssh_bwc_farming
+					#add_district = district_ssh_bwc_leisure
+				}
+				while = {
+					count = 2
+					add_district = district_ssh_bwc_urban_1
+				}
+				add_zone = {
+					district = district_ssh_bwc_urban_1
+					zone = zone_industrial_bwc
+					zone_slot = 1
+				}
+				while = {
+					count = 2
+					add_district = district_ssh_bwc_urban_2
+				}
+				add_zone = {
+					district = district_ssh_bwc_urban_2
+					zone = zone_research_bwc
+					zone_slot = 1
+				}
+			}
+			# Change the Gas Giant as well
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						any_moon = {
+							is_colony = yes
+							is_capital = yes
+						}
+					}
+					random_list = {
+						50 = {
+							# Shellworld
+							change_pc = pc_gas_giant_shellworld
+							add_modifier = {
+								modifier = ssh_gas_giant_shellworld_planet_modifier
+								days = -1
+							}
+							set_planet_size = 15
+							create_colony = { owner = prevprev.owner }
+							add_colony_progress = 100
+							add_district = district_ssh_gas_shellworld_housing
+							add_district = district_ssh_gas_shellworld_housing
+							#add_district = district_ssh_gas_shellworld_leisure
+							#add_district = district_ssh_gas_shellworld_leisure
+							#add_district = district_ssh_gas_shellworld_leisure
+							add_building = building_fe_sky_dome
+							add_building = building_fe_sky_dome
+							add_building = building_fe_sky_dome
+							add_building = building_fe_sky_dome
+							create_pop_group = {
+								# Create a new Pop Group with the species we just created
+								species = owner_main_species
+								size = 1000
+								ethos = random
+							}
+						}
+						20 = {
+							# Stripmined Gas Giant
+							change_pc = pc_ssh_lava
+							add_modifier = {
+								modifier = chthonian_planet
+								days = -1
+							}
+							set_planet_size = 8
+						}
+						30 = {
+							# Normal Gas Giant
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Fanatic Xenophobe - B.I.O. Brain
+country_event = {
+	id = ssh_fe_megas.5
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_country_type = fallen_empire
+		has_ethic = ethic_fanatic_xenophobe
+	}
+	
+	immediate = {
+		capital_scope = {
+			save_event_target_as = ssh_fallen_xenophobe_capital
+			random_list = {
+				25 = {
+					change_pc = pc_shellworld_core_city
+					add_modifier = {
+						modifier = ssh_triple_shellworld_planet_modifier
+						days = -1
+					}
+					ssh_set_shellworld_entity = yes
+				}
+				25 = {
+					change_pc = pc_shellworld_core_gaia
+					add_modifier = {
+						modifier = ssh_triple_shellworld_planet_modifier
+						days = -1
+					}
+					ssh_set_shellworld_entity = yes
+				}
+				25 = {
+					change_pc = pc_hoopworld
+					add_modifier = {
+						modifier = ssh_hoopworld_planet_modifier
+						days = -1
+					}
+				}
+				25 = {
+					change_pc = pc_edersphere
+					add_modifier = {
+						modifier = ssh_edersphere_planet_modifier
+						days = -1
+					}
+					if = {
+						limit = { has_moon = yes }
+						every_moon = { remove_planet = yes }
+					}
+					while = {
+						count = 6
+						add_district = district_ssh_edersphere_city
+					}
+					#while = {
+					#	count = 5
+					#	add_district = district_ssh_edersphere_leisure
+					#}
+					#while = {
+					#	count = 2
+					#	add_district = district_ssh_edersphere_science
+					#}
+					while = {
+						count = 2
+						add_district = district_ssh_edersphere_urban_1
+					}
+					add_zone = {
+						district = district_ssh_edersphere_urban_1
+						zone = zone_industrial_edersphere
+						zone_slot = 1
+					}
+					while = {
+						count = 2
+						add_district = district_ssh_edersphere_urban_2
+					}
+					add_zone = {
+						district = district_ssh_edersphere_urban_2
+						zone = zone_research_edersphere
+						zone_slot = 1
+					}
+				}
+			}
+			# Spawn Bio Computer
+			random_list = {
+				70 = {
+					# No Computer
+				}
+				30 = {
+					solar_system = {
+						random_system_planet = {
+							limit = {
+								NOR = {
+									is_colony = yes
+									is_star = yes
+								}
+							}
+							save_event_target_as = ssh_fallen_xenophobe_brain_planet
+						}
+						spawn_megastructure = {
+							type = mega_brain_fallen_xenophobe
+							owner = fromfrom
+							planet = event_target:ssh_fallen_xenophobe_brain_planet
+						}
+						event_target:ssh_fallen_xenophobe_brain_planet = { remove_planet = yes }
+						set_global_flag = ssh_fallen_xenophobe_megabrain
+					}
+				}
+			}
+		}
+	}
+}
+
+# Fallen Machines
+country_event = {
+	id = ssh_fe_megas.6
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_country_type = fallen_empire
+		is_fallen_empire_machine = yes
+		#has_ethic = ethic_gestalt_consciousness
+	}
+	
+	immediate = {
+		# Stellar Hoop Emergency Generator
+		random_system_within_border = {
+			limit = {
+				# Delta Refuge
+				NOR = {
+					is_star_class = sc_black_hole
+					is_capital_system = yes # Alpha Refuge
+					has_megastructure = ring_world_ruined
+				}
+			}
+			spawn_planet = {
+				class = pc_stellar_hoop
+				location = star
+				orbit_angle_offset = 0
+				init_effect = {
+					set_name = "Emergency Generator"
+					prevent_anomaly = yes
+					set_surveyed = {
+						surveyed = yes
+						surveyor = from
+					}
+					set_all_comms_surveyed = yes
+					clear_blockers = yes
+					trigger_megastructure_icon = yes
+					set_planet_flag = megastructure
+					add_modifier = {
+						modifier = ssh_stellar_hoop_planet_modifier
+						days = -1
+					}
+					if = {
+						limit = {
+							OR = {
+								is_star_class = sc_a
+								is_star_class = sc_b
+								is_star_class = sc_m_giant
+							}
+						}
+						set_planet_entity = {
+							entity = "ssh_stellar_hoop_big_planet_01_entity"
+						}
+					}
+					save_event_target_as = ssh_fallen_machine_stellar_hoop
+				}
+			}
+			event_target:ssh_fallen_machine_stellar_hoop = {
+				create_colony = { owner = prevprev }
+				add_colony_progress = 100
+				create_pop_group = {
+					# Create a new Pop Group with the species we just created
+					species = owner_main_species
+					size = 1000
+					ethos = random
+				}
+				add_district = district_ssh_stellar_hoop_maintenance
+				add_district = district_ssh_stellar_hoop_generator
+				add_district = district_ssh_stellar_hoop_generator
+				add_district = district_ssh_stellar_hoop_generator
+				add_district = district_ssh_stellar_hoop_generator
+				add_building = building_class_4_singularity
+				add_building = building_class_4_singularity
+			}
+		}
+		random_list = {
+			50 = {
+				# Ring Capital
+			}
+			50 = {
+				# Stellar Hoop Capital
+				event_target:ssh_fallen_machine_stellar_hoop = {
+					set_capital = yes
+					add_building = building_ancient_control_center
+					add_building = building_class_4_singularity
+					add_building = building_class_4_singularity
+					add_building = building_fe_assembly_2
+				}
+			}
+		}
+		random_system_within_border = {
+			limit = {
+				# Central Processing
+				is_star_class = sc_black_hole
+				is_capital_system = no
+			}
+			if = {
+				limit = { star = { NOT = { has_planet_flag = has_megastructure } } }
+				random_list = {
+					49 = {
+						spawn_megastructure = {
+							type = matter_decompressor_ruined
+							owner = from
+							planet = star
+						}
+					}
+					1 = {
+						spawn_megastructure = {
+							type = black_hole_shellworld_ruined
+							owner = from
+							planet = star
+						}
+					}
+					50 = {
+						# No Megastructure for you
+					}
+				}
+			}
+		}
+	}
+}
+
+# Fallen Spiritualists
+country_event = {
+	id = ssh_fe_megas.7
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_country_type = fallen_empire
+		has_ethic = ethic_fanatic_spiritualist
+	}
+	
+	immediate = {
+		capital_scope = {
+			change_pc = pc_shellworld_core_gaia
+			set_planet_entity = {
+				entity = "ssh_triple_shellworld_planet_01_entity"
+				picture = pc_gas_giant_shellworld # So it doesn't look that dark
+			}
+			add_modifier = {
+				modifier = ssh_triple_shellworld_planet_modifier
+				days = -1
+			}
+			# Gas Giant
+			#solar_system = {
+			#	random_system_planet = {
+			#		limit = {
+			#			any_moon = {
+			#				is_colony = yes
+			#				is_capital = yes
+			#			}
+			#		}
+			#		random_list = {
+			#			50 = {
+			#				# Shellworld
+			#				change_pc = pc_gas_giant_shellworld
+			#				add_modifier = {
+			#					modifier = ssh_gas_giant_shellworld_planet_modifier
+			#					days = -1
+			#				}
+			#				create_colony = { owner = fromfrom.owner }
+			#				add_colony_progress = 100
+			#				add_district = district_ssh_gas_shellworld_housing
+			#				add_district = district_ssh_gas_shellworld_farming
+			#				add_district = district_ssh_gas_shellworld_farming
+			#				add_district = district_ssh_gas_shellworld_farming
+			#				add_building = building_fe_sky_dome
+			#				add_building = building_fe_sky_dome
+			#				add_building = building_fe_sky_dome
+			#				add_building = building_fe_sky_dome
+			#				while = {
+			#					count = 10
+			#					create_pop = { species = owner_main_species }
+			#				}
+			#			}
+			#			50 = {
+			#				# Normal Gas Giant
+			#			}
+			#		}
+			#	}
+			#}
+		}
+	}
+}
+
+
+##### TODO: FE Xenophobes - Spawn nerve stapled species as living toilets, furniture, etc

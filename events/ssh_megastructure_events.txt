@@ -1,0 +1,1299 @@
+namespace = ssh_me
+
+#################################################################################
+###############            MEGASTRUCTURE EVENTS                   ###############
+#################################################################################
+
+# Shrink Gas Giants
+planet_event = {
+	id = ssh_me.1
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { planet_size > 5 }
+			set_planet_flag = ssh_shrinking_planet
+			change_planet_size = -2
+			planet_event = {
+				id = ssh_me.1
+				days = 360
+			}
+		}
+		else_if = {
+			limit = { planet_size <= 5 }
+			ssh_trigger_gas_giant_lifter_mined_effect = yes
+			add_deposit = d_alloys_3
+			remove_planet_flag = has_megastructure
+			solar_system = {
+				random_system_megastructure = {
+					limit = {
+						is_megastructure_type = gas_giant_lifter_6
+						planet = { is_same_value = root }
+					}
+					remove_megastructure = this
+				}
+				owner = {
+					country_event = {
+						id = ssh_on.1
+					}
+				}
+			}
+		}
+	}
+}
+
+# nanite Disassembly - Shrink Planets
+planet_event = {
+	id = ssh_me.2
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		set_planet_flag = ssh_shrinking_planet
+		if = {
+			limit = {
+				planet_size > 5
+				NOT = { ssh_is_any_gas_giant = yes }
+			}
+			change_planet_size = -1
+			planet_event = {
+				id = ssh_me.2
+				days = 185 #every half a year planet shrinks because nanites go brrrrr
+			}
+		}
+		# Turn gas giants into other classes
+		else_if = {
+			limit = {
+				planet_size > 5
+				ssh_is_any_gas_giant = yes
+			}
+			ssh_trigger_nanite_disassembler_gas_giant_effect = yes #visual; change pc to either metallic hydrogen or dwarf gas giant or just barren depending on mod
+			change_planet_size = -1
+			planet_event = {
+				id = ssh_me.2
+				days = 360 #every year planet shrinks because gas giants take longer to mine etc
+			}
+		}
+		else_if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_asteroid
+					is_planet_class = pc_ice_asteroid
+					is_planet_class = pc_crystal_asteroid
+				}
+				planet_size = 5
+			}
+			ssh_trigger_nanite_disassembler_mined_effect = yes
+			change_planet_size = -1
+			solar_system = {
+				random_system_megastructure = {
+					limit = {
+						OR = {
+							is_megastructure_type = nanite_disassembler_p_rocky
+							is_megastructure_type = nanite_disassembler_p_gas
+							is_megastructure_type = nanite_disassembler_p_artificial
+							is_megastructure_type = nanite_disassembler_p_crystal
+							is_megastructure_type = nanite_disassembler_p_zro
+							is_megastructure_type = nanite_disassembler_p_toxic
+							is_megastructure_type = terravore_digester_p_rocky
+							is_megastructure_type = terravore_digester_p_gas
+							is_megastructure_type = terravore_digester_p_artificial
+							is_megastructure_type = terravore_digester_p_crystal
+							is_megastructure_type = terravore_digester_p_toxic
+							is_megastructure_type = terravore_digester_p_zro
+						}
+						planet = { is_same_value = root }
+					}
+					remove_megastructure = this
+				}
+				if = {
+					limit = {
+						owner = {
+							OR = {
+								is_lithoid_devouring_swarm = yes
+								has_civic = civic_bugged_hive_terravore # Bug Branch Terravore
+							}
+						}
+					}
+					spawn_megastructure = {
+						type = terravore_digester_p_core
+						owner = prev.owner
+						planet = prev
+					}
+				}
+				else = {
+					spawn_megastructure = {
+						type = nanite_disassembler_p_core
+						owner = prev.owner
+						planet = prev
+					}
+				}
+			}
+			planet_event = {
+				id = ssh_me.2
+				days = 360
+			}
+		}
+		else_if = {
+			limit = { planet_size = 1 }
+			solar_system = {
+				random_system_megastructure = {
+					limit = {
+						OR = {
+							is_megastructure_type = nanite_disassembler_p_rocky
+							is_megastructure_type = nanite_disassembler_p_gas
+							is_megastructure_type = nanite_disassembler_p_artificial
+							is_megastructure_type = nanite_disassembler_p_crystal
+							is_megastructure_type = nanite_disassembler_p_zro
+							is_megastructure_type = nanite_disassembler_p_toxic
+							is_megastructure_type = terravore_digester_p_rocky
+							is_megastructure_type = terravore_digester_p_gas
+							is_megastructure_type = terravore_digester_p_artificial
+							is_megastructure_type = terravore_digester_p_crystal
+							is_megastructure_type = terravore_digester_p_toxic
+							is_megastructure_type = terravore_digester_p_zro
+							is_megastructure_type = terravore_digester_p_core
+							is_megastructure_type = nanite_disassembler_p_core
+						}
+						planet = { is_same_value = root }
+					}
+					remove_megastructure = this
+					this.planet = {
+						remove_planet = yes
+					}
+				}
+				owner = {
+					if = {
+						limit = {
+							OR = {
+								is_lithoid_devouring_swarm = yes
+								has_civic = civic_bugged_hive_terravore # Bug Branch Terravore
+							}
+						}
+						add_resource = {
+							alloys = 2500
+						}
+					}
+					else = {
+						add_resource = {
+							alloys = 5000
+						}
+					}
+					country_event = {
+						id = ssh_on.2
+					}
+				}
+			}
+		}
+		else = {
+			change_planet_size = -1
+			planet_event = {
+				id = ssh_me.2
+				days = 360
+			}
+		}
+	}
+}
+
+# Dimensional Tearer - yearly shroud waves
+#
+# ----> separate events bc they are all supposed to fire together not separate depending on the mega stage
+#
+# event = global event (for an entire game)
+country_event = {
+	id = ssh_me.3
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { has_global_flag = ssh_dim_tearer_rift_shroud }
+			# trigger galaxy wide shroud wave
+			every_system = {
+				limit = {
+					NOR = { 
+						has_star_flag = dimensional_wave_system 
+						has_star_flag = ssh_dimensional_tearer_system
+						any_system_planet = { ssh_is_special_planet = yes } # To prevent the galactic core from despawning
+						# Secrets of the Shroud systems
+						ssh_is_special_system = yes
+					}
+					if = {
+						limit = { exists = owner }
+						NOR = {
+							is_capital_system = yes
+							owner = {
+								is_fallen_empire = yes #Fallen empires magical subspace protective shielding ooOOooOOoooO magic
+							}
+						}
+					}
+				}
+				random_list = {
+					98 = {} # Nothing Happens - 98% of all systems
+					##### SHROUD EFFECTS #####
+					# Small Shroud Wave
+					1 = {
+						system_event = {
+							id = ssh_tearer.1
+							days = 1 #slight magical delay
+						}
+						set_star_flag = dimensional_wave_system
+					}
+					# Heavy Shroud Wave (Entities + shrouded system + colony gets invaded)
+					1 = {
+						system_event = {
+							id = ssh_tearer.3
+							days = 1
+						}
+						system_event = {
+							id = ssh_tearer.2
+							days = 1
+						}
+						set_star_flag = dimensional_wave_system
+					}
+				}
+			}
+			country_event = {
+				id = ssh_me.3
+				days = 720
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_me.4
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { has_global_flag = ssh_dim_tearer_rift_mirror }
+			# trigger galaxy wide mirror wave
+			every_system = {
+				limit = {
+					NOR = { 
+						has_star_flag = dimensional_wave_system 
+						has_star_flag = ssh_dimensional_tearer_system
+						any_system_planet = { ssh_is_special_planet = yes }
+						# Secrets of the Shroud systems
+						ssh_is_special_system = yes
+					}
+					if = {
+						limit = { exists = owner }
+						NOR = {
+							is_capital_system = yes
+							owner = {
+								is_fallen_empire = yes #Fallen empires magical subspace protective shielding ooOOooOOoooO magic
+							}
+						}
+					}
+				}
+				random_list = {
+					98 = {} # Nothing Happens - 98% of all systems
+					# Small Mirror Wave
+					1 = {
+						system_event = {
+							id = ssh_tearer.4
+							days = 1 #slight magical delay
+						}
+						set_star_flag = dimensional_wave_system
+					}
+					# Medium Mirror Wave
+					1 = {
+						system_event = {
+							id = ssh_tearer.5
+							days = 1
+						}
+						set_star_flag = dimensional_wave_system
+					}
+				}
+			}
+			country_event = {
+				id = ssh_me.4
+				days = 720
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_me.5
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { has_global_flag = ssh_dim_tearer_rift_nullvoid }
+			# trigger galaxy wide null void wave
+			every_system = {
+				limit = {
+					NOR = { 
+						has_star_flag = dimensional_wave_system 
+						has_star_flag = ssh_dimensional_tearer_system
+						any_system_planet = { ssh_is_special_planet = yes }
+						# Secrets of the Shroud systems
+						ssh_is_special_system = yes
+					}
+					if = {
+						limit = { exists = owner }
+						NOR = {
+							is_capital_system = yes
+							owner = {
+								is_fallen_empire = yes #Fallen empires magical subspace protective shielding ooOOooOOoooO magic
+							}
+						}
+					}
+				}
+				random_list = {
+					97 = {} # Nothing Happens - 97% of all systems
+					# Small nullvoid Wave
+					1 = {
+						system_event = {
+							id = ssh_tearer.6
+							days = 1 #slight magical delay
+						}
+						set_star_flag = dimensional_wave_system
+					}
+					# Medium nullvoid Wave
+					1 = {
+						system_event = {
+							id = ssh_tearer.7
+							days = 1
+						}
+						set_star_flag = dimensional_wave_system
+					}
+					1 = {
+						system_event = {
+							id = ssh_tearer.8
+							days = 1
+						}
+						set_star_flag = dimensional_wave_system
+					}
+				}
+			}
+			country_event = {
+				id = ssh_me.5
+				days = 720
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_me.6
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { has_global_flag = ssh_dim_tearer_rift_pain }
+			# trigger galaxy wide pain dimension wave
+			every_system = {
+				limit = {
+					any_system_planet = {
+						is_colony = yes
+					}
+					NOT = {
+						#has_star_flag = dimensional_wave_system -> doesn't destroy/change any planet, so it can happen in any system, even the ones that have already been hit
+						any_system_megastructure = {
+							has_megastructure_flag = ssh_dimensional_tearer
+						}
+					}
+					if = {
+						limit = { exists = owner }
+						NOT = {
+							owner = {
+								is_fallen_empire = yes
+							}
+						}
+					}
+				}
+				random = {
+					# 10% Chance of all system colonies being hit by suffering wave
+					chance = 1
+					system_event = {
+						id = ssh_tearer.9
+						days = 1 #slight magical delay
+					}
+					set_star_flag = dimensional_wave_system
+				}
+			}
+			country_event = {
+				id = ssh_me.6
+				days = 720
+			}
+		}
+	}
+}
+
+# Fusion Accelerator/Stellar Harvester - Change Star Classes
+planet_event = {
+	id = ssh_me.7
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		planet_owner = {
+			save_event_target_as = ssh_stellar_harvester_owner
+		}
+		if = {
+			limit = {
+				has_planet_flag = active_stellar_harvester_planet
+				OR = {
+					is_planet_class = pc_a_star
+					is_planet_class = pc_b_star
+					is_planet_class = pc_m_giant_star
+					is_planet_class = pc_f_star
+					is_planet_class = pc_g_star
+					is_planet_class = pc_k_star
+					is_planet_class = pc_m_star
+					is_planet_class = pc_blue_dwarf_star
+					is_planet_class = pc_white_dwarf_star
+					is_planet_class = pc_t_star
+					# Gigas Stars
+					is_planet_class = pc_gigabrown_dwarf
+					is_planet_class = pc_gigaignited_star
+					# Hypo Stars
+					is_planet_class = pc_antimatter_star
+					is_planet_class = pc_dark_star
+				}
+			}
+			planet_event = {
+				id = ssh_me.8
+				days = 3600 #10 years
+			}
+			solar_system = {
+				random_system_megastructure = {
+					limit = {
+						is_megastructure_type = stellar_harvester_active
+						planet = { is_same_value = root }
+					}
+					remove_megastructure = this
+				}
+				spawn_megastructure = {
+					type = stellar_harvester_active
+					owner = event_target:ssh_stellar_harvester_owner
+					planet = root #from
+				}
+			}
+		}
+		##### Final Stage #############
+		else_if = {
+			limit = {
+				is_planet_class = pc_black_dwarf_star
+			}
+			set_planet_size = 10
+			#remove_planet_flag = has_megastructure #Keep it so no dyson sphere can be constructed around it (wouldnt make sense)
+			remove_planet_flag = active_stellar_harvester_planet
+			solar_system = {
+				random_system_megastructure = {
+					limit = {
+						is_megastructure_type = stellar_harvester_active
+						planet = { is_same_value = root }
+					}
+					remove_megastructure = this
+				}
+				owner = {
+					add_resource = {
+						alloys = 7500
+					}
+					country_event = {
+						id = ssh_cn.89
+					}
+				}
+			}
+		}
+		else = {
+			# No Compatible Classes (Shouldn't appear)
+			solar_system = {
+				random_system_megastructure = {
+					limit = {
+						is_megastructure_type = stellar_harvester_active
+						planet = { is_same_value = root }
+					}
+					remove_megastructure = this
+				}
+				#destroy_star_system = yes
+				set_star_class = sc_t
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = active_stellar_harvester_planet
+		}
+	}
+}
+
+# Change star class
+planet_event = {
+	id = ssh_me.8
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				has_planet_flag = active_stellar_harvester_planet
+				OR = {
+					is_planet_class = pc_a_star
+					is_planet_class = pc_b_star
+					is_planet_class = pc_m_giant_star
+				}
+			}
+			change_pc = pc_g_star
+			change_planet_size = -2
+			if = {
+				limit = {
+					NOR = {
+						is_binary_star = yes
+						is_trinary_star = yes
+					}
+				}
+				solar_system = {
+					set_star_class = sc_g
+				}
+			}
+			planet_event = {
+				id = ssh_me.7
+			}
+		}
+		else_if = {
+			limit = {
+				has_planet_flag = active_stellar_harvester_planet
+				OR = {
+					is_planet_class = pc_f_star
+					is_planet_class = pc_g_star
+					is_planet_class = pc_k_star
+				}
+			}
+			change_pc = pc_m_star
+			change_planet_size = -2
+			if = {
+				limit = {
+					NOR = {
+						is_binary_star = yes
+						is_trinary_star = yes
+					}
+				}
+				solar_system = {
+					set_star_class = sc_m
+				}
+			}
+			planet_event = {
+				id = ssh_me.7
+			}
+		}
+		else_if = {
+			limit = {
+				has_planet_flag = active_stellar_harvester_planet
+				OR = {
+					is_planet_class = pc_m_star
+					is_planet_class = pc_gigaignited_star
+				}
+			}
+			change_pc = pc_blue_dwarf_star
+			if = {
+				limit = { planet_size > 10 }
+				change_planet_size = -4
+			}
+			if = {
+				limit = {
+					NOR = {
+						is_binary_star = yes
+						is_trinary_star = yes
+					}
+				}
+				solar_system = {
+					set_star_class = sc_ssh_blue_dwarf
+				}
+			}
+			planet_event = {
+				id = ssh_me.7
+			}
+		}
+		else_if = {
+			limit = {
+				has_planet_flag = active_stellar_harvester_planet
+				is_planet_class = pc_blue_dwarf_star
+			}
+			change_pc = pc_white_dwarf_star
+			if = {
+				limit = { planet_size > 10 }
+				change_planet_size = -2
+			}
+			if = {
+				limit = {
+					NOR = {
+						is_binary_star = yes
+						is_trinary_star = yes
+					}
+				}
+				solar_system = {
+					set_star_class = sc_ssh_white_dwarf
+				}
+			}
+			planet_event = {
+				id = ssh_me.7
+			}
+		}
+		else_if = {
+			limit = {
+				has_planet_flag = active_stellar_harvester_planet
+				OR = {
+					is_planet_class = pc_white_dwarf_star
+					is_planet_class = pc_t_star # Brown Dwarf
+					# Gigas Stars
+					is_planet_class = pc_gigabrown_dwarf
+					# Hypo Stars
+					is_planet_class = pc_dark_star
+					is_planet_class = pc_antimatter_star
+				}
+			}
+			change_pc = pc_black_dwarf_star
+			add_modifier = {
+				modifier = ssh_black_dwarf_planet_modifier
+				days = -1
+			}
+			if = {
+				limit = { planet_size > 10 }
+				change_planet_size = -1
+			}
+			if = {
+				limit = {
+					NOR = {
+						is_binary_star = yes
+						is_trinary_star = yes
+					}
+				}
+				solar_system = {
+					set_star_class = sc_ssh_black_dwarf
+				}
+			}
+			planet_event = {
+				id = ssh_me.7
+			}
+		}
+		else = {
+			set_planet_size = 10
+			planet_event = {
+				id = ssh_me.7
+			}
+			#change_pc = pc_t_star
+			#solar_system = {
+			#	set_star_class = sc_t
+			#}
+		}
+	}
+}
+
+# Stellar Nanite Disassembler - Shrink Stars
+planet_event = {
+	id = ssh_me.9
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		set_planet_flag = ssh_shrinking_planet
+		if = {
+			limit = {
+				planet_size > 1
+			}
+			change_planet_size = -1
+			planet_event = {
+				id = ssh_me.9
+				days = 360 #every year star shrinks because nanites go brrrrr
+			}
+		}
+		else_if = {
+			limit = { planet_size = 1 }
+			solar_system = {
+				save_event_target_as = ssh_stripmined_system
+				random_system_megastructure = {
+					limit = {
+						OR = {
+							is_megastructure_type = nanite_disassembler_s_black_dwarf
+							is_megastructure_type = nanite_disassembler_s_brown_dwarf
+						}
+						planet = { is_same_value = root }
+					}
+					remove_megastructure = this
+					this.planet = {
+						change_pc = pc_ssh_empty_space
+						remove_modifier = ssh_black_dwarf_planet_modifier # Might have to add a custom effect in the future for other modifiers from GPM & Gigas
+						set_planet_size = 0
+					}
+				}
+				if = {
+					limit = {
+						any_system_planet = {
+							NOT = {
+								is_planet_class = pc_ssh_empty_space #Check if there are other planet types (black dwarves, brown dwarves, binary/trinary stars) left
+							}
+						}
+					}
+					add_resource = { alloys = 1 } #just so something happens
+				}
+				else = {
+					# every system planet is emtpy space (has been mined)
+					set_star_class = sc_ssh_space
+					# Remove Starbase (useless now since nothings left) & change name
+					star = {
+						if = {
+							limit = { exists = orbital_station }
+							orbital_station = { dismantle = yes }
+						}
+					}
+					#starbase = {
+					#	dismantle = yes #doesnt work xd	
+					#}
+					#set_name = BLANK_STRING
+					# Remove Hyperlanes
+					every_neighbor_system = {
+						remove_hyperlane = {
+							from = THIS
+							to = event_target:ssh_stripmined_system
+						}
+					}
+				}
+				owner = {
+					add_resource = {
+						alloys = 7500 #10000 (complete recycling) would probably be too strong
+					}
+					country_event = {
+						id = ssh_on.22
+					}
+				}
+			}
+		}
+		else = {
+			change_planet_size = -1
+			planet_event = {
+				id = ssh_me.9
+				days = 360
+			}
+		}
+	}
+}
+
+# Neutron Star Compressor - Shrink Star/Turn into Quark Star/Strange Star
+planet_event = {
+	id = ssh_me.10
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		set_planet_flag = ssh_shrinking_planet
+		if = {
+			limit = {
+				planet_size > 10
+			}
+			change_planet_size = -1
+			planet_event = {
+				id = ssh_me.10
+				days = 360 #takes roughly 20 years to compress normal sized neutron stars this way
+			}
+		}
+		else_if = {
+			limit = { planet_size <= 10 }
+			solar_system = {
+				save_event_target_as = ssh_quark_star_system
+				random_system_megastructure = {
+					limit = {
+						is_megastructure_type = neutron_compressor_active
+						planet = { is_same_value = root }
+					}
+					remove_megastructure = this
+					this.planet = {
+						remove_planet_flag = ssh_shrinking_planet
+						remove_planet_flag = active_neutron_compressor_planet
+						if = {
+							limit = { exists = orbital_station }
+							orbital_station = { dismantle = yes }
+						}
+						change_pc = pc_quark_star
+						set_planet_size = 10
+
+						# Add deposit (hypo stars compat)
+						remove_planet_flag = has_megastructure
+						clear_deposits = yes
+						if = {
+							limit = { has_hypothetical_stars = yes }
+							add_deposit = d_hypo_stars_quark_gluon_plasma_deposit # Hypo Stars Deposit
+							add_modifier = {
+								modifier = quark_star # Hypo Stars Modifier
+								days = -1
+							}
+						}
+						else = {
+							add_deposit = d_physics_10
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_system_planet = {
+							is_star = yes
+							NOT = { is_planet_class = pc_quark_star }
+						}
+					}
+					# Do nothing
+					#add_resource = { alloys = 1 } #just so something happens
+				}
+				else = {
+					# change star class on the map accordingly
+					set_star_class = sc_ssh_quark_star
+				}
+				owner = {
+					country_event = {
+						id = ssh_on.23
+					}
+				}
+			}
+		}
+		else = {
+			change_planet_size = -1
+			planet_event = {
+				id = ssh_me.10
+				days = 720
+			}
+		}
+	}
+}
+
+# Dyson Sphere Upgrade to stellar harvester
+planet_event = {
+	id = ssh_me.11
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		set_planet_flag = active_stellar_harvester_planet
+		planet_event = {
+			id = ssh_me.7
+		}
+		solar_system = {
+			random_system_megastructure = {
+				limit = {
+					is_megastructure_type = stellar_harvester_dyson_upgrade
+					planet = { is_same_value = event_target:ssh_stellar_harvester_star }
+				}
+				remove_megastructure = this
+			}
+		}
+	}
+}
+
+##### System Disintegrator Events #####
+# Turn system into disintegrated nuclei matter
+system_event = {
+	id = ssh_me.12
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			save_event_target_as = owner_country
+		}
+		# First time fired (via the mega), change star + planet classes
+		if = {
+			limit = {
+				NOR = {
+					has_star_flag = ssh_disintegrated_system
+					has_star_flag = cosmogenesis_system # Set when needle dives into basement universe
+				}
+			}
+			set_star_flag = ssh_disintegrated_system
+			set_star_class = sc_ssh_disintegrated_star
+			every_system_planet = {
+				#every system planet bc there might be binary/trinary stars
+				limit = { is_star = yes }
+				change_pc = pc_disintegrated_star
+				set_name = "Disintegrated Matter Cloud"
+			}
+			if = {
+				limit = { any_system_planet = { is_star = no } }
+				every_system_planet = {
+					limit = { is_star = no }
+					change_pc = pc_ssh_disintegrated_matter
+					set_planet_flag = ssh_shrinking_planet
+					if = {
+						limit = { has_ring = yes }
+						set_ring = no
+					}
+					# Shrink all planets
+					planet_event = {
+						id = ssh_me.13
+					}
+				}
+			}
+			else = {
+				# If no planets are present in the system, trigger this event again to shrink the star immediately
+				system_event = {
+					id = ssh_me.12
+					days = 5
+				}
+			}
+			#spawn_planet = {
+			#	class = pc_ssh_basement_universe_wormhole
+			#	location = star
+			#	orbit_angle_offset = 0
+			#	deposit_blockers = none
+			#	modifiers = none
+			#	init_effect = {
+			#		set_name = "Stabilized Micro-Wormhole"
+			#		set_planet_size = 1
+			#		#set_planet_entity = {
+			#		#	entity = "ssh_black_hole_shellworld_planet_01_entity"
+			#		#}
+			#		set_surveyed = {
+			#			surveyed = yes
+			#			surveyor = event_target:owner_country
+			#		}
+			#		set_all_comms_surveyed = yes
+			#		clear_blockers = yes
+			#		save_event_target_as = ssh_basement_universe_wormhole
+			#		#trigger_megastructure_icon = yes
+			#		set_planet_flag = has_megastructure # so players + ai dont do anything stupid
+			#	}
+			#}
+		}
+		else_if = {
+			limit = {
+				has_star_flag = ssh_disintegrated_system
+				any_system_planet = { is_star = no } #Check if all normal planets have been removed/disintegrated/harvested -> any non-star planet still existing?
+			}
+			# Do nothing until all planets are fully dissolved/accumulated
+		}
+		else_if = {
+			limit = {
+				has_star_flag = ssh_disintegrated_system
+				NOT = { any_system_planet = { is_star = no } } #Check - only stars left?
+			}
+			every_system_planet = {
+				limit = { is_star = yes }
+				# Remove accretion disk (as all planets have accumulated in the system center/star/whatever)
+				set_planet_entity = {
+					entity = "ssh_disintegrated_star_no_accretion_disk_entity" #Same entity but no accretion disk
+				}
+				# Planet Event: Shrink disintegrated Star & change pc into wormhole
+				set_planet_flag = ssh_shrinking_planet
+				planet_event = {
+					id = ssh_me.14
+				}
+			}
+			# Notify owner that all planetary mass has accumulated into one giant matter cloud which is (now) collapsing toward the basement universe wormhole
+			owner = {
+				country_event = {
+					id = ssh_on.38
+					days = 1
+					random = 5 #Few days delay to show the changed star entity
+				}
+			}
+		}
+	}
+}
+
+# Shrink disintegrated planets
+planet_event = {
+	id = ssh_me.13
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_planet_flag = ssh_shrinking_planet
+				planet_size > 1
+			}
+			change_planet_size = -1
+			star = {
+				change_planet_size = 1 #planet shrinks, star (cloud) grows -> because the planet cloud has accumulated in the star
+			}
+			planet_event = {
+				id = ssh_me.13
+				days = 60 # every 60 days the planets shrink & spin towards the star in form of an accretion disk
+			}
+		}
+		else_if = {
+			limit = {
+				has_planet_flag = ssh_shrinking_planet
+				planet_size = 1
+			}
+			remove_planet_flag = ssh_shrinking_planet
+			remove_planet = yes
+			# Re-Spawn the Mega to adjust the resource output accordingly (one less planet = less resource output as it has been harvested)
+			#solar_system = {
+			#	random_system_megastructure = {
+			#		limit = {
+			#			is_megastructure_type = system_disintegrator_active
+			#			planet = { is_same_value = star }
+			#		}
+			#		owner = {
+			#			save_event_target_as = ssh_system_disintegrator_owner
+			#		}
+			#		save_event_target_as = ssh_active_system_disintegrator
+			#	}
+			#	remove_megastructure = event_target:ssh_active_system_disintegrator
+			#	spawn_megastructure = {
+			#		type = system_disintegrator_active
+			#		owner = event_target:ssh_system_disintegrator_owner
+			#		planet = star
+			#	}
+			#}
+			# Fire event that checks if there is any non-star system planet left, if yes = do nothing until the last planet is gone, if no = begin to shrink the star
+			solar_system = {
+				system_event = {
+					id = ssh_me.12
+					days = 2
+				}
+			}
+		}
+		else = {
+			remove_planet = yes #yabba dabba doo
+		}
+	}
+}
+
+# Shrink disintegrated stars until they turn into the wormhole class
+planet_event = {
+	id = ssh_me.14
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		solar_system = {
+			random_system_megastructure = {
+				limit = {
+					is_megastructure_type = system_disintegrator_harvester_idle
+					planet = { is_same_value = root }
+				}
+				save_event_target_as = ssh_system_disintegrator_mega
+				owner = {
+					save_event_target_as = ssh_system_disintegrator_owner
+				}
+			}
+		}
+		# So, the (star) matter cloud containing all the solar system's matter is now collapsing into the wormhole at the center of the star. 
+		# The more planets the system had, the higher (longer) the output should be/last. 
+		# Therefore, the star has grown in size depending on the amount & size of planets in the system.
+		# So, shrink the star 5 times before turning it into the basement universe wormhole which is then spitting out all the accumulated/collapsed matter in form of two jets
+		if = {
+			limit = {
+				NOR = {
+					has_planet_flag = ssh_matter_cloud_shrunk_1x
+					has_planet_flag = ssh_matter_cloud_shrunk_2x
+					has_planet_flag = ssh_matter_cloud_shrunk_3x
+					has_planet_flag = ssh_matter_cloud_shrunk_4x
+				}
+			}
+			change_planet_size = -1
+			set_planet_flag = ssh_matter_cloud_shrunk_1x
+			planet_event = {
+				id = ssh_me.14
+				days = 180 # every 180 days the star(s) shrink more by collapsing into the basement universe
+			}
+		}
+		else_if = {
+			limit = {
+				has_planet_flag = ssh_matter_cloud_shrunk_1x
+				NOT = { has_planet_flag = ssh_matter_cloud_shrunk_2x }
+			}
+			change_planet_size = -1
+			set_planet_flag = ssh_matter_cloud_shrunk_2x
+			planet_event = {
+				id = ssh_me.14
+				days = 180
+			}
+		}
+		else_if = {
+			limit = {
+				has_planet_flag = ssh_matter_cloud_shrunk_2x
+				NOT = { has_planet_flag = ssh_matter_cloud_shrunk_3x }
+			}
+			change_planet_size = -1
+			set_planet_flag = ssh_matter_cloud_shrunk_3x
+			planet_event = {
+				id = ssh_me.14
+				days = 180
+			}
+		}
+		else_if = {
+			limit = {
+				has_planet_flag = ssh_matter_cloud_shrunk_3x
+				NOT = { has_planet_flag = ssh_matter_cloud_shrunk_4x }
+			}
+			change_planet_size = -1
+			set_planet_flag = ssh_matter_cloud_shrunk_4x
+			planet_event = {
+				id = ssh_me.14
+				days = 180
+			}
+		}
+		else_if = {
+			limit = { has_planet_flag = ssh_matter_cloud_shrunk_4x }
+			change_planet_size = -1
+			# Change matter cloud into wormhole
+			# The star has fully collapsed into the wormhole (wormhole has grown so much that it has now replaced the star)
+
+			#remove_planet_flag = ssh_shrinking_planet
+			#change_pc = pc_ssh_basement_universe_wormhole
+			set_planet_entity = {
+				entity = "ssh_wormhole_planet_01_entity" # too lazy to create a custom new star class just for the wormhole
+			}
+			set_name = "Shrinking Micro-Wormhole"
+			planet_event = {
+				id = ssh_me.15
+				days = 180
+			}
+			# Spawn harvesting mega
+			solar_system = {
+				remove_megastructure = event_target:ssh_system_disintegrator_mega
+				spawn_megastructure = {
+					type = system_disintegrator_harvester_active
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = root
+				}
+			}
+		}
+		else = {
+			set_planet_size = 0
+		}
+	}
+}
+
+# Shrink the wormhole and turn the system into empty void afterwards
+planet_event = {
+	id = ssh_me.15
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_planet_flag = ssh_shrinking_planet
+				planet_size > 2
+			}
+			change_planet_size = -2 #shrinks fast but also high output (shrinks fast bc otherwise it would take like 60 years for it to shrink completely)
+			planet_event = {
+				id = ssh_me.15
+				days = 180 # every 180 days the wormhole shrinks more due to ejecting matter
+			}
+		}
+		else_if = {
+			limit = {
+				has_planet_flag = ssh_shrinking_planet
+				planet_size <= 2
+			}
+			save_event_target_as = ssh_shrunk_wormhole
+			remove_planet_flag = ssh_shrinking_planet
+			clear_deposits = yes
+			set_planet_size = 0
+			solar_system = {
+				# Remove the mega
+				random_system_megastructure = {
+					limit = {
+						is_megastructure_type = system_disintegrator_harvester_active
+						planet = { is_same_value = event_target:ssh_shrunk_wormhole }
+					}
+					remove_megastructure = this
+				}
+				#if = {
+				#	limit = {
+				#		any_system_planet = {
+				#			has_planet_flag = ssh_shrinking_planet
+				#			planet_size > 1
+				#		}
+				#	}
+				#	#Do nothing
+				#}
+				if = {
+					limit = {
+						NOT = {
+							any_system_planet = {
+								has_planet_flag = ssh_shrinking_planet
+								planet_size > 1
+							}
+						}
+					}
+					# No star left
+					save_event_target_as = ssh_disintegrated_system
+					set_star_class = sc_ssh_space
+					#random_system_megastructure = {
+					#	limit = { is_megastructure_type = system_disintegrator_harvester_active }
+					#	remove_megastructure = this
+					#}
+					# Remove Hyperlanes
+					#set_name = BLANK_STRING
+					every_neighbor_system = {
+						remove_hyperlane = {
+							from = THIS
+							to = event_target:ssh_disintegrated_system
+						}
+					}
+					if = {
+						limit = { exists = owner }
+						owner = {
+							country_event = {
+								id = ssh_on.39
+							}
+						}
+					}
+					# Dismantle Starbase and pretty much any other orbital station, enclaves, extradimensional, etc
+					every_orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+# Basement Gateway Cooldown
+country_event = {
+	id = ssh_me.16
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { any_owned_megastructure = { is_megastructure_type = basement_gateway_6 } }
+			random_system_within_border = {
+				limit = { has_megastructure = basement_gateway_6 }
+				random_system_megastructure = {
+					limit = { is_megastructure_type = basement_gateway_6 }
+					remove_megastructure = this
+				}
+				spawn_megastructure = {
+					type = basement_gateway_7
+					owner = from
+					planet = star
+				}
+				set_star_class = sc_ssh_quark_star
+				star = {
+					change_pc = pc_quark_star
+					if = {
+						limit = { planet_size > 5 }
+						change_planet_size = -5
+					}
+				}
+			}
+			country_event = { id = ssh_cn.138 }
+		}
+	}
+}

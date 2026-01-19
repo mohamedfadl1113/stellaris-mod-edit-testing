@@ -1,0 +1,1451 @@
+namespace = ssh_brain
+
+country_event = {
+	id = ssh_brain.1
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_megastructure = {
+			is_megastructure_type = mega_brain_5
+		}
+	}
+	
+	immediate = {
+		random_list = {
+			90 = {
+				# Nothing happens! (Chance of something happening next time gets increased though but I'm stupid with numbers and maths)
+				if = {
+					limit = {
+						NOR = {
+							has_country_flag = ssh_biobrain_years_passed_1
+							has_country_flag = ssh_biobrain_years_passed_2
+							has_country_flag = ssh_biobrain_years_passed_3
+							has_country_flag = ssh_biobrain_years_passed_4
+							has_country_flag = ssh_biobrain_years_passed_5
+							has_country_flag = ssh_biobrain_years_passed_6
+							has_country_flag = ssh_biobrain_years_passed_7
+							has_country_flag = ssh_biobrain_years_passed_8
+							has_country_flag = ssh_biobrain_years_passed_9
+							has_country_flag = ssh_biobrain_years_passed_10
+						}
+					}
+					set_country_flag = ssh_biobrain_years_passed_1
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_biobrain_years_passed_1 }
+					remove_country_flag = ssh_biobrain_years_passed_1
+					set_country_flag = ssh_biobrain_years_passed_2
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_biobrain_years_passed_2 }
+					remove_country_flag = ssh_biobrain_years_passed_2
+					set_country_flag = ssh_biobrain_years_passed_3
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_biobrain_years_passed_3 }
+					remove_country_flag = ssh_biobrain_years_passed_3
+					set_country_flag = ssh_biobrain_years_passed_4
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_biobrain_years_passed_4 }
+					remove_country_flag = ssh_biobrain_years_passed_4
+					set_country_flag = ssh_biobrain_years_passed_5
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_biobrain_years_passed_5 }
+					remove_country_flag = ssh_biobrain_years_passed_5
+					set_country_flag = ssh_biobrain_years_passed_6
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_biobrain_years_passed_6 }
+					remove_country_flag = ssh_biobrain_years_passed_6
+					set_country_flag = ssh_biobrain_years_passed_7
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_biobrain_years_passed_7 }
+					remove_country_flag = ssh_biobrain_years_passed_7
+					set_country_flag = ssh_biobrain_years_passed_8
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_biobrain_years_passed_8 }
+					remove_country_flag = ssh_biobrain_years_passed_8
+					set_country_flag = ssh_biobrain_years_passed_9
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_biobrain_years_passed_9 }
+					remove_country_flag = ssh_biobrain_years_passed_9
+					set_country_flag = ssh_biobrain_years_passed_10
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					NOR = {
+						has_country_flag = ssh_biobrain_years_passed_1
+						has_country_flag = ssh_biobrain_years_passed_2
+						has_country_flag = ssh_biobrain_years_passed_3
+						has_country_flag = ssh_biobrain_years_passed_4
+						has_country_flag = ssh_biobrain_years_passed_5
+						has_country_flag = ssh_biobrain_years_passed_6
+						has_country_flag = ssh_biobrain_years_passed_7
+						has_country_flag = ssh_biobrain_years_passed_8
+						has_country_flag = ssh_biobrain_years_passed_9
+						has_country_flag = ssh_biobrain_years_passed_10
+					}
+				}
+				modifier = {
+					# Low chances of growth for 5 years because balancing
+					factor = 1
+					OR = {
+						has_country_flag = ssh_biobrain_years_passed_1
+						has_country_flag = ssh_biobrain_years_passed_2
+						has_country_flag = ssh_biobrain_years_passed_3
+						has_country_flag = ssh_biobrain_years_passed_4
+						has_country_flag = ssh_biobrain_years_passed_5	
+					}
+				}
+				modifier = {
+					factor = 2
+					has_country_flag = ssh_biobrain_years_passed_6
+					#OR = {
+					#	is_ai = yes # AI gets a boost
+					#	has_country_flag = ssh_biobrain_years_passed_6
+					#}
+				}
+				modifier = {
+					factor = 3
+					has_country_flag = ssh_biobrain_years_passed_7
+				}
+				modifier = {
+					factor = 4
+					has_country_flag = ssh_biobrain_years_passed_8
+				}
+				modifier = {
+					factor = 5
+					has_country_flag = ssh_biobrain_years_passed_9
+				}
+				modifier = {
+					factor = 10 #after 10 years it will most certainly grow at last
+					has_country_flag = ssh_biobrain_years_passed_10
+				}
+				modifier = { # Behemoth Fury Brain Route has chances to grow twice as fast
+					factor = 2
+					has_country_flag = behemoth_crisis_megabrain_needs_to_grow
+				}
+				if = {
+					limit = {
+						any_owned_megastructure = {
+							is_megastructure_type = mega_brain_5
+						}
+					}
+					random_owned_megastructure = {
+						limit = {
+							is_megastructure_type = mega_brain_5
+						}
+						save_event_target_as = ssh_megabrain
+					}
+					set_timed_country_flag = {
+						flag = ssh_recent_brain_growth
+						days = 360
+					}
+					country_event = { id = ssh_brain.2 }
+				}
+				remove_country_flag = ssh_biobrain_years_passed_1
+				remove_country_flag = ssh_biobrain_years_passed_2
+				remove_country_flag = ssh_biobrain_years_passed_3
+				remove_country_flag = ssh_biobrain_years_passed_4
+				remove_country_flag = ssh_biobrain_years_passed_5
+				remove_country_flag = ssh_biobrain_years_passed_6
+				remove_country_flag = ssh_biobrain_years_passed_7
+				remove_country_flag = ssh_biobrain_years_passed_8
+				remove_country_flag = ssh_biobrain_years_passed_9
+				remove_country_flag = ssh_biobrain_years_passed_10
+			}
+		}
+	}
+}
+
+# Smol Brain grown - diplomatic events
+country_event = {
+	id = ssh_brain.2
+	title = "ssh_brain.2.name"
+	desc = "ssh_brain.2.desc"
+	picture = GFX_evt_ssh_megabrain_stage_2
+	show_sound = "event_red_alert"  #"incoming_swarm_message_state_1" #### BREATHING SOUND RAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+	location = event_target:ssh_megabrain
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_megastructure = {
+			limit = {
+				is_megastructure_type = mega_brain_5
+			}
+			save_event_target_as = ssh_megabrain
+			upgrade_megastructure_to = mega_brain_6
+			finish_upgrade = yes
+		}
+	}
+	
+	option = {
+		name = "ssh_brain.2.a"
+		hidden_effect = {
+			country_event = { id = "ssh_brain.3" }
+		}
+		default_hide_option = yes
+	}
+}
+
+# Introduction
+country_event = {
+	id = ssh_brain.3
+	title = BIO_BRAIN
+	desc = "ssh_brain.3.desc"
+	show_sound = "event_mystic_reveal_light"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		#portrait = event_target:ssh_brain_leader
+		room = brain_room
+	}
+
+	option = {
+		name = ssh_brain.3.a # how
+		hidden_effect = {
+			country_event = { id = "ssh_brain.4" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_brain.4
+	title = BIO_BRAIN
+	desc = "ssh_brain.4.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = brain_room
+	}
+
+	option = {
+		name = ssh_brain.4.a
+		hidden_effect = {
+			country_event = { id = "ssh_brain.5" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_brain.5
+	title = BIO_BRAIN
+	desc = "ssh_brain.5.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = brain_room
+	}
+
+	option = {
+		name = ssh_brain.5.a
+		hidden_effect = {
+			country_event = { id = "ssh_brain.6" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_brain.6
+	title = BIO_BRAIN
+	desc = "ssh_brain.6.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = brain_room
+	}
+
+	option = {
+		name = ssh_brain.6.a
+		hidden_effect = {
+			country_event = { id = "ssh_brain.7" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_brain.7
+	title = BIO_BRAIN
+	desc = "ssh_brain.7.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = brain_room
+	}
+
+	option = {
+		name = ssh_brain.7.a
+		hidden_effect = {
+			country_event = { id = "ssh_brain.8" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_brain.8
+	title = BIO_BRAIN
+	desc = "ssh_brain.8.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = brain_room
+	}
+
+	option = {
+		name = ssh_brain.8.a
+		hidden_effect = {
+			country_event = { id = "ssh_brain.9" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_brain.9
+	title = BIO_BRAIN
+	desc = "ssh_brain.9.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		room = brain_room
+	}
+
+	option = {
+		name = ssh_brain.9.a
+		custom_tooltip = ssh_brain.9.a.tooltip
+		default_hide_option = yes
+	}
+}
+
+# Brain grown - FINAL STAGE
+country_event = {
+	id = ssh_brain.10
+	title = "ssh_brain.10.name"
+	desc = "ssh_brain.10.desc"
+	picture = GFX_evt_ssh_megabrain_stage_3
+	show_sound = "event_radio_chatter" #"incoming_swarm_message_state_1" #Begone endless breathing sound!
+	location = event_target:ssh_megabrain
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_megastructure = {
+			limit = {
+				is_megastructure_type = mega_brain_6
+			}
+			upgrade_megastructure_to = mega_brain_7
+			finish_upgrade = yes
+		}
+		set_timed_country_flag = {
+			flag = ssh_recent_brain_growth
+			days = 360
+		}
+	}
+	
+	option = {
+		name = "ssh_brain.10.a"
+		trigger = {
+			NOT = { has_ascension_perk = ap_behemoths }
+		}
+		#default_hide_option = yes
+	}
+	option = {
+		name = "ssh_brain.10.b"
+		trigger = { has_ascension_perk = ap_behemoths }
+		#default_hide_option = yes
+	}
+}
+
+###### TECHNOLOGY EVENTS ######
+# Give random technology - triggered through on_actions (yearly pulse)
+country_event = {
+	id = ssh_brain.11
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		NOR = {
+			has_country_flag = ssh_recent_brain_growth
+			has_country_flag = ssh_brain_tech_received_recently
+		}
+		any_owned_megastructure = {
+			is_megastructure_type = mega_brain_6
+		}
+	}
+	
+	immediate = {
+		random_list = {
+			80 = { #85
+				# Nothing happens!
+			}
+			20 = { #15
+				#modifier = {
+				#	factor = 0
+				#	has_country_flag = ssh_brain_tech_received_recently
+				#	# To prevent tech spam
+				#}
+				modifier = {
+					factor = 6
+					has_country_flag = ssh_biobrain_satisfied
+				}
+				modifier = {
+					factor = 0.5
+					has_country_flag = ssh_biobrain_angered
+				}
+				random_owned_megastructure = {
+					limit = { is_megastructure_type = mega_brain_6 }
+					save_event_target_as = ssh_megabrain
+				}
+				# Determine which tech to give
+				random_list = {
+					20 = {
+						modifier = {
+							factor = 0
+							OR = {
+								has_technology = ssh_tech_genetic_databanks
+								has_tech_option = ssh_tech_genetic_databanks
+							}
+						}
+						country_event = {
+							id = ssh_brain.12
+						}
+					}
+					20 = {
+						modifier = {
+							factor = 0
+							OR = {
+								has_technology = ssh_tech_conmat_computer
+								has_tech_option = ssh_tech_conmat_computer
+							}
+						}
+						country_event = {
+							id = ssh_brain.13
+						}
+					}
+					20 = {
+						modifier = {
+							factor = 0
+							OR = {
+								has_technology = ssh_tech_conmat_hull
+								has_tech_option = ssh_tech_conmat_hull
+							}
+						}
+						country_event = {
+							id = ssh_brain.14
+						}
+					}
+					20 = {
+						modifier = {
+							factor = 0
+							OR = {
+								has_technology = ssh_tech_neural_tampering
+								has_tech_option = ssh_tech_neural_tampering
+							}
+						}
+						country_event = {
+							id = ssh_brain.15
+						}
+					}
+					20 = {
+						modifier = {
+							factor = 0
+							OR = {
+								has_technology = ssh_tech_pk_zombie
+								has_tech_option = ssh_tech_pk_zombie
+								NOT = { has_necroids = yes }
+								NOT = { has_country_flag = colossus_project }
+							}
+						}
+						country_event = {
+							id = ssh_brain.16
+						}
+					}
+				}
+				# Timed flag to prevent tech spam each year
+				set_timed_country_flag = {
+					flag = ssh_brain_tech_received_recently
+					days = 360
+				}
+			}
+		}
+	}
+}
+
+# Databanks
+country_event = {
+	id = ssh_brain.12
+	title = BIO_BRAIN
+	desc = "ssh_brain.12.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = brain_room }
+
+	option = {
+		name = ssh_brain.12.a
+		owner = {
+			if = {
+				limit = { NOT = { has_technology = ssh_tech_genetic_databanks } }
+				add_research_option = ssh_tech_genetic_databanks
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Conmat Computer
+country_event = {
+	id = ssh_brain.13
+	title = BIO_BRAIN
+	desc = "ssh_brain.13.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = brain_room }
+
+	option = {
+		name = ssh_brain.13.a
+		owner = {
+			if = {
+				limit = { NOT = { has_technology = ssh_tech_conmat_computer } }
+				add_research_option = ssh_tech_conmat_computer
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Conmat Hull
+country_event = {
+	id = ssh_brain.14
+	title = BIO_BRAIN
+	desc = "ssh_brain.14.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = brain_room }
+
+	option = {
+		name = ssh_brain.14.a
+		owner = {
+			if = {
+				limit = { NOT = { has_technology = ssh_tech_conmat_hull } }
+				add_research_option = ssh_tech_conmat_hull
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Neural Tampering
+country_event = {
+	id = ssh_brain.15
+	title = BIO_BRAIN
+	desc = "ssh_brain.15.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = brain_room }
+
+	option = {
+		name = ssh_brain.15.a
+		owner = {
+			if = {
+				limit = { NOT = { has_technology = ssh_tech_neural_tampering } }
+				add_research_option = ssh_tech_neural_tampering
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Zombie Colossus
+country_event = {
+	id = ssh_brain.16
+	title = BIO_BRAIN
+	desc = "ssh_brain.16.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = brain_room }
+
+	option = {
+		name = ssh_brain.16.a
+		owner = {
+			if = {
+				limit = { NOT = { has_technology = ssh_tech_pk_zombie } }
+				add_research_option = ssh_tech_pk_zombie
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+
+###### RANDOM DEMAND EVENTS ######
+# Demand stuff (yearly pulse)
+country_event = {
+	id = ssh_brain.17
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_megastructure = {
+			OR = {
+				is_megastructure_type = mega_brain_6
+				is_megastructure_type = mega_brain_7
+			}
+		}
+		NOR = {
+			has_country_flag = ssh_recent_brain_growth
+			has_country_flag = ssh_bio_brain_final
+		}
+	}
+	
+	immediate = {
+		random_list = {
+			75 = {
+				# Nothing happens!
+			}
+			25 = {
+				modifier = {
+					factor = 0
+					has_country_flag = ssh_recent_brain_demand
+					# To prevent tech spam
+				}
+				random_owned_megastructure = {
+					limit = {
+						OR = {
+							is_megastructure_type = mega_brain_5
+							is_megastructure_type = mega_brain_6	
+						}
+					}
+					save_event_target_as = ssh_megabrain
+				}
+				# Determine demand
+				random_list = {
+					33 = {
+						modifier = {
+							factor = 0
+							NOT = { any_owned_pop_group = { has_trait = trait_delicious } }
+						}
+						modifier = {
+							factor = 2.0
+							any_owned_pop_group = { has_trait = trait_delicious }
+						}
+						country_event = {
+							id = ssh_brain.18 #Demand delicious pop
+						}
+					}
+					33 = {
+						# Brain demands some extra food
+						country_event = {
+							id = ssh_brain.19
+						}
+					}
+					33 = {
+						modifier = {
+							factor = 0
+							country_uses_consumer_goods = no
+						}
+						country_event = {
+							id = ssh_brain.20
+						}
+					}
+				}
+				# Timed flag to prevent tech spam each year
+				set_timed_country_flag = {
+					flag = ssh_recent_brain_demand
+					days = 720
+				}
+			}
+		}
+	}
+}
+
+# Demand delicious pop
+country_event = {
+	id = ssh_brain.18
+	title = BIO_BRAIN
+	desc = "ssh_brain.18.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = brain_room }
+
+	option = {
+		name = ssh_brain.18.a
+		custom_tooltip = ssh_brain.18.a.tooltip
+		random_owned_pop_group = {
+			limit = { has_trait = trait_delicious }
+			kill_pop_group = {
+				pop_group = this
+				amount = 100
+			}
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = ssh_biobrain_satisfied
+				years = 5
+			}
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 10
+				is_gestalt = yes
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_brain.18.b
+		custom_tooltip = ssh_brain.18.b.tooltip
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = ssh_biobrain_angered
+				years = 5
+			}
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 10
+				is_gestalt = no
+			}
+		}
+	}
+}
+
+# Demand more food
+country_event = {
+	id = ssh_brain.19
+	title = BIO_BRAIN
+	desc = "ssh_brain.19.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = brain_room }
+
+	option = {
+		name = ssh_brain.19.a
+		custom_tooltip = ssh_brain.19.a.tooltip
+		add_resource = {
+			food = -1000 #used to be 500
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = ssh_biobrain_satisfied
+				years = 5
+			}
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 10
+				is_gestalt = yes
+			}
+			modifier = {
+				factor = 10
+				is_xenophile = yes
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_brain.19.b
+		custom_tooltip = ssh_brain.18.b.tooltip
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = ssh_biobrain_angered
+				years = 5
+			}
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 5
+				is_gestalt = no
+			}
+			modifier = {
+				factor = 10
+				is_xenophobe = yes
+			}
+		}
+	}
+}
+
+# Demand cocktail
+country_event = {
+	id = ssh_brain.20
+	title = BIO_BRAIN
+	desc = "ssh_brain.20.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = brain_room }
+
+	option = {
+		name = ssh_brain.20.a
+		custom_tooltip = ssh_brain.19.a.tooltip
+		add_resource = {
+			consumer_goods = -750 #used to be 350
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = ssh_biobrain_satisfied
+				years = 5
+			}
+		}
+		ai_chance = {
+			factor = 2
+			modifier = {
+				factor = 20
+				is_xenophile = yes
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_brain.20.b
+		custom_tooltip = ssh_brain.18.b.tooltip
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = ssh_biobrain_angered
+				years = 5
+			}
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 10
+				is_xenophobe = yes
+			}
+		}
+	}
+}
+
+# Upgrade to final stage (only after you have unlocked all research options)
+country_event = {
+	id = ssh_brain.21
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		ssh_has_all_bio_brain_technologies = yes
+		any_owned_megastructure = { is_megastructure_type = mega_brain_6 }
+	}
+	
+	immediate = {
+		# Brain Stage 1 to 2 (final)
+		if = {
+			limit = { any_owned_megastructure = { is_megastructure_type = mega_brain_6 } }
+			random_owned_megastructure = {
+				limit = { is_megastructure_type = mega_brain_6 }
+				save_event_target_as = ssh_megabrain
+			}
+			country_event = { id = ssh_brain.10 }
+		}
+	}
+}
+
+###### FINAL STAGE EVENTS ######
+# Triggered through on_actions (yearly pulse)
+
+# Final Event
+country_event = {
+	id = ssh_brain.22
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		AND = {
+			NOT = { has_country_flag = ssh_bio_brain_final }
+			any_owned_megastructure = {
+				is_megastructure_type = mega_brain_7
+			}
+			ssh_has_all_bio_brain_technologies = yes
+			# Yeah, for now only the last decision matters. Might chance it in the future though, but it works fine for now
+			OR = {
+				has_country_flag = ssh_biobrain_satisfied
+				has_country_flag = ssh_biobrain_angered
+			}
+		}
+	}
+	
+	immediate = {
+		set_country_flag = ssh_bio_brain_final
+		if = {
+			limit = { has_country_flag = behemoth_crisis_megabrain_needs_to_grow }
+			remove_country_flag = behemoth_crisis_megabrain_needs_to_grow
+		}
+		if = {
+			limit = {
+				any_owned_megastructure = {
+					is_megastructure_type = mega_brain_7
+				}
+			}
+			random_owned_megastructure = {
+				limit = {
+					is_megastructure_type = mega_brain_7
+				}
+				save_event_target_as = ssh_megabrain
+			}
+			if = {
+				limit = {
+					has_country_flag = ssh_biobrain_satisfied
+					is_gestalt = no
+				}
+				country_event = { id = ssh_brain.23 }
+			}
+			if = {
+				limit = {
+					has_country_flag = ssh_biobrain_satisfied
+					is_gestalt = yes
+				}
+				country_event = { id = ssh_brain.25 }
+			}
+			if = {
+				limit = {
+					has_country_flag = ssh_biobrain_angered
+				}
+				country_event = { id = ssh_brain.27 }
+			}
+		}
+	}
+}
+
+
+# Merge w/ non-hive species
+country_event = {
+	id = ssh_brain.23
+	title = BIO_BRAIN
+	desc = "ssh_brain.23.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = final_brain_room }
+
+	option = {
+		name = ssh_brain.23.a
+		custom_tooltip = ssh_brain.23.a.tooltip
+		tooltip = {
+			modify_species = {
+				species = this
+				add_trait = trait_ssh_brain_symbiosis
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = ssh_brain.24
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_brain.23.b
+		custom_tooltip = ssh_brain.23.b.tooltip
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+# Non-Hive Symbiosis
+country_event = {
+	id = ssh_brain.24
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = ssh_bio_brain_symbiote
+		every_owned_pop_group = {
+			limit = {
+				is_same_species = root
+				species = {
+					NOT = {
+						has_trait = trait_ssh_brain_symbiosis
+					}
+				}
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_ssh_brain_symbiosis
+			}
+			species = { save_event_target_as = ssh_brain_symbiosis_species }
+			# Ensure the event target exists, just to be sure
+			if = {
+				limit = {
+					exists = event_target:ssh_brain_symbiosis_species
+				}
+				owner = {
+					change_dominant_species = {
+						species = event_target:ssh_brain_symbiosis_species
+						change_all = yes
+					}
+				}
+				#change_dominant_species = {
+				#	species = event_target:ssh_brain_symbiosis_species
+				#	change_all = yes
+				#}
+			}
+		}
+		every_owned_leader = {
+			add_trait = { trait = leader_trait_ssh_brain_symbiosis }
+		}
+		every_pool_leader = {
+			add_trait = { trait = leader_trait_ssh_brain_symbiosis }
+		}
+		# If Behemoth Fury Brain Path
+		if = {
+			limit = { has_country_flag = behemoth_crisis_megabrain_path }
+			country_event = {
+				id = ssh_crisis.3010
+				days = 5
+			}
+		}
+		# Notify all other countries (code below is from taking the mind over matter ap
+		every_country = {
+			limit = {
+				is_ai = no
+				has_communications = root
+				NOT = { is_same_value = root }
+			}
+			country_event = { id = ssh_on.27 }
+		}
+	}
+}
+
+# Merge w/ hive species
+country_event = {
+	id = ssh_brain.25
+	title = BIO_BRAIN
+	desc = "ssh_brain.25.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = final_brain_room }
+
+	option = {
+		name = ssh_brain.25.a
+		custom_tooltip = ssh_brain.25.a.tooltip
+		###### DEBUG ###### event pops up immediately after start
+		hidden_effect = {
+			country_event = {
+				id = ssh_brain.26
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_brain.25.b
+		custom_tooltip = ssh_brain.25.b.tooltip
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+###### DEBUG ###### event pops up immediately after start
+# Hive Symbiosis
+country_event = {
+	id = ssh_brain.26
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = ssh_bio_brain_symbiote
+		# Alright, so I am not going to create a new species and change all hive pops into that one, because that way I would have to manually check for stuff like necrophage etc and add these traits (very mod inconpatible)
+		# Also, that would remove every special trait from other mods, so no.
+		every_owned_pop_group = {
+			limit = {
+				is_same_species = root
+				species = {
+					NOT = {
+						has_trait = trait_ssh_brain_symbiosis
+					}
+				}
+			}
+			modify_species = {
+				species = this
+				add_trait = "trait_ssh_brain_symbiosis_hive"
+				portrait = "brain1"
+				ideal_planet_class = root.species
+				effect = {
+					save_event_target_as = ssh_brain_symbiosis_species
+				}
+			}
+		}
+		change_dominant_species = { species = event_target:ssh_brain_symbiosis_species }
+		
+		every_controlled_ship = {
+			limit = {
+				is_ship_class = shipclass_colonizer
+				is_same_species = root
+			}
+			leader = {
+				modify_species = {
+					species = this
+					add_trait = "trait_ssh_brain_symbiosis_hive"
+					portrait = "brain1"
+					ideal_planet_class = root.species
+				}
+			}
+			#modify_species = {
+			#	species = this
+			#	add_trait = "trait_ssh_brain_symbiosis_hive"
+			#	portrait = "brain1"
+			#	ideal_planet_class = root.species
+			#}
+		}
+
+		every_owned_army = {
+			limit = {
+				exists = species
+				exists = planet
+				is_same_species = root
+				army_type = assault_army
+			}
+			modify_army = {
+				name = random
+				type = "assault_army"
+				species = event_target:ssh_brain_symbiosis_species
+			}
+		}
+
+		every_owned_army = {
+			limit = {
+				exists = species
+				exists = planet
+				is_same_species = root
+				army_type = defense_army
+			}
+			modify_army = {
+				name = random
+				type = "defense_army"
+				species = event_target:ssh_brain_symbiosis_species
+			}
+		}
+
+		every_owned_leader = {
+			limit = {
+				is_same_species = root
+				NOR = {
+					has_leader_flag = renowned_leader
+					has_leader_flag = legendary_leader
+				}
+			}
+			add_trait = { trait = leader_trait_ssh_brain_symbiosis_hive }
+			change_leader_portrait = "brain1" #event_target:ssh_brain_symbiosis_species #species
+		}
+		every_pool_leader = {
+			limit = {
+				is_same_species = root
+			}
+			add_trait = { trait = leader_trait_ssh_brain_symbiosis_hive }
+			change_leader_portrait = "brain1" #event_target:ssh_brain_symbiosis_species #species
+		}
+		change_dominant_species = { species = event_target:ssh_brain_symbiosis_species }
+
+		create_message = {
+			type = MESSAGE_ALL_GAINED_TRAIT
+			localization = MESSAGE_ALL_GAINED_TRAIT_DESC
+			days = @toast_message_days
+			variable = {
+				type = key
+				value = leader_trait_ssh_brain_symbiosis_hive
+				localization = TRAIT
+			}
+			variable = {
+				key = TRAIT_KEY
+				value = leader_trait_ssh_brain_symbiosis_hive
+			}
+			variable = {
+				key = "border"
+				value = "GFX_invisible" #TODO Common/ no rarity frame
+			}
+		}
+
+		every_envoy = {
+			limit = {
+				is_same_species = root
+			}
+			modify_species = {
+				species = this
+				add_trait = "trait_ssh_brain_symbiosis_hive"
+				portrait = "brain1"
+				ideal_planet_class = root.species
+			}
+			change_leader_portrait = "brain1" #event_target:ssh_brain_symbiosis_species #species
+		}
+
+		# If Behemoth Fury Brain Path
+		if = {
+			limit = { has_country_flag = behemoth_crisis_megabrain_path }
+			country_event = {
+				id = ssh_crisis.3010
+				days = 5
+			}
+		}
+
+		# Notify all other countries (code below is from taking the mind over matter ap
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				has_communications = root
+				NOT = { is_same_value = root }
+			}
+			country_event = { id = ssh_on.28 }
+		}
+	}
+}
+
+# Aggressive brain
+country_event = {
+	id = ssh_brain.27
+	title = BIO_BRAIN
+	desc = "ssh_brain.27.desc"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = { room = final_brain_room }
+
+	option = {
+		name = ssh_brain.27.a
+		custom_tooltip = ssh_brain.27.a.tooltip
+		###### DEBUG ###### event pops up immediately after start
+		# why the fuck is this event fired every day what the fuck 4.0
+		hidden_effect = {
+			country_event = {
+				id = ssh_brain.28
+			}
+			#play_sound = "event_air_raid_siren"
+		}
+		default_hide_option = yes
+	}
+}
+
+# Bad Outcome: Brain shuts itself off/turns aggressive
+country_event = {
+	id = ssh_brain.28
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = ssh_has_mega_brain #so you can make a new one if you want to, duh
+		#save_event_target_as = ssh_bio_brain_enemy_country
+		create_country = {
+			name = "BIO_BRAIN"
+			type = bio_brain
+			flag = {
+				icon = {
+					category = "special"
+					file = "the_shroud.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors = {
+					"red"
+					"pink"
+					"null"
+					"null"
+				}
+			}
+		}
+		last_created_country = {
+			give_technology = {
+				tech = ssh_tech_advanced_dna_resequencing #so it can use ultra virus stance
+			}
+			save_global_event_target_as = bio_brain_country
+		}
+		create_fleet = {
+			name = "BIO_BRAIN_HOSTILE"
+			settings = {
+				spawn_debris = no
+				is_boss = yes
+			}
+			effect = {
+				set_owner = event_target:bio_brain_country
+				set_fleet_flag = hostile_bio_brain
+				create_ship = {
+					name = "BIO_BRAIN_HOSTILE"
+					design = "NAME_Bio_Brain"
+				}
+				set_location = {
+					target = event_target:ssh_megabrain
+					distance = 100
+					angle = random
+				}
+				set_fleet_stance = aggressive
+				set_aggro_range_measure_from = return_point
+				set_aggro_range = 2000
+			}
+		}
+		event_target:ssh_megabrain = {
+			remove_megastructure = this
+		}
+	}
+}
+### TODO: Search for nearby colonizable planet & settle down (future update)
+
+
+# Captured BIO Brain turns hostile against invader - Triggered via on_starbase_destroyed
+# This = starbase being destroyed (not ship!)
+# From = fleet that destroyed the starbase
+starbase_event = {
+	id = ssh_brain.50
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = from
+		solar_system = {
+			any_system_megastructure = {
+				exists = owner
+				OR = {
+					is_megastructure_type = mega_brain_5
+					is_megastructure_type = mega_brain_6
+					is_megastructure_type = mega_brain_7
+				}
+				owner = {
+					is_same_value = root.owner # Starbase Owner
+				}
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			save_event_target_as = bio_brain_owner
+			country_event = {
+				id = ssh_brain.51
+				days = 1
+			}
+		}
+		solar_system = {
+			random_system_megastructure = {
+				limit = {
+					OR = {
+						is_megastructure_type = mega_brain_5
+						is_megastructure_type = mega_brain_6
+						is_megastructure_type = mega_brain_7
+					}
+				}
+				save_event_target_as = bio_brain
+				#remove_megastructure = this
+			}
+			create_fleet = {
+				name = "Angered Brain"
+				settings = {
+					spawn_debris = no
+					is_boss = yes
+				}
+				effect = {
+					set_owner = event_target:bio_brain_owner
+					set_fleet_flag = controlled_angry_bio_brain
+					create_ship = {
+						name = "Organic Computer"
+						design = "NAME_Bio_Brain"
+					}
+					set_location = {
+						target = event_target:bio_brain
+						distance = 100
+						angle = random
+					}
+				}
+			}
+			event_target:bio_brain = {
+				remove_megastructure = this
+			}
+		}
+		# Attacker Info
+		from.owner = {
+			country_event = {
+				id = ssh_brain.52
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_brain.51
+	title = BIO_BRAIN
+	desc = "ssh_brain.51.desc"
+	show_sound = "event_mind_over_matter"
+	location = from.solar_system
+	trackable = yes
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		#portrait = event_target:ssh_brain_leader
+		room = brain_room
+	}
+
+	option = {
+		name = ssh_brain.51.a # BATTLESTATIONS
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_brain.52
+	title = "ssh_brain.52.name"
+	desc = "ssh_brain.52.desc"
+	picture = GFX_evt_ssh_megabrain_stage_3
+	show_sound = "event_red_alert"
+	location = from.solar_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_brain.52.a
+		default_hide_option = yes
+	}
+}

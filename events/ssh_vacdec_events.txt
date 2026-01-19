@@ -1,0 +1,6539 @@
+namespace = ssh_vacdec
+
+# Spawn Trigger
+event = {
+	id = ssh_vacdec.1
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_crises_allowed = yes
+		NOR = {
+			has_global_flag = ssh_vacdec_crisis_deactivated # Dont fire if deactivated at game start
+			has_global_flag = ssh_vacdec_crisis_triggered
+			has_global_flag = ssh_vacdec_crisis_happened
+			has_global_flag = ssh_vacdec_crisis_ongoing
+		}
+		# Galactic Community must exist (Ark Project)
+		any_country = { is_galactic_community_member = yes }
+		# Has defeated at least one endgame crisis
+		OR = {
+			has_global_flag = prethoryn_invasion_defeated
+			has_global_flag = extradimensional_invasion_defeated
+			has_global_flag = ai_invasion_defeated
+			has_global_flag = synth_queen_defeated
+		}
+		# Either 50 years after endgame OR vacdec fields (25 years endgame)
+		OR = {
+			AND = {
+				has_global_flag = ssh_vacdec_fields
+				end_game_years_passed >= 25
+			}
+			end_game_years_passed >= 50
+		}
+	}
+
+	immediate = {
+		random_country = {
+			limit = { is_country_type = global_event } # global_event country is always around
+
+			random_list = {
+				# Fire Crisis
+				10 = {
+					# Modifiers set at game start
+					modifier = {
+						factor = 1.5
+						has_global_flag = ssh_vacdec_crisis_50_spawn_chance
+					}
+					modifier = {
+						factor = 1.75
+						has_global_flag = ssh_vacdec_crisis_75_spawn_chance
+					}
+					modifier = {
+						factor = 2.0
+						has_global_flag = ssh_vacdec_crisis_double_spawn_chance
+					}
+					modifier = {
+						factor = 4.0
+						has_global_flag = ssh_vacdec_crisis_quadruple_spawn_chance
+					}
+					modifier = {
+						factor = 100
+						end_game_years_passed >= 80
+						has_global_flag = ssh_vacdec_crisis_guaranteed
+					}
+
+					# If any other crisis currently active, never fire
+					modifier = {
+						factor = 0
+						OR = {
+							has_global_flag = war_in_heaven_ongoing
+							#has_global_flag = ai_invasion_ongoing
+							has_global_flag = ongoing_prethoryn_invasion
+							has_global_flag = extradimensional_second_portal
+							has_global_flag = extradimensional_third_portal
+							has_global_flag = synth_queen_ongoing #synth_queen_war_started
+							# Crisis stages
+							has_global_flag = crisis_stage_1
+							has_global_flag = crisis_stage_2
+							has_global_flag = crisis_stage_3
+							has_global_flag = crisis_stage_4
+							# Gigas Crises
+							#has_global_flag = aeternum_awakening_started
+							has_global_flag = aeternum_awakening_ongoing
+							has_global_flag = blokkats_managed_to_spawn
+							has_global_flag = blokkat_crisis_ongoing
+						}
+					}
+
+					# Other Modifiers
+					modifier = {
+						factor = 3.0
+						has_global_flag = ssh_vacdec_fields
+					}
+					modifier = {
+						factor = 2.0
+						OR = {
+							# Gigas' Crises
+							has_global_flag = katzenartig_imperium_defeated
+							has_global_flag = blokkat_crisis_defeated
+							# Couldnt find global flags for defeated aeternum/compound
+						}
+					}
+					modifier = {
+						factor = 2
+						end_game_years_passed >= 70
+					}
+					modifier = {
+						factor = 4
+						end_game_years_passed >= 85
+					}
+					modifier = {
+						factor = 5
+						end_game_years_passed >= 100
+					}
+					# Start the crisis
+					set_global_flag = galactic_crisis_happened
+					set_global_flag = ssh_vacdec_crisis_triggered
+					set_timed_global_flag = {
+						flag = galactic_crisis_recently_fired
+						years = 30 # Instead of the normal 12
+					}
+					country_event = { id = ssh_vacdec.100 days = 200 random = 800 }
+				}
+
+				# Nothing Happens
+				90 = {
+					modifier = {
+						factor = 1.5
+						has_global_flag = galactic_crisis_recently_fired
+					}
+				}
+			}
+		}
+	}
+}
+
+# Global Event
+country_event = {
+	id = ssh_vacdec.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_flag = ssh_vacdec_crisis_happened } }
+			set_global_flag = ssh_vacdec_crisis_happened
+		}
+		ssh_set_vacdec_speed = yes
+		ssh_calculate_ark_research_cost = yes
+		# Notify Psionics Early
+		every_playable_country = {
+			limit = {
+				owner_main_species = {
+					OR = {
+						has_trait = trait_psionic
+						has_trait = trait_ssh_brain_symbiosis
+						#has_trait = trait_ssh_brain_symbiosis_hive
+					}
+				}
+			}
+			country_event = {
+				id = ssh_vacdec.2
+				days = 31
+				random = 61
+			}
+		}
+		# Notify all countries
+		every_playable_country = {
+			country_event = {
+				id = ssh_vacdec.3
+				days = 800 #200
+				#random = 800
+			}
+		}
+		random_country = {
+			limit = { is_country_type = global_event }
+			country_event = {
+				id = ssh_vacdec.101 # Choose spawning system
+			}
+		}
+	}
+}
+
+# Psionics Notification
+country_event = {
+	id = ssh_vacdec.2
+	title = "ssh_vacdec.2.name"
+	desc = "ssh_vacdec.2.desc"
+	picture = GFX_evt_zro_2
+	show_sound = event_bad_omen
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_vacdec.2.a"
+		trigger = {
+			owner_main_species = {
+				OR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+	}
+	option = {
+		name = "ssh_vacdec.2.b"
+		trigger = {
+			owner_main_species = {
+				NOR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+	}
+}
+
+# Subspace Miscalibrations
+country_event = {
+	id = ssh_vacdec.3
+	title = "ssh_vacdec.3.name"
+	desc = {
+		text = "ssh_vacdec.3_01.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_vacdec.3_02.desc"
+		trigger = { is_gestalt = yes }
+	}
+	picture = GFX_evt_physics_research
+	show_sound = event_sensor_ping
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = {
+			id = ssh_vacdec.4
+			days = 721
+		}
+	}
+	
+	option = {
+		name = "ssh_vacdec.3.a"
+	}
+}
+
+# Unusual energy readings
+country_event = {
+	id = ssh_vacdec.4
+	title = "ssh_vacdec.4.name"
+	desc = "ssh_vacdec.4.desc"
+	picture = GFX_evt_physics_research
+	show_sound = event_yellow_alert
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = {
+			id = ssh_vacdec.5
+			days = 381
+		}
+	}
+	
+	option = {
+		name = "ssh_vacdec.4.a"
+	}
+}
+
+# Something's approaching
+country_event = {
+	id = ssh_vacdec.5
+	title = "ssh_vacdec.5.name"
+	desc = {
+		text = "ssh_vacdec.5_01.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_vacdec.5_02.desc"
+		trigger = { is_gestalt = yes }
+	}
+	picture = GFX_evt_ssh_nullvoid
+	show_sound = event_yellow_alert #event_red_alert
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = {
+			id = ssh_vacdec.6
+			days = 301
+		}
+	}
+	
+	option = {
+		name = "ssh_vacdec.5.a"
+	}
+}
+
+# Almost there
+country_event = {
+	id = ssh_vacdec.6
+	title = "ssh_vacdec.6.name"
+	desc = {
+		text = "ssh_vacdec.6_01.desc"
+		trigger = { is_galactic_community_member = yes }
+	}
+	desc = {
+		text = "ssh_vacdec.6_02.desc"
+		trigger = {
+			is_galactic_community_member = no
+			NOR = {
+				has_civic = civic_machine_terminator
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.6_03.desc"
+		trigger = {
+			OR = {
+				has_civic = civic_machine_terminator
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+	picture = GFX_evt_worrying_signal
+	show_sound = event_red_alert
+	location = event_target:vacdec_spawn_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = { is_country_type = global_event }
+			country_event = {
+				id = ssh_vacdec.102
+				days = 90
+			}
+		}
+	}
+	
+	option = {
+		name = "ssh_vacdec.6.a"
+	}
+}
+
+
+# Choose spawning system - UPDATE: Thanks Elowiny for the system location code
+country_event = {
+	id = ssh_vacdec.101
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_playable_country = {
+			limit = { is_ai = no }
+			capital_scope = {
+				solar_system = {
+					set_star_flag = ssh_vacdec_player_system
+					save_global_event_target_as = ssh_vacdec_player_system
+				}
+			}
+			# find the furthest rim system to be our spawn location
+			ordered_rim_system = {
+				position = 0
+				order_by = value:vacdec_spawn_distance
+				save_global_event_target_as = vacdec_spawn_system
+				star = { save_global_event_target_as = vacdec_spawn_system }
+			}
+			#every_system = { # Check for systems w/ high research output - you will need them
+			#	limit = {
+			#		any_system_megastructure = { # Will make a custom trigger for that once gigas is updated
+			#			OR = {
+			#				# Science Nexus
+			#				is_megastructure_type = think_tank_restored
+			#				is_megastructure_type = think_tank_3
+			#				is_megastructure_type = think_tank_4
+			#				# Bio Brain
+			#				is_megastructure_type = mega_brain_5
+			#				is_megastructure_type = mega_brain_6
+			#				is_megastructure_type = mega_brain_7
+			#				# Crisis Sphere (not research structure but important)
+			#				is_megastructure_type = crisis_sphere_0
+			#				is_megastructure_type = crisis_sphere_1
+			#				is_megastructure_type = crisis_sphere_2
+			#				is_megastructure_type = crisis_sphere_3
+			#				is_megastructure_type = crisis_sphere_4
+			#			}
+			#		}
+			#	}
+			#	set_star_flag = ssh_vacdec_research_system
+			#	#every_neighbor_system = {
+			#	#	set_star_flag = ssh_vacdec_research_system
+			#	#}
+			#}
+		}
+		#if = {
+		#	limit = {
+		#		any_rim_system = { # Check if there are any non-player owned rim systems
+		#			OR = {
+		#				owner = { is_ai = yes }
+		#				NOT = { exists = owner }
+		#			}
+		#		}
+		#	}
+		#	random_rim_system = {
+		#		limit = {
+		#			OR = {
+		#				owner = { is_ai = yes }
+		#				NOT = { exists = owner }
+		#			}
+		#		}
+		#		set_star_flag = vacdec_spawn_system
+		#		save_global_event_target_as = vacdec_spawn_system
+		#	}
+		#}
+		#else = {
+		#	random_rim_system = {
+		#		limit = {
+		#			NOR = {
+		#				has_star_flag = ssh_vacdec_player_system
+		#				has_star_flag = ssh_vacdec_research_system
+		#			}
+		#		}
+		#		set_star_flag = vacdec_spawn_system
+		#		save_global_event_target_as = vacdec_spawn_system
+		#	}
+		#}
+	}
+}
+
+# Reality Collapse (Arrival) (HIDDEN)
+country_event = {
+	id = ssh_vacdec.102
+	hide_window = yes
+	is_triggered_only = yes
+
+	fire_only_once = yes # Since it's triggered by every_playable_country
+
+	immediate = {
+		#set_crisis_stage_1 = yes # Commented out in case another crisis is ongoing
+		set_global_flag = ssh_vacdec_crisis_ongoing
+		event_target:vacdec_spawn_system = {
+			ssh_system_decay_effect = yes
+			every_neighbor_system_euclidean = {
+				limit = {
+					NOR = {
+						has_star_flag = ssh_vacdec_marked_system
+						has_star_flag = ssh_decayed_system
+					}
+				}
+				set_star_flag = ssh_vacdec_marked_system
+			}
+		}
+		random_country = {
+			limit = { is_country_type = global_event }
+			country_event = {
+				id = ssh_vacdec.110 # Start expansion effect
+			}
+		}
+		every_playable_country = {
+			country_event = {
+				id = ssh_vacdec.103
+				days = 1
+			}
+		}
+	}
+}
+
+
+# Reality Collapse (Arrival) (Notification)
+country_event = {
+	id = ssh_vacdec.103
+	title = "ssh_vacdec.103.name"
+	desc = {
+		text = "ssh_vacdec.103_01.desc"
+		trigger = { is_galactic_community_member = yes }
+	}
+	desc = {
+		text = "ssh_vacdec.103_02.desc"
+		trigger = {
+			is_galactic_community_member = no
+		}
+	}
+	picture = GFX_evt_ssh_vacuum_decay
+	show_sound = event_air_raid_siren
+	location = event_target:vacdec_spawn_system
+
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = {
+			id = ssh_vacdec.111 # Info
+			days = 360
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.103.a
+	}
+}
+
+# Vacuum Decay Effect Trigger (on_yearly_pulse)
+event = {
+	id = ssh_vacdec.109
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = { has_global_flag = ssh_vacdec_crisis_ongoing }
+
+	immediate = {
+		event_target:global_event_country = {
+			country_event = { id = ssh_vacdec.110 }
+			if = {
+				limit = { NOT = { has_global_flag = ssh_vacdec_cooldown } }
+				if = {
+					limit = { has_global_flag = ssh_vacdec_speed_tiny_modded }
+					# OG values
+					#country_event = { id = ssh_vacdec.110 days = 340 }
+					#country_event = { id = ssh_vacdec.110 days = 510 }
+					country_event = { id = ssh_vacdec.110 days = 220 }
+					country_event = { id = ssh_vacdec.110 days = 440 }
+					set_timed_global_flag = {
+						flag = ssh_vacdec_cooldown
+						days = 361
+					}
+				}
+				else_if = {
+					limit = { has_global_flag = ssh_vacdec_speed_tiny }
+					country_event = { id = ssh_vacdec.110 days = 180 } #2x per year
+					#set_timed_global_flag = {
+					#	flag = ssh_vacdec_cooldown
+					#	days = 361
+					#}
+				}
+				else_if = {
+					limit = { has_global_flag = ssh_vacdec_speed_small }
+					country_event = { id = ssh_vacdec.110 days = 120 }
+					country_event = { id = ssh_vacdec.110 days = 240 }
+				}
+				else_if = {
+					limit = { has_global_flag = ssh_vacdec_speed_medium }
+					country_event = { id = ssh_vacdec.110 days = 90 }
+					country_event = { id = ssh_vacdec.110 days = 180 }
+					country_event = { id = ssh_vacdec.110 days = 270 }
+				}
+				else_if = {
+					limit = { has_global_flag = ssh_vacdec_speed_large }
+					country_event = { id = ssh_vacdec.110 days = 60 }
+					country_event = { id = ssh_vacdec.110 days = 120 }
+					country_event = { id = ssh_vacdec.110 days = 180 }
+					country_event = { id = ssh_vacdec.110 days = 240 }
+					country_event = { id = ssh_vacdec.110 days = 300 }
+				}
+				else_if = {
+					limit = { has_global_flag = ssh_vacdec_speed_huge }
+					country_event = { id = ssh_vacdec.110 days = 45 }
+					country_event = { id = ssh_vacdec.110 days = 90 }
+					country_event = { id = ssh_vacdec.110 days = 135 }
+					country_event = { id = ssh_vacdec.110 days = 180 }
+					country_event = { id = ssh_vacdec.110 days = 225 }
+					country_event = { id = ssh_vacdec.110 days = 270 }
+					country_event = { id = ssh_vacdec.110 days = 315 }
+					country_event = { id = ssh_vacdec.110 days = 330 }
+				}
+				else = {
+					#limit = { has_global_flag = ssh_vacdec_speed_huge_modded }
+					country_event = { id = ssh_vacdec.110 days = 30 }
+					country_event = { id = ssh_vacdec.110 days = 60 }
+					country_event = { id = ssh_vacdec.110 days = 90 }
+					country_event = { id = ssh_vacdec.110 days = 120 }
+					country_event = { id = ssh_vacdec.110 days = 150 }
+					country_event = { id = ssh_vacdec.110 days = 180 }
+					country_event = { id = ssh_vacdec.110 days = 210 }
+					country_event = { id = ssh_vacdec.110 days = 240 }
+					country_event = { id = ssh_vacdec.110 days = 270 }
+					country_event = { id = ssh_vacdec.110 days = 300 }
+					country_event = { id = ssh_vacdec.110 days = 330 }
+				}
+			}
+		}
+	}
+}
+
+# Vacuum Decay Effect
+country_event = {
+	id = ssh_vacdec.110
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = { #every_system soon(TM) -> gameplay immersion test
+			limit = {
+				has_star_flag = ssh_vacdec_marked_system
+				NOT = { has_star_flag = ssh_vacdec_blocked_system }
+			}
+			ssh_system_decay_effect = yes
+			every_playable_country = {
+				limit = { has_event_chain = "reality_collapse_chain" }
+				add_event_chain_counter = {
+					event_chain = "reality_collapse_chain"
+					counter = "decayed_systems"
+					amount = 1
+				}
+			}
+			if = {
+				limit = { NOT = { any_system = { has_star_flag = ssh_vacdec_marked_system } } }
+				every_neighbor_system_euclidean = {
+					limit = {
+						NOR = {
+							has_star_flag = ssh_vacdec_marked_system
+							has_star_flag = ssh_decayed_system
+							has_star_flag = ssh_vacdec_blocked_system
+						}
+					}
+					set_star_flag = ssh_vacdec_marked_system
+				}
+			}
+			### For the 'true' bubble effect: enable this below
+			#every_neighbor_system_euclidean = {
+			#	limit = {
+			#		NOR = {
+			#			has_star_flag = ssh_vacdec_marked_system
+			#			has_star_flag = ssh_decayed_system
+			#			has_star_flag = ssh_vacdec_blocked_system
+			#		}
+			#	}
+			#	set_star_flag = ssh_vacdec_marked_system
+			#}
+		}
+	}
+}
+
+# Information after first spread
+country_event = {
+	id = ssh_vacdec.111
+	title = "ssh_vacdec.111.name"
+	desc = {
+		text = "ssh_vacdec.111_01.desc"
+		trigger = {
+			is_galactic_community_member = yes
+			any_country = {
+				OR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.111_02.desc"
+		trigger = {
+			is_galactic_community_member = yes
+			any_country = {
+				NOR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.111_03.desc"
+		trigger = {
+			is_galactic_community_member = no
+			any_country = {
+				OR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.111_04.desc"
+		trigger = {
+			is_galactic_community_member = no
+			any_country = {
+				NOR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+		}
+	}
+	picture = GFX_evt_ssh_vacuum_decay
+	show_sound = event_announcement
+	location = event_target:vacdec_spawn_system
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_flag = ssh_vacdec_observed } }
+			set_global_flag = ssh_vacdec_observed
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.111.a
+		trigger = {
+			NOR = {
+				is_galactic_custodian = yes
+				is_galactic_emperor = yes
+				has_ascension_perk = ap_defender_of_the_galaxy
+			}
+		}
+		begin_event_chain = {
+			event_chain = "reality_collapse_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = "reality_collapse_chain"
+				counter = "decayed_systems"
+				amount = 4
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.111.b
+		trigger = {
+			OR = {
+				#is_galactic_emperor = yes
+				# Using civics instead for visual purposes
+				is_galactic_custodian = yes
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+				has_ascension_perk = ap_defender_of_the_galaxy
+			}
+		}
+		begin_event_chain = {
+			event_chain = "reality_collapse_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = "reality_collapse_chain"
+				counter = "decayed_systems"
+				amount = 3
+			}
+		}
+	}
+}
+
+# Check how much of the galaxy has decayed
+event = {
+	id = ssh_vacdec.112
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = ssh_vacdec_crisis_ongoing
+		NOT = { has_global_flag = ssh_vacdec_galaxy_annihilated }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_global_flag = ssh_vacdec_half_galaxy_annihilated }
+				ssh_half_galaxy_decayed = yes
+			}
+			set_global_flag = ssh_vacdec_half_galaxy_annihilated
+			every_playable_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = ssh_vacdec.275
+					days = 5
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_global_flag = ssh_vacdec_half_galaxy_annihilated
+				NOT = { has_global_flag = ssh_vacdec_galaxy_annihilated }
+				ssh_galaxy_decayed = yes
+			}
+			set_global_flag = ssh_vacdec_galaxy_annihilated
+			event_target:global_event_country = {
+				country_event = {
+					id = ssh_vacdec.113 # Spread into lcluster
+					days = 8
+				}
+			}
+			every_playable_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = ssh_vacdec.276
+					days = 5
+				}
+			}
+		}
+		else = {
+			# Do nothing
+		}
+	}
+}
+
+# Vacuum Decay - Spreading into L Gates/EHOF Systems (triggered via on_action)
+country_event = {
+	id = ssh_vacdec.113
+	hide_window = yes
+	is_triggered_only = yes
+
+	#trigger = {
+	#	has_global_flag = ssh_vacdec_crisis_ongoing
+	#	has_global_flag = ssh_vacdec_galaxy_annihilated
+	#	NOT = { has_global_flag = ssh_vacdec_spread_into_l_cluster }
+	#}
+
+	fire_only_once = yes
+
+	immediate = {
+		set_global_flag = ssh_vacdec_spread_into_l_cluster
+		if = {
+			limit = { any_system = { has_star_flag = lcluster } }
+			random_system = {
+				limit = { has_star_flag = lcluster }
+				set_star_flag = ssh_vacdec_marked_system
+			}
+		}
+		# Chosen
+		if = {
+			limit = { any_system = { has_star_flag = chosen_system } }
+			random_system = {
+				limit = { has_star_flag = chosen_system }
+				set_star_flag = ssh_vacdec_marked_system
+			}
+		}
+		# Gigas systems
+		if = {
+			limit = { any_system = { has_star_flag = ehof_compound_system } }
+			random_system = {
+				limit = { has_star_flag = ehof_compound_system }
+				set_star_flag = ssh_vacdec_marked_system
+			}
+		}
+		if = {
+			limit = { any_system = { has_star_flag = cohesive_system } }
+			random_system = {
+				limit = { has_star_flag = cohesive_system }
+				set_star_flag = ssh_vacdec_marked_system
+			}
+		}
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				any_system_within_border = {
+					OR = {
+						has_star_flag = lcluster
+						has_star_flag = ehof_compound_system
+						has_star_flag = cohesive_system
+					}
+				}
+			}
+			country_event = {
+				id = ssh_vacdec.277
+				days = 3
+			}
+		}
+	}
+}
+
+# Fallen Empire Reactions (on_monthly_pulse) (HIDDEN)
+event = {
+	id = ssh_vacdec.115
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	trigger = {
+		has_global_flag = ssh_vacdec_observed
+		any_country = {
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					is_fallen_empire_materialist = yes
+				}
+			}
+			random_country = {
+				limit = { is_fallen_empire_materialist = yes }
+				save_event_target_as = materialist_fe
+			}
+			# Diplomatic Event
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					NAND = {
+						is_subject = yes
+						overlord = { is_same_value = event_target:materialist_fe }
+					}
+				}
+				country_event = {
+					id = ssh_vacdec.116
+					days = 61
+				}
+			}
+			# Subject
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					is_subject = yes
+					overlord = { is_same_value = event_target:materialist_fe }
+				}
+				country_event = {
+					id = ssh_vacdec.120
+					days = 61
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					is_fallen_empire_spiritualist = yes
+				}
+			}
+			random_country = {
+				limit = { is_fallen_empire_spiritualist = yes }
+				save_global_event_target_as = spiritualist_fe # Global event target bc its also used in a cosmogenesis ending
+			}
+			# Diplomatic Event
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					NAND = {
+						is_subject = yes
+						overlord = { is_same_value = event_target:spiritualist_fe }
+					}
+				}
+				country_event = {
+					id = ssh_vacdec.117
+					days = 121
+				}
+			}
+			# Subject
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					is_subject = yes
+					overlord = { is_same_value = event_target:spiritualist_fe }
+				}
+				country_event = {
+					id = ssh_vacdec.120
+					days = 121
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					is_fallen_empire_machine = yes
+					NOT = { has_ai_personality = berserk_fallen_empire_machine }
+				}
+			}
+			random_country = {
+				limit = { is_fallen_empire_machine = yes }
+				save_event_target_as = machine_fe
+			}
+			# Diplomatic Event
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					NAND = {
+						is_subject = yes
+						overlord = { is_same_value = event_target:machine_fe }
+					}
+				}
+				country_event = {
+					id = ssh_vacdec.118
+					days = 181
+				}
+			}
+			# Subject
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					is_subject = yes
+					overlord = { is_same_value = event_target:machine_fe }
+				}
+				country_event = {
+					id = ssh_vacdec.120
+					days = 181
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					is_fallen_empire_xenophile = yes
+				}
+			}
+			random_country = {
+				limit = { is_fallen_empire_xenophile = yes }
+				save_event_target_as = xenophile_fe
+			}
+			# Diplomatic Event
+			every_playable_country = {
+				#limit = {
+				#	is_ai = no
+				#	NAND = {
+				#		is_subject = yes
+				#		overlord = { is_same_value = event_target:xenophile_fe }
+				#	}
+				#}
+				# No special subject interation as the xenophile fe stays in the galaxy
+				country_event = {
+					id = ssh_vacdec.119
+					days = 241
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					is_fallen_empire_xenophobe = yes
+				}
+			}
+			random_country = {
+				limit = { is_fallen_empire_xenophobe = yes }
+				save_event_target_as = xenophobe_fe
+				# Resettle all pops
+				capital_scope = { save_event_target_as = fe_planet }
+				every_owned_planet = {
+					limit = {
+						is_colony = yes
+						is_capital = no
+					}
+					set_planet_name = "Abandoned Colony"
+					#add_blocker = { type = d_city_ruins }
+					every_owned_pop_group = {
+						resettle_pop_group = {
+							POP_GROUP = this
+							PLANET = event_target:fe_planet
+							PERCENTAGE = 1 #100%
+						}
+					}
+					change_pc = pc_shielded
+				}
+				# No diplo, instead just leave through mirror dimension
+				country_event = {
+					id = ssh_effect.8
+					days = 720
+					random = 900
+				}
+			}
+			# Subject
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					is_subject = yes
+					overlord = { is_same_value = event_target:xenophobe_fe }
+				}
+				country_event = {
+					id = ssh_vacdec.120
+					days = 151
+				}
+			}
+		}
+	}
+}
+# FE Materialist Reaction
+country_event = {
+	id = ssh_vacdec.116
+	title = "Public Transmission"
+	desc = {
+		text = "ssh_vacdec.116_01.desc"
+		trigger = { NOT = { is_at_war_with = event_target:materialist_fe } }
+	}
+	desc = {
+		text = "ssh_vacdec.116_02.desc"
+		trigger = { is_at_war_with = event_target:materialist_fe }
+	}
+	diplomatic_title = "Public Transmission"
+	diplomatic = yes
+	#location = event_target:materialist_fe
+	#trackable = yes
+
+	trigger = { any_country = { is_fallen_empire_materialist = yes } }
+
+	immediate = {
+		set_global_flag = ssh_vacdec_fe_announcement_materialist
+
+		event_target:materialist_fe = {
+			capital_scope = {
+				save_event_target_as = fe_planet
+				star = {
+					create_ambient_object = {
+						type = extradimensional_2
+						duration = 1080 # Portal closes after some years
+						entity_offset_height = -5
+						scale = 0.2
+					}
+				}
+			}
+			# Resettle all pops
+			every_owned_planet = {
+				limit = {
+					is_colony = yes
+					is_capital = no
+				}
+				set_planet_name = "Abandoned Colony"
+				add_blocker = { type = d_city_ruins }
+				every_owned_pop_group = {
+					resettle_pop_group = {
+						POP_GROUP = this
+						PLANET = event_target:fe_planet
+						PERCENTAGE = 1 #100%
+					}
+				}
+			}
+			# Leave the galaxy
+			country_event = {
+				id = ssh_effect.7
+				days = 900
+				random = 1080
+			}
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:materialist_fe
+		room = event_target:materialist_fe
+		planet_background = event_target:fe_planet
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.116.a
+		#hidden_effect = {
+		#	country_event = { id = "ssh_on.46" }
+		#}
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+				is_at_war_with = event_target:materialist_fe
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.116.b
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.116.c
+		trigger = { is_at_war_with = event_target:materialist_fe }
+	}
+}
+# FE Spiritualist Reaction
+country_event = {
+	id = ssh_vacdec.117
+	title = "Public Transmission"
+	desc = {
+		text = "ssh_vacdec.117_01.desc"
+		trigger = { NOT = { is_at_war_with = event_target:spiritualist_fe } }
+	}
+	desc = {
+		text = "ssh_vacdec.117_02.desc"
+		trigger = { is_at_war_with = event_target:spiritualist_fe }
+	}
+	diplomatic_title = "Public Transmission"
+	diplomatic = yes
+
+	trigger = { any_country = { is_fallen_empire_spiritualist = yes } }
+
+	immediate = {
+		set_global_flag = ssh_vacdec_fe_announcement_spiritualist
+
+		event_target:spiritualist_fe = {
+			give_technology = { tech = ssh_tech_shroud_supernova }
+			capital_scope = {
+				save_event_target_as = fe_planet
+				solar_system = {
+					every_system_planet = {
+						limit = {
+							NOR = {
+								is_star = yes
+								is_colony = yes
+								ssh_is_special_planet = yes
+								is_planet_class = pc_asteroid
+								is_planet_class = pc_ice_asteroid
+								is_planet_class = pc_crystal_asteroid
+							}
+						}
+						#remove_planet = yes
+						change_pc = pc_shrouded
+					}
+					star = {
+						change_planet_size = 10
+					}
+					spawn_megastructure = {
+						name = "Ascension Catapult"
+						type = fe_stellar_zro_detonator_base
+						orbit_angle = 0
+						orbit_distance = 0
+						planet = star
+						init_effect = {
+							upgrade_megastructure_to = fe_stellar_zro_detonator_charging
+						}
+					}
+				}
+			}
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:spiritualist_fe
+		room = event_target:spiritualist_fe
+		planet_background = event_target:fe_planet
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.117.a
+		trigger = {
+			NOR = {
+				owner_main_species = { has_trait = trait_psionic }
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+				is_at_war_with = event_target:spiritualist_fe
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.117.b
+		trigger = {
+			owner_main_species = { has_trait = trait_psionic }
+		}
+	}
+	option = {
+		name = ssh_vacdec.117.c
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.116.c
+		trigger = { is_at_war_with = event_target:spiritualist_fe }
+	}
+}
+# FE Machine Reaction
+country_event = {
+	id = ssh_vacdec.118
+	title = "Incoming Transmission"
+	desc = "ssh_vacdec.118.desc"
+	diplomatic_title = "Public Transmission"
+	diplomatic = yes
+
+	trigger = { any_country = { is_fallen_empire_machine = yes } }
+
+	immediate = {
+		set_global_flag = ssh_vacdec_fe_announcement_machine
+		event_target:machine_fe = {
+			capital_scope = {
+				solar_system = {
+					spawn_megastructure = {
+						name = "The Caretaker"
+						type = caretakers_ark_1
+						orbit_angle = 0
+						orbit_distance = 0
+						planet = star
+						init_effect = {
+							upgrade_megastructure_to = caretakers_ark_2
+						}
+					}
+				}
+			}
+			#random_system_within_border = {
+			#	limit = {
+			#		NOT = { is_same_value = event_target:fe_capital_system }
+			#		#any_system_planet = { is_colony = yes }
+			#	}
+			#	if = {
+			#		limit = { has_megastructure = ring_world_ruined }
+			#		every_system_megastructure = { remove_megastructure = this }
+			#	}
+			#	spawn_megastructure = {
+			#		name = "The Caretaker"
+			#		type = caretakers_ark_1
+			#		orbit_angle = 0
+			#		orbit_distance = 0
+			#		planet = star
+			#		init_effect = {
+			#			upgrade_megastructure_to = caretakers_ark_2
+			#		}
+			#	}
+			#}
+			#capital_scope = {
+			#	save_event_target_as = fe_planet
+			#	solar_system = {
+			#		every_system_planet = {
+			#			limit = { is_colony = yes }
+			#			every_owned_pop = {
+			#				resettle_pop = {
+			#					pop = THIS
+			#					planet = event_target:fe_planet_destination
+			#				}
+			#			}
+			#			remove_planet = yes # Remove the ringworlds because the megastructure replaces them
+			#		}
+			#		spawn_megastructure = {
+			#			name = "The Caretaker"
+			#			type = caretakers_ark_1
+			#			orbit_angle = 0
+			#			orbit_distance = 0
+			#			planet = star
+			#			#init_effect = {
+			#			#	upgrade_megastructure_to = fe_stellar_zro_detonator_charging
+			#			#}
+			#		}
+			#	}
+			#}
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:machine_fe
+		room = event_target:machine_fe
+		planet_background = event_target:fe_planet
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.118.a
+		trigger = {
+			NOR = {
+				is_machine_empire = yes
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+		add_modifier = {
+			modifier = ssh_fe_machine_boost
+			days = -1 #3600
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.118.b
+		trigger = { is_machine_empire = yes }
+		add_modifier = {
+			modifier = ssh_fe_machine_boost
+			days = -1 #3600
+			#days = 3600
+		}
+	}
+	option = {
+		name = ssh_vacdec.118.c
+		custom_tooltip = ssh_vacdec.118.c.tooltip
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+}
+# FE Xenophile Reaction
+country_event = {
+	id = ssh_vacdec.119
+	title = "Public Transmission"
+	desc = {
+		text = "ssh_vacdec.119_01.desc"
+		trigger = { NOT = { is_at_war_with = event_target:xenophile_fe } }
+	}
+	desc = {
+		text = "ssh_vacdec.119_02.desc"
+		trigger = { is_at_war_with = event_target:xenophile_fe }
+	}
+	diplomatic_title = "Public Transmission"
+	diplomatic = yes
+
+	trigger = { any_country = { is_fallen_empire_xenophile = yes } }
+
+	immediate = {
+		set_global_flag = ssh_vacdec_fe_announcement_xenophile
+
+		event_target:xenophile_fe = {
+			set_country_flag = ssh_ark_project_country
+			capital_scope = {
+				save_event_target_as = fe_planet
+			}
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:xenophile_fe
+		room = event_target:xenophile_fe
+		planet_background = event_target:fe_planet
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.119.a
+		trigger = {
+			NOR = {
+				has_civic = civic_machine_terminator
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				is_at_war_with = event_target:xenophile_fe
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.119.b
+		trigger = {
+			OR = {
+				has_civic = civic_machine_terminator
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.119.c # Ceasefire
+		custom_tooltip = ssh_vacdec.119.c_tt
+		trigger = { is_at_war_with = event_target:xenophile_fe }
+		hidden_effect = {
+			random_war = {
+				limit = { any_war_participant = { is_same_value = event_target:xenophile_fe } }
+				#end_war_effect = yes
+				remove_war_participant = prev
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.119.d # Continue War
+		trigger = { is_at_war_with = event_target:xenophile_fe }
+	}
+}
+
+# Event if you're a FE subject
+country_event = {
+	id = ssh_vacdec.120
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_vacdec.120_01.desc"
+		trigger = {
+			overlord = {
+				OR = {
+					has_ethic = ethic_fanatic_materialist
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.120_02.desc"
+		trigger = { overlord = { has_ethic = ethic_fanatic_spiritualist } }
+	}
+	desc = {
+		text = "ssh_vacdec.120_03.desc"
+		trigger = { overlord = { has_ethic = ethic_gestalt_consciousness } }
+	}
+	diplomatic_title = "Incoming Transmission"
+	diplomatic = yes
+
+	trigger = {
+		is_subject = yes
+		overlord = {
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		overlord = {
+			save_event_target_as = overlord_fe
+			capital_scope = {
+				save_event_target_as = fe_planet
+			}
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:overlord_fe
+		room = event_target:overlord_fe
+		planet_background = event_target:fe_planet
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.120.a
+		custom_tooltip = ssh_vacdec.120.a.tooltip
+		hidden_effect = { country_event = { id = ssh_vacdec.121 } }
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.120.b
+		custom_tooltip = ssh_vacdec.120.b.tooltip
+		hidden_effect = { country_event = { id = ssh_vacdec.122 } }
+		ai_chance = {
+			factor = 1000
+			# Ai will take the easy way
+		}
+	}
+}
+country_event = { # Deny offer
+	id = ssh_vacdec.121
+	title = "Incoming Transmission"
+	desc = "ssh_vacdec.121.desc"
+	diplomatic_title = "Incoming Transmission"
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:overlord_fe
+		room = event_target:overlord_fe
+		planet_background = event_target:fe_planet
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.121.a
+		release_subject = yes
+		add_resource = {
+			energy = 15000
+			minerals = 20000
+			alloys = 20000
+			consumer_goods = 20000
+			physics_research = 45000
+			society_research = 45000
+			engineering_research = 45000
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_dark_matter_deflector } }
+			give_technology = { tech = tech_dark_matter_deflector }
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_dark_matter_detection } }
+			give_technology = { tech = tech_dark_matter_detection }
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_dark_matter_power_core } }
+			give_technology = { tech = tech_dark_matter_power_core }
+		}
+		if = {
+			limit = { NOT = { has_technology = tech_dark_matter_propulsion } }
+			give_technology = { tech = tech_dark_matter_propulsion }
+		}
+		default_hide_option = yes
+	}
+}
+country_event = { # Accept offer
+	id = ssh_vacdec.122
+	title = "Incoming Transmission"
+	desc = "ssh_vacdec.122.desc"
+	diplomatic_title = "Incoming Transmission"
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:overlord_fe
+		room = event_target:overlord_fe
+		planet_background = event_target:fe_planet
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.122.a
+		integrate_country_effect = yes
+		default_hide_option = yes
+	}
+}
+
+
+# Normal Country / Player Option Events (on_monthly_pulse) (HIDDEN)
+event = {
+	id = ssh_vacdec.130
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	trigger = {
+		has_global_flag = ssh_vacdec_observed
+	}
+
+	immediate = {
+		# If Galactic Custodian/Emperor exists, they decide first
+		if = {
+			limit = {
+				OR = {
+					exists = galactic_custodian
+					exists = galactic_emperor
+				}
+			}
+			random_country = {
+				limit = {
+					OR = {
+						is_galactic_custodian = yes
+						is_galactic_emperor = yes
+					}
+				}
+				country_event = {
+					id = ssh_vacdec.199
+					days = 720
+				}
+			}
+		}
+		# If not, fire event for every country immediately instead
+		else = {
+			every_playable_country = {
+				limit = {
+					is_country_type = default
+				}
+				country_event = {
+					id = ssh_vacdec.200
+					days = 740
+				}
+			}
+		}
+	}
+}
+
+
+# Prethoryn flee
+
+
+
+# Choose your path - Galactic Custodian/Emperor
+country_event = {
+	id = ssh_vacdec.199
+	title = "ssh_vacdec.199.name"
+	desc = {
+		text = "ssh_vacdec.199_01.desc"
+		trigger = {
+			is_galactic_custodian = yes
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.199_02.desc"
+		trigger = {
+			is_galactic_emperor = yes
+		}
+	}
+	picture = GFX_evt_crisis_declared
+	show_sound = event_announcement
+	#location = event_target:vacdec_spawn_system
+	trackable = no
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			is_galactic_custodian = yes
+			is_galactic_emperor = yes
+		}
+	}
+
+	immediate = {
+		save_event_target_as = galactic_custodian_emperor
+		every_playable_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_country_type = default
+			}
+			country_event = {
+				id = ssh_vacdec.200
+				days = 60
+			}
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.199.a # Intergalactic Ark
+		custom_tooltip = ssh_vacdec.199.a.tooltip
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_custodian_aid
+			set_country_flag = ssh_ark_project_country
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					is_galactic_community_member = yes
+				}
+				country_event = {
+					id = ssh_vacdec.203 # Just an info event
+					days = 1
+				}
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.25
+				has_civic = civic_inwards_perfection
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.199.b # Mirror Dimension - COMING SOON
+		custom_tooltip = ssh_vacdec.199.b.tooltip
+		trigger = {
+			any_owned_planet = { has_planet_flag = dportal_mirror }
+			#OR = {
+			#	any_owned_planet = { has_planet_flag = dportal_event }  # -> Limit to mirror dimension?
+			#	has_global_flag = ssh_vacdec_fe_announcement_materialist
+			#}
+		}
+		allow = {
+			custom_tooltip = "ssh_vacdec_coming_soon"
+			always = no
+		}
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_custodian_betrayal
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					is_galactic_community_member = yes
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = ssh_opinion_custodian_betrayal
+				}
+				country_event = {
+					id = ssh_vacdec.201
+					days = 1
+				}
+			}
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					is_galactic_community_member = no
+				}
+				country_event = {
+					id = ssh_vacdec.202
+					days = 1
+				}
+			}
+		}
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 4
+				OR = {
+					has_civic = civic_inwards_perfection
+					has_civic = civic_machine_assimilator
+				}
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.199.c # Gargantuan Zro Catapult - COMING SOON
+		custom_tooltip = ssh_vacdec.199.c.tooltip
+		trigger = {
+			owner_main_species = { has_trait = trait_psionic }
+		}
+		allow = {
+			custom_tooltip = "ssh_vacdec_coming_soon"
+			always = no
+			#has_technology = ssh_tech_shroud_supernova
+			#OR = {
+			#	has_technology = ssh_tech_shroud_supernova
+			#	has_global_flag = ssh_vacdec_fe_announcement_spiritualist
+			#}
+		}
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_custodian_betrayal
+			#country_event = {
+			#	id = ssh_vacdec.600 ############
+			#	days = 1
+			#}
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					is_galactic_community_member = yes
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = ssh_opinion_custodian_betrayal
+				}
+				country_event = {
+					id = ssh_vacdec.201
+					days = 1
+				}
+			}
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					is_galactic_community_member = no
+				}
+				country_event = {
+					id = ssh_vacdec.202
+					days = 1
+				}
+			}
+		}
+		ai_chance = {
+			factor = 25
+		}
+	}
+	option = {
+		name = ssh_vacdec.199.d # Basement Universe / Galactic Beacon
+		custom_tooltip = ssh_vacdec.199.d.tooltip
+		hidden_effect = {
+			set_global_flag = ssh_vacdec_custodian_betrayal
+			country_event = {
+				id = ssh_vacdec.600
+				days = 1
+			}
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					is_galactic_community_member = yes
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = ssh_opinion_custodian_betrayal
+				}
+				country_event = {
+					id = ssh_vacdec.201
+					days = 1
+				}
+			}
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					is_galactic_community_member = no
+				}
+				country_event = {
+					id = ssh_vacdec.202
+					days = 1
+				}
+			}
+		}
+		ai_chance = {
+			factor = 25
+		}
+	}
+}
+
+
+# Choose your path - No Emperor/Custodian
+country_event = {
+	id = ssh_vacdec.200
+	title = "ssh_vacdec.200.name"
+	desc = {
+		text = "ssh_vacdec.200_01.desc"
+		trigger = {
+			is_galactic_community_member = yes
+			NOR = {
+				has_global_flag = ssh_vacdec_custodian_aid
+				has_global_flag = ssh_vacdec_custodian_betrayal
+			}
+			OR = {
+				has_global_flag = ssh_vacdec_fe_announcement_materialist
+				has_global_flag = ssh_vacdec_fe_announcement_machine
+				has_global_flag = ssh_vacdec_fe_announcement_spiritualist
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.200_02.desc"
+		trigger = {
+			is_galactic_community_member = yes
+			NOR = {
+				has_global_flag = ssh_vacdec_custodian_aid
+				has_global_flag = ssh_vacdec_custodian_betrayal
+			}
+			NOR = {
+				has_global_flag = ssh_vacdec_fe_announcement_materialist
+				has_global_flag = ssh_vacdec_fe_announcement_machine
+				has_global_flag = ssh_vacdec_fe_announcement_spiritualist
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.200_03.desc"
+		trigger = {
+			is_galactic_community_member = no
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.200_04.desc"
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.200_05.desc"
+		trigger = {
+			is_galactic_community_member = yes
+			has_global_flag = ssh_vacdec_custodian_betrayal
+			exists = galactic_custodian
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.200_06.desc"
+		trigger = {
+			is_galactic_community_member = yes
+			has_global_flag = ssh_vacdec_custodian_betrayal
+			exists = galactic_emperor
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.200_07.desc"
+		trigger = {
+			is_galactic_community_member = yes
+			has_global_flag = ssh_vacdec_custodian_aid
+			exists = galactic_custodian
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.200_08.desc"
+		trigger = {
+			is_galactic_community_member = yes
+			has_global_flag = ssh_vacdec_custodian_aid
+			exists = galactic_emperor
+		}
+	}
+	picture = GFX_evt_crisis_declared
+	show_sound = event_announcement
+	#location = event_target:vacdec_spawn_system
+	trackable = no
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOR = {
+			is_galactic_custodian = yes
+			is_galactic_emperor = yes
+		}
+	}
+
+	#immediate = {
+	#	country_event = {
+	#		id = ssh_vacdec.111 # Info
+	#		days = 360
+	#	}
+	#}
+
+	option = {
+		name = ssh_vacdec.200.a # Intergalactic Ark
+		custom_tooltip = ssh_vacdec.200.a.tooltip
+		allow = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+		hidden_effect = {
+			set_country_flag = ssh_ark_project_country
+			if = {
+				limit = { NOT = { has_global_flag = ssh_ark_project_decided } }
+				set_global_flag = ssh_ark_project_decided # Used to trigger the instructions for everyone
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 3
+				OR = {
+					is_galactic_custodian = yes
+					is_galactic_emperor = yes
+				}
+			}
+			modifier = {
+				factor = 2
+				is_galactic_community_member = yes
+			}
+			modifier = {
+				factor = 0.25
+				has_civic = civic_inwards_perfection
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.200.b # Mirror Dimension - COMING SOON
+		custom_tooltip = ssh_vacdec.200.b.tooltip
+		trigger = {
+			any_owned_planet = { has_planet_flag = dportal_mirror }
+			#OR = {
+			#	any_owned_planet = { has_planet_flag = dportal_mirror }  # -> Limit to mirror dimension?
+			#	has_global_flag = ssh_vacdec_fe_announcement_materialist
+			#}
+		}
+		allow = {
+			custom_tooltip = "ssh_vacdec_coming_soon"
+			always = no
+		}
+		#allow = {
+		#	NOR = {
+		#		is_galactic_custodian = yes
+		#		is_galactic_emperor = yes
+		#	}
+		#}
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 0.1
+				is_galactic_community_member = yes
+			}
+			modifier = {
+				factor = 2
+				has_civic = civic_inwards_perfection
+			}
+			modifier = {
+				factor = 3
+				OR = {
+					has_civic = civic_fanatic_purifiers
+					has_civic = civic_hive_devouring_swarm
+					has_civic = civic_machine_terminator
+				}
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.200.c # Gargantuan Zro Catapult - COMING SOON
+		custom_tooltip = ssh_vacdec.200.c.tooltip
+		trigger = {
+			owner_main_species = { has_trait = trait_psionic }
+		}
+		allow = {
+			custom_tooltip = "ssh_vacdec_coming_soon"
+			always = no
+			#has_technology = ssh_tech_shroud_supernova
+			#OR = {
+			#	has_technology = ssh_tech_shroud_supernova
+			#	has_global_flag = ssh_vacdec_fe_announcement_spiritualist
+			#}
+			#NOR = {
+			#	is_galactic_custodian = yes
+			#	is_galactic_emperor = yes
+			#}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				is_galactic_community_member = yes
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.200.d # BTC
+		custom_tooltip = ssh_vacdec.200.d.tooltip
+		trigger = {
+			OR = {
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_cosmogenesis
+				has_ascension_perk = ap_hyperdimensional_exodus
+			}
+		}
+		allow = {
+			NOR = {
+				is_galactic_custodian = yes
+				is_galactic_emperor = yes
+			}
+		}
+		if = {
+			limit = { has_ascension_perk = ap_become_the_crisis }
+			add_modifier = {
+				modifier = ssh_vacdec_crisis_path_nemesis
+				days = -1
+			}
+		}
+		if = {
+			limit = { has_ascension_perk = ap_cosmogenesis }
+			add_modifier = {
+				modifier = ssh_vacdec_crisis_path_cosmogenesis
+				days = -1
+			}
+		}
+		if = {
+			limit = { has_ascension_perk = ap_hyperdimensional_exodus }
+			add_modifier = {
+				modifier = ssh_vacdec_crisis_path_ap_hyperdimensional_exodus
+				days = -1
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 4
+				OR = {
+					has_civic = civic_fanatic_purifiers
+					has_civic = civic_hive_devouring_swarm
+					has_civic = civic_machine_terminator
+				}
+			}
+		}
+	}
+	option = {
+		name = ssh_vacdec.200.e # Stay (L Cluster Escape/Basement Universe)
+		custom_tooltip = ssh_vacdec.200.e.tooltip
+		hidden_effect = {
+			country_event = {
+				id = ssh_vacdec.600
+				days = 1
+			}
+		}
+	}
+}
+
+# Betrayal Notification - Galcom Members
+country_event = {
+	id = ssh_vacdec.201
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_vacdec.201_01.desc"
+		trigger = {
+			exists = galactic_custodian
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.201_02.desc"
+		trigger = {
+			exists = galactic_emperor
+		}
+	}
+	diplomatic_title = "Incoming Transmission"
+	diplomatic = yes
+
+	trigger = {
+		OR = {
+			exists = galactic_custodian
+			exists = galactic_emperor
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:galactic_custodian_emperor.ruler
+		room = event_target:galactic_custodian_emperor
+		#planet_background = event_target:fe_planet
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.201.a # Traitor
+		default_hide_option = yes
+	}
+}
+
+# Betrayal Notification - No Galcom Members
+country_event = {
+	id = ssh_vacdec.202
+	title = "ssh_vacdec.202.name"
+	desc = {
+		text = "ssh_vacdec.202_01.desc"
+		trigger = {
+			exists = galactic_custodian
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.202_02.desc"
+		trigger = {
+			exists = galactic_emperor
+		}
+	}
+	picture = GFX_evt_crisis_declared
+	show_sound = event_announcement
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.202.a # Hehe
+	}
+}
+
+# Aid Notification - Galcom Members
+country_event = {
+	id = ssh_vacdec.203
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_vacdec.203_01.desc"
+		trigger = {
+			exists = galactic_custodian
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.203_02.desc"
+		trigger = {
+			exists = galactic_emperor
+		}
+	}
+	diplomatic_title = "Incoming Transmission"
+	diplomatic = yes
+
+	trigger = {
+		OR = {
+			exists = galactic_custodian
+			exists = galactic_emperor
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:galactic_custodian_emperor.ruler
+		room = event_target:galactic_custodian_emperor
+		#planet_background = event_target:fe_planet
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.203.a
+		default_hide_option = yes
+	}
+}
+
+# Special Project Trigger
+country_event = {
+	id = ssh_vacdec.249
+	title = "ssh_vacdec.249.name"
+	desc = {
+		text = "ssh_vacdec.249_01.desc"
+		trigger = {
+			is_gestalt = no
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.249_02.desc"
+		trigger = {
+			is_gestalt = yes
+		}
+	}
+	picture = GFX_evt_shroud_tunnel
+	show_sound = event_sensor_ping
+	trackable = no
+
+	is_triggered_only = yes
+
+	pre_triggers = { is_ai = no }
+
+	trigger = {
+		has_global_flag = ssh_vacdec_crisis_ongoing
+		NOT = { has_country_flag = ssh_vacdec_country_slowdown_project }
+		any_system_within_border = { has_star_flag = ssh_vacdec_marked_system }
+	}
+
+	immediate = {
+		set_country_flag = ssh_vacdec_country_slowdown_project
+	}
+
+	option = {
+		name = ssh_vacdec.249.a
+		trigger = {
+			NOR = {
+				has_civic = civic_hyperspace_specialty
+				has_civic = civic_corporate_hyperspace_specialty
+				has_civic = civic_hive_hyperspace_specialty
+				has_civic = civic_machine_hyperspace_specialty
+				has_civic = civic_hive_subspace_ephapse
+			}
+		}
+		enable_special_project = {
+			name = SSH_VACDEC_SLOWDOWN_PROJECT
+			owner = this
+		}
+	}
+	option = {
+		name = ssh_vacdec.249.b
+		trigger = {
+			OR = {
+				has_civic = civic_hyperspace_specialty
+				has_civic = civic_corporate_hyperspace_specialty
+				has_civic = civic_hive_hyperspace_specialty
+				has_civic = civic_machine_hyperspace_specialty
+				has_civic = civic_hive_subspace_ephapse
+			}
+		}
+		enable_special_project = {
+			name = SSH_VACDEC_SLOWDOWN_PROJECT
+			owner = this
+		}
+	}
+}
+
+# Special Project Completed - Vacuum Decay Slowdown
+country_event = {
+	id = ssh_vacdec.250
+	title = "ssh_vacdec.250.name"
+	desc = {
+		text = "ssh_vacdec.250_01.desc"
+		trigger = {
+			is_gestalt = no
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.250_02.desc"
+		trigger = {
+			is_gestalt = yes
+		}
+	}
+	picture = GFX_evt_ssh_vacuum_decay
+	show_sound = event_sensor_ping
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.250.a
+		trigger = {
+			NOR = {
+				has_civic = civic_hyperspace_specialty
+				has_civic = civic_corporate_hyperspace_specialty
+				has_civic = civic_hive_hyperspace_specialty
+				has_civic = civic_machine_hyperspace_specialty
+				has_civic = civic_hive_subspace_ephapse
+			}
+		}
+		add_research_option = ssh_tech_vacdec_slowdown
+	}
+	option = {
+		name = ssh_vacdec.250.b
+		trigger = {
+			OR = {
+				has_civic = civic_hyperspace_specialty
+				has_civic = civic_corporate_hyperspace_specialty
+				has_civic = civic_hive_hyperspace_specialty
+				has_civic = civic_machine_hyperspace_specialty
+				has_civic = civic_hive_subspace_ephapse
+			}
+		}
+		add_research_option = ssh_tech_vacdec_slowdown
+	}
+}
+
+# Notification - 50% of the Galaxy has decayed
+country_event = {
+	id = ssh_vacdec.275
+	title = "ssh_vacdec.275.name"
+	desc = "ssh_vacdec.275.desc"
+	picture = GFX_evt_ssh_vacuum_decay
+	show_sound = event_red_alert
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.275.a
+		add_modifier = {
+			modifier = ssh_vacdec_half_galaxy_decayed_boost
+			days = -1
+		}
+	}
+}
+
+# Galaxy Decayed
+country_event = {
+	id = ssh_vacdec.276
+	title = "ssh_vacdec.276.name"
+	desc = "ssh_vacdec.276.desc"
+	picture = GFX_evt_ssh_vacuum_decay
+	show_sound = event_red_alert
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.276.a
+		add_modifier = {
+			modifier = ssh_vacdec_galaxy_decayed_boost
+			days = -1
+		}
+		hidden_effect = {
+			remove_modifier = ssh_vacdec_half_galaxy_decayed_boost
+		}
+	}
+}
+
+# Vacdec reached L Cluster
+country_event = {
+	id = ssh_vacdec.277
+	title = "ssh_vacdec.277.name"
+	desc = "ssh_vacdec.277.desc"
+	picture = GFX_evt_ssh_vacuum_decay
+	show_sound = event_red_alert
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.277.a
+	}
+}
+
+# Ark Project Trigger (on_monthly_pulse)
+event = {
+	id = ssh_vacdec.300
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	trigger = { has_global_flag = ssh_ark_project_decided }
+
+	immediate = {
+		every_playable_country = {
+			limit = { has_country_flag = ssh_ark_project_country }
+			country_event = {
+				id = ssh_vacdec.301
+				days = 5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_vacdec.301
+	title = "ssh_vacdec.301.name"
+	desc = {
+		text = "ssh_vacdec.301_01.desc"
+		trigger = {
+			NOR = {
+				exists = galactic_custodian
+				exists = galactic_emperor
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.301_02.desc"
+		trigger = {
+			exists = galactic_custodian
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.301_03.desc"
+		trigger = {
+			exists = galactic_emperor
+		}
+	}
+	picture = GFX_evt_ssh_ark_project
+	show_sound = event_announcement
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = { # all participants like each other :)
+			limit = {
+				has_country_flag = ssh_ark_project_country
+				NOT = { is_same_value = root }
+			}
+			add_opinion_modifier = {
+				who = root
+				modifier = ssh_opinion_ark_cooperation
+			}
+		}
+		country_event = {
+			id = ssh_vacdec.302
+			days = 5
+		}
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_project_launched } }
+			set_global_flag = ssh_ark_project_launched # Used to start monthly counter
+		}
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_research_stage_1 } }
+			set_global_flag = ssh_ark_research_stage_1
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.301.a
+		trigger = {
+			NOR = {
+				is_galactic_custodian = yes
+				is_galactic_emperor = yes
+			}
+		}
+		begin_event_chain = {
+			event_chain = "ark_project_research_chain"
+			target = ROOT
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.301.b
+		trigger = {
+			is_galactic_custodian = yes
+		}
+		begin_event_chain = {
+			event_chain = "ark_project_research_chain"
+			target = ROOT
+		}
+	}
+	option = {
+		name = ssh_vacdec.301.c
+		trigger = {
+			OR = {
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+			}
+		}
+		begin_event_chain = {
+			event_chain = "ark_project_research_chain"
+			target = ROOT
+		}
+	}
+}
+
+# Info about how the event chains/situations work
+country_event = {
+	id = ssh_vacdec.302
+	title = "ssh_vacdec.302.name"
+	desc = "ssh_vacdec.302.desc"
+	picture = GFX_evt_physics_research
+	#show_sound = event_administrative_work
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.302.a
+		begin_event_chain = {
+			event_chain = "ark_step_1_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = "ark_step_1_chain"
+				counter = "ark_step_1_goal"
+				amount = @ark_research_stage_1_goal
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Research Stage 1 Completed
+country_event = {
+	id = ssh_vacdec.303
+	title = "ssh_vacdec.303.name"
+	desc = "ssh_vacdec.303.desc"
+	picture = GFX_evt_ssh_ark_tech_frame
+	#show_sound = event_administrative_work
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.303.a
+		end_event_chain = "ark_step_1_chain"
+		begin_event_chain = {
+			event_chain = "ark_step_2_chain"
+			target = ROOT
+		}
+		give_technology = { tech = ssh_tech_vacdec_logistics }
+		hidden_effect = {
+			remove_global_flag = ssh_ark_research_stage_1
+			set_global_flag = ssh_ark_research_stage_2
+			add_event_chain_counter = {
+				event_chain = "ark_step_2_chain"
+				counter = "ark_step_2_goal"
+				amount = @ark_research_stage_2_goal
+			}
+			add_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_technology_steps_completed"
+				amount = 1
+			}
+		}
+		default_hide_option = yes
+	}
+}
+# Research Stage 2 Completed
+country_event = {
+	id = ssh_vacdec.304
+	title = "ssh_vacdec.304.name"
+	desc = "ssh_vacdec.304.desc"
+	picture = GFX_evt_ssh_ark_tech_kugelblitz
+	show_sound = event_announcement
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.304.a
+		end_event_chain = "ark_step_2_chain"
+		begin_event_chain = {
+			event_chain = "ark_step_3_chain"
+			target = ROOT
+		}
+		give_technology = { tech = ssh_tech_vacdec_energy }
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_stellar_harvester } }
+			give_technology = { tech = ssh_tech_stellar_harvester }
+		}
+		if = {
+			limit = { has_gigastructures = yes }
+			if = {
+				limit = { NOT = { has_technology = giga_tech_kugelblitz } }
+				give_technology = { tech = giga_tech_kugelblitz }
+			}
+		}
+		hidden_effect = {
+			remove_global_flag = ssh_ark_research_stage_2
+			set_global_flag = ssh_ark_research_stage_3
+			add_event_chain_counter = {
+				event_chain = "ark_step_3_chain"
+				counter = "ark_step_3_goal"
+				amount = @ark_research_stage_3_goal
+			}
+			add_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_technology_steps_completed"
+				amount = 1
+			}
+		}
+		default_hide_option = yes
+	}
+}
+# Research Stage 3 Completed
+country_event = {
+	id = ssh_vacdec.305
+	title = "ssh_vacdec.305.name"
+	desc = "ssh_vacdec.305.desc"
+	picture = GFX_evt_ssh_ark_tech_habitation
+	show_sound = event_announcement
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.305.a
+		end_event_chain = "ark_step_3_chain"
+		begin_event_chain = {
+			event_chain = "ark_step_4_chain"
+			target = ROOT
+		}
+		give_technology = { tech = ssh_tech_vacdec_habitation }
+		hidden_effect = {
+			remove_global_flag = ssh_ark_research_stage_3
+			set_global_flag = ssh_ark_research_stage_4
+			add_event_chain_counter = {
+				event_chain = "ark_step_4_chain"
+				counter = "ark_step_4_goal"
+				amount = @ark_research_stage_4_goal
+			}
+			add_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_technology_steps_completed"
+				amount = 1
+			}
+		}
+		default_hide_option = yes
+	}
+}
+# Research Stage 4 Completed
+country_event = {
+	id = ssh_vacdec.306
+	title = "ssh_vacdec.306.name"
+	desc = "ssh_vacdec.306.desc"
+	picture = GFX_evt_ssh_ark_tech_rift_gen
+	show_sound = event_announcement
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.306.a
+		end_event_chain = "ark_step_4_chain"
+		begin_event_chain = {
+			event_chain = "ark_step_5_chain"
+			target = ROOT
+		}
+		give_technology = { tech = ssh_tech_vacdec_warp_field }
+		hidden_effect = {
+			remove_global_flag = ssh_ark_research_stage_4
+			set_global_flag = ssh_ark_research_stage_5
+			add_event_chain_counter = {
+				event_chain = "ark_step_5_chain"
+				counter = "ark_step_5_goal"
+				amount = @ark_research_stage_5_goal
+			}
+			add_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_technology_steps_completed"
+				amount = 1
+			}
+		}
+		default_hide_option = yes
+	}
+}
+# Research Stage 5 Completed
+country_event = {
+	id = ssh_vacdec.307
+	title = "ssh_vacdec.307.name"
+	desc = {
+		text = "ssh_vacdec.307_01.desc"
+		trigger = {
+			NOR = {
+				exists = galactic_custodian
+				exists = galactic_emperor
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.307_02.desc"
+		trigger = {
+			exists = galactic_custodian
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.307_03.desc"
+		trigger = {
+			exists = galactic_emperor
+		}
+	}
+	picture = GFX_evt_ssh_ark_tech_drive
+	show_sound = event_celebration
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_system_generated } }
+			set_global_flag = ssh_ark_system_generated
+			event_target:global_event_country = {
+				country_event = {
+					id = ssh_vacdec.400
+					#days = 1
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.307.a
+		end_event_chain = "ark_step_5_chain"
+		#give_technology = { tech = ssh_tech_vacdec_warp_field } ###
+		hidden_effect = {
+			remove_global_flag = ssh_ark_research_stage_5
+			set_global_flag = ssh_ark_research_stage_completed
+			add_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_technology_steps_completed"
+				amount = 1
+			}
+			country_event = {
+				id = ssh_vacdec.308
+				days = 5
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Info about Construction Stage
+country_event = {
+	id = ssh_vacdec.308
+	title = "ssh_vacdec.308.name"
+	desc = {
+		text = "ssh_vacdec.308_01.desc"
+		trigger = {
+			NOR = {
+				exists = galactic_custodian
+				exists = galactic_emperor
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.308_02.desc"
+		trigger = {
+			exists = galactic_custodian
+			NOR = {
+				is_galactic_custodian = yes
+				is_galactic_emperor = yes
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.308_03.desc"
+		trigger = {
+			exists = galactic_emperor
+			NOR = {
+				is_galactic_custodian = yes
+				is_galactic_emperor = yes
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.308_04.desc"
+		trigger = {
+			OR = {
+				is_galactic_custodian = yes
+				is_galactic_emperor = yes
+			}
+		}
+	}
+	picture = GFX_evt_megastructure_construction
+	show_sound = event_construction
+	#location = event_target:galcom_country
+	trackable = no # yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		end_event_chain = "ark_project_research_chain"
+		begin_event_chain = {
+			event_chain = "ark_project_construction_chain"
+			target = this
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.308.a
+		custom_tooltip = ssh_vacdec.308.a.tooltip
+		trigger = {
+			OR = {
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+				is_galactic_custodian = yes
+			}
+		}
+		ssh_ark_construction_set_contribution = yes
+		begin_event_chain = {
+			event_chain = "ark_construction_stage_1_chain"
+			target = this
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.308.b
+		custom_tooltip = ssh_vacdec.308.b.tooltip
+		trigger = {
+			NOR = {
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+				is_galactic_custodian = yes
+			}
+		}
+		ssh_ark_construction_set_contribution = yes
+		begin_event_chain = {
+			event_chain = "ark_construction_stage_1_chain"
+			target = this
+		}
+		default_hide_option = yes
+	}
+
+	#option = {
+	#	name = ssh_vacdec.308.a
+	#	custom_tooltip = ssh_vacdec.308.a.tooltip
+	#	#add_modifier = {
+	#	#	modifier = ssh_ark_stage_1_contribution_high
+	#	#	days = -1
+	#	#}
+	#	ssh_ark_construction_set_contribution_high = yes
+	#	begin_event_chain = {
+	#		event_chain = "ark_construction_stage_1_chain"
+	#		target = this
+	#	}
+	#	ai_chance = {
+	#		base = 15
+	#		modifier = {
+	#			factor = 3
+	#			OR = {
+	#				is_galactic_custodian = yes
+	#				is_galactic_emperor = yes
+	#			}
+	#		}
+	#		modifier = {
+	#			factor = 3
+	#			is_xenophile = yes
+	#		}
+	#		modifier = {
+	#			factor = 3
+	#			OR = {
+	#				has_civic = civic_machine_servitor
+	#				has_civic = civic_machine_builder
+	#				has_civic = civic_machine_obsessional_directive
+	#				has_civic = civic_shared_burden
+	#				has_civic = civic_hive_empath
+	#			}
+	#		}
+	#		modifier = {
+	#			factor = 2
+	#			is_materialist = yes
+	#		}
+	#		modifier = {
+	#			factor = 0.5
+	#			is_xenophobe = yes
+	#		}
+	#	}
+	#}
+	#option = {
+	#	name = ssh_vacdec.308.b
+	#	custom_tooltip = ssh_vacdec.308.b.tooltip
+	#	#add_modifier = {
+	#	#	modifier = ssh_ark_stage_1_contribution_med
+	#	#	days = -1
+	#	#}
+	#	ssh_ark_construction_set_contribution_med = yes
+	#	begin_event_chain = {
+	#		event_chain = "ark_construction_stage_1_chain"
+	#		target = this
+	#	}
+	#	ai_chance = {
+	#		base = 20
+	#		modifier = {
+	#			factor = 3
+	#			NOR = {
+	#				is_galactic_custodian = yes
+	#				is_galactic_emperor = yes
+	#				is_xenophile = yes
+	#				has_civic = civic_machine_servitor
+	#				has_civic = civic_machine_builder
+	#				has_civic = civic_machine_obsessional_directive
+	#				has_civic = civic_shared_burden
+	#				has_civic = civic_hive_empath
+	#				is_materialist = yes
+	#			}
+	#		}
+	#	}
+	#}
+	#option = {
+	#	name = ssh_vacdec.308.c
+	#	custom_tooltip = ssh_vacdec.308.c.tooltip
+	#	#add_modifier = {
+	#	#	modifier = ssh_ark_stage_1_contribution_low
+	#	#	days = -1
+	#	#}
+	#	ssh_ark_construction_set_contribution_low = yes
+	#	begin_event_chain = {
+	#		event_chain = "ark_construction_stage_1_chain"
+	#		target = this
+	#	}
+	#	default_hide_option = yes
+	#	ai_chance = {
+	#		base = 1000
+	#	}
+	#	#ai_chance = {
+	#	#	base = 20
+	#	#	modifier = {
+	#	#		factor = 3
+	#	#		is_xenophobe = yes
+	#	#	}
+	#	#	modifier = {
+	#	#		factor = 0.1
+	#	#		OR = {
+	#	#			is_galactic_custodian = yes
+	#	#			is_galactic_emperor = yes
+	#	#			is_xenophile = yes
+	#	#			has_civic = civic_machine_servitor
+	#	#			has_civic = civic_machine_builder
+	#	#			has_civic = civic_machine_obsessional_directive
+	#	#			has_civic = civic_shared_burden
+	#	#			has_civic = civic_hive_empath
+	#	#			is_materialist = yes
+	#	#		}
+	#	#	}
+	#	#}
+	#}
+}
+
+
+# Generate Ark System + Begin Construction Stage
+country_event = {
+	id = ssh_vacdec.400
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { has_global_flag = ssh_ark_system_generated }
+
+	immediate = {
+		# Spawn Ark System
+		ssh_ark_system_spawn_effect = yes
+		# Initiate Ark Construction
+		set_global_flag = ssh_ark_construction_stage_1
+
+		# Check if any player has not participated in the Ark project (for the galaxy generation later on)
+		if = {
+			limit = {
+				any_playable_country = {
+					is_ai = no
+					NOT = { has_country_flag = ssh_ark_project_country }
+				}
+			}
+			set_global_flag = ssh_ark_generate_cluster
+		}
+	}
+}
+
+# Construction Stage 1 Completed
+country_event = {
+	id = ssh_vacdec.401
+	title = "ssh_vacdec.401.name"
+	desc = "ssh_vacdec.401.desc"
+	picture = GFX_evt_ssh_ark_frame
+	#show_sound = event_administrative_work
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:ssh_ark_system = {
+			random_system_megastructure = {
+				limit = { is_megastructure_type = interdim_ark_0 }
+				upgrade_megastructure_to = interdim_ark_1
+			}
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.401.a
+		end_event_chain = "ark_construction_stage_1_chain"
+		begin_event_chain = {
+			event_chain = "ark_construction_stage_2_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			ssh_ark_construction_reset_global_flags = yes
+			set_global_flag = ssh_ark_construction_stage_2
+			add_event_chain_counter = {
+				event_chain = "ark_project_construction_chain"
+				counter = "ark_construction_stages_completed"
+				amount = 1
+			}
+			ssh_ark_construction_set_contribution = yes
+		}
+		default_hide_option = yes
+	}
+}
+# Construction Stage 2 Completed
+country_event = {
+	id = ssh_vacdec.402
+	title = "ssh_vacdec.402.name"
+	desc = "ssh_vacdec.402.desc"
+	picture = GFX_evt_ssh_ark_kugelblitz
+	#show_sound = event_administrative_work
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:ssh_ark_system = {
+			random_system_megastructure = {
+				limit = { is_megastructure_type = interdim_ark_1 }
+				upgrade_megastructure_to = interdim_ark_2
+			}
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.402.a
+		end_event_chain = "ark_construction_stage_2_chain"
+		begin_event_chain = {
+			event_chain = "ark_construction_stage_3_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			ssh_ark_construction_reset_global_flags = yes
+			set_global_flag = ssh_ark_construction_stage_3
+			add_event_chain_counter = {
+				event_chain = "ark_project_construction_chain"
+				counter = "ark_construction_stages_completed"
+				amount = 1
+			}
+			ssh_ark_construction_set_contribution = yes
+		}
+		default_hide_option = yes
+	}
+}
+# Construction Stage 3 Completed
+country_event = {
+	id = ssh_vacdec.403
+	title = "ssh_vacdec.403.name"
+	desc = "ssh_vacdec.403.desc"
+	picture = GFX_evt_ssh_ark_habitation_rings
+	#show_sound = event_administrative_work
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:ssh_ark_system = {
+			random_system_megastructure = {
+				limit = { is_megastructure_type = interdim_ark_2 }
+				upgrade_megastructure_to = interdim_ark_3
+			}
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.403.a
+		end_event_chain = "ark_construction_stage_3_chain"
+		begin_event_chain = {
+			event_chain = "ark_construction_stage_4_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			ssh_ark_construction_reset_global_flags = yes
+			set_global_flag = ssh_ark_construction_stage_4
+			add_event_chain_counter = {
+				event_chain = "ark_project_construction_chain"
+				counter = "ark_construction_stages_completed"
+				amount = 1
+			}
+			ssh_ark_construction_set_contribution = yes
+		}
+		default_hide_option = yes
+	}
+}
+# Construction Stage 4 Completed
+country_event = {
+	id = ssh_vacdec.404
+	title = "ssh_vacdec.404.name"
+	desc = "ssh_vacdec.404.desc"
+	picture = GFX_evt_ssh_ark_rift_gen
+	#show_sound = event_administrative_work
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:ssh_ark_system = {
+			random_system_megastructure = {
+				limit = { is_megastructure_type = interdim_ark_3 }
+				upgrade_megastructure_to = interdim_ark_4
+			}
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.403.a
+		end_event_chain = "ark_construction_stage_4_chain"
+		begin_event_chain = {
+			event_chain = "ark_construction_stage_5_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			ssh_ark_construction_reset_global_flags = yes
+			set_global_flag = ssh_ark_construction_stage_5
+			add_event_chain_counter = {
+				event_chain = "ark_project_construction_chain"
+				counter = "ark_construction_stages_completed"
+				amount = 1
+			}
+			ssh_ark_construction_set_contribution = yes
+		}
+		default_hide_option = yes
+	}
+}
+# Construction Stage 5 Completed
+country_event = {
+	id = ssh_vacdec.405
+	title = "ssh_vacdec.405.name"
+	desc = "ssh_vacdec.405.desc"
+	picture = GFX_evt_ssh_ark_drive
+	#show_sound = event_administrative_work
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:ssh_ark_system = {
+			random_system_megastructure = {
+				limit = { is_megastructure_type = interdim_ark_4 }
+				upgrade_megastructure_to = interdim_ark_6 #interdim_ark_5
+			}
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.403.a
+		end_event_chain = "ark_construction_stage_5_chain"
+		begin_event_chain = {
+			event_chain = "ark_construction_stage_6_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			ssh_ark_construction_reset_global_flags = yes
+			set_global_flag = ssh_ark_construction_stage_6
+			add_event_chain_counter = {
+				event_chain = "ark_project_construction_chain"
+				counter = "ark_construction_stages_completed"
+				amount = 1
+			}
+			ssh_ark_construction_set_contribution = yes
+		}
+		default_hide_option = yes
+	}
+}
+# Construction Stage 6 Completed - Ark Charged & Ready to Launch
+country_event = {
+	id = ssh_vacdec.406
+	title = "ssh_vacdec.406.name"
+	desc = {
+		text = "ssh_vacdec.406_01.desc"
+		trigger = {
+			NOR = {
+				is_galactic_custodian = yes
+				is_galactic_emperor = yes
+			}
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.406_02.desc"
+		trigger = { is_galactic_custodian = yes }
+	}
+	desc = {
+		text = "ssh_vacdec.406_03.desc"
+		trigger = { is_galactic_emperor = yes }
+	}
+	picture = GFX_evt_ssh_ark_ready
+	show_sound = event_celebration
+	location = event_target:ssh_ark_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		ssh_vacdec_cryogenic_species_effect = yes # Create cryogenic copies of species
+		#event_target:ssh_ark_system = { ### Now done via ssh_vacdec.510
+		#	random_system_megastructure = {
+		#		limit = { is_megastructure_type = interdim_ark_6 }
+		#		upgrade_megastructure_to = interdim_ark_7
+		#	}
+		#}
+		# Regardless of whether all players are Ark participants, determine if a small cluster should be rolled or if a whole galaxy should be rolled
+		#random_list = {
+		#	25 = { set_global_flag = ssh_ark_generate_cluster }
+		#	75 = {
+		#		# Do Nothing (-> Generate whole galaxy)
+		#	}
+		#}
+	}
+
+	option = {
+		name = ssh_vacdec.406.a
+		custom_tooltip = "ssh_ark_launch_tooltip"
+		end_event_chain = "ark_construction_stage_6_chain"
+		hidden_effect = {
+			ssh_ark_construction_reset_global_flags = yes
+			add_event_chain_counter = {
+				event_chain = "ark_project_construction_chain"
+				counter = "ark_drive_charged"
+				amount = 1
+			}
+		}
+		default_hide_option = yes
+	}
+
+	after = {
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_launched } }
+			set_global_flag = ssh_ark_launched
+			event_target:global_event_country = {
+				country_event = {
+					id = ssh_vacdec.410
+					days = 5 # Test to see if animation works then
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_vacdec.410
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { has_global_flag = ssh_ark_launched }
+
+	immediate = {
+		# Spawn New Galaxy Systems - size depending on whether all players participated
+		if = {
+			limit = { has_global_flag = ssh_ark_generate_cluster }
+			random_list = {
+				55 = { ssh_ark_jump_generate_normal_cluster = yes }
+				45 = { ssh_ark_jump_generate_black_hole_cluster = yes }
+				# Part of universe where all stars are very old (only blue, white dwarves)
+				# Part of universe where only black dwarves exist
+				# Gigas: O-Star Cluster?
+			}
+		}
+		else = {
+			# Wait until Ark is launched (animation finished), generate new galaxy afterwards
+			# The players are resettled & new hyperlanes generated before to distribute the galaxy generation process
+			set_spawn_system_batch = begin
+			set_update_modifiers_batch = begin
+
+			ssh_ark_jump_new_galaxy_resettle_participants = yes
+			ssh_ark_jump_shuffle_hyperlanes = yes
+
+			set_spawn_system_batch = end
+			set_update_modifiers_batch = end
+			random_list = {
+				55 = {
+					set_global_flag = ssh_ark_generate_normal_galaxy
+				}
+				45 = {
+					set_global_flag = ssh_ark_generate_destroyed_galaxy
+				}
+			}
+		}
+
+		# End Crises
+		ssh_vacdec_end_all_crises = yes
+
+		# Visual Effect
+		event_target:ssh_ark_system = {
+			star = {
+				create_ambient_object = {
+					type = crisis_sphere_1
+					scale = 2.0
+					duration = 3
+				}
+				create_ambient_object = {
+					type = extradimensional_1
+					scale = 2.0
+					duration = 90
+				}
+				create_ambient_object = {
+					type = extradimensional_2
+					scale = 2.0
+					entity_offset = 260
+					entity_offset_angle = 90
+					duration = 90
+				}
+			}
+			random_system_megastructure = {
+				limit = { is_megastructure_type = interdim_ark_7 }
+				upgrade_megastructure_to = interdim_ark_8
+			}
+			system_event = {
+				id = ssh_vacdec.411
+				days = 81 # After animation has ended/ark has entered rift
+			}
+		}
+	}
+}
+
+# Destroy Ark System after launch
+system_event = {
+	id = ssh_vacdec.411
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { has_global_flag = ssh_ark_launched }
+
+	immediate = {
+		destroy_star_system = yes
+		set_name = RANDOM
+		#set_star_class = sc_ssh_space
+
+		set_spawn_system_batch = begin
+		set_update_modifiers_batch = begin
+
+		ssh_ark_jump_generate_capitals_or_galaxy = yes
+
+		set_spawn_system_batch = end
+		set_update_modifiers_batch = end
+
+		#if = {
+		#	limit = { has_global_flag = ssh_ark_generate_cluster }
+		#	# Relocate all ark participants to the new galaxy cluster
+		#	ssh_ark_jump_generate_capitals = yes
+		#}
+		#else = {
+		#	# If no player's left in the galaxy. end the crisis
+		#	ssh_end_vacdec_crisis = yes
+		#	if = {
+		#		limit = { has_global_flag = ssh_ark_generate_normal_galaxy }
+		#		ssh_ark_jump_generate_new_galaxy_normal = yes
+		#	}
+		#	else = {
+		#		ssh_ark_jump_generate_new_galaxy_destroyed = yes
+		#	}
+		#
+		#	#ssh_ark_jump_generate_new_galaxy_normal = yes
+		#	#ssh_ark_jump_generate_new_galaxy_destroyed = yes # Crashes the game
+		#
+		#	# Galaxy filled w/ devouring swarms
+		#	# Galaxy where exterminators conquered all bio life
+		#	# Galaxy filled w/ fanatic purifiers
+		#	# Very Old galaxy (only black holes, white dwarves, blue dwarves)
+		#	# Very VERY old galaxy (only black holes & black dwarves)
+		#}
+
+		# Country notification
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				has_country_flag = ssh_ark_project_country
+			}
+			country_event = {
+				id = ssh_vacdec.412
+				days = 1
+			}
+		}
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = { has_country_flag = ssh_ark_project_country }
+			}
+			country_event = {
+				id = ssh_vacdec.414
+				days = 1
+			}
+		}
+		### Vacuum Decay Subspace Wave ###
+		every_system = {
+			limit = {
+				has_star_flag = ssh_vacdec_marked_system
+				NOT = { has_star_flag = ssh_vacdec_blocked_system }
+			}
+			ssh_system_decay_effect = yes
+			every_playable_country = {
+				limit = { has_event_chain = "reality_collapse_chain" }
+				add_event_chain_counter = {
+					event_chain = "reality_collapse_chain"
+					counter = "decayed_systems"
+					amount = 1
+				}
+			}
+		}
+		every_system = {
+			limit = {
+				NOR = {
+					has_star_flag = ssh_vacdec_marked_system
+					has_star_flag = ssh_decayed_system
+					has_star_flag = ssh_vacdec_blocked_system
+				}
+			}
+			set_star_flag = ssh_vacdec_marked_system
+		}
+	}
+}
+
+# Ark Participant Notification
+country_event = {
+	id = ssh_vacdec.412
+	title = "ssh_vacdec.412.name"
+	desc = {
+		text = "ssh_vacdec.412.desc.cluster" # Normal Cluster
+		trigger = { has_global_flag = ssh_ark_jump_cluster_normal }
+	}
+	desc = {
+		text = "ssh_vacdec.412.desc.cluster_black_hole" # Black Hole Cluster
+		trigger = { has_global_flag = ssh_ark_jump_cluster_black_hole }
+	}
+	desc = {
+		text = "ssh_vacdec.412.desc.normal" # Normal Galaxy - Sterile
+		trigger = { has_global_flag = ssh_ark_jump_new_galaxy_normal }
+	}
+	desc = {
+		text = "ssh_vacdec.412.desc.regular" # Regular Galaxy w/ few empty systems
+		trigger = { has_global_flag = ssh_ark_jump_new_galaxy_regular }
+	}
+	desc = {
+		text = "ssh_vacdec.412.desc.crisis" # Normal Galaxy - Crisis Ascendant
+		trigger = { has_global_flag = ssh_ark_jump_new_galaxy_destroyed }
+	}
+	picture = GFX_evt_ssh_ark_launch
+	show_sound = event_super_explosion
+	#location = event_target:ssh_ark_system
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.412.a
+		trigger = {
+			NOR = {
+				is_galactic_custodian = yes
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+			}
+		}
+		add_modifier = {
+			modifier = "vacdec_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "reality_collapse_chain"
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.412.b
+		trigger = { is_galactic_custodian = yes }
+		add_modifier = {
+			modifier = "vacdec_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "reality_collapse_chain"
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.412.c
+		trigger = {
+			OR = {
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+			}
+		}
+		add_modifier = {
+			modifier = "vacdec_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "reality_collapse_chain"
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.412.d
+		trigger = {
+			OR = {
+				has_civic = civic_dimensional_worship
+				has_civic = civic_corporate_dimensional_worship
+			}
+		}
+		add_resource = {
+			unity = 10000
+		}
+		add_modifier = {
+			modifier = "vacdec_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "reality_collapse_chain"
+	}
+	option = {
+		name = ssh_vacdec.412.e
+		trigger = {
+			OR = {
+				has_global_flag = ssh_ark_jump_new_galaxy_destroyed
+				has_global_flag = ssh_ark_jump_cluster_black_hole
+			}
+			OR = {
+				has_civic = civic_dark_consortium
+				has_civic = civic_corporate_dark_consortium
+				has_civic = civic_void_hive
+			}
+		}
+		add_resource = {
+			unity = 5000
+		}
+		add_modifier = {
+			modifier = "vacdec_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "reality_collapse_chain"
+	}
+}
+
+# Ark Participant Notification
+country_event = {
+	id = ssh_vacdec.413
+	title = "ssh_vacdec.413.name"
+	desc = "ssh_vacdec.413.desc"
+	picture = GFX_evt_ssh_ark_launch
+	show_sound = event_super_explosion
+	#location = event_target:ssh_ark_system
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.412.a
+		trigger = {
+			NOR = {
+				is_galactic_custodian = yes
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+			}
+		}
+		end_event_chain = "reality_collapse_chain"
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.412.b
+		trigger = { is_galactic_custodian = yes }
+		end_event_chain = "reality_collapse_chain"
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.412.c
+		trigger = {
+			OR = {
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+			}
+		}
+		end_event_chain = "reality_collapse_chain"
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.412.d
+		trigger = {
+			OR = {
+				has_civic = civic_dimensional_worship
+				has_civic = civic_corporate_dimensional_worship
+			}
+		}
+		add_resource = {
+			unity = 10000
+		}
+		end_event_chain = "reality_collapse_chain"
+	}
+	option = {
+		name = ssh_vacdec.412.e
+		trigger = {
+			has_global_flag = ssh_ark_jump_cluster_black_hole
+			OR = {
+				has_civic = civic_dark_consortium
+				has_civic = civic_corporate_dark_consortium
+				has_civic = civic_void_hive
+			}
+		}
+		add_resource = {
+			unity = 5000
+		}
+		end_event_chain = "reality_collapse_chain"
+	}
+}
+
+# Other countries Notification
+country_event = {
+	id = ssh_vacdec.414
+	title = "ssh_vacdec.414.name"
+	desc = "ssh_vacdec.414.desc"
+	picture = GFX_evt_ssh_ark_launch
+	show_sound = event_super_explosion
+	#location = event_target:ssh_ark_system
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { is_galactic_emperor = yes } }
+			remove_from_galactic_community = yes
+		}
+		else = {
+			set_galactic_emperor = no
+			remove_from_galactic_community = yes
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.414.a
+		trigger = {
+			NOR = {
+				is_galactic_custodian = yes
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+				has_civic = civic_dimensional_worship
+				has_civic = civic_corporate_dimensional_worship
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.414.b
+		trigger = {
+			OR = {
+				is_galactic_custodian = yes
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.414.c
+		trigger = {
+			OR = {
+				has_civic = civic_dimensional_worship
+				has_civic = civic_corporate_dimensional_worship
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.414.d
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+
+### Ark Construction Bureau (ACB) Events
+country_event = {
+	id = ssh_vacdec.450
+	title = SSH_ARK_BUREAU
+	desc = ssh_vacdec.450.desc
+	#desc = { # Gestalt Empire
+	#	text = ssh_shroud.11_02.desc
+	#	trigger = { 
+	#		from = { is_gestalt = yes }
+	#	}
+	#}
+	diplomatic_title = SSH_ARK_BUREAU
+	diplomatic = yes
+
+	show_sound = "event_construction"
+
+	picture_event_data = {
+		portrait = this.species
+		room = ark_project_room
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_vacdec.450.a" # Progress
+		hidden_effect = { country_event = { id = ssh_vacdec.455 } }
+	}
+
+	option = {
+		name = "ssh_vacdec.450.b" # Contribution
+		hidden_effect = { country_event = { id = ssh_vacdec.452 } }
+	}
+
+	option = {
+		name = "ssh_vacdec.450.c" # more info
+		hidden_effect = { country_event = { id = ssh_vacdec.451 } }
+	}
+
+	option = {
+		name = "ssh_vacdec.450.d"
+		default_hide_option = yes
+	}
+}
+# More Info
+country_event = {
+	id = ssh_vacdec.451
+	title = SSH_ARK_BUREAU
+	desc = ssh_vacdec.451.desc
+	#desc = { # Gestalt Empire
+	#	text = ssh_shroud.11_02.desc
+	#	trigger = { 
+	#		from = { is_gestalt = yes }
+	#	}
+	#}
+	diplomatic_title = SSH_ARK_BUREAU
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = this.species
+		room = ark_project_room
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_vacdec.451.a" # What is the Ark
+		is_dialog_only = yes
+		response_text = "ssh_vacdec.451.a.text"
+	}
+
+	option = {
+		name = "ssh_vacdec.451.b" # How does it work
+		is_dialog_only = yes
+		response_text = "ssh_vacdec.451.b.text"
+	}
+
+	option = {
+		name = "ssh_vacdec.451.c" # Where will it take us
+		is_dialog_only = yes
+		response_text = "ssh_vacdec.451.c.text"
+	}
+
+	option = {
+		name = "ssh_vacdec.451.d" # Construction stages
+		is_dialog_only = yes
+		response_text = "ssh_vacdec.451.d.text"
+	}
+
+	option = {
+		name = "ssh_vacdec.451.e" # Back
+		hidden_effect = { country_event = { id = ssh_vacdec.450 } }
+		default_hide_option = yes
+	}
+}
+
+# Manage Contribution
+country_event = {
+	id = ssh_vacdec.452
+	title = SSH_ARK_BUREAU
+	desc = ssh_vacdec.452.desc
+	diplomatic_title = SSH_ARK_BUREAU
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = this.species
+		room = ark_project_room
+	}
+
+	is_triggered_only = yes
+
+	################ options to donate stockpile resources (Alloys, Cultrobium, Energy, Minerals, Crystals, Gases, Motes, Dark Matter)
+
+	option = {
+		name = "ssh_vacdec.452.a"
+		hidden_effect = { country_event = { id = ssh_vacdec.453 } }
+	}
+
+	option = {
+		name = "ssh_vacdec.452.b"
+		hidden_effect = { country_event = { id = ssh_vacdec.450 } }
+		default_hide_option = yes
+	}
+}
+
+# Choose resource to donate
+country_event = {
+	id = ssh_vacdec.453
+	title = SSH_ARK_BUREAU
+	desc = ssh_vacdec.453.desc
+	diplomatic_title = SSH_ARK_BUREAU
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = this.species
+		room = ark_project_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_vacdec.453.a" # Energy
+		allow = {
+			custom_tooltip = "ssh_vacdec.453.a.tooltip"
+			hidden_trigger = {
+				OR = {
+					has_global_flag = ssh_ark_construction_stage_2
+					has_global_flag = ssh_ark_construction_stage_6
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = ssh_ark_donation_energy
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+	option = {
+		name = "ssh_vacdec.453.b" # Minerals
+		allow = {
+			custom_tooltip = "ssh_vacdec.453.b.tooltip"
+			hidden_trigger = { has_global_flag = ssh_ark_construction_stage_3 }
+		}
+		hidden_effect = {
+			set_country_flag = ssh_ark_donation_minerals
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+	option = {
+		name = "ssh_vacdec.453.c" # Alloys
+		allow = {
+			custom_tooltip = "ssh_vacdec.453.c.tooltip"
+			hidden_trigger = {
+				OR = {
+					has_global_flag = ssh_ark_construction_stage_1
+					has_global_flag = ssh_ark_construction_stage_3
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = ssh_ark_donation_alloys
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+	option = {
+		name = "ssh_vacdec.453.d" # Cultrobium
+		allow = {
+			custom_tooltip = "ssh_vacdec.453.c.tooltip"
+			hidden_trigger = { has_global_flag = ssh_ark_construction_stage_1 }
+			#OR = {
+			#	has_global_flag = ssh_ark_construction_stage_1
+			#	has_global_flag = ssh_ark_construction_stage_5
+			#}
+		}
+		hidden_effect = {
+			set_country_flag = ssh_ark_donation_cultrobium
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+	option = {
+		name = "ssh_vacdec.453.e" # Gases
+		allow = {
+			custom_tooltip = "ssh_vacdec.453.e.tooltip"
+			hidden_trigger = { has_global_flag = ssh_ark_construction_stage_4 }
+		}
+		hidden_effect = {
+			set_country_flag = ssh_ark_donation_gases
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+	option = {
+		name = "ssh_vacdec.453.f" # Crystals
+		allow = {
+			custom_tooltip = "ssh_vacdec.453.f.tooltip"
+			hidden_trigger = { has_global_flag = ssh_ark_construction_stage_2 }
+		}
+		hidden_effect = {
+			set_country_flag = ssh_ark_donation_crystals
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+	option = {
+		name = "ssh_vacdec.453.g" # Motes
+		allow = {
+			custom_tooltip = "ssh_vacdec.453.g.tooltip"
+			hidden_trigger = { has_global_flag = ssh_ark_construction_stage_4 }
+		}
+		hidden_effect = {
+			set_country_flag = ssh_ark_donation_motes
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+	option = {
+		name = "ssh_vacdec.453.h" # dark matter
+		allow = {
+			custom_tooltip = "ssh_vacdec.453.h.tooltip"
+			hidden_trigger = { has_global_flag = ssh_ark_construction_stage_5 }
+		}
+		hidden_effect = {
+			set_country_flag = ssh_ark_donation_dark_matter
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+
+	option = {
+		name = "ssh_vacdec.453.i"
+		hidden_effect = { country_event = { id = ssh_vacdec.452 } }
+		default_hide_option = yes
+	}
+}
+
+# Choose resource amount
+country_event = {
+	id = ssh_vacdec.454
+	title = SSH_ARK_BUREAU
+	desc = ssh_vacdec.454.desc
+	diplomatic_title = SSH_ARK_BUREAU
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = this.species
+		room = ark_project_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_vacdec.454.a" # 10000
+		allow = {
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_energy }
+				resource_stockpile_compare = {
+					resource = energy
+					value > 10000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_minerals }
+				resource_stockpile_compare = {
+					resource = minerals
+					value > 10000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_alloys }
+				resource_stockpile_compare = {
+					resource = alloys
+					value > 10000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_cultrobium }
+				resource_stockpile_compare = {
+					resource = sr_cultrobium
+					value > 10000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_gases }
+				resource_stockpile_compare = {
+					resource = exotic_gases
+					value > 10000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_crystals }
+				resource_stockpile_compare = {
+					resource = rare_crystals
+					value > 10000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_motes }
+				resource_stockpile_compare = {
+					resource = volatile_motes
+					value > 10000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_dark_matter }
+				resource_stockpile_compare = {
+					resource = sr_dark_matter
+					value > 10000
+				}
+			}
+			else = {
+				# nothing
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_energy }
+				add_resource = { energy = -10000 }
+				if = {
+					limit = { has_global_flag = ssh_ark_construction_stage_2 }
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_2_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_2_chain"
+							counter = "ark_stage_2_energy"
+							amount = 10000
+						}
+					}
+				}
+				else = {
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_6_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_6_chain"
+							counter = "ark_stage_6_energy"
+							amount = 10000
+						}
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_minerals }
+				add_resource = { minerals = -10000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_3_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_3_chain"
+						counter = "ark_stage_3_minerals"
+						amount = 10000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_alloys }
+				add_resource = { alloys = -10000 }
+				if = {
+					limit = { has_global_flag = ssh_ark_construction_stage_1 }
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_1_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_1_chain"
+							counter = "ark_stage_1_alloys"
+							amount = 10000
+						}
+					}
+				}
+				else = {
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_3_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_3_chain"
+							counter = "ark_stage_3_alloys"
+							amount = 10000
+						}
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_cultrobium }
+				add_resource = { sr_cultrobium = -10000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_1_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_1_chain"
+						counter = "ark_stage_1_cultrobium"
+						amount = 10000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_gases }
+				add_resource = { exotic_gases = -10000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_4_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_4_chain"
+						counter = "ark_stage_4_gases"
+						amount = 10000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_crystals }
+				add_resource = { rare_crystals = -10000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_2_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_2_chain"
+						counter = "ark_stage_2_crystals"
+						amount = 10000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_motes }
+				add_resource = { volatile_motes = -10000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_4_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_4_chain"
+						counter = "ark_stage_4_motes"
+						amount = 10000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_dark_matter }
+				add_resource = { sr_dark_matter = -10000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_5_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_5_chain"
+						counter = "ark_stage_5_dark_matter"
+						amount = 10000
+					}
+				}
+			}
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+	option = {
+		name = "ssh_vacdec.454.b" # 30000
+		allow = {
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_energy }
+				resource_stockpile_compare = {
+					resource = energy
+					value > 30000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_minerals }
+				resource_stockpile_compare = {
+					resource = minerals
+					value > 30000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_alloys }
+				resource_stockpile_compare = {
+					resource = alloys
+					value > 30000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_cultrobium }
+				resource_stockpile_compare = {
+					resource = sr_cultrobium
+					value > 30000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_gases }
+				resource_stockpile_compare = {
+					resource = exotic_gases
+					value > 30000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_crystals }
+				resource_stockpile_compare = {
+					resource = rare_crystals
+					value > 30000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_motes }
+				resource_stockpile_compare = {
+					resource = volatile_motes
+					value > 30000
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_dark_matter }
+				resource_stockpile_compare = {
+					resource = sr_dark_matter
+					value > 30000
+				}
+			}
+			else = {
+				# nothing
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_energy }
+				add_resource = { energy = -30000 }
+				if = {
+					limit = { has_global_flag = ssh_ark_construction_stage_2 }
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_2_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_2_chain"
+							counter = "ark_stage_2_energy"
+							amount = 30000
+						}
+					}
+				}
+				else = {
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_6_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_6_chain"
+							counter = "ark_stage_6_energy"
+							amount = 30000
+						}
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_minerals }
+				add_resource = { minerals = -30000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_3_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_3_chain"
+						counter = "ark_stage_3_minerals"
+						amount = 30000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_alloys }
+				add_resource = { alloys = -30000 }
+				if = {
+					limit = { has_global_flag = ssh_ark_construction_stage_1 }
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_1_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_1_chain"
+							counter = "ark_stage_1_alloys"
+							amount = 30000
+						}
+					}
+				}
+				else = {
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_3_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_3_chain"
+							counter = "ark_stage_3_alloys"
+							amount = 30000
+						}
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_cultrobium }
+				add_resource = { sr_cultrobium = -30000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_1_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_1_chain"
+						counter = "ark_stage_1_cultrobium"
+						amount = 30000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_gases }
+				add_resource = { exotic_gases = -30000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_4_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_4_chain"
+						counter = "ark_stage_4_gases"
+						amount = 30000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_crystals }
+				add_resource = { rare_crystals = -30000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_2_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_2_chain"
+						counter = "ark_stage_2_crystals"
+						amount = 30000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_motes }
+				add_resource = { volatile_motes = -30000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_4_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_4_chain"
+						counter = "ark_stage_4_motes"
+						amount = 30000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_dark_matter }
+				add_resource = { sr_dark_matter = -30000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_5_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_5_chain"
+						counter = "ark_stage_5_dark_matter"
+						amount = 30000
+					}
+				}
+			}
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+	option = {
+		name = "ssh_vacdec.454.c" # 50000
+		allow = {
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_energy }
+				resource_stockpile_compare = {
+					resource = energy
+					value > 50000
+				}
+				NOR = {
+					has_global_flag = ssh_ark_construction_stage_2_energy_reached
+					has_global_flag = ssh_ark_completed
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_minerals }
+				resource_stockpile_compare = {
+					resource = minerals
+					value > 50000
+				}
+				NOT = { has_global_flag = ssh_ark_construction_stage_3_minerals_reached }
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_alloys }
+				resource_stockpile_compare = {
+					resource = alloys
+					value > 50000
+				}
+				NOR = {
+					has_global_flag = ssh_ark_construction_stage_1_alloys_reached
+					has_global_flag = ssh_ark_construction_stage_3_alloys_reached
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_cultrobium }
+				resource_stockpile_compare = {
+					resource = sr_cultrobium
+					value > 50000
+				}
+				NOT = { has_global_flag = ssh_ark_construction_stage_1_cultrobium_reached }
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_gases }
+				resource_stockpile_compare = {
+					resource = exotic_gases
+					value > 50000
+				}
+				NOT = { has_global_flag = ssh_ark_construction_stage_4_gases_reached }
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_crystals }
+				resource_stockpile_compare = {
+					resource = rare_crystals
+					value > 50000
+				}
+				NOT = { has_global_flag = ssh_ark_construction_stage_2_crystals_reached }
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_motes }
+				resource_stockpile_compare = {
+					resource = volatile_motes
+					value > 50000
+				}
+				NOT = { has_global_flag = ssh_ark_construction_stage_4_motes_reached }
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_dark_matter }
+				resource_stockpile_compare = {
+					resource = sr_dark_matter
+					value > 50000
+				}
+			}
+			else = {
+				# nothing
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_energy }
+				add_resource = { energy = -50000 }
+				if = {
+					limit = { has_global_flag = ssh_ark_construction_stage_2 }
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_2_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_2_chain"
+							counter = "ark_stage_2_energy"
+							amount = 50000
+						}
+					}
+				}
+				else = {
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_6_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_6_chain"
+							counter = "ark_stage_6_energy"
+							amount = 50000
+						}
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_minerals }
+				add_resource = { minerals = -50000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_3_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_3_chain"
+						counter = "ark_stage_3_minerals"
+						amount = 50000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_alloys }
+				add_resource = { alloys = -50000 }
+				if = {
+					limit = { has_global_flag = ssh_ark_construction_stage_1 }
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_1_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_1_chain"
+							counter = "ark_stage_1_alloys"
+							amount = 50000
+						}
+					}
+				}
+				else = {
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_3_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_3_chain"
+							counter = "ark_stage_3_alloys"
+							amount = 50000
+						}
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_cultrobium }
+				add_resource = { sr_cultrobium = -50000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_1_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_1_chain"
+						counter = "ark_stage_1_cultrobium"
+						amount = 50000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_gases }
+				add_resource = { exotic_gases = -50000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_4_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_4_chain"
+						counter = "ark_stage_4_gases"
+						amount = 50000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_crystals }
+				add_resource = { rare_crystals = -50000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_2_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_2_chain"
+						counter = "ark_stage_2_crystals"
+						amount = 50000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_motes }
+				add_resource = { volatile_motes = -50000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_4_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_4_chain"
+						counter = "ark_stage_4_motes"
+						amount = 50000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_dark_matter }
+				add_resource = { sr_dark_matter = -50000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_5_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_5_chain"
+						counter = "ark_stage_5_dark_matter"
+						amount = 50000
+					}
+				}
+			}
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+
+	option = {
+		name = "ssh_vacdec.454.d" # 100000
+		allow = {
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_energy }
+				resource_stockpile_compare = {
+					resource = energy
+					value > 100000
+				}
+				NOR = {
+					has_global_flag = ssh_ark_construction_stage_2_energy_reached
+					has_global_flag = ssh_ark_completed
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_minerals }
+				resource_stockpile_compare = {
+					resource = minerals
+					value > 100000
+				}
+				NOT = { has_global_flag = ssh_ark_construction_stage_3_minerals_reached }
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_alloys }
+				resource_stockpile_compare = {
+					resource = alloys
+					value > 100000
+				}
+				NOR = {
+					has_global_flag = ssh_ark_construction_stage_1_alloys_reached
+					has_global_flag = ssh_ark_construction_stage_3_alloys_reached
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_cultrobium }
+				resource_stockpile_compare = {
+					resource = sr_cultrobium
+					value > 100000
+				}
+				NOT = { has_global_flag = ssh_ark_construction_stage_1_cultrobium_reached }
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_gases }
+				resource_stockpile_compare = {
+					resource = exotic_gases
+					value > 100000
+				}
+				NOT = { has_global_flag = ssh_ark_construction_stage_4_gases_reached }
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_crystals }
+				resource_stockpile_compare = {
+					resource = rare_crystals
+					value > 100000
+				}
+				NOT = { has_global_flag = ssh_ark_construction_stage_2_crystals_reached }
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_motes }
+				resource_stockpile_compare = {
+					resource = volatile_motes
+					value > 100000
+				}
+				NOT = { has_global_flag = ssh_ark_construction_stage_4_motes_reached }
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_dark_matter }
+				resource_stockpile_compare = {
+					resource = sr_dark_matter
+					value > 100000
+				}
+			}
+			else = {
+				# nothing
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_energy }
+				add_resource = { energy = -100000 }
+				if = {
+					limit = { has_global_flag = ssh_ark_construction_stage_2 }
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_2_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_2_chain"
+							counter = "ark_stage_2_energy"
+							amount = 100000
+						}
+					}
+				}
+				else = {
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_6_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_6_chain"
+							counter = "ark_stage_6_energy"
+							amount = 100000
+						}
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_minerals }
+				add_resource = { minerals = -100000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_3_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_3_chain"
+						counter = "ark_stage_3_minerals"
+						amount = 100000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_alloys }
+				add_resource = { alloys = -100000 }
+				if = {
+					limit = { has_global_flag = ssh_ark_construction_stage_1 }
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_1_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_1_chain"
+							counter = "ark_stage_1_alloys"
+							amount = 100000
+						}
+					}
+				}
+				else = {
+					every_playable_country = {
+						limit = { has_event_chain = "ark_construction_stage_3_chain" }
+						add_event_chain_counter = {
+							event_chain = "ark_construction_stage_3_chain"
+							counter = "ark_stage_3_alloys"
+							amount = 100000
+						}
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_cultrobium }
+				add_resource = { sr_cultrobium = -100000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_1_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_1_chain"
+						counter = "ark_stage_1_cultrobium"
+						amount = 100000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_gases }
+				add_resource = { exotic_gases = -100000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_4_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_4_chain"
+						counter = "ark_stage_4_gases"
+						amount = 100000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_crystals }
+				add_resource = { rare_crystals = -100000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_2_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_2_chain"
+						counter = "ark_stage_2_crystals"
+						amount = 100000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_motes }
+				add_resource = { volatile_motes = -100000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_4_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_4_chain"
+						counter = "ark_stage_4_motes"
+						amount = 100000
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = ssh_ark_donation_dark_matter }
+				add_resource = { sr_dark_matter = -100000 }
+				every_playable_country = {
+					limit = { has_event_chain = "ark_construction_stage_5_chain" }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_5_chain"
+						counter = "ark_stage_5_dark_matter"
+						amount = 100000
+					}
+				}
+			}
+			country_event = { id = ssh_vacdec.454 }
+		}
+	}
+
+	option = {
+		name = "ssh_vacdec.454.e"
+		hidden_effect = {
+			ssh_ark_construction_remove_donation_flags = yes
+			country_event = { id = ssh_vacdec.450 }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_vacdec.455
+	title = SSH_ARK_BUREAU
+	desc = {
+		text = "ssh_vacdec.455_01.desc"
+		trigger = { has_global_flag = ssh_ark_construction_stage_1 }
+	}
+	desc = {
+		text = "ssh_vacdec.455_02.desc"
+		trigger = { has_global_flag = ssh_ark_construction_stage_2 }
+	}
+	desc = {
+		text = "ssh_vacdec.455_03.desc"
+		trigger = { has_global_flag = ssh_ark_construction_stage_3 }
+	}
+	desc = {
+		text = "ssh_vacdec.455_04.desc"
+		trigger = { has_global_flag = ssh_ark_construction_stage_4 }
+	}
+	desc = {
+		text = "ssh_vacdec.455_05.desc"
+		trigger = { has_global_flag = ssh_ark_construction_stage_5 }
+	}
+	desc = {
+		text = "ssh_vacdec.455_06.desc"
+		trigger = { has_global_flag = ssh_ark_construction_stage_6 } # Charging the Drive
+	}
+	diplomatic_title = SSH_ARK_BUREAU
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = this.species
+		room = ark_project_room
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_vacdec.455.a"
+		hidden_effect = { country_event = { id = ssh_vacdec.450 } }
+		default_hide_option = yes
+	}
+}
+
+
+
+
+# Ark Project: Monthly Counter Update (on_action) - Research Stage
+event = {
+	id = ssh_vacdec.500
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = ssh_ark_project_launched
+		NOT = { has_global_flag = ssh_ark_research_stage_completed }
+	}
+
+	immediate = {
+		event_target:global_event_country = {
+			#clear_variable = ark_combined_physics_research_output
+			# Set variable to 0 each month and re calculate it
+			set_variable = {
+				which = ark_combined_physics_research_output
+				value = 0
+			}
+			set_variable = {
+				which = ark_combined_society_research_output
+				value = 0
+			}
+			set_variable = {
+				which = ark_combined_engineering_research_output
+				value = 0
+			}
+		}
+
+		# Calculate combined/galactic research output - Thanks MingCR!
+		every_playable_country = {
+			limit = { has_country_flag = ssh_ark_project_country }
+			export_trigger_value_to_variable = {
+				trigger = resource_revenue_compare
+				parameters = { resource = physics_research }
+				variable = local_physics_revenue
+			}
+			event_target:global_event_country = {
+				change_variable = {
+					which = ark_combined_physics_research_output
+					value = prev.local_physics_revenue
+				}
+			}
+
+			export_trigger_value_to_variable = {
+				trigger = resource_revenue_compare
+				parameters = { resource = society_research }
+				variable = local_society_revenue
+			}
+			event_target:global_event_country = {
+				change_variable = {
+					which = ark_combined_society_research_output
+					value = prev.local_society_revenue
+				}
+			}
+
+			export_trigger_value_to_variable = {
+				trigger = resource_revenue_compare
+				parameters = { resource = engineering_research }
+				variable = local_engineering_revenue
+			}
+			event_target:global_event_country = {
+				change_variable = {
+					which = ark_combined_engineering_research_output
+					value = prev.local_engineering_revenue
+				}
+			}
+		}
+
+		#### Experimental ####
+		# Set Current Score Variables
+		#event_target:global_event_country = {
+		#	if = {
+		#		limit = { has_global_flag = ssh_ark_research_stage_1 }
+		#		change_variable = {
+		#			which = ark_current_engineering_research_score
+		#			value = ark_combined_engineering_research_output
+		#		}
+		#	}
+		#	else_if = {
+		#		limit = { has_global_flag = ssh_ark_research_stage_2 }
+		#		#clear_variable = ark_current_engineering_research_score
+		#		change_variable = {
+		#			which = ark_current_physics_research_score
+		#			value = ark_combined_physics_research_output
+		#		}
+		#	}
+		#	else_if = {
+		#		limit = { has_global_flag = ssh_ark_research_stage_3 }
+		#		#clear_variable = ark_current_physics_research_score
+		#		change_variable = {
+		#			which = ark_current_society_research_score
+		#			value = ark_combined_society_research_output
+		#		}
+		#	}
+		#	else_if = {
+		#		limit = { has_global_flag = ssh_ark_research_stage_4 }
+		#		#clear_variable = ark_current_engineering_research_score
+		#		change_variable = {
+		#			which = ark_current_physics_research_score
+		#			value = ark_combined_physics_research_output
+		#		}
+		#	}
+		#	else_if = {
+		#		limit = { has_global_flag = ssh_ark_research_stage_5 }
+		#		#clear_variable = ark_current_engineering_research_score
+		#		change_variable = {
+		#			which = ark_current_physics_research_score
+		#			value = ark_combined_physics_research_output
+		#		}
+		#	}
+		#	else = {
+		#		# Do nothing
+		#	}
+		#}
+
+		# Update Ark Event Chain Values
+		every_playable_country = {
+			limit = { has_event_chain = "ark_project_research_chain" }
+			# Reset every month and re calculate
+			reset_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_project_physics_output"
+			}
+			add_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_project_physics_output"
+				amount = event_target:global_event_country.ark_combined_physics_research_output
+			}
+			reset_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_project_society_output"
+			}
+			add_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_project_society_output"
+				amount = event_target:global_event_country.ark_combined_society_research_output
+			}
+			reset_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_project_engineering_output"
+			}
+			add_event_chain_counter = {
+				event_chain = "ark_project_research_chain"
+				counter = "ark_project_engineering_output"
+				amount = event_target:global_event_country.ark_combined_engineering_research_output
+			}
+		}
+
+		# Update Ark Stages Event Chain Values
+		if = {
+			limit = { has_global_flag = ssh_ark_research_stage_1 }
+			every_playable_country = {
+				limit = { has_event_chain = "ark_step_1_chain" }
+				add_event_chain_counter = {
+					event_chain = "ark_step_1_chain"
+					counter = "ark_step_1_score"
+					amount = event_target:global_event_country.ark_combined_engineering_research_output
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_step_1_chain"
+							counter = "ark_step_1_score"
+						}
+						#check_variable = {
+						#	which = ark_combined_engineering_research_output ###### get variable (event chain) of total stored research & compare
+						#	value = @ark_research_stage_1_goal
+						#}
+					}
+					country_event = {
+						id = ssh_vacdec.303
+						days = 1
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_research_stage_2 }
+			every_playable_country = {
+				limit = { has_event_chain = "ark_step_2_chain" }
+				add_event_chain_counter = {
+					event_chain = "ark_step_2_chain"
+					counter = "ark_step_2_score"
+					amount = event_target:global_event_country.ark_combined_physics_research_output
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_step_2_chain"
+							counter = "ark_step_2_score"
+						}
+					}
+					country_event = {
+						id = ssh_vacdec.304
+						days = 1
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_research_stage_3 }
+			every_playable_country = {
+				limit = { has_event_chain = "ark_step_3_chain" }
+				add_event_chain_counter = {
+					event_chain = "ark_step_3_chain"
+					counter = "ark_step_3_score"
+					amount = event_target:global_event_country.ark_combined_society_research_output
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_step_3_chain"
+							counter = "ark_step_3_score"
+						}
+					}
+					country_event = {
+						id = ssh_vacdec.305
+						days = 1
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_research_stage_4 }
+			every_playable_country = {
+				limit = { has_event_chain = "ark_step_4_chain" }
+				add_event_chain_counter = {
+					event_chain = "ark_step_4_chain"
+					counter = "ark_step_4_score"
+					amount = event_target:global_event_country.ark_combined_physics_research_output
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_step_4_chain"
+							counter = "ark_step_4_score"
+						}
+					}
+					country_event = {
+						id = ssh_vacdec.306
+						days = 1
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_research_stage_5 }
+			every_playable_country = {
+				limit = { has_event_chain = "ark_step_5_chain" }
+				add_event_chain_counter = {
+					event_chain = "ark_step_5_chain"
+					counter = "ark_step_5_score"
+					amount = event_target:global_event_country.ark_combined_physics_research_output
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_step_5_chain"
+							counter = "ark_step_5_score"
+						}
+					}
+					country_event = {
+						id = ssh_vacdec.307
+						days = 1
+					}
+				}
+			}
+		}
+	}
+}
+
+# Ark Project: Monthly Counter Update (on_action) - Construction Stage
+event = {
+	id = ssh_vacdec.510
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = ssh_ark_research_stage_completed
+		NOT = { has_global_flag = ssh_ark_completed }
+	}
+
+	immediate = {
+
+		##### Not sure if this causes gameplay bugs, error.log says there's an invalid context switch here from no_scope to event_target:global_event_country but ingame it seems to work fine #####
+
+		event_target:global_event_country = {
+			# Set variable to 0 each month and re calculate it
+			set_variable = {
+				which = ark_combined_alloys_output
+				value = 0
+			}
+			set_variable = {
+				which = ark_combined_cultrobium_output
+				value = 0
+			}
+			set_variable = {
+				which = ark_combined_minerals_output
+				value = 0
+			}
+			set_variable = {
+				which = ark_combined_energy_output
+				value = 0
+			}
+			set_variable = {
+				which = ark_combined_gases_output
+				value = 0
+			}
+			set_variable = {
+				which = ark_combined_motes_output
+				value = 0
+			}
+			set_variable = {
+				which = ark_combined_crystals_output
+				value = 0
+			}
+			set_variable = {
+				which = ark_combined_dark_matter_output
+				value = 0
+			}
+		}
+
+		# Calculate combined/galactic resource output
+		# Depending on the current construction stage (for efficienct calculating)
+		if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_1 }
+			every_playable_country = {
+				limit = { has_country_flag = ssh_ark_project_country }
+				## ALLOYS ##
+				export_trigger_value_to_variable = {
+					trigger = resource_revenue_compare
+					parameters = { resource = alloys }
+					variable = local_alloys_revenue
+				}
+				### Unused
+				# No need to calculate low contribution bc of 0.5x
+				#if = {
+				#	limit = { has_modifier = ssh_ark_alloys_contribution_med } # Only 30% income
+				#	divide_variable = {
+				#		which = local_alloys_revenue
+				#		value = 0.3
+				#	}
+				#	multiply_variable = {
+				#		which = local_alloys_revenue
+				#		value = 0.7
+				#	}
+				#}
+				#else_if = {
+				#	limit = { has_modifier = ssh_ark_alloys_contribution_high } # Only 15% income
+				#	divide_variable = {
+				#		which = local_alloys_revenue
+				#		value = 0.15
+				#	}
+				#	multiply_variable = {
+				#		which = local_alloys_revenue
+				#		value = 0.85
+				#	}
+				#}
+				#else = {
+				#	# Do nothing bc 50%
+				#}
+				event_target:global_event_country = {
+					change_variable = {
+						which = ark_combined_alloys_output
+						value = prev.local_alloys_revenue
+					}
+				}
+
+				## CULTROBIUM ##
+				export_trigger_value_to_variable = {
+					trigger = resource_revenue_compare
+					parameters = { resource = sr_cultrobium }
+					variable = local_cultrobium_revenue
+				}
+				event_target:global_event_country = {
+					change_variable = {
+						which = ark_combined_cultrobium_output
+						value = prev.local_cultrobium_revenue
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_2 }
+			every_playable_country = {
+				limit = { has_country_flag = ssh_ark_project_country }
+				## Energy ##
+				export_trigger_value_to_variable = {
+					trigger = resource_revenue_compare
+					parameters = { resource = energy }
+					variable = local_energy_revenue
+				}
+				event_target:global_event_country = {
+					change_variable = {
+						which = ark_combined_energy_output
+						value = prev.local_energy_revenue
+					}
+				}
+				## Crystals ##
+				export_trigger_value_to_variable = {
+					trigger = resource_revenue_compare
+					parameters = { resource = rare_crystals }
+					variable = local_crystals_revenue
+				}
+				event_target:global_event_country = {
+					change_variable = {
+						which = ark_combined_crystals_output
+						value = prev.local_crystals_revenue
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_3 }
+			every_playable_country = {
+				limit = { has_country_flag = ssh_ark_project_country }
+				export_trigger_value_to_variable = {
+					trigger = resource_revenue_compare
+					parameters = { resource = alloys }
+					variable = local_alloys_revenue
+				}
+				event_target:global_event_country = {
+					change_variable = {
+						which = ark_combined_alloys_output
+						value = prev.local_alloys_revenue
+					}
+				}
+				## Minerals ##
+				export_trigger_value_to_variable = {
+					trigger = resource_revenue_compare
+					parameters = { resource = minerals }
+					variable = local_minerals_revenue
+				}
+				event_target:global_event_country = {
+					change_variable = {
+						which = ark_combined_minerals_output
+						value = prev.local_minerals_revenue
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_4 }
+			every_playable_country = {
+				limit = { has_country_flag = ssh_ark_project_country }
+				# Exotic Gases #
+				export_trigger_value_to_variable = {
+					trigger = resource_revenue_compare
+					parameters = { resource = exotic_gases }
+					variable = local_gases_revenue
+				}
+				event_target:global_event_country = {
+					change_variable = {
+						which = ark_combined_gases_output
+						value = prev.local_gases_revenue
+					}
+				}
+				## Motes ##
+				export_trigger_value_to_variable = {
+					trigger = resource_revenue_compare
+					parameters = { resource = volatile_motes }
+					variable = local_motes_revenue
+				}
+				event_target:global_event_country = {
+					change_variable = {
+						which = ark_combined_motes_output
+						value = prev.local_motes_revenue
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_5 }
+			every_playable_country = {
+				limit = { has_country_flag = ssh_ark_project_country }
+				export_trigger_value_to_variable = {
+					trigger = resource_revenue_compare
+					parameters = { resource = sr_dark_matter }
+					variable = local_dark_matter_revenue
+				}
+				event_target:global_event_country = {
+					change_variable = {
+						which = ark_combined_dark_matter_output
+						value = prev.local_dark_matter_revenue
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_6 }
+			every_playable_country = {
+				limit = { has_country_flag = ssh_ark_project_country }
+				export_trigger_value_to_variable = {
+					trigger = resource_revenue_compare
+					parameters = { resource = energy}
+					variable = local_energy_revenue
+				}
+				event_target:global_event_country = {
+					change_variable = {
+						which = ark_combined_energy_output
+						value = prev.local_energy_revenue
+					}
+				}
+			}
+		}
+		else = {
+			# Dont calculate anything
+		}
+
+		# Update Ark Stages Event Chain Values
+		if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_1 }
+			every_playable_country = {
+				limit = { has_event_chain = "ark_construction_stage_1_chain" }
+				if = {
+					limit = { NOT = { has_global_flag = ssh_ark_construction_stage_1_alloys_reached } }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_1_chain"
+						counter = "ark_stage_1_alloys"
+						amount = event_target:global_event_country.ark_combined_alloys_output
+					}
+				}
+				if = {
+					limit = { NOT = { has_global_flag = ssh_ark_construction_stage_1_cultrobium_reached } }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_1_chain"
+						counter = "ark_stage_1_cultrobium"
+						amount = event_target:global_event_country.ark_combined_cultrobium_output
+					}
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_construction_stage_1_chain"
+							counter = "ark_stage_1_alloys"
+						}
+						NOT = { has_global_flag = ssh_ark_construction_stage_1_alloys_reached }
+					}
+					set_global_flag = ssh_ark_construction_stage_1_alloys_reached
+					#if = {
+					#	limit = { has_modifier = ssh_ark_alloys_contribution_high }
+					#	remove_modifier = ssh_ark_alloys_contribution_high
+					#}
+					#else_if = {
+					#	limit = { has_modifier = ssh_ark_alloys_contribution_med }
+					#	remove_modifier = ssh_ark_alloys_contribution_med
+					#}
+					#else = { remove_modifier = ssh_ark_alloys_contribution_low }
+					remove_modifier = ssh_ark_alloys_contribution
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_construction_stage_1_chain"
+							counter = "ark_stage_1_cultrobium"
+						}
+						NOT = { has_global_flag = ssh_ark_construction_stage_1_cultrobium_reached }
+					}
+					set_global_flag = ssh_ark_construction_stage_1_cultrobium_reached
+					#if = {
+					#	limit = { has_modifier = ssh_ark_cultrobium_contribution_high }
+					#	remove_modifier = ssh_ark_cultrobium_contribution_high
+					#}
+					#else_if = {
+					#	limit = { has_modifier = ssh_ark_cultrobium_contribution_med }
+					#	remove_modifier = ssh_ark_cultrobium_contribution_med
+					#}
+					#else = { remove_modifier = ssh_ark_cultrobium_contribution_low }
+					remove_modifier = ssh_ark_cultrobium_contribution
+				}
+				if = {
+					limit = {
+						has_global_flag = ssh_ark_construction_stage_1_alloys_reached
+						has_global_flag = ssh_ark_construction_stage_1_cultrobium_reached
+					}
+					remove_global_flag = ssh_ark_construction_stage_1_alloys_reached
+					remove_global_flag = ssh_ark_construction_stage_1_cultrobium_reached
+					country_event = {
+						id = ssh_vacdec.401
+						days = 1
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_2 }
+			every_playable_country = {
+				limit = { has_event_chain = "ark_construction_stage_2_chain" }
+				if = {
+					limit = { NOT = { has_global_flag = ssh_ark_construction_stage_2_energy_reached } }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_2_chain"
+						counter = "ark_stage_2_energy"
+						amount = event_target:global_event_country.ark_combined_energy_output
+					}
+				}
+				if = {
+					limit = { NOT = { has_global_flag = ssh_ark_construction_stage_2_crystals_reached } }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_2_chain"
+						counter = "ark_stage_2_crystals"
+						amount = event_target:global_event_country.ark_combined_crystals_output
+					}
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_construction_stage_2_chain"
+							counter = "ark_stage_2_energy"
+						}
+						NOT = { has_global_flag = ssh_ark_construction_stage_2_energy_reached }
+					}
+					set_global_flag = ssh_ark_construction_stage_2_energy_reached
+					remove_modifier = ssh_ark_energy_contribution
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_construction_stage_2_chain"
+							counter = "ark_stage_2_crystals"
+						}
+						NOT = { has_global_flag = ssh_ark_construction_stage_2_crystals_reached }
+					}
+					set_global_flag = ssh_ark_construction_stage_2_crystals_reached
+					remove_modifier = ssh_ark_crystals_contribution
+				}
+				if = {
+					limit = {
+						has_global_flag = ssh_ark_construction_stage_2_energy_reached
+						has_global_flag = ssh_ark_construction_stage_2_crystals_reached
+					}
+					remove_global_flag = ssh_ark_construction_stage_2_energy_reached
+					remove_global_flag = ssh_ark_construction_stage_2_crystals_reached
+					country_event = {
+						id = ssh_vacdec.402
+						days = 1
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_3 }
+			every_playable_country = {
+				limit = { has_event_chain = "ark_construction_stage_3_chain" }
+				if = {
+					limit = { NOT = { has_global_flag = ssh_ark_construction_stage_3_alloys_reached } }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_3_chain"
+						counter = "ark_stage_3_alloys"
+						amount = event_target:global_event_country.ark_combined_alloys_output
+					}
+				}
+				if = {
+					limit = { NOT = { has_global_flag = ssh_ark_construction_stage_3_minerals_reached } }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_3_chain"
+						counter = "ark_stage_3_minerals"
+						amount = event_target:global_event_country.ark_combined_minerals_output
+					}
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_construction_stage_3_chain"
+							counter = "ark_stage_3_alloys"
+						}
+						NOT = { has_global_flag = ssh_ark_construction_stage_3_alloys_reached }
+					}
+					set_global_flag = ssh_ark_construction_stage_3_alloys_reached
+					remove_modifier = ssh_ark_alloys_contribution
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_construction_stage_3_chain"
+							counter = "ark_stage_3_minerals"
+						}
+						NOT = { has_global_flag = ssh_ark_construction_stage_3_minerals_reached }
+					}
+					set_global_flag = ssh_ark_construction_stage_3_minerals_reached
+					remove_modifier = ssh_ark_minerals_contribution
+				}
+				if = {
+					limit = {
+						has_global_flag = ssh_ark_construction_stage_3_alloys_reached
+						has_global_flag = ssh_ark_construction_stage_3_minerals_reached
+					}
+					remove_global_flag = ssh_ark_construction_stage_3_alloys_reached
+					remove_global_flag = ssh_ark_construction_stage_3_minerals_reached
+					country_event = {
+						id = ssh_vacdec.403
+						days = 1
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_4 }
+			every_playable_country = {
+				limit = { has_event_chain = "ark_construction_stage_4_chain" }
+				if = {
+					limit = { NOT = { has_global_flag = ssh_ark_construction_stage_4_gases_reached } }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_4_chain"
+						counter = "ark_stage_4_gases"
+						amount = event_target:global_event_country.ark_combined_gases_output
+					}
+				}
+				if = {
+					limit = { NOT = { has_global_flag = ssh_ark_construction_stage_4_motes_reached } }
+					add_event_chain_counter = {
+						event_chain = "ark_construction_stage_4_chain"
+						counter = "ark_stage_4_motes"
+						amount = event_target:global_event_country.ark_combined_motes_output
+					}
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_construction_stage_4_chain"
+							counter = "ark_stage_4_gases"
+						}
+						NOT = { has_global_flag = ssh_ark_construction_stage_4_gases_reached }
+					}
+					set_global_flag = ssh_ark_construction_stage_4_gases_reached
+					remove_modifier = ssh_ark_gases_contribution
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_construction_stage_4_chain"
+							counter = "ark_stage_4_motes"
+						}
+						NOT = { has_global_flag = ssh_ark_construction_stage_4_motes_reached }
+					}
+					set_global_flag = ssh_ark_construction_stage_4_motes_reached
+					remove_modifier = ssh_ark_motes_contribution
+				}
+				if = {
+					limit = {
+						has_global_flag = ssh_ark_construction_stage_4_gases_reached
+						has_global_flag = ssh_ark_construction_stage_4_motes_reached
+					}
+					remove_global_flag = ssh_ark_construction_stage_4_gases_reached
+					remove_global_flag = ssh_ark_construction_stage_4_motes_reached
+					country_event = {
+						id = ssh_vacdec.404
+						days = 1
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_5 }
+			# Only requires one resource, hence less code
+			every_playable_country = {
+				limit = { has_event_chain = "ark_construction_stage_5_chain" }
+				add_event_chain_counter = {
+					event_chain = "ark_construction_stage_5_chain"
+					counter = "ark_stage_5_dark_matter"
+					amount = event_target:global_event_country.ark_combined_dark_matter_output
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_construction_stage_5_chain"
+							counter = "ark_stage_5_dark_matter"
+						}
+					}
+					remove_modifier = ssh_ark_dark_matter_contribution
+					country_event = {
+						id = ssh_vacdec.405
+						days = 1
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = ssh_ark_construction_stage_6 }
+			every_playable_country = {
+				limit = { has_event_chain = "ark_construction_stage_6_chain" }
+				add_event_chain_counter = {
+					event_chain = "ark_construction_stage_6_chain"
+					counter = "ark_stage_6_energy"
+					amount = event_target:global_event_country.ark_combined_energy_output
+				}
+				if = {
+					limit = {
+						has_completed_event_chain_counter = {
+							event_chain = "ark_construction_stage_6_chain"
+							counter = "ark_stage_6_energy"
+						}
+					}
+					remove_modifier = ssh_ark_energy_contribution
+					if = {
+						limit = { NOT = { has_global_flag = ssh_ark_completed } }
+						set_global_flag = ssh_ark_completed
+						event_target:ssh_ark_system = {
+							random_system_megastructure = {
+								limit = { is_megastructure_type = interdim_ark_6 }
+								upgrade_megastructure_to = interdim_ark_7
+							}
+						}
+					}
+					country_event = {
+						id = ssh_vacdec.406 # The Ark can be boarded
+						days = 1
+					}
+				}
+			}
+		}
+		else = {
+			# Do nothing
+		}
+	}
+}
+
+
+
+
+###### ALTERNATIVE PATHS ######
+# Select your option
+country_event = {
+	id = ssh_vacdec.600
+	title = "ssh_vacdec.600.name"
+	desc = "ssh_vacdec.600.desc"
+	picture = GFX_evt_physics_research #GFX_evt_ssh_basement_universe
+	#show_sound = event_alien_signal
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.600.a # Basement Universe
+		hidden_effect = {
+			set_country_flag = ssh_vacdec_basement_uni_country
+			country_event = {
+				id = ssh_vacdec.601
+				days = 5
+			}
+		}
+		default_hide_option = yes
+		ai_chance = {
+			factor = 100
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.600.b # Intergalactic Beacon - COMING SOON
+		allow = {
+			custom_tooltip = "ssh_vacdec_coming_soon"
+			hidden_trigger = {
+				always = no
+			}
+		}
+		#allow = {
+		#	custom_tooltip = "requires_gigastructures"
+		#	has_gigastructures = yes
+		#}
+		hidden_effect = {
+			set_country_flag = ssh_vacdec_intergal_beacon_country
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.600.c # Do nothing about the crisis and accept your fate
+		custom_tooltip = ssh_vacdec.600.c.tooltip
+		hidden_effect = {
+			country_event = {
+				id = ssh_vacdec.700
+				days = 5
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+###### ALT PATH #1: Escape on your own (Basement Universe)
+country_event = {
+	id = ssh_vacdec.601
+	title = "ssh_vacdec.601.name"
+	desc = {
+		text = "ssh_vacdec.601_01.desc"
+		trigger = { has_technology = ssh_tech_basement_universe }
+	}
+	desc = {
+		text = "ssh_vacdec.601_02.desc"
+		trigger = { NOT = { has_technology = ssh_tech_basement_universe } }
+	}
+	picture = GFX_evt_ssh_basement_universe
+	show_sound = event_alien_signal
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.601.a
+		custom_tooltip =  ssh_vacdec.601.a.tooltip
+		begin_event_chain = {
+			event_chain = "basement_universe_creation_chain"
+			target = ROOT
+		}
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_basement_universe } }
+			add_research_option = ssh_tech_basement_universe
+		}
+		else = {
+			add_research_option = ssh_tech_basement_universe_probing
+		}
+		#hidden_effect = {
+		#	if = {
+		#		limit = { has_technology = ssh_tech_basement_universe }
+		#		add_event_chain_counter = {
+		#			event_chain = "basement_universe_creation_chain"
+		#			counter = "basement_uni_technology_researched"
+		#			amount = 1
+		#		}
+		#	}
+		#}
+		default_hide_option = yes
+	}
+}
+
+# Special Project Results
+country_event = {
+	id = ssh_vacdec.602 # Black Hole (hinders creation due to *too* strong gravity & no heat to pump in)
+	title = "ssh_vacdec.602.name"
+	desc = "ssh_vacdec.602.desc"
+	picture = GFX_evt_black_hole
+	show_sound = event_alien_signal
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_vacdec_basement_uni_probed_black_hole }
+
+	option = {
+		name = INTERESTING
+		hidden_effect = {
+			if = {
+				limit = { has_event_chain = "basement_universe_creation_chain" }
+				add_event_chain_counter = {
+					event_chain = "basement_universe_creation_chain"
+					counter = "basement_uni_projects_completed"
+					amount = 1
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_vacdec.603 # Neutron Star (Potential Candidate; good gravity & heat to pump in; but very hazardous environment for any lifeform)
+	title = "ssh_vacdec.603.name"
+	desc = "ssh_vacdec.603.desc"
+	picture = GFX_evt_star_pulsar
+	show_sound = event_alien_signal
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_vacdec_basement_uni_probed_neutron_star }
+
+	option = {
+		name = INTERESTING
+		hidden_effect = {
+			if = {
+				limit = { has_event_chain = "basement_universe_creation_chain" }
+				add_event_chain_counter = {
+					event_chain = "basement_universe_creation_chain"
+					counter = "basement_uni_projects_completed"
+					amount = 1
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_vacdec.604 # Normal Star (Good heat, but not enough gravity)
+	title = "ssh_vacdec.604.name"
+	desc = "ssh_vacdec.604.desc"
+	picture = GFX_evt_star_yellow
+	show_sound = event_alien_signal
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_vacdec_basement_uni_probed_regular_star }
+
+	option = {
+		name = INTERESTING
+		hidden_effect = {
+			if = {
+				limit = { has_event_chain = "basement_universe_creation_chain" }
+				add_event_chain_counter = {
+					event_chain = "basement_universe_creation_chain"
+					counter = "basement_uni_projects_completed"
+					amount = 1
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_vacdec.605 # Dim/Dwarf Star (No Heat, not enough gravity)
+	title = "ssh_vacdec.605.name"
+	desc = "ssh_vacdec.605.desc"
+	picture = GFX_evt_ssh_black_dwarf
+	show_sound = event_alien_signal
+	trackable = no
+
+	is_triggered_only = yes
+
+	immediate = { set_country_flag = ssh_vacdec_basement_uni_probed_dwarf_star }
+
+	option = {
+		name = INTERESTING
+		hidden_effect = {
+			if = {
+				limit = { has_event_chain = "basement_universe_creation_chain" }
+				add_event_chain_counter = {
+					event_chain = "basement_universe_creation_chain"
+					counter = "basement_uni_projects_completed"
+					amount = 1
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# All Celestial Bodies Probed - Triggered via on_action
+country_event = {
+	id = ssh_vacdec.606
+	title = "ssh_vacdec.606.name"
+	desc = "ssh_vacdec.606.desc"
+	picture = GFX_evt_ssh_basement_universe
+	show_sound = event_scanner
+	trackable = no
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = ssh_vacdec_basement_uni_probed_black_hole
+		has_country_flag = ssh_vacdec_basement_uni_probed_dwarf_star
+		has_country_flag = ssh_vacdec_basement_uni_probed_neutron_star
+		has_country_flag = ssh_vacdec_basement_uni_probed_regular_star
+		NOT = { has_country_flag = ssh_vacdec_basement_uni_probing_completed }
+	}
+
+	immediate = { set_country_flag = ssh_vacdec_basement_uni_probing_completed }
+
+	option = {
+		name = ssh_vacdec.606.a
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_basement_gateway_1 } }
+			add_research_option = ssh_tech_basement_gateway_1
+		}
+		default_hide_option = yes
+	}
+}
+
+# Notification after completing special project
+country_event = {
+	id = ssh_vacdec.607
+	title = "ssh_vacdec.607.name"
+	desc = "ssh_vacdec.607.desc"
+	picture = GFX_evt_ssh_wormhole_spherical
+	show_sound = event_scanner
+	trackable = no
+
+	is_triggered_only = yes
+
+	trigger = { has_country_flag = ssh_vacdec_basement_uni_habitable_project_completed }
+	
+	option = {
+		name = ssh_vacdec.607.a
+		#if = {
+		#	limit = { NOT = { has_technology = ssh_tech_basement_gateway_1 } }
+		#	add_research_option = ssh_tech_basement_gateway_1
+		#}
+		default_hide_option = yes
+	}
+}
+
+# Enter the Basement Realm
+country_event = {
+	id = ssh_vacdec.608
+	title = "ssh_vacdec.608.name"
+	desc = {
+		text = "ssh_vacdec.608_01.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_vacdec.608_02.desc"
+		trigger = { is_gestalt = yes }
+	}
+	picture = GFX_evt_ssh_wormhole_spherical
+	show_sound = event_announcement
+	location = fromfrom
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = { has_country_flag = ssh_vacdec_basement_uni_habitable_project_completed }
+
+	immediate = {
+		from = {
+			save_event_target_as = ssh_basement_gateway_system
+		}
+	}
+	
+	option = {
+		name = ssh_vacdec.608.a
+		custom_tooltip = ssh_vacdec.608.a.tooltip
+		hidden_effect = {
+			set_spawn_system_batch = begin
+			ssh_basement_gateway_generate_cluster = yes
+			set_spawn_system_batch = end
+			# If any other player remained in old galaxy: Notification
+			# Otherwise: end crisis & destroy every other country (-> Performance)
+			if = {
+				limit = {
+					any_country = {
+						is_ai = no
+						NOT = { is_same_value = prev }
+					}
+				}
+				set_country_flag = ssh_country_escaped_vacdec_crisis
+				every_playable_country = {
+					limit = {
+						is_ai = no
+						NOT = { is_same_value = prev }
+					}
+					country_event = {
+						id = ssh_vacdec.609
+					}
+				}
+			}
+			else = {
+				every_playable_country = {
+					limit = {
+						NOT = { is_same_value = prev }
+					}
+					destroy_country = yes
+				}
+				ssh_end_vacdec_crisis = yes
+				ssh_vacdec_end_all_crises = yes # End Crises
+			}
+			if = {
+				limit = { is_galactic_community_member = yes }
+				remove_from_galactic_community = yes
+			}
+			# Generate Capital after the notification bc comms are removed
+			ssh_basement_gateway_generate_capital = yes
+			event_target:ssh_basement_gateway_system = {
+				set_star_flag = ssh_basement_universe_gateway
+				#every_system_megastructure = { remove_megastructure = this }
+				every_system_megastructure = {
+					if = {
+						limit = {
+							OR = {
+								is_megastructure_type = gateway_restored
+								is_megastructure_type = gateway_final
+								is_megastructure_type = hyper_relay
+								is_megastructure_type = hyper_relay_restored
+								is_megastructure_type = lgate_base
+								is_megastructure_type = quantum_catapult_3
+								is_megastructure_type = quantum_catapult_improved_slingshot
+								is_megastructure_type = quantum_catapult_restored
+								is_megastructure_type = quantum_catapult_restored_slingshot
+							}
+						}
+						upgrade_megastructure_to = ssh_bypass_remover
+						finish_upgrade = yes
+					}
+					remove_megastructure = this
+				}
+				destroy_star_system = yes
+				star = {
+					set_planet_size = 5
+					set_name = "Collapsed Gateway"
+				}
+			}
+			# Final Notification
+			country_event = {
+				id = ssh_vacdec.610
+				days = 5
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_vacdec.609
+	title = "ssh_vacdec.609.name"
+	desc = "ssh_vacdec.609.desc"
+	picture = GFX_evt_supernova
+	show_sound = event_ship_explosion
+	location = event_target:ssh_basement_gateway_system
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = ssh_vacdec.609.a
+		trigger = {
+			NOR = {
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_machine_terminator
+				has_civic = civic_hyperspace_specialty
+				has_civic = civic_corporate_hyperspace_specialty
+				has_civic = civic_hive_hyperspace_specialty
+				has_civic = civic_machine_hyperspace_specialty
+				has_civic = civic_hive_subspace_ephapse
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.609.b
+		trigger = {
+			OR = {
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_machine_terminator
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.609.c
+		trigger = {
+			OR = {
+				has_civic = civic_hyperspace_specialty
+				has_civic = civic_corporate_hyperspace_specialty
+				has_civic = civic_hive_hyperspace_specialty
+				has_civic = civic_machine_hyperspace_specialty
+				has_civic = civic_hive_subspace_ephapse
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_vacdec.610
+	title = "ssh_vacdec.610.name"
+	desc = {
+		text = "ssh_vacdec.610_01.desc"
+		trigger = {
+			is_gestalt = no
+		}
+	}
+	desc = {
+		text = "ssh_vacdec.610_02.desc"
+		trigger = {
+			is_gestalt = yes
+		}
+	}
+	picture = GFX_evt_supernova
+	show_sound = event_super_explosion
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.610.a
+		add_modifier = {
+			modifier = "vacdec_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "reality_collapse_chain"
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_system_disintegrator } }
+			add_research_option = ssh_tech_system_disintegrator
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.610.b
+		trigger = {
+			OR = {
+				has_civic = civic_dimensional_worship
+				has_civic = civic_corporate_dimensional_worship
+			}
+		}
+		add_resource = {
+			unity = 10000
+		}
+		add_modifier = {
+			modifier = "vacdec_defeated"
+			days = 3600
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier5unityreward
+		}
+		end_event_chain = "reality_collapse_chain"
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_system_disintegrator } }
+			add_research_option = ssh_tech_system_disintegrator
+		}
+		default_hide_option = yes
+	}
+}
+
+# Do nothing about the crisis 
+country_event = {
+	id = ssh_vacdec.700
+	title = "ssh_vacdec.700.name"
+	desc = "ssh_vacdec.700.desc"
+	picture = GFX_evt_surreal_visions #GFX_evt_ssh_wormhole_spherical
+	show_sound = event_necrophage
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = ssh_vacdec.700.a
+		trigger = {
+			NOR = {
+				has_civic = civic_memorialist
+				has_civic = civic_hive_memorialist
+				has_civic = civic_machine_memorialist
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_vacdec.609.b
+		trigger = {
+			OR = {
+				has_civic = civic_memorialist
+				has_civic = civic_hive_memorialist
+				has_civic = civic_machine_memorialist
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+############################
+#                          #
+# Vanilla Crisis Reactions #
+#                          #
+############################
+# Extradim. Invaders end their hunt once vacdec spawns
+# Contingency comments on how vacdec is the consequence of class 30 tampering (IF has global flag of tampering)
+# This galaxy is beyond saving, you have doomed yourselves
+event = {
+	id = ssh_vacdec.9000
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = ssh_vacdec_crisis_ongoing
+		has_global_flag = ai_invasion_ongoing
+		any_country = { is_country_type = ai_empire }
+		NOT = { has_global_flag = contingency_escapes_vacdec }
+	}
+
+	immediate = {
+		set_global_flag = contingency_escapes_vacdec
+		random_rim_system = {
+			limit = {
+				NOR = {
+					has_star_flag = ssh_vacdec_marked_system
+					has_star_flag = ssh_decayed_system
+					any_neighbor_system = { has_star_flag = ssh_vacdec_marked_system }
+					any_neighbor_system = { has_star_flag = ssh_decayed_system }
+					any_neighbor_system_euclidean = { has_star_flag = ssh_vacdec_marked_system }
+					any_neighbor_system_euclidean = { has_star_flag = ssh_decayed_system }
+				}
+			}
+			set_star_flag = AI_refuge_system_vacdec
+			star = {
+				save_global_event_target_as = contingency_retreat_star
+			}
+			save_global_event_target_as = contingency_retreat_system
+		}
+		random_country = {
+			limit = { is_country_type = ai_empire }
+			set_country_flag = contingency_retreating_vacdec
+			set_country_type = ai_empire_vacdec # Used for new diplo
+			every_owned_fleet = {
+				limit = {
+					#NOT = {
+					#	any_owned_ship = {
+					#		is_ship_size = starbase_ai
+					#	}
+					#}
+					is_mobile = yes
+				}
+				queue_actions = {
+					move_to = event_target:contingency_retreat_star
+				}
+				fleet_event = {
+					id = ssh_vacdec.9001 # Flee towards destination
+				}
+			}
+			every_owned_ship = {
+				limit = {
+					OR = {
+						is_ship_size = transport_ship_ai
+						is_ship_size = construction_ship_ai
+						is_ship_size = colony_ship_ai
+					}
+				}
+				delete_ship = this
+			}
+		}
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_vacdec.9010
+				days = 30
+			}
+		}
+		# Handle the contingency for good
+		event_target:global_event_country = {
+			country_event = {
+				id = ssh_vacdec.9002
+				days = 1800 #3600
+			}
+		}
+	}
+}
+
+# Check if fleets have arrived at galaxy's edge
+fleet_event = {
+	id = ssh_vacdec.9001
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_global_flag = ai_invasion_ongoing
+		has_global_flag = ssh_vacdec_crisis_ongoing
+	}
+
+	immediate = {
+		solar_system = {
+			if = {
+				limit = { NOT = { has_star_flag = AI_refuge_system_vacdec } } ##### THIS DOES NOT SEEM TO WORK; NO IDEA WHY. Changing these scopes works fine in vanilla so I will let this be for now
+				prev = {
+					fleet_event = { id = ssh_vacdec.9001 days = 10 }
+				}
+			}
+			if = {
+				limit = { has_star_flag = AI_refuge_system_vacdec }
+				delete_fleet = prev
+			}
+		}
+		#if = {
+		#	limit = {
+		#		solar_system = { NOT = { has_star_flag = AI_refuge_system_vacdec } }
+		#	}
+		#	fleet_event = { id = ssh_vacdec.9001 days = 10 }
+		#}
+		#if = {
+		#	limit = { solar_system = { has_star_flag = AI_refuge_system_vacdec } }
+		#	delete_fleet = this
+		#}
+		queue_actions = {
+			find_closest_system = {
+				trigger = {
+					id = ssh_vacdec.9001.trigger.1 # No idea what this does but an ID is required
+					has_star_flag = AI_refuge_system_vacdec
+				}
+				found_system = {
+					move_to = this
+				}
+			}
+			#move_to = event_target:contingency_retreat_star
+		}
+	}
+}
+
+# Destroy Contingency Planets & End Crisis
+country_event = {
+	id = ssh_vacdec.9002
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = { any_country = { is_country_type = ai_empire_vacdec } }
+
+	immediate = {
+		# Handle Contingency Planets & Crisis
+		ssh_end_contingency_vacdec_effect = yes
+		# Notify Players
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_vacdec.9020
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ssh_vacdec.9010
+	title = "TRANSMISSION"
+	desc = {
+		trigger = { has_global_flag = ssh_vacdec_fields }
+		text = ssh_vacdec.9010_01.desc
+	}
+	desc = {
+		trigger = { NOT = { has_global_flag = ssh_vacdec_fields } }
+		text = ssh_vacdec.9010_02.desc
+	}
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = ai_crisis_1
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.9010.a
+		hidden_effect = {
+			country_event = {
+				id = ssh_vacdec.9011
+			}
+		}
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_vacdec.9011
+	title = "TRANSMISSION"
+	desc = {
+		trigger = { has_global_flag = ssh_vacdec_fields }
+		text = ssh_vacdec.9011_01.desc
+	}
+	desc = {
+		trigger = { NOT = { has_global_flag = ssh_vacdec_fields } }
+		text = ssh_vacdec.9011_02.desc
+	}
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = ai_crisis_1
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.9011.a
+		hidden_effect = {
+			country_event = {
+				id = ssh_vacdec.9012
+				days = 10
+			}
+		}
+		default_hide_option = yes
+	}
+}
+# Notification about vessels retreating
+country_event = {
+	id = ssh_vacdec.9012
+	title = "ssh_vacdec.9012.name"
+	desc = "ssh_vacdec.9012.desc"
+	picture = GFX_evt_contingency_planet
+	show_sound = event_announcement
+	location = event_target:contingency_retreat_system
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.9012.a
+		default_hide_option = yes
+	}
+}
+# AI Diplomacy
+country_event = {
+	id = ssh_vacdec.9015
+	title = "TRANSMISSION"
+
+	desc = {
+		text = ssh_vacdec.9015_01.desc
+	}
+	desc = {
+		text = ssh_vacdec.9015_02.desc
+	}
+	desc = {
+		text = ssh_vacdec.9015_03.desc
+	}
+	desc = {
+		text = ssh_vacdec.9015_04.desc
+		trigger = { has_global_flag = ssh_vacdec_fields }
+	}
+	desc = {
+		text = ssh_vacdec.9015_05.desc
+		trigger = { has_global_flag = ssh_vacdec_fields }
+	}
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = ai_crisis_1
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			is_country_type = ai_empire_vacdec
+			has_country_flag = contingency_retreating_vacdec
+		}
+		NOT = { has_country_flag = contingency_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = contingency_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = contingency_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = ssh_vacdec.9015.a
+		is_dialog_only = yes
+		response_text = ssh_vacdec.9015.a.response
+	}
+	option = {
+		name = ssh_vacdec.9015.b
+		is_dialog_only = yes
+		response_text = ssh_vacdec.9015.b.response
+	}
+	option = {
+		name = ssh_vacdec.9015.c
+		default_hide_option = yes
+	}
+}
+# Contingency has left
+country_event = {
+	id = ssh_vacdec.9020
+	title = "ssh_vacdec.9020.name"
+	desc = "ssh_vacdec.9020.desc"
+	picture = GFX_evt_mercenary_fleet #GFX_evt_gray_goo_ships
+	show_sound = event_sensor_ping
+	#location = event_target:contingency_retreat_system
+	trackable = no
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_vacdec.9020.a
+		default_hide_option = yes
+	}
+}

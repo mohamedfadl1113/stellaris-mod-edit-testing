@@ -1,0 +1,1590 @@
+namespace = crisis
+
+####################
+#				   #
+#   COSMOGENESIS   #
+#				   #
+####################
+country_event = { # Ready to dive - Country Event
+	id = crisis.7510
+	title = "crisis.7510.name"
+	desc = crisis.7510.desc
+	picture = GFX_evt_horizon_needle
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		capital_scope.solar_system.star = {
+			save_event_target_as = supermassive_project_location
+		}
+	}
+
+	option = { # Any regular black hole will do
+		name = crisis.7510.a
+		hidden_effect = {
+			set_country_flag = cosmogenesis_any_black_hole
+		}
+	}
+
+	option = { # ONLY THE SUPERMASSIVE BH AT THE CENTER OF THE GALAXY WILL DO
+		name = crisis.7510.b
+		enable_special_project = {
+			name = COSMOGENESIS_VICTORY
+			location = event_target:supermassive_project_location
+		}
+		hidden_effect = {
+			set_country_flag = cosmogenesis_supermassive
+		}
+	}
+
+	option = { # Dive into the Ark's Battery
+		name = crisis.7510.c
+		custom_tooltip = crisis.7510.c.tooltip
+		trigger = {
+			has_global_flag = ssh_vacdec_crisis_ongoing
+			#has_global_flag = ssh_ark_project_launched
+		}
+		#custom_tooltip = "crisis.7510.c.requirements"
+		allow = {
+			fail_text = {
+				text = "crisis.7510.c.requirements"
+				OR = {
+					has_global_flag = ssh_ark_construction_stage_3
+					has_global_flag = ssh_ark_construction_stage_4
+					has_global_flag = ssh_ark_construction_stage_5
+					has_global_flag = ssh_ark_construction_stage_6
+					has_global_flag = ssh_ark_completed
+				}
+			}
+		}
+		enable_special_project = {
+			name = COSMOGENESIS_VICTORY_ARK
+			location = event_target:supermassive_project_location
+		}
+		hidden_effect = {
+			set_country_flag = cosmogenesis_ark
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					has_country_flag = ssh_ark_project_country
+				}
+				country_event = {
+					id = ssh_crisis.7605
+				}
+			}
+		}
+	}
+}
+
+planet_event = { # About to dive - Planet Action
+	id = crisis.7514
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from.owner = {
+			has_country_flag = exodus_ready
+			has_country_flag = cosmogenesis_any_black_hole
+		}
+	}
+
+	immediate = {
+		create_ambient_object = {
+			type = "horizon_needle_dive"
+			play_animation_once = yes
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		if = {
+			limit = { is_planet_class = pc_disintegrated_star }
+			solar_system = {
+				set_star_flag = cosmogenesis_system # Used to stop the system disintegrator mega
+				set_star_class = sc_black_hole
+				every_system_megastructure = {
+					limit = {
+						OR = {
+							is_megastructure_type = system_disintegrator_harvester_idle
+							is_megastructure_type = system_disintegrator_harvester_active
+						}
+					}
+					remove_megastructure = this
+				}
+			}
+		}
+		# Special event for matter decompressors
+		if = {
+			limit = {
+				solar_system = {
+					OR = {
+						has_star_flag = ruined_black_hole_shellworld_system
+						any_system_megastructure = {
+							OR = {
+								is_megastructure_type = matter_decompressor_1
+								is_megastructure_type = matter_decompressor_2
+								is_megastructure_type = matter_decompressor_3
+								is_megastructure_type = matter_decompressor_4
+								is_megastructure_type = matter_decompressor_restored
+								is_megastructure_type = matter_decompressor_ruined
+							}
+						}
+					}
+				}
+			}
+			from.owner = { country_event = { id = ssh_crisis.7515 days = 7 } }
+		}
+		else = {
+			# Regular Events
+			from.owner = { country_event = { id = crisis.7515 days = 7 } }
+		}
+	}
+}
+
+country_event = { # To infinity and beyond the event horizon
+	id = crisis.7516
+	title = "crisis.7516.name"
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = yes
+			NOT = {
+				event_target:cosmo_ending_system = {
+					is_capital_system = yes
+					has_star_flag = cosmogenesis_project
+				}
+			}
+		}
+		text = crisis.7516.desc.paperclips
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				NOR = {
+					has_star_flag = great_wound
+					has_star_flag = guardians_technosphere_system
+					has_star_flag = terminal_egress
+					has_star_flag = guardians_horror_system
+					# SSH Systems
+					has_star_flag = ssh_dimensional_tearer_system
+					has_star_flag = ssh_dimensional_wave_hit_system
+					has_star_flag = ruined_black_hole_shellworld_system
+					has_star_flag = ruined_edersphere_system
+					has_star_flag = ssh_basement_universe_gateway
+					has_star_flag = ssh_basement_universe_center
+					has_star_flag = abyssal_anchor_system
+					has_star_flag = ssh_black_hole_suprashell_system
+					has_star_flag = fe_materialist_suprashell_capital
+					has_star_flag = ssh_interstellar_black_hole_system
+					has_star_flag = ssh_ark_jump_cluster_core
+					has_star_flag = gigas_collapsed_star
+					has_star_flag = federation_end
+					has_star_flag = ssh_disintegrated_system
+					any_system_planet = {
+						has_planet_flag = black_hole_horror
+					}
+					is_capital_system = yes
+					has_star_flag = cosmogenesis_project
+				}
+			}
+		}
+		text = crisis.7516.desc
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = great_wound
+			}
+		}
+		text = crisis.7516.desc.greatwound
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = guardians_technosphere_system
+			}
+		}
+		text = crisis.7516.desc.technosphere
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = pantagruel
+			}
+		}
+		text = crisis.7516.desc.technosphere.pantagruel
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = terminal_egress
+			}
+		}
+		text = crisis.7516.desc.egress
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				OR = {
+					has_star_flag = guardians_horror_system
+					any_system_planet = {
+						has_planet_flag = black_hole_horror
+					}
+				}
+			}
+		}
+		text = crisis.7516.desc.horror
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			NAND = {
+				has_global_flag = ssh_vacdec_crisis_ongoing # Special Ending if reality collapses & Spiritualist FE left
+				has_global_flag = ssh_vacdec_fe_spiritualist_left
+			}
+			NOT = { has_country_flag = covenant_end_of_the_cycle } # No EOTC Covenant
+			NOT = { has_origin = origin_toxic_knights }
+			NOT = { has_country_flag = has_shroud_patron }
+			event_target:cosmo_ending_system = {
+				is_capital_system = yes
+				has_star_flag = cosmogenesis_project
+			}
+		}
+		text = crisis.7516.desc.center
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			NAND = {
+				has_global_flag = ssh_vacdec_crisis_ongoing # Special Ending if reality collapses & Spiritualist FE left
+				has_global_flag = ssh_vacdec_fe_spiritualist_left
+			}
+			NOT = { has_country_flag = covenant_end_of_the_cycle } # No EOTC Covenant
+			NOT = { has_origin = origin_toxic_knights }
+			has_country_flag = has_shroud_patron
+			event_target:cosmo_ending_system = {
+				is_capital_system = yes
+				has_star_flag = cosmogenesis_project
+			}
+		}
+		text = crisis.7516.desc.center.patron
+	}
+	desc = {
+		trigger = {
+			has_origin = origin_toxic_knights
+			event_target:cosmo_ending_system = {
+				is_capital_system = yes
+				has_star_flag = cosmogenesis_project
+			}
+		}
+		text = crisis.7516.desc.centerknights
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				OR = {
+					has_star_flag = horizonsignal_system
+					has_star_flag = worm_black_hole
+				}
+			}
+		}
+		text = crisis.7516.desc.worm
+	}
+	# Dimensional Tearer System - Before Ascension
+	#desc = {
+	#	trigger = {
+	#		can_create_paperclip_universe = no
+	#		NOT = { any_country = { has_country_flag = ssh_completed_exodus_country } }
+	#		event_target:cosmo_ending_system = {
+	#			has_star_flag = ssh_dimensional_tearer_system
+	#		}
+	#	}
+	#	text = crisis.7516.desc.ssh.dimensional_tearer_destroyed
+	#}
+	# Dimensional Tearer System - After Ascension
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			any_country = { has_country_flag = ssh_completed_exodus_country }
+			event_target:cosmo_ending_system = {
+				has_star_flag = ssh_dimensional_tearer_system
+			}
+		}
+		text = crisis.7516.desc.ssh.dimensional_tearer
+	}
+	# Dimensional Tearer Wave System & Dimensional Tearer System - Before Ascension
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			OR = {
+				event_target:cosmo_ending_system = { has_star_flag = ssh_dimensional_wave_hit_system }
+				AND = {
+					NOT = { any_country = { has_country_flag = ssh_completed_exodus_country } }
+					event_target:cosmo_ending_system = {
+						has_star_flag = ssh_dimensional_tearer_system
+					}
+				}
+			}
+		}
+		text = crisis.7516.desc.ssh.dimensional_tearer_wave
+	}
+	# Ruined Suprashell System
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = ruined_black_hole_shellworld_system
+			}
+		}
+		text = crisis.7516.desc.ssh.ruined_suprashell
+	}
+	# Ruined Edersphere System
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = ruined_edersphere_system
+			}
+		}
+		text = crisis.7516.desc.ssh.kitkat
+	}
+	# Abyssal Anchor
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = abyssal_anchor_system #basement_universe_gateway
+			}
+		}
+		text = crisis.7516.desc.ssh.abyssal_anchor
+	}
+	# Basement Gateway
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				OR = {
+					has_star_flag = ssh_basement_universe_gateway
+					has_star_flag = ssh_basement_universe_center
+				}
+			}
+		}
+		text = crisis.7516.desc.ssh.basement_gateway
+	}
+	# Suprashell (Regular)
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = ssh_black_hole_suprashell_system
+				NOR = {
+					has_star_flag = ruined_black_hole_shellworld_system
+					has_star_flag = great_wound
+					has_star_flag = guardians_technosphere_system
+					has_star_flag = terminal_egress
+					has_star_flag = guardians_horror_system
+					# SSH Systems
+					has_star_flag = ssh_dimensional_tearer_system
+					has_star_flag = ssh_dimensional_wave_hit_system
+					has_star_flag = ruined_edersphere_system
+					has_star_flag = ssh_basement_universe_gateway
+					has_star_flag = ssh_basement_universe_center
+					has_star_flag = abyssal_anchor_system
+					has_star_flag = fe_materialist_suprashell_capital
+					has_star_flag = ssh_interstellar_black_hole_system
+					has_star_flag = ssh_ark_jump_cluster_core
+					has_star_flag = gigas_collapsed_star
+					has_star_flag = federation_end
+					any_system_planet = {
+						has_planet_flag = black_hole_horror
+					}
+					is_capital_system = yes
+					has_star_flag = cosmogenesis_project
+				}
+			}
+		}
+		text = crisis.7516.desc.ssh.suprashell
+	}
+	# Galactic Core - Reality Collapse w/ Fallen Spiritualists
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			has_global_flag = ssh_vacdec_crisis_ongoing
+			has_global_flag = ssh_vacdec_fe_spiritualist_left
+			NOT = { has_origin = origin_toxic_knights }
+			NOT = { has_country_flag = has_shroud_patron }
+			event_target:cosmo_ending_system = {
+				is_capital_system = yes
+				has_star_flag = cosmogenesis_project
+			}
+		}
+		text = crisis.7516.desc.ssh.center_vacdec_spiritualist
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			has_global_flag = ssh_vacdec_crisis_ongoing
+			has_global_flag = ssh_vacdec_fe_spiritualist_left
+			NOT = { has_origin = origin_toxic_knights }
+			has_country_flag = has_shroud_patron
+			event_target:cosmo_ending_system = {
+				is_capital_system = yes
+				has_star_flag = cosmogenesis_project
+			}
+		}
+		text = crisis.7516.desc.ssh.center_vacdec_spiritualist_patron
+	}
+	# FE Materialist Suprashell
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = fe_materialist_suprashell_capital
+				NOR = {
+					has_star_flag = ruined_black_hole_shellworld_system
+					has_star_flag = great_wound
+					has_star_flag = guardians_technosphere_system
+					has_star_flag = terminal_egress
+					has_star_flag = guardians_horror_system
+					# SSH Systems
+					has_star_flag = ssh_dimensional_tearer_system
+					has_star_flag = ssh_dimensional_wave_hit_system
+					has_star_flag = ruined_edersphere_system
+					has_star_flag = ssh_basement_universe_gateway
+					has_star_flag = ssh_basement_universe_center
+					has_star_flag = abyssal_anchor_system
+					has_star_flag = ssh_interstellar_black_hole_system
+					has_star_flag = ssh_ark_jump_cluster_core
+					has_star_flag = gigas_collapsed_star
+					has_star_flag = federation_end
+					any_system_planet = {
+						has_planet_flag = black_hole_horror
+					}
+					is_capital_system = yes
+					has_star_flag = cosmogenesis_project
+				}
+			}
+		}
+		text = crisis.7516.desc.ssh.fe_materialist_suprashell
+	}
+	# Artificial Black Hole (System Creator)
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = ssh_interstellar_black_hole_system
+			}
+		}
+		text = crisis.7516.desc.ssh.interstellar_black_hole
+	}
+	# Ark Jump - Black Hole Galaxy Core
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = ssh_ark_jump_cluster_core
+			}
+		}
+		text = crisis.7516.desc.ssh.ark_cluster_core
+	}
+	# Ark Jump - Destroyed Aerophasic Engine
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			has_global_flag = ssh_ark_jump_new_galaxy_destroyed
+			#event_target:cosmo_ending_system = {
+			#	has_star_flag = destroyed_aerophasic_engine_system
+			#}
+		}
+		text = crisis.7516.desc.ssh.aerophasic_engine
+	}
+	
+	# (Non-Black Hole) Basement Universe Wormhole
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = ssh_disintegrated_system
+				#is_star_class = sc_ssh_disintegrated_star
+			}
+		}
+		text = crisis.7516.desc.ssh.disintegrated_system
+	}
+	
+	# Additional Vanilla Endings
+	# Star Eater Black Hole
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = star_cracked
+			}
+		}
+		text = crisis.7516.desc.ssh.cracked_star
+	}
+	# EOTC - Pre-Reckoning
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			NAND = {
+				has_global_flag = ssh_vacdec_crisis_ongoing
+				has_global_flag = ssh_vacdec_fe_spiritualist_left
+			}
+			NOT = { has_origin = origin_toxic_knights }
+			has_country_flag = has_shroud_patron
+			event_target:cosmo_ending_system = {
+				is_capital_system = yes
+				has_star_flag = cosmogenesis_project
+			}
+			has_country_flag = covenant_end_of_the_cycle # EOTC Covenant
+			NOT = { has_country_flag = end_of_the_cycle_reckoning } # Post-Reckoning
+		}
+		text = crisis.7516.desc.ssh.center_eotc
+	}
+	# EOTC - Post-Reckoning
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			NAND = {
+				has_global_flag = ssh_vacdec_crisis_ongoing
+				has_global_flag = ssh_vacdec_fe_spiritualist_left
+			}
+			NOT = { has_origin = origin_toxic_knights }
+			has_country_flag = has_shroud_patron
+			event_target:cosmo_ending_system = {
+				is_capital_system = yes
+				has_star_flag = cosmogenesis_project
+			}
+			has_country_flag = covenant_end_of_the_cycle # EOTC Covenant
+			has_country_flag = end_of_the_cycle_reckoning # Post-Reckoning
+		}
+		text = crisis.7516.desc.ssh.center_eotc_reckoning
+	}
+	# Federation's End
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = federation_end
+			}
+		}
+		text = crisis.7516.desc.ssh.federation_end
+	}
+	# Central Processing - TODO in another update
+	# Additional Gigas Endings
+	# Gigas' Artificial Black Hole
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				has_star_flag = gigas_collapsed_star
+			}
+		}
+		text = crisis.7516.desc.ssh.gigas_collapsed_star
+	}
+	# Soon - Gigas' Kugelblitz Silo
+	# Soon - Gigas' HRAE-MC
+	# Soon - Gigas' Penrose Sphere + Bomb (extreme subspace disruption)
+
+	# Additional Hypo Stars Endings
+	# Soon - Q Star
+	# Soon - Quasi Star
+
+	# More Primitives Endings - Added here for compat
+	# Particle Accelerator Black Hole Endings
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				any_system_planet = {
+					has_planet_flag = mp_partacc_accident_planet
+				}
+			}
+			NOR = {
+				has_civic = civic_reanimated_armies
+				has_civic = civic_hive_cordyceptic_drones
+			}
+		}
+		text = crisis.7516.desc.mp.partacc_accident
+	}
+	desc = {
+		trigger = {
+			can_create_paperclip_universe = no
+			event_target:cosmo_ending_system = {
+				any_system_planet = {
+					has_planet_flag = mp_partacc_accident_planet
+				}
+			}
+			OR = {
+				has_civic = civic_reanimated_armies
+				has_civic = civic_hive_cordyceptic_drones
+			}
+		}
+		text = crisis.7516.desc.mp.partacc_accident_reanimator
+	}
+	picture = GFX_evt_horizon_needle
+	show_sound = event_airlock
+	event_chain = cosmogenesis_planet_pickup_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				can_create_paperclip_universe = yes
+			}
+			set_country_flag = a_universe_of_paperclips_achievement
+		}
+	}
+	
+	# Normal Response
+	option = {
+		name = crisis.7516.a
+		custom_tooltip = crisis.7516.tt
+		# Some endings have another response option
+		trigger = {
+			NAND = {
+				can_create_paperclip_universe = no
+				OR = {
+					has_global_flag = ssh_ark_jump_new_galaxy_destroyed
+					event_target:cosmo_ending_system = {
+						has_star_flag = ssh_interstellar_black_hole_system
+					}
+					event_target:cosmo_ending_system = {
+						has_star_flag = guardians_horror_system
+					}
+					event_target:cosmo_ending_system = {
+						any_system_planet = {
+							has_planet_flag = black_hole_horror
+						}
+					}
+					event_target:cosmo_ending_system = {
+						has_star_flag = federation_end
+					}
+				}
+			}
+		}
+	}
+
+	# Bad ending
+	option = {
+		name = crisis.7516.b
+		custom_tooltip = crisis.7516.tt_bad
+		hidden_effect = {
+			play_sound = event_the_great_awakening
+		}
+		trigger = {
+			can_create_paperclip_universe = no
+			OR = {
+				has_global_flag = ssh_ark_jump_new_galaxy_destroyed
+				event_target:cosmo_ending_system = {
+					has_star_flag = ssh_interstellar_black_hole_system
+				}
+				event_target:cosmo_ending_system = {
+					has_star_flag = guardians_horror_system
+				}
+				event_target:cosmo_ending_system = {
+					any_system_planet = {
+						has_planet_flag = black_hole_horror
+					}
+				}
+				event_target:cosmo_ending_system = {
+					has_star_flag = federation_end
+				}
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_origin = origin_toxic_knights
+					event_target:cosmo_ending_system = {
+						is_capital_system = yes
+						has_star_flag = cosmogenesis_project
+					}
+				}
+				set_global_flag = no_end_of_cycle
+			}
+			# Nemesis Entity enters the universe
+			if = {
+				limit = {
+					has_global_flag = ssh_ark_jump_new_galaxy_destroyed
+					NOT = { has_global_flag = cosmogenesis_nemesis_entity_spawned }
+				}
+				set_global_flag = cosmogenesis_nemesis_entity_spawned
+				event_target:cosmo_ending_system = {
+					# Spawn the wrathful entity god
+					create_country = {
+						name = "The Overlord"
+						type = shroud_spirits
+						flag = {
+							icon = {
+								category = "special"
+								file = "the_shroud.dds"
+							}
+							background= {
+								category = "backgrounds"
+								file = "00_solid.dds"
+							}
+							colors={
+								"dark_purple"
+								"black"
+								"null"
+								"null"
+							}
+						}
+					}
+					last_created_country = {
+						save_event_target_as = nemesis_entity_country
+					}
+					create_fleet = {
+						name = "The Overlord"
+						settings = {
+							spawn_debris = no
+							#ai_ignore_strength = yes
+							is_boss = yes
+						}
+						effect = {
+							set_name = {
+								key = "The Overlord"
+								variable_string = "[Root.GetSpeciesNamePlural]"
+							}
+							set_owner = event_target:nemesis_entity_country
+							create_ship = {
+								name = "Overlord"
+								design = "NAME_Warped_Consciousness"
+							}
+							set_location = prev.star
+							set_fleet_stance = aggressive
+							set_aggro_range_measure_from = return_point
+							set_aggro_range = 3000
+							# Make it stronk
+							add_modifier = {
+								modifier = "absorbed_consciousness_5"
+								days = -1
+							}
+						}
+					}
+				}
+			}
+			# End of The Cycle: Early Reckoning
+			if = {
+				limit = {
+					can_create_paperclip_universe = no
+					NAND = {
+						has_global_flag = ssh_vacdec_crisis_ongoing
+						has_global_flag = ssh_vacdec_fe_spiritualist_left
+					}
+					NOT = { has_origin = origin_toxic_knights }
+					has_country_flag = has_shroud_patron
+					event_target:cosmo_ending_system = {
+						is_capital_system = yes
+						has_star_flag = cosmogenesis_project
+					}
+					has_country_flag = covenant_end_of_the_cycle # EOTC Covenant
+					NOT = { has_country_flag = end_of_the_cycle_reckoning } # Post-Reckoning
+				}
+				# Same effects as reckoning minus exiles
+				set_global_flag = end_of_the_cycle_complete
+				set_country_flag = end_of_the_cycle_reckoning
+				if = {
+					limit = { NOT = { exists = event_target:shroud_country } }
+					create_country = {
+						name = "NAME_Creatures_of_the_Shroud"
+						type = shroud_spirits
+						flag = {
+							icon = {
+								category = "special"
+								file = "the_shroud.dds"
+							}
+							background= {
+								category = "backgrounds"
+								file = "00_solid.dds"
+							}
+							colors={
+								"dark_purple"
+								"black"
+								"null"
+								"null"
+							}
+						}
+					}
+					last_created_country = {
+						establish_communications_no_message = root
+						save_global_event_target_as = shroud_country
+					}
+				}
+				capital_scope = {
+					save_event_target_as = former_capital
+				}
+				every_galaxy_planet = {
+					limit = { has_modifier = covenant_shroud_marked }
+					remove_modifier = covenant_shroud_marked
+					remove_all_armies = yes
+					every_owned_pop_group = {
+						root = {
+							change_variable = {
+								which = "end_power"
+								value = 1
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_owner = yes
+							owner = { NOT = { has_country_flag = end_of_the_cycle_reckoning } }
+						}
+						owner = {
+							set_country_flag = end_of_the_cycle_reckoning
+							set_country_flag = end_of_cycle_lost_planets
+							country_event = { id = utopia.3321 }
+						}
+					}
+					if = {
+						limit = { NOT = { is_same_value = event_target:former_capital } }
+						create_fleet = {
+							name = "NAME_Shroud_Manifestation"
+							settings = {
+								spawn_debris = no
+								is_boss = yes
+							}
+							effect = {
+								set_owner = event_target:shroud_country
+								create_ship = {
+									name = "NAME_Fragment"
+									design = "NAME_Shroud_Manifestation"
+								}
+								set_location = prev
+								set_fleet_stance = aggressive
+								set_aggro_range_measure_from = return_point
+								set_aggro_range = 3000
+							}
+						}
+						if = {
+							limit = {
+								is_planet_class = pc_habitat
+							}
+							destroy_colony = yes
+							remove_planet = yes
+						}
+						else_if = {
+							limit = {
+								is_ringworld = yes
+							}
+							change_pc = pc_ringworld_habitable_damaged
+							clear_planet_modifiers = yes
+							clear_deposits = yes
+						}
+						else = {
+							change_pc = pc_shrouded
+							clear_planet_modifiers = yes
+							clear_deposits = yes
+						}
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = { is_same_value = root }
+						is_country_type = default
+					}
+					add_opinion_modifier = {
+						modifier = opinion_doomed_us_all
+						who = root
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = end_of_the_cycle_reckoning }
+						}
+						set_country_flag = end_of_the_cycle_reckoning
+						country_event = { id = utopia.3321 }
+					}
+				}
+				create_fleet = {
+					name = "NAME_The_End"
+					settings = {
+						spawn_debris = no
+						ai_ignore_strength = yes
+						is_boss = yes
+					}
+					effect = {
+						save_global_event_target_as = the_end_of_the_cycle
+						set_name = {
+							key = "NAME_Absorbed_Species"
+							variable_string = "[Root.GetSpeciesNamePlural]"
+						}
+						set_owner = event_target:shroud_country
+						create_ship = {
+							name = "NAME_Reckoning"
+							design = "NAME_Warped_Consciousness"
+						}
+						set_location = event_target:former_capital
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = return_point
+						set_aggro_range = 3000
+						if = {
+							limit = {
+								root = {
+									check_variable = {
+										which = "end_power"
+										value < 500
+									}
+								}
+							}
+							add_modifier = {
+								modifier = "absorbed_consciousness_1"
+								days = -1
+							}
+						}
+						else_if = {
+							limit = {
+								root = {
+									check_variable = {
+										which = "end_power"
+										value < 1000
+									}
+								}
+							}
+							add_modifier = {
+								modifier = "absorbed_consciousness_2"
+								days = -1
+							}
+						}
+						else_if = {
+							limit = {
+								root = {
+									check_variable = {
+										which = "end_power"
+										value < 2500
+									}
+								}
+							}
+							add_modifier = {
+								modifier = "absorbed_consciousness_3"
+								days = -1
+							}
+						}
+						else_if = {
+							limit = {
+								root = {
+									check_variable = {
+										which = "end_power"
+										value < 5000
+									}
+								}
+							}
+							add_modifier = {
+								modifier = "absorbed_consciousness_4"
+								days = -1
+							}
+						}
+						else = {
+							add_modifier = {
+								modifier = "absorbed_consciousness_5"
+								days = -1
+							}
+						}
+					}
+				}
+			}
+			save_event_target_as = cosmogenesis_empire
+			set_country_flag = cosmogenesis_empire_has_won
+			make_fallen_empire = yes
+			every_country = {
+				limit = {
+					is_country_type = default
+				}
+				country_event = { id = crisis.7518 days = 5 }
+			}
+			if = {
+				limit = {
+					galaxy_size = tiny
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 18
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = small
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 36
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = medium
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 52
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = large
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 70
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					galaxy_size = huge
+				}
+				while = { #Destroy ~10% random stars, for good measure
+					count = 88
+					random_system = {
+						limit = {
+							NOT = {
+								is_star_class = sc_black_hole
+								any_system_planet = {
+									pop_amount > 0
+								}
+							}
+						}
+						destroy_star_system = yes
+					}
+				}
+			}
+			date_distortion = yes
+			event_target:global_event_country = {
+				country_event = { id = crisis.7519 days = 30 }
+			}
+		}
+		win = yes
+	}
+}
+
+
+##############################################
+##### Additional flavor crisis diplomacy #####
+##############################################
+####################
+#				   #
+#   UNBIDDEN       #
+#				   #
+####################
+# Pretty much just more Lore / Dialog options.
+# Unbidden Diplomacy
+country_event = {
+	id = crisis.1050
+	title = "TRANSMISSION"
+
+	desc = {
+		text = crisis.1050.desc_01
+		trigger = {
+			NOR = { owner_species = { has_trait = trait_psionic has_trait = trait_mechanical } is_machine_empire = yes }
+		}
+	}
+	desc = {
+		text = crisis.1050.desc_02
+		trigger = {
+			NOT = { owner_species = { has_trait = trait_psionic } }
+		}
+	}
+	desc = {
+		text = crisis.1050.desc_03
+		trigger = {
+			NOR = { owner_species = { has_trait = trait_psionic has_trait = trait_mechanical } is_machine_empire = yes }
+		}
+	}
+	desc = {
+		text = crisis.1050.desc_04
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+	}
+	desc = {
+		text = crisis.1050.desc_05
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+	}
+	desc = {
+		text = crisis.1050.desc_06
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+	}
+	desc = {
+		text = crisis.1050.desc_07
+		trigger = {
+			OR = {
+				owner_species = { has_trait = trait_mechanical }
+				is_machine_empire = yes
+			}
+		}
+	}
+
+	### Additional Descs from Hyperconstructs ###
+	desc = {
+		text = crisis.1050.desc.ssh_01
+		trigger = {
+			has_global_flag = ssh_dim_tearer_opened_unbidden
+		}
+	}
+	desc = {
+		text = crisis.1050.desc.ssh_02
+		trigger = {
+			has_global_flag = ssh_dim_tearer_opened_unbidden
+		}
+	}
+	desc = {
+		text = crisis.1050.desc.ssh_03
+		trigger = {
+			has_country_flag = has_opened_unbidden_realm
+		}
+	}
+	desc = {
+		text = crisis.1050.desc.ssh_04
+		trigger = {
+			has_country_flag = has_opened_unbidden_realm
+		}
+	}
+	desc = {
+		text = crisis.1050.desc.ssh_05
+		trigger = {
+			has_country_flag = has_opened_unbidden_realm
+		}
+	}
+
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = exd1
+		room = "extradimensional_blue_room"
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			is_country_type = extradimensional
+		}
+	}
+
+	option = {
+		name = crisis.1050.a
+		response_text = crisis.1050.a.response
+		trigger = {
+			NOR = {
+				is_machine_empire = yes
+				owner_species = { has_trait = trait_mechanical }
+			}
+		}
+	}
+	option = {
+		name = crisis.1050.b
+		trigger = {
+			OR = {
+				has_ethic = "ethic_pacifist"
+				has_ethic = "ethic_fanatic_pacifist"
+			}
+		}
+		response_text = crisis.1050.b.response
+	}
+	option = {
+		name = crisis.1050.c
+		trigger = {
+			OR = {
+				has_ethic = "ethic_militarist"
+				has_ethic = "ethic_fanatic_militarist"
+				is_machine_empire = yes
+			}
+		}
+		response_text = crisis.1050.c.response
+	}
+	option = {
+		name = crisis.1050.d
+		trigger = {
+			OR = {
+				has_ethic = "ethic_xenophobe"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+		response_text = crisis.1050.d.response
+	}
+	option = {
+		name = crisis.1050.e
+		trigger = {
+			OR = {
+				has_ethic = "ethic_xenophile"
+				has_ethic = "ethic_fanatic_xenophile"
+			}
+			NOT = { owner_species = { has_trait = trait_mechanical } }
+		}
+		response_text = crisis.1050.e.response
+	}
+	option = {
+		name = crisis.1050.f
+		trigger = {
+			OR = {
+				has_ethic = "ethic_spiritualist"
+				has_ethic = "ethic_fanatic_spiritualist"
+			}
+			NOT = { owner_species = { has_trait = trait_psionic } }
+		}
+		response_text = crisis.1050.f.response
+	}
+	option = {
+		name = crisis.1050.g
+		trigger = {
+			owner_species = { has_trait = trait_psionic }
+		}
+		response_text = crisis.1050.g.response
+	}
+	option = {
+		name = crisis.1050.a
+		response_text = crisis.1050.a.b.response
+		trigger = {
+			OR = {
+				is_machine_empire = yes
+				owner_species = { has_trait = trait_mechanical }
+			}
+		}
+	}
+	### Additional Hyperconstructs Stuff
+	option = {
+		name = crisis.1050.ssh.a
+		trigger = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+			has_global_flag = ssh_dim_tearer_opened_unbidden
+			has_country_flag = has_opened_unbidden_realm
+		}
+		response_text = crisis.1050.ssh.a.response
+	}
+	option = {
+		name = crisis.1050.ssh.b
+		trigger = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+			has_global_flag = ssh_dim_tearer_opened_unbidden
+			has_country_flag = has_opened_unbidden_realm
+		}
+		response_text = crisis.1050.ssh.b.response
+	}
+}
+
+# Aberrant Diplomacy
+country_event = {
+	id = crisis.1051
+	title = "TRANSMISSION"
+
+	desc = {
+		text = crisis.1051.desc_01
+		trigger = {
+			NOT = { has_country_flag = works_with_formless }
+		}
+	}
+	desc = {
+		text = crisis.1051.desc_02
+		trigger = {
+			NOT = { has_country_flag = works_with_formless }
+		}
+	}
+	desc = {
+		text = crisis.1051.desc_03
+		trigger = {
+			NOT = { has_country_flag = works_with_formless }
+		}
+	}
+	desc = {
+		text = crisis.1051.desc_04
+		trigger = {
+			has_country_flag = works_with_formless # Happens if you have a Formless Admiral leader
+		}
+	}
+
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = exd2
+		room = "extradimensional_orange_room"
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			is_country_type = extradimensional_2
+		}
+	}
+
+	option = {
+		name = crisis.1051.a
+		response_text = crisis.1051.a.response
+	}
+
+	### Additional Hyperconstructs Stuff ###
+	option = {
+		name = crisis.1051.ssh.a
+		trigger = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+		}
+		response_text = crisis.1051.ssh.a.response
+	}
+}
+
+# Vehement Diplomacy
+country_event = {
+	id = crisis.1052
+	title = "TRANSMISSION"
+
+	desc = {
+		text = crisis.1052.desc_01
+	}
+	desc = {
+		text = crisis.1052.desc_02
+	}
+	desc = {
+		text = crisis.1052.desc_03
+	}
+
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = exd3
+		room = "extradimensional_green_room"
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			is_country_type = extradimensional_3
+		}
+	}
+
+	option = {
+		name = crisis.1052.a
+		response_text = crisis.1052.a.response
+	}
+
+	### Additional Hyperconstructs Stuff ###
+	option = {
+		name = crisis.1052.ssh.a
+		trigger = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+		}
+		response_text = crisis.1052.ssh.a.response
+	}
+}
+
+
+namespace = biocrisis
+#####################
+### BEHEMOTH FURY ###
+#####################
+
+# 150 Spawn the VOIDSPAWN BOSS - From the behemoth finale situation
+situation_event = {
+	id = biocrisis.150
+	title = "biocrisis.150.name"
+	desc = {
+		trigger = {
+			NOT = { has_global_flag = voidspawn_boss_spawned }
+		}
+		text = biocrisis.150.desc
+	}
+	desc = {
+		trigger = {
+			has_global_flag = voidspawn_boss_spawned
+		}
+		text = biocrisis.150.desc.b
+	}
+	picture = GFX_evt_behemoth_fight
+	show_sound = event_dangerous_animals
+	location = event_target:voidspawn_spawn_location # Added by Hyperconstructs
+	trackable = yes # Added by Hyperconstructs
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_global_flag = voidspawn_boss_spawned }
+			}
+			set_global_flag = voidspawn_boss_spawned
+			owner = {
+				random_owned_fleet = {
+					closest_system = {
+						limit = {
+							is_rim_system = yes
+						}
+						use_bypasses = no
+						min_steps = 15
+						max_steps = 30
+						save_event_target_as = voidspawn_spawn_location
+					}
+				}
+			}
+
+			create_country = {
+				name = {
+					key = NAME_Voidspawn_Boss
+				}
+				contact_rule = always
+				type = voidspawn_boss
+				flag = {
+					icon = {
+						category="domination"
+						file="domination_14.dds"
+					}
+					background = {
+						category="backgrounds"
+						file="flag_BG_2.dds"
+					}
+					colors = {
+						"dark_green"
+						"black"
+						"black"
+						"null"
+					}
+				}
+				effect = {
+					save_global_event_target_as = voidspawn_boss_country
+					add_modifier = {
+						modifier = voidspawn_boss_buffs
+						days = -1
+					}
+				}
+			}
+			create_fleet = {
+				name = "NAME_Voidspawn_Boss_Fleet"
+				settings = {
+					spawn_debris = no
+					is_ultra_boss = yes
+				}
+				effect = {
+					set_owner = event_target:voidspawn_boss_country
+					create_ship = {
+						name = "NAME_Boss_Voidspawn"
+						design = "NAME_Boss_Voidspawn"
+						effect = {
+						}
+					}
+					set_location = {
+						target = event_target:voidspawn_spawn_location
+						distance = 0
+						angle = 90
+						direction = in_system
+					}
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 30000
+					# Give it its target
+					queue_actions = {
+						repeat = {
+							find_random_fleet = {
+								trigger = {
+									id = "biocrisis_150"
+									any_owned_ship = {
+										is_ship_size = behemoth_04
+									}
+								}
+								found_fleet = {
+									move_to = this
+								}
+							}
+						}
+					}
+				}
+			}
+			# Make it basically invincible
+			every_country = {
+				limit = {
+					NOT = { is_country_type = voidspawn_boss }
+				}
+				add_modifier = {
+					modifier = voidspawn_boss_invincible
+					days = -1
+				}
+			}
+		}
+	}
+
+	option = {
+		name = biocrisis.150.a
+	}
+
+	after = {
+		hidden_effect = {
+			if = { # Curators notify everyone if they exist
+				limit = {
+					exists = event_target:curator_enclave_country
+				}
+				every_playable_country = {
+					limit = {
+						is_ai = no
+						NOT = { has_ascension_perk = ap_behemoths }
+					}
+					country_event = { id = biocrisis.155 }
+					set_country_flag = voidspawn_boss_met
+				}
+			}
+			owner = {
+				save_event_target_as = event_target:behemoth_empire
+			}
+		}
+	}
+}

@@ -1,0 +1,2988 @@
+namespace = ssh_cn
+
+#################################################################################
+###############            CONSTRUCTION NOTIFICATION              ###############
+#################################################################################
+
+# Shellworld Frame
+country_event = {
+	id = ssh_cn.1
+	title = "ssh_cn.1.name"
+	desc = "ssh_cn.1.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.1.a"
+	}
+}
+
+# Shell Completed
+country_event = {
+	id = ssh_cn.2
+	title = "ssh_cn.2.name"
+	desc = "ssh_cn.2.desc"
+	picture = GFX_evt_ssh_shellworld
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.2.a"
+	}
+}
+
+# Shellworld Complete
+country_event = {
+	id = "ssh_cn.3"
+	title = "ssh_cn.3.name"
+	desc = "ssh_cn.3.desc"
+	picture = GFX_evt_ssh_shellworld
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.3.a"
+	}
+
+	option = {
+		name = "ssh_cn.3.b"
+		trigger = {
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_technocracy
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = 500
+			}
+		}
+	}
+}
+
+
+# Double Shellworlds
+# 2x Shellworld Frame
+country_event = {
+	id = ssh_cn.4
+	title = "ssh_cn.4.name"
+	desc = "ssh_cn.4.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.4.a"
+	}
+}
+
+# 2x Shell Completed
+country_event = {
+	id = ssh_cn.5
+	title = "ssh_cn.5.name"
+	desc = "ssh_cn.5.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.5.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.6
+	title = "ssh_cn.6.name"
+	desc = "ssh_cn.6.desc"
+	picture = GFX_evt_ssh_shellworld
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.6.a"
+	}
+}
+
+# 2x Shellworld Complete
+country_event = {
+	id = ssh_cn.7
+	title = "ssh_cn.7.name"
+	desc = "ssh_cn.7.desc"
+	picture = GFX_evt_ssh_shellworld
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.7.a"
+	}
+
+	option = {
+		name = "ssh_cn.7.b"
+		trigger = {
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_technocracy
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+	}
+}
+
+
+# Triple Shellworlds
+# 3x Shellworld Frame
+country_event = {
+	id = ssh_cn.8
+	title = "ssh_cn.8.name"
+	desc = "ssh_cn.8.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.8.a"
+	}
+}
+
+# 3x Shell Completed
+country_event = {
+	id = ssh_cn.9
+	title = "ssh_cn.9.name"
+	desc = "ssh_cn.9.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.9.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.10
+	title = "ssh_cn.10.name"
+	desc = "ssh_cn.10.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.10.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.11
+	title = "ssh_cn.11.name"
+	desc = "ssh_cn.11.desc"
+	picture = GFX_evt_ssh_shellworld
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.11.a"
+	}
+}
+
+# 3x Shellworld Complete
+country_event = {
+	id = ssh_cn.12
+	title = "ssh_cn.12.name"
+	desc = "ssh_cn.12.desc"
+	picture = GFX_evt_ssh_shellworld
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.12.a"
+	}
+
+	option = {
+		name = "ssh_cn.12.b"
+		trigger = {
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_technocracy
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+	}
+}
+
+
+# Gas Giant Shellworld
+# Rings
+country_event = {
+	id = ssh_cn.13
+	title = "ssh_cn.13.name"
+	desc = "ssh_cn.13.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.13.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.14
+	title = "ssh_cn.14.name"
+	desc = "ssh_cn.14.desc"
+	picture = GFX_evt_ssh_gas_shellworld_1
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.14.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.15
+	title = "ssh_cn.15.name"
+	desc = "ssh_cn.15.desc"
+	picture = GFX_evt_ssh_gas_shellworld_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.15.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.16
+	title = "ssh_cn.16.name"
+	desc = "ssh_cn.16.desc"
+	picture = GFX_evt_ssh_gas_shellworld_3
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.16.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.17
+	title = "ssh_cn.17.name"
+	desc = "ssh_cn.17.desc"
+	picture = GFX_evt_ssh_gas_shellworld_4
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.17.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.18
+	title = "ssh_cn.18.name"
+	desc = "ssh_cn.18.desc"
+	picture = GFX_evt_ssh_gas_shellworld_5
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.18.a"
+	}
+}
+
+# Shell
+country_event = {
+	id = ssh_cn.19
+	title = "ssh_cn.19.name"
+	desc = "ssh_cn.19.desc"
+	picture = GFX_evt_ssh_gas_shellworld_6
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.19.a"
+	}
+}
+
+# Gas Giant Complete
+country_event = {
+	id = ssh_cn.20
+	title = "ssh_cn.20.name"
+	desc = "ssh_cn.20.desc"
+	picture = GFX_evt_ssh_gas_shellworld_7
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.20.a"
+	}
+
+	option = {
+		name = "ssh_cn.20.b"
+		trigger = {
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_technocracy
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = 1500
+			}
+		}
+	}
+}
+
+
+# Edersphere
+# Stages
+country_event = {
+	id = ssh_cn.21
+	title = "ssh_cn.21.name"
+	desc = "ssh_cn.21.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.21.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.22
+	title = "ssh_cn.22.name"
+	desc = "ssh_cn.22.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.22.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.23
+	title = "ssh_cn.23.name"
+	desc = "ssh_cn.23.desc"
+	picture = GFX_evt_ssh_edersphere_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.23.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.24
+	title = "ssh_cn.24.name"
+	desc = "ssh_cn.24.desc"
+	picture = GFX_evt_ssh_edersphere_coil
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.24.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.25
+	title = "ssh_cn.25.name"
+	desc = "ssh_cn.25.desc"
+	picture = GFX_evt_ssh_edersphere_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.25.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.26
+	title = "ssh_cn.26.name"
+	desc = "ssh_cn.26.desc"
+	picture = GFX_evt_ssh_edersphere_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.26.a"
+	}
+}
+
+# Completed
+country_event = {
+	id = ssh_cn.27
+	title = "ssh_cn.27.name"
+	desc = "ssh_cn.27.desc"
+	picture = GFX_evt_ssh_edersphere
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.27.a"
+	}
+	option = {
+		name = "ssh_cn.27.b"
+		trigger = {
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_technocracy
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = 2000
+			}
+		}
+	}
+}
+
+
+#### Gas Giant Pumping Facility ####
+country_event = {
+	id = ssh_cn.28
+	title = "ssh_cn.28.name"
+	desc = "ssh_cn.28.desc"
+	picture = GFX_evt_ssh_gas_shellworld_6
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.28.a"
+	}
+	option = {
+		name = "ssh_cn.28.b"
+		trigger = {
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_technocracy
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = 500
+			}
+		}
+	}
+}
+
+# Gas Giant Compressor
+country_event = {
+	id = ssh_cn.29
+	title = "ssh_cn.29.name"
+	desc = "ssh_cn.29.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.29.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.30
+	title = "ssh_cn.30.name"
+	desc = "ssh_cn.30.desc"
+	picture = GFX_evt_megastructure_construction ####
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.30.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.31
+	title = "ssh_cn.31.name"
+	desc = "ssh_cn.31.desc"
+	picture = GFX_evt_megastructure_construction ####
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.31.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.32
+	title = "ssh_cn.32.name"
+	desc = "ssh_cn.32.desc"
+	picture = GFX_evt_gas_giant
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.32.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.33
+	title = "ssh_cn.33.name"
+	desc = "ssh_cn.33.desc"
+	picture = GFX_evt_gas_giant
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.33.a"
+	}
+
+	option = {
+		name = "ssh_cn.33.b"
+		hidden_effect = {
+			remove_megastructure = fromfromfrom
+		}
+	}
+}
+
+
+# Stellar Hoop
+country_event = {
+	id = ssh_cn.34
+	title = "ssh_cn.34.name"
+	desc = "ssh_cn.34.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.34.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.35
+	title = "ssh_cn.35.name"
+	desc = "ssh_cn.35.desc"
+	picture = GFX_evt_ssh_stellar_hoop_frame
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.35.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.36
+	title = "ssh_cn.36.name"
+	desc = "ssh_cn.36.desc"
+	picture = GFX_evt_ssh_stellar_hoop_pipes
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.36.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.37
+	title = "ssh_cn.37.name"
+	desc = "ssh_cn.37.desc"
+	picture = GFX_evt_ssh_stellar_hoop_shell
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.37.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.38
+	title = "ssh_cn.38.name"
+	desc = "ssh_cn.38.desc"
+	picture = GFX_evt_ssh_stellar_hoop_tethers
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.38.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.39
+	title = "ssh_cn.39.name"
+	desc = "ssh_cn.39.desc"
+	picture = GFX_evt_ssh_stellar_hoop
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.39.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.40
+	title = "ssh_cn.40.name"
+	desc = "ssh_cn.40.desc"
+	picture = GFX_evt_ssh_stellar_hoop_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.40.a"
+	}
+}
+
+# edict for solar ship speed +10%
+
+
+# Gas Giant Compressor - Turn Brown Dwarf into Star
+country_event = {
+	id = ssh_cn.41
+	title = "ssh_cn.41.name"
+	desc = "ssh_cn.41.desc"
+	picture = GFX_evt_star_yellow
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.41.a"
+	}
+}
+
+# Gas Giant Lifter
+country_event = {
+	id = ssh_cn.42
+	title = "ssh_cn.42.name"
+	desc = "ssh_cn.42.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.42.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.43
+	title = "ssh_cn.43.name"
+	desc = "ssh_cn.43.desc"
+	picture = GFX_evt_ssh_gas_shellworld_1
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.43.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.44
+	title = "ssh_cn.44.name"
+	desc = "ssh_cn.44.desc"
+	picture = GFX_evt_ssh_gas_shellworld_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.44.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.45
+	title = "ssh_cn.45.name"
+	desc = "ssh_cn.45.desc"
+	picture = GFX_evt_ssh_gas_shellworld_3
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.45.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.46
+	title = "ssh_cn.46.name"
+	desc = "ssh_cn.46.desc"
+	picture = GFX_evt_ssh_gas_shellworld_4
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.46.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.47
+	title = "ssh_cn.47.name"
+	desc = "ssh_cn.47.desc"
+	picture = GFX_evt_ssh_gas_shellworld_6
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.47.a"
+	}
+}
+
+# Nanite Disassembler
+country_event = {
+	id = ssh_cn.48
+	title = "ssh_cn.48.name"
+	desc = "ssh_cn.48.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.48.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.49
+	title = "ssh_cn.49.name"
+	desc = { # All empires except terravores
+		text = ssh_cn.49_01.desc
+		trigger = { 
+			NOT = {
+				is_lithoid_devouring_swarm = yes
+			}
+		}
+	}
+
+	desc = { #Terravores
+		text = ssh_cn.49_02.desc
+		trigger = { 
+			is_lithoid_devouring_swarm = yes
+		}
+	}
+	picture = GFX_evt_gray_gooed_planet
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.49.a"
+	}
+}
+
+# Hoopworld
+country_event = {
+	id = ssh_cn.50
+	title = "ssh_cn.50.name"
+	desc = "ssh_cn.50.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.50.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.51
+	title = "ssh_cn.51.name"
+	desc = "ssh_cn.51.desc"
+	picture = "GFX_evt_ssh_hoopworld_construction"
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.51.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.52
+	title = "ssh_cn.52.name"
+	desc = "ssh_cn.52.desc"
+	picture = "GFX_evt_ssh_edersphere_coil"
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.52.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.53
+	title = "ssh_cn.53.name"
+	desc = "ssh_cn.53.desc"
+	picture = "GFX_evt_ssh_hoopworld_shell"
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.53.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.54
+	title = "ssh_cn.54.name"
+	desc = "ssh_cn.54.desc"
+	picture = "GFX_evt_ssh_hoopworld"
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.54.a"
+	}
+}
+
+# Discworld
+country_event = {
+	id = ssh_cn.55
+	title = "ssh_cn.55.name"
+	desc = "ssh_cn.55.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.55.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.56
+	title = "ssh_cn.56.name"
+	desc = "ssh_cn.56.desc"
+	picture = GFX_evt_ssh_discworld_shell
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.56.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.57
+	title = "ssh_cn.57.name"
+	desc = "ssh_cn.57.desc"
+	picture = GFX_evt_ssh_edersphere_coil
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.57.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.58
+	title = "ssh_cn.58.name"
+	desc = "ssh_cn.58.desc"
+	picture = GFX_evt_ssh_discworld_tubes
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.58.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.59
+	title = "ssh_cn.59.name"
+	desc = "ssh_cn.59.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.59.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.60
+	title = "ssh_cn.60.name"
+	desc = "ssh_cn.60.desc"
+	picture = GFX_evt_ssh_discworld_tubes
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.60.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.61
+	title = "ssh_cn.61.name"
+	desc = "ssh_cn.61.desc"
+	picture = GFX_evt_ssh_discworld
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.61.a"
+	}
+}
+
+
+# Dimensional Tearer Events
+country_event = {
+	id = ssh_cn.62
+	title = "ssh_cn.62.name"
+	desc = "ssh_cn.62.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.62.a"
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_cn.63
+	title = "ssh_cn.63.name"
+	desc = "ssh_cn.63.desc"
+	picture = GFX_evt_ssh_dim_tearer_stage_1
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.63.a"
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_cn.64
+	title = "ssh_cn.64.name"
+	desc = "ssh_cn.64.desc"
+	picture = GFX_evt_ssh_dim_tearer_stage_2
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.64.a"
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_cn.65
+	title = "ssh_cn.65.name"
+	desc = "ssh_cn.65.desc"
+	picture = GFX_evt_ssh_dim_tearer_stage_3
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.65.a"
+		default_hide_option = yes
+	}
+}
+
+# Finished
+country_event = {
+	id = ssh_cn.66
+	title = "ssh_cn.66.name"
+	desc = "ssh_cn.66.desc"
+	picture = GFX_evt_ssh_dim_tearer
+	show_sound = "event_structural_collapse"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.66.a"
+		default_hide_option = yes
+	}
+}
+
+# Final Step
+country_event = {
+	id = ssh_cn.71
+	title = "ssh_cn.71.name"
+	desc = {
+		text = "ssh_cn.71_01.desc"
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+		}
+	}
+	desc = {
+		text = "ssh_cn.71_02.desc"
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+	}
+	picture = GFX_evt_ssh_dim_tearer
+	show_sound = event_necrophage
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.71.a"
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = "ssh_cn.71.b"
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+		default_hide_option = yes
+	}
+}
+
+# Ascension/Exodus --- Moved to ssh_crisis.45
+#country_event = {
+#	id = ssh_cn.72
+#	title = "ssh_cn.72.name"
+#	desc = {
+#		text = "ssh_cn.72_01.desc"
+#		trigger = {
+#			NOT = { has_civic = civic_machine_servitor }
+#		}
+#	}
+#	desc = {
+#		text = "ssh_cn.72_02.desc"
+#		trigger = {
+#			has_civic = civic_machine_servitor
+#		}
+#	}
+#	picture = GFX_evt_vortex
+#	show_sound = event_death_cult
+#	location = from
+#	trackable = yes
+#
+#	is_triggered_only = yes
+#
+#	immediate = {
+#		remove_global_flag = ssh_dim_tearer_active # Stop yearly on actions
+#		# Restore Room
+#		restore_hyperdim_exodus_country_backup_data = yes
+#		#trigger_ssh_exodus_species_effect = yes # Unused as empire no longer stays ingame afterwards
+#	}
+#	
+#	option = {
+#		name = "ssh_cn.72.a"
+#		#hidden_effect = {}
+#		default_hide_option = yes
+#	}
+#
+#	after = {
+#		hidden_effect = {
+#			save_event_target_as = ssh_exodus_country
+#			set_update_modifiers_batch = begin
+#			#set_spawn_system_batch = begin
+#
+#			# Exodus Effect
+#			trigger_hyperdimensional_exodus = yes # Changes the Tearer System + Adds victory score
+#			# Destroy Star Cluster
+#			event_target:global_event_country = { country_event = { id = ssh_crisis.49 } }
+#
+#			set_update_modifiers_batch = end
+#			#set_spawn_system_batch = end
+#
+#			# Post-Exodus Lore/Info
+#			country_event = {
+#				id = ssh_crisis.50
+#				days = 5
+#			}
+#
+#			# Date distortion effect
+#			date_distortion = yes
+#			event_target:global_event_country = {
+#				country_event = { id = crisis.7519 days = 30 }
+#			}
+#		}
+#	}
+#}
+
+### UNUSED FOR NOW
+# Ascension - Hives
+#country_event = {
+#	id = ssh_cn.73
+#	title = "ssh_cn.73.name"
+#	desc = "ssh_cn.73.desc"
+#	picture = GFX_evt_vortex
+#	show_sound = "event_mystic_reveal_light"
+#	location = from
+#	trackable = yes
+#
+#	is_triggered_only = yes
+#	
+#	option = {
+#		name = "ssh_cn.73.a"
+#		hidden_effect = {
+#			every_system_within_border = {
+#				limit = {
+#					NOT = {
+#						any_system_megastructure = { is_megastructure_type = dimensional_tearer_10 }
+#					}
+#				}
+#				system_event = {
+#					id = ssh_effect.1
+#				}
+#			}
+#			random_system_within_border = {
+#				limit = {
+#					any_system_megastructure = { is_megastructure_type = dimensional_tearer_10 }
+#				}
+#				system_event = {
+#					id = ssh_effect.2
+#				}
+#			}
+#		}
+#	}
+#}
+
+# Ascension - Machines
+#country_event = {
+#	id = ssh_cn.74
+#	title = "ssh_cn.74.name"
+#	desc = "ssh_cn.74.desc"
+#	picture = GFX_evt_vortex
+#	show_sound = "event_mystic_reveal_light"
+#	location = from
+#	trackable = yes
+#
+#	is_triggered_only = yes
+#	
+#	option = {
+#		name = "ssh_cn.74.a"
+#		hidden_effect = {
+#			every_system_within_border = {
+#				limit = {
+#					NOT = {
+#						any_system_megastructure = { is_megastructure_type = dimensional_tearer_10 }
+#					}
+#				}
+#				system_event = {
+#					id = ssh_effect.1
+#				}
+#			}
+#			random_system_within_border = {
+#				limit = {
+#					any_system_megastructure = { is_megastructure_type = dimensional_tearer_10 }
+#				}
+#				system_event = {
+#					id = ssh_effect.2
+#				}
+#			}
+#		}
+#	}
+#}
+
+# Ascension - Info to win
+# Moved to ssh_crisis_events
+
+
+# Black Hole Shellworld
+country_event = {
+	id = ssh_cn.76
+	title = "ssh_cn.76.name"
+	desc = "ssh_cn.76.desc"
+	picture = GFX_evt_ssh_black_hole
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.76.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.77
+	title = "ssh_cn.77.name"
+	desc = "ssh_cn.77.desc"
+	picture = GFX_evt_ssh_black_hole_shell_1
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.77.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.78
+	title = "ssh_cn.78.name"
+	desc = "ssh_cn.78.desc"
+	picture = GFX_evt_ssh_black_hole_shell_2
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.78.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.79
+	title = "ssh_cn.79.name"
+	desc = "ssh_cn.79.desc"
+	picture = GFX_evt_ssh_black_hole_shell_3
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.79.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.80
+	title = "ssh_cn.80.name"
+	desc = "ssh_cn.80.desc"
+	picture = GFX_evt_ssh_black_hole_shell_4
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.80.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.81
+	title = "ssh_cn.81.name"
+	desc = "ssh_cn.81.desc"
+	picture = GFX_evt_ssh_black_hole_shell_4
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.81.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.82
+	title = "ssh_cn.82.name"
+	desc = "ssh_cn.82.desc"
+	picture = GFX_evt_ssh_black_hole_shellworld
+	show_sound = "event_structural_collapse"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.82.a"
+	}
+}
+
+# Additional Gigas Stages - Nidavellir Forge (Cultrobium)
+country_event = {
+	id = ssh_cn.83
+	title = "ssh_cn.83.name"
+	desc = "ssh_cn.83.desc"
+	picture = GFX_evt_star_pulsar
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.83.a"
+	}
+}
+
+# Stellar Harvester
+country_event = {
+	id = ssh_cn.84
+	title = "ssh_cn.84.name"
+	desc = "ssh_cn.84.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.84.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.85
+	title = "ssh_cn.85.name"
+	desc = "ssh_cn.85.desc"
+	picture = GFX_evt_ssh_dyson_shell
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.85.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.86
+	title = "ssh_cn.86.name"
+	desc = "ssh_cn.86.desc"
+	picture = GFX_evt_ssh_dyson_shell_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.86.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.87
+	title = "ssh_cn.87.name"
+	desc = "ssh_cn.87.desc"
+	picture = GFX_evt_ssh_fusion_accelerators
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.87.a"
+	}
+}
+
+# accelerator active
+country_event = {
+	id = ssh_cn.88
+	title = "ssh_cn.88.name"
+	desc = "ssh_cn.88.desc"
+	picture = GFX_evt_ssh_active_fusion_acceleration
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.88.a"
+	}
+}
+
+# accelerator finished (black dwarf)
+country_event = {
+	id = ssh_cn.89
+	title = "ssh_cn.89.name"
+	desc = "ssh_cn.89.desc"
+	picture = GFX_evt_ssh_black_dwarf
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.89.a"
+	}
+}
+
+# Stellar Nanite Disassembler
+country_event = {
+	id = ssh_cn.90
+	title = "ssh_cn.90.name"
+	desc = "ssh_cn.90.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.90.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.91
+	title = "ssh_cn.91.name"
+	desc = "ssh_cn.91.desc"
+	picture = GFX_evt_planet_beam
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.91.a"
+	}
+}
+
+# Freesphere
+country_event = {
+	id = ssh_cn.92
+	title = "ssh_cn.92.name"
+	desc = "ssh_cn.92.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.92.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.93
+	title = "ssh_cn.93.name"
+	desc = "ssh_cn.93.desc"
+	picture = GFX_evt_ssh_freefall_frame
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.93.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.94
+	title = "ssh_cn.94.name"
+	desc = "ssh_cn.94.desc"
+	picture = GFX_evt_ssh_freefall_membrane
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.94.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.95
+	title = "ssh_cn.95.name"
+	desc = "ssh_cn.95.desc"
+	picture = GFX_evt_ssh_freefall_membrane
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.95.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.96
+	title = "ssh_cn.96.name"
+	desc = "ssh_cn.96.desc"
+	picture = GFX_evt_ssh_freefall_pumps
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.96.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.97
+	title = "ssh_cn.97.name"
+	desc = "ssh_cn.97.desc"
+	picture = GFX_evt_ssh_freefall_environment
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.97.a"
+	}
+}
+
+# Neutronium Compressor
+country_event = {
+	id = ssh_cn.98
+	title = "ssh_cn.98.name"
+	desc = "ssh_cn.98.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.98.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.99
+	title = "ssh_cn.99.name"
+	desc = "ssh_cn.99.desc"
+	picture = GFX_evt_ssh_neutronium_compressor_frame
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.99.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.100
+	title = "ssh_cn.100.name"
+	desc = "ssh_cn.100.desc"
+	picture = GFX_evt_ssh_neutronium_compressor_shell
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.100.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.101
+	title = "ssh_cn.101.name"
+	desc = "ssh_cn.101.desc"
+	picture = GFX_evt_ssh_neutronium_compressor_injector
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.101.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.102
+	title = "ssh_cn.102.name"
+	desc = "ssh_cn.102.desc"
+	picture = GFX_evt_ssh_neutronium_compressor_extractor
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.102.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.103
+	title = "ssh_cn.103.name"
+	desc = "ssh_cn.103.desc"
+	picture = GFX_evt_ssh_neutronium_compressor_active_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.103.a"
+	}
+}
+
+# B.i.o. Brain
+country_event = {
+	id = ssh_cn.104
+	title = "ssh_cn.104.name"
+	desc = "ssh_cn.104.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.104.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.105
+	title = "ssh_cn.105.name"
+	desc = "ssh_cn.105.desc"
+	picture = GFX_evt_ssh_megabrain_jar
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.105.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.106
+	title = "ssh_cn.106.name"
+	desc = "ssh_cn.106.desc"
+	picture = GFX_evt_ssh_megabrain_jar_full
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.106.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.107
+	title = "ssh_cn.107.name"
+	desc = "ssh_cn.107.desc"
+	picture = GFX_evt_ssh_edersphere_coil
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.107.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.108
+	title = "ssh_cn.108.name"
+	desc = "ssh_cn.108.desc"
+	picture = GFX_evt_ssh_megabrain_clump
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.108.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.109
+	title = "ssh_cn.109.name"
+	desc = "ssh_cn.109.desc"
+	picture = GFX_evt_ssh_megabrain_stage_1
+	show_sound = "event_construction" #"incoming_swarm_message_state_1" #debug
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.109.a"
+	}
+}
+
+# Advanced Brain stages triggered through on_actions
+
+# Mega Temple
+country_event = {
+	id = ssh_cn.110
+	title = "ssh_cn.110.name"
+	desc = "ssh_cn.110.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.110.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.111
+	title = "ssh_cn.111.name"
+	desc = "ssh_cn.111.desc"
+	picture = GFX_evt_ssh_megatemple_stage_1
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.111.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.112
+	title = "ssh_cn.112.name"
+	desc = "ssh_cn.112.desc"
+	picture = GFX_evt_ssh_megatemple_stage_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.112.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.113
+	title = "ssh_cn.113.name"
+	desc = "ssh_cn.113.desc"
+	picture = GFX_evt_ssh_megatemple_stage_3
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.113.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.114
+	title = "ssh_cn.114.name"
+	desc = "ssh_cn.114.desc"
+	picture = GFX_evt_ssh_megatemple_stage_4
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.114.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.115
+	title = "ssh_cn.115.name"
+	desc = "ssh_cn.115.desc"
+	picture = GFX_evt_ssh_megatemple_stage_5
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.115.a"
+		custom_tooltip = "ssh_cn.115.a.tooltip"
+	}
+}
+
+# Stellar Zro Detonator
+country_event = {
+	id = ssh_cn.116
+	title = "ssh_cn.116.name"
+	desc = "ssh_cn.116.desc"
+	picture = GFX_evt_ssh_zro_infuser_stage_1
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.116.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.117
+	title = "ssh_cn.117.name"
+	desc = "ssh_cn.117.desc"
+	picture = GFX_evt_ssh_zro_infuser_stage_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.117.a"
+	}
+}
+
+# System Disintegrator
+country_event = {
+	id = ssh_cn.118
+	title = "ssh_cn.118.name"
+	desc = "ssh_cn.118.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.118.a"
+		default_hide_option = yes
+	}
+}
+
+# Energy Tapper/Dark Matter Cannons
+country_event = {
+	id = ssh_cn.119
+	title = "ssh_cn.119.name"
+	desc = "ssh_cn.119.desc"
+	picture = GFX_evt_ssh_system_disintegrator_1
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.119.a"
+		default_hide_option = yes
+	}
+}
+
+# Field Generator
+country_event = {
+	id = ssh_cn.120
+	title = "ssh_cn.120.name"
+	desc = "ssh_cn.120.desc"
+	picture = GFX_evt_ssh_system_disintegrator_2
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.120.a"
+		default_hide_option = yes
+	}
+}
+
+# Entanglement Device
+country_event = {
+	id = ssh_cn.121
+	title = "ssh_cn.121.name"
+	desc = "ssh_cn.121.desc"
+	picture = GFX_evt_ssh_system_disintegrator_3
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.121.a"
+		default_hide_option = yes
+	}
+}
+
+# Energy Accumulated/Ready
+country_event = {
+	id = ssh_cn.122
+	title = "ssh_cn.122.name"
+	desc = "ssh_cn.122.desc"
+	picture = GFX_evt_ssh_system_disintegrator_finished
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.122.a"
+		default_hide_option = yes
+	}
+}
+
+# System Disintegrated
+country_event = {
+	id = ssh_cn.123
+	title = "ssh_cn.123.name"
+	desc = "ssh_cn.123.desc"
+	picture = GFX_evt_ssh_disintegrated_system
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.123.a"
+		trigger = {
+			NOT = { has_ascension_perk = ap_hyperdimensional_exodus }
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = "ssh_cn.123.b"
+		trigger = { has_ascension_perk = ap_hyperdimensional_exodus }
+		complete_crisis_objective = crisobj_disintegrate_systems
+		default_hide_option = yes
+	}
+}
+
+# Solar System Creator
+country_event = {
+	id = ssh_cn.124
+	title = "ssh_cn.124.name"
+	desc = "ssh_cn.124.desc"
+	picture = GFX_evt_ssh_nullvoid
+	show_sound = event_dyson_sphere_build_start
+	location = from
+	is_triggered_only = yes
+
+	immediate = {
+		#root = {
+		#	save_event_target_as = ssh_artificial_interstellar_system
+		#}
+	}
+
+	option = {
+		name = "ssh_cn.124.a"
+		hidden_effect = {
+			set_country_flag = ssh_artificial_system_north
+			country_event = { id = ssh_cn.125 days = 1 }
+		}
+	}
+	option = {
+		name = "ssh_cn.124.b"
+		hidden_effect = {
+			set_country_flag = ssh_artificial_system_east
+			country_event = { id = ssh_cn.125 days = 1 }
+		}
+	}
+	option = {
+		name = "ssh_cn.124.c"
+		hidden_effect = {
+			set_country_flag = ssh_artificial_system_south
+			country_event = { id = ssh_cn.125 days = 1 }
+		}
+	}
+	option = {
+		name = "ssh_cn.124.d"
+		hidden_effect = {
+			set_country_flag = ssh_artificial_system_west
+			country_event = { id = ssh_cn.125 days = 1 }
+		}
+	}
+}
+
+# Which type of star?
+country_event = {
+	id = ssh_cn.125
+	title = "ssh_cn.125.name"
+	desc = "ssh_cn.125.desc"
+	picture = GFX_evt_ssh_nullvoid
+	show_sound = event_dyson_sphere_build_start
+	location = from
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_cn.125.a" # Fusion Candle
+		custom_tooltip = "ssh_cn.125.a.tooltip"
+		hidden_effect = {
+			event_target:ssh_artificial_interstellar_system = {
+				if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_north } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 90	max_orientation_angle = 90	initializer = "ssh_artsys_fusion_candle" }
+					root = { remove_country_flag = ssh_artificial_system_north }
+				}
+				else_if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_east } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 0	max_orientation_angle = 0	initializer = "ssh_artsys_fusion_candle" }
+					root = { remove_country_flag = ssh_artificial_system_east }
+				}
+				else_if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_south } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 270	max_orientation_angle = 270	initializer = "ssh_artsys_fusion_candle" }
+					root = { remove_country_flag = ssh_artificial_system_south }
+				}
+				else_if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_west } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 180	max_orientation_angle = 180	initializer = "ssh_artsys_fusion_candle" }
+					root = { remove_country_flag = ssh_artificial_system_west }
+				}
+				last_created_system = {
+					create_starbase = {
+						size = starbase_outpost
+						owner = root
+					}
+					set_surveyed = { surveyed = yes }
+					every_system_planet = { set_surveyed = { surveyed = yes } }
+					every_system_megastructure = {
+						set_owner = root
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_cn.125.b" # Artificial Star
+		custom_tooltip = "ssh_cn.125.b.tooltip"
+		allow = {
+			has_technology = ssh_tech_because_we_can
+		}
+		hidden_effect = {
+			event_target:ssh_artificial_interstellar_system = {
+				if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_north } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 90	max_orientation_angle = 90	initializer = "ssh_artsys_artificial_star" }
+					root = { remove_country_flag = ssh_artificial_system_north }
+				}
+				else_if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_east } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 0	max_orientation_angle = 0	initializer = "ssh_artsys_artificial_star" }
+					root = { remove_country_flag = ssh_artificial_system_east }
+				}
+				else_if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_south } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 270	max_orientation_angle = 270	initializer = "ssh_artsys_artificial_star" }
+					root = { remove_country_flag = ssh_artificial_system_south }
+				}
+				else_if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_west } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 180	max_orientation_angle = 180	initializer = "ssh_artsys_artificial_star" }
+					root = { remove_country_flag = ssh_artificial_system_west }
+				}
+				last_created_system = {
+					create_starbase = {
+						size = starbase_outpost
+						owner = root
+					}
+					set_surveyed = { surveyed = yes }
+					every_system_planet = { set_surveyed = { surveyed = yes } }
+					every_system_megastructure = {
+						set_owner = root
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_cn.125.c" # Artificial Black Hole
+		custom_tooltip = "ssh_cn.125.c.tooltip"
+		allow = {
+			has_technology = ssh_tech_because_we_can
+		}
+		hidden_effect = {
+			event_target:ssh_artificial_interstellar_system = {
+				if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_north } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 90	max_orientation_angle = 90	initializer = "ssh_artsys_artificial_bh" }
+					root = { remove_country_flag = ssh_artificial_system_north }
+				}
+				else_if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_east } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 0	max_orientation_angle = 0	initializer = "ssh_artsys_artificial_bh" }
+					root = { remove_country_flag = ssh_artificial_system_east }
+				}
+				else_if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_south } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 270	max_orientation_angle = 270	initializer = "ssh_artsys_artificial_bh" }
+					root = { remove_country_flag = ssh_artificial_system_south }
+				}
+				else_if = {
+					limit = { root = { has_country_flag = ssh_artificial_system_west } }
+					spawn_system = { hyperlane = yes min_distance >= 7 max_distance <= 7 min_orientation_angle = 180	max_orientation_angle = 180	initializer = "ssh_artsys_artificial_bh" }
+					root = { remove_country_flag = ssh_artificial_system_west }
+				}
+				last_created_system = {
+					create_starbase = {
+						size = starbase_outpost
+						owner = root
+					}
+					set_surveyed = { surveyed = yes }
+					every_system_planet = { set_surveyed = { surveyed = yes } }
+					every_system_megastructure = {
+						set_owner = root
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			if = {
+				limit = {
+					host_has_dlc = "Grand Archive"
+					NOT = { has_global_flag = ssh_iron_sphere_specimen_found }
+				}
+				random_list = {
+					99 = {
+						# Nothing
+					}
+					1 = {
+						set_global_flag = ssh_iron_sphere_specimen_found
+						country_event = {
+							id = ssh_on.130
+							days = 15
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Fusion Candle - Storage Container
+country_event = {
+	id = ssh_cn.126
+	title = "ssh_cn.126.name"
+	desc = "ssh_cn.126.desc"
+	picture = GFX_evt_ssh_fusion_candle_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.126.a"
+	}
+}
+
+# Fusion Candle - Fusion Reactor
+country_event = {
+	id = ssh_cn.127
+	title = "ssh_cn.127.name"
+	desc = "ssh_cn.127.desc"
+	picture = GFX_evt_ssh_fusion_candle_reactor
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.127.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.128
+	title = "ssh_cn.128.name"
+	desc = "ssh_cn.128.desc"
+	picture = GFX_evt_ssh_fusion_candle_inactive
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.128.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.129
+	title = "ssh_cn.129.name"
+	desc = "ssh_cn.129.desc"
+	picture = GFX_evt_ssh_fusion_candle
+	show_sound = "event_solar_fusion"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.129.a"
+	}
+}
+
+# Artificial Star - Storage Container
+country_event = {
+	id = ssh_cn.130
+	title = "ssh_cn.130.name"
+	desc = "ssh_cn.130.desc"
+	picture = GFX_evt_ssh_dark_matter_storage
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.130.a"
+	}
+}
+
+# Hydrogen Distributors
+country_event = {
+	id = ssh_cn.131
+	title = "ssh_cn.131.name"
+	desc = "ssh_cn.131.desc"
+	picture = GFX_evt_ssh_artificial_star_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.131.a"
+	}
+}
+
+# Star Ignited
+country_event = {
+	id = ssh_cn.132
+	title = "ssh_cn.132.name"
+	desc = "ssh_cn.132.desc"
+	picture = GFX_evt_star_white
+	show_sound = "event_solar_fusion"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.132.a"
+	}
+}
+
+### Basement Gateway ###
+country_event = {
+	id = ssh_cn.133
+	title = "ssh_cn.133.name"
+	desc = "ssh_cn.133.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_event_chain = "basement_universe_creation_chain" }
+			add_event_chain_counter = {
+				event_chain = "basement_universe_creation_chain"
+				counter = "basement_uni_construction_steps"
+				amount = 1
+			}
+		}
+	}
+	
+	option = {
+		name = "ssh_cn.133.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.134
+	title = "ssh_cn.134.name"
+	desc = "ssh_cn.134.desc"
+	picture = GFX_evt_astral_rift_microverse
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_event_chain = "basement_universe_creation_chain" }
+			add_event_chain_counter = {
+				event_chain = "basement_universe_creation_chain"
+				counter = "basement_uni_construction_steps"
+				amount = 1
+			}
+		}
+	}
+	
+	option = {
+		name = "ssh_cn.134.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.135
+	title = "ssh_cn.135.name"
+	desc = "ssh_cn.135.desc"
+	picture = GFX_evt_ssh_neutronium_compressor_extractor
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_event_chain = "basement_universe_creation_chain" }
+			add_event_chain_counter = {
+				event_chain = "basement_universe_creation_chain"
+				counter = "basement_uni_construction_steps"
+				amount = 1
+			}
+		}
+	}
+	
+	option = {
+		name = "ssh_cn.135.a"
+	}
+}
+
+# Prepare Spacetime destabilization
+country_event = {
+	id = ssh_cn.136
+	title = "ssh_cn.136.name"
+	desc = "ssh_cn.136.desc"
+	picture = GFX_evt_ssh_nullvoid
+	show_sound = "event_solar_fusion"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_event_chain = "basement_universe_creation_chain" }
+			add_event_chain_counter = {
+				event_chain = "basement_universe_creation_chain"
+				counter = "basement_uni_construction_steps"
+				amount = 1
+			}
+		}
+	}
+	
+	option = {
+		name = "ssh_cn.136.a"
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_system_disintegrator } }
+			add_tech_progress = {
+				tech = ssh_tech_system_disintegrator
+				progress = 0.1
+			}
+		}
+	}
+}
+
+country_event = { # Artificial Big Bang
+	id = ssh_cn.137
+	title = "ssh_cn.137.name"
+	desc = "ssh_cn.137.desc"
+	picture = GFX_evt_ssh_basement_universe
+	show_sound = "event_super_explosion"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_event_chain = "basement_universe_creation_chain" }
+			add_event_chain_counter = {
+				event_chain = "basement_universe_creation_chain"
+				counter = "basement_uni_created"
+				amount = 1
+			}
+		}
+	}
+	
+	option = {
+		name = "ssh_cn.137.a"
+	}
+}
+
+country_event = { # Universe Cooled Down
+	id = ssh_cn.138
+	title = "ssh_cn.138.name"
+	desc = "ssh_cn.138.desc"
+	picture = GFX_evt_ssh_wormhole_spherical
+	show_sound = "event_super_explosion"
+	location = fromfromfromfrom.system #from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.138.a"
+	}
+}
+
+# System Creator - Artificial Black Hole
+country_event = {
+	id = ssh_cn.139
+	title = "ssh_cn.139.name"
+	desc = "ssh_cn.139.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.139.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.140
+	title = "ssh_cn.140.name"
+	desc = "ssh_cn.140.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.140.a"
+	}
+}
+
+country_event = {
+	id = ssh_cn.141
+	title = "ssh_cn.141.name"
+	desc = "ssh_cn.141.desc"
+	picture = GFX_evt_ssh_black_hole
+	show_sound = "event_super_explosion"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.141.a"
+		trigger = {
+			NOR = {
+				has_civic = civic_dark_consortium
+				has_civic = civic_corporate_dark_consortium
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = "ssh_cn.141.b"
+		trigger = {
+			OR = {
+				has_civic = civic_dark_consortium
+				has_civic = civic_corporate_dark_consortium
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Habitable Dyson
+country_event = {
+	id = ssh_cn.142
+	title = "ssh_cn.142.name"
+	desc = "ssh_cn.142.desc"
+	picture = GFX_evt_ssh_habitable_dyson_unused
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.142.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_cn.143
+	title = "ssh_cn.143.name"
+	desc = "ssh_cn.143.desc"
+	picture = GFX_evt_ssh_habitable_dyson_lamps
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.143.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_cn.144
+	title = "ssh_cn.144.name"
+	desc = "ssh_cn.144.desc"
+	picture = GFX_evt_ssh_habitable_dyson
+	show_sound = "event_dyson_sphere_build_complete"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.144.a"
+		default_hide_option = yes
+	}
+}
+
+# Horizon Brain
+country_event = {
+	id = ssh_cn.145
+	title = "ssh_cn.145.name"
+	desc = "ssh_cn.145.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.145.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_cn.146
+	title = "ssh_cn.146.name"
+	desc = "ssh_cn.146.desc"
+	picture = GFX_evt_ssh_horizon_brain_sphere
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.146.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_cn.147
+	title = "ssh_cn.147.name"
+	desc = "ssh_cn.147.desc"
+	picture = GFX_evt_ssh_horizon_brain_spine
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.147.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_cn.148
+	title = "ssh_cn.148.name"
+	desc = "ssh_cn.148.desc"
+	picture = GFX_evt_ssh_horizon_brain_grid
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.148.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_cn.149
+	title = "ssh_cn.149.name"
+	desc = "ssh_cn.149.desc"
+	picture = GFX_evt_ssh_horizon_brain
+	show_sound = "event_dyson_sphere_build_complete"
+	location = event_target:horizon_brain_megastructure
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.149.a"
+		default_hide_option = yes
+	}
+}
+
+# Captive Star: Note that if destroyed star will spawn
+country_event = {
+	id = ssh_cn.150
+	title = "ssh_cn.150.name"
+	desc = "ssh_cn.150.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.150.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_cn.151
+	title = "ssh_cn.151.name"
+	desc = "ssh_cn.151.desc"
+	picture = GFX_evt_megastructure_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.151.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_cn.152
+	title = "ssh_cn.152.name"
+	desc = "ssh_cn.152.desc"
+	picture = GFX_evt_ssh_captive_star_construction
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.152.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_cn.153
+	title = "ssh_cn.153.name"
+	desc = "ssh_cn.153.desc"
+	picture = GFX_evt_ssh_captive_star_construction_1
+	show_sound = "event_construction"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.153.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_cn.154
+	title = "ssh_cn.154.name"
+	desc = {
+		text = "ssh_cn.154_01.desc"
+		trigger = { NOT = { has_country_flag = ssh_wmd_captive_star } }
+	}
+	desc = {
+		text = "ssh_cn.154_02.desc"
+		trigger = { has_country_flag = ssh_wmd_captive_star }
+	}
+	picture = GFX_evt_ssh_captive_star
+	show_sound = "event_assembly_fight"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_cn.154.a"
+		default_hide_option = yes
+		trigger = {
+			NOR = {
+				is_pacifist = yes
+				is_militarist = yes
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	option = {
+		name = "ssh_cn.154.b"
+		trigger = { is_pacifist = yes }
+	}
+	option = {
+		name = "ssh_cn.154.c"
+		trigger = { is_militarist = yes }
+	}
+	option = {
+		name = "ssh_cn.154.d"
+		trigger = { has_civic = civic_machine_terminator }
+	}
+}

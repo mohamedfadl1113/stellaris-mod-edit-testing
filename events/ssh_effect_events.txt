@@ -1,0 +1,1131 @@
+namespace = ssh_effect
+
+########## DIMENSIONAL TEARER WAVES ###########
+# Make it so that psionic empires have less chances of being hit by shroud waves?
+# Ascensionist Empire Ascends - All Systems (except for tearer system)
+#system_event = {
+#	id = ssh_effect.1
+#	hide_window = yes
+#
+#	is_triggered_only = yes
+#
+#	immediate = {
+#		save_event_target_as = ssh_ascension_broken_system
+#		destroy_star_system = yes
+#		set_star_class = sc_ssh_space
+#		set_asteroid_belt = {
+#			radius = 0
+#		}
+#		star = {
+#			change_pc = pc_ssh_empty_space
+#			set_name = BLANK_STRING
+#			set_planet_size = 0
+#		}
+#		every_system_planet = {
+#			limit = {
+#				is_star = no
+#			}
+#			remove_planet = yes
+#		}
+#		every_neighbor_system = {
+#			remove_hyperlane = {
+#				from = THIS
+#				to = event_target:ssh_ascension_broken_system
+#			}
+#		}
+#	}
+#}
+
+# Ascensionist Empire Ascends - Tearer System
+#system_event = {
+#	id = ssh_effect.2
+#	hide_window = yes
+#
+#	is_triggered_only = yes
+#
+#	immediate = {
+#		save_event_target_as = ssh_tearer_system
+#		random_system_ambient_object = {
+#			limit = {
+#				OR = {
+#					has_ambient_object_flag = ssh_dim_tearer_1_object
+#					has_ambient_object_flag = ssh_dim_tearer_2_object
+#				}
+#			}
+#			destroy_ambient_object = this
+#		}
+#		if = {
+#			limit = { exists = owner }
+#			owner = {
+#				save_event_target_as = ssh_ascensionist_country
+#				species = {
+#					save_event_target_as = ssh_colony_species
+#				}
+#			}
+#		}
+#		star = {
+#			change_pc = pc_ascension_portal
+#			set_planet_size = 5
+#			create_colony = {
+#				owner = event_target:ssh_ascensionist_country
+#				species = event_target:ssh_colony_species
+#			}
+#			add_colony_progress = 1.0
+#			set_name = "Infinity"
+#			set_planet_name = "Infinity Anchor"
+#			set_capital = yes
+#		}
+#		owner = {
+#			every_owned_leader = {
+#				kill_leader = {
+#					#type = envoy
+#					class = envoy
+#					show_notification = no
+#				}
+#				kill_leader = {
+#					class = commander
+#					show_notification = no
+#				}
+#				kill_leader = {
+#					class = scientist
+#					show_notification = no
+#				}
+#				kill_leader = {
+#					class = official
+#					show_notification = no
+#				}
+#			}
+#			every_owned_pop = {
+#				modify_species = {
+#					species = this
+#					add_trait = trait_ssh_ascensionist
+#				}
+#				species = { save_event_target_as = ssh_ascensionist_species }
+#			}
+#			change_dominant_species = {
+#				species = event_target:ssh_ascensionist_species
+#				change_all = yes
+#			}
+#			add_modifier = {
+#				modifier = ssh_ascensionist_empire
+#				days = -1
+#			}
+#			add_victory_score = {
+#				source = destroyed_galaxy_score
+#				score = 350000
+#			}
+#			# Info on how to win the game at any moment from now on
+#			country_event = {
+#				id = ssh_cn.75
+#				days = 60
+#			}
+#		}
+#		set_asteroid_belt = {
+#			radius = 0
+#		}
+#		every_system_planet = {
+#			limit = {
+#				is_star = no
+#				NOT = {
+#					is_planet_class = pc_ascension_portal
+#				}
+#			}
+#			remove_planet = yes
+#		}
+#		every_system_megastructure = {
+#			remove_megastructure = this
+#		}
+#		############# DEBUG TESTING IF THIS CAUSES CRASHES ###################### it doesnt wow
+#		every_neighbor_system = {
+#			remove_hyperlane = {
+#				from = THIS
+#				to = event_target:ssh_tearer_system
+#			}
+#		}
+#	}
+#}
+
+# Sacrifice pops for conscious matter (you monster)
+country_event = {
+	id = ssh_effect.3
+	title = "ssh_effect.3.name"
+	desc = "ssh_effect.3.desc"
+	picture = GFX_evt_scientific_experiments
+	#show_sound = "incoming_swarm_message_state_2"
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_effect.3.a" #1 pop
+		allow = { 
+			any_owned_species = {
+				has_citizenship_type = {
+					country = root
+					type = citizenship_slavery
+				}
+				has_slavery_type = {
+					country = root
+					type = slavery_livestock
+				}
+			}
+		}
+		# Effect
+		random_owned_pop_group = {
+			limit = {
+				has_citizenship_type = {
+					country = root
+					type = citizenship_slavery
+				}
+				has_slavery_type = {
+					country = root
+					type = slavery_livestock
+				}
+			}
+			kill_pop_group = {
+				pop_group = this
+				amount = 100
+			}
+		}
+		add_resource = {
+			sr_conscious_matter = 10
+		}
+	}
+
+	option = {
+		name = "ssh_effect.3.b" #10 pops
+		allow = {
+			any_owned_species = {
+				#num_pops >= 10
+				count_species_pop_group = { ### !!! Resource intensive !!! ###
+					count >= 10
+				}
+				has_citizenship_type = {
+					country = root
+					type = citizenship_slavery
+				}
+				has_slavery_type = {
+					country = root
+					type = slavery_livestock
+				}
+			}
+		}
+		# Effect
+		while = {
+			count = 10
+			random_owned_pop_group = {
+				limit = {
+					has_citizenship_type = {
+						country = root
+						type = citizenship_slavery
+					}
+					has_slavery_type = {
+						country = root
+						type = slavery_livestock
+					}
+				}
+				kill_pop_group = {
+					pop_group = this
+					amount = 100
+				}
+			}
+		}
+		add_resource = {
+			sr_conscious_matter = 100
+		}
+	}
+
+	option = {
+		name = "ssh_effect.3.c" #25 pops
+		allow = {
+			any_owned_species = {
+				count_species_pop_group = {
+					count >= 25
+				}
+				has_citizenship_type = {
+					country = root
+					type = citizenship_slavery
+				}
+				has_slavery_type = {
+					country = root
+					type = slavery_livestock
+				}
+				#num_pops >= 25
+			}
+		}
+		# Effect
+		while = {
+			count = 25
+			random_owned_pop_group = {
+				limit = {
+					has_citizenship_type = {
+						country = root
+						type = citizenship_slavery
+					}
+					has_slavery_type = {
+						country = root
+						type = slavery_livestock
+					}
+				}
+				kill_pop_group = {
+					pop_group = this
+					amount = 100
+				}
+			}
+		}
+		add_resource = {
+			sr_conscious_matter = 250
+		}
+	}
+
+	option = {
+		name = "ssh_effect.3.d" #nvm
+		default_hide_option = yes
+	}
+}
+
+####################################################
+### Mega Temple - Gain Intel on selected Country ###
+####################################################
+
+#Intel is a value between 0 and 100 that represents how much information an empire has about another empire. 
+#Intel automatically increases or decreases towards the intel cap for the target empire. Some intelligence on systems, including fleets and colonies, can also be gained via sensors (fleets, starbases, or colonies). 
+#Every 10 points of intel increases the intel level in at least one category of intelligence, revealing additional information about the target empire. 
+
+# Spy Networks - The base maximum infiltration level is 50.
+# Maximum infiltration can also be increased by various factors as well as the Gather Information operation, which temporarily raises the maximum infiltration level by +5 (stackable to a maximum of +20). 
+
+country_event = {
+	id = ssh_effect.4
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Nemesis Country
+		if = {
+			limit = {
+				has_ascension_perk = ap_become_the_crisis
+			}
+			from = {
+				set_timed_country_flag = {
+					flag = ssh_shroud_espionage_nemesis_empire
+					days = 5
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					has_spynetwork = yes
+					any_spynetwork = {
+						owner = { is_same_value = from }
+						target = { is_same_value = this }
+						exists = leader
+						is_spynetwork_level > 0
+					}
+				}
+				random_spynetwork = {
+					limit = {
+						owner = { is_same_value = from }
+						target = { is_same_value = this }
+					}
+					random_list = {
+						60 = {
+							add_spy_network_level = 5 # Same effect as a successfull 'Gather information' operation
+						}
+						30 = {
+							add_spy_network_level = 10
+						}
+						10 = {
+							add_spy_network_level = 20 # Same effect as 4 stacked gather information operations
+						}
+					}
+				}
+			}
+
+			# Spiritualist FE
+			if = {
+				limit = {
+					is_fallen_empire_spiritualist = yes
+				}
+				save_event_target_as = spiritualist_fallen_empire
+				from = {
+					set_timed_country_flag = {
+						flag = ssh_shroud_espionage_no_success
+						days = 5
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_opinion_modifier = {
+									who = event_target:spiritualist_fallen_empire
+									modifier = ssh_opinion_shroud_espionage_negative_1
+								}
+							}
+						}
+						country_event = {
+							id = ssh_on.37 #Diplo Contact - Warning
+							days = 5
+							random = 20
+						}
+					}
+					else_if = {
+						limit = {
+							has_opinion_modifier = {
+								who = event_target:spiritualist_fallen_empire
+								modifier = ssh_opinion_shroud_espionage_negative_1
+							}
+						}
+						add_opinion_modifier = {
+							who = event_target:spiritualist_fallen_empire
+							modifier = ssh_opinion_shroud_espionage_negative_2
+						}
+					}
+				}
+				# Perhaps give a intel decryption shroud-tech the first time?
+			}
+
+			# List - Advanced Empires (FE/Thought Enforcement) - Higher chance for psionic thought enforcer empires to block the shroud infiltration attempt
+			else_if = {
+				limit = {
+					OR = {
+						AND = {
+							# All non-spiritualist FEs
+							is_fallen_empire = yes
+							is_fallen_empire_spiritualist = no
+						}
+						has_edict = thought_enforcement
+					}
+				}
+				random_list = {
+					# Low Intel
+					70 = {
+						from = {
+							add_intel = {
+								who = prev
+								amount = 5
+							}
+							set_timed_country_flag = {
+								flag = ssh_shroud_espionage_low_success
+								days = 5
+							}
+						}
+					}
+					# Medium Intel
+					29 = {
+						from = {
+							add_intel = {
+								who = prev
+								amount = 20
+							}
+							set_timed_country_flag = {
+								flag = ssh_shroud_espionage_medium_success
+								days = 5
+							}
+						}
+					}
+					# High Intel
+					1 = {
+						from = {
+							add_intel = {
+								who = prev
+								amount = 40
+							}
+							set_timed_country_flag = {
+								flag = ssh_shroud_espionage_high_success
+								days = 5
+							}
+						}
+					}
+				}
+			}
+
+			# Base List - 'Undefended' Empires
+			else = {
+				random_list = {
+					# Medium Intel
+					60 = {
+						from = {
+							add_intel = {
+								who = prev
+								amount = 10
+							}
+							set_timed_country_flag = {
+								flag = ssh_shroud_espionage_low_success
+								days = 5
+							}
+						}
+					}
+					# High Intel
+					30 = {
+						from = {
+							add_intel = {
+								who = prev
+								amount = 25
+							}
+							set_timed_country_flag = {
+								flag = ssh_shroud_espionage_medium_success
+								days = 5
+							}
+						}
+					}
+					# Extreme Intel
+					10 = {
+						from = {
+							add_intel = {
+								who = prev
+								amount = 50
+							}
+							set_timed_country_flag = {
+								flag = ssh_shroud_espionage_high_success
+								days = 5
+							}
+						}
+					}
+				}
+			}
+		}
+		# Clear the event target list
+		ssh_spy_event_clear_list = yes
+
+		from = {
+			# Cooldown to prevent shroud espionage spam
+			add_modifier = {
+				modifier = ssh_shroud_espionage_cooldown
+				years = 2
+			}
+
+			# Notification on how successful it was
+			country_event = {
+				id = ssh_megatemple.6
+			}
+		}
+	}
+}
+
+##### Shroud Extragalactic Insights #####
+
+# Determine Event (random list)
+country_event = {
+	id = ssh_effect.5
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = ssh_shroud_espionage_cooldown
+			years = 3 # 1 extra year compared to innergalactic espionage
+		}
+		if = {
+			limit = {
+				ssh_has_all_base_shroud_insights = yes #Only the basic ones, with chances of some special ones appearing, but no guarantee (for variety in multiple matches)
+			}
+			country_event = {
+				id = ssh_shroud.13
+			}
+		}
+		else = {
+			random_list = {
+				5 = {
+					# No Insights Gained - Couldn't reach any other civilization - 1000 Society Research
+					country_event = {
+						id = ssh_shroud.13
+					}
+				}
+				60 = { # 'Normal' Countries/Insights
+					random_list = {
+						10 = {
+							# Collectivism Civic
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_collectivist
+							}
+							country_event = {
+								id = ssh_shroud.14
+							}
+						}
+						10 = {
+							# Agrarian Idyll Civic
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_agrarian
+							}
+							country_event = {
+								id = ssh_shroud.15
+							}
+						}
+						10 = {
+							# Technocracy Civic
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_technocracy
+							}
+							country_event = {
+								id = ssh_shroud.16
+							}
+						}
+						10 = {
+							# Anarchist Society
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_anarchist
+							}
+							country_event = {
+								id = ssh_shroud.17
+							}
+						}
+						10 = {
+							# Inward Perfection Civic
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_inward_perfection
+							}
+							country_event = {
+								id = ssh_shroud.18
+							}
+						}
+						10 = {
+							# Death Cult/Memorialist Civic
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_death_cult
+							}
+							country_event = {
+								id = ssh_shroud.19
+							}
+						}
+					}
+				}
+				35 = { # Special Countries/Insights
+					random_list = {
+						10 = {
+							# 1984 (Ingsoc Pre-FTLs)
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_1984
+							}
+							country_event = {
+								id = ssh_shroud.20
+							}
+						}
+						10 = {
+							# Brave New World (Gene Caste System)
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_bnw
+							}
+							country_event = {
+								id = ssh_shroud.22
+							}
+						}
+						10 = {
+							# Despicable Neutrals Civic
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_neutrals
+							}
+							country_event = {
+								id = ssh_shroud.24
+							}
+						}
+						5 = {
+							# Prethoryn Scourge
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_prethoryn
+							}
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_blokkats
+							}
+							country_event = {
+								id = ssh_shroud.25
+							}
+						}
+						10 = {
+							# Extradimensional Invaders
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_extradimensional
+							}
+							#modifier = {
+							#	factor = 0
+							#	NOR = {
+							#		has_technology = tech_jump_drive_1
+							#		has_technology = tech_psi_jump_drive_1
+							#	}
+							#}
+							country_event = {
+								id = ssh_shroud.26
+							}
+						}
+						10 = {
+							# Aeternum ! IF NOT PRESENT IN THIS GALAXY
+							modifier = {
+								factor = 0
+								NOT = { has_gigastructures = yes }
+							}
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_aeternum
+							}
+							modifier = {
+								factor = 0
+								has_global_flag = giga_core_aeternum_4 #Only happens if aeternum has NOT spawned
+							}
+							country_event = {
+								id = ssh_shroud.27
+							}
+						}
+						3 = {
+							# Blokkats
+							modifier = {
+								factor = 0
+								NOT = { has_gigastructures = yes }
+							}
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_blokkats
+							}
+							modifier = {
+								factor = 0
+								has_country_flag = ssh_has_shroud_insight_prethoryn #One looming crisis is enough already
+							}
+							modifier = {
+								factor = 0
+								OR = { 
+									has_global_flag = blokkats_failed_to_spawn
+									has_global_flag = blokkats_managed_to_spawn 
+									has_global_flag = giga_blokkats_disabled
+								}
+							}
+							country_event = {
+								id = ssh_shroud.28
+							}
+						}
+						# Flame / Plasma Species Inside a star
+						# Nullvoid Civ (unlock nullvoid beam tech)
+					}
+				}
+			}
+		}
+	}
+}
+
+# AI Empires get nanite tech option (to make it easier for them to compete w/ players regarding hyperstructures)
+# Triggered via on
+event = {
+	id = ssh_effect.6
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	trigger = {
+		has_global_flag = ssh_ai_nanite_boost_enabled
+		NOT = { has_global_flag = ssh_ai_nanite_boost_triggered }
+	}
+
+	immediate = {
+		set_global_flag = ssh_ai_nanite_boost_triggered
+		every_country = {
+			limit = {
+				is_country_type = default
+				is_ai = yes
+			}
+			if = {
+				limit = {
+					NOR = {
+						has_tech_option = tech_nanite_transmutation
+						has_technology = tech_nanite_transmutation
+					}
+				}
+				add_research_option = tech_nanite_transmutation
+				#give_technology = { tech = tech_nanite_transmutation }
+			}
+		}
+	}
+}
+
+# Vacuum Decay - Fallen Materialists Leave (Mirror Dim)
+country_event = {
+	id = ssh_effect.7
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:materialist_fe
+	}
+
+	immediate = {
+		save_event_target_as = fallen_empire
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_on.48
+				#days = 1
+			}
+		}
+		every_owned_fleet = {
+			destroy_fleet = this
+		}
+		capital_scope = {
+			add_modifier = {
+				modifier = ssh_mirror_doorway_remnant_planet_modifier
+				days = -1
+			}
+			destroy_colony = yes
+			star = {
+				random_ambient_object = {
+					limit = { is_ambient_object_type = extradimensional_2 }
+					destroy_ambient_object = this
+				}
+				create_ambient_object = {
+					type = "star_explosion"
+					play_animation_once = yes
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 0
+						angle = random
+					}
+				}
+			}
+		}
+	}
+}
+
+# Vacuum Decay - Fallen Xenophobes Leave (Mirror Dim #2)
+country_event = {
+	id = ssh_effect.8
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:xenophobe_fe
+	}
+
+	immediate = {
+		save_event_target_as = fallen_empire
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_on.51
+			}
+		}
+		every_owned_fleet = {
+			destroy_fleet = this
+		}
+		capital_scope = {
+			destroy_colony = yes
+			change_pc = pc_shielded
+		}
+	}
+}
+
+# Vacuum Decay - Fallen Spiritualists Leave (Zro Det) -> Done via the megastructure itself
+
+# Vacuum Decay - Fallen Machines Leave (Arkship) -> ssh_on events
+
+# Fallen Sleepers Awake
+country_event = {
+	id = ssh_effect.10
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = fallen_empire
+		NOT = { has_global_flag = sleepers_awake_happened }
+	}
+
+	immediate = {
+		set_global_flag = sleepers_awake_happened
+		country_event = { id = fallen_empires_awakening.3 }
+		# Notify Players
+		every_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = fallen_empires_awakening.2
+			}
+		}
+		observer_event = { id = observer.73 }
+		# Fragged a holy world
+		if = {
+			limit = {
+				has_country_flag = holy_world_killed
+			}
+			country_event = { id = planet_destruction.611 days = 5 }
+		}
+		# War In Heaven
+		if = {
+			limit = { host_has_dlc = "Leviathans Story Pack" }
+			random_list = {
+				40 = { # War in Heaven with Fallen Empire of opposing ethos
+					random_country = {
+						limit = {
+							NOT = { is_same_value = root }
+							is_country_type = fallen_empire
+							NOT = { has_ethic = ethic_gestalt_consciousness }
+							OR = {
+								AND = {
+									has_ethic = ethic_fanatic_xenophobe
+									root = { has_ethic = ethic_fanatic_xenophile }
+								}
+								AND = {
+									has_ethic = ethic_fanatic_xenophile
+									root = { has_ethic = ethic_fanatic_xenophobe }
+								}
+								AND = {
+									has_ethic = ethic_fanatic_spiritualist
+									root = { has_ethic = ethic_fanatic_materialist }
+								}
+								AND = {
+									has_ethic = ethic_fanatic_materialist
+									root = { has_ethic = ethic_fanatic_spiritualist }
+								}
+							}
+						}
+						set_country_flag = sleepers_awake_ancient_rival
+						set_timed_country_flag = { flag = timed_ancient_rival days = 3600 }
+						set_timed_country_flag = { flag = ai_no_wars days = 3600 }
+						root = { set_timed_country_flag = { flag = ai_no_wars days = 3600 } }
+						every_country = {
+							limit = { is_country_type = default }
+							set_timed_country_flag = { flag = ai_no_wars days = 3600 }
+						}
+					}
+				}
+				20 = { # War in Heaven with Fallen Empire of different ethos
+					random_country = {
+						limit = {
+							NOT = { is_same_value = root }
+							is_country_type = fallen_empire
+							NOT = { has_ethic = ethic_gestalt_consciousness }
+						}
+						set_country_flag = sleepers_awake_ancient_rival
+						set_timed_country_flag = { flag = timed_ancient_rival days = 3600 }
+						set_timed_country_flag = { flag = ai_no_wars days = 3600 }
+						root = { set_timed_country_flag = { flag = ai_no_wars days = 3600 } }
+						every_country = {
+							limit = {
+								is_country_type = default
+							}
+							set_timed_country_flag = { flag = ai_no_wars days = 3600 }
+						}
+					}
+				}
+				40 = { # No War in Heaven
+					set_global_flag = no_war_in_heaven
+				}
+			}
+		}
+		else = { set_global_flag = no_war_in_heaven }
+	}
+}
+
+### Unfreeze Pops that were frozen after vacdec escape ###
+################ Might Have to fix these after 4.0 ####################
+country_event = {
+	id = ssh_effect.20
+	title = "ssh_effect.20.name"
+	desc = {
+		text = "ssh_effect.20.full.desc"
+		trigger = { check_variable = { which = country_frozen_pop_amount@from value > 1 } }
+	}
+	desc = {
+		text = "ssh_effect.20.empty.desc"
+		trigger = { check_variable = { which = country_frozen_pop_amount@from value = 0 } }
+	}
+	picture = GFX_evt_scientific_experiments
+	#show_sound = "incoming_swarm_message_state_2"
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_effect.20.a" #1 pop
+		allow = {
+			check_variable = { which = country_frozen_pop_amount@from value > 1 }
+		}
+		hidden_effect = {
+			set_country_flag = ssh_unfreeze_vacdec_pops_amount_1
+			country_event = { id = ssh_effect.21 }
+		}
+	}
+
+	option = {
+		name = "ssh_effect.20.b" #10 pops
+		allow = {
+			check_variable = { which = country_frozen_pop_amount@from value > 1 }
+		}
+		hidden_effect = {
+			set_country_flag = ssh_unfreeze_vacdec_pops_amount_10
+			country_event = { id = ssh_effect.21 }
+		}
+	}
+
+	option = {
+		name = "ssh_effect.20.c" #20 pops
+		allow = {
+			check_variable = { which = country_frozen_pop_amount@from value > 1 }
+		}
+		hidden_effect = {
+			set_country_flag = ssh_unfreeze_vacdec_pops_amount_20
+			country_event = { id = ssh_effect.21 }
+		}
+	}
+
+	option = {
+		name = "ssh_effect.20.d" #nvm
+		default_hide_option = yes
+	}
+}
+# Species
+country_event = {
+	id = ssh_effect.21
+	title = "ssh_effect.21.name"
+	desc = {
+		text = "ssh_effect.21.bio.desc"
+		trigger = { owner_main_species = { NOT = { is_species_class = MACHINE } } }
+	}
+	desc = {
+		text = "ssh_effect.21.machine.desc"
+		trigger = { owner_main_species = { is_species_class = MACHINE } }
+	}
+	picture = GFX_evt_scientific_experiments
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = { # Owner main species
+		name = "[owner_main_species.GetName]"
+		#allow = {
+		#	owner_main_species = { NOT = { is_species_class = MACHINE } } 
+		#}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_1 }
+				capital_scope = { create_pop = { species = owner_main_species } }
+			}
+			else_if = {
+				limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_10 }
+				capital_scope = { while = { count = 10 create_pop = { species = owner_main_species } } }
+			}
+			else_if = {
+				limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_20 }
+				capital_scope = { while = { count = 20 create_pop = { species = owner_main_species } } }
+			}
+		}
+	}
+
+	option = { # Robotic Copy
+		name = "ssh_effect.21.b"
+		trigger = {
+			NOR = {
+				is_hive_empire = yes
+				has_valid_civic = civic_fanatic_purifiers
+				has_policy_flag = ai_outlawed
+				has_policy_flag = ai_servitude
+			}
+		}
+		if = {
+			limit = { NOT = { exists = event_target:ssh_vacdec_cryo_robotic_species@root } }
+			create_species = {
+				name = "Synthetic [Root.GetSpeciesName]"
+				plural = "Synthetic [Root.GetSpeciesNamePlural]"
+				class = ROBOT
+				namelist = FUN3
+				portrait = "default_robot"
+				traits = {
+					trait = "trait_mechanical"
+				}
+			}
+			last_created_species = {
+				rename_species = { name = "Synthetic [owner_main_species.GetName]" }
+				save_global_event_target_as = ssh_vacdec_cryo_robotic_species@root
+			}
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_1 }
+					capital_scope = { create_pop = { species = event_target:ssh_vacdec_cryo_robotic_species@root } }
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_10 }
+					capital_scope = { while = { count = 10 create_pop = { species = event_target:ssh_vacdec_cryo_robotic_species@root } } }
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_20 }
+					capital_scope = { while = { count = 20 create_pop = { species = event_target:ssh_vacdec_cryo_robotic_species@root } } }
+				}
+			}
+		}
+	}
+
+	option = { # Bio Copy
+		name = "ssh_effect.21.c"
+		trigger = {
+			NOR = {
+				AND = {
+					is_gestalt = yes
+					NOT = { has_valid_civic = civic_machine_servitor }
+				}
+				AND = {
+					is_gestalt = yes
+					NOT = { has_valid_civic = civic_machine_assimilator }
+				}
+				has_valid_civic = civic_fanatic_purifiers
+			}
+		}
+		if = {
+			limit = { NOT = { exists = event_target:ssh_vacdec_cryo_species@root } }
+			create_species = {
+				name = "[Root.GetSpeciesName] Clone"
+				plural = "[Root.GetSpeciesNamePlural] Clones"
+				class = HUM
+				namelist = FUN3
+				portrait = "humanoid_05"
+			}
+			last_created_species = {
+				rename_species = { name = "[owner_main_species.GetName] Clone" }
+				save_global_event_target_as = ssh_vacdec_cryo_species@root
+			}
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_1 }
+					capital_scope = { create_pop = { species = event_target:ssh_vacdec_cryo_species@root } }
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_10 }
+					capital_scope = { while = { count = 10 create_pop = { species = event_target:ssh_vacdec_cryo_species@root } } }
+				}
+				else_if = {
+					limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_20 }
+					capital_scope = { while = { count = 20 create_pop = { species = event_target:ssh_vacdec_cryo_species@root } } }
+				}
+			}
+		}
+	}
+
+	after = {
+		if = {
+			limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_1 }
+			subtract_variable = { which = country_frozen_pop_amount@root value = 1 }
+			remove_country_flag  = ssh_unfreeze_vacdec_pops_amount_1
+		}
+		if = {
+			limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_10 }
+			subtract_variable = { which = country_frozen_pop_amount@root value = 10 }
+			remove_country_flag  = ssh_unfreeze_vacdec_pops_amount_10
+		}
+		if = {
+			limit = { has_country_flag = ssh_unfreeze_vacdec_pops_amount_20 }
+			subtract_variable = { which = country_frozen_pop_amount@root value = 20 }
+			remove_country_flag  = ssh_unfreeze_vacdec_pops_amount_20
+		}
+	}
+}

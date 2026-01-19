@@ -1,0 +1,513 @@
+namespace = ssh_fe
+
+### WIP ###
+
+### Awakened FEs - Bi-Yearly Event -> reinforcement of Dark Matter Missiles
+
+
+### FEs announce they are in possession of dark WMDs
+
+### FEs Warn player upon entering their territory that they will retaliate
+
+# Player finds dark missiles from a FE, it had lost it in an exercise, demands it back -> if player refuses they will get tech for WMDs
+
+
+# Repair Launch Site / If none exists: Create Launch Site System
+country_event = {
+	id = ssh_fe.50
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			is_country_type = fallen_empire
+			is_country_type = awakened_fallen_empire
+		}
+		#NOT = { has_country_flag = fe_with_wmd_launch_site }
+		NOT = { is_fe_with_wmd_launch_site = yes }
+	}
+
+	immediate = {
+		set_country_flag = fe_with_wmd_launch_site
+
+		# Give Necessary Tech
+		if = {
+			limit = { NOT = { has_technology = ssh_tech_dark_warhead } }
+			give_technology = { tech = ssh_tech_dark_warhead }
+		}
+
+		# Repair Launch Site
+		if = {
+			limit = {
+				any_system_within_border = {
+					any_system_megastructure = {
+						is_megastructure_type = quantum_catapult_ruined
+					}
+				}
+			}
+			random_system_within_border = {
+				limit = { any_system_megastructure = { is_megastructure_type = quantum_catapult_ruined } }
+				set_star_flag = fe_wmd_launch_site
+				random_system_megastructure = {
+					limit = { is_megastructure_type = quantum_catapult_ruined }
+					upgrade_megastructure_to = quantum_catapult_restored
+				}
+			}
+		}
+		else = {
+			set_country_flag = fe_wmd_launch_site_spawned
+			# Create Launch Site System
+			capital_scope = {
+				solar_system = {
+					ssh_spawn_fe_wmd_launch_site = yes ### Perhaps start with a ruined one + upgrade it first for game balance?
+				}
+			}
+		}
+
+		random_system_within_border = {
+			limit = { has_star_flag = fe_wmd_launch_site }
+			save_event_target_as = fe_wmd_launch_site_system
+		}
+
+		# Notify rest of the galaxy
+		every_playable_country = {
+			limit = {
+				is_country_type = default
+				has_communications = root
+			}
+			country_event = {
+				id = ssh_fe.51
+				days = 3
+			}
+		}
+
+		# Also trigger awakening if sleeping empire?
+	}
+}
+# Notification about restoring old launch site
+country_event = {
+	id = ssh_fe.51
+	title = ssh_fe.51.name
+	desc = {
+		text = ssh_fe.51_01.desc
+		trigger = {
+			NOT = {
+				any_country = {
+					NOT = { is_same_value = from }
+					OR = {
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+					#has_country_flag = fe_with_wmd_launch_site
+					is_fe_with_wmd_launch_site = yes
+				}
+			}
+		}
+	}
+	desc = {
+		text = ssh_fe.51_02.desc
+		trigger = {
+			any_country = {
+				NOT = { is_same_value = from }
+				OR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+				#has_country_flag = fe_with_wmd_launch_site
+				is_fe_with_wmd_launch_site = yes
+			}
+		}
+	}
+	picture = {
+		trigger = {
+			from = {
+				is_hive_empire = no
+			}
+		}
+		picture = GFX_evt_fallen_empire
+	}
+
+	picture = {
+		trigger = {
+			from = {
+				is_hive_empire = yes
+			}
+		}
+		picture = GFX_evt_hive_mind_fallen_empire
+	}
+	show_sound = event_yellow_alert #event_alien_signal
+	location = event_target:fe_wmd_launch_site_system
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_fe.51.a
+	}
+}
+
+
+
+### If any core territory system from a potential Dark Missile FE is destroyed, it'll start restoring launch site ###
+# Triggered by on_starbase_destroyed
+# This = starbase being destroyed (not ship!)
+# From = fleet that destroyed the starbase
+starbase_event = {
+	id = ssh_fe.94
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			can_be_wmd_fallen_empire = yes
+			NOT = { is_fe_with_wmd_launch_site = yes }
+		}
+		from.owner = {
+			#is_regular_empire = yes
+			is_country_type = default
+		}
+	}
+
+	immediate = {
+		owner = {
+			trigger_fe_missile_reactivation = yes
+		}
+	}
+}
+### If any core territory system is taken from a potential Dark Missile FE, it'll start restoring launch site ###
+country_event = {
+	id = ssh_fe.95
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		#NOT = {
+		#	has_country_flag = has_received_fe_wmd_threat
+		#}
+		is_regular_empire = yes
+		from.owner = {
+			can_be_wmd_fallen_empire = yes
+			NOT = { is_fe_with_wmd_launch_site = yes }
+			#OR = {
+			#	is_country_type = fallen_empire
+			#	is_country_type = awakened_fallen_empire
+			#}
+		}
+	}
+
+	immediate = {
+		from.owner = {
+			trigger_fe_missile_reactivation = yes
+		}
+	}
+}
+
+### Before FE launches dark missiles, choose target system -> move missiles to launch site -> random_list with nearby systems
+
+### If any FE core territory system is destroyed ###
+# Triggered by on_starbase_destroyed
+starbase_event = {
+	id = ssh_fe.99
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			is_fe_with_wmd_launch_site = yes
+		}
+		from.owner = {
+			is_regular_empire = yes
+			NOT = {
+				has_country_flag = has_received_fe_wmd_threat
+			}
+		}
+	}
+
+	immediate = {
+		solar_system = { save_event_target_as = fe_system }
+		owner = {
+			save_event_target_as = wmd_awakened_empire
+		}
+		from.owner = {
+			#set_country_flag = has_received_fe_wmd_threat
+			# Send diplo message
+			country_event = {
+				id = ssh_fe.101
+			}
+		}
+	}
+}
+
+### If any core territory system is taken from a FE, it'll warn the player & threaten with dark WMDs ###
+# This = New controller
+# From = Starbase being occupied
+country_event = {
+	id = ssh_fe.100
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_regular_empire = yes
+		NOT = {
+			has_country_flag = has_received_fe_wmd_threat
+		}
+		from.owner = {
+			#can_be_wmd_fallen_empire = yes
+			is_fe_with_wmd_launch_site = yes
+			#OR = {
+			#	is_country_type = fallen_empire
+			#	is_country_type = awakened_fallen_empire
+			#}
+		}
+	}
+
+	immediate = {
+		solar_system = { save_event_target_as = fe_system }
+		from.owner = {
+			save_event_target_as = wmd_awakened_empire
+		}
+		#from = { save_event_target_as = awakened_empire_starbase }
+		# Send diplo message
+		country_event = {
+			id = ssh_fe.101
+		}
+	}
+}
+# Diplo Message
+country_event = {
+	id = ssh_fe.101
+	title = ssh_fe.101.name
+	desc = ssh_fe.101.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:wmd_awakened_empire
+		planet_background = event_target:wmd_awakened_empire
+		graphical_culture = event_target:wmd_awakened_empire
+		city_level = event_target:wmd_awakened_empire
+		room = event_target:wmd_awakened_empire.ruler
+	}
+
+	immediate = {
+		event_target:wmd_awakened_empire = {
+			set_country_flag = fe_has_sent_wmd_threat
+			# Start Producing Dark Warheads (Bi-Yearly Event)
+			fe_start_producing_warheads = yes
+		}
+		set_country_flag = has_received_fe_wmd_threat
+	}
+
+	option = {
+		name = ssh_fe.101.a
+		custom_tooltip = ssh_fe.101.a.tt
+		ai_chance = {
+			factor = 90
+			modifier = {
+				factor = 0.01
+				fleet_power > 300000
+			}
+			modifier = {
+				factor = 1.5
+				is_pacifist = yes
+			}
+		}
+		hidden_effect = {
+			event_target:fe_system = {
+				every_fleet_in_system = {
+					limit = { owner = { is_same_value = prevprev } }
+					set_mia = mia_emergency_ftl
+				}
+				if = {
+					limit = { exists = starbase }
+					starbase = { set_owner = event_target:wmd_awakened_empire }
+				}
+				else = {
+					create_starbase = {
+						size = starbase_fe_outpost
+						owner = event_target:wmd_awakened_empire
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ssh_fe.101.b
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 10
+				fleet_power > 999000
+			}
+			modifier = {
+				factor = 1.5
+				is_militarist = yes
+			}
+		}
+		custom_tooltip = ssh_fe.101.b.tt
+		hidden_effect = {
+			event_target:wmd_awakened_empire = { add_opinion_modifier = { who = root modifier = opinion_refused_fallen_empire_demand } }
+		}
+	}
+}
+
+# Player has received threats but continues to conquer territory
+country_event = {
+	id = ssh_fe.110
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = has_received_fe_wmd_threat
+		from.owner = {
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+			has_country_flag = fe_has_sent_wmd_threat
+			has_wmd_launch_site = yes
+		}
+	}
+
+	immediate = {
+		from.owner = {
+			save_event_target_as = wmd_awakened_empire
+		}
+		
+		# Determine whether WMDs will be used or not
+		event_target:wmd_awakened_empire = {
+			random_list = {
+				20 = {
+					random_system_within_border = {
+						limit = { is_wmd_launch_site_system = yes }
+						# 
+					}
+					# Yes Use
+					# Choose Target Systems
+					# Move selected dark matter WMDs to launch site
+					#prev = {
+					#	capital_scope = {
+					#		star = {
+					#			save_event_target_as = wmd_target_home_star
+					#		}
+					#	}
+					#}
+
+					modifier = {
+						factor = 0
+						is_xenophile = yes
+					}
+					modifier = {
+						factor = 5
+						is_xenophobe = yes
+					}
+				}
+				80 = {
+					# No Use
+				}
+			}
+		}
+	}
+}
+
+# Annual Event: Start producing 3/5/8 Warheads/year in capital scope
+country_event = {
+	id = ssh_fe.200
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			is_country_type = fallen_empire
+			is_country_type = awakened_fallen_empire
+		}
+		fe_is_producing_warheads = yes
+		#is_at_war = yes # Also during times of peace? Maybe in another update
+	}
+	
+	immediate = {
+		#set_timed_country_flag = {
+		#	flag = ai_crisis_is_constructing_captive_star
+		#	days = 1080
+		#}
+
+		# Check if still at war
+		if = {
+			limit = { NOT = { is_at_war = yes } }
+			fe_stop_producing_warheads = yes
+		}
+		
+		capital_scope = {
+			#starbase = {
+			#	#
+			#}
+			create_fleet = {
+				name = "Dark Missile"
+				effect = {
+					set_owner = prevprev
+					create_ship = {
+						name = "Dark Warhead"
+						design = ssh_dark_matter_missile
+						#graphical_culture = "ai_01"
+						effect = {
+							set_ship_flag = fe_dark_missile
+						}
+					}
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 90
+						direction = in_system
+					}
+					save_event_target_as = fe_dark_missile_fleet
+					fleet_event = { id = ssh_fe.201 days = 5 }
+				}
+			}
+		}
+	}
+}
+# Move Dark Missile to Launch Site System
+fleet_event = {
+	id = ssh_fe.201
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		owner = {
+			random_system_within_border = {
+				limit = { is_wmd_launch_site_system = yes }
+				save_event_target_as = fe_wmd_launch_site_system
+			}
+		}
+		auto_move_to_planet = {
+			target = event_target:fe_wmd_launch_site_system
+			clear_auto_move_on_arrival = no
+		}
+	}
+}
+
+# Check if any WMD in launch site system
+
+# If Yes: For each WMD fleet: 
+# Choose target system + Spawn Guard fleet (max. 20k/Missile, ordered to follow wmd fleet)
+#
+# Prio List:
+# 1. Hostile Fleets (Non-core territory)
+# 2. Hostile Colonies
+# 3. Hostile Capital
+
+# Launch Fleet (either search if there's a Force-Jump command, if not: Despawn WMD Fleet, Spawn duplicate in or near target system (done with random_list and random_neighbor_system)
+
+# After 30 days: ignite missile
+
+
+# IF Launch Site System Destroyed:
+# Remove active production + send out message to all empires

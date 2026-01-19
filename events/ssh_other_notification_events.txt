@@ -1,0 +1,2560 @@
+namespace = ssh_on
+
+#################################################################################
+###############            CONSTRUCTION NOTIFICATION              ###############
+#################################################################################
+
+# Gas Giant Pumping Facility Depleted
+country_event = {
+	id = ssh_on.1
+	title = "ssh_on.1.name"
+	desc = "ssh_on.1.desc"
+	picture = GFX_evt_barren_dig_site ###
+	show_sound = "event_laboratory_sound"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.1.a"
+	}
+}
+
+# Nanite Disassembler Finished
+country_event = {
+	id = ssh_on.2
+	title = "ssh_on.2.name"
+	desc = { # All empires except terravores
+		text = ssh_on.2_01.desc
+		trigger = { 
+			NOT = {
+				is_lithoid_devouring_swarm = yes
+			}
+		}
+	}
+
+	desc = { #Terravores
+		text = ssh_on.2_02.desc
+		trigger = { 
+			is_lithoid_devouring_swarm = yes
+		}
+	}
+	picture = GFX_evt_gray_goo
+	show_sound = "event_laboratory_sound"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.2.a"
+	}
+}
+
+#### Dimensional Tearer
+# Psionics Sense Tearer (Dimensional Tearer Construction Started)
+country_event = {
+	id = ssh_on.3
+	title = "ssh_on.3.name"
+	desc = {
+		text = "ssh_on.3_01.desc"
+		trigger = {
+			is_gestalt = no
+		}
+	}
+	desc = {
+		text = "ssh_on.3_02.desc"
+		trigger = {
+			is_gestalt = yes
+		}
+	}
+	picture = GFX_evt_zro_2
+	show_sound = "event_yellow_alert"
+	location = fromfrom
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.3.a"
+		trigger = {
+			owner_main_species = {
+				OR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = "ssh_on.3.a"
+		trigger = {
+			owner_main_species = {
+				NOR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+	}
+}
+
+# All countries notice something
+country_event = {
+	id = ssh_on.4
+	title = "ssh_on.4.name"
+	desc = "ssh_on.4.desc"
+	picture = GFX_evt_surreal_visions
+	show_sound = "event_yellow_alert"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.4.a"
+	}
+
+	option = {
+		name = "ssh_on.4.b"
+		trigger = {
+			owner_main_species = {
+				OR = {
+					has_trait = trait_psionic
+					has_trait = trait_ssh_brain_symbiosis
+					has_trait = trait_ssh_brain_symbiosis_hive
+				}
+			}
+		}
+	}
+}
+
+# Diplomatic Contact Event - Dimensional Tearer
+country_event = {
+	id = ssh_on.5
+	title = "ssh_on.5.name"
+	desc = "ssh_on.5.desc"
+	picture = GFX_evt_worrying_signal
+	show_sound = "event_yellow_alert"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.5.a"
+		hidden_effect = {
+			country_event = { id = "ssh_on.6" }
+		}
+	}
+}
+
+# Introduction
+country_event = {
+	id = ssh_on.6
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_on.6_01.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.6_02.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				has_civic = civic_machine_servitor
+			}
+		}
+	}
+	show_sound = "event_mystic_reveal_light" #"event_coronation"
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:ssh_ascensionist_country
+		room = exodus_empire_room
+	}
+
+	option = {
+		name = ssh_on.6.a # What are you gonna do about it
+		trigger = {
+			NOT = { has_authority = auth_machine_intelligence }
+		}
+		hidden_effect = {
+			country_event = { id = "ssh_on.7" }
+			play_sound = "amb_system_reality_breach_ethereal_tones"
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_on.6.b
+		trigger = {
+			has_authority = auth_machine_intelligence
+		}
+		hidden_effect = {
+			country_event = { id = "ssh_on.7" }
+			play_sound = "amb_system_reality_breach_ethereal_tones"
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_on.7
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_on.7_01.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.7_02.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				has_civic = civic_machine_servitor
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:ssh_ascensionist_country
+		room = exodus_empire_room
+	}
+
+	option = {
+		name = ssh_on.7.a # Destroy galaxy?
+		trigger = {
+			NOT = { has_authority = auth_machine_intelligence }
+		}
+		hidden_effect = {
+			country_event = { id = "ssh_on.8" }
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_on.7.b
+		trigger = {
+			has_authority = auth_machine_intelligence
+		}
+		hidden_effect = {
+			country_event = { id = "ssh_on.8" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_on.8
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_on.8_01.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.8_02.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				has_civic = civic_machine_servitor
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:ssh_ascensionist_country
+		room = exodus_empire_room
+	}
+
+	option = {
+		name = ssh_on.8.a # Side Effects?
+		trigger = {
+			NOT = { has_authority = auth_machine_intelligence }
+		}
+		hidden_effect = {
+			country_event = { id = "ssh_on.9" }
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_on.8.b
+		trigger = {
+			has_authority = auth_machine_intelligence
+		}
+		hidden_effect = {
+			country_event = { id = "ssh_on.9" }
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = ssh_on.9
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_on.9_01.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.9_02.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				has_civic = civic_machine_servitor
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:ssh_ascensionist_country
+		room = exodus_empire_room
+	}
+
+	option = {
+		name = ssh_on.9.a # Crazy
+		trigger = {
+			NOT = { has_authority = auth_machine_intelligence }
+		}
+		hidden_effect = {
+			country_event = { id = "ssh_on.10" }
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_on.9.b
+		trigger = {
+			has_authority = auth_machine_intelligence
+		}
+		hidden_effect = {
+			country_event = { id = "ssh_on.10" }
+		}
+		default_hide_option = yes
+	}
+	# Join them - future update
+}
+
+country_event = {
+	id = ssh_on.10
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_on.10_01.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.10_02.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				has_civic = civic_machine_servitor
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:ssh_ascensionist_country
+		room = exodus_empire_room
+	}
+
+	option = {
+		name = ssh_on.10.a # Goodbye
+		# trigger = {}
+		add_casus_belli = {
+			type = cb_ssh_stop_ascensionists
+			who = event_target:ssh_ascensionist_country
+			days = -1
+		}
+		hidden_effect = {
+			add_opinion_modifier = {
+				who = event_target:ssh_ascensionist_country
+				modifier = ssh_opinion_base_dim_tearer_negative
+			}
+		}
+		play_sound = "event_coronation"
+		default_hide_option = yes
+
+		#option b: on second thought, we'd like to join you
+	}
+
+	after = {
+		hidden_effect = {
+			# Event notification: exodus empire leaves galcom & all federations
+			#if = {
+			#	limit = { is_ai = no }
+			#	country_event = {
+			#		id = ssh_on.15
+			#		days = 10
+			#	}
+			#}
+			country_event = {
+				id = ssh_on.15
+				days = 10
+			}
+			# If any vassals exist, contact them
+			if = {
+				limit = {
+					is_subject = yes
+					event_target:ssh_ascensionist_country = { is_overlord_to = prev }
+				}
+				country_event = {
+					id = ssh_on.16
+					days = 5
+				}
+			}
+		}
+	}
+}
+
+# Text after taking the hyperdim. ascension ascension perk
+country_event = {
+	id = ssh_on.11
+	title = "ssh_on.11.name"
+	desc = {
+		text = "ssh_on.11_01.desc"
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+		}
+	}
+	desc = {
+		text = "ssh_on.11_02.desc"
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+	}
+	picture = GFX_evt_ssh_dim_tearer
+	show_sound = "event_coronation"
+	location = from
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.11.a"
+		trigger = {
+			NOT = { has_civic = civic_machine_servitor }
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = "ssh_on.11.b"
+		trigger = {
+			has_civic = civic_machine_servitor
+		}
+		default_hide_option = yes
+	}
+}
+
+# Notification about Exodus Aspirants Leaving Galcom
+country_event = {
+	id = ssh_on.15
+	title = "ssh_on.15.name"
+	desc = {
+		text = "ssh_on.15_no_federation.desc"
+		trigger = {
+			NOT = { event_target:ssh_ascensionist_country = { has_federation = yes } }
+		}
+	}
+	desc = {
+		text = "ssh_on.15_federation.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = { has_federation = yes }
+		}
+	}
+	picture = GFX_evt_assembly_fight
+	show_sound = event_comms_cutoff
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_on.15.a
+		trigger = {
+			is_galactic_community_member = yes
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_on.15.b
+		trigger = {
+			NOT = { is_galactic_community_member = yes }
+		}
+		default_hide_option = yes
+	}
+}
+# Notification from the Exodus Aspirant to Vassals
+country_event = {
+	id = ssh_on.16
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_on.16_regular.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.16_servitor.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				has_civic = civic_machine_servitor
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:ssh_ascensionist_country.leader
+		room = exodus_empire_room
+	}
+
+	option = {
+		name = ssh_on.16.a # We join you
+		custom_tooltip = ssh_on.16.a_tt
+		default_hide_option = yes
+	}
+
+	option = {
+		name = ssh_on.16.b # You are mad
+		custom_tooltip = ssh_on.16.b_tt
+		add_casus_belli = {
+			type = cb_subject
+			who = event_target:ssh_ascensionist_country
+			days = 1080
+		}
+	}
+}
+# Exodus Overlord notifies subject that it's time to leave
+country_event = {
+	id = ssh_on.17
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_on.17_regular.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.17_servitor.desc"
+		trigger = {
+			event_target:ssh_ascensionist_country = {
+				has_civic = civic_machine_servitor
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:ssh_ascensionist_country.leader
+		room = exodus_empire_room
+	}
+
+	option = {
+		name = ssh_on.17.a
+		custom_tooltip = ssh_on.17.a_tt
+		default_hide_option = yes
+	}
+
+	after = {
+		add_victory_score = {
+			source = SSH_HYPERDIMENSIONAL_EXODUS_SCORE
+			score = 25000
+		}
+		hidden_effect = {
+			destroy_country = yes
+		}
+	}
+}
+
+# Hyperdim. Exodus: Notification for others that aspirants are about to leave
+country_event = {
+	id = ssh_on.20
+	title = "ssh_on.20.name"
+	desc = {
+		text = "ssh_on.20_regular.desc"
+		trigger = {
+			NAND = {
+				is_subject = yes
+				has_overlord = event_target:ssh_ascensionist_country
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.20_subject.desc"
+		trigger = {
+			is_subject = yes
+			has_overlord = event_target:ssh_ascensionist_country
+		}
+	}
+	picture = GFX_evt_ssh_dim_tearer
+	show_sound = "event_air_raid_siren" #"event_yellow_alert"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.20.a"
+		trigger = {
+			NAND = {
+				is_subject = yes
+				has_overlord = event_target:ssh_ascensionist_country
+			}
+		}
+	}
+	option = {
+		name = "ssh_on.20.b"
+		trigger = {
+			is_subject = yes
+			has_overlord = event_target:ssh_ascensionist_country
+		}
+	}
+}
+
+# Ascension - Notification for other empires
+country_event = {
+	id = ssh_on.21
+	title = "ssh_on.21.name"
+	desc = {
+		trigger = {
+			fromfrom.owner = {
+				NOT = { has_country_flag = covenant_end_of_the_cycle }
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+
+		text = "ssh_on.21_01.desc"
+	}
+	desc = {
+		trigger = { fromfrom.owner = { has_civic = civic_machine_servitor } }
+
+		text = "ssh_on.21_02.desc"
+	}
+	desc = {
+		trigger = { fromfrom.owner = { has_country_flag = covenant_end_of_the_cycle } }
+		
+		text = "ssh_on.21_03.desc"
+	}
+	picture = GFX_evt_vortex
+	show_sound = "event_air_raid_siren" #"event_yellow_alert"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.21.a"
+	}
+}
+
+# Stellar Nanite Disassembler Finished
+country_event = {
+	id = ssh_on.22
+	title = "ssh_on.22.name"
+	desc = "ssh_on.22.desc"
+	picture = GFX_evt_ssh_nullvoid
+	show_sound = "event_laboratory_sound"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.22.a"
+	}
+}
+
+# Neutronium Compressor Finished
+country_event = {
+	id = ssh_on.23
+	title = "ssh_on.23.name"
+	desc = "ssh_on.23.desc"
+	picture = GFX_evt_ssh_quark_star
+	show_sound = "event_laboratory_sound"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.23.a"
+	}
+}
+
+# Shellworld decisions -> turn shellworld into city/hive/machine one
+# City Shellworld
+country_event = {
+	id = ssh_on.24
+	title = "ssh_on.24.name"
+	desc = "ssh_on.24.desc"
+	picture = GFX_evt_city_planet
+	show_sound = "event_laboratory_sound"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.24.a"
+	}
+}
+
+country_event = {
+	id = ssh_on.25
+	title = "ssh_on.25.name"
+	desc = "ssh_on.25.desc"
+	picture = GFX_evt_baol_grunur
+	show_sound = "event_laboratory_sound"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.25.a"
+	}
+}
+
+country_event = {
+	id = ssh_on.26
+	title = "ssh_on.26.name"
+	desc = "ssh_on.26.desc"
+	picture = GFX_evt_city_planet
+	show_sound = "event_laboratory_sound"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.26.a"
+	}
+}
+
+# Notification - Bio Ascension Empire merges w/ B.I.O. Brain
+# Non-Hive
+country_event = {
+	id = ssh_on.27
+	title = "ssh_on.27.name"
+	desc = {
+		text = "ssh_on.27_01.desc"
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.27_02.desc"
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	picture = GFX_evt_ssh_megabrain_stage_3
+	show_sound = "incoming_swarm_message_state_1"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.27.a"
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_on.27.b"
+		trigger = {
+			is_spiritualist = yes
+		}
+	}
+
+	option = {
+		name = "ssh_on.27.c"
+		trigger = {
+			is_materialist = yes
+		}
+	}
+
+	option = {
+		name = "ssh_on.27.d"
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+}
+
+# Hive
+country_event = {
+	id = ssh_on.28
+	title = "ssh_on.28.name"
+	desc = {
+		text = "ssh_on.28_01.desc"
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.28_02.desc"
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	picture = GFX_evt_ssh_megabrain_stage_3
+	show_sound = "incoming_swarm_message_state_1"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.27.a"
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_on.27.b"
+		trigger = {
+			is_spiritualist = yes
+		}
+	}
+
+	option = {
+		name = "ssh_on.27.c"
+		trigger = {
+			is_materialist = yes
+		}
+	}
+
+	option = {
+		name = "ssh_on.27.d"
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+}
+
+# Nanite Disassembled Moon: Notify Player about catastrophal impact on ecosystem
+country_event = {
+	id = ssh_on.29
+	title = "ssh_on.29.name"
+	desc = "ssh_on.29.desc"
+	picture = GFX_evt_city_ruins
+	show_sound = "event_air_raid_siren"
+	location = fromfrom
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.29.a"
+	}
+}
+
+# Observation Outpost owner notification
+country_event = {
+	id = ssh_on.30
+	title = "ssh_on.30.name"
+	desc = "ssh_on.30.desc"
+	picture = GFX_evt_relic_world_street
+	show_sound = "event_air_raid_siren"
+	location = fromfrom
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.30.a"
+		event_target:ssh_shrinking_moon_planet = {
+			observation_outpost = {
+				dismantle = yes
+			}
+		}
+	}
+}
+
+# Triangle Theory - Special Project Complete
+country_event = {
+	id = ssh_on.31
+	title = "ssh_on.31.name"
+	desc = {
+		text = "ssh_on.31.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_on.31.desc.gestalt"
+		trigger = { is_gestalt = yes }
+	}
+	picture = GFX_evt_astral_rift_bleached_planet_2
+	show_sound = "event_mystic_reveal_light"
+	location = from
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.31.a"
+		custom_tooltip = "ssh_on.31.a.tooltip"
+		hidden_effect = {
+			if = {
+				limit = {
+					NOR = {
+						has_technology = ssh_tech_mega_temple
+						has_tech_option = ssh_tech_mega_temple
+					}
+				}
+				add_research_option = ssh_tech_mega_temple
+			}
+		}
+	}
+}
+
+# Mega-Temple Construction Finished - First Breakthrough
+country_event = {
+	id = ssh_on.32
+	title = "ssh_on.32.name"
+	desc = {
+		text = "ssh_on.32.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_on.32.desc.gestalt"
+		trigger = { is_gestalt = yes }
+	}
+	picture = GFX_evt_astral_rift_microverse #GFX_evt_astral_rift_crystal_3 #astral_rit_vortex
+	show_sound = "event_red_alert"
+	location = from
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.32.a"
+		hidden_effect = {
+			country_event = {
+				id = ssh_shroud.8
+			}
+		}
+	}
+}
+
+# Mega-Temple - After successfully entering the deeper shroud (Vandurum, NOT profundum) for the first time
+country_event = {
+	id = ssh_on.33
+	title = "ssh_on.33.name"
+	desc = {
+		text = "ssh_on.33.desc"
+		trigger = {
+			is_gestalt = no
+		}
+	}
+	desc = {
+		text = "ssh_on.33.desc.gestalt"
+		trigger = {
+			is_gestalt = yes
+		}
+	}
+	picture = GFX_evt_astral_rift_vortex
+	show_sound = "event_solar_fusion"
+	location = from
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.33.a"
+		custom_tooltip = "ssh_on.33.a.tooltip"
+		trigger = { is_gestalt = no }
+		enable_special_project = {
+			name = SSH_SHROUD_SUPERNOVA
+			owner = this
+		}
+		hidden_effect = {
+			set_country_flag = ssh_megatemple_hub_unlocked # From now on the player can access the abyssal anchor hub
+		}
+		#default_hide_option = yes
+	}
+	option = {
+		name = "ssh_on.33.a.gestalt"
+		custom_tooltip = "ssh_on.33.a.tooltip"
+		trigger = { is_gestalt = yes }
+		enable_special_project = {
+			name = SSH_SHROUD_SUPERNOVA_GESTALT
+			owner = this
+		}
+		hidden_effect = { set_country_flag = ssh_megatemple_hub_unlocked }
+		#default_hide_option = yes
+	}
+	#option = {
+	#	name = "ssh_on.33.b"
+	#	custom_tooltip = "ssh_on.33.a.tooltip"
+	#	trigger = { is_gestalt = yes }
+	#	hidden_effect = {
+	#		set_country_flag = ssh_megatemple_hub_unlocked # From now on the player can access the abyssal anchor hub
+	#	}
+	#}
+}
+
+# After completing the special project related to psi-supernovas
+country_event = {
+	id = ssh_on.34
+	title = "ssh_on.34.name"
+	desc = {
+		text = "ssh_on.34.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_on.34.desc.hive"
+		trigger = { is_hive_empire = yes }
+	}
+	desc = {
+		text = "ssh_on.34.desc.machine"
+		trigger = { is_machine_empire = yes }
+	}
+	picture = GFX_evt_supernova
+	show_sound = "event_solar_fusion"
+	location = fromfrom
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.34.a"
+		trigger = { is_gestalt = no }
+	}
+
+	option = {
+		name = "ssh_on.34.b"
+		trigger = { is_hive_empire = yes }
+	}
+
+	option = {
+		name = "ssh_on.34.c"
+		trigger = { is_machine_empire = yes }
+	}
+
+	after = {
+		if = {
+			limit = {
+				NOR = {
+					has_technology = ssh_tech_shroud_supernova
+					has_tech_option = ssh_tech_shroud_supernova
+				}
+			}
+			add_research_option = ssh_tech_shroud_supernova
+		}
+	}
+}
+
+### Abyssal Anchor Completed - All Psionic Countries message
+country_event = {
+	id = ssh_on.35
+	title = "ssh_on.35.name"
+	desc = "ssh_on.35.desc"
+	picture = GFX_evt_ssh_megatemple_stage_5
+	show_sound = "event_solar_fusion"
+	location = fromfrom
+	trackable = no
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.35.a"
+		default_hide_option = yes
+	}
+}
+
+### First Zro Detonator Fired - All Countries message
+# After completing the special project related to psi-supernovas
+country_event = {
+	id = ssh_on.36
+	title =  "ssh_on.36.name"
+	desc = { # Psionics Text
+		text = ssh_on.36_01.desc
+		trigger = {
+			has_tradition = tr_psionics_adopt
+		}
+	}
+	desc = { # Non-Psionics Text
+		text = ssh_on.36_02.desc
+		trigger = {
+			NOT = {
+				has_tradition = tr_psionics_adopt
+			}
+		}
+	}
+	picture = GFX_evt_supernova
+	show_sound = "event_solar_fusion"
+	location = fromfrom
+	trackable = no
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = {
+			has_global_flag = ssh_first_zro_detonator_fired
+		}
+	}
+
+	immediate = {
+		set_global_flag = ssh_first_zro_detonator_fired
+	}
+	
+	option = {
+		name = "ssh_on.36.a"
+		default_hide_option = yes
+	}
+}
+
+### Fallen Spiritualist FE Contacts Shroud Spy Country
+country_event = {
+	id = ssh_on.37
+	title =  "[event_target:spiritualist_fallen_empire.GetName]"
+	desc = ssh_on.37.desc
+	diplomatic_title = "Incoming Message"
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:spiritualist_fallen_empire
+		room = event_target:spiritualist_fallen_empire
+		planet_background = event_target:spiritualist_fallen_empire
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = {
+			has_opinion_modifier = {
+				who = event_target:spiritualist_fallen_empire
+				modifier = ssh_opinion_shroud_espionage_negative_1
+			}
+		}
+	}
+
+	immediate = {
+		add_opinion_modifier = {
+			who = event_target:spiritualist_fallen_empire
+			modifier = ssh_opinion_shroud_espionage_negative_1
+		}
+	}
+	
+	option = {
+		name = "ssh_on.37.a" # Haha sheesh oops
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_on.37.b"
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+		add_resource = {
+			unity = 1000
+		}
+	}
+}
+
+# System Disassembler - All matter has accumulated in the center, star shrinking now
+country_event = {
+	id = ssh_on.38
+	title = "ssh_on.38.name"
+	desc = "ssh_on.38.desc"
+	picture = GFX_evt_ssh_system_disintegrator_harvesting #basement universe
+	show_sound = "event_laboratory_sound"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	# this below for another update where you can instantly decide whether to produce alloys/minerals straight away
+	immediate = {
+		from = {
+			star = {
+				save_event_target_as = ssh_disintegrated_star
+			}
+		}
+	}
+	
+	option = {
+		name = "ssh_on.38.a" # stonks, just produce nuclei soup (for now)
+	}
+
+	option = {
+		name = "ssh_on.38.b" # minerals
+		hidden_effect = {
+			event_target:ssh_disintegrated_star = {
+				#solar_system = {
+				#	every_system_planet = {
+				#		limit = { is_star = yes } # Every system star bc binary/trinary systems
+				#	}
+				#}
+				set_planet_flag = ssh_disintegrated_star_minerals
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_on.38.c" # alloys
+		hidden_effect = {
+			event_target:ssh_disintegrated_star = {
+				set_planet_flag = ssh_disintegrated_star_alloys
+			}
+		}
+	}
+}
+
+# System Disintegrator Wormhole - System fully harvested
+country_event = {
+	id = ssh_on.39
+	title = "ssh_on.39.name"
+	desc = "ssh_on.39.desc"
+	picture = GFX_evt_ssh_nullvoid
+	show_sound = "event_laboratory_sound"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.39.a"
+	}
+}
+
+# Artificial System - Planets Formed
+country_event = {
+	id = ssh_on.40
+	title = "ssh_on.40.name"
+	desc = "ssh_on.40.desc"
+	picture = GFX_evt_cold_barren
+	show_sound = "event_solar_fusion"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.40.a"
+	}
+}
+
+country_event = {
+	id = ssh_on.41
+	title = "ssh_on.41.name"
+	desc = "ssh_on.41.desc"
+	picture = GFX_evt_gas_giant
+	show_sound = "event_solar_fusion"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_on.41.a"
+	}
+}
+
+# Warning about possible Vacuum decay
+country_event = {
+	id = ssh_on.42
+	title = "ssh_on.42.name"
+	desc = "ssh_on.42.desc"
+	picture = GFX_evt_ssh_false_vacuum #GFX_evt_ssh_nullvoid
+	show_sound = event_yellow_alert
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = {
+			has_global_flag = ssh_vacdec_warning_happened
+		}
+	}
+
+	immediate = {
+		set_global_flag = ssh_vacdec_warning_happened
+	}
+	
+	option = {
+		name = "ssh_on.42.a"
+		enable_special_project = {
+			name = SSH_VACDEC_PREVENTION
+			owner = this
+		}
+		default_hide_option = yes
+		#ai_chance = {
+		#	factor = 100
+		#}
+	}
+
+	option = {
+		name = "ssh_on.42.b"
+		#custom_tooltip = "ssh_on.42.b.tooltip"
+	}
+}
+# Project finished
+country_event = {
+	id = ssh_on.43
+	title = "ssh_on.43.name"
+	desc = {
+		text = "ssh_on.43_01.desc"
+		trigger = {
+			is_gestalt = no
+		}
+	}
+	desc = {
+		text = "ssh_on.43_02.desc"
+		trigger = {
+			is_gestalt = yes
+		}
+	}
+	picture = GFX_evt_physics_research
+	show_sound = event_laboratory_sound
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = ssh_vacdec_blocked
+	}
+	
+	option = {
+		name = "ssh_on.43.a"
+		add_modifier = {
+			modifier = ssh_vacdec_research_boost
+			days = 3600
+		}
+		default_hide_option = yes
+	}
+}
+
+# Unusual energy readings
+country_event = {
+	id = ssh_on.44
+	title = "ssh_on.44.name"
+	desc = "ssh_on.44.desc"
+	picture = GFX_evt_ssh_nullvoid
+	show_sound = event_worrying_signal
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		#set_global_flag = ssh_vacdec_fields # done via 00_f_system_disintegrator
+		if = {
+			limit = {
+				NOR = {
+					has_civic = civic_machine_terminator
+					has_civic = civic_hive_devouring_swarm
+					has_civic = civic_fanatic_purifiers
+				}
+				any_country = {
+					is_fallen_empire = yes
+					OR = {
+						has_ethic = ethic_fanatic_materialist
+						has_ethic = ethic_fanatic_xenophobe
+						#has_ethic = ethic_fanatic_spiritualist
+					}
+				}
+			}
+			country_event = {
+				id = ssh_on.45
+				days = 95
+				random = 365
+			}
+		}
+	}
+	
+	option = {
+		name = "ssh_on.44.a"
+		add_modifier = {
+			modifier = ssh_vacdec_particle_field
+			days = 3600
+		}
+	}
+}
+
+# Warning
+country_event = {
+	id = ssh_on.45
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_on.45_01.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_on.45_02.desc"
+		trigger = { is_gestalt = yes }
+	}
+	diplomatic_title = "Incoming Transmission"
+	diplomatic = yes
+	trigger = {
+		any_country = {
+			is_fallen_empire = yes
+			OR = {
+				has_ethic = ethic_fanatic_materialist
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+
+	immediate = {
+		random_country = {
+			limit = {
+				is_fallen_empire = yes
+				OR = {
+					has_ethic = ethic_fanatic_materialist
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+			save_event_target_as = fallen_empire
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:fallen_empire
+		room = event_target:fallen_empire
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_on.45.a #ssh_vacdec.2.a
+		hidden_effect = {
+			country_event = { id = "ssh_on.46" }
+		}
+		default_hide_option = yes
+	}
+}
+
+# Warning Part 2
+country_event = {
+	id = ssh_on.46
+	title = "Incoming Transmission"
+	desc = {
+		text = "ssh_on.46_01.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_on.46_02.desc"
+		trigger = { is_gestalt = yes }
+	}
+	diplomatic_title = "Incoming Transmission"
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:fallen_empire
+		room = event_target:fallen_empire
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_on.46.a
+		hidden_effect = {
+			event_target:fallen_empire = {
+				add_opinion_modifier = {
+					who = from
+					modifier = ssh_opinion_vacdec
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Colony consumed by true vacuum
+country_event = {
+	id = ssh_on.47
+	title = "ssh_on.47.name"
+	desc = "ssh_on.47.desc"
+	picture = GFX_evt_ssh_nullvoid
+	show_sound = event_burning_city
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.47.a"
+		default_hide_option = yes
+	}
+}
+
+# FE Materialists left galaxy
+country_event = {
+	id = ssh_on.48
+	title = "ssh_on.48.name"
+	desc = "ssh_on.48.desc"
+	picture = GFX_evt_ssh_mirror_dimension
+	show_sound = event_super_explosion
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.48.a"
+		default_hide_option = yes
+	}
+}
+
+# FE Spiritualists about to leave galaxy
+country_event = {
+	id = ssh_on.49
+	title = "ssh_on.49.name"
+	desc = {
+		text = "ssh_on.49_01.desc"
+		trigger = { NOT = { has_ascension_perk = ap_mind_over_matter } }
+	}
+	desc = {
+		text = "ssh_on.49_02.desc"
+		trigger = { has_ascension_perk = ap_mind_over_matter }
+	}
+	picture = GFX_evt_ssh_zro_infuser_stage_2
+	show_sound = event_activating_unknown_technology
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		fromfrom.space_owner = {
+			save_event_target_as = fallen_empire
+		}
+	}
+
+	option = {
+		name = "ssh_on.49.a"
+		trigger = { owner_main_species = { NOT = { has_trait = trait_psionic } } }
+		default_hide_option = yes
+	}
+	option = {
+		name = "ssh_on.49.b"
+		trigger = { owner_main_species = { has_trait = trait_psionic } }
+	}
+}
+
+country_event = {
+	id = ssh_on.50
+	title = "ssh_on.50.name"
+	desc = {
+		text = "ssh_on.50_01.desc"
+		trigger = { NOT = { has_ascension_perk = ap_mind_over_matter } }
+	}
+	desc = {
+		text = "ssh_on.50_02.desc"
+		trigger = { has_ascension_perk = ap_mind_over_matter }
+	}
+	picture = GFX_evt_supernova
+	show_sound = event_super_explosion
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		fromfromfrom.space_owner = {
+			save_event_target_as = fallen_empire
+		}
+	}
+
+	option = {
+		name = "ssh_on.50.a"
+		trigger = { owner_main_species = { NOT = { has_trait = trait_psionic } } }
+		default_hide_option = yes
+	}
+	option = {
+		name = "ssh_on.50.b"
+		trigger = { owner_main_species = { has_trait = trait_psionic } }
+	}
+}
+
+# FE Materialists left galaxy
+country_event = {
+	id = ssh_on.51
+	title = "ssh_on.51.name"
+	desc = {
+		text = "ssh_on.51_01.desc"
+		trigger = {
+			NOT = {
+				has_global_flag = ssh_vacdec_fe_announcement_materialist # Check if the FE materialists existed
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.51_02.desc"
+		trigger = { has_global_flag = ssh_vacdec_fe_announcement_materialist }
+	}
+	picture = GFX_evt_wormhole #GFX_evt_ssh_mirror_dimension
+	show_sound = event_sensor_ping
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.51.a"
+		default_hide_option = yes
+	}
+}
+
+# FE Machines left galaxy
+country_event = {
+	id = ssh_on.52
+	title = "ssh_on.52.name"
+	desc = "ssh_on.52.desc"
+	picture = GFX_evt_wormhole #GFX_evt_ssh_mirror_dimension
+	show_sound = event_sensor_ping
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.52.a"
+		default_hide_option = yes
+	}
+}
+
+# Eco Eder Project
+country_event = {
+	id = ssh_on.53
+	title = "ssh_on.53.name"
+	desc = {
+		text = "ssh_on.53_01.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_on.53_02.desc"
+		trigger = { is_gestalt = yes }
+	}
+	picture = GFX_evt_scholarium_anomaly
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.53.a"
+		default_hide_option = yes
+	}
+}
+
+# Vacuum Decay - Fallen Machines Leave (Arkship)
+country_event = {
+	id = ssh_on.54
+	title = "Incoming Transmission"
+	desc = "ssh_on.54.desc"
+	diplomatic_title = "Public Transmission"
+	diplomatic = yes
+
+	trigger = { any_country = { is_fallen_empire_machine = yes } }
+
+	immediate = {
+		random_country = {
+			limit = { is_fallen_empire_machine = yes }
+			save_event_target_as = machine_fe
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:machine_fe
+		room = event_target:machine_fe
+		planet_background = event_target:fe_planet
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = ssh_on.54.a
+		trigger = {
+			NOR = {
+				is_machine_empire = yes
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_on.54.b
+		trigger = { is_machine_empire = yes }
+	}
+	option = {
+		name = ssh_on.54.c
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+}
+
+# Pyrosphere Project
+country_event = {
+	id = ssh_on.55
+	title = "ssh_on.55.name"
+	desc = {
+		text = "ssh_on.55_01.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "ssh_on.55_02.desc"
+		trigger = { is_gestalt = yes }
+	}
+	picture = GFX_evt_ssh_edersphere_2
+	show_sound = event_construction
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.55.a"
+		default_hide_option = yes
+	}
+}
+# Pyrosphere Detonated - Fleet Owner
+country_event = {
+	id = ssh_on.56
+	title = "ssh_on.56.name"
+	desc = "ssh_on.56.desc"
+	picture = GFX_evt_large_explosion
+	show_sound = event_super_explosion
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.56.a"
+		default_hide_option = yes
+	}
+}
+# Pyrosphere Detonated - Edersphere Owner
+country_event = {
+	id = ssh_on.57
+	title = "ssh_on.57.name"
+	desc = "ssh_on.57.desc"
+	picture = GFX_evt_large_explosion
+	show_sound = event_super_explosion
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.57.a"
+		default_hide_option = yes
+	}
+}
+
+# FE Spiritualists comment on BWC Mega
+country_event = {
+	id = ssh_on.58
+	title = ssh_on.58.name
+	desc = ssh_on.58.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		city_level = event_target:spiritualist_fallen_empire
+		planet_background = event_target:spiritualist_fallen_empire
+		portrait = event_target:spiritualist_fallen_empire
+		room = event_target:spiritualist_fallen_empire
+	}
+
+	trigger = {
+		#NOT = { has_country_flag = received_fe_spiritualist_comment_bwc }
+		any_country = {
+			is_fallen_empire_spiritualist = yes
+			has_communications = from
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { exists = event_target:spiritualist_fallen_empire } }
+			random_country = {
+				limit = { is_fallen_empire_spiritualist = yes }
+				save_event_target_as = spiritualist_fallen_empire
+			}
+		}
+	}
+
+	option = {
+		name = ssh_on.58.a
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		event_target:spiritualist_fallen_empire = {
+			add_opinion_modifier = {
+				who = prev
+				modifier = ssh_opinion_bwc_negative
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_on.58.b
+		trigger = {
+			OR = {
+				has_ethic = ethic_spiritualist
+				has_ethic = ethic_fanatic_spiritualist
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_on.58.c
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		event_target:spiritualist_fallen_empire = {
+			add_opinion_modifier = {
+				who = prev
+				modifier = ssh_opinion_bwc_negative
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# FE Materialists comment on BWC Mega
+country_event = {
+	id = ssh_on.59
+	title = ssh_on.59.name
+	desc = ssh_on.59.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		city_level = event_target:materialist_fallen_empire
+		planet_background = event_target:materialist_fallen_empire
+		portrait = event_target:materialist_fallen_empire #ruler
+		room = event_target:materialist_fallen_empire
+	}
+
+	trigger = {
+		#NOT = { has_country_flag = received_fe_materialist_comment_bwc }
+		any_country = {
+			is_fallen_empire_materialist = yes
+			has_communications = from
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { exists = event_target:materialist_fallen_empire } }
+			random_country = {
+				limit = { is_fallen_empire_materialist = yes }
+				save_event_target_as = materialist_fallen_empire
+			}
+		}
+	}
+
+	option = {
+		name = ssh_on.59.a
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		event_target:materialist_fallen_empire = {
+			add_opinion_modifier = {
+				who = prev
+				modifier = ssh_opinion_bwc_positive
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_on.59.b
+		trigger = {
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		event_target:materialist_fallen_empire = {
+			add_opinion_modifier = {
+				who = prev
+				modifier = ssh_opinion_bwc_negative
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+
+# Blokkats Comment on system disintegration
+country_event = {
+	id = ssh_on.69
+	title = "ssh_on.69.name"
+	desc = "ssh_on.69.desc"
+	#location = event_target:blokkat_spawn_system
+	is_triggered_only = yes
+	diplomatic = yes
+	trackable = no
+
+	picture_event_data = {
+		portrait = event_target:blokkat_country.ruler
+		room = blokkat3d_room
+	}
+
+	trigger = {
+		has_gigastructures = yes
+		has_global_flag = blokkat_crisis_ongoing
+	}
+
+	option = {
+		name = "ssh_on.69.a"
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = "ssh_on.69.b"
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Blokkats Comment on dim. tearer
+country_event = {
+	id = ssh_on.70
+	title = "ssh_on.70.name"
+	desc = "ssh_on.70.desc"
+	#location = event_target:blokkat_spawn_system
+	is_triggered_only = yes
+	diplomatic = yes
+	trackable = no
+
+	picture_event_data = {
+		portrait = event_target:blokkat_country.ruler
+		room = blokkat3d_room
+	}
+
+	trigger = {
+		has_gigastructures = yes
+		has_global_flag = blokkat_crisis_ongoing
+	}
+
+	option = {
+		name = "ssh_on.70.a"
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = "ssh_on.70.b"
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Blokkats Comment on finished Exodus
+country_event = {
+	id = ssh_on.71
+	title = "ssh_on.71.name"
+	desc = "ssh_on.71.desc"
+	#location = event_target:blokkat_spawn_system
+	is_triggered_only = yes
+	diplomatic = yes
+	trackable = no
+
+	picture_event_data = {
+		portrait = event_target:blokkat_country.ruler
+		room = blokkat3d_room
+	}
+
+	trigger = {
+		has_gigastructures = yes
+		#has_global_flag = blokkat_crisis_ongoing
+	}
+
+	option = {
+		name = "ssh_on.71.a"
+		default_hide_option = yes
+	}
+}
+
+# Finishing Exodus during blokkat crisis
+country_event = {
+	id = ssh_on.72
+	title = "ssh_on.72.name"
+	desc = "ssh_on.72.desc"
+	#location = event_target:blokkat_spawn_system
+	is_triggered_only = yes
+	diplomatic = yes
+	trackable = no
+
+	picture_event_data = {
+		portrait = event_target:blokkat_country.ruler
+		room = blokkat3d_room
+	}
+
+	trigger = {
+		has_gigastructures = yes
+		has_global_flag = blokkat_crisis_ongoing
+	}
+
+	option = {
+		name = "ssh_on.72.a"
+		default_hide_option = yes
+	}
+}
+
+# Captive Star Destroyed - Owner
+country_event = {
+	id = ssh_on.80
+	title = "ssh_on.80.name"
+	desc = {
+		text = "ssh_on.80_01.desc"
+		trigger = { event_target:released_star_solar_system = { NOT = { any_system_planet = { is_colony = yes } } } }
+	}
+	desc = {
+		text = "ssh_on.80_02.desc"
+		trigger = { event_target:released_star_solar_system = { any_system_planet = { is_colony = yes } } }
+	}
+	picture = GFX_evt_supernova
+	show_sound = event_super_explosion
+	location = event_target:released_star_solar_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.80.a"
+		default_hide_option = yes
+	}
+}
+
+# Captive Star Destroyed - Combatant
+country_event = {
+	id = ssh_on.81
+	title = "ssh_on.81.name"
+	desc = {
+		text = "ssh_on.81_01.desc"
+		trigger = { event_target:released_star_solar_system = { NOT = { any_system_planet = { is_colony = yes } } } }
+	}
+	desc = {
+		text = "ssh_on.81_02.desc"
+		trigger = { event_target:released_star_solar_system = { any_system_planet = { is_colony = yes } } }
+	}
+	picture = GFX_evt_supernova
+	show_sound = event_super_explosion
+	location = event_target:released_star_solar_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.81.a"
+		default_hide_option = yes
+	}
+}
+
+# Captive Star - Notification for other players w/ intel
+country_event = {
+	id = ssh_on.82
+	title = "ssh_on.82.name"
+	desc = "ssh_on.82.desc"
+	picture = GFX_evt_ssh_captive_star
+	show_sound = event_worrying_signal
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.82.a"
+		default_hide_option = yes
+		trigger = {
+			NOR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	option = {
+		name = "ssh_on.82.b"
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+}
+
+# Stars Collided first time (Owner)
+country_event = {
+	id = ssh_on.83
+	title = "ssh_on.83.name"
+	desc = "ssh_on.83.desc"
+	picture = GFX_evt_supernova
+	show_sound = event_super_explosion
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.83.a"
+		default_hide_option = yes
+		trigger = {
+			NOR = {
+				is_pacifist = yes
+				is_militarist = yes
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	option = {
+		name = "ssh_on.83.b"
+		trigger = { is_pacifist = yes }
+	}
+	option = {
+		name = "ssh_on.83.c"
+		trigger = { is_militarist = yes }
+	}
+	option = {
+		name = "ssh_on.83.d"
+		trigger = { has_civic = civic_machine_terminator }
+	}
+}
+
+# Stars collided first time - others
+country_event = {
+	id = ssh_on.84
+	title = "ssh_on.84.name"
+	desc = "ssh_on.84.desc"
+	picture = GFX_evt_supernova
+	show_sound = event_super_explosion
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_on.84.a"
+		default_hide_option = yes
+		trigger = {
+			NOR = {
+				is_pacifist = yes
+				is_militarist = yes
+			}
+		}
+	}
+	option = {
+		name = "ssh_on.84.b"
+		trigger = { is_pacifist = yes }
+	}
+	option = {
+		name = "ssh_on.84.c"
+		trigger = { is_militarist = yes }
+	}
+}
+
+
+### Dark Matter Missile CONSTRUCTED - BUILDER EVENT
+ship_event = {
+	id = ssh_on.100
+	title = "ssh_on.100.name"
+	desc = {
+		text = "ssh_on.100_01.desc"
+		trigger = {
+			owner = {
+				NOR = {
+					is_pacifist = yes
+					is_gestalt = yes
+				}
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.100_02.desc"
+		trigger = {
+			owner = { is_pacifist = yes }
+		}
+	}
+	desc = {
+		text = "ssh_on.100_03.desc"
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+	}
+	picture = GFX_evt_ssh_dark_missile
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_ship_size = ssh_dark_matter_missile
+		owner = {
+			NOT = { has_country_flag = dark_matter_missile_constructed }
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = dark_matter_missile_constructed
+		}
+		every_playable_country = {
+			limit = {
+				has_communications = root.owner
+				NOT = { is_same_value = root.owner }
+				has_intel_level = {
+					who = root.owner
+					category = military
+					level >= 2
+				}
+			}
+			country_event = { id = ssh_on.101 }
+		}
+	}
+
+	after = {
+	}
+
+	option = {
+		name = "ssh_on.100.a"
+		default_hide_option = yes
+		trigger = {
+			owner = {
+				NOR = {
+					has_civic = civic_fanatic_purifiers
+					has_civic = civic_hive_devouring_swarm
+					has_civic = civic_machine_terminator
+				}
+			}
+		}
+	}
+	option = {
+		name = "ssh_on.100.b"
+		trigger = {
+			owner = {
+				OR = {
+					has_civic = civic_fanatic_purifiers
+					has_civic = civic_hive_devouring_swarm
+					has_civic = civic_machine_terminator
+				}
+			}
+		}
+	}
+}
+### Dark Matter Missile CONSTRUCTED - OTHER EMPIRES EVENT
+country_event = {
+	id = ssh_on.101
+	title = "ssh_on.101.name"
+	desc = "ssh_on.101.desc"
+	picture = GFX_evt_ssh_dark_missile
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	after = {
+	}
+
+	option = {
+		name = ssh_on.101.a
+	}
+}
+
+
+# Dark Missile Launched - Owner
+fleet_event = {
+	id = ssh_on.110
+	title = "ssh_on.110.name"
+	desc = {
+		text = "ssh_on.110_01.desc"
+		trigger = { solar_system = { NOT = { exists = space_owner } } } #FROM doesnt work even though on_action says its scope solar system
+	}
+	desc = {
+		text = "ssh_on.110_02.desc"
+		trigger = {
+			solar_system = {
+				exists = space_owner
+				space_owner = { NOT = { has_country_flag = dark_matter_missile_constructed } }
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.110_03.desc"
+		trigger = {
+			solar_system = {
+				exists = space_owner
+				space_owner = {
+					has_country_flag = dark_matter_missile_constructed
+				}
+			}
+		}
+	}
+	picture = GFX_evt_machine_space_battle
+	show_sound = "event_yellow_alert"
+	location = solar_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_ship_size = ssh_dark_matter_missile # Ship size?
+		owner = {
+			NOT = { has_country_flag = dark_matter_missile_launched }
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_timed_country_flag = {
+				flag = dark_matter_missile_launched
+				days = 720 # 2 years
+			}
+		}
+		every_playable_country = {
+			limit = {
+				has_communications = root.owner
+				NOT = { is_same_value = root.owner }
+				has_intel_level = {
+					who = root.owner
+					category = military
+					level >= 2
+				}
+			}
+			country_event = { id = ssh_on.111 }
+		}
+	}
+
+	option = {
+		name = "ssh_on.110.a"
+		default_hide_option = yes
+	}
+}
+### Dark Missile Launch Detected!
+country_event = {
+	id = ssh_on.111
+	title = "ssh_on.111.name"
+	desc = {
+		text = "ssh_on.111_01.desc"
+		trigger = {
+			# Missile did NOT land within borders + NOT at war w/ launcher
+			NOR = {
+				is_at_war_with = root.owner
+				fromfrom = { owner = { is_same_value = prevprev } }
+			}
+		}
+	}
+	desc = {
+		text = "ssh_on.111_02.desc"
+		trigger = {
+			# Missile DID land within borders + NOT at war w/ launcher
+			NOT = { is_at_war_with = root.owner }
+			fromfrom = { owner = { is_same_value = prevprev } }
+		}
+	}
+	desc = {
+		text = "ssh_on.111_03.desc"
+		trigger = {
+			# Missile did NOT land within borders + at war w/ launcher (missile MIA)
+			NOT = { fromfrom = { owner = { is_same_value = prevprev } } }
+			is_at_war_with = root.owner
+		}
+	}
+	desc = {
+		text = "ssh_on.111_04.desc"
+		trigger = {
+			# Missile DID land within borders + at war w/ launcher
+			fromfrom = { owner = { is_same_value = prevprev } }
+			is_at_war_with = root.owner
+		}
+	}
+	picture = GFX_evt_machine_space_battle #worrying signal
+	show_sound = event_air_raid_siren
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	after = {
+	}
+
+	option = {
+		name = "ssh_on.111.a"
+		default_hide_option = yes
+	}
+}
+### Dark Missile Destroyed First System - Notification
+country_event = {
+	id = ssh_on.112
+	title = "ssh_on.112.name"
+	desc = {
+		text = "ssh_on.112_01.desc"
+		trigger = {
+			NOT = { has_technology = ssh_tech_dark_warhead }
+		}
+	}
+	desc = {
+		text = "ssh_on.112_02.desc"
+		trigger = {
+			has_technology = ssh_tech_dark_warhead
+		}
+	}
+	picture = GFX_evt_supernova
+	show_sound = event_air_raid_siren
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	after = {
+	}
+
+	option = {
+		name = "ssh_on.112.a"
+		default_hide_option = yes
+	}
+}
+
+### Iron Sphere Specimen Found
+country_event = {
+	id = ssh_on.130
+	title = "ssh_on.130.name"
+	desc = "ssh_on.130.desc"
+	picture = GFX_evt_ssh_iron_sphere
+	show_sound = event_laboratory_sound
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	after = {
+	}
+
+	option = {
+		name = ssh_on.130.a
+		give_specimen = { key = ssh_iron_sphere }
+		default_hide_option = yes
+	}
+}

@@ -1,0 +1,244 @@
+namespace = ssh_crisis
+
+# Interdimensional Insights Objectives
+
+# Menace Objective - Research Technologies (triggered via on_tech_increased)
+country_event = {
+	id = ssh_crisis.500
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		this = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+		}
+	}
+
+	immediate = {
+		complete_crisis_objective = crisobj_hyperdim_exodus_research_tech
+	}
+}
+
+# Menace Objective - Have B.I.O. Brain OR Horizon Brain (Exodus Crisis)
+# Fired from on_action 'on_yearly_pulse'
+event = {
+	id = ssh_crisis.600
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+			any_owned_megastructure = {
+				OR = {
+					#is_megastructure_type = think_tank_3
+					#is_megastructure_type = think_tank_4
+					#is_megastructure_type = think_tank_restored
+					is_megastructure_type = mega_brain_5
+					is_megastructure_type = mega_brain_6
+					is_megastructure_type = mega_brain_7
+					is_megastructure_type = horizon_brain_4
+					#is_megastructure_type = mega_temple_5
+					#is_megastructure_type = mega_temple_6
+					#is_megastructure_type = mega_temple_7
+				}
+			}
+		}
+	}
+
+	immediate = {
+		every_playable_country = {
+			if = {
+				limit = {
+					has_ascension_perk = ap_hyperdimensional_exodus
+				}
+				every_owned_megastructure = {
+					limit = {
+						OR = {
+							is_megastructure_type = mega_brain_5
+							is_megastructure_type = mega_brain_6
+							is_megastructure_type = mega_brain_7
+							is_megastructure_type = horizon_brain_4
+						}
+					}
+					prev = {
+						complete_crisis_objective = crisobj_have_bio_or_horizon_brain
+					}
+				}
+			}
+		}
+	}
+}
+# Menace Objective - Have B.I.O. Brain (Behemoth Fury Crisis)
+# Fired from on_action 'on_yearly_pulse'
+event = {
+	id = ssh_crisis.601
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			has_ascension_perk = ap_behemoths
+			any_owned_megastructure = {
+				OR = {
+					is_megastructure_type = mega_brain_5
+					is_megastructure_type = mega_brain_6
+					is_megastructure_type = mega_brain_7
+				}
+			}
+		}
+	}
+
+	immediate = {
+		every_playable_country = {
+			if = {
+				limit = {
+					has_ascension_perk = ap_behemoths
+				}
+				every_owned_megastructure = {
+					limit = {
+						OR = {
+							is_megastructure_type = mega_brain_5
+							is_megastructure_type = mega_brain_6
+							is_megastructure_type = mega_brain_7
+						}
+					}
+					prev = {
+						complete_crisis_objective = crisobj_have_bio_brain
+					}
+				}
+			}
+		}
+	}
+}
+
+# Menance Objective - Explore Astral Rifts
+country_event = {
+	id = ssh_crisis.700
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		this = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+		}
+	}
+
+	immediate = {
+		complete_crisis_objective = crisobj_explore_astral_rifts
+	}
+}
+
+# Menace Objective - Galcom Extradimensional Science Resolution
+# Fired from on_action 'on_yearly_pulse'
+event = {
+	id = ssh_crisis.800
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+		}
+		is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
+	}
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				has_ascension_perk = ap_hyperdimensional_exodus
+			}
+			complete_crisis_objective = crisobj_extradimensional_galcom_resolution
+		}
+	}
+}
+
+# Menance Objective - Have lasting peace
+# Fired from on_action 'on_yearly_pulse'
+event = {
+	id = ssh_crisis.900
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+			is_at_war = no
+		}
+	}
+
+	immediate = {
+		every_playable_country = {
+			if = {
+				limit = {
+					has_ascension_perk = ap_hyperdimensional_exodus
+					is_at_war = no
+				}
+				complete_crisis_objective = crisobj_have_lasting_peace
+			}
+		}
+	}
+}
+
+# Menance Objective - Use Vultaum Relic
+# Fired from on_action 'on_relic_activated'
+country_event = {
+	id = ssh_crisis.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		this = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+		}
+	}
+
+	immediate = {
+		complete_crisis_objective = crisobj_hyperdim_exodus_research_tech
+	}
+}
+
+# crisobj_disintegrate_systems (completed via ssh_cn.123)
+
+# Insights Objective - Have Matrioshka Brain
+# Fired from on_action 'on_yearly_pulse'
+event = {
+	id = ssh_crisis.1100
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_gigastructures = yes
+		any_country = {
+			has_ascension_perk = ap_hyperdimensional_exodus
+			giga_has_completed_matrioshka_brain = yes
+		}
+	}
+
+	immediate = {
+		every_playable_country = {
+			if = {
+				limit = {
+					has_ascension_perk = ap_hyperdimensional_exodus
+				}
+				every_owned_megastructure = {
+					limit = {
+						OR = {
+							is_megastructure_type = matrioshka_brain_5_b_star
+							is_megastructure_type = matrioshka_brain_5_m_giant_star
+							is_megastructure_type = matrioshka_brain_5_a_star
+							is_megastructure_type = matrioshka_brain_5_f_star
+							is_megastructure_type = matrioshka_brain_5_g_star
+							is_megastructure_type = matrioshka_brain_5_k_star
+							is_megastructure_type = matrioshka_brain_5_m_star
+							is_megastructure_type = matrioshka_brain_5_o_star
+						}
+					}
+					prev = {
+						complete_crisis_objective = crisobj_have_m_brain
+					}
+				}
+			}
+		}
+	}
+}

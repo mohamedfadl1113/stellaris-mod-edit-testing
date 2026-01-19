@@ -1,0 +1,117 @@
+namespace = giga_dialog
+
+country_event = {
+	id = giga_dialog.3407
+	title = "giga_dialog.3407.name"
+	desc = "giga_dialog.3407.desc"
+	picture = GFX_evt_black_hole
+	show_sound = event_dyson_sphere_build_complete
+	location = event_target:giga_planet
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:giga_planet = {
+			solar_system = { set_star_flag = gigas_collapsed_star }
+		}
+	}
+
+	option = { name = "giga_dialog.3407.a" }
+}
+
+namespace = giga_blokkat
+
+#Popup about this big thing
+country_event = {
+	id = giga_blokkat.1001
+	title = "giga_blokkat.1001.name"
+	desc = {
+		text = "giga_blokkat.1001.desc"
+		trigger = { NOT = { has_global_flag = behemoth_brain_chased_hunters } }
+	}
+	desc = {
+		text = "giga_blokkat.1001.desc_overmind"
+		trigger = { has_global_flag = behemoth_brain_chased_hunters }
+	}
+	picture = GFX_evt_binary_stars
+	show_sound = event_sensor_ping
+	location = from
+	is_triggered_only = yes
+
+	option = { #k.
+		name = "giga_blokkat.1001.a"
+		trigger = { NOT = { has_global_flag = behemoth_brain_chased_hunters } }
+	}
+	option = { #k.
+		name = "giga_blokkat.1001.a.brain"
+		trigger = { has_global_flag = behemoth_brain_chased_hunters }
+	}
+}
+
+
+#hi
+country_event = {
+	id = giga_blokkat.1007
+	title = "giga_blokkat.1007.name"
+	desc = {
+		text = "giga_blokkat.1007.desc"
+		trigger = {
+			NOR = {
+				has_global_flag = giga_blokkats_deathmode
+				has_global_flag = behemoth_brain_chased_hunters
+				any_playable_country = { has_country_flag = ssh_has_shroud_insight_blokkats }
+			}
+		}
+	}
+	desc = {
+		text = "giga_blokkat.1007.desc.deathmode"
+		trigger = { has_global_flag = giga_blokkats_deathmode }
+	}
+	desc = {
+		text = "giga_blokkat.1007.desc.overmind"
+		trigger = { has_global_flag = behemoth_brain_chased_hunters }
+	}
+	desc = {
+		text = "giga_blokkat.1007.desc.abyssal_anchor"
+		trigger = { any_playable_country = { has_country_flag = ssh_has_shroud_insight_blokkats } }
+	}
+	location = event_target:blokkat_spawn_system
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:blokkat_country.ruler
+		room = blokkat3d_room
+	}
+
+	option = { #Uh oh
+		name = "giga_blokkat.1007.a"
+		trigger = { NOT = { has_global_flag = giga_blokkats_deathmode } }
+		hidden_effect = {
+			country_event = { id = giga_blokkat.1008 }
+			if = {
+				limit = { has_country_flag = ssh_completed_exodus_country }
+				country_event = {
+					id = ssh_on.71
+					days = 361
+					random = 900
+				}
+			}
+		}
+	}
+
+	option = { #Uh oh
+		name = "giga_blokkat.1007.b"
+		trigger = { has_global_flag = giga_blokkats_deathmode }
+		hidden_effect = {
+			country_event = { id = giga_blokkat.1008 }
+			if = {
+				limit = { has_country_flag = ssh_completed_exodus_country }
+				country_event = {
+					id = ssh_on.71
+					days = 361
+					random = 900
+				}
+			}
+		}
+	}
+}

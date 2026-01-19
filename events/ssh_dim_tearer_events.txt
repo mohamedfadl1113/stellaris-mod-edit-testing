@@ -1,0 +1,1144 @@
+namespace = ssh_tearer
+
+# Country Notification for the rest of the galaxy - First Rift
+country_event = {
+	id = ssh_tearer.10
+	title = "ssh_tearer.10.name"
+	desc = "ssh_tearer.10.desc"
+	picture = GFX_evt_wormhole
+	show_sound = event_red_alert
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.10.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_tearer.11
+	title = "ssh_tearer.11.name"
+	desc = "ssh_tearer.11.desc"
+	picture = GFX_evt_wormhole
+	show_sound = event_red_alert
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.11.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_tearer.12
+	title = "ssh_tearer.12.name"
+	desc = "ssh_tearer.12.desc"
+	picture = GFX_evt_wormhole
+	show_sound = event_red_alert
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.12.a"
+		default_hide_option = yes
+	}
+}
+country_event = {
+	id = ssh_tearer.13
+	title = "ssh_tearer.13.name"
+	desc = "ssh_tearer.13.desc"
+	picture = GFX_evt_wormhole
+	show_sound = event_red_alert
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.13.a"
+		default_hide_option = yes
+	}
+}
+
+# Dimension Rolled - Nullvoid
+country_event = {
+	id = ssh_tearer.50
+	title = "ssh_tearer.50.name"
+	desc = "ssh_tearer.50.desc"
+	picture = GFX_evt_ssh_nullvoid
+	show_sound = event_mystic_reveal_light
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.50.a"
+		default_hide_option = yes
+	}
+}
+# Dimension Rolled - Hell
+country_event = {
+	id = ssh_tearer.55
+	title = "ssh_tearer.55.name"
+	desc = "ssh_tearer.55.desc"
+	picture = GFX_evt_ssh_suffering_dimension
+	show_sound = event_mystic_reveal_light
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.55.a"
+		default_hide_option = yes
+	}
+}
+# Dimension Rolled - Static Void
+country_event = {
+	id = ssh_tearer.60
+	title = "ssh_tearer.60.name"
+	desc = "ssh_tearer.60.desc"
+	picture = GFX_evt_ssh_static_dimension
+	show_sound = event_mystic_reveal_light
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.60.a"
+		default_hide_option = yes
+	}
+}
+# Dimension Rolled - Mirror
+country_event = {
+	id = ssh_tearer.65
+	title = "ssh_tearer.65.name"
+	desc = "ssh_tearer.65.desc"
+	picture = GFX_evt_ssh_mirror_dimension
+	show_sound = event_mystic_reveal_light
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.65.a"
+		default_hide_option = yes
+	}
+}
+# Dimension Rolled - Pure Energy Dimension
+country_event = {
+	id = ssh_tearer.70
+	title = "ssh_tearer.70.name"
+	desc = "ssh_tearer.70.desc"
+	picture = GFX_evt_star_white
+	show_sound = event_mystic_reveal_light
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.70.a"
+		default_hide_option = yes
+	}
+}
+# Dimension Rolled - Backrooms Dimension
+country_event = {
+	id = ssh_tearer.75
+	title = "ssh_tearer.75.name"
+	desc = "ssh_tearer.75.desc"
+	picture = GFX_evt_ssh_corridors_dimension
+	show_sound = event_mystic_reveal_light
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.75.a"
+		default_hide_option = yes
+	}
+}
+# Dimension Rolled - Unbidden Dimension
+country_event = {
+	id = ssh_tearer.80
+	title = "ssh_tearer.80.name"
+	desc = {
+		text = "ssh_tearer.80_regular.desc"
+		trigger = { NOT = { has_ascension_perk = ap_mind_over_matter } }
+	}
+	desc = {
+		text = "ssh_tearer.80_psionic.desc"
+		trigger = { has_ascension_perk = ap_mind_over_matter }
+	}
+	picture = GFX_evt_cosmic_storms_shroud_storm
+	show_sound = event_mystic_reveal_light
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "ssh_tearer.80.a"
+		default_hide_option = yes
+	}
+
+	after = {
+		hidden_effect = {
+			# Summon Unbidden
+			event_target:global_event_country = {
+				country_event = {
+					id = crisis.1000
+					days = 5
+				}
+			}
+		}
+	}
+}
+
+
+### Notifications when system hit
+# Nullvoid
+country_event = {
+	id = ssh_tearer.201
+	title = "ssh_tearer.201.name"
+	desc = {
+		text = "ssh_tearer.201_01.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+		}
+	}
+	desc = {
+		text = "ssh_tearer.201_02.desc"
+		trigger = {
+			has_country_flag = built_dimensional_tearer
+		}
+	}
+	picture = GFX_evt_ssh_nullvoid
+	show_sound = "event_air_raid_siren"
+	location = event_target:ssh_dimensional_wave_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = { has_country_flag = built_dimensional_tearer }
+			save_event_target_as = ssh_exodus_country
+		}
+	}
+	
+	option = {
+		name = "ssh_tearer.201.a"
+		trigger = {
+			NOT = { has_ascension_perk = ap_hyperdimensional_exodus }
+		}
+		hidden_effect = {
+			add_opinion_modifier = {
+				who = event_target:ssh_exodus_country #fromfromfrom.owner
+				modifier = ssh_opinion_nullvoid_wave_negative
+			}
+		}
+	}
+	option = {
+		name = "ssh_tearer.201.b"
+		trigger = { has_ascension_perk = ap_hyperdimensional_exodus }
+	}
+}
+# Hell
+country_event = {
+	id = ssh_tearer.202
+	title = "ssh_tearer.202.name"
+	desc = {
+		text = "ssh_tearer.202_01.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+			is_gestalt = no
+		}
+	}
+	desc = {
+		text = "ssh_tearer.202_02.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+			is_hive_empire = yes
+		}
+	}
+	desc = {
+		text = "ssh_tearer.202_03.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+			is_machine_empire = yes
+		}
+	}
+	desc = {
+		text = "ssh_tearer.202_04.desc"
+		trigger = { has_country_flag = built_dimensional_tearer }
+	}
+	picture = GFX_evt_ssh_suffering_dimension
+	show_sound = "event_air_raid_siren"
+	location = event_target:ssh_dimensional_wave_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = { has_country_flag = built_dimensional_tearer }
+			save_event_target_as = ssh_exodus_country
+		}
+	}
+	
+	option = {
+		name = "ssh_tearer.201.a"
+		trigger = {
+			NOR = {
+				has_ascension_perk = ap_hyperdimensional_exodus
+				is_machine_empire = yes
+			}
+		}
+		hidden_effect = {
+			add_opinion_modifier = {
+				who = event_target:ssh_exodus_country
+				modifier = ssh_opinion_suffering_wave_negative
+			}
+		}
+	}
+	option = {
+		name = "ssh_tearer.201.b"
+		trigger = {
+			is_machine_empire = yes
+			NOT = { has_ascension_perk = ap_hyperdimensional_exodus }
+		}
+		hidden_effect = {
+			add_opinion_modifier = {
+				who = event_target:ssh_exodus_country
+				modifier = ssh_opinion_suffering_wave_negative
+			}
+		}
+	}
+	option = {
+		name = "ssh_tearer.201.c"
+		trigger = { has_ascension_perk = ap_hyperdimensional_exodus }
+	}
+}
+# Static Dimension (Negative Mass)
+country_event = {
+	id = ssh_tearer.203
+	title = "ssh_tearer.203.name"
+	desc = {
+		text = "ssh_tearer.203_01.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+		}
+	}
+	desc = {
+		text = "ssh_tearer.203_02.desc"
+		trigger = {
+			has_country_flag = built_dimensional_tearer
+		}
+	}
+	picture = GFX_evt_supernova
+	show_sound = "event_air_raid_siren"
+	location = event_target:ssh_dimensional_wave_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = { has_country_flag = built_dimensional_tearer }
+			save_event_target_as = ssh_exodus_country
+		}
+	}
+	
+	option = {
+		name = "ssh_tearer.203.a"
+		trigger = {
+			NOT = { has_ascension_perk = ap_hyperdimensional_exodus }
+		}
+		hidden_effect = {
+			add_opinion_modifier = {
+				who = event_target:ssh_exodus_country
+				modifier = ssh_opinion_static_wave_negative
+			}
+		}
+	}
+	option = {
+		name = "ssh_tearer.203.b"
+		trigger = { has_ascension_perk = ap_hyperdimensional_exodus }
+	}
+}
+# Mirror Dimension
+country_event = {
+	id = ssh_tearer.204
+	title = "ssh_tearer.204.name"
+	desc = {
+		text = "ssh_tearer.204_01.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+		}
+	}
+	desc = {
+		text = "ssh_tearer.204_02.desc"
+		trigger = {
+			has_country_flag = built_dimensional_tearer
+		}
+	}
+	picture = GFX_evt_ssh_mirror_dimension
+	show_sound = "event_air_raid_siren"
+	location = event_target:ssh_dimensional_wave_system #fromfrom.solar_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = { has_country_flag = built_dimensional_tearer }
+			save_event_target_as = ssh_exodus_country
+		}
+	}
+	
+	option = {
+		name = "ssh_tearer.204.a"
+		trigger = {
+			NOT = { has_ascension_perk = ap_hyperdimensional_exodus }
+		}
+		hidden_effect = {
+			add_opinion_modifier = {
+				who = event_target:ssh_exodus_country
+				modifier = ssh_opinion_mirror_wave_negative
+			}
+		}
+	}
+	option = {
+		name = "ssh_tearer.204.b"
+		trigger = { has_ascension_perk = ap_hyperdimensional_exodus }
+	}
+}
+# Pure Energy Dimension
+country_event = {
+	id = ssh_tearer.205
+	title = "ssh_tearer.205.name"
+	desc = {
+		text = "ssh_tearer.205_01.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+			is_gestalt = no
+		}
+	}
+	desc = {
+		text = "ssh_tearer.205_02.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+			is_hive_empire = yes
+		}
+	}
+	desc = {
+		text = "ssh_tearer.205_03.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+			is_machine_empire = yes
+		}
+	}
+	desc = {
+		text = "ssh_tearer.205_04.desc"
+		trigger = { has_country_flag = built_dimensional_tearer }
+	}
+	picture = GFX_evt_star_white
+	show_sound = "event_air_raid_siren"
+	location = event_target:ssh_dimensional_wave_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = { has_country_flag = built_dimensional_tearer }
+			save_event_target_as = ssh_exodus_country
+		}
+	}
+	
+	option = {
+		name = "ssh_tearer.205.a"
+		trigger = {
+			NOR = {
+				has_ascension_perk = ap_hyperdimensional_exodus
+				is_machine_empire = yes
+			}
+		}
+		hidden_effect = {
+			add_opinion_modifier = {
+				who = event_target:ssh_exodus_country
+				modifier = ssh_opinion_suffering_wave_negative
+			}
+		}
+	}
+	option = {
+		name = "ssh_tearer.205.b"
+		trigger = {
+			is_machine_empire = yes
+			NOT = { has_ascension_perk = ap_hyperdimensional_exodus }
+		}
+		hidden_effect = {
+			add_opinion_modifier = {
+				who = event_target:ssh_exodus_country
+				modifier = ssh_opinion_suffering_wave_negative
+			}
+		}
+	}
+	option = {
+		name = "ssh_tearer.205.c"
+		trigger = { has_ascension_perk = ap_hyperdimensional_exodus }
+	}
+}
+
+# Corridors Dimension
+country_event = {
+	id = ssh_tearer.206
+	title = "ssh_tearer.206.name"
+	desc = {
+		text = "ssh_tearer.206_01.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+			is_gestalt = no
+		}
+	}
+	desc = {
+		text = "ssh_tearer.206_02.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+			is_hive_empire = yes
+		}
+	}
+	desc = {
+		text = "ssh_tearer.206_03.desc"
+		trigger = {
+			NOT = { has_country_flag = built_dimensional_tearer }
+			is_machine_empire = yes
+		}
+	}
+	desc = {
+		text = "ssh_tearer.206_04.desc"
+		trigger = { has_country_flag = built_dimensional_tearer }
+	}
+	picture = GFX_evt_ssh_corridors_dimension #GFX_evt_burning_settlement
+	show_sound = "event_air_raid_siren"
+	location = event_target:ssh_dimensional_wave_system
+	trackable = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = { has_country_flag = built_dimensional_tearer }
+			save_event_target_as = ssh_exodus_country
+		}
+	}
+	
+	option = {
+		name = "ssh_tearer.206.a"
+		trigger = {
+			NOR = {
+				has_ascension_perk = ap_hyperdimensional_exodus
+				is_machine_empire = yes
+			}
+		}
+		hidden_effect = {
+			add_opinion_modifier = {
+				who = event_target:ssh_exodus_country
+				modifier = ssh_opinion_suffering_wave_negative
+			}
+		}
+	}
+	option = {
+		name = "ssh_tearer.206.b"
+		trigger = {
+			is_machine_empire = yes
+			NOT = { has_ascension_perk = ap_hyperdimensional_exodus }
+		}
+		hidden_effect = {
+			add_opinion_modifier = {
+				who = event_target:ssh_exodus_country
+				modifier = ssh_opinion_suffering_wave_negative
+			}
+		}
+	}
+	option = {
+		name = "ssh_tearer.206.c"
+		trigger = { has_ascension_perk = ap_hyperdimensional_exodus }
+	}
+}
+
+# Fire Dimensional Waves (triggered by on_bi_yearly_pulse / through dimensional_tearer directly)
+event = {
+	id = ssh_tearer.500
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = { has_global_flag = ssh_dim_tearer_active }
+
+	immediate = {
+		event_target:global_event_country = {
+			# Fire wave 2x Per Year
+			country_event = { id = ssh_tearer.501 }
+			country_event = { id = ssh_tearer.501 days = 180 }
+			country_event = { id = ssh_tearer.501 days = 360 }
+			country_event = { id = ssh_tearer.501 days = 540 }
+		}
+	}
+}
+# Choose Dimensional Wave Systems - global_country
+country_event = {
+	id = ssh_tearer.501
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		while = {
+			count = 5
+			random_system = {
+				limit = {
+					NOR = {
+						has_star_flag = ssh_dimensional_wave_blocked_system # This includes the crisis' capital system as well as a few other special ones
+						has_star_flag = ssh_ark_system
+						has_star_flag = ssh_dimensional_wave_marked_system
+						has_star_flag = ssh_dimensional_wave_hit_system
+						has_star_flag = ssh_decayed_system
+					}
+				}
+				set_star_flag = ssh_dimensional_wave_marked_system
+			}
+		}
+		every_system = {
+			limit = {
+				has_star_flag = ssh_dimensional_wave_marked_system
+				#NOT = { has_star_flag = ssh_dimensional_wave_marked_system }
+				#NOR = {
+				#	has_star_flag = ssh_dimensional_wave_blocked_system
+				#	has_star_flag = ssh_ark_system
+				#}
+			}
+			random_list = {
+				20 = {
+					modifier = {
+						factor = 0
+						NOT = { has_global_flag = ssh_dim_tearer_opened_nullvoid }
+					}
+					ssh_dimensional_wave_effect_nullvoid = yes # Remove System
+					############ REMOVE DEBUG TEST
+				}
+				20 = {
+					modifier = {
+						factor = 0
+						NOT = { has_global_flag = ssh_dim_tearer_opened_hell }
+					}
+					modifier = {
+						factor = 0
+						NOT = { any_system_planet = { is_colony = yes } }
+					}
+					modifier = {
+						factor = 2
+						any_system_planet = { is_colony = yes }
+					}
+					ssh_dimensional_wave_effect_hell = yes # Unleash suffering modifier on planets
+				}
+				20 = {
+					modifier = {
+						factor = 0
+						NOT = { has_global_flag = ssh_dim_tearer_opened_static }
+					}
+					ssh_dimensional_wave_effect_static = yes # Destroy System
+					############ REMOVE DEBUG TEST
+				}
+				20 = {
+					modifier = {
+						factor = 0
+						NOT = { has_global_flag = ssh_dim_tearer_opened_mirror }
+					}
+					ssh_dimensional_wave_effect_mirror = yes # Replace planets + star
+				}
+				20 = {
+					modifier = {
+						factor = 0
+						NOT = { has_global_flag = ssh_dim_tearer_opened_energy }
+					}
+					ssh_dimensional_wave_effect_energy = yes # Brzzzzzz
+				}
+				20 = {
+					#modifier = {
+					#	factor = 0
+					#	NOT = { has_doorway_expanded = yes }
+					#}
+					modifier = {
+						factor = 0
+						NOT = { has_global_flag = ssh_dim_tearer_opened_corridors }
+					}
+					modifier = {
+						factor = 0
+						NOT = { any_system_planet = { is_colony = yes } }
+					}
+					modifier = {
+						factor = 1.5
+						any_system_planet = { is_colony = yes }
+					}
+					ssh_dimensional_wave_effect_corridors = yes # Noclip out of reality
+				}
+				0 = { # Debug/Unbidden first rift
+					modifier = {
+						add = 100
+						NOR = {
+							has_global_flag = ssh_dim_tearer_opened_nullvoid
+							has_global_flag = ssh_dim_tearer_opened_corridors
+							has_global_flag = ssh_dim_tearer_opened_energy
+							has_global_flag = ssh_dim_tearer_opened_hell
+							has_global_flag = ssh_dim_tearer_opened_mirror
+							has_global_flag = ssh_dim_tearer_opened_static
+						}
+					}
+					remove_star_flag = ssh_dimensional_wave_marked_system
+				}
+			}
+		}
+	}
+}
+
+# Dimensional Tearer destroyed by a crisis
+starbase_event = {
+	id = ssh_tearer.600
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = from
+		from.owner = {
+			OR = {
+				is_country_type = swarm
+				is_country_type = extradimensional
+				is_country_type = extradimensional_2
+				is_country_type = extradimensional_3
+				is_country_type = ai_empire
+				is_country_type = gray_goo
+			}
+		}
+		solar_system = {
+			has_star_flag = ssh_dimensional_tearer_system
+			any_system_megastructure = {
+				OR = {
+					is_megastructure_type = dimensional_tearer_0
+					is_megastructure_type = dimensional_tearer_1
+					is_megastructure_type = dimensional_tearer_2
+					is_megastructure_type = dimensional_tearer_3
+					is_megastructure_type = dimensional_tearer_4
+					is_megastructure_type = dimensional_tearer_5
+					is_megastructure_type = dimensional_tearer_6
+					is_megastructure_type = dimensional_tearer_7
+					is_megastructure_type = dimensional_tearer_8
+					is_megastructure_type = dimensional_tearer_9
+					is_megastructure_type = dimensional_tearer_10
+					is_megastructure_type = dimensional_tearer_11
+					is_megastructure_type = dimensional_tearer_12
+					is_megastructure_type = dimensional_tearer_13
+				}
+			}
+		}
+	}
+
+	immediate = {
+		solar_system = {
+			system_event = { id = ssh_tearer.601 scopes = { from = root.owner } }
+		}
+	}
+}
+
+# Dimensional Tearer Destroyed (HIDDEN)
+system_event = {
+	id = ssh_tearer.601
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_system_megastructure = {
+			OR = {
+				is_megastructure_type = dimensional_tearer_0
+				is_megastructure_type = dimensional_tearer_1
+				is_megastructure_type = dimensional_tearer_2
+				is_megastructure_type = dimensional_tearer_3
+				is_megastructure_type = dimensional_tearer_4
+				is_megastructure_type = dimensional_tearer_5
+				is_megastructure_type = dimensional_tearer_6
+				is_megastructure_type = dimensional_tearer_7
+				is_megastructure_type = dimensional_tearer_8
+				is_megastructure_type = dimensional_tearer_9
+				is_megastructure_type = dimensional_tearer_10
+				is_megastructure_type = dimensional_tearer_11
+				is_megastructure_type = dimensional_tearer_12
+				is_megastructure_type = dimensional_tearer_13
+			}
+		}
+	}
+
+	immediate = {
+		random_system_megastructure = {
+			limit = {
+				OR = {
+					is_megastructure_type = dimensional_tearer_0
+					is_megastructure_type = dimensional_tearer_1
+					is_megastructure_type = dimensional_tearer_2
+					is_megastructure_type = dimensional_tearer_3
+					is_megastructure_type = dimensional_tearer_4
+					is_megastructure_type = dimensional_tearer_5
+					is_megastructure_type = dimensional_tearer_6
+					is_megastructure_type = dimensional_tearer_7
+					is_megastructure_type = dimensional_tearer_8
+					is_megastructure_type = dimensional_tearer_9
+					is_megastructure_type = dimensional_tearer_10
+					is_megastructure_type = dimensional_tearer_11
+					is_megastructure_type = dimensional_tearer_12
+					is_megastructure_type = dimensional_tearer_13
+				}
+			}
+			remove_megastructure = this
+		}
+		destroy_star_system = yes
+		remove_global_flag = ssh_dim_tearer_active # Stop annual dimensional waves
+		star = {
+			clear_deposits = yes
+			set_planet_size = 10
+			add_deposit = d_dark_matter_deposit_10
+			add_deposit = d_physics_10
+			# Debris
+			solar_system = {
+				while = {
+					count = 15
+					create_ambient_object = {
+						type = "large_debris_object"
+						entity_offset_height = { min = -0 max = -25 }
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 45
+							angle = random
+						}
+					}
+					create_ambient_object = {
+						type = "large_debris_object"
+						entity_offset_height = { min = -0 max = -25 }
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 65
+							angle = random
+						}
+					}
+				}
+				while = {
+					count = 25
+					create_ambient_object = {
+						type = "medium_debris_01_object"
+						entity_offset_height = { min = -0 max = -25 }
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 45
+							angle = random
+						}
+					}
+					create_ambient_object = {
+						type = "medium_debris_01_object"
+						entity_offset_height = { min = -0 max = -25 }
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 65
+							angle = random
+						}
+					}
+				}
+				while = {
+					count = 25
+					create_ambient_object = {
+						type = "medium_debris_02_object"
+						entity_offset_height = { min = -0 max = -25 }
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 45
+							angle = random
+						}
+					}
+					create_ambient_object = {
+						type = "medium_debris_02_object"
+						entity_offset_height = { min = -0 max = -25 }
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 65
+							angle = random
+						}
+					}
+				}
+				while = {
+					count = 50
+					create_ambient_object = {
+						type = "small_debris_object"
+						entity_offset_height = { min = -0 max = -25 }
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 45
+							angle = random
+						}
+					}
+					create_ambient_object = {
+						type = "small_debris_object"
+						entity_offset_height = { min = -0 max = -25 }
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 65
+							angle = random
+						}
+					}
+				}
+			}
+		}
+		fromfrom = {
+			save_event_target_as = ssh_dim_tearer_builders
+			set_country_flag = ssh_hyperdimensional_exodus_failed # Used for improved EOTC mod - country will try to form a pact with EOTC
+			# Change Diplo Room
+			#restore_hyperdim_exodus_country_backup_data = yes
+			room_name_override = "exodus_empire_defeated_room"
+			country_event = { id = ssh_tearer.602 } #remove_country_flag = built_dimensional_tearer # Shouldn't build another one due to event loops
+		}
+		from = {
+			save_event_target_as = ssh_dim_tearer_destroyers
+			if = {
+				limit = { is_country_type = default }
+				country_event = {
+					id = ssh_tearer.603
+					days = 1
+				}
+			}
+		}
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOR = {
+					is_same_value = from
+					is_same_value = fromfrom
+				}
+			}
+			# If at Crisis war, end war
+			if = {
+				limit = { is_at_war_with = event_target:ssh_dim_tearer_builders }
+				stop_war_on_exodus_country = yes
+			}
+			country_event = {
+				id = ssh_tearer.604
+				days = 1
+			}
+		}
+	}
+}
+
+# Dimensional Tearer Destroyed (Owner)
+country_event = {
+	id = ssh_tearer.602
+	title = "ssh_tearer.602.name"
+	desc = "ssh_tearer.602.desc"
+	picture = GFX_evt_supernova
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = ssh_dimensional_ascension_empire
+	}
+
+	option = {
+		name = "ssh_tearer.602.a"
+		add_opinion_modifier = {
+			who = event_target:ssh_dim_tearer_destroyers
+			modifier = ssh_opinion_destroyed_dim_tearer_negative
+		}
+	}
+}
+
+# Dimensional Tearer Destroyed (Destroyer)
+country_event = {
+	id = ssh_tearer.603
+	title = "ssh_tearer.603.name"
+	desc = "ssh_tearer.603.desc"
+	picture = GFX_evt_supernova
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_tearer.603.a"
+		add_resource = {
+			unity = 20000
+			sr_dark_matter = 10000
+		}
+		if = {
+			limit = { NOT = { has_global_flag = ssh_dimensional_compass_specimen_gained } }
+			set_global_flag = ssh_dimensional_compass_specimen_gained
+			give_specimen = { key = ssh_dimensional_tearer_compass }
+		}
+	}
+	
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = ssh_tearer.605 # Diplo message
+				days = 3
+			}
+		}
+	}
+}
+
+# Dimensional Tearer Destroyed (Others)
+country_event = {
+	id = ssh_tearer.604
+	title = "ssh_tearer.604.name"
+	desc = "ssh_tearer.604.desc"
+	picture = GFX_evt_supernova
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	option = {
+		name = "ssh_tearer.604.a"
+		add_resource = {
+			unity = 1500
+		}
+	}
+}
+
+# Exodus Empire Message
+country_event = {
+	id = ssh_tearer.605
+	title = "Incoming Transmission"
+	desc = "ssh_tearer.605.desc"
+	show_sound = "event_radio_chatter"
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:ssh_dim_tearer_builders
+		room = exodus_empire_defeated_room
+	}
+
+	option = {
+		name = ssh_tearer.605.a # It was for the best
+		trigger = {
+			NOR = {
+				has_authority = auth_machine_intelligence
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_tearer.605.b
+		trigger = { has_authority = auth_machine_intelligence }
+		default_hide_option = yes
+	}
+	option = {
+		name = ssh_tearer.605.c
+		trigger = {
+			OR = {
+				has_civic = civic_fanatic_purifiers
+				has_civic = civic_hive_devouring_swarm
+				has_civic = civic_machine_terminator
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# On first entering the dim tearer system
+ship_event = {
+	id = ssh_tearer.620
+	title = "ssh_tearer.620.name"
+	desc = "ssh_tearer.620.desc"
+	picture = GFX_evt_ssh_dim_tearer
+	show_sound = event_yellow_alert
+	location = FROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = { has_star_flag = ssh_dimensional_tearer_system }
+		FROMFROM = {
+			NOR = {
+				is_ai = yes
+				has_country_flag = built_dimensional_tearer
+			}
+		}
+	}
+
+	option = {
+		name = "ssh_tearer.620.a"
+	}
+}
+
+# When attacking the Hyperdimensional Exodus Entity that remained
+country_event = {
+	id = ssh_tearer.699
+	title = "ssh_tearer.699.name"
+	desc = "ssh_tearer.699.desc"
+	picture = GFX_evt_vortex
+	show_sound = "event_mystic_reveal_light"
+	location = from
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		from = { is_same_value = event_target:exodus_country_entity }
+		fromfromfrom = { has_fleet_flag = exodus_country_entity_fleet }
+	}
+
+	immediate = {
+		fromfromfrom = {
+			destroy_fleet = this
+		}
+	}
+	
+	option = {
+		name = "ssh_tearer.699.a"
+		default_hide_option = yes
+	}
+}

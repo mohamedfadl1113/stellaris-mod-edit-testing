@@ -1,0 +1,166 @@
+namespace = biocrisis
+
+@growth_factor_monthly_decrease = -1.5
+@brain_growth_factor_monthly_decrease = -10.0
+
+# Crisis Level 4
+country_event = {
+	id = biocrisis.65
+	title = "biocrisis.65.name"
+	desc = {
+		text = "biocrisis.65.desc" # Regular
+		trigger = { NOT = { has_country_flag = ssh_has_mega_brain } }
+	}
+	desc = {
+		text = "biocrisis.65_brain.desc" # BIO Brain
+		trigger = { has_country_flag = ssh_has_mega_brain }
+	}
+	picture = GFX_evt_behemoth_engineering
+	show_sound = event_necrophage
+	event_chain = behemoth_crisis_chain
+
+	is_triggered_only = yes
+
+	option = { # Regular Path
+		name = biocrisis.65.a
+		# Part below used to be in after = {}
+		enable_special_project = {
+			name = BEHEMOTH_CRISIS_SPECIAL_PROJECT_4
+			owner = root
+			location = capital_scope
+		}
+		enable_special_project = {
+			name = BEHEMOTH_MUTATION_PROJECT
+			owner = root
+		}
+	}
+
+	option = { # BEHOLD THE APEX BIO BRAIN
+		name = biocrisis.65.bio_brain
+		custom_tooltip = biocrisis.65.bio_brain_tt
+		trigger = {
+			has_country_flag = ssh_has_mega_brain
+			NOT = { has_country_flag = ssh_bio_brain_symbiote }
+		}
+		hidden_effect = {
+			set_country_flag = behemoth_crisis_megabrain_path # Used for Crisis Level Overrides
+			country_event = {
+				id = ssh_crisis.3000
+				days = 3
+			}
+		}
+	}
+
+	# Option 3: Already merged w/ Bio Brain
+	option = { # BEHOLD THE APEX BIO BRAIN
+		name = biocrisis.65.bio_brain_merged
+		custom_tooltip = biocrisis.65.bio_brain_tt
+		trigger = {
+			has_country_flag = ssh_has_mega_brain
+			has_country_flag = ssh_bio_brain_symbiote
+		}
+		hidden_effect = {
+			set_country_flag = behemoth_crisis_megabrain_path # Used for Crisis Level Overrides
+			country_event = {
+				id = ssh_crisis.3010
+				days = 10
+			}
+		}
+	}
+
+	after = {
+	}
+}
+
+# Voidspawn slayer gets a special event
+country_event = {
+	id = biocrisis.180
+	title = "biocrisis.180.name"
+	desc = {
+		trigger = {
+			NOT = { has_menace_perk = menp_behemoth_ever_hungry }
+		}
+		text = biocrisis.180.desc
+	}
+	desc = {
+		trigger = {
+			has_menace_perk = menp_behemoth_ever_hungry
+		}
+		text = biocrisis.180.desc.kaiju
+	}
+	picture = {
+		picture = GFX_evt_ssh_brain_behemoth_voidspawn
+		trigger = { has_country_flag = behemoth_crisis_megabrain_path }
+	}
+	picture = {
+		picture = GFX_evt_behemoth_fight
+		trigger = { NOT = { has_country_flag = behemoth_crisis_megabrain_path } }
+	}
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	option = {
+		name = biocrisis.180.a
+		trigger = {
+			NOT = { has_menace_perk = menp_behemoth_ever_hungry }
+		}
+	}
+
+	option = {
+		name = biocrisis.180.b
+		trigger = {
+			has_menace_perk = menp_behemoth_ever_hungry
+			# Change made by Hyperconstructs
+			NOT = { has_country_flag = behemoth_crisis_megabrain_path }
+		}
+	}
+
+	option = {
+		name = biocrisis.180.c
+		trigger = {
+			has_menace_perk = menp_behemoth_ever_hungry
+			# Change made by Hyperconstructs
+			has_country_flag = behemoth_crisis_megabrain_path
+		}
+	}
+
+	after = {
+		add_relic = r_voidspawn_myocardium
+	}
+}
+
+#205 Monthly Decrease in growth factor
+country_event = {
+	id = biocrisis.205
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		owner = {
+			has_menace_perk = menp_behemoth_ever_hungry
+			is_variable_set = growth_factor_variable
+			check_variable = {
+				which = growth_factor_variable
+				value > 0.75
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_country_flag = behemoth_crisis_megabrain_path } }
+			change_variable = {
+				which = growth_factor_variable
+				value = @growth_factor_monthly_decrease
+			}
+		}
+		else = { # Higher decrease for brain crisis
+			change_variable = {
+				which = growth_factor_variable
+				value = @brain_growth_factor_monthly_decrease
+			}
+		}
+	}
+}
