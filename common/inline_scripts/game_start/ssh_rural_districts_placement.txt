@@ -1,0 +1,386 @@
+# This script added a number of rural districts of each type set by a variable
+# Flags are used to determine if the district type is uncapped or not.
+# Otherwise planet class is used in some special cases.
+# Finally the variables and flags are cleared.
+
+# Generators
+if = {
+	limit = {
+		check_variable = {
+			which = energy_districts
+			value >= 1
+		}
+	}
+	if = {
+		limit = {
+			NOR = {
+				is_planet_class = pc_gas_giant_shellworld
+				is_planet_class = pc_stellar_hoop
+				is_planet_class = pc_edersphere
+				is_planet_class = pc_hoopworld
+				is_planet_class = pc_black_hole_shellworld
+				is_planet_class = pc_discworld
+				is_planet_class = pc_freesphere
+				#is_planet_class = pc_habitable_dyson
+			}
+			check_modifier_value = {
+				modifier = district_generator_max_add
+				value < energy_districts
+			}
+		}
+		export_modifier_to_variable = {
+			modifier = district_generator_max_add
+			variable = energy_districts
+		}
+	}
+	if = {
+		limit = {
+			has_planet_flag = wilderness_planet
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = energy_districts
+			district = district_photosynthesis_fields
+		}
+	}
+	
+	else_if = {
+		limit = {
+			is_planet_class = pc_gas_giant_shellworld
+		}
+		while = {
+			count = energy_districts
+			add_district = district_ssh_gas_shellworld_turbine
+		}
+		add_zone = {
+			district = district_ssh_gas_shellworld_turbine
+			zone = zone_energy
+		}
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_stellar_hoop
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = energy_districts
+			district = district_ssh_stellar_hoop_generator
+		}
+		add_zone = {
+			district = district_ssh_stellar_hoop_generator
+			zone = zone_energy
+		}
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_edersphere
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = energy_districts
+			district = district_ssh_edersphere_urban_1
+		}
+		add_zone = {
+			district = district_ssh_edersphere_urban_1
+			zone = zone_energy
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_hoopworld
+				is_planet_class = pc_discworld
+				is_planet_class = pc_freesphere
+			}
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = energy_districts
+			district = district_ssh_bwc_urban_1
+		}
+		add_zone = {
+			district = district_ssh_bwc_urban_1
+			zone = zone_energy
+		}
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_black_hole_shellworld
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = energy_districts
+			district = district_ssh_black_hole_shell_urban_1
+		}
+		add_zone = {
+			district = district_ssh_black_hole_shell_urban_1
+			zone = zone_energy
+		}
+	}
+	else = {
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = energy_districts
+			district = district_generator
+		}
+	}
+}
+
+# Mining
+if = {
+	limit = {
+		check_variable = {
+			which = mining_districts
+			value >= 1
+		}
+	}
+	if = {
+		limit = {
+			NOR = {
+				is_planet_class = pc_gas_giant_shellworld
+				is_planet_class = pc_stellar_hoop
+				is_planet_class = pc_edersphere
+				is_planet_class = pc_black_hole_shellworld
+				is_planet_class = pc_hoopworld
+				is_planet_class = pc_discworld
+				is_planet_class = pc_freesphere
+				#is_planet_class = pc_habitable_dyson
+			}
+			check_modifier_value = {
+				modifier = district_mining_max_add
+				value < mining_districts
+			}
+		}
+		export_modifier_to_variable = {
+			modifier = district_mining_max_add
+			variable = mining_districts
+		}
+	}
+	if = {
+		limit = {
+			has_planet_flag = wilderness_planet
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = mining_districts
+			district = district_hollow_mountains
+		}
+	}
+	
+	else_if = {
+		limit = {
+			is_planet_class = pc_gas_giant_shellworld
+		}
+		while = {
+			count = mining_districts
+			add_district = district_ssh_gas_shellworld_gas_collection
+		}
+		add_zone = {
+			district = district_ssh_gas_shellworld_gas_collection
+			zone = zone_gas_extraction_gas_shell
+		}
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_stellar_hoop
+		}
+		while = {
+			count = mining_districts
+			add_district = district_ssh_stellar_hoop_starlifting
+		}
+		add_zone = {
+			district = district_ssh_stellar_hoop_starlifting
+			zone = zone_starlifting_stellar_hoop
+		}
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_edersphere
+		}
+		# No mining districts, done via asteroid mining
+		while = {
+			count = mining_districts
+			add_district = district_ssh_edersphere_urban_2
+		}
+		add_zone = {
+			district = district_ssh_edersphere_urban_2
+			zone = zone_volatile_motes
+		}
+
+		#while = {
+		#	count = mining_districts
+		#	add_district = district_ssh_edersphere_urban_2
+		#}
+		#add_zone = {
+		#	district = district_ssh_edersphere_urban_2
+		#	zone = 
+		#}
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_black_hole_shellworld
+		}
+		while = {
+			count = mining_districts
+			add_district = district_ssh_black_hole_shell_decompressing
+		}
+		add_zone = {
+			district = district_ssh_black_hole_shell_decompressing
+			zone = zone_matdec_black_hole_shell
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_hoopworld
+				is_planet_class = pc_discworld
+				is_planet_class = pc_freesphere
+			}
+		}
+		while = {
+			count = mining_districts
+			add_district = district_ssh_bwc_urban_2
+		}
+		add_zone = {
+			district = district_ssh_bwc_urban_2
+			zone = zone_minerals
+		}
+	}
+
+	else = {
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = mining_districts
+			district = district_mining
+		}
+	}
+}
+
+# Agriculture
+if = {
+	limit = {
+		check_variable = {
+			which = farming_districts
+			value >= 1
+		}
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_planet_flag = uncapped_farming
+			}
+			check_modifier_value = {
+				modifier = district_farming_max_add
+				value < farming_districts
+			}
+		}
+		export_modifier_to_variable = {
+			modifier = district_farming_max_add
+			variable = farming_districts
+		}
+	}
+	if = {
+		limit = {
+			has_planet_flag = wilderness_planet
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = farming_districts
+			district = district_orchard_forests
+		}
+	}
+	#else_if = { # i dont think i need this
+	#	limit = {
+	#		has_planet_flag = uncapped_farming
+	#	}
+	#	add_district_and_planet_size_if_needed_effect_amount = {
+	#		amount = farming_districts
+	#		district = district_farming
+	#	}
+	#}
+	else_if = {
+		limit = {
+			is_planet_class = pc_gas_giant_shellworld
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = farming_districts
+			district = district_ssh_gas_shellworld_farming
+		}
+		add_zone = {
+			district = district_ssh_gas_shellworld_farming
+			zone = zone_food
+		}
+		add_building = {
+			zone = zone_food
+			building = building_hydroponics_farm
+		}
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_stellar_hoop
+		}
+		# None as its a stellar hoop!
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_edersphere
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = farming_districts
+			district = district_ssh_edersphere_urban_3
+		}
+		add_zone = {
+			district = district_ssh_edersphere_urban_3
+			zone = zone_food
+		}
+		add_building = {
+			zone = zone_food
+			building = building_hydroponics_farm
+		}
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_black_hole_shellworld
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = farming_districts
+			district = district_ssh_black_hole_shell_urban_3
+		}
+		add_zone = {
+			district = district_ssh_black_hole_shell_urban_3
+			zone = zone_food
+		}
+		add_building = {
+			zone = zone_food
+			building = building_hydroponics_farm
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_hoopworld
+				is_planet_class = pc_discworld
+				is_planet_class = pc_freesphere
+			}
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = farming_districts
+			district = district_ssh_bwc_farming
+		}
+		add_zone = {
+			district = district_ssh_bwc_farming
+			zone = zone_food
+		}
+		add_building = {
+			zone = zone_food
+			building = building_hydroponics_farm
+		}
+	}
+
+	else = {
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = farming_districts
+			district = district_farming
+		}
+	}
+}
+
+# Clear variables and flags
+clear_variable = energy_districts
+clear_variable = mining_districts
+clear_variable = farming_districts
+remove_planet_flag = uncapped_energy
+remove_planet_flag = uncapped_mining
+remove_planet_flag = uncapped_farming
+remove_planet_flag = wilderness_planet

@@ -1,0 +1,48 @@
+#my_casus_belli = {
+#	potential = { ... }		# trigger to make some CBs invalid for certain types of countries; this = attacker (CB owner); default: { always = yes }
+#	is_valid = { ... }		# trigger, evaluated daily to check if CB should be created or destroyed automatically, does not affect CBs granted via script;
+#								# this = attacker (CB owner), from = defender (target country); default: { always = yes }
+#	destroy_if = { ... }	# trigger, evaluated daily to destroy CBs that have been granted via script ahead of expiration date;
+#								# this = attacker (CB owner), from = defender (target country); default: { always = no }
+#	show_notification = no/yes	# optional (default = yes), flag to control whether this CB will generate a notification (to avoid duplicate
+#								# notification when a claim CB is generated)
+#}
+
+
+cb_ssh_preventive_inclusion = {
+	show_in_diplomacy = yes
+	show_notification = no
+	aggregated_message_key = MESSAGE_NEW_CASUS_BELLI_PREVENTIVE_INCLUSION
+	potential = {
+		has_ascension_perk = ap_hyperdimensional_exodus
+		is_homicidal = no
+		NOT = { has_country_flag = ssh_completed_exodus_country }
+	}
+	is_valid = {
+		always = yes
+	}
+}
+
+cb_ssh_stop_ascensionists = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	aggregated_message_key = MESSAGE_NEW_CASUS_BELLI_STOP_EXODUS
+	potential = {
+		from = {
+			exodus_empire_has_made_announcement = yes #has_country_flag = ssh_dimensional_ascension_empire
+			NOT = { has_country_flag = ssh_completed_exodus_country }
+		}
+		is_country_type = default
+		NOT = { is_in_federation_with = from }
+	}
+	is_valid = {
+		#has_total_war_cb = yes
+		from = { exodus_empire_has_made_announcement = yes }
+		from = { is_country_type = default }
+		NOT = { is_overlord_to = FROM }
+		OR = {
+			is_subject = no
+			overlord = { NOT = { is_same_value = from } }
+		}
+	}
+}

@@ -1,0 +1,230 @@
+# Event chains.
+
+# counter, counters that can be increased and checked from effects and triggers
+#
+# Localization needed:
+# event_chain_chainnkey_title, a title to show in the situation log.
+# event_chain_chainnkey_desc, a description to show in the situation log.
+
+# BTC - Hyperdimensional Exodus
+hyperdimensional_exodus_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_alert.dds"
+	picture = GFX_evt_ssh_fundament_white #GFX_evt_a_rift_in_space
+	counter = {
+		hyperdimensional_exodus_chain_level_reached = {
+			max = 5
+		}
+	}
+}
+
+# Endgame Crisis - The Reality Collapse
+reality_collapse_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_vacdec.dds"
+	picture = GFX_evt_ssh_vacuum_decay
+	counter = {
+		decayed_systems = {
+		}
+		decayed_colonies = {
+		}
+		#non_decayed_systems = {
+		#}
+	}
+}
+
+ark_project_research_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_ark.dds"
+	picture = GFX_evt_ssh_ark_project
+	counter = {
+		ark_project_physics_output = {
+		}
+		ark_project_society_output = {
+		}
+		ark_project_engineering_output = {
+		}
+		ark_technology_steps_completed = {
+			max = 5
+		}
+	}
+}
+
+# Ark Research Stages
+ark_step_1_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
+	picture = GFX_evt_ssh_ark_tech_frame
+	counter = {
+		ark_step_1_score = {
+			max = @ark_research_stage_1_goal
+		}
+		ark_step_1_goal = {
+		}
+	}
+}
+ark_step_2_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
+	picture = GFX_evt_ssh_ark_tech_kugelblitz
+	counter = {
+		ark_step_2_score = {
+			max = @ark_research_stage_2_goal
+		}
+		ark_step_2_goal = {
+		}
+	}
+}
+ark_step_3_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
+	picture = GFX_evt_ssh_ark_tech_habitation
+	counter = {
+		ark_step_3_score = {
+			max = @ark_research_stage_3_goal
+		}
+		ark_step_3_goal = {
+		}
+	}
+}
+ark_step_4_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
+	picture = GFX_evt_ssh_ark_tech_rift_gen
+	counter = {
+		ark_step_4_score = {
+			max = @ark_research_stage_4_goal
+		}
+		ark_step_4_goal = {
+		}
+	}
+}
+ark_step_5_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
+	picture = GFX_evt_ssh_ark_tech_drive
+	counter = {
+		ark_step_5_score = {
+			max = @ark_research_stage_5_goal
+		}
+		ark_step_5_goal = {
+		}
+	}
+}
+
+
+# Construction
+ark_project_construction_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_ark.dds"
+	picture = GFX_evt_ssh_ark_project
+	counter = {
+		ark_construction_stages_completed = {
+			max = 5
+		}
+		ark_drive_charged = {
+			max = 1
+		}
+	}
+}
+
+# Ark Construction Stages
+ark_construction_stage_1_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
+	picture = GFX_evt_ssh_ark_tech_frame
+	counter = {
+		ark_stage_1_alloys = {
+			max = @ark_stage_1_goal_alloys
+		}
+		ark_stage_1_cultrobium = {
+			max = @ark_stage_1_goal_cultrobium
+		}
+	}
+}
+
+ark_construction_stage_2_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
+	picture = GFX_evt_ssh_ark_tech_kugelblitz
+	counter = {
+		ark_stage_2_energy = {
+			max = @ark_stage_2_goal_energy
+		}
+		ark_stage_2_crystals = {
+			max = @ark_stage_2_goal_crystals
+		}
+	}
+}
+
+ark_construction_stage_3_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
+	picture = GFX_evt_ssh_ark_tech_habitation
+	counter = {
+		ark_stage_3_alloys = {
+			max = @ark_stage_3_goal_alloys
+		}
+		ark_stage_3_minerals = {
+			max = @ark_stage_3_goal_minerals
+		}
+		#ark_stage_3_food = {
+		#	max = @ark_stage_3_goal_food
+		#}
+	}
+}
+
+ark_construction_stage_4_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
+	picture = GFX_evt_ssh_ark_tech_rift_gen
+	counter = {
+		ark_stage_4_gases = {
+			max = @ark_stage_4_goal_gases
+		}
+		ark_stage_4_motes = {
+			max = @ark_stage_4_goal_motes
+		}
+	}
+}
+
+ark_construction_stage_5_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
+	picture = GFX_evt_ssh_ark_tech_drive
+	counter = {
+		ark_stage_5_dark_matter = {
+			max = @ark_stage_5_goal_dark_matter
+		}
+		#ark_stage_5_cultrobium = {
+		#	max = @ark_stage_5_goal_cultrobium
+		#}
+	}
+}
+
+ark_construction_stage_6_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
+	picture = GFX_evt_ssh_ark_kugelblitz
+	counter = {
+		ark_stage_6_energy = {
+			max = @ark_stage_6_goal
+		}
+	}
+}
+
+
+#### Basement Universe Chain ####
+basement_universe_creation_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_basement_gateway.dds"
+	picture = GFX_evt_ssh_basement_universe
+	counter = {
+		#basement_uni_technology_researched = {
+		#	max = 1
+		#}
+		#basement_uni_probing_technology_researched = {
+		#	max = 1
+		#}
+		basement_uni_projects_completed = {
+			max = 4
+		}
+		basement_uni_construction_steps = {
+			max = 4
+		}
+		basement_uni_created = {
+			max = 1
+		}
+	}
+}
+
+
+#### Behemoth Fury - Alternative Winning Route
+behemoth_victory_chain_megabrain = {
+	picture = GFX_evt_voidspawn
+	icon = "gfx/interface/icons/situation_log/situation_log_space_creature.dds"
+}

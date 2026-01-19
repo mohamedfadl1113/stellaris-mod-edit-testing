@@ -1,0 +1,526 @@
+freesphere_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	show_prereqs = yes
+	build_time = 1800 #5years
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -7
+		y = -7
+	}
+	prerequisites = { ssh_tech_freesphere }
+	potential = {
+		has_technology = ssh_tech_freesphere
+		NOT = {
+			has_global_flag = ssh_bwc_megas_deactivated
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOR = {
+					has_anomaly = yes
+					any_moon = { has_anomaly = yes }
+				}
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_no_colony"
+				NOT = {
+					is_colony = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_hostile_or_primitive"
+				NOR = {
+					planet_is_hostile_or_crisis = yes
+					AND = {
+						exists = owner
+						owner = {
+							is_country_type = primitive
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				#can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					is_planet_class = pc_habitat
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_orbital_debris"
+				NOR = {
+					has_planet_flag = has_orbital_debris
+				}
+			}
+
+			# balance for habitats
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOR = {
+					is_asteroid = yes
+					is_moon = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_no_gas_giant"
+				NOT = {
+					ssh_is_any_gas_giant = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_solarpunk"
+				NOT = {
+					solar_system = {
+						has_star_flag = solarpunk_system_02
+					}
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = freesphere_construction
+				set_planet_flag = has_megastructure
+			}
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.92
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		# Do we need it? (Resources?)
+		modifier = {
+			factor = 3
+			from = {
+				has_monthly_income = {
+					resource = unity
+					value < 50
+				}
+			}
+		}
+		# Do we have one planets already?
+		modifier = {
+			factor = 0.1
+			from = {
+				any_system_within_border = {
+					any_system_planet = {
+						#is_planet_class = pc_freesphere
+					}
+				}
+			}
+		}
+		# Do we have enough resources?
+		modifier = {
+			factor = 0.1
+			from = {
+				AND = {
+					resource_stockpile_compare = {
+						resource = alloys
+						value < 30000
+					}
+					resource_stockpile_compare = {
+						resource = minerals
+						value < 30000
+					}
+					resource_stockpile_compare = {
+						resource = sr_hydrogen
+						value < 5500
+					}
+					resource_stockpile_compare = {
+						resource = exotic_gases
+						value < 250
+					}
+					resource_stockpile_compare = {
+						resource = sr_cultrobium
+						value < 8000
+					}
+				}
+			}
+		}
+		# Upkeep Affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 150
+				}
+			}
+		}
+		# Good System?
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 1.5
+			from = {
+				OR = {
+					has_ethic = ethic_fanatic_authoritarian
+					has_civic = civic_agrarian_idyll
+					has_civic = civic_aristocratic_elite
+					has_civic = civic_functional_architecture
+					has_civic = civic_pompous_purists
+					is_ecocentric = yes # E&C
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			from = {
+				OR = {
+					has_authority = auth_machine_intelligence
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+		}
+	}
+}
+
+# Frame
+freesphere_1 = {
+	entity = "ssh_freesphere_1_entity"
+	construction_entity = "ssh_freesphere_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = no
+	prerequisites = { ssh_tech_freesphere }
+	potential = { has_technology = ssh_tech_freesphere }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		freesphere_0
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				remove_planet = yes
+				every_moon = {
+					remove_planet = yes
+				}
+			}
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.93
+			}
+		}
+	}
+}
+
+# Membranes
+freesphere_2 = {
+	entity = "ssh_freesphere_2_entity"
+	construction_entity = "ssh_freesphere_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = no
+	prerequisites = { ssh_tech_freesphere }
+	potential = { has_technology = ssh_tech_freesphere }
+
+	resources = {
+		category = megastructures
+		cost = {
+			minerals = 20000
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		freesphere_1
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.94
+			}
+		}
+	}
+}
+
+# Spinning Water Wall
+freesphere_3 = {
+	entity = "ssh_freesphere_2_entity"
+	construction_entity = "ssh_freesphere_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = no
+	prerequisites = { ssh_tech_freesphere }
+	potential = { has_technology = ssh_tech_freesphere }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_hydrogen = 10000
+			exotic_gases = 750
+			rare_crystals = 750
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		freesphere_2
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.95
+			}
+		}
+	}
+}
+
+# Pumps 
+freesphere_4 = {
+	entity = "ssh_freesphere_3_entity"
+	construction_entity = "ssh_freesphere_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = no
+	prerequisites = { ssh_tech_freesphere }
+	potential = { has_technology = ssh_tech_freesphere }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		freesphere_3
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.96
+			}
+		}
+	}
+}
+
+# Start Pumps (+create Islands) 
+freesphere_5 = {
+	entity = "ssh_freesphere_4_entity"
+	construction_entity = "ssh_freesphere_4_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600 #10years
+	scales_with_planet = no
+	prerequisites = { ssh_tech_freesphere }
+	potential = { has_technology = ssh_tech_freesphere }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_hydrogen = 10000
+			energy = 25000
+			minerals = 10000
+			volatile_motes = 750
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		freesphere_4
+	}
+
+	on_build_complete = {
+		spawn_planet = {
+			class = pc_freesphere
+			location = fromfrom
+			#orbit_angle = 180
+			size = 20
+			init_effect = {
+				set_name = "Freefall Sphere"
+				set_planet_entity = {
+					entity = "ssh_freesphere_planet_01_entity"
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = fromfrom
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				trigger_megastructure_icon = yes
+				set_planet_flag = megastructure
+				save_event_target_as = freesphere_planet
+			}
+		}
+		remove_megastructure = fromfrom
+		event_target:freesphere_planet = {
+			add_modifier = {
+				modifier = "ssh_freesphere_planet_modifier"
+				days = -1
+			}
+		}
+
+		from = {
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			country_event = {
+				id = ssh_cn.97
+			}
+			# FE Spiritualist Comments
+			if = {
+				limit = {
+					any_country = {
+						is_fallen_empire_spiritualist = yes
+						has_communications = prev
+					}
+					NOT = { has_country_flag = received_fe_spiritualist_comment_bwc }
+				}
+				country_event = {
+					id = ssh_on.58
+					days = 5
+				}
+				set_country_flag = received_fe_spiritualist_comment_bwc
+			}
+			# FE Materialist comments
+			if = {
+				limit = {
+					any_country = {
+						is_fallen_empire_materialist = yes
+						has_communications = prev
+					}
+					NOT = { has_country_flag = received_fe_materialist_comment_bwc }
+				}
+				country_event = {
+					id = ssh_on.59
+					days = 10
+				}
+				set_country_flag = received_fe_materialist_comment_bwc
+			}
+			# Enclave comments
+			if = {
+				limit = {
+					any_country = {
+						has_country_flag = artist_enclave_country
+						has_communications = prev
+					}
+					NOT = { has_country_flag = received_enclave_comment_bwc }
+				}
+				country_event = {
+					id = ssh_enclave.200
+					days = 15
+				}
+				set_country_flag = received_enclave_comment_bwc
+			}
+		}
+	}
+}

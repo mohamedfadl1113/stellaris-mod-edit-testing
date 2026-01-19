@@ -1,0 +1,156 @@
+### Add jobs for horizon brain configurations
+
+### Specialized Configurations
+# Utopia
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_entertainment
+		#owner = { NOT = { ssh_is_warrior_society = yes } } # gladiators added via army server
+	}
+	modifier = {
+		job_ssh_vr_content_creator_add = $SPECIAL_USER_AMOUNT$ #4
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_administrative
+		owner = {
+			NOT = { has_civic = civic_memorialist }
+		}
+	}
+	modifier = {
+		job_ssh_vr_bureaucrat_add = $SPECIAL_USER_AMOUNT$
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_administrative
+		owner = {
+			has_civic = civic_memorialist
+		}
+	}
+	modifier = {
+		job_ssh_vr_death_chronicler_add = $SPECIAL_USER_AMOUNT$
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_temple
+	}
+	modifier = {
+		job_ssh_vr_priest_add = $SPECIAL_USER_AMOUNT$
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_premium
+	}
+	modifier = {
+		job_ssh_vr_premium_member_add = $SPECIAL_USER_AMOUNT$
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_colosseum
+	}
+	modifier = {
+		job_ssh_vr_gladiator_add = $SPECIAL_USER_HALF_AMOUNT$ #2
+		job_ssh_vr_spectator_add = $SPECIAL_USER_AMOUNT$
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_universe_sandbox
+	}
+	modifier = {
+		job_ssh_vr_universe_sandbox_add = $SPECIAL_USER_AMOUNT$
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_philosophy
+	}
+	modifier = {
+		job_ssh_vr_philosopher_add = $SPECIAL_USER_AMOUNT$
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_defense_simulation
+	}
+	modifier = {
+		job_ssh_vr_defense_engineer_add = $SPECIAL_USER_AMOUNT$
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_offense_simulation
+	}
+	modifier = {
+		job_ssh_vr_battle_engineer_add = $SPECIAL_USER_AMOUNT$
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_army_training
+	}
+	modifier = {
+		job_ssh_vr_soldier_add = $SPECIAL_USER_AMOUNT$
+	}
+}
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		has_building = building_ssh_hb_server_netrunner
+	}
+	modifier = {
+		job_ssh_vr_netrunner_add = $SPECIAL_USER_AMOUNT$
+	}
+}

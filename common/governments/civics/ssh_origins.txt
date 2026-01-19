@@ -1,0 +1,261 @@
+origin_ssh_shellworld = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_ssh_shellworld.dds"
+	picture = GFX_origin_ssh_shellworld
+
+	starting_colony = pc_shellworld_core
+	habitability_preference = pc_shellworld_core
+	initializers = { ssh_origin_shellworld_start }
+	max_once_global = yes
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		host_has_dlc = "Utopia"
+	}
+
+	possible = {
+		#ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+
+	description = "origin_tooltip_ssh_shellworld_effects"
+
+	random_weight = {
+		base = 5 
+	}
+}
+
+origin_ssh_gas_giant_shellworld = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_ssh_gas_giant_shellworld.dds"
+	picture = GFX_origin_ssh_gas_giant_shellworld
+
+	starting_colony = pc_gas_giant_shellworld
+	habitability_preference = pc_gas_giant_shellworld
+	initializers = { ssh_origin_gas_giant_shellworld_start }
+	max_once_global = yes
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		host_has_dlc = "Utopia"
+	}
+
+	possible = {
+		always = yes
+
+		#always = no ### Deactivated till paradox fixes 4.0 issues and improves mod support
+	}
+
+	description = "origin_tooltip_ssh_gas_giant_shellworld_effects"
+
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_ssh_stellar_hoop = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_ssh_stellar_hoop.dds"
+	picture = GFX_origin_ssh_stellar_hoop
+
+	starting_colony = pc_stellar_hoop
+	habitability_preference = pc_stellar_hoop
+	initializers = { ssh_origin_stellar_hoop_start }
+	max_once_global = yes
+	non_colonizable_planet_class_neighbor = yes
+
+	playable = {
+		host_has_dlc = Utopia
+	}
+
+	possible = {
+		authority = {
+			value = auth_machine_intelligence
+		}
+		civics = {
+			NOT = { value = civic_machine_servitor }
+		}
+
+		#always = no ### Deactivated till paradox fixes 4.0 issues and improves mod support
+	}
+
+	description = "origin_tooltip_ssh_stellar_hoop_effects"
+
+	#flags = { custom_start_screen }
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 4
+	}
+}
+
+origin_ssh_hoopworld = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_ssh_hoopworld.dds"
+	picture = GFX_origin_ssh_hoopworld
+
+	starting_colony = pc_hoopworld
+	habitability_preference = pc_hoopworld
+	initializers = { ssh_origin_hoopworld_start }
+	max_once_global = yes
+	non_colonizable_planet_class_neighbor = yes
+
+	playable = {
+		host_has_dlc = Utopia
+	}
+
+	possible = {
+		always = yes
+		#always = no ### Deactivated till paradox fixes 4.0 issues and improves mod support
+	}
+
+	description = "origin_tooltip_ssh_hoopworld_effects"
+
+	#flags = { custom_start_screen }
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 3
+	}
+}
+
+origin_ssh_edersphere = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_ssh_edersphere.dds"
+	picture = GFX_origin_ssh_edersphere
+
+	starting_colony = pc_edersphere
+	habitability_preference = pc_edersphere
+	initializers = { ssh_origin_edersphere_start }
+	max_once_global = yes
+	non_colonizable_planet_class_neighbor = yes
+
+	playable = {
+		host_has_dlc = Utopia
+	}
+
+	possible = {
+		civics = {
+			NOT = { value = civic_hive_devouring_swarm }
+		}
+
+		#always = no ### Deactivated till paradox fixes 4.0 issues and improves mod support
+	}
+
+	description = "origin_tooltip_ssh_edersphere_effects"
+
+	#flags = { custom_start_screen }
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 3
+	}
+}
+
+origin_ssh_freesphere = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_ssh_freesphere.dds"
+	picture = GFX_origin_ssh_freesphere
+
+	starting_colony = pc_freesphere
+	habitability_preference = pc_freesphere
+	initializers = { ssh_origin_freesphere_start }
+	max_once_global = yes
+	non_colonizable_planet_class_neighbor = yes
+
+	playable = {
+		host_has_dlc = Utopia
+	}
+
+	possible = {
+		species_class = {
+			OR = {
+				value = AVI
+				value = ART
+				value = AQUATIC
+				value = FUN
+				value = PLANT
+			}
+		}
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_hive_devouring_swarm
+				value = civic_corporate_relentless_industrialists
+				value = civic_relentless_industrialists
+			}
+		}
+
+		#always = no ### Deactivated till paradox fixes 4.0 issues and improves mod support
+	}
+
+	description = "origin_tooltip_ssh_freesphere_effects"
+
+	#flags = { custom_start_screen }
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 1
+	}
+}
+
+origin_ssh_habitable_dyson = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_ssh_habitable_dyson.dds"
+	picture = GFX_origin_ssh_habitable_dyson
+
+	starting_colony = pc_habitable_dyson
+	habitability_preference = pc_habitable_dyson
+	initializers = { ssh_origin_dyson_hab_start }
+	max_once_global = yes
+	non_colonizable_planet_class_neighbor = yes
+
+	playable = {
+		host_has_dlc = Utopia
+		### Deactivating it for 4.0 till rework
+		always = no
+	}
+
+	possible = {
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+		}
+
+		always = no ### Deactivated till paradox fixes 4.0 issues and improves mod support
+		# Plus I gotta rework habitable dysons first
+	}
+
+	description = "origin_ssh_habitable_dyson_effects"
+
+	#flags = { custom_start_screen }
+
+	advanced_start = yes
+
+	random_weight = {
+		#base = 2
+		base = 0 # Disabled for now
+		modifier = {
+			factor = 0.1
+			is_ecocentric = yes
+		}
+		modifier = {
+			factor = 2
+			is_machine_empire = yes
+		}
+	}
+}

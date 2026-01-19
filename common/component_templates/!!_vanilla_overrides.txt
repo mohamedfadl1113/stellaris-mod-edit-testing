@@ -1,0 +1,101 @@
+##########################
+# VANILLA OVERRIDES
+##########################
+
+#############################
+# Regenerative Hull Tissue #
+#############################
+
+utility_component_template = {
+	key = "AUTO_REPAIR"
+	size = aux
+	icon = "GFX_ship_part_auto_repair"
+	icon_frame = 1
+	power = -10
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 20
+		}
+	}
+
+	modifier = {
+		ship_hull_regen_add_perc = 0.05
+		ship_armor_regen_add_perc = 0.1
+	}
+
+	prerequisites = { tech_regenerative_hull_tissue }
+	component_set = "AUTO_REPAIR"
+	upgrades_to = "AUTO_REPAIR_CONMAT"
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 2.0
+			is_preferred_weapons = weapon_type_explosive
+		}
+	}
+}
+
+########################
+# Horizon Needle
+########################
+
+# Overwritten so it can also dive into basement universe wormholes
+# Compat w/ gigas requires the universal cosmogenesis patch
+utility_component_template = {
+	key = "SHIP_COSMOGENESIS_EXODUS"
+	size = large
+	icon = GFX_ship_part_aura_pd_penetration
+	icon_frame = 1
+	power = 0
+
+	scripted_action = {
+		scope = planet
+
+		possible = {
+			OR = {
+				AND = {
+					OR = {
+						is_planet_class = pc_black_hole
+						is_planet_class = pc_disintegrated_star
+					}
+					from.owner = {
+						has_country_flag = exodus_ready
+					}
+				}
+
+				AND = {
+					is_colony = yes
+					has_planet_flag = cosmogenesis_pickup_planet
+					from.owner = {
+						NOT = { has_country_flag = exodus_ready }
+					}
+				}
+			}
+		}
+
+		button_clickable = {
+			custom_tooltip = {
+				fail_text = cosmogenesis_exodus_tt
+				NOR = {
+					owner = { has_country_flag = cosmogenesis_supermassive }
+					owner = { has_country_flag = cosmogenesis_ark }
+				}
+			}
+		}
+
+		name = on_cosmogenesis_exodus_planet_reached
+		tooltip = exodus_ship_button
+		icon = GFX_fleet_action_button_active_reconnaissance
+		icon_selected = GFX_fleet_action_button_active_reconnaissance_selected
+		activity_key = exodus_action_activity_key
+		context_menu_name = exodus_context_menu_title
+		progress_activity_key = exodus_action_progress_activity_key
+		required_progress = 60
+	}
+
+	ai_weight = {
+		factor = 2
+	}
+}

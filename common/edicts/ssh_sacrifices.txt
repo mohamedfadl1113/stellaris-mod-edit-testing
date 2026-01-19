@@ -1,0 +1,65 @@
+##########################################################################
+# Sacrifice Edicts
+##########################################################################
+
+#@Edict1Cost = 50
+#@Edict2Cost = 100
+
+@sacrificeDuration = 3600
+
+@sacrificeReward1 = 0.15
+
+ssh_sacrifice_conmat = {
+	length = 0
+	icon = "GFX_edict_type_time"
+
+	#resources = {
+	#	category = edicts
+	#	cost = {
+	#		influence = 5
+	#		multiplier = value:edict_size_effect
+	#	}
+	#}
+
+	potential = {
+		has_technology = ssh_tech_conscious_matter
+	}
+
+	allow = {
+		NOT = { has_edict = ssh_sacrifice_conmat }
+		any_owned_pop_group = {
+			has_citizenship_type = {
+				country = root
+				type = citizenship_slavery
+			}
+			has_slavery_type = {
+				country = root
+				type = slavery_livestock
+			}
+		}
+	}
+
+	prerequisites = { "ssh_tech_conscious_matter" }
+
+	show_tech_unlock_if = { always = yes }
+
+	effect = {
+		country_event = { id = ssh_effect.3 days = 0 }
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictMedPrio
+			OR = {
+				has_ethic = ethic_gestalt_consciousness
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+			}
+			has_monthly_income = {
+				resource = sr_conscious_matter
+				value <= 5
+			}
+		}
+	}
+}

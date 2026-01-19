@@ -1,0 +1,450 @@
+basement_gateway_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	prerequisites = { ssh_tech_basement_gateway_1 }
+	potential = {
+		has_technology = ssh_tech_basement_gateway_1
+		has_country_flag = ssh_vacdec_basement_uni_country
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_already_creating_basement_gateway"
+			from = {
+				NOT = {
+					has_country_flag = ssh_vacdec_basement_uni_construction
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			influence = 150
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_neutron"
+				OR = {
+					is_planet_class = pc_neutron_star
+					is_planet_class = pc_pulsar
+					is_planet_class = pc_quark_star
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOT = {
+					has_planet_flag = has_megastructure
+					#has_planet_flag = megastructure
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+				set_planet_flag = basement_universe_planet
+				save_event_target_as = basement_universe_planet
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		from = {
+			set_country_flag = ssh_vacdec_basement_uni_construction
+			country_event = { id = ssh_cn.133 }
+		}
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+# Creation Device
+basement_gateway_1 = {
+	entity = "ssh_basement_gateway_1_entity"
+	construction_entity = "ssh_basement_gateway_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	show_prereqs = yes
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_basement_gateway_1 }
+	potential = { has_country_flag = ssh_vacdec_basement_uni_country }
+	possible = { from = { has_technology = ssh_tech_basement_gateway_2 } }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { has_acot = no }
+			sr_cultrobium = 15000
+			sr_dark_matter = 300
+		}
+		cost = {
+			trigger = { has_acot = yes }
+			sr_cultrobium = 15000
+			sr_dark_matter = 900
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		basement_gateway_0
+	}
+
+	on_build_complete = {
+		every_system_planet = {
+			limit = { is_star = no }
+			remove_planet = yes
+		}
+		fromfrom.planet = {
+			# Remove Outbursts
+			set_planet_entity = {
+				entity = "ssh_neutron_star_noburst_entity"
+			}
+		}
+		from = { country_event = { id = ssh_cn.134 } }
+	}
+}
+
+# Energy Infuser / Star Beam Channeler
+basement_gateway_2 = {
+	entity = "ssh_basement_gateway_2_entity"
+	construction_entity = "ssh_basement_gateway_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800
+	show_prereqs = yes
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_basement_gateway_1 }
+	potential = { has_country_flag = ssh_vacdec_basement_uni_country }
+	possible = { from = { has_technology = ssh_tech_basement_gateway_3 } }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		basement_gateway_1
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.135 } }
+	}
+}
+
+# Prepare Universe Creation / Destabilize Spacetime
+basement_gateway_3 = {
+	entity = "ssh_basement_gateway_destabilizing_entity"
+	construction_entity = "ssh_basement_gateway_destabilizing_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 900
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_basement_gateway_3 }
+	potential = { has_country_flag = ssh_vacdec_basement_uni_country }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { has_acot = no }
+			energy = 500000
+			sr_dark_matter = 10000
+		}
+		cost = {
+			trigger = { has_acot = yes }
+			energy = 500000
+			sr_dark_matter = 30000
+		}
+		upkeep = {
+			energy = 100
+			sr_dark_matter = 5
+		}
+	}
+
+	upgrade_from = {
+		basement_gateway_2
+	}
+
+	on_build_complete = {
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			type = basement_gateway_4
+			owner = from
+			planet = star
+		}
+		star = {
+			create_ambient_object = {
+				type = extradimensional_1
+				#entity_offset_height = -5
+				scale = 0.7
+			}
+		}
+		from = {
+			country_event = { id = ssh_cn.136 }
+		}
+	}
+}
+
+# Ready
+basement_gateway_4 = {
+	entity = "ssh_basement_gateway_4_entity"
+	construction_entity = "ssh_basement_gateway_4_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_basement_gateway_3 }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 150
+			sr_dark_matter = 15
+		}
+	}
+
+	upgrade_from = {
+		basement_gateway_3
+	}
+}
+
+# Artificial Big Bang/Distribute Resources + Inflate Universe
+basement_gateway_5 = {
+	entity = "ssh_basement_gateway_firing_entity"
+	construction_entity = "ssh_basement_gateway_firing_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360
+	#show_prereqs = yes
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_basement_gateway_3 }
+	potential = { has_country_flag = ssh_vacdec_basement_uni_country }
+	possible = { from = { has_technology = ssh_tech_basement_gateway_4 } }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 250000
+			sr_hydrogen = 150000
+			sr_nuclei_soup = 300000
+		}
+		upkeep = {
+			energy = 150
+			sr_dark_matter = 15
+		}
+	}
+
+	upgrade_from = {
+		basement_gateway_4
+	}
+
+	on_build_start = {
+		#star = {
+		#	create_ambient_object = {
+		#		type = shroud_rift_object
+		#		#duration = 1080 # Portal closes after some years
+		#		#entity_offset_height = -15
+		#		entity_offset = 90
+		#		scale = 0.5
+		#	}
+		#}
+	}
+
+	on_build_complete = {
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			type = basement_gateway_6
+			owner = from
+			planet = star
+		}
+		from = { country_event = { id = ssh_cn.137 } }
+	}
+}
+
+# Basement Universe Expanding (Ready after ~10 years)
+basement_gateway_6 = {
+	entity = "ssh_basement_gateway_active_entity"
+	construction_entity = "ssh_basement_gateway_active_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 5
+	scales_with_planet = yes
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			physics_research = 150
+		}
+		upkeep = {
+			energy = 150
+			sr_dark_matter = 15
+		}
+	}
+
+	upgrade_from = {
+		basement_gateway_5
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_me.16
+				days = 1200 # countdown
+				random = 800
+			}
+		}
+	}
+}
+
+basement_gateway_7 = {
+	entity = "ssh_basement_gateway_finished_entity"
+	construction_entity = "ssh_basement_gateway_finished_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 5
+	scales_with_planet = yes
+	potential = { always = no } # Spawned after ~5 years (basement universe cooled down)
+
+	upgrade_from = {
+		basement_gateway_6
+	}
+
+	resources = {
+		category = megastructures
+		produces = {
+			physics_research = 150
+		}
+		upkeep = {
+			energy = 150
+		}
+	}
+
+	on_build_complete = {
+		from = {
+			enable_special_project = {
+				name = SSH_VACDEC_BASEMENT_UNIVERSE_HABITABLE_ZONE
+				owner = this
+				location = fromfromfrom
+			}
+		}
+	}
+}
+
+# Stage 5: Giant Colony Ship (30k Cultrobium) -> When finished: Enter the universe
+basement_gateway_8 = {
+	entity = "ssh_basement_gateway_8_entity"
+	construction_entity = "ssh_basement_gateway_8_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800
+	#show_prereqs = yes
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_basement_gateway_3 }
+	potential = { has_country_flag = ssh_vacdec_basement_uni_country }
+	possible = {
+		custom_tooltip = {
+			fail_text = "ssh_requires_basement_uni_project_complete"
+			from = {
+				has_country_flag = ssh_vacdec_basement_uni_habitable_project_completed
+			}
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 50000
+			sr_cultrobium = 50000
+		}
+		upkeep = {
+			energy = 200
+		}
+	}
+
+	upgrade_from = {
+		basement_gateway_7
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_vacdec.608 } }
+	}
+}

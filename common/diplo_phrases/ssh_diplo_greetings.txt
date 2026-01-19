@@ -1,0 +1,212 @@
+#######################
+# DIPLOMACY: GREETINGS
+#######################
+
+# FROM = initiator of the diplomatic action; ROOT = recipient of the diplomatic action
+
+greetings = {
+	### FRIENDLY GREETINGS
+	
+	01_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			is_human_species = yes
+			NOT = { FROM = { has_ethic = ethic_gestalt_consciousness } }
+			NOT = { is_same_species = FROM }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	02_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			is_species_class = HUM
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			#NOT = { from = { is_human_species = yes } }
+			from = { is_human_species = yes }
+			NOT = { is_same_species = FROM }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	03_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			is_species_class = HUM
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			#NOT = { from = { is_human_species = yes } }
+			from = { is_human_species = yes }
+			NOT = { is_same_species = FROM }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	04_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			is_species_class = HUM
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			#NOT = { from = { is_human_species = yes } } }
+			from = { is_human_species = yes }
+			NOT = { is_same_species = FROM }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	05_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			is_human_species = yes
+			NOT = { FROM = { has_ethic = ethic_gestalt_consciousness } }
+			NOT = { is_same_species = FROM }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	### ARK GREETINGS
+	06_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			has_global_flag = ssh_ark_launched
+			has_country_flag = ssh_ark_project_country
+			FROM = { has_country_flag = ssh_ark_project_country }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_neutral_to = FROM
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	07_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			has_global_flag = ssh_ark_launched
+			has_country_flag = ssh_ark_project_country
+			FROM = { has_country_flag = ssh_ark_project_country }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_neutral_to = FROM
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	08_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			has_global_flag = ssh_ark_launched
+			has_country_flag = ssh_ark_project_country
+			FROM = { has_country_flag = ssh_ark_project_country }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_neutral_to = FROM
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	### EXODUS GREETINGS
+	09_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			has_country_flag = ssh_completed_exodus_country
+			#FROM = { has_country_flag = ssh_ark_project_country }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_hostile_to = FROM
+				is_angry_to = FROM
+				is_arrogant_to = FROM
+				is_disloyal_to = FROM
+				is_neutral_to = FROM
+			}
+		}
+	}
+	10_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			has_country_flag = ssh_completed_exodus_country
+			#FROM = { has_country_flag = ssh_ark_project_country }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_neutral_to = FROM
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	11_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			has_country_flag = ssh_completed_exodus_country
+			#FROM = { has_country_flag = ssh_ark_project_country }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_neutral_to = FROM
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	12_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			has_country_flag = ssh_completed_exodus_country
+			#FROM = { has_country_flag = ssh_ark_project_country }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_neutral_to = FROM
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	13_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			FROM = { has_country_flag = ssh_completed_exodus_country }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_hostile_to = FROM
+				is_angry_to = FROM
+				is_arrogant_to = FROM
+				is_disloyal_to = FROM
+				is_neutral_to = FROM
+				is_loyal_to = FROM
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+	14_SSH_FRIENDLY_GREETING = {
+		trigger = {
+			FROM = { has_country_flag = ssh_completed_exodus_country }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_hostile_to = FROM
+				is_angry_to = FROM
+				is_arrogant_to = FROM
+				is_disloyal_to = FROM
+				is_neutral_to = FROM
+				is_loyal_to = FROM
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+		}
+	}
+}

@@ -1,0 +1,30 @@
+#### Special Reactors ####
+# Captive Star
+utility_component_template = {
+	key = "REACTOR_CAPTIVE_STAR"
+	size = small
+	icon = "GFX_ship_part_reactor_star"
+	icon_frame = 1
+	power = 1000000
+	component_set = "power_core"
+	size_restriction = { ssh_captive_star }
+	ai_weight = { weight = 999 }
+}
+
+utility_component_template = {
+	key = "REACTOR_DARK_MATTER_MISSILE"
+	size = small
+	icon = "GFX_ship_part_reactor_dark_matter_missile"
+	icon_frame = 1
+	power = 14300 # Same as Juggernaut Dark Matter Reactor
+	resources = {
+		category = ship_components
+		upkeep = {
+			sr_dark_matter = 1
+		}
+	}
+
+	component_set = "power_core"
+	size_restriction = { ssh_dark_matter_missile }
+	ai_weight = { weight = 999 }
+}

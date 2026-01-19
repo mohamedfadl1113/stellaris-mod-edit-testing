@@ -1,0 +1,61 @@
+#############
+# THRUSTERS #
+#############
+
+utility_component_template = {
+	key = "THRUSTER_CAPTIVE_STAR"
+	size = small
+	icon = "GFX_ship_part_thruster_captive_star"
+	icon_frame = 1
+	power = 10
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 5
+		}
+	}
+
+	#modifier = {
+	#}
+
+	ship_modifier = {
+		ship_ftl_jumpdrive_range_mult = -0.75
+	}
+
+	prerequisites = { "ssh_tech_captive_star" }
+	component_set = "thruster_components"
+	size_restriction = { ssh_captive_star }
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+utility_component_template = {
+	key = "THRUSTER_DARK_MATTER_MISSILE"
+	size = small
+	icon = "GFX_ship_part_thruster_dark_matter_missile"
+	icon_frame = 1
+	power = 10
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 5
+		}
+	}
+
+	#modifier = {
+	#}
+
+	ship_modifier = {
+		ship_ftl_jumpdrive_range_mult = -0.75
+	}
+
+	prerequisites = { "ssh_tech_dark_warhead" }
+	component_set = "thruster_components"
+	size_restriction = { ssh_dark_matter_missile }
+
+	ai_weight = {
+		weight = 999
+	}
+}

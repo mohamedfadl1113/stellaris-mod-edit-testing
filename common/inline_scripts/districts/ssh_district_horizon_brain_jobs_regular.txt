@@ -1,0 +1,116 @@
+### Handle Horizon Brain Employment
+# Triggered Modifier: Add jobs depending on modifiers
+# REGULAR EMPIRES
+# Ruler Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			NOR = {
+				is_egalitarian = yes
+				is_capitalist = yes # Includes is_megacorp, merchant guilds, megacorp civic
+				ssh_is_noble_society = yes
+			}
+		}
+		#has_modifier = ssh_hb_main_server_default
+	}
+	modifier = {
+		job_ssh_vr_admin_add = $ADMIN_AMOUNT$ #2
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_egalitarian = yes
+			is_capitalist = no
+		}
+		#has_modifier = ssh_hb_main_server_default
+	}
+	modifier = {
+		job_ssh_vr_moderator_add = $ADMIN_AMOUNT$
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_egalitarian = no
+			is_capitalist = yes # Includes is_megacorp, merchant guilds, megacorp civic
+		}
+		#has_modifier = ssh_hb_main_server_default
+	}
+	modifier = {
+		job_ssh_vr_ceo_add = $ADMIN_AMOUNT$
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_egalitarian = yes
+			is_capitalist = yes # Includes is_megacorp, merchant guilds, megacorp civic
+		}
+	}
+	modifier = {
+		job_ssh_vr_ceo_add = $TWO_ADMINS_AMOUNT$ #1
+		job_ssh_vr_moderator_add = $TWO_ADMINS_AMOUNT$ #1
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			ssh_is_noble_society = yes
+		}
+		#has_modifier = ssh_hb_main_server_default
+	}
+	modifier = {
+		job_ssh_vr_noble_add = $ADMIN_AMOUNT$
+	}
+}
+# Workers/Member Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			NOR = {
+				ssh_is_noble_society = yes
+				has_civic = civic_shared_burden
+			}
+		}
+	}
+	modifier = {
+		job_ssh_vr_member_add = $USER_AMOUNT$ #10
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_civic = civic_shared_burden
+		}
+	}
+	modifier = {
+		job_ssh_vr_member_shared_burden_add = $USER_AMOUNT$
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			ssh_is_noble_society = yes
+		}
+	}
+	modifier = {
+		job_ssh_vr_peasant_add = $USER_AMOUNT$
+	}
+}

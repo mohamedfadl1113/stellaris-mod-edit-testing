@@ -1,0 +1,945 @@
+# Bio Ascension Buildings
+building_ssh_conmat_lab = {
+	can_build = yes
+	base_buildtime = @b2_time
+	category = manufacturing
+
+	building_sets = {
+		industrial
+		foundry
+		hydroponics
+	}
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			#has_modifier = crucible_colony
+		}
+	}
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			#has_modifier = crucible_colony
+		}
+	}
+
+	prerequisites = {
+		ssh_tech_conscious_matter
+	}
+	#show_tech_unlock_if = {
+	#	is_wilderness_empire = no
+	#}
+
+	allow = {
+	}
+
+	ai_weight_coefficient = 0
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals #@b2_minerals
+		}
+		upkeep = {
+			energy = @b1_upkeep
+		}
+	}
+
+	inline_script = {
+		script = jobs/ssh_conmat_biologist_add
+		AMOUNT = @building_static_jobs #100
+	}
+
+	#upgrades = {
+	#	"building_foundry_2"
+	#}
+}
+
+# Shroud Ascension Buildings
+# Individualist
+building_ssh_triangle_temple = {
+	base_buildtime = 900
+	#planet_limit = 1
+	empire_limit = 1
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+
+	category = research
+
+	building_sets = {
+		government
+		research
+		physics
+	}
+
+	potential = {
+		#exists = planet
+		#planet = { is_capital = yes }
+		exists = owner
+		owner = { is_gestalt = no }
+		NOT = { has_modifier = slave_colony }
+		NOT = { owner = { has_country_flag = ssh_triangle_temple_triggered } }
+	}
+
+	prerequisites = {
+		"ssh_tech_triangle_theory"
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			sr_zro = 15
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+		produces = {
+			physics_research = 16
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.3
+		#planet_priests_physics_research_produces_add = 0.5 # Doesn't work anymore in 4.2?
+		planet_telepaths_physics_research_produces_add = 0.5
+	}
+
+	on_built = {
+		owner = {
+			country_event = {
+				id = ssh_shroud.1
+				days = 60 random = 720 #Within two years a Shroud entity will answer their prayer
+			}
+		}
+	}
+}
+
+# Hive
+building_ssh_triangle_temple_hive = {
+	base_buildtime = 900
+	#planet_limit = 1
+	empire_limit = 1
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+
+	icon = building_ssh_triangle_temple
+
+	category = research
+
+	building_sets = {
+		government
+		research
+		physics
+	}
+
+	potential = {
+		#exists = planet
+		#planet = { is_capital = yes }
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_modifier = slave_colony }
+		NOT = { owner = { has_country_flag = ssh_triangle_temple_triggered } }
+	}
+
+	prerequisites = {
+		"ssh_tech_triangle_theory"
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			sr_zro = 15
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+		produces = {
+			physics_research = 16
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.3
+		#planet_priests_physics_research_produces_add = 0.5 # Doesn't work anymore in 4.2?
+		planet_telepaths_physics_research_produces_add = 0.5
+	}
+
+	on_built = {
+		owner = {
+			country_event = {
+				id = ssh_shroud.1
+				days = 60 random = 720 #Within two years a Shroud entity will answer their prayer
+			}
+		}
+	}
+}
+
+# Machine
+building_ssh_triangle_temple_machine = {
+	base_buildtime = 900
+	#planet_limit = 1
+	empire_limit = 1
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+
+	icon = building_ssh_triangle_temple
+
+	category = research
+
+	building_sets = {
+		government
+		research
+		physics
+	}
+
+	potential = {
+		#exists = planet
+		#planet = { is_capital = yes }
+		exists = owner
+		owner = {
+			is_gestalt = yes
+			is_machine_empire = yes
+		}
+		NOT = { has_modifier = slave_colony }
+		NOT = { owner = { has_country_flag = ssh_triangle_temple_triggered } }
+	}
+
+	prerequisites = {
+		"ssh_tech_triangle_theory"
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			sr_zro = 15
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+		produces = {
+			physics_research = 16
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.3
+		#planet_priests_physics_research_produces_add = 0.5 # Doesn't work anymore in 4.2?
+		planet_telepaths_physics_research_produces_add = 0.5
+	}
+
+	on_built = {
+		owner = {
+			country_event = {
+				id = ssh_shroud.1
+				days = 60 random = 720 #Within two years a Shroud entity will answer their prayer
+			}
+		}
+	}
+}
+
+# Nuclei Soup Transmuter - Strategic Resources
+building_ssh_nuclei_soup_transmuter_sr = {
+	base_buildtime = @b3_time
+
+	category = manufacturing
+
+	building_sets = {
+		nuclei_soup
+		industrial
+		factory
+		foundry
+	}
+
+	potential = {
+		exists = owner
+		OWNER = {
+			OR = {
+				has_monthly_income = {
+					resource = sr_nuclei_soup
+					value > 0
+				}
+				AND = {
+					is_ai = no
+					has_resource = {
+						type = sr_nuclei_soup
+						amount > 0
+					}
+				}
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		produces = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_deficit = sr_nuclei_soup
+					}
+				}
+			}
+			rare_crystals = 50
+			volatile_motes = 50
+			exotic_gases = 50
+		}
+		produces = {
+			trigger = {
+				owner = {
+					NOT = { has_deficit = sr_nuclei_soup }
+					has_technology = tech_mine_zro
+				}
+			}
+			sr_zro = 15
+		}
+		upkeep = {
+			sr_nuclei_soup = 125
+			energy = 30
+		}
+	}
+
+	prerequisites = {
+		"ssh_tech_system_disintegrator"
+	}
+
+	ai_resource_production = {
+		rare_crystals = @b3_rare_upkeep
+		volatile_motes = @b3_rare_upkeep
+		exotic_gases = @b3_rare_upkeep
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+# Nuclei Soup Transmuter - Minerals
+building_ssh_nuclei_soup_transmuter_minerals = {
+	base_buildtime = @b3_time
+
+	category = manufacturing
+
+	building_sets = {
+		nuclei_soup
+		industrial
+		factory
+		foundry
+		mining
+		urban
+	}
+
+	potential = {
+		exists = owner
+		OWNER = {
+			OR = {
+				has_monthly_income = {
+					resource = sr_nuclei_soup
+					value > 0
+				}
+				AND = {
+					is_ai = no
+					has_resource = {
+						type = sr_nuclei_soup
+						amount > 0
+					}
+				}
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		produces = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_deficit = sr_nuclei_soup
+					}
+				}
+			}
+			minerals = 200 # 1 mineral = 0.5 nuclei soup
+		}
+		upkeep = {
+			sr_nuclei_soup = 100
+			energy = 30
+		}
+	}
+
+	prerequisites = {
+		"ssh_tech_system_disintegrator"
+	}
+
+	ai_resource_production = {
+		minerals = @b3_upkeep
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+# Nuclei Soup Transmuter - Food
+building_ssh_nuclei_soup_transmuter_food = {
+	base_buildtime = @b3_time
+
+	category = manufacturing
+
+	building_sets = {
+		nuclei_soup
+		industrial
+		factory
+		foundry
+		hydroponics
+	}
+
+	potential = {
+		exists = owner
+		OWNER = {
+			OR = {
+				has_monthly_income = {
+					resource = sr_nuclei_soup
+					value > 0
+				}
+				AND = {
+					is_ai = no
+					has_resource = {
+						type = sr_nuclei_soup
+						amount > 0
+					}
+				}
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		produces = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_deficit = sr_nuclei_soup
+					}
+				}
+			}
+			food = 200 # 1 food = 0.5 nuclei soup
+		}
+		upkeep = {
+			sr_nuclei_soup = 100
+			energy = 30
+		}
+	}
+
+	prerequisites = {
+		"ssh_tech_system_disintegrator"
+	}
+
+	ai_resource_production = {
+		food = @b3_upkeep
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+# Nuclei Soup Transmuter - Alloys / Cultrobium
+building_ssh_nuclei_soup_foundry = {
+	base_buildtime = @b3_time
+
+	category = manufacturing
+
+	building_sets = {
+		nuclei_soup
+		industrial
+		factory
+		foundry
+	}
+
+	potential = {
+		exists = owner
+		OWNER = {
+			OR = {
+				has_monthly_income = {
+					resource = sr_nuclei_soup
+					value > 0
+				}
+				AND = {
+					is_ai = no
+					has_resource = {
+						type = sr_nuclei_soup
+						amount > 0
+					}
+				}
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		produces = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_deficit = sr_nuclei_soup
+					}
+				}
+			}
+			alloys = 50
+			sr_cultrobium = 25
+		}
+		upkeep = {
+			sr_nuclei_soup = 100
+			energy = 30
+		}
+	}
+
+	prerequisites = {
+		"ssh_tech_system_disintegrator"
+	}
+
+	ai_resource_production = {
+		alloys = @b2_upkeep
+		sr_cultrobium = @b2_upkeep
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+# Nuclei Soup Transmuter - Nanites + Living Metal
+building_ssh_nuclei_soup_transmuter_nano = {
+	base_buildtime = @b3_time
+
+	category = manufacturing
+
+	building_sets = {
+		nuclei_soup
+		industrial
+		factory
+		foundry
+	}
+
+	potential = {
+		exists = owner
+		OWNER = {
+			OR = {
+				has_monthly_income = {
+					resource = sr_nuclei_soup
+					value > 0
+				}
+				AND = {
+					is_ai = no
+					has_resource = {
+						type = sr_nuclei_soup
+						amount > 0
+					}
+				}
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		produces = {
+			trigger = {
+				owner = { NOT = { has_deficit = sr_nuclei_soup } }
+			}
+			nanites = 10 #1 nanites = ~2 nuclei soup (+ living metal)
+		}
+		produces = {
+			trigger = {
+				owner = {
+					NOT = { has_deficit = sr_nuclei_soup }
+					has_technology = tech_mine_living_metal
+				}
+			}
+			sr_living_metal = 10
+		}
+		upkeep = {
+			sr_nuclei_soup = 25
+			energy = 15
+		}
+	}
+
+	prerequisites = {
+		"ssh_tech_system_disintegrator"
+	}
+
+	ai_resource_production = {
+		nanites = @b2_rare_upkeep
+		#sr_living_metal = @b3_rare_upkeep
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+# Hydrogen Buildings
+building_ssh_hydrogen_plant = {
+	base_buildtime = @b1_time
+	planet_limit = 1
+	category = resource
+
+	building_sets = {
+		generator
+	}
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		exists = owner
+		owner = {
+			is_wilderness_empire = no # see 'building_bioelectric_stimulator_3'
+		}
+		OR = {
+			NOT = { is_planet_class = pc_habitat }
+			AND = {
+				is_planet_class = pc_habitat
+				check_modifier_value = {
+					modifier = district_hab_energy_max
+					value > 0
+				}
+			}
+			OR = {
+				owner = { is_ai = no }
+				has_any_generator_district_or_building = yes
+			}
+		}
+	}
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			AND = {
+				exists = owner
+				owner = { is_ai = yes }
+				has_any_generator_district_or_building = no
+			}
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = yes }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			sr_hydrogen = 3
+			#energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_technician_energy_produces_add = 0.25
+		#planet_technician_produces_mult = 0.20
+	}
+
+	prerequisites = {
+		#"tech_power_hub_1"
+		"ssh_tech_hydrogen"
+	}
+
+	upgrades = {
+		building_ssh_hydrogen_plant_upgrade
+	}
+
+	ai_resource_production = {
+   		energy = 10
+
+		trigger = {
+			has_any_generator_zone = yes
+		}
+	}
+
+	show_tech_unlock_if = {
+		is_wilderness_empire = no
+	}
+}
+
+building_ssh_hydrogen_plant_upgrade = {
+	base_buildtime = @b2_time
+	can_build = no
+	category = resource
+
+	building_sets = {
+		generator
+	}
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		exists = owner
+		owner = { is_wilderness_empire = no }
+		OR = {
+			owner = { is_ai = no }
+			has_any_generator_district_or_building = yes
+		}
+	}
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			AND = {
+				exists = owner
+				owner = { is_ai = yes }
+				has_any_generator_district_or_building = no
+			}
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = yes } 
+			}
+		}
+	}
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			minerals = @b2_minerals
+			rare_crystals = @b2_rare_cost
+		}
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			minerals = 900
+			rare_crystals = 200
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			sr_hydrogen = 2
+			rare_crystals = @b2_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			sr_hydrogen = 5
+			rare_crystals = 3
+		}
+	}
+
+	planet_modifier = {
+		planet_technician_energy_produces_add = 1
+	}
+
+	prerequisites = {
+		ssh_tech_hydrogen
+		tech_power_hub_2
+	}
+
+	ai_resource_production = {
+   		energy = 15
+
+		trigger = {
+			has_any_generator_zone = yes
+		}
+	}
+
+	show_tech_unlock_if = {
+		is_wilderness_empire = no
+	}
+}
+
+# Cultrobium Building
+#building_ssh_atomic_foundry = {
+#	base_buildtime = @b2_time
+#	base_cap_amount = 1
+#	category = resource
+#
+#	destroy_trigger = {
+#		has_modifier = resort_colony
+#	}
+#
+#	potential = {
+#		NOR = {
+#			has_modifier = resort_colony
+#		}
+#	}
+#
+#	#planet_modifier = {
+#	#	planet_technician_energy_produces_add = 1
+#	#}
+#
+#	inline_script = {
+#		script = jobs/ssh_cultrobium_foundry_add
+#		AMOUNT = 5
+#	}
+#
+#	resources = {
+#		category = planet_buildings
+#		cost = {
+#			minerals = @b2_minerals
+#			alloys = 750
+#		}
+#		upkeep = {
+#			energy = 10
+#			minerals = 5
+#		}
+#	}
+#
+#	prerequisites = {
+#		ssh_tech_nuclei_modification
+#	}
+#}
+building_ssh_atomic_foundry = {
+	can_build = yes
+	base_buildtime = @b2_time
+	category = manufacturing
+
+	building_sets = {
+		industrial
+		foundry
+	}
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+		AND = {
+			exists = owner
+			owner = {
+				is_wilderness_empire = no
+			}
+		}
+	}
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+
+	prerequisites = {
+		ssh_tech_nuclei_modification
+	}
+	show_tech_unlock_if = {
+		is_wilderness_empire = no
+	}
+
+	allow = {
+	}
+
+	ai_weight_coefficient = 0
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			alloys = 750
+		}
+		upkeep = {
+			energy = 10 #@b1_upkeep
+			minerals = 5
+		}
+	}
+
+	inline_script = {
+		script = jobs/ssh_cultrobium_foundry_add
+		AMOUNT = @building_static_jobs #500
+	}
+}
+
+### Vacdec Escape: Cryogenic Chamber
+building_ssh_vacdec_cryo_chambers = {
+	base_buildtime = @b2_time
+	#can_demolish = yes
+	empire_limit = 1
+	can_be_ruined = yes
+
+	category = unity
+
+	building_sets = {
+		government
+		urban
+		unity
+	}
+
+	potential = {
+		is_capital = yes
+		custom_tooltip = {
+			text = EMPIRE_UNIQUE_BUILDING
+			owner = { has_country_flag = ssh_country_escaped_vacdec_crisis }
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.15
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 1
+		}
+	}
+}

@@ -1,0 +1,6 @@
+component_set = {
+	key = "ARMOR_CULTROBIUM"
+
+	icon = "GFX_ship_part_armor_cultrobium"
+	icon_frame = 1
+}

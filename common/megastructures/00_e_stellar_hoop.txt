@@ -1,0 +1,769 @@
+stellar_hoop_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	show_prereqs = yes
+	build_time = 1800
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -7
+		y = -7
+	}
+	prerequisites = { ssh_tech_stellar_hoop }
+	potential = {
+		has_technology = ssh_tech_stellar_hoop
+		NOT = {
+			has_global_flag = ssh_stellar_hoop_deactivated
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_anomaly"
+			NOT = {
+				any_system_planet = {
+					has_anomaly = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_2_planets"
+			num_planets_in_system > 2
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole"
+			NOT = { is_star_class = sc_black_hole }
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_neutron"
+			NOR = { 
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+				is_star_class = sc_ssh_quark_star
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_regular_star"
+			OR = { 
+				is_star_class = sc_a
+				is_star_class = sc_b
+				is_star_class = sc_f
+				is_star_class = sc_m_giant
+				is_star_class = sc_m
+				is_star_class = sc_ssh_white_dwarf
+				is_star_class = sc_ssh_blue_dwarf
+				is_star_class = sc_g
+				is_star_class = sc_k
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+		#custom_tooltip = {
+		#	fail_text = "requires_no_existing_megastructure"
+		#	star = {
+		#		NOT = {
+		#			has_star_flag = has_megastructure
+		#			has_star_flag = has_stellar_hoop
+		#			has_planet_flag = has_megastructure
+		#		}
+		#	}
+		#	# NOT has any megastructure yes
+		#	#has_no_non_gate_megastructure = yes for whatever reason the latter doesnt work
+		#}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 1000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOT = {
+					has_planet_flag = has_megastructure
+					#has_star_flag = has_megastructure
+					#has_star_flag = has_stellar_hoop
+				}
+				# NOT has any megastructure yes
+				#has_no_non_gate_megastructure = yes for whatever reason the latter doesnt work
+			}
+		}
+	}
+
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
+		star = {
+			set_planet_flag = has_stellar_hoop
+			set_planet_flag = has_megastructure
+		}
+		from = {
+			set_country_flag = ssh_is_constructing_stellar_hoop
+			country_event = {
+				id = ssh_cn.34
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 15
+		# Do we need the resources?
+		modifier = {
+			factor = 2.0
+			from = {
+				OR = {
+					has_monthly_income = {
+						resource = energy
+						value < 30
+					}
+					has_monthly_income = {
+						resource = sr_cultrobium
+						value < 20
+					}
+				}
+			}
+		}
+		# Are we constructing one already? (in case of unlimited mega build capacity)
+		modifier = {
+			factor = 0
+			from = { has_country_flag = ssh_is_constructing_stellar_hoop }
+		}
+		# Do we have enough resources?
+		modifier = {
+			factor = 0.1
+			from = {
+				AND = {
+					resource_stockpile_compare = {
+						resource = rare_crystals
+						value < 420
+					}
+					resource_stockpile_compare = {
+						resource = alloys
+						value < 45000
+					}
+					resource_stockpile_compare = {
+						resource = volatile_motes
+						value < 200
+					}
+				}
+			}
+		}
+		# Upkeep Affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 70
+				}
+			}
+		}
+		# >>>>>>>>>>> TODO: Add giga's habitable megas to the list (alderson, birch world)
+
+		# Good System?
+		modifier = {
+			factor = 0.5
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 1.5
+			from = {
+				OR = {
+					is_gestalt = yes
+					is_synthetic_empire = yes
+				}
+			}
+		}
+		#modifier = {
+		#	factor = 0.5
+		#	from = {
+		#		OR = {
+		#			is_gestalt = no
+		#			is_synthetic_empire = no
+		#			is_machine_empire = no
+		#			is_mechanical_empire = no
+		#		}
+		#	}
+		#}
+	}
+}
+
+stellar_hoop_1 = {
+	entity = "ssh_stellar_hoop_1_entity"
+	construction_entity = "ssh_stellar_hoop_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = yes
+	#place_entity_on_planet_plane = no
+	prerequisites = { ssh_tech_stellar_hoop }
+	potential = { has_technology = ssh_tech_stellar_hoop }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		stellar_hoop_0
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		from = {
+			country_event = {
+				id = ssh_cn.35
+			}
+		}
+	}
+}
+
+stellar_hoop_2 = {
+	entity = "ssh_stellar_hoop_2_entity"
+	construction_entity = "ssh_stellar_hoop_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 720
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_stellar_hoop }
+	potential = { has_technology = ssh_tech_stellar_hoop }
+
+	resources = {
+		category = megastructures
+		cost = {
+			volatile_motes = 150
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 40
+		}
+	}
+
+	upgrade_from = {
+		stellar_hoop_1
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.36
+			}
+		}
+	}
+}
+
+stellar_hoop_3 = {
+	entity = "ssh_stellar_hoop_3_entity"
+	construction_entity = "ssh_stellar_hoop_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_stellar_hoop }
+	potential = { has_technology = ssh_tech_stellar_hoop }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		stellar_hoop_2
+	}
+
+	on_build_complete = {
+		solar_system = {
+			set_asteroid_belt = {
+				radius = 0
+			}
+			every_system_planet = {
+				limit = { 
+					NOR = {
+						is_star = yes
+						is_artificial = yes
+						has_planet_flag = has_megastructure
+						is_colony = yes
+					}
+				}
+				remove_planet = yes
+			}
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.37
+			}
+		}
+	}
+}
+
+stellar_hoop_4 = {
+	entity = "ssh_stellar_hoop_4_entity"
+	construction_entity = "ssh_stellar_hoop_4_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1440
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_stellar_hoop }
+	potential = { has_technology = ssh_tech_stellar_hoop }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 250
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		stellar_hoop_3
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.38
+			}
+		}
+	}
+}
+
+stellar_hoop_5 = {
+	entity = "ssh_stellar_hoop_5_entity"
+	construction_entity = "ssh_stellar_hoop_5_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_stellar_hoop }
+	potential = { has_technology = ssh_tech_stellar_hoop }
+
+	resources = {
+		category = megastructures
+		cost = {
+			volatile_motes = 150
+			rare_crystals = 250
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		stellar_hoop_4
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.39
+			}
+		}
+	}
+}
+
+stellar_hoop_6 = {
+	entity = "ssh_stellar_hoop_6_entity"
+	construction_entity = "ssh_stellar_hoop_6_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1080 #3years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_stellar_hoop }
+	potential = { has_technology = ssh_tech_stellar_hoop }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 150
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		stellar_hoop_5
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_e_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			remove_country_flag = ssh_is_constructing_stellar_hoop
+		}
+		if = {
+			limit = {
+				exists = fromfrom.planet
+				fromfrom.star = {
+					OR = {
+						is_star_class = sc_a
+						is_star_class = sc_b
+						is_star_class = sc_m_giant
+						#is_star_class = sc_f
+					}
+				}
+			}
+			spawn_planet = {
+				class = pc_stellar_hoop
+				location = fromfrom.planet
+				orbit_angle_offset = 0
+				init_effect = {
+					set_name = "Stellar Hoop"
+					set_planet_entity = {
+						entity = "ssh_stellar_hoop_big_planet_01_entity"
+					}
+					set_surveyed = {
+						surveyed = yes
+						surveyor = fromfrom
+					}
+					set_all_comms_surveyed = yes
+					clear_blockers = yes
+					save_event_target_as = stellar_hoop_planet
+					trigger_megastructure_icon = yes
+					set_planet_flag = megastructure
+				}
+			}
+			event_target:stellar_hoop_planet = {
+				add_modifier = {
+					modifier = "ssh_stellar_hoop_planet_modifier"
+					days = -1
+				}
+			}
+		} # if not giant star (g, k, m), spawn normal sized hoop planet
+		else = {
+			spawn_planet = {
+				class = pc_stellar_hoop
+				location = fromfrom.planet
+				orbit_angle_offset = 0
+				init_effect = {
+					set_name = "Stellar Hoop"
+					set_planet_entity = {
+						entity = "ssh_stellar_hoop_normal_planet_01_entity"
+					}
+					set_surveyed = {
+						surveyed = yes
+						surveyor = fromfrom
+					}
+					set_all_comms_surveyed = yes
+					clear_blockers = yes
+					trigger_megastructure_icon = yes
+					set_planet_flag = megastructure
+					save_event_target_as = stellar_hoop_planet
+				}
+			}
+			event_target:stellar_hoop_planet = {
+				add_modifier = {
+					modifier = "ssh_stellar_hoop_planet_modifier"
+					days = -1
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = has_stellar_hoop
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.40
+			}
+		}
+	}
+}
+
+# Ruined
+stellar_hoop_ruined = {
+	entity = "ssh_stellar_hoop_ruined_entity"
+	portrait = "GFX_megastructure_construction_background"
+	
+	potential = {
+		always = no
+	}
+}
+
+stellar_hoop_restored = {
+	entity = "ssh_stellar_hoop_6_entity"
+	construction_entity = "ssh_stellar_hoop_6_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 7200 #20 years
+	scales_with_planet = yes
+
+	resources = {
+		category = megastructures
+		cost = {
+			volatile_motes = 150
+			rare_crystals = 300
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 15000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		stellar_hoop_ruined
+	}
+
+	possible = {
+		from = {
+			has_technology = ssh_tech_stellar_hoop
+		}
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_e_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+		}
+		if = {
+			limit = {
+				exists = fromfrom.planet
+				fromfrom.star = {
+					OR = {
+						is_star_class = sc_a
+						is_star_class = sc_b
+						is_star_class = sc_m_giant
+						#is_star_class = sc_f
+					}
+				}
+			}
+			spawn_planet = {
+				class = pc_stellar_hoop
+				location = fromfrom.planet
+				orbit_angle_offset = 0
+				init_effect = {
+					set_name = "Stellar Hoop"
+					set_planet_entity = {
+						entity = "ssh_stellar_hoop_big_planet"
+					}
+					set_surveyed = {
+						surveyed = yes
+						surveyor = fromfrom
+					}
+					set_all_comms_surveyed = yes
+					clear_blockers = yes
+					save_event_target_as = stellar_hoop_planet
+					trigger_megastructure_icon = yes
+					set_planet_flag = megastructure
+				}
+			}
+			event_target:stellar_hoop_planet = {
+				add_modifier = {
+					modifier = "ssh_stellar_hoop_planet_modifier"
+					days = -1
+				}
+			}
+		} # if not giant star (g, k, m), spawn normal sized hoop planet
+		else = {
+			spawn_planet = {
+				class = pc_stellar_hoop
+				location = fromfrom.planet
+				orbit_angle_offset = 0
+				init_effect = {
+					set_name = "Stellar Hoop"
+					set_planet_entity = {
+						entity = "ssh_stellar_hoop_normal_planet"
+					}
+					set_surveyed = {
+						surveyed = yes
+						surveyor = fromfrom
+					}
+					set_all_comms_surveyed = yes
+					clear_blockers = yes
+					trigger_megastructure_icon = yes
+					set_planet_flag = megastructure
+					save_event_target_as = stellar_hoop_planet
+				}
+			}
+			event_target:stellar_hoop_planet = {
+				add_modifier = {
+					modifier = "ssh_stellar_hoop_planet_modifier"
+					days = -1
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = has_stellar_hoop
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.40
+			}
+		}
+	}
+}
+
+# TODO: Use the blue background + make blue city colors for blue star-stellar hoops, probably also gonna buff their alloy output due to the even more intense heat

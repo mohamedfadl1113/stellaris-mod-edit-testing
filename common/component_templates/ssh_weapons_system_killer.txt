@@ -1,0 +1,279 @@
+#### Captive Star ####
+utility_component_template = {
+    key = "SYSTEM_KILLER_CAPTIVE_STAR"
+    size = large
+    icon = GFX_ship_part_sk_star
+    icon_frame = 1
+    power = 0
+    component_set = wmd_components
+
+    size_restriction = { ssh_captive_star }
+    prerequisites = { "ssh_tech_captive_star" }
+    
+    #scripted_action_possible = {
+    #   #exists = space_owner ### Maybe remove
+	#	is_star = yes
+	#	ssh_is_crackable_star = yes
+    #}
+
+    #scripted_action_button_possible = {
+    #    owner = {
+    #        has_resource = { type = energy amount >= 1000 }
+    #    }
+    #}
+
+    #scripted_action_finished = {
+    #    has_planet_flag = destroyed_star
+    #}
+
+    #scripted_action_name = on_captive_star_target_planet_reached
+    #scripted_action_tooltip = captive_star_ship_button
+    #scripted_action_icon = GFX_fleet_order_blow_up_planet_action
+    #scripted_action_on_cancel = on_captive_star_action_cancel
+    #scripted_action_activity_key = captive_star_action_activity_key
+    #scripted_action_context_menu_name = captive_star_context_menu_title
+    #scripted_action_required_progress = 20
+
+    scripted_action = {
+		scope = planet
+
+		possible = {
+			#exists = owner
+            #exists = space_owner ### Maybe remove
+            is_star = yes
+            ssh_is_crackable_star = yes
+		}
+
+        #button_clickable = {}
+
+        finished = { has_planet_flag = destroyed_star }
+
+		name = on_captive_star_target_planet_reached
+		tooltip = captive_star_ship_button
+		icon = GFX_fleet_order_blow_up_planet_action
+		icon_selected = GFX_fleet_order_blow_up_planet_action #"GFX_fleet_task_planetfall_selected"
+		activity_key = captive_star_action_activity_key
+		context_menu_name = captive_star_context_menu_title
+	}
+
+    ai_weight = { weight = 999 }
+}
+
+#### Captive Black Hole ####
+
+### Dark Matter Missile ###
+utility_component_template = {
+    key = "SYSTEM_KILLER_DARK_WMD"
+    size = large
+    icon = GFX_ship_part_sk_dark_matter_missile
+    icon_frame = 1
+    power = 0
+    component_set = wmd_components
+    resources = {
+		category = ship_components
+		cost = {
+			sr_dark_matter = 50
+		}
+        upkeep = {
+            sr_dark_matter = 2
+        }
+	}
+    size_restriction = { ssh_dark_matter_missile }
+    prerequisites = { "ssh_tech_dark_warhead" }
+    
+    #scripted_action_possible = {
+	#	NOR = {
+	#		is_planet_class = pc_ssh_empty_space
+    #        has_planet_flag = destroyed_by_wmd
+	#		#is_planet_class = pc_disintegrated_star
+    #        solar_system = { ssh_is_special_star = yes } # No gigas' birch etc
+    #        solar_system = { has_star_flag = star_cracked } # destroyed_solar_system
+	#	}
+    #}
+
+    #scripted_action_button_possible = {
+    #    custom_tooltip = {
+    #        fail_text = ssh_can_use_dark_missile_tt
+    #        OR = {
+    #            NOT = { exists = space_owner }
+    #            AND = {
+    #                exists = space_owner
+    #                space_owner = {
+    #                    NOT = { is_same_value = root.owner }
+    #                    is_at_war_with = root.owner
+    #                }
+    #            }
+    #        }
+    #    }
+    #}
+
+    #scripted_action_finished = {
+    #    has_planet_flag = destroyed_by_wmd
+    #}
+
+    #scripted_action_name = on_dark_wmd_target_planet_reached
+    #scripted_action_tooltip = dark_wmd_ship_button
+    #scripted_action_icon = GFX_fleet_order_blow_up_planet_action
+    #scripted_action_on_cancel = on_dark_wmd_action_cancel
+    #scripted_action_activity_key = dark_wmd_action_activity_key
+    #scripted_action_context_menu_name = dark_wmd_context_menu_title
+    #scripted_action_progress_activity_key = dark_wmd_action_progress_activity_key
+    #scripted_action_required_progress = 10
+
+    scripted_action = {
+		scope = planet
+
+		possible = {
+			NOR = {
+                is_planet_class = pc_ssh_empty_space
+                has_planet_flag = destroyed_by_wmd
+                #is_planet_class = pc_disintegrated_star
+                solar_system = { ssh_is_special_star = yes } # No gigas' birch etc
+                solar_system = { has_star_flag = star_cracked } # destroyed_solar_system
+            }
+		}
+
+        button_clickable = {
+            custom_tooltip = {
+            fail_text = ssh_can_use_dark_missile_tt
+            OR = {
+                NOT = { exists = space_owner }
+                AND = {
+                    exists = space_owner
+                    space_owner = {
+                        NOT = { is_same_value = root.owner }
+                        is_at_war_with = root.owner
+                    }
+                }
+            }
+        }
+        }
+
+        finished = { has_planet_flag = destroyed_by_wmd }
+
+		name = on_dark_wmd_target_planet_reached
+		tooltip = dark_wmd_ship_button
+		icon = GFX_fleet_order_blow_up_planet_action
+		icon_selected = GFX_fleet_order_blow_up_planet_action #"GFX_fleet_task_planetfall_selected"
+		activity_key = dark_wmd_action_activity_key
+		context_menu_name = dark_wmd_context_menu_title
+        progress_activity_key = dark_wmd_action_progress_activity_key
+		required_progress = 10
+	}
+
+    ai_weight = { weight = 999 }
+}
+
+# Double Yield Dark Matter
+utility_component_template = {
+    key = "SYSTEM_KILLER_DARK_WMD_LARGE"
+    size = large
+    icon = GFX_ship_part_sk_dark_matter_missile_large
+    icon_frame = 1
+    power = 0
+    component_set = wmd_components
+    resources = {
+		category = ship_components
+		cost = {
+			sr_dark_matter = 150
+		}
+        upkeep = {
+            sr_dark_matter = 10
+        }
+	}
+    size_restriction = { ssh_dark_matter_missile }
+    prerequisites = { "ssh_tech_dark_warhead_yields" }
+    
+    scripted_action = {
+		scope = planet
+
+		possible = {
+			NOR = {
+                is_planet_class = pc_ssh_empty_space
+                has_planet_flag = destroyed_by_wmd
+                #is_planet_class = pc_disintegrated_star
+                solar_system = { ssh_is_special_star = yes } # No gigas' birch etc
+                solar_system = { has_star_flag = star_cracked } # destroyed_solar_system
+            }
+		}
+
+        button_clickable = {
+            custom_tooltip = {
+            fail_text = ssh_can_use_dark_missile_tt
+            OR = {
+                NOT = { exists = space_owner }
+                AND = {
+                    exists = space_owner
+                    space_owner = {
+                        NOT = { is_same_value = root.owner }
+                        is_at_war_with = root.owner
+                    }
+                }
+            }
+        }
+        }
+
+        finished = { has_planet_flag = destroyed_by_wmd }
+
+		name = on_dark_wmd_large_target_planet_reached
+		tooltip = dark_wmd_ship_button
+		icon = GFX_fleet_order_blow_up_planet_action
+		icon_selected = GFX_fleet_order_blow_up_planet_action
+		activity_key = dark_wmd_large_action_activity_key
+		context_menu_name = dark_wmd_context_menu_title
+        progress_activity_key = dark_wmd_action_progress_activity_key
+		required_progress = 20
+	}
+
+    ai_weight = { weight = 999 }
+}
+
+
+##### Behemoth Bio Brain #####
+utility_component_template = {
+    key = "SYSTEM_KILLER_BRAIN_MAW"
+    size = large
+    icon = GFX_ship_part_sk_brain_maw
+    icon_frame = 1
+    power = 0
+
+    potential = {
+		is_ship_size = ssh_brain_behemoth_03
+	}
+
+    component_set = wmd_components
+
+    size_restriction = {
+        ssh_brain_behemoth_03
+    }
+    #prerequisites = { "ssh_tech_captive_star" }
+    valid_for_country = {
+		has_country_flag = behemoth_crisis_megabrain_path
+		has_menace_perk = menp_behemoth_hatchling_2
+	}
+
+    scripted_action = {
+		scope = planet
+
+		possible = {
+			can_destroy_planet_with_sk_brain_maw = yes
+		}
+
+        button_clickable = {
+            #can_destroy_planet_with_sk_brain_maw = yes
+        }
+
+        finished = { has_planet_flag = devoured_star }
+
+		name = on_sk_brain_maw_target_planet_reached
+		tooltip = sk_brain_maw_ship_button
+		icon = GFX_fleet_order_blow_up_planet_action
+		icon_selected = GFX_fleet_order_blow_up_planet_action
+		activity_key = sk_brain_maw_action_activity_key
+		context_menu_name = sk_brain_maw_context_menu_title
+        progress_activity_key = sk_brain_maw_action_progress_activity_key
+		required_progress = 50
+	}
+
+    ai_weight = { weight = 999 }
+}

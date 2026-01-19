@@ -1,0 +1,2468 @@
+decision_construct_nanite_disassembler = {
+	owned_planets_only = no
+	icon = decision_planet_beam
+	enactment_time = 0
+
+	potential = {
+		exists = space_owner
+		#space_owner = {
+		#	is_ai = no # AI can disassemble the galaxy as well!
+		#}
+		is_star = no
+		is_colony = no
+		if = {
+			limit = { exists = owner }
+			NOR = {
+				owner = { is_country_type = primitive }
+				owner = { is_lithoid_devouring_swarm = yes }
+			}
+		}
+		NOR = {
+			ssh_is_special_planet = yes
+			has_planet_flag = ssh_shrinking_planet
+			has_planet_flag = has_megastructure
+			has_planet_flag = megastructure
+			has_planet_flag = is_under_shellworld_construction
+			has_planet_flag = ssh_active_disassembly_planet
+			has_anomaly = yes
+			# Flag
+			has_global_flag = ssh_nanite_disassemblers_deactivated
+		}
+	}
+
+	prerequisites = {
+		#ssh_tech_atomic_manipulation
+		#tech_nanite_transmutation
+		ssh_tech_nanite_disassembler
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { NOT = { is_active_resolution = "resolution_megaconstruction_workforce_revolution" } }
+			alloys = 5000
+			nanites = 25
+		}
+		cost = {
+			trigger = { is_active_resolution = "resolution_megaconstruction_workforce_revolution" }
+			alloys = 2500
+			nanites = 12
+		}
+	}
+
+	effect = {
+		custom_tooltip = "decision_construct_nanite_disassembler"
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						has_modifier = terraforming_candidate
+						has_modifier = frozen_terraforming_candidate
+						has_modifier = toxic_terraforming_candidate
+					}
+				}
+				remove_modifier = terraforming_candidate
+				remove_modifier = frozen_terraforming_candidate
+				remove_modifier = toxic_terraforming_candidate
+			}
+			set_planet_flag = ssh_active_disassembly_planet
+			set_planet_flag = has_megastructure
+			solar_system = {
+				spawn_megastructure = {
+					owner = space_owner
+					type = nanite_disassembler_p_0
+					planet = root
+				}
+				space_owner = {
+					every_owned_megastructure = {
+						limit = {
+							is_megastructure_type = nanite_disassembler_p_0
+						}
+						upgrade_megastructure_to = nanite_disassembler_p_1
+					}
+				}
+			}
+			# Check for Holy World
+			if = {
+				limit = { has_modifier = holy_planet }
+				planet_event = { id = planet_destruction.605 }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 2
+		# Income needed?
+		modifier = {
+			factor = 10 # 2*10 = 20 = extremely likely
+			from = {
+				has_monthly_income = {
+					resource = minerals
+					value < 10
+				}
+			}
+		}
+		# Upkeep affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 100
+				}	
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 5 #10 = somewhat likely
+			from = {
+				OR = {
+					has_ai_personality = decadent_capitalists
+					has_ai_personality = ruthless_capitalists
+					has_ai_personality = peaceful_traders
+					has_authority = auth_corporate
+				}	
+			}
+		}
+		# Location?
+		modifier = {
+			factor = 0.1
+			solar_system = {
+				any_neighbor_system = {
+					exists = owner
+					NOT = {
+						owner = { is_same_value = from }
+					}
+				}
+			}
+		}
+	}
+}
+
+decision_construct_nanite_disassembler_system = {
+	owned_planets_only = no
+	icon = decision_planet_beam
+	enactment_time = 0
+
+	potential = {
+		exists = space_owner
+		#space_owner = {
+		#	is_ai = no
+		#}
+		is_star = yes
+		is_colony = no
+		NOT = {
+			has_planet_flag = ssh_planet_decision_dismantle_system
+		}
+		if = {
+			limit = { exists = owner }
+			NOT = {
+				owner = { is_country_type = primitive }
+			}
+		}
+		#solar_system = {
+		#	any_system_planet = {
+		#		is_star = no
+		#	}
+		#}
+		NOT = {
+			solar_system = {
+				any_system_planet = {
+					NOT = {
+						is_star = no
+					}
+					OR = {
+						is_colony = yes
+						has_planet_flag = has_megastructure
+						# Astral Rifts
+						is_planet_class = pc_astral_scar
+        				is_planet_class = pc_rift_star
+        				is_planet_class = pc_warden_guardian
+        				is_planet_class = pc_rare_crystal_asteroid
+						is_planet_class = pc_fusion_candle
+					}
+				}
+			}
+		}
+		NOR = {
+			solar_system = { ssh_is_special_system = yes }
+			has_planet_flag = has_megastructure
+			has_planet_flag = megastructure
+			has_planet_flag = ssh_shrinking_planet
+			has_planet_flag = ssh_active_disassembly_planet
+			has_anomaly = yes
+			# Flag
+			has_global_flag = ssh_nanite_disassemblers_deactivated
+		}
+	}
+
+	prerequisites = {
+		ssh_tech_nanite_disassembler
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { NOT = { is_active_resolution = "resolution_megaconstruction_workforce_revolution" } }
+			mult = solar_system.trigger:num_planets_in_system
+			alloys = 5000
+			nanites = 25
+		}
+		cost = {
+			trigger = { is_active_resolution = "resolution_megaconstruction_workforce_revolution" }
+			mult = solar_system.trigger:num_planets_in_system
+			alloys = 2500
+			nanites = 12
+		}
+	}
+
+	effect = {
+		custom_tooltip = "decision_construct_nanite_disassembler_system"
+		hidden_effect = {
+			solar_system = {
+				set_asteroid_belt = { radius = 0 }
+				# Every system planet, because binary + trinary systems. So that you cant use this decision on the other star(s) in binary/trinary systems
+				every_system_planet = {
+					limit = { is_star = yes }
+					set_planet_flag = ssh_planet_decision_dismantle_system
+				}
+				every_system_planet = {
+					limit = {
+						is_star = no
+					}
+					if = {
+						limit = {
+							OR = {
+								has_modifier = terraforming_candidate
+								has_modifier = frozen_terraforming_candidate
+								has_modifier = toxic_terraforming_candidate
+							}
+						}
+						remove_modifier = terraforming_candidate
+						remove_modifier = frozen_terraforming_candidate
+						remove_modifier = toxic_terraforming_candidate
+					}
+					set_planet_flag = ssh_active_disassembly_planet
+					set_planet_flag = has_megastructure
+					solar_system = {
+						spawn_megastructure = {
+							owner = space_owner
+							type = nanite_disassembler_p_0
+							planet = prev
+						}
+						space_owner = {
+							every_owned_megastructure = {
+								limit = {
+									is_megastructure_type = nanite_disassembler_p_0
+								}
+								upgrade_megastructure_to = nanite_disassembler_p_1
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 2
+		# Income needed?
+		modifier = {
+			factor = 10 # 2*10 = 20 = extremely likely
+			from = {
+				has_monthly_income = {
+					resource = minerals
+					value < 100
+				}
+			}
+		}
+		# Upkeep affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 500
+				}	
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 5 #10 = somewhat likely
+			from = {
+				OR = {
+					has_ai_personality = decadent_capitalists
+					has_ai_personality = ruthless_capitalists
+					has_ai_personality = peaceful_traders
+					has_authority = auth_corporate
+				}	
+			}
+		}
+		# Location?
+		modifier = {
+			factor = 0.1
+			solar_system = {
+				any_neighbor_system = {
+					exists = owner
+					NOT = {
+						owner = { is_same_value = from }
+					}
+				}
+			}
+		}
+	}
+}
+
+decision_construct_star_nanite_disassembler = {
+	owned_planets_only = no
+	icon = decision_planet_beam
+	enactment_time = 0
+
+	potential = {
+		exists = space_owner
+		#space_owner = {
+		#	is_ai = no
+		#}
+		#is_star = yes #can also mine artificial stars orbiting "normal" stars at the center of the system!
+		is_colony = no
+		if = {
+			limit = { exists = owner }
+			NOT = {
+				owner = { is_country_type = primitive }
+			}
+		}
+		OR = {
+			is_planet_class = pc_black_dwarf_star
+			is_planet_class = pc_t_star
+			# Gigas Planets
+			is_planet_class = pc_gigabrown_dwarf
+		}
+		NOT = {
+			solar_system = {
+				any_system_planet = {
+					NOR = {
+						#All planets must be mined first, after that you can mine the star
+						is_planet_class = pc_black_dwarf_star
+						is_planet_class = pc_t_star
+						is_planet_class = pc_gigabrown_dwarf # Gigas' Brown Dwarves
+						is_star = yes
+						# Astral Rifts
+						is_planet_class = pc_astral_scar
+        				is_planet_class = pc_rift_star
+        				is_planet_class = pc_warden_guardian
+        				is_planet_class = pc_rare_crystal_asteroid
+					}
+				}
+			}
+		}
+		NOR = {
+			has_planet_flag = ssh_shrinking_planet
+			has_planet_flag = ssh_active_disassembly_planet
+			has_anomaly = yes
+			# Flag
+			has_global_flag = ssh_nanite_disassemblers_deactivated
+		}
+	}
+
+	prerequisites = {
+		#ssh_tech_atomic_manipulation #star disassembly requires this anyway so yeah
+		ssh_tech_star_disassembler
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { NOT = { is_active_resolution = "resolution_megaconstruction_workforce_revolution" } }
+			alloys = 10000
+			nanites = 50
+		}
+		cost = {
+			trigger = { is_active_resolution = "resolution_megaconstruction_workforce_revolution" }
+			alloys = 5000
+			nanites = 25
+		}
+	}
+
+	effect = {
+		custom_tooltip = "decision_construct_nanite_disassembler"
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						has_modifier = terraforming_candidate
+						has_modifier = frozen_terraforming_candidate
+						has_modifier = toxic_terraforming_candidate
+					}
+				}
+				remove_modifier = terraforming_candidate
+				remove_modifier = frozen_terraforming_candidate
+				remove_modifier = toxic_terraforming_candidate
+			}
+			set_planet_flag = ssh_active_disassembly_planet
+			set_planet_flag = has_megastructure
+			solar_system = {
+				spawn_megastructure = {
+					owner = space_owner
+					type = nanite_disassembler_s_0
+					planet = root
+				}
+				space_owner = {
+					every_owned_megastructure = {
+						limit = {
+							is_megastructure_type = nanite_disassembler_s_0
+						}
+						upgrade_megastructure_to = nanite_disassembler_s_1
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 2
+		# Income needed?
+		modifier = {
+			factor = 10 # 2*10 = 20 = extremely likely
+			from = {
+				OR = {
+					has_monthly_income = {
+						resource = minerals
+						value < 100
+					}
+					has_monthly_income = {
+						resource = alloys
+						value < 100
+					}
+				}
+			}
+		}
+		# Upkeep affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 100
+				}	
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 5 #10 = somewhat likely
+			from = {
+				OR = {
+					has_ai_personality = decadent_capitalists
+					has_ai_personality = ruthless_capitalists
+					has_ai_personality = peaceful_traders
+					has_authority = auth_corporate
+				}	
+			}
+		}
+		# Location?
+		modifier = {
+			factor = 0.1
+			solar_system = {
+				any_neighbor_system = {
+					exists = owner
+					NOT = {
+						owner = { is_same_value = from }
+					}
+				}
+			}
+		}
+	}
+}
+
+
+# Ascensionist Portal Decision - Close Portal (Win Game)
+decision_close_ascension_portal = {
+	owned_planets_only = yes
+	icon = decision_close_ascension_portal
+	enactment_time = 0
+	ai_weight = { weight = 100 }
+	sound = "event_super_explosion"
+
+	potential = {
+		exists = space_owner
+		is_planet_class = pc_exodus_portal
+		space_owner = {
+			has_country_flag = ssh_completed_exodus_country
+		}
+	}
+
+	#prerequisites = {
+	#	ssh_tech_reality_shaping
+	#}
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 10
+		}
+	}
+
+	effect = {
+		custom_tooltip = "decision_close_ascension_portal"
+		hidden_effect = {
+			# Won after final event now
+			#owner = {
+			#	win = yes
+			#}
+			solar_system = {
+				destroy_star_system = yes
+				#set_star_class = sc_ssh_space
+				#every_system_planet = {
+				#	change_pc = pc_ssh_empty_space
+				#	set_planet_size = 0
+				#}
+			}
+		}
+	}
+}
+
+# Shellworld Decisions - Arcology, Hive, Machine world
+# Arcology Project
+decision_shellworld_arcology_project = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 20000
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_shellworld_core
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_arcology_project
+			#OR = {
+			#	is_regular_empire = yes
+			#	has_valid_civic = civic_machine_servitor
+			#}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = penal_colony
+			has_modifier = slave_colony
+			has_modifier = pm_wenkwort_custodian
+		}
+	}
+
+	allow = {
+		if = {
+			limit = { owner = { is_ai = no } }
+			custom_tooltip = {
+				fail_text = decision_arcology_project_requirements
+				free_district_slots < 1
+				num_districts = { type = district_farming value < 1 }
+				num_districts = { type = district_mining value < 1 }
+				num_districts = { type = district_generator value < 1 }
+				# Volcanic Worlds
+				num_districts = { type = district_geothermal value < 1 }
+				num_districts = { type = district_melting value < 1 }
+				num_districts = { type = district_polytechnic value < 1 }
+			}
+			custom_tooltip = {
+				fail_text = legendary_leader_decision_arcology_project
+				NOT = { has_planet_flag = legendary_leader_planet }
+			}
+		}
+		num_uncleared_blockers < 1
+	}
+
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_shellworld_arcology_project_effects
+		hidden_effect = {
+			save_deposits = yes
+			clear_deposits = yes
+			restore_saved_deposits = yes
+			change_pc = pc_shellworld_core_city
+
+			relic_world_conversion_effect = {
+				DISTRICT = district_arcology_housing
+				VARIABLE = num_housing_districts
+			}
+			#set_ecu_industrial_districts_effect = yes
+
+			owner = {
+				country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
+				country_event = { id = ssh_on.24 }
+			}
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				owner = {
+					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+				}
+			}
+			ssh_set_city_shellworld_entity = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			OR = {
+				pop_amount >= 7000
+				#num_pops >= 70
+				is_capital = yes
+			}
+		}
+	}
+}
+
+decision_shellworld_hive_project = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 10000
+			food = 10000
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_shellworld_core
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			has_ascension_perk = ap_hive_worlds
+		}
+	}
+
+	allow = {
+		if = {
+			limit = { owner = { is_ai = no } }
+			custom_tooltip = {
+				fail_text = decision_shellworld_hive_project_requirements
+				free_district_slots < 1
+			}
+			custom_tooltip = {
+				fail_text = legendary_leader_decision_arcology_project
+				NOT = { has_planet_flag = legendary_leader_planet }
+			}
+		}
+		num_uncleared_blockers < 1
+	}
+
+	effect = {
+		# Make hive-planet
+		custom_tooltip = decision_shellworld_hive_project_effects
+		hidden_effect = {
+			clear_deposits = yes
+			change_pc = pc_shellworld_core_hive
+			owner = {
+				country_event = { id = ssh_on.25 }
+			}
+			ssh_set_hive_shellworld_entity = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 10 #all hives will turn their shellworlds into hive shellworlds
+	}
+}
+
+decision_shellworld_nexus_project = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 15000
+			energy = 5000
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_shellworld_core
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+			has_ascension_perk = ap_machine_worlds
+		}
+	}
+
+	allow = {
+		if = {
+			limit = { owner = { is_ai = no } }
+			custom_tooltip = {
+				fail_text = decision_shellworld_machine_project_requirements
+				free_district_slots < 1
+				num_districts = { type = district_farming value < 1 }
+				num_districts = { type = district_farming_uncapped value < 1 }
+			}
+			custom_tooltip = {
+				fail_text = legendary_leader_decision_arcology_project
+				NOT = { has_planet_flag = legendary_leader_planet }
+			}
+		}
+		num_uncleared_blockers < 1
+	}
+
+	effect = {
+		# Make hive-planet
+		custom_tooltip = decision_shellworld_nexus_project_effects
+		hidden_effect = {
+			clear_deposits = yes
+			#remove_all_districts = yes
+			change_pc = pc_shellworld_core_machine
+			#while = {
+			#	count = 3
+			#	add_district = district_hive
+			#}
+			ssh_set_machine_shellworld_entity = yes
+			owner = {
+				country_event = { id = ssh_on.26 }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10 #all machine empires will turn their shellworlds into machine shellworlds
+	}
+}
+
+# Zro Infusor / Detonate Star Megastructure
+decision_construct_zro_detonator = {
+	owned_planets_only = no
+	icon = decision_supernova
+	enactment_time = 0
+
+	potential = {
+		exists = space_owner
+		NOT = {
+			space_owner = {
+				has_country_flag = ssh_is_constructing_zro_detonator
+			}
+		}
+		#space_owner = {
+		#	is_ai = no
+		#}
+		is_star = yes
+		is_colony = no
+		if = {
+			limit = { exists = owner }
+			NOT = {
+				owner = { is_country_type = primitive }
+			}
+		}
+		OR = {
+			is_planet_class = pc_b_star
+			is_planet_class = pc_a_star
+			is_planet_class = pc_f_star
+			is_planet_class = pc_g_star
+			is_planet_class = pc_k_star
+			is_planet_class = pc_m_star
+			is_planet_class = pc_m_giant_star
+			is_planet_class = pc_blue_dwarf_star
+		}
+		NOR = {
+			has_planet_flag = has_megastructure
+			has_anomaly = yes
+			#owner = {
+			#	has_country_flag = ssh_is_constructing_zro_detonator
+			#}
+			solar_system = {
+				any_system_planet = {
+					OR = {
+						is_colony = yes
+						ssh_is_special_planet = yes
+						has_anomaly = yes
+					}
+				}
+			}
+			# Flag
+			has_global_flag = ssh_mega_temple_deactivated
+		}
+	}
+
+	prerequisites = {
+		ssh_tech_shroud_supernova
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 2500
+			sr_zro = 15
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_construct_zro_detonator_requirements
+			NOT = { solar_system = { has_no_non_gate_megastructure = no } }
+		}
+	}
+
+	effect = {
+		custom_tooltip = "decision_construct_zro_detonator_effects"
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						has_modifier = terraforming_candidate
+						has_modifier = frozen_terraforming_candidate
+						has_modifier = toxic_terraforming_candidate
+					}
+				}
+				remove_modifier = terraforming_candidate
+				remove_modifier = frozen_terraforming_candidate
+				remove_modifier = toxic_terraforming_candidate
+			}
+			set_planet_flag = stellar_zro_detonator_planet
+			set_planet_flag = has_megastructure
+			orbital_station = {
+				dismantle = yes
+			}
+			solar_system = {
+				spawn_megastructure = {
+					owner = space_owner
+					type = stellar_zro_detonator_0
+					planet = root
+				}
+				space_owner = {
+					set_country_flag = ssh_is_constructing_zro_detonator
+					every_owned_megastructure = {
+						limit = {
+							is_megastructure_type = stellar_zro_detonator_0
+						}
+						upgrade_megastructure_to = stellar_zro_detonator_1
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0 # For now
+	}
+
+	#ai_weight = {
+	#	weight = 1000
+	#	# Have we already gained all important Shroud Insights?
+	#	modifier = {
+	#		factor = 0
+	#		from = {
+	#			ssh_has_all_shroud_insights = yes
+	#		}
+	#	}
+	#	# Are we constructing one already?
+	#	modifier = {
+	#		factor = 0
+	#		from = { has_country_flag = ssh_is_constructing_zro_detonator }
+	#	}
+	#	# Do we have enough resources?
+	#	modifier = {
+	#		factor = 0.001
+	#		from = {
+	#			resource_stockpile_compare = {
+	#				resource = alloys
+	#				value < 10000
+	#			}
+	#			resource_stockpile_compare = {
+	#				resource = sr_zro
+	#				value < 1600
+	#			}
+	#			OR = {
+	#				resource_stockpile_compare = {
+	#					resource = minerals
+	#					value < 16000
+	#				}
+	#				resource_stockpile_compare = {
+	#					resource = sr_hydrogen
+	#					value < 25000
+	#				}
+	#			}
+	#		}
+	#	}
+	#	# Upkeep Affordable?
+	#	modifier = {
+	#		factor = 0.01
+	#		from = {
+	#			has_monthly_income = {
+	#				resource = energy
+	#				value < 250
+	#			}
+	#		}
+	#	}
+	#	# System good?
+	#	modifier = {
+	#		factor = 0.01
+	#		solar_system = {
+	#			any_neighbor_system = {
+	#				exists = owner
+	#				NOT = {
+	#					owner = { is_same_value = from }
+	#				}
+	#			}
+	#		}
+	#	}
+	#}
+}
+
+####################################
+##### Shroud Insight Decisions #####
+####################################
+
+# Agrarian Idyll Insight
+decision_insight_natural_harmony = {
+	owned_planets_only = yes
+	icon = decision_animal_wildlife
+	enactment_time = 720
+
+	potential = {
+		exists = space_owner
+		#space_owner = {
+		#	is_ai = no # AI can do this as well!
+		#}
+		is_star = no
+		is_colony = yes
+		if = {
+			limit = { exists = owner }
+			NOT = {
+				owner = { is_country_type = primitive }
+			}
+		}
+		NOR = {
+			is_artificial = yes # Only natural planets
+			is_planet_class = pc_nuked
+			has_planet_flag = megastructure
+			has_planet_flag = ssh_insight_agrarian_idyll_planet #can only do once per planet
+		}
+	}
+
+	prerequisites = {
+		ssh_tech_insight_agrarian_idyll
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_insight_natural_harmony_requirements
+			NOR = {
+				is_artificial = yes
+				is_planet_class = pc_nuked
+			}
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 1000
+		}
+	}
+
+	effect = {
+		custom_tooltip = "decision_insight_natural_harmony_effect"
+		hidden_effect = {
+			set_planet_flag = ssh_insight_agrarian_idyll_planet
+			add_modifier = {
+				modifier = ssh_shroud_insight_agrarian_idyll_planet_modifier
+				days = -1
+				#years = 10
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		# Personality?
+		modifier = {
+			factor = 2
+			from = {
+				OR = {
+					is_pacifist = yes
+					has_civic = civic_agrarian_idyll
+					is_ecocentric = yes
+				}	
+			}
+		}
+	}
+}
+
+# BNW Insight
+decision_insight_bnw = {
+	owned_planets_only = yes
+	icon = decision_psi_inoculate_pops
+	enactment_time = 0
+
+	potential = {
+		exists = space_owner
+		#space_owner = {
+		#	is_ai = no # AI can do this as well!
+		#}
+		is_star = no
+		is_colony = yes
+		if = {
+			limit = { exists = owner }
+			NOT = {
+				owner = { is_country_type = primitive }
+			}
+		}
+		owner = { has_country_flag = ssh_has_shroud_insight_bnw }
+		NOT = {
+			has_modifier = ssh_shroud_insight_zro_distribution_planet_modifier
+		}
+	}
+
+	#prerequisites = {
+	#	ssh_tech_insight_agrarian_idyll
+	#}
+
+	resources = {
+		category = pop_category_rulers
+		cost = {
+			influence = 25
+			sr_zro = 75
+		}
+	}
+
+	effect = {
+		custom_tooltip = "decision_insight_bnw_effect"
+		hidden_effect = {
+			add_modifier = {
+				modifier = ssh_shroud_insight_zro_distribution_planet_modifier
+				#years = 10
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		# Personality?
+		modifier = {
+			factor = 2
+			from = {
+				OR = {
+					has_ai_personality = slaving_despots
+					has_ai_personality = ruthless_capitalists
+					has_ai_personality = decadent_hierarchy
+					has_ai_personality = hegemonic_imperialists
+					has_civic = civic_slaver_guilds
+					has_civic = civic_aristocratic_elite
+					has_civic = civic_feudal_realm
+					has_civic = civic_police_state
+					has_civic = civic_pleasure_seekers
+					has_civic = civic_dystopian_society
+				}	
+			}
+		}
+		modifier = {
+			factor = 0.1
+			from = {
+				OR = {
+					has_civic = civic_shared_burden
+				}	
+			}
+		}
+	}
+}
+
+decision_construct_celestial_digester = {
+	owned_planets_only = no
+	icon = decision_planet_beam
+	enactment_time = 0
+
+	potential = {
+		exists = space_owner
+		space_owner = {
+			OR = {
+				is_lithoid_devouring_swarm = yes
+				has_civic = civic_bugged_hive_terravore # Bug Branch Terravore
+			}
+		}
+		is_star = no
+		is_colony = no
+		if = {
+			limit = { exists = owner }
+			NOT = {
+				owner = { is_country_type = primitive }
+			}
+		}
+		NOR = {
+			ssh_is_special_planet = yes
+			has_planet_flag = ssh_shrinking_planet
+			has_planet_flag = has_megastructure
+			has_planet_flag = megastructure
+			has_planet_flag = is_under_shellworld_construction
+			has_planet_flag = ssh_active_disassembly_planet
+			has_anomaly = yes
+			# Flag
+			has_global_flag = ssh_nanite_disassemblers_deactivated
+		}
+	}
+
+	prerequisites = {
+		ssh_tech_terravore_digester
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 2500
+			energy = 100
+		}
+	}
+
+	effect = {
+		custom_tooltip = "decision_construct_celestial_digester"
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						has_modifier = terraforming_candidate
+						has_modifier = frozen_terraforming_candidate
+						has_modifier = toxic_terraforming_candidate
+					}
+				}
+				remove_modifier = terraforming_candidate
+				remove_modifier = frozen_terraforming_candidate
+				remove_modifier = toxic_terraforming_candidate
+			}
+			set_planet_flag = ssh_active_disassembly_planet
+			set_planet_flag = has_megastructure
+			solar_system = {
+				spawn_megastructure = {
+					owner = space_owner
+					type = terravore_digester_p_0
+					planet = root
+				}
+				space_owner = {
+					every_owned_megastructure = {
+						limit = {
+							is_megastructure_type = terravore_digester_p_0
+						}
+						upgrade_megastructure_to = terravore_digester_p_1
+					}
+				}
+			}
+			# Check for Holy World
+			if = {
+				limit = { has_modifier = holy_planet }
+				planet_event = { id = planet_destruction.605 }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+		# How many digesters active?
+		#modifier = {
+		#	factor = 0.1
+		#	from = {
+		#		any_owned_megastructure = {
+		#			OR = {
+		#				is_megastructure_type = terravore_digester_p_artificial
+		#				is_megastructure_type = terravore_digester_p_crystal
+		#				is_megastructure_type = terravore_digester_p_gas
+		#				is_megastructure_type = terravore_digester_p_rocky
+		#				is_megastructure_type = terravore_digester_p_zro
+		#			}
+		#		}
+		#	}
+		#}
+		# Income needed?
+		modifier = {
+			factor = 0.5
+			from = {
+				has_monthly_income = {
+					resource = minerals
+					value > 250
+				}
+			}
+		}
+		modifier = {
+			factor = 0.01
+			from = {
+				has_monthly_income = {
+					resource = minerals
+					value > 500
+				}
+			}
+		}
+		# Upkeep affordable?
+		modifier = {
+			factor = 0
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 100
+				}	
+			}
+		}
+	}
+}
+
+# Interstellar Art. System: Ringworld
+decision_artsys_ringworld_construction = {
+	#owned_planets_only = no
+	icon = decision_ringworld_construction #### #decision_shattered_planet #decision_tidal_locked_planet 
+
+	enactment_time = 0 #900 #2x as fast as normal ringworld because skill
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 5000
+			influence = 150 #0.5x influence
+		}
+	}
+
+	potential = {
+		exists = from
+		exists = space_owner
+		space_owner = { is_same_value = from }
+		#OR = {
+		#	is_planet_class = pc_fusion_candle
+		#	is_planet_class = pc_blue_dwarf_star
+		#	is_planet_class = pc_black_hole
+		#}
+		has_planet_flag = ssh_artificial_star
+		NOR = {
+			has_planet_flag = has_megastructure
+			has_planet_flag = ssh_artsys_planets
+		}
+		#exists = space_owner ### did 4.0 break this?
+		#exists = owner
+	}
+
+	prerequisites = {
+		ssh_tech_system_creator
+		tech_ring_world
+	}
+
+	effect = {
+		#custom_tooltip = decision_shellworld_arcology_project_effects
+		hidden_effect = {
+			set_planet_flag = has_megastructure
+			#add_modifier = {
+			#	modifier = ssh_interstellar_system_construction
+			#	days = 900
+			#}
+			solar_system = {
+				spawn_megastructure = {
+					type = "ring_world_1"
+					orbit_angle = 0
+					orbit_distance = 0
+					owner = fromfromfrom
+					graphical_culture = fromfromfrom
+					planet = star
+					init_effect = {
+						upgrade_megastructure_to = ring_world_2
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0.1
+			owner = {
+				any_owned_planet = {
+					is_planet_class = pc_ringworld_habitable
+				}
+			}
+		}
+	}
+}
+
+# Interstellar Art. System: Planets
+decision_artsys_planet_construction = {
+	#owned_planets_only = no
+	icon = decision_tidal_lock_planet #decision_shattered_planet
+
+	enactment_time = 0 #900
+	resources = {
+		category = decisions
+		cost = {
+			energy = 25000
+			minerals = 100000
+		}
+	}
+
+	potential = {
+		exists = from
+		exists = space_owner
+		space_owner = { is_same_value = from }
+		#OR = {
+		#	is_planet_class = pc_fusion_candle
+		#	is_planet_class = pc_blue_dwarf_star
+		#	is_planet_class = pc_black_hole
+		#}
+		has_planet_flag = ssh_artificial_star
+		NOR = {
+			has_planet_flag = has_megastructure
+			has_planet_flag = ssh_artsys_planets
+		}
+		#exists = space_owner ### did 4.0 break this?
+		#exists = owner
+	}
+
+	prerequisites = {
+		ssh_tech_system_creator
+	}
+
+	effect = {
+		custom_tooltip = decision_artsys_planet_construction_effects
+		hidden_effect = {
+			set_planet_flag = ssh_artsys_planets
+			#add_modifier = {
+			#	modifier = ssh_interstellar_system_construction
+			#	days = 900
+			#}
+			#set_planet_flag = has_megastructure #to prevent ringworld construction
+			solar_system = {
+				spawn_planet = {
+					class = pc_frozen
+					size = 10
+					location = from
+					orbit_distance = 30
+					orbit_angle_offset = 0
+					init_effect = {
+						set_name = "Proto Planet"
+						set_surveyed = {
+							surveyed = yes
+							surveyor = fromfrom
+						}
+						set_all_comms_surveyed = yes
+						clear_blockers = yes
+						set_planet_flag = ssh_artificial_planet
+						if = {
+							limit = { has_gigastructures = no }
+							add_modifier = { modifier = terraforming_candidate }
+						}
+					}
+				}
+				spawn_planet = {
+					class = pc_barren_cold
+					size = 10
+					location = from
+					orbit_distance = 30
+					orbit_angle_offset = 60
+					init_effect = {
+						set_name = "Proto Planet"
+						set_surveyed = {
+							surveyed = yes
+							surveyor = fromfrom
+						}
+						set_all_comms_surveyed = yes
+						clear_blockers = yes
+						set_planet_flag = ssh_artificial_planet
+						if = {
+							limit = { has_gigastructures = no }
+							random_list = {
+								25 = {
+									add_modifier = { modifier = terraforming_candidate }
+								}
+								75 = {
+									# Nothing
+								}
+							}
+						}
+					}
+				}
+				spawn_planet = {
+					class = pc_barren
+					size = 10
+					location = from
+					orbit_distance = 30
+					orbit_angle_offset = 120
+					init_effect = {
+						set_name = "Proto Planet"
+						set_surveyed = {
+							surveyed = yes
+							surveyor = fromfrom
+						}
+						set_all_comms_surveyed = yes
+						clear_blockers = yes
+						set_planet_flag = ssh_artificial_planet
+						if = {
+							limit = { has_gigastructures = no }
+							random_list = {
+								25 = {
+									add_modifier = { modifier = terraforming_candidate }
+								}
+								75 = {
+									# Nothing
+								}
+							}
+						}
+					}
+				}
+				spawn_planet = {
+					class = pc_barren_cold
+					size = 10
+					location = from
+					orbit_distance = 30
+					orbit_angle_offset = 180
+					init_effect = {
+						set_name = "Proto Planet"
+						set_surveyed = {
+							surveyed = yes
+							surveyor = fromfrom
+						}
+						set_all_comms_surveyed = yes
+						clear_blockers = yes
+						set_planet_flag = ssh_artificial_planet
+						if = {
+							limit = { has_gigastructures = no }
+							add_modifier = { modifier = terraforming_candidate }
+						}
+					}
+				}
+				spawn_planet = {
+					class = pc_frozen
+					size = 10
+					location = from
+					orbit_distance = 30
+					orbit_angle_offset = 240
+					init_effect = {
+						set_name = "Proto Planet"
+						set_surveyed = {
+							surveyed = yes
+							surveyor = fromfrom
+						}
+						set_all_comms_surveyed = yes
+						clear_blockers = yes
+						set_planet_flag = ssh_artificial_planet
+						if = {
+							limit = { has_gigastructures = no }
+							random_list = {
+								25 = {
+									add_modifier = { modifier = terraforming_candidate }
+								}
+								75 = {
+									# Nothing
+								}
+							}
+						}
+					}
+				}
+				spawn_planet = {
+					class = pc_barren
+					size = 10
+					location = from
+					orbit_distance = 30
+					orbit_angle_offset = 300
+					init_effect = {
+						set_name = "Proto Planet"
+						set_surveyed = {
+							surveyed = yes
+							surveyor = fromfrom
+						}
+						set_all_comms_surveyed = yes
+						clear_blockers = yes
+						set_planet_flag = ssh_artificial_planet
+						if = {
+							limit = { has_gigastructures = no }
+							random_list = {
+								25 = {
+									add_modifier = { modifier = terraforming_candidate }
+								}
+								75 = {
+									# Nothing
+								}
+							}
+						}
+					}
+				}
+			}
+			space_owner = {
+				country_event = {
+					id = ssh_on.40
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0.01
+			owner = {
+				NOT = {
+					any_owned_planet = {
+						is_planet_class = pc_ringworld_habitable
+					}
+				}
+			}
+		}
+	}
+}
+
+# Artificial Planets: Turn into Gas Giant
+decision_art_planet_gas_giant = {
+	owned_planets_only = no
+	icon = decision_gas_giant #decision_shattered_planet
+
+	enactment_time = 900
+	resources = {
+		category = decisions
+		cost = {
+			sr_hydrogen = 75000
+			exotic_gases = 10000
+		}
+	}
+
+	potential = {
+		exists = from
+		exists = space_owner
+		space_owner = { is_same_value = from }
+		#OR = {
+		#	is_planet_class = pc_barren
+		#	is_planet_class = pc_barren_cold
+		#	is_planet_class = pc_frozen
+		#}
+		has_planet_flag = ssh_artificial_planet
+		NOR = {
+			has_planet_flag = has_megastructure
+			ssh_is_any_gas_giant = yes
+		}
+	}
+
+	prerequisites = {
+		ssh_tech_system_creator
+	}
+
+	effect = {
+		custom_tooltip = decision_art_planet_gas_giant_effects
+		hidden_effect = {
+			remove_planet_flag = ssh_artificial_planet
+			change_pc = pc_gas_giant
+			set_planet_size = 15
+			random_list = {
+				25 = {
+					add_modifier = {
+						modifier = ssh_hot_gas_giant
+						days = -1
+					}
+					change_planet_size = 2
+				}
+				25 = {
+					set_planet_entity = { entity = "ssh_gas_giant_cloudless_entity" }
+					add_modifier = {
+						modifier = ssh_cloudless_gas_giant
+						days = -1
+					}
+					change_planet_size = 2
+				}
+				50 = {
+					add_modifier = {
+						modifier = ssh_dwarf_gas_giant
+						days = -1
+					}
+				}
+			}
+			space_owner = {
+				country_event = {
+					id = ssh_on.41
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+		#modifier = {
+		#	factor = 0.1
+		#	owner = {
+		#		any_owned_planet = {
+		#			is_planet_class = pc_ringworld_habitable
+		#		}
+		#	}
+		#}
+	}
+}
+
+
+####### Interstellar Art. System: Alderson Disk
+decision_artsys_alderson_construction = {
+	#owned_planets_only = no
+	icon = decision_ringworld_construction
+
+	enactment_time = 0 #1800 #2x as fast as normal alderson because skill
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 155000
+			influence = 150 #0.5x influence
+			unity = 500
+		}
+	}
+
+	potential = {
+		has_gigastructures = yes
+		exists = from
+		exists = space_owner
+		space_owner = { is_same_value = from }
+		from = {
+			has_technology = giga_tech_alderson_disk
+			has_ascension_perk = ap_slice_of_life
+		}
+		NOT = { has_global_flag = alderson_disabled }
+
+		#OR = {
+		#	is_planet_class = pc_fusion_candle
+		#	is_planet_class = pc_blue_dwarf_star
+		#	is_planet_class = pc_black_hole
+		#}
+		has_planet_flag = ssh_artificial_star
+		NOR = {
+			has_planet_flag = has_megastructure
+			has_planet_flag = ssh_artsys_planets
+		}
+		#exists = space_owner ### did 4.0 break this?
+	}
+
+	prerequisites = {
+		ssh_tech_system_creator
+	}
+
+	effect = {
+		#custom_tooltip = decision_shellworld_arcology_project_effects
+		hidden_effect = {
+			set_planet_flag = has_megastructure
+			solar_system = {
+				spawn_megastructure = {
+					type = "alderson_disk_0"
+					orbit_angle = 0
+					orbit_distance = 0
+					owner = fromfromfrom
+					graphical_culture = fromfromfrom
+					planet = star
+					init_effect = {
+						upgrade_megastructure_to = alderson_disk_1
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 20
+		#modifier = {
+		#	factor = 0.1
+		#	owner = {
+		#		any_owned_planet = {
+		#			is_planet_class = pc_ringworld_habitable
+		#		}
+		#	}
+		#}
+	}
+}
+
+
+# Reality Collapse - Slowdown Decision
+decision_vacdec_block_system = {
+	owned_planets_only = no
+	icon = decision_vacdec
+	#enactment_time = 360
+
+	potential = {
+		exists = space_owner
+		NOT = { space_owner = { has_country_flag = ssh_vacdec_country_active_system_blockade } }
+		space_owner = { is_ai = no } # For now players only
+		is_star = yes
+		is_colony = no
+		NOR = { has_planet_flag = ssh_vacdec_blockade_enacted }
+	}
+
+	prerequisites = { ssh_tech_vacdec_slowdown }
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 50000
+			sr_dark_matter = 250
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_vacdec_block_system_requirements
+			NOT = { owner = { has_country_flag = ssh_vacdec_country_active_system_blockade } }
+		}
+	}
+
+	effect = {
+		custom_tooltip = "decision_vacdec_block_system_effects"
+		hidden_effect = {
+			set_planet_flag = ssh_vacdec_blockade_enacted
+			planet_owner = {
+				set_country_flag = ssh_vacdec_country_active_system_blockade
+			}
+			solar_system = {
+				set_timed_star_flag = {
+					flag = ssh_vacdec_blocked_system
+					days = 1800
+				}
+				star = {
+					add_modifier = {
+						modifier = ssh_subspace_blockade
+						days = 1800
+					}
+					create_ambient_object = {
+						type = extradimensional_1
+						duration = 1800
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0 # For now
+	}
+}
+
+# Eco-Eder Project
+decision_eco_edersphere_project = {
+	owned_planets_only = yes
+	icon = decision_resort_colony
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			trigger = { NOT = { is_active_resolution = "resolution_ecology_paradise_initiative" } }
+			influence = 200
+			minerals = 40000
+			exotic_gases = 900
+			volatile_motes = 900
+		}
+		cost = {
+			trigger = { is_active_resolution = "resolution_ecology_paradise_initiative" }
+			influence = 100
+			minerals = 20000
+			exotic_gases = 450
+			volatile_motes = 450
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_edersphere
+		NOT = { has_planet_flag = ssh_eco_edersphere }
+		exists = owner
+		owner = {
+			is_regular_empire = yes ###
+			OR = {
+				has_civic = civic_agrarian_idyll
+				has_civic = civic_environmentalist
+				has_ascension_perk = ap_world_shaper
+				is_ecocentric = yes
+			}
+		}
+	}
+
+	allow = {
+		if = {
+			limit = { owner = { is_ai = no } }
+			custom_tooltip = {
+				fail_text = legendary_leader_decision_arcology_project
+				NOT = { has_planet_flag = legendary_leader_planet }
+			}
+		}
+		num_uncleared_blockers < 1
+	}
+
+	effect = {
+		# Make eco-eder
+		custom_tooltip = decision_eco_edersphere_project_effects
+		hidden_effect = {
+			clear_deposits = yes
+			set_planet_flag = ssh_eco_edersphere
+			set_planet_entity = {
+				entity = "ssh_edersphere_planet_eco_entity"
+				picture = pc_gas_giant_shellworld # Might add a custom one in the future, but its essentially the same
+			}
+			add_modifier = {
+				modifier = ssh_eco_eder_planet_modifier
+				days = -1
+			}
+			owner = { country_event = { id = ssh_on.53 } }
+		}
+	}
+
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 2
+			exists = owner
+			OR = {
+				pop_amount >= 10000
+				is_capital = yes
+			}
+		}
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_agrarian_idyll
+					has_civic = civic_environmentalist
+					is_ecocentric = yes
+				}
+			}
+		}
+	}
+}
+
+### Vacdec: Basement Universe Probing ###
+decision_vacdec_basement_uni_probing = {
+	owned_planets_only = no
+	icon = decision_vacdec
+
+	enactment_time = 0
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			sr_dark_matter = 150
+		}
+	}
+
+	potential = {
+		exists = space_owner
+		space_owner = {
+			has_country_flag = ssh_vacdec_basement_uni_country
+			NOT = {
+				has_country_flag = ssh_vacdec_basement_uni_probing_completed
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "ssh_basement_uni_currently_probing"
+			space_owner = {
+				NOT = { has_country_flag = ssh_vacdec_basement_uni_currently_researching_probing_project }
+			}
+		}
+		OR = {
+			custom_tooltip = {
+				fail_text = "ssh_basement_uni_already_probed_regular_star"
+				AND = {
+					space_owner = { NOT = { has_country_flag = ssh_vacdec_basement_uni_probed_regular_star } }
+					OR = {
+						is_planet_class = pc_a_star
+						is_planet_class = pc_b_star
+						is_planet_class = pc_f_star
+						is_planet_class = pc_g_star
+						is_planet_class = pc_k_star
+						is_planet_class = pc_m_giant_star
+						is_planet_class = pc_m_star
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "ssh_basement_uni_already_probed_dwarf_star"
+				AND = {
+					space_owner = { NOT = { has_country_flag = ssh_vacdec_basement_uni_probed_dwarf_star } }
+					OR = {
+						is_planet_class = pc_blue_dwarf_star
+						is_planet_class = pc_white_dwarf_star
+						is_planet_class = pc_black_dwarf_star
+						is_planet_class = pc_t_star
+						is_planet_class = pc_gigaignited_star
+						is_planet_class = pc_gigabrown_dwarf
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "ssh_basement_uni_already_probed_neutron_star"
+				AND = {
+					space_owner = { NOT = { has_country_flag = ssh_vacdec_basement_uni_probed_neutron_star } }
+					OR = {
+						is_planet_class = pc_neutron_star
+						is_planet_class = pc_pulsar
+						is_planet_class = pc_quark_star
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "ssh_basement_uni_already_probed_black_hole"
+				AND = {
+					space_owner = { NOT = { has_country_flag = ssh_vacdec_basement_uni_probed_black_hole } }
+					is_planet_class = pc_black_hole
+				}
+			}
+		}
+	}
+
+	prerequisites = {
+		#ssh_tech_basement_universe
+		ssh_tech_basement_universe_probing
+	}
+
+	effect = {
+		custom_tooltip = decision_vacdec_basement_uni_probing_effects
+		space_owner = {
+			enable_special_project = {
+				name = "SSH_VACDEC_BASEMENT_UNIVERSE_PROBING"
+				owner = this
+				location = root
+			}
+		}
+		hidden_effect = {
+			space_owner = {
+				set_country_flag = ssh_vacdec_basement_uni_currently_researching_probing_project
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_a_star
+						is_planet_class = pc_b_star
+						is_planet_class = pc_f_star
+						is_planet_class = pc_g_star
+						is_planet_class = pc_k_star
+						is_planet_class = pc_m_giant_star
+						is_planet_class = pc_m_star
+					}
+				}
+				space_owner = { set_country_flag = probing_regular_star }
+			}
+			else_if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_blue_dwarf_star
+						is_planet_class = pc_white_dwarf_star
+						is_planet_class = pc_black_dwarf_star
+						is_planet_class = pc_t_star
+						is_planet_class = pc_gigaignited_star
+						is_planet_class = pc_gigabrown_dwarf
+					}
+				}
+				space_owner = { set_country_flag = probing_dwarf_star }
+			}
+			else_if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_neutron_star
+						is_planet_class = pc_pulsar
+						is_planet_class = pc_quark_star
+					}
+				}
+				space_owner = { set_country_flag = probing_neutron_star }
+			}
+			else_if = {
+				limit = {
+					is_planet_class = pc_black_hole
+				}
+				space_owner = { set_country_flag = probing_black_hole }
+			}
+			else = {
+				# no
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+# The Pyrosphere Project
+decision_pyrosphere_project = {
+	owned_planets_only = yes
+	icon = decision_exploding_planet
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			alloys = 15000
+			volatile_motes = 500
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_edersphere
+		NOT = { has_planet_flag = ssh_pyrosphere }
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_eternal_vigilance
+		}
+	}
+
+	allow = {
+		if = {
+			limit = { owner = { is_ai = no } }
+			custom_tooltip = {
+				fail_text = legendary_leader_decision_arcology_project
+				NOT = { has_planet_flag = legendary_leader_planet }
+			}
+		}
+		num_uncleared_blockers < 1
+	}
+
+	effect = {
+		# Make pyrosphere
+		custom_tooltip = decision_pyrosphere_project_effects
+		hidden_effect = {
+			set_planet_flag = ssh_pyrosphere
+			owner = { country_event = { id = ssh_on.55 } }
+		}
+	}
+
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 2
+			exists = owner
+			pop_amount >= 10000
+		}
+		modifier = {
+			factor = 0
+			is_capital = yes
+		}
+	}
+}
+
+# Blow Up Edersphere
+decision_activate_pyrosphere = {
+	owned_planets_only = yes
+	icon = decision_exploding_planet
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 1000
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_edersphere
+		has_planet_flag = ssh_pyrosphere
+		exists = owner
+	}
+
+	allow = {
+		has_orbital_bombardment = yes
+	}
+
+	effect = {
+		# Make pyrosphere
+		custom_tooltip = decision_activate_pyrosphere_effects
+		hidden_effect = {
+			owner = {
+				capital_scope = { save_event_target_as = capital_planet }
+			}
+			every_owned_pop_group = {
+				resettle_pop_group = {
+					POP_GROUP = this
+					planet = event_target:capital_planet
+				}
+			}
+			every_fleet_in_orbit = {
+				owner = {
+					save_event_target_as = hostile_fleet_owner
+				}
+				if = {
+					limit = {
+						owner = {
+							OR = {
+								# Fallen Empires posess the tech to quickly jump away
+								is_country_type = fallen_empire
+								is_country_type = awakened_fallen_empire
+								is_blokkats_country_type = yes
+							}
+						}
+					}
+					if = {
+						limit = { is_mobile = yes }
+						set_mia = mia_return_home
+					}
+					else = {
+						destroy_fleet = this
+					}
+				}
+				else = { destroy_fleet = this }
+			}
+			solar_system = {
+				spawn_megastructure = {
+					name = "Destroyed Edersphere"
+					type = edersphere_ruined
+					orbit_angle = 0
+					orbit_distance = 0
+					planet = prev
+				}
+			}
+			create_ambient_object = {
+				type = "star_explosion"
+				play_animation_once = yes
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+			remove_planet = yes
+			event_target:hostile_fleet_owner = {
+				country_event = { id = ssh_on.56 }
+			}
+			owner = { country_event = { id = ssh_on.57 } }
+		}
+	}
+
+	ai_weight = {
+		weight = 999
+		modifier = {
+			factor = 0
+			planet_devastation < 90
+		}
+		modifier = {
+			factor = 0
+			is_capital = yes
+		}
+	}
+}
+
+# Black Hole Shell: Horizon Prisons
+decision_establish_horizon_prisons = {
+	owned_planets_only = yes
+	icon = decision_penal_colony
+
+	enactment_time = 0
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 5000
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_black_hole_shellworld
+		NOT = { has_planet_flag = has_horizon_prisons }
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_establish_horizon_prisons_effects
+		hidden_effect = {
+			set_planet_flag = has_horizon_prisons
+			add_modifier = {
+				modifier = ssh_suprashell_horizon_prisons_planet_modifier
+				days = -1
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 15
+		modifier = {
+			factor = 2
+			exists = owner
+			OR = {
+				pop_amount >= 10000
+				is_capital = yes
+			}
+		}
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_dystopian_society
+					has_ethic = ethic_authoritarian
+					has_ethic = ethic_fanatic_authoritarian
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_dystopian_society
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_egalitarian
+				}
+			}
+		}
+	}
+}
+# Black Hole Shell: Remove Horizon Prisons
+decision_remove_horizon_prisons = {
+	owned_planets_only = yes
+	icon = decision_penal_colony
+
+	enactment_time = 90
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_black_hole_shellworld
+		has_planet_flag = has_horizon_prisons
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+	}
+
+	effect = {
+		remove_modifier = ssh_suprashell_horizon_prisons_planet_modifier
+		hidden_effect = {
+			remove_planet_flag = has_horizon_prisons
+		}
+	}
+}
+
+# Black Hole Shell: Hyperloop
+decision_establish_horizon_trains = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	enactment_time = 500
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 10000
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_black_hole_shellworld
+		NOT = { has_planet_flag = has_horizon_trains }
+		exists = owner
+	}
+
+	effect = {
+		custom_tooltip = decision_establish_horizon_trains_effects
+		hidden_effect = {
+			set_planet_flag = has_horizon_trains
+			add_modifier = {
+				modifier = ssh_suprashell_horizon_trains_planet_modifier
+				days = -1
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 15
+		modifier = {
+			factor = 2
+			exists = owner
+			OR = {
+				pop_amount >= 15000
+				is_capital = yes
+			}
+		}
+	}
+}
+
+# Shellworld: Decrease Social Division
+decision_shellworld_reduce_social_division = {
+	owned_planets_only = yes
+	icon = decision_alien_propaganda
+
+	enactment_time = 0
+	resources = {
+		category = decisions
+		cost = {
+			unity = 1500
+			consumer_goods = 2000
+		}
+	}
+
+	potential = {
+		exists = owner
+		has_planet_flag = shellworld_social_division
+		NOT = {
+			has_modifier = ssh_shellworld_division_campaigns
+		}
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = ssh_shellworld_division_campaigns
+			days = 720
+		}
+	}
+
+	ai_weight = {
+		weight = 20
+		modifier = {
+			factor = 0.5
+			exists = owner
+			owner = {
+				OR = {
+					is_authoritarian = yes
+					has_civic = civic_technocracy
+				}
+			}
+		}
+	}
+}
+
+# Upgrade Habitat into Edersphere
+decision_habitat_upgrade_to_edersphere = {
+	owned_planets_only = yes
+	icon = decision_edersphere
+
+	enactment_time = 7200 #That's twice as fast as to construct a normal Edersphere (you want to have it finished before the game ends, after all)
+	resources = {
+		category = decisions
+		cost = {
+			influence = 250
+			alloys = 45000
+			minerals = 30000
+			rare_crystals = 1000
+			sr_hydrogen = 10000
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_habitat
+		exists = owner
+		owner = { has_technology = ssh_tech_ederspheres }
+	}
+
+	effect = {
+		custom_tooltip = decision_habitat_upgrade_to_edersphere_effects
+		hidden_effect = {
+			set_planet_flag = habitat_edersphere_upgrade
+			# Remove all system habitats and spawn a huge colonized edersphere instead
+			solar_system = {
+				# Dismantle all habitat orbitals
+				every_fleet_in_system = {
+					limit = {
+						OR = {
+							has_fleet_flag = energy_orbital
+							has_fleet_flag = mining_orbital
+							has_fleet_flag = science_orbital
+						}
+					}
+					destroy_fleet = this
+				}
+				spawn_planet = {
+					class = "pc_edersphere"
+					location = star
+					orbit_distance_offset = 40
+					orbit_angle_offset = 135
+					init_effect = {
+						set_name = "Edersphere"
+						set_surveyed = {
+							surveyed = yes
+							surveyor = FROM
+						}
+						set_all_comms_surveyed = yes
+						set_planet_flag = megastructure
+						add_modifier = {
+							modifier = ssh_edersphere_planet_modifier
+							days = -1
+						}
+						create_colony = { owner = from }
+						add_colony_progress = 100
+						save_event_target_as = edersphere_habitat
+					}
+				}
+			}
+			every_owned_pop_group = {
+				resettle_pop_group = {
+					POP_GROUP = this
+					planet = event_target:edersphere_habitat
+				}
+			}
+			event_target:edersphere_habitat = {
+				if = {
+					limit = { owner = { is_hive_empire = yes } }
+					while = {
+						count = 6
+						add_district = district_ssh_edersphere_hive
+					}
+				}
+				else_if = {
+					limit = { owner = { is_machine_empire = yes } }
+					while = {
+						count = 6
+						add_district = district_ssh_edersphere_nexus
+					}
+				}
+				else = {
+					while = {
+						count = 6
+						add_district = district_ssh_edersphere_city
+					}
+				}
+				while = {
+					count = 2
+					add_district = district_ssh_edersphere_urban_1
+				}
+				while = {
+					count = 2
+					add_district = district_ssh_edersphere_urban_2
+				}
+				while = {
+					count = 2
+					add_district = district_ssh_edersphere_urban_3
+				}
+				while = {
+					count = 2
+					add_district = district_ssh_edersphere_urban_4
+				}
+			}
+			destroy_colony = yes
+			remove_planet = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 3
+			exists = owner
+			OR = {
+				pop_amount >= 10000
+				is_capital = yes
+			}
+		}
+		modifier = {
+			factor = 3
+			exists = owner
+			owner = {
+				OR = {
+					has_origin = origin_void_dwellers
+					has_ascension_perk = ap_grasp_the_void
+				}
+			}
+		}
+	}
+}

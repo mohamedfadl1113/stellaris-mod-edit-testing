@@ -1,0 +1,236 @@
+# Turn into Dyson Sphere
+dyson_hab_0 = {
+	entity = "ssh_dyson_hab_0_entity"
+	construction_entity = "ssh_dyson_hab_0_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 1800 #5years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = {
+		has_technology = ssh_tech_dyson_hab
+		NOT = {
+			has_global_flag = ssh_bwc_megas_deactivated
+		}
+	}
+	show_prereqs = yes
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		dyson_sphere_5
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			#name = "Stellar Shellworld Foundation"
+			type = dyson_hab_1
+			owner = from
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = fromfrom.planet
+		}
+		from = {
+			remove_country_flag = built_dyson_sphere_swarm # So you can build a second Dyson Sphere
+			country_event = {
+				id = ssh_cn.142
+			}
+		}
+	}
+}
+
+# Dummy
+dyson_hab_1 = {
+	entity = "ssh_dyson_hab_0_entity"
+	construction_entity = "ssh_dyson_hab_0_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 5
+	#scales_with_planet = yes
+	#prerequisites = { ssh_tech_dyson_hab }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			energy = 3000
+		}
+	}
+}
+
+# Heat Pumps
+dyson_hab_2 = {
+	entity = "ssh_dyson_hab_1_entity"
+	construction_entity = "ssh_dyson_hab_1_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 3600 #10years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = { has_technology = ssh_tech_dyson_hab }
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+			rare_crystals = 250
+		}
+		produces = {
+			energy = 1500
+		}
+		upkeep = {
+			alloys = 15
+		}
+	}
+
+	upgrade_from = {
+		dyson_hab_1
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.143
+			}
+		}
+	}
+}
+
+# Radiation Shielding
+dyson_hab_3 = {
+	entity = "ssh_dyson_hab_2_entity"
+	construction_entity = "ssh_dyson_hab_2_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 3600 #10years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = { has_technology = ssh_tech_dyson_hab }
+
+	resources = {
+		category = megastructures
+		cost = {
+			minerals = 25000
+			sr_cultrobium = 10000
+		}
+		upkeep = {
+			alloys = 25
+		}
+	}
+
+	upgrade_from = {
+		dyson_hab_2
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+		}
+		spawn_planet = {
+			class = pc_habitable_dyson
+			location = fromfrom.planet
+			size = 25
+			orbit_angle_offset = 0
+			init_effect = {
+				set_name = "Dyson Sphere"
+				set_surveyed = {
+					surveyed = yes
+					surveyor = fromfrom
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				trigger_megastructure_icon = yes
+				set_planet_flag = megastructure
+				save_event_target_as = dyson_hab_planet
+			}
+		}
+		event_target:dyson_hab_planet = {
+			add_modifier = {
+				modifier = "ssh_stellar_shellworld_planet_modifier"
+				days = -1
+			}
+		}
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = habitable_dyson_planet
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.144
+			}
+			# FE Materialist Comments
+			# Unlike the other BWC megas, this one does not directly try to imitate nature as a piece of art, so no enclave/spiritualist comment on this one
+			if = {
+				limit = {
+					any_country = {
+						is_fallen_empire_materialist = yes
+						has_communications = prev
+					}
+					NOT = { has_country_flag = received_fe_materialist_comment_bwc }
+				}
+				country_event = {
+					id = ssh_on.59
+					days = 10
+				}
+				set_country_flag = received_fe_materialist_comment_bwc
+			}
+		}
+	}
+}
+
+# Upgrade from Dyson Swarm
+dyson_hab_0_swarm = {
+	entity = "ssh_dyson_hab_0_entity"
+	construction_entity = "ssh_dyson_hab_0_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 7200 #20 years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = {
+		has_technology = ssh_tech_dyson_hab
+		NOT = {
+			has_global_flag = ssh_bwc_megas_deactivated
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 50000
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		dyson_swarm_3
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			#name = "Stellar Shellworld Foundation"
+			type = dyson_hab_1
+			owner = from
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = fromfrom.planet
+		}
+		star = { clear_deposits = yes }
+		from = {
+			remove_country_flag = built_dyson_sphere_swarm # So you can build a second Dyson Sphere
+			country_event = {
+				id = ssh_cn.142
+			}
+		}
+	}
+}

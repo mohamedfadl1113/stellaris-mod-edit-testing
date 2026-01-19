@@ -1,0 +1,33 @@
+# Gas Giant Shellworld Inital Setup
+# Flags Set:
+#	* Uncapped Generator Districts
+#	* Uncapped Mining Districts
+#	* Uncapped Farming Districts
+
+if = {
+	limit = {
+		exists = owner
+		owner = {
+			has_origin = origin_ssh_gas_giant_shellworld
+		}
+	}
+
+	# 1 Housing, 1 Farming, 1 Turbine/Energy, 1 Industry
+	
+	change_variable = {
+		which = energy_districts
+		value = 1
+	}
+	change_variable = {
+		which = mining_districts
+		value = 1
+	}
+	change_variable = {
+		which = farming_districts
+		value = 1
+	}
+
+	set_planet_flag = uncapped_energy
+	set_planet_flag = uncapped_mining
+	set_planet_flag = uncapped_farming
+}

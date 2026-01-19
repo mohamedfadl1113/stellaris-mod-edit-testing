@@ -1,0 +1,539 @@
+mega_brain_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	prerequisites = { ssh_tech_mega_brain }
+	potential = {
+		has_technology = ssh_tech_mega_brain
+		NOT = {
+			has_global_flag = ssh_bio_brain_deactivated
+		}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_mega_brain_already_built"
+			from = {
+				NOT = {
+					has_country_flag = ssh_has_mega_brain
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_black_hole"
+			NOT = { is_star_class = sc_black_hole }
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_neutron"
+			NOR = { 
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+				is_star_class = sc_toxoid_star
+			}
+		}
+		#custom_tooltip = {
+		#	fail_text = "requires_no_existing_megastructure"
+		#	has_no_non_gate_megastructure = yes
+		#}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 250
+			food = 250
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOR = {
+					has_anomaly = yes
+					any_moon = { has_anomaly = yes }
+				}
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_habitable_planet"
+				habitable_planet = yes
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_no_colony"
+				NOT = {
+					is_colony = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_hostile_or_primitive"
+				NOR = {
+					planet_is_hostile_or_crisis = yes
+					AND = {
+						exists = owner
+						owner = {
+							is_country_type = primitive
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					is_planet_class = pc_habitat
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_orbital_debris"
+				NOR = { has_planet_flag = has_orbital_debris }
+			}
+
+			# balance for habitats
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOR = {
+					is_asteroid = yes
+					is_moon = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_solarpunk"
+				NOT = {
+					solar_system = {
+						has_star_flag = solarpunk_system_02
+					}
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				remove_modifier = terraforming_candidate
+				set_planet_flag = has_megastructure
+				set_planet_flag = mega_brain_planet
+				save_event_target_as = ssh_mega_brain_planet
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		from = {
+			set_country_flag = ssh_has_mega_brain
+			country_event = { id = ssh_cn.104 }
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+		modifier = {
+			factor = 0.001
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+	}
+}
+
+# Growing Pod
+mega_brain_1 = {
+	entity = "ssh_megabrain_1_entity"
+	construction_entity = "ssh_megabrain_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_mega_brain }
+	potential = { has_technology = ssh_tech_mega_brain }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 1500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		mega_brain_0
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.105 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# Nutritient Substance
+mega_brain_2 = {
+	entity = "ssh_megabrain_2_entity"
+	construction_entity = "ssh_megabrain_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600 #10years
+	prerequisites = { ssh_tech_mega_brain }
+	potential = { has_technology = ssh_tech_mega_brain }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 15000
+			food = 20000
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		mega_brain_1
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				remove_planet = yes
+			}
+		}
+		from = { country_event = { id = ssh_cn.106 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# Input & Output Stimulation Electrodes
+mega_brain_3 = {
+	entity = "ssh_megabrain_3_entity"
+	construction_entity = "ssh_megabrain_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_mega_brain }
+	potential = { has_technology = ssh_tech_mega_brain }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 15
+		}
+	}
+
+	upgrade_from = {
+		mega_brain_2
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.107 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# Add Conmat for Grow Stem
+mega_brain_4 = {
+	entity = "ssh_megabrain_4_entity"
+	construction_entity = "ssh_megabrain_4_entity"
+	portrait = "GFX_mega_ssh_bio_brain_0"
+	build_time = 3600 #10 years
+	prerequisites = { ssh_tech_mega_brain }
+	potential = { has_technology = ssh_tech_mega_brain }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_conscious_matter = 1500
+		}
+		upkeep = {
+			energy = 20
+			food = 50
+			sr_conscious_matter = 1
+		}
+	}
+
+	upgrade_from = {
+		mega_brain_3
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.108 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# Sensory Input Cells (Smol brain)
+mega_brain_5 = {
+	entity = "ssh_megabrain_5_entity"
+	construction_entity = "ssh_megabrain_5_entity"
+	portrait = "GFX_mega_ssh_bio_brain_1"
+	build_time = 720 #2years
+	prerequisites = { ssh_tech_mega_brain }
+	potential = { has_technology = ssh_tech_mega_brain }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_conscious_matter = 1000
+		}
+		produces = {
+			society_research = @mega_brain_young_research_production
+		}
+		upkeep = {
+			energy = 30
+			food = 100
+			sr_conscious_matter = 1
+		}
+	}
+
+	country_modifier = {
+		planet_jobs_society_research_produces_mult = 0.1
+		planet_jobs_physics_research_produces_mult = 0.05
+		planet_jobs_engineering_research_produces_mult = 0.05
+	}
+
+	upgrade_from = {
+		mega_brain_4
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_f_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			# Notification
+			country_event = { id = ssh_cn.109 }
+			# Brain Growth Event
+			# cf on_actions
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# bigger brain
+mega_brain_6 = {
+	entity = "ssh_megabrain_6_entity"
+	construction_entity = "ssh_megabrain_6_entity"
+	portrait = "GFX_mega_ssh_bio_brain_2"
+	build_time = 15
+	prerequisites = { ssh_tech_mega_brain }
+	potential = { always = no } #upgraded through event
+
+	resources = {
+		category = megastructures
+		produces = {
+			society_research = @mega_brain_juvenile_research_production
+		}
+		upkeep = {
+			energy = 40
+			food = 300
+			sr_conscious_matter = 1
+		}
+	}
+
+	upgrade_from = {
+		mega_brain_5
+	}
+
+	country_modifier = {
+		planet_jobs_society_research_produces_mult = 0.15
+		planet_jobs_physics_research_produces_mult = 0.1
+		planet_jobs_engineering_research_produces_mult = 0.1
+	}
+}
+
+# gigachad
+mega_brain_7 = {
+	entity = "ssh_megabrain_7_entity"
+	construction_entity = "ssh_megabrain_7_entity"
+	portrait = "GFX_mega_ssh_bio_brain_3"
+	build_time = 15
+	prerequisites = { ssh_tech_mega_brain }
+	potential = { always = no } #upgraded through event
+
+	resources = {
+		category = megastructures
+		produces = {
+			society_research = @mega_brain_grown_research_production
+		}
+		upkeep = {
+			energy = 50
+			food = 500
+			sr_conscious_matter = 1
+		}
+	}
+
+	upgrade_from = {
+		mega_brain_6
+	}
+
+	country_modifier = {
+		planet_jobs_society_research_produces_mult = 0.2
+		planet_jobs_physics_research_produces_mult = 0.15
+		planet_jobs_engineering_research_produces_mult = 0.15
+	}
+}
+
+# Fallen Xenophobe - Special BIO Brain
+mega_brain_fallen_xenophobe = {
+	entity = "ssh_megabrain_6_entity"
+	construction_entity = "ssh_megabrain_6_entity"
+	portrait = "GFX_mega_ssh_bio_brain_2"
+	build_time = 15
+	potential = { always = no } # Spawned via event
+
+	resources = {
+		category = megastructures
+		produces = {
+			society_research = @mega_brain_grown_research_production
+		}
+		upkeep = {
+			energy = 50
+			food = 500
+			#sr_conscious_matter = 1
+		}
+	}
+
+	country_modifier = {
+		planet_jobs_society_research_produces_mult = 0.2
+		planet_jobs_physics_research_produces_mult = 0.15
+		planet_jobs_engineering_research_produces_mult = 0.15
+		ship_armor_regen_add_perc = 0.05
+	}
+}
+
+mega_brain_fallen_xenophobe_awoken = {
+	entity = "ssh_megabrain_7_entity"
+	construction_entity = "ssh_megabrain_7_entity"
+	portrait = "GFX_mega_ssh_bio_brain_3"
+	build_time = 3
+	potential = { has_global_flag = ssh_fallen_xenophobe_megabrain_awakening }
+
+	resources = {
+		category = megastructures
+		produces = {
+			society_research = @mega_brain_grown_research_production
+		}
+		upkeep = {
+			energy = 50
+			food = 500
+			#sr_conscious_matter = 1
+		}
+	}
+
+	upgrade_from = {
+		mega_brain_fallen_xenophobe
+	}
+
+	country_modifier = {
+		planet_jobs_society_research_produces_mult = 0.2
+		planet_jobs_physics_research_produces_mult = 0.15
+		planet_jobs_engineering_research_produces_mult = 0.15
+		ship_armor_regen_add_perc = 0.05
+	}
+}

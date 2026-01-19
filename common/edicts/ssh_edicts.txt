@@ -1,0 +1,222 @@
+##########################################################################
+# Edicts
+##########################################################################
+
+#@Edict1Cost = 50
+#@Edict2Cost = 100
+
+
+ssh_access_abyssal_anchor = {
+	length = 0
+	icon = "GFX_edict_type_time"
+
+	#resources = {
+	#	category = edicts
+	#	cost = {
+	#		influence = 10
+	#		multiplier = value:edict_size_effect
+	#	}
+	#}
+
+	potential = {
+		any_owned_megastructure = {
+			is_megastructure_type = mega_temple_6
+		}
+		has_technology = ssh_tech_mega_temple
+		has_country_flag = ssh_megatemple_hub_unlocked
+	}
+
+	allow = {
+		hidden_trigger = {
+			NOR = {
+				has_edict = ssh_access_abyssal_anchor
+				has_modifier = ssh_shroud_espionage_cooldown
+			}
+		}
+		custom_tooltip = "ssh_mega_temple_cooldown_tooltip"
+	}
+
+	prerequisites = { "ssh_tech_mega_temple" }
+
+	show_tech_unlock_if = { always = yes }
+
+	effect = {
+		country_event = { id = ssh_megatemple.1 days = 0 }
+	}
+	
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 10
+			num_rivals >= 1
+		}
+	}
+}
+
+#### Shroud Insight Edicts ####
+ssh_insight_death_cult = {
+	length = 1800 # 5 years
+	icon = "GFX_edict_type_time"
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 750
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = ssh_tech_insight_death_cult
+	}
+
+	allow = {
+		custom_tooltip = ssh_insight_death_cult_requirements
+		hidden_trigger = {
+			OR = {
+				is_at_war = yes
+				#AND = {
+				#	is_at_war = yes
+				#	is_war_participant = defender
+				#}
+				exists = event_target:crisis_country # Can also be enabled when fighting a crisis
+				exists = event_target:great_khan # Same goes for great khan
+				exists = event_target:graygoo_country # Same goes for gray goo
+				exists = event_target:compound_country # Same goes for gigas' compound
+				has_global_flag = gray_goo_crisis_active
+				has_global_flag = marauder_crisis_ongoing
+				has_global_flag = galactic_crisis_happened
+				has_global_flag = katzenartig_imperium_happened # Same goes for gigas' kaiser
+				has_global_flag = aeternum_awakening_started # Same goes for gigas' aeternum
+				has_global_flag = aeternum_awakening_ongoing
+				has_global_flag = aeternum_awakening_warned
+				has_global_flag = blokkats_managed_to_spawn # Same goes for gigas' blokkats
+			}
+		}
+	}
+
+	prerequisites = { "ssh_tech_insight_death_cult" }
+
+	show_tech_unlock_if = { always = yes }
+
+	modifier = {
+		pop_ethic_spiritualist_attraction_mult = 1.0
+		pop_happiness = 0.15
+		planet_stability_add = 10
+		planet_jobs_alloys_produces_mult = 0.15
+	}
+
+	# Gotta add some more complex ai weight stuff here soon
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0
+			has_edict = ssh_insight_death_cult
+		}
+	}
+}
+
+ssh_insight_ingsoc = {
+	length = 1800 # 5 years
+	icon = "GFX_edict_type_time"
+
+	resources = {
+		category = edicts
+		cost = {
+			influence = 50
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = ssh_tech_insight_ingsoc
+	}
+
+	#allow = {
+	#	NOT = {
+	#		has_edict = ssh_insight_ingsoc
+	#	}
+	#}
+
+	prerequisites = { "ssh_tech_insight_ingsoc" }
+
+	show_tech_unlock_if = { always = yes }
+
+	modifier = {
+		pop_government_ethic_attraction = 1.0
+		job_telepath_add = 5
+		country_subject_trust_cap_add = -10
+		country_subject_acceptance_add = -10
+	}
+
+	# Gotta add some more complex ai weight stuff here soon
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0.1
+			OR = {
+				is_egalitarian = yes
+				is_xenophile = yes
+			}
+		}
+	}
+}
+
+# Ark Construction Bureau
+ssh_access_acb = {
+	length = 0
+	icon = "GFX_edict_type_time"
+
+	potential = {
+		has_country_flag = ssh_ark_project_country
+		has_global_flag = ssh_ark_research_stage_completed
+		NOT = { has_global_flag = ssh_ark_completed }
+	}
+
+	allow = {
+		#hidden_trigger = {
+		#	NOT = { has_edict = ssh_access_acb }
+		#}
+		NOT = { has_edict = ssh_access_acb }
+	}
+
+	#prerequisites = { "ssh_tech_mega_temple" }
+
+	show_tech_unlock_if = { always = yes }
+
+	effect = {
+		country_event = { id = ssh_vacdec.450 days = 0 }
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+### Cryogenic Archive (Unfreeze Pops)
+ssh_unfreeze_vacdec_cryo_pops = {
+	length = 0
+	icon = "GFX_edict_type_time"
+
+	potential = {
+		#has_country_flag = ssh_country_escaped_vacdec_crisis
+		has_country_flag = country_has_cryogenic_vacdec_pops
+		capital_scope = { has_building = building_ssh_vacdec_cryo_chambers }
+	}
+
+	allow = {
+		NOT = { has_edict = ssh_unfreeze_vacdec_cryo_pops }
+	}
+
+	#prerequisites = { "ssh_tech_mega_temple" }
+
+	#show_tech_unlock_if = { always = yes }
+
+	effect = {
+		country_event = { id = ssh_effect.20 days = 0 }
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}

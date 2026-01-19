@@ -1,0 +1,1003 @@
+# Districts in this file exist purely for use for swap_types for zones, so that the appropriate district is displayed.
+
+# Gas Giant Shellworlds
+
+district_ssh_gas_shellworld_mixed_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_gas_shellworld_arms_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_gas_shellworld_civilian_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_gas_shellworld_cultrobium_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+
+district_ssh_gas_shellworld_research = {
+	icon = district_arcology_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+
+district_ssh_gas_shellworld_research_physics = {
+	icon = district_arcology_research_physics
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_gas_shellworld_research_society = {
+	icon = district_arcology_research_society
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_gas_shellworld_research_engineering = {
+	icon = district_arcology_research_engineering
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_gas_shellworld_administrative = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_gas_shellworld_spiritualist = {
+	icon = district_ssh_gas_shellworld_administrative
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_gas_shellworld_organic_housing = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_gas_shellworld_fortress = {
+	icon = district_arcology_fortress
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_gas_shellworld_trade = {
+	icon = district_arcology_trade
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+# For Resort Shellworlds
+district_ssh_gas_shellworld_leisure = {
+	#icon = district_arcology_trade
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+
+
+
+### Ederspheres ###
+
+district_ssh_edersphere_mixed_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_arms_industry = {
+	icon = district_ssh_edersphere_mixed_industry
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_civilian_industry = {
+	icon = district_ssh_edersphere_mixed_industry
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_cultrobium_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_research = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+
+district_ssh_edersphere_research_physics = {
+	icon = district_ssh_edersphere_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_research_society = {
+	icon = district_ssh_edersphere_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_research_engineering = {
+	icon = district_ssh_edersphere_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_administrative = {
+	icon = district_arcology_administrative
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_spiritualist = {
+	icon = district_arcology_administrative
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_organic_housing = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_fortress = {
+	icon = district_arcology_fortress
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_edersphere_trade = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+
+
+
+### Black Hole Suprashells
+district_ssh_black_hole_shell_mixed_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_arms_industry = {
+	icon = district_ssh_black_hole_shell_mixed_industry
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_civilian_industry = {
+	icon = district_ssh_black_hole_shell_mixed_industry
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_cultrobium_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_research = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+
+district_ssh_black_hole_shell_research_physics = {
+	icon = district_ssh_black_hole_shell_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_research_society = {
+	icon = district_ssh_black_hole_shell_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_research_engineering = {
+	icon = district_ssh_black_hole_shell_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_administrative = {
+	icon = district_ssh_black_hole_shell_organic_housing
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_spiritualist = {
+	icon = district_ssh_black_hole_shell_organic_housing
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_organic_housing = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_fortress = {
+	icon = district_arcology_fortress
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_black_hole_shell_trade = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+
+### Stellar Hoops
+district_ssh_stellar_hoop_arms_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_stellar_hoop_cultrobium_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_stellar_hoop_research = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+
+district_ssh_stellar_hoop_research_physics = {
+	icon = district_ssh_stellar_hoop_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_stellar_hoop_research_society = {
+	icon = district_ssh_stellar_hoop_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_stellar_hoop_research_engineering = {
+	icon = district_ssh_stellar_hoop_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+
+# BWC
+district_ssh_bwc_mixed_industry = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_bwc_arms_industry = {
+	icon = district_ssh_bwc_mixed_industry
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_bwc_civilian_industry = {
+	icon = district_ssh_bwc_mixed_industry
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+#district_ssh_bwc_cultrobium_industry = {
+#	is_capped_by_modifier = no
+#
+#	zone_slots = {
+#		slot_empty
+#	}
+#
+#	show_on_uncolonized = {
+#		always = no
+#	}
+#
+#	potential = {
+#		always = no
+#	}
+#}
+
+district_ssh_bwc_research = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+
+district_ssh_bwc_research_physics = {
+	icon = district_ssh_bwc_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_bwc_research_society = {
+	icon = district_ssh_bwc_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_bwc_research_engineering = {
+	icon = district_ssh_bwc_research
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_bwc_administrative = {
+	icon = district_ssh_bwc_organic_housing
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_bwc_spiritualist = {
+	icon = district_ssh_bwc_organic_housing
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_bwc_organic_housing = {
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_bwc_fortress = {
+	icon = district_arcology_fortress
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+district_ssh_bwc_trade = {
+	icon = district_ssh_edersphere_trade
+	is_capped_by_modifier = no
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		always = no
+	}
+}

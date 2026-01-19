@@ -1,0 +1,2140 @@
+# Bio Brain
+ship_design = {
+	name = "NAME_Bio_Brain"
+	ship_size = bio_brain
+
+	section = {
+		template = "bio_brain_key"
+		slot = "mid"
+
+		component = {
+			slot = "PRIMARY_GUN_01"
+			template = "DRAGON_WEAPON"
+		}
+		component = {
+			slot = "SECONDARY_GUN_01"
+			template = "DRAGON_SECONDARY_WEAPON"
+		}
+		component = {
+			slot = "SECONDARY_GUN_02"
+			template = "DRAGON_SECONDARY_WEAPON"
+		}
+		component = {
+			slot = "SECONDARY_GUN_03"
+			template = "DRAGON_SECONDARY_WEAPON"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_DRAGON_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_DRAGON_ARMOR"
+		}
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_2"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_3"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_4"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+	}
+	required_component="GUARDIAN_DRIVE"
+	required_component="COMBAT_COMPUTER_LINE_CONMAT"
+	required_component="GUARDIAN_PROPULSION"
+	required_component="GUARDIAN_SENSORS"
+}
+
+### Behemoth Fury - Brain Behemoth
+# Stage 1 Brain
+ship_design = {
+	name = "NAME_Brain_Behemoth_01"
+	ship_size = ssh_brain_behemoth_01
+	is_event_design = yes
+
+	section = {
+		template = "brain_behemoth_01_key"
+		slot = "mid"
+
+		component = {
+			slot = "TITANIC_01"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_01"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_02"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_XRAY_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_02"
+			template = "LARGE_XRAY_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_03"
+			template = "LARGE_XRAY_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_04"
+			template = "LARGE_XRAY_BIO_LASER"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_04"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_05"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_06"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_07"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_08"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_4"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_5"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_6"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_7"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_8"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_9"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_10"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_11"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_12"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_13"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_14"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_15"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_16"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_17"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_18"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_19"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_20"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_2"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		#component = {
+		#	slot = "AUX_UTILITY_3"
+		#	template = "AUTO_REPAIR_CONMAT"
+		#}
+		#component = {
+		#	slot = "AUX_UTILITY_4"
+		#	template = "AUTO_REPAIR_CONMAT"
+		#}
+	}
+	required_component = "BIO_HYPER_DRIVE_2"
+	required_component = "COMBAT_COMPUTER_LINE_CONMAT" #"BIO_COMBAT_COMPUTER_SWARM_ADVANCED"
+	required_component = "BEHEMOTH_PROPULSION_2"
+	required_component = "BIOSHIP_SENSOR_2"
+	required_component = "SHIP_BEHEMOTH_RAGE" ###
+}
+
+# Stage 2 Brain
+ship_design = {
+	name = "NAME_Brain_Behemoth_02"
+	ship_size = ssh_brain_behemoth_02
+	is_event_design = yes
+
+	section = {
+		template = "brain_behemoth_02_key"
+		slot = "mid"
+
+		component = {
+			slot = "PLANET_KILLER_GUN_01"
+			template = "PLANET_KILLER_BRAIN_MAW"
+		}
+
+		component = {
+			slot = "TITANIC_01"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_01"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_02"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_XRAY_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_02"
+			template = "LARGE_XRAY_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_03"
+			template = "LARGE_XRAY_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_04"
+			template = "LARGE_XRAY_BIO_LASER"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_04"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_05"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_06"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_07"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_08"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_09"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_10"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_4"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_5"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_6"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_7"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_8"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_9"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_10"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_11"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_12"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_13"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_14"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_15"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_16"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_17"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_18"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_19"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_20"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_21"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_22"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_23"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_24"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_25"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_2"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_3"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		#component = {
+		#	slot = "AUX_UTILITY_4"
+		#	template = "AUTO_REPAIR_CONMAT"
+		#}
+	}
+	required_component = "BIO_HYPER_DRIVE_3"
+	required_component = "COMBAT_COMPUTER_LINE_CONMAT" #"BIO_COMBAT_COMPUTER_SWARM_AUTONOMOUS"
+	required_component = "BEHEMOTH_PROPULSION_3"
+	required_component = "BIOSHIP_SENSOR_3"
+	required_component = "SHIP_BEHEMOTH_RAGE"
+}
+
+# Stage 3 Brain - Star-Eating Abilities
+ship_design = {
+	name = "NAME_Brain_Behemoth_03"
+	ship_size = ssh_brain_behemoth_03
+	is_event_design = yes
+
+	section = {
+		template = "brain_behemoth_03_key"
+		slot = "mid"
+
+		#component = {
+		#	slot = "PLANET_KILLER_GUN_01"
+		#	template = "PLANET_KILLER_MAW"
+		#}
+
+		component = {
+			slot = "TITANIC_01"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_02"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_01"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_02"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_03"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_04"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_05"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_06"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_02"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_03"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_04"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_05"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_06"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_07"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_08"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_09"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_10"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_04"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_05"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_06"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_07"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_08"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_09"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_10"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_11"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_12"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_13"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_14"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_15"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_16"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+
+		# No Point Defence
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_4"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_5"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_6"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_7"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_8"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_9"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_10"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_11"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_12"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_13"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_14"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_15"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_16"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_17"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_18"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_19"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_20"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_21"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_22"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_23"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_24"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_25"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_26"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_27"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_28"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_29"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_30"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+	}
+	required_component = "BIO_HYPER_DRIVE_3"
+	required_component = "COMBAT_COMPUTER_LINE_CONMAT" #"BIO_COMBAT_COMPUTER_SWARM_AUTONOMOUS"
+	required_component = "BEHEMOTH_PROPULSION_3"
+	required_component = "BIOSHIP_SENSOR_3"
+	#required_component = "SHIP_BEHEMOTH_RAGE" # Decativated due to conflict w/ System Eating Ability
+	required_component = "SYSTEM_KILLER_BRAIN_MAW"
+}
+
+# Stage 4 Brain - Neutron/Pulsar Consuming Abilities
+ship_design = {
+	name = "NAME_Brain_Behemoth_04"
+	ship_size = ssh_brain_behemoth_04
+	is_event_design = yes
+
+	section = {
+		template = "brain_behemoth_04_key"
+		slot = "mid"
+
+		#component = {
+		#	slot = "PLANET_KILLER_GUN_01"
+		#	template = "PLANET_KILLER_MAW"
+		#}
+
+		component = {
+			slot = "TITANIC_01"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_02"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_03"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_04"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_01"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_02"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_03"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_04"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_05"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_06"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_07"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_08"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_09"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_10"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_02"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_03"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_04"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_05"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_06"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_07"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_08"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_09"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_10"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_04"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_05"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_06"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_07"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_08"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_09"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_10"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_11"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_12"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_13"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_14"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_15"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_16"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_17"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_18"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_19"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_20"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_21"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_22"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_23"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_24"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+
+		# No Point Defence
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_4"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_5"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_6"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_7"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_8"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_9"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_10"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_11"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_12"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_13"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_14"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_15"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_16"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_17"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_18"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_19"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_20"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_21"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_22"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_23"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_24"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_25"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_26"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_27"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_28"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_29"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_30"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_31"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_32"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_33"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_34"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_35"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_2"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+	}
+	required_component = "BIO_HYPER_DRIVE_3"
+	required_component = "COMBAT_COMPUTER_LINE_CONMAT"
+	required_component = "BEHEMOTH_PROPULSION_3"
+	required_component = "BIOSHIP_SENSOR_3"
+	#required_component = "SHIP_BEHEMOTH_RAGE" # Decativated due to conflict w/ System Eating Ability
+	required_component = "SYSTEM_KILLER_BRAIN_MAW"
+}
+
+# Stage 5 Brain - The Black Hole Devourer
+ship_design = {
+	name = "NAME_Brain_Behemoth_05"
+	ship_size = ssh_brain_behemoth_05
+	is_event_design = yes
+
+	section = {
+		template = "brain_behemoth_04_key"
+		slot = "mid"
+
+		#component = {
+		#	slot = "PLANET_KILLER_GUN_01"
+		#	template = "PLANET_KILLER_MAW"
+		#}
+
+		component = {
+			slot = "TITANIC_01"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_02"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_03"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_04"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_05"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_01"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_02"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_03"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_04"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_05"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_06"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_07"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_08"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_09"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_10"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_11"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_12"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_02"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_03"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_04"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_05"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_06"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_07"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_08"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_09"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_10"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_04"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_05"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_06"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_07"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_08"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_09"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_10"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_11"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_12"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_13"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_14"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_15"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_16"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_17"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_18"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_19"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_20"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_21"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_22"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_23"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_24"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_25"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_26"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+
+		# No Point Defence
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_4"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_5"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_6"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_7"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_8"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_9"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_10"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_11"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_12"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_13"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_14"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_15"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_16"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_17"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_18"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_19"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_20"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_21"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_22"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_23"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_24"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_25"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_26"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_27"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_28"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_29"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_30"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_31"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_32"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_33"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_34"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_35"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_36"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_37"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_38"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_39"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_40"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_41"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_42"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_43"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_44"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_45"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_2"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_3"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+	}
+	required_component = "BIO_HYPER_DRIVE_3"
+	required_component = "COMBAT_COMPUTER_LINE_CONMAT"
+	required_component = "BEHEMOTH_PROPULSION_4"
+	required_component = "BIOSHIP_SENSOR_4"
+	#required_component = "SHIP_BEHEMOTH_RAGE" # Decativated due to conflict w/ System Eating Ability
+	required_component = "SYSTEM_KILLER_BRAIN_MAW"
+}
+
+# The Gargantuan Overmind
+ship_design = {
+	name = "NAME_Brain_Behemoth_06"
+	ship_size = ssh_brain_behemoth_06
+	is_event_design = yes
+
+	section = {
+		template = "brain_behemoth_04_key"
+		slot = "mid"
+
+		#component = {
+		#	slot = "PLANET_KILLER_GUN_01"
+		#	template = "PLANET_KILLER_MAW"
+		#}
+
+		component = {
+			slot = "TITANIC_01"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_02"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_03"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_04"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_05"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+		component = {
+			slot = "TITANIC_06"
+			template = "BEHEMOTH_TITAN_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_01"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "EXTRA_LARGE_02"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_03"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_04"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_05"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_06"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_07"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_08"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_09"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_10"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_11"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_12"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_13"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_14"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_15"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+		component = {
+			slot = "EXTRA_LARGE_16"
+			template = "BEHEMOTH_LIGHTNING_WEAPON"
+		}
+
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_02"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_03"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_04"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_05"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_06"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_07"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_08"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_09"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_10"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_11"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_12"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_13"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_14"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_15"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_16"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_17"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_18"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_19"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_20"
+			template = "LARGE_GAMMA_BIO_LASER"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_04"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_05"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_06"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_07"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_08"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_09"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_10"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_11"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_12"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_13"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_14"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_15"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_16"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_17"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_18"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_19"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_20"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_21"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_22"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_23"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_24"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_25"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_26"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_27"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_28"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_29"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_30"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_31"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_32"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_33"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_34"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_35"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_36"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_37"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_38"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_39"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_GUN_40"
+			template = "TORPEDO_BIO_SWARMER_MISSILE_2"
+		}
+
+		# No Point Defence
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_4"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_5"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_6"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_7"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_8"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_9"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_10"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_11"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_12"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_13"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_14"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_15"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_16"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_17"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_18"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_19"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_20"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_21"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_22"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_23"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_24"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_25"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_26"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_27"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_28"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_29"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_30"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_31"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_32"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_33"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_34"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_35"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_36"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_37"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_38"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_39"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_40"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_41"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_42"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_43"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_44"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_45"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_46"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_47"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_48"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_49"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_50"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_51"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_52"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_53"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_54"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+		component = {
+			slot = "LARGE_UTILITY_55"
+			template = "LARGE_BEHEMOTH_ARMOR"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_2"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_3"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+		component = {
+			slot = "AUX_UTILITY_4"
+			template = "AUTO_REPAIR_CONMAT"
+		}
+	}
+	required_component = "BIO_HYPER_DRIVE_3"
+	required_component = "COMBAT_COMPUTER_LINE_CONMAT"
+	required_component = "BEHEMOTH_PROPULSION_4"
+	required_component = "BIOSHIP_SENSOR_4"
+	required_component = "SYSTEM_KILLER_BRAIN_MAW"
+}

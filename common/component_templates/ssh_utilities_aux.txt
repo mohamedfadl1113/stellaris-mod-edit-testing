@@ -1,0 +1,72 @@
+#########################
+# Nanobot Repair System #
+#########################
+
+utility_component_template = {
+	key = "AUTO_REPAIR_NANOBOTS"
+	size = aux
+	icon = "GFX_ship_part_auto_repair_nanobots"
+	icon_frame = 1
+	power = -10
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 10
+			nanites = 1
+		}
+	}
+
+	modifier = {
+		# Scavenger Nanobot System makes +15% hull regen, +20% armor
+		ship_hull_regen_add_perc = 0.1
+		ship_armor_regen_add_perc = 0.15
+	}
+
+	prerequisites = { ssh_tech_atomic_manipulation }
+	component_set = "AUTO_REPAIR_NANOBOTS"
+	upgrades_to = "AUTO_REPAIR_2"
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 2.0
+			is_preferred_weapons = weapon_type_explosive
+		}
+	}
+}
+
+# Conmat Bio Brain Stuff
+#################
+# Conmat Tissue #
+#################
+
+utility_component_template = {
+	key = "AUTO_REPAIR_CONMAT"
+	size = aux
+	icon = "GFX_ship_part_auto_repair_conmat"
+	icon_frame = 1
+	power = -10
+	resources = {
+		category = ship_components
+		cost = {
+			sr_conscious_matter = 10 #reg. hull tissue: 20 alloys
+		}
+	}
+
+	# Note: Scavengers Nanite Repair System + Shroud's Mark of Composer has +15% Hull Regen, +20% Armor Regen
+	modifier = {
+		ship_hull_regen_add_perc = 0.2
+		ship_armor_regen_add_perc = 0.25
+	}
+
+	prerequisites = { ssh_tech_conmat_hull }
+	component_set = "AUTO_REPAIR_CONMAT"
+
+	ai_weight = {
+		weight = 15
+		modifier = {
+			factor = 2.0
+			is_preferred_weapons = weapon_type_explosive
+		}
+	}
+}

@@ -1,0 +1,460 @@
+gas_giant_compressor_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	show_prereqs = yes
+	build_time = 360 #1 year
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -7
+		y = -7
+	}
+	prerequisites = { ssh_tech_gas_giant_compression }
+	potential = {
+		has_technology = ssh_tech_gas_giant_compression
+		NOT = {
+			has_global_flag = ssh_gas_giant_compressor_deactivated
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_colony"
+			NOT = {
+				any_system_planet = {
+					AND = {
+						is_artificial = no #Nautral planets would probably suffer from tremendous environmental damage if a new star appeared out of nowhere
+						is_colony = yes
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					has_planet_flag = ruined_orbital_ring_planet
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					is_artificial = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_gas_giant"
+				ssh_is_any_gas_giant = yes
+				NOR = {
+					is_colonizable = yes
+					is_colony = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_hostile_or_primitive"
+				NOR = {
+					planet_is_hostile_or_crisis = yes
+					AND = {
+						exists = owner
+						owner = {
+							is_country_type = primitive
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = gas_giant_compressor_planet
+				set_planet_flag = has_megastructure
+			}
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.29
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 0.1
+		#modifier = {
+		#	factor = 0.1
+		#	starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		#}
+		#modifier = {
+		#	weight = 0.1
+		#	OR = {
+		#		has_ethic = ethic_spiritualist
+		#		has_ethic = ethic_fanatic_spiritualist
+		#	}
+		#}
+		#modifier = {
+		#	weight = 1
+		#	OR = {
+		#		has_ethic = ethic_materialist
+		#		has_ethic = ethic_fanatic_materialist
+		#	}
+		#}
+	}
+}
+
+gas_giant_compressor_1 = {
+	entity = "ssh_gas_giant_compressor_1_entity"
+	construction_entity = "ssh_gas_giant_compressor_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = yes
+	#place_entity_on_planet_plane = no
+	prerequisites = { ssh_tech_gas_giant_compression }
+	potential = { has_technology = ssh_tech_gas_giant_compression }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		gas_giant_compressor_0
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		from = {
+			country_event = {
+				id = ssh_cn.30
+			}
+		}
+	}
+}
+
+gas_giant_compressor_2 = {
+	entity = "ssh_gas_giant_compressor_2_entity"
+	construction_entity = "ssh_gas_giant_compressor_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 980
+	scales_with_planet = yes
+	#place_entity_on_planet_plane = no
+	prerequisites = { ssh_tech_gas_giant_compression }
+	potential = { has_technology = ssh_tech_gas_giant_compression }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		gas_giant_compressor_1
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.31
+			}
+		}
+	}
+}
+
+gas_giant_compressor_3 = {
+	entity = "ssh_gas_giant_compressor_3_entity"
+	construction_entity = "ssh_gas_giant_compressor_3_entity"
+	portrait = "GFX_mega_ssh_gas_giant_compressor"
+	build_time = 1800 #5years
+	scales_with_planet = yes
+	#place_entity_on_planet_plane = no
+	prerequisites = { ssh_tech_gas_giant_compression }
+	potential = { has_technology = ssh_tech_gas_giant_compression }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 300
+			#minerals = 500
+		}
+	}
+
+	upgrade_from = {
+		gas_giant_compressor_2
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.32
+			}
+		}
+	}
+}
+
+gas_giant_compressor_4 = {
+	entity = "ssh_gas_giant_compressor_3_entity"
+	construction_entity = "ssh_gas_giant_compressor_active_entity"
+	portrait = "GFX_mega_ssh_gas_giant_compressor"
+	build_time = 3600
+	scales_with_planet = yes
+	#place_entity_on_planet_plane = no
+	prerequisites = { ssh_tech_gas_giant_compression }
+	potential = { has_technology = ssh_tech_gas_giant_compression }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 20000
+			minerals = 45000
+		}
+		upkeep = {
+			energy = 300
+			minerals = 300
+		}
+		produces = {
+			physics_research = 250
+		}
+		
+		#upkeep = {
+		#	trigger = { has_gigastructures = no }
+		#	minerals = 500
+		#}
+		#upkeep = {
+		#	trigger = { has_gigastructures = yes }
+		#	sr_solar_energy = 1
+		#}
+	}
+
+	upgrade_from = {
+		gas_giant_compressor_3
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = ssh_has_built_or_repaired_tier_d_mega
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.33
+			}
+		}
+		if = {
+			limit =  { exists = fromfrom.planet }
+			fromfrom.planet = {
+				remove_planet_flag = has_megastructure
+				change_pc = pc_t_star
+			}
+		}
+		if = {
+			limit = {
+				fromfrom.planet = {
+					has_moon = yes
+				}
+			}
+			fromfrom.planet = {
+				every_moon = {
+					change_pc = pc_molten
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 0.1
+		#modifier = {
+		#	factor = 100
+		#	resource_stockpile_compare = {
+		#		resource = minerals
+		#		value >= 50000
+		#	}
+		#}
+	}
+}
+
+gas_giant_compressor_5 = {
+	entity = "ssh_gas_giant_compressor_3_entity"
+	construction_entity = "ssh_gas_giant_compressor_active_entity"
+	portrait = "GFX_mega_ssh_gas_giant_compressor"
+	build_time = 3600
+	scales_with_planet = yes
+	#place_entity_on_planet_plane = no
+	prerequisites = { ssh_tech_gas_giant_compression }
+	potential = { has_technology = ssh_tech_gas_giant_compression }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 30000
+			minerals = 45000
+		}
+		upkeep = {
+			energy = 400
+		}
+		produces = {
+			physics_research = 300
+		}
+		
+		#upkeep = {
+		#	trigger = { has_gigastructures = no }
+		#	minerals = 500
+		#}
+		#upkeep = {
+		#	trigger = { has_gigastructures = yes }
+		#	sr_solar_energy = 1
+		#}
+	}
+
+	upgrade_from = {
+		gas_giant_compressor_4
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.41
+			}
+		}
+		if = {
+			limit =  { exists = fromfrom.planet }
+			fromfrom.planet = {
+				remove_planet_flag = has_megastructure
+				change_pc = pc_m_star #artificial star class
+			}
+			if = {
+				limit = { fromfrom.planet = { has_moon = yes } }
+				fromfrom.planet = {
+					every_moon = {
+						change_pc = pc_molten
+					}
+				}
+			}
+		}
+		# If orbiting a black hole, change star class (for lighting)
+		if = {
+			limit = { any_system_planet = { is_planet_class = pc_black_hole } }
+			set_star_class = sc_ssh_binary_1 #red-ish star orbiting black hole; adjust lighting and map icon
+		}
+		# If a gas giant orbiting a black hole suprashell is turned into a star, allow it to have agri districts
+		if = {
+			limit = { any_system_planet = { is_planet_class = pc_black_hole_shellworld } }
+			random_system_planet = {
+				limit = { is_planet_class = pc_black_hole_shellworld }
+				set_planet_flag = ssh_black_hole_shell_has_star
+			}
+			set_star_class = sc_ssh_binary_1 #red-ish star orbiting black hole; adjust lighting and map icon
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		factor = 0.1
+		#modifier = {
+		#	factor = 100
+		#	resource_stockpile_compare = {
+		#		resource = minerals
+		#		value >= 50000
+		#	}
+		#}
+	}
+}

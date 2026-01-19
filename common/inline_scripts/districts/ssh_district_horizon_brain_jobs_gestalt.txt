@@ -1,0 +1,81 @@
+### Handle Gestalt Horizon Brain Employment
+# Triggered Modifier: Add jobs depending on modifiers
+# HIVE EMPIRES
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+		}
+	}
+	modifier = {
+		#job_ssh_vr_coordinator_add = 4 #archive drone
+		job_ssh_vr_brain_drone_add = $VR_DRONE_AMOUNT$ #4
+		job_ssh_vr_patrol_drone_add = $VR_DRONE_AMOUNT$
+		job_ssh_vr_warrior_drone_add = $VR_DRONE_AMOUNT$
+		job_ssh_vr_infiltration_drone_add = $VR_DRONE_AMOUNT$ #3
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			NOT = { has_valid_civic = civic_hive_memorialist }
+		}
+	}
+	modifier = {
+		job_ssh_vr_coordinator_add = $VR_DRONE_AMOUNT$
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			has_valid_civic = civic_hive_memorialist
+		}
+	}
+	modifier = {
+		job_ssh_vr_archive_drone_add = $VR_DRONE_AMOUNT$
+	}
+}
+# MACHINE EMPIRES
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+		}
+	}
+	modifier = {
+		job_ssh_vr_calculator_add = $VR_DRONE_AMOUNT$
+		job_ssh_vr_antivirus_add = $VR_DRONE_AMOUNT$
+		job_ssh_vr_warrior_drone_add = $VR_DRONE_AMOUNT$
+		job_ssh_vr_spyware_add = $VR_DRONE_AMOUNT$ #3
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			NOT = { has_valid_civic = civic_machine_memorialist }
+		}
+	}
+	modifier = {
+		job_ssh_vr_coordinator_add = $VR_DRONE_AMOUNT$
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			has_valid_civic = civic_machine_memorialist
+		}
+	}
+	modifier = {
+		job_ssh_vr_archive_drone_add = $VR_DRONE_AMOUNT$
+	}
+}

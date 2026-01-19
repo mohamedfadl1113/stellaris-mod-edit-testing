@@ -1,0 +1,591 @@
+@hb_alloys_cost = 500
+
+# Horizon Brain Administration
+building_ssh_hb_capital = {
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+	building_sets = { horizon_brain }
+
+	category = government
+
+	potential = {
+		uses_district_set = horizon_brain_world
+		exists = owner
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @b3_upkeep
+			alloys = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2000
+		planet_amenities_add = 1500
+		planet_stability_add = 15
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			planet_jobs_productive_upkeep_mult = 0.1
+			planet_jobs_productive_produces_mult = 0.1
+		}
+	}
+}
+
+
+################### WIP - Muss erst die Zonen extra für HB Planet Class machen (District Name: Server Complex) - Specialization: Hell - Entertainment - etc
+
+# ADDITIONAL JOB SERVERS
+# Entertainment
+building_ssh_hb_server_entertainment = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes # No Hives or Machines
+			NOT = { has_valid_civic = civic_dystopian_society } # Big Brother doesnt want you to be happy
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { has_valid_civic = civic_dystopian_society }
+		}
+	}
+
+	#convert_to = {
+	#	building_drone_storage
+	#	building_hive_warren
+	#	building_communal_housing
+	#}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Bureaucracy
+building_ssh_hb_server_administrative = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes # No Hives or Machines
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = { is_regular_empire = no }
+	}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Temple
+building_ssh_hb_server_temple = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes # No Hives or Machines
+			is_spiritualist = yes
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				is_regular_empire = no
+				is_spiritualist = no
+			}
+		}
+	}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# VIP Lounge
+building_ssh_hb_server_premium = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes # No Hives or Machines
+			OR = {
+				is_capitalist = yes
+				is_competitive = yes # Bug Branch
+				is_elitist = yes # Bug Branch
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				is_regular_empire = no
+				NOR = {
+					is_capitalist = yes
+					is_competitive = yes # Bug Branch
+					is_elitist = yes # Bug Branch
+				}
+			}
+		}
+	}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Battle Simulator
+building_ssh_hb_server_colosseum = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes # No Hives or Machines
+			ssh_is_warrior_society = yes
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				is_regular_empire = no
+				NOT = { ssh_is_warrior_society = yes }
+			}
+		}
+	}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Universe Sandbox (Research)
+building_ssh_hb_server_universe_sandbox = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes ### MIGHT REMOVE THAT
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			is_regular_empire = no ###
+		}
+	}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Thought Experiment Tank
+building_ssh_hb_server_philosophy = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_pacifist = yes
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				is_regular_empire = no
+				is_pacifist = no
+			}
+		}
+	}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Defense Simulator (Pacifist Engineering Research, -Orbital Damage on every planet)
+building_ssh_hb_server_defense_simulation = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_pacifist = yes
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				is_regular_empire = no
+				is_pacifist = no
+			}
+		}
+	}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	country_modifier = {
+		planet_orbital_bombardment_damage = -0.15 ### Must check if this applies to every planet
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Offense Simulator
+building_ssh_hb_server_offense_simulation = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_militarist = yes
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				is_regular_empire = no
+				is_militarist = no
+			}
+		}
+	}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Soldier Training Program
+building_ssh_hb_server_army_training = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			is_regular_empire = no
+		}
+	}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Hacking/Spyware Center
+building_ssh_hb_server_netrunner = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			is_regular_empire = no
+		}
+	}
+
+	# The jobs are added via the server district
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Meat Farm Server (Livestock Pops on this planet get Meatfarm Job)
+building_ssh_hb_server_livestock = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	building_sets = { horizon_brain }
+	category = amenity
+
+	potential = {
+		is_planet_class = pc_horizon_brain
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			allows_slavery = yes
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				is_regular_empire = no
+				allows_slavery = no
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = @hb_alloys_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+# Environmental Utopia Simulation (Agrarian Idyll/Environmentalist/Natural Design, BB Naturalist)
+
+# Extradimensional Simulations (Hyperdim. Exodus OR Doorway Country)
+
+# Xeno Integration Center ? (Xenophile/Free Haven Civic)
+
+
+## Hell
+# Pacifist Hell Simulation
+# Regular Hell Simulation
+# Punishment Building - Unlocks Purge Type?
+
+
+## Non-Job Buildings
+# Overclocker - ++Job Output
+
+# Adware Center - Increases Empire Trade Value from Member Jobs + Government Ethics Attraction (Only Available to Media Moguls)
+
+# Servers (only 1 per planet):
+# REGULAR
+#
+# Hell
+# Administrative
+# Entertainment
+# Battle Training Server
+# 
+# GESTALTS
+#
+# Hive
+# Administrative/Coordination/Maintenance Node
+# Hacking/Infiltration Node
+# Warrior Node
+# Hunter-Seeker Node
+#
+# Machines
+# Administrative/Coordination/Maintenance Node
+# Spyware/Malware
+# Antivirus
+# Warrior Protocol
+# Rogue Servitor Utopia
+# Terminator Hell

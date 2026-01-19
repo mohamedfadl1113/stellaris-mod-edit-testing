@@ -1,0 +1,25 @@
+# Documentation in common/crisis_paths
+
+hyperdim_exodus_path = {
+	crisis_currency = "interdim_insights"
+
+	levels = {
+		crisis_hyperdim_exodus_level_1
+		crisis_hyperdim_exodus_level_2
+		crisis_hyperdim_exodus_level_3
+		crisis_hyperdim_exodus_level_4
+		crisis_hyperdim_exodus_level_5
+	}
+
+	objectives = {
+		crisobj_have_lasting_peace
+		crisobj_hyperdim_exodus_research_tech
+		crisobj_explore_astral_rifts
+		crisobj_disintegrate_systems
+		#crisobj_have_non_aggression_pacts
+		crisobj_extradimensional_galcom_resolution
+		crisobj_have_bio_or_horizon_brain
+		crisobj_have_m_brain
+		crisobj_use_reality_perforator
+	}
+}

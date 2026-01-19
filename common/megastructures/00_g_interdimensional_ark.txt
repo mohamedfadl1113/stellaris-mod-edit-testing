@@ -1,0 +1,510 @@
+interdim_ark_0 = {
+	entity = "ssh_ark_0_entity"
+	construction_entity = "ssh_ark_0_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	#show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	#prerequisites = { "ssh_tech_system_disintegrator" }
+	potential = {
+		#has_global_flag = ssh_ark_research_stage_completed
+		always = no
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_colony"
+			NOT = {
+				any_system_planet = {
+					is_colony = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_special_star"
+			NOT = { ssh_is_special_star = yes } # No O stars, no galactic core, no white holes
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_black_hole"
+			NOT = { is_star_class = sc_black_hole } # No O stars, no galactic core, no white holes
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOR = {
+					has_anomaly = yes
+					any_moon = { has_anomaly = yes }
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					is_planet_class = pc_habitat
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+				set_planet_flag = ssh_ark_planet
+				save_event_target_as = ssh_ark_star
+				orbital_station = { dismantle = yes }
+			}
+		}
+		#from = {
+		#	set_country_flag = ssh_is_constructing_system_disintegrator
+		#	country_event = { id = ssh_cn.118 }
+		#}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Foundation
+interdim_ark_1 = {
+	entity = "ssh_ark_1_entity"
+	construction_entity = "ssh_ark_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 5 # Upgraded via event
+	#prerequisites = { ssh_tech_system_disintegrator }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		interdim_ark_0
+	}
+
+	on_build_complete = {
+		# Do nothing
+	}
+}
+
+# Kugelblitz Generator
+interdim_ark_2 = {
+	entity = "ssh_ark_2_entity"
+	construction_entity = "ssh_ark_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 5 # Upgraded via event
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 150
+		}
+	}
+
+	upgrade_from = {
+		interdim_ark_1
+	}
+
+	on_build_complete = {
+		# Do nothing
+	}
+}
+
+# Habitation Sectors
+interdim_ark_3 = {
+	entity = "ssh_ark_3_entity"
+	construction_entity = "ssh_ark_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 5 # Upgraded via event
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 250
+		}
+	}
+
+	upgrade_from = {
+		interdim_ark_2
+	}
+
+	on_build_complete = {
+		# Do nothing
+	}
+}
+
+# Warp Field Generator (Engine Part 1/2)
+interdim_ark_4 = {
+	entity = "ssh_ark_4_entity"
+	construction_entity = "ssh_ark_4_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 5 # Upgraded via event
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 350
+		}
+	}
+
+	upgrade_from = {
+		interdim_ark_3
+	}
+
+	on_build_complete = {
+		# Do nothing
+	}
+}
+
+# Warp Drive (Engine Part 2/2)
+interdim_ark_5 = {
+	entity = "ssh_ark_5_entity"
+	construction_entity = "ssh_ark_5_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 5 # Upgraded via event
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		interdim_ark_4
+	}
+
+	on_build_complete = {
+		# Do nothing
+	}
+}
+
+# Warp Drive Charging
+interdim_ark_6 = {
+	entity = "ssh_ark_charging_entity"
+	construction_entity = "ssh_ark_charging_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 3 # Upgraded via event
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		interdim_ark_4
+		#interdim_ark_5
+	}
+
+	on_build_complete = {
+		# Remove mega, spawn ready ark
+	}
+}
+
+# Ready Ark
+interdim_ark_7 = {
+	entity = "ssh_ark_ready_entity"
+	construction_entity = "ssh_ark_ready_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 5 # Upgraded via event
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		interdim_ark_6
+	}
+
+	on_build_complete = {
+		# Nothing
+	}
+}
+
+# Ark Launching Animation
+interdim_ark_8 = {
+	entity = "ssh_ark_launching_entity"
+	construction_entity = "ssh_ark_ready_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 5 # Upgraded via event
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		interdim_ark_7
+	}
+
+	on_build_complete = {
+		# Generate a new galaxy, add win score to every non-ai participant (done via ssh_vacdec_effects)
+	}
+}
+
+#### Fallen Machines: Small Interdim. Ark
+caretakers_ark_1 = {
+	entity = "ssh_ark_caretakers_1_entity"
+	construction_entity = "ssh_ark_caretakers_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 5 # Upgraded via event
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 500
+		}
+	}
+
+	#upgrade_from = {
+	#	interdim_ark_7
+	#}
+
+	on_build_complete = {
+		fromfrom = {
+			upgrade_megastructure_to = caretakers_ark_2 # Automatically Upgrade, dont want AI to just not upgrade it for whatever reason
+		}
+	}
+}
+
+caretakers_ark_2 = {
+	entity = "ssh_ark_caretakers_2_entity"
+	construction_entity = "ssh_ark_caretakers_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1800
+	potential = {
+		is_fallen_empire_machine = yes
+		#always = no
+	}
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		caretakers_ark_1
+	}
+
+	on_build_complete = {
+		fromfrom = { upgrade_megastructure_to = caretakers_ark_3 }
+	}
+
+	ai_weight = {
+		factor = 9999
+	}
+}
+
+caretakers_ark_3 = {
+	entity = "ssh_ark_caretakers_3_entity"
+	construction_entity = "ssh_ark_caretakers_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1800
+	potential = {
+		is_fallen_empire_machine = yes
+		#always = no
+	}
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		caretakers_ark_2
+	}
+
+	on_build_complete = {
+		fromfrom = { upgrade_megastructure_to = caretakers_ark_4 }
+	}
+
+	ai_weight = {
+		factor = 9999
+	}
+}
+
+caretakers_ark_4 = {
+	entity = "ssh_ark_caretakers_4_entity"
+	construction_entity = "ssh_ark_caretakers_4_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1800
+	potential = {
+		is_fallen_empire_machine = yes
+		#always = no
+	}
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		caretakers_ark_3
+	}
+
+	on_build_complete = {
+		#star = {
+		#	create_ambient_object = {
+		#		type = crisis_sphere_2
+		#		scale = 1.0
+		#		duration = 90
+		#	}
+		#}
+
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_on.54 # Final transmission
+				days = 1
+			}
+		}
+
+		fromfrom = {
+			create_ambient_object = {
+				type = crisis_sphere_1
+				scale = 0.5
+				duration = 50
+			}
+			upgrade_megastructure_to = caretakers_ark_5
+		}
+	}
+
+	ai_weight = {
+		factor = 9999
+	}
+}
+
+caretakers_ark_5 = {
+	entity = "ssh_ark_caretakers_firing_entity"
+	construction_entity = "ssh_ark_caretakers_firing_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 45
+	potential = {
+		is_fallen_empire_machine = yes
+		#always = no
+	}
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		caretakers_ark_4
+	}
+
+	on_build_complete = {
+		destroy_star_system = yes
+		every_system_planet = {
+			limit = { NOT = { is_star = yes } }
+			remove_planet = yes
+		}
+		star = {
+			set_planet_size = 5
+		}
+	}
+
+	ai_weight = {
+		factor = 9999
+	}
+}

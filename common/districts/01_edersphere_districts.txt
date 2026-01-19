@@ -1,0 +1,769 @@
+#####################
+# D I S T R I C T S #
+#####################
+
+@edersphere_district_buildtime = 720 #2x Ringworld
+
+# Edersphere
+district_ssh_edersphere_city = {
+	base_buildtime = @edersphere_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_city_government
+		slot_city_01
+		slot_city_02
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		from = {
+			NOR = {
+				is_wilderness_empire = yes
+				is_gestalt = yes
+			}
+		}
+		uses_district_set = edersphere_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+		# Wilderness? idk how this civic/origin works
+		uses_district_set = edersphere_world
+		NAND = {
+			is_capital = yes
+			owner = {
+				has_menace_perk = menp_behemoth_mind_meld
+			}
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		#district_edersphere_city
+		district_ssh_edersphere_nexus
+		district_ssh_edersphere_hive
+		district_mindlink
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1250
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3000
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	##### Might have to adjust these numbers, these are the same as ringworld jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_clerk_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire = no
+				has_active_tradition = tr_virtuality_4
+			}
+		}
+		modifier = {
+			job_clerk_add = 600
+		}
+	}
+}
+
+district_ssh_edersphere_hive = {
+	base_buildtime = @edersphere_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_city_government
+		slot_city_01
+		slot_city_02
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		from = { is_hive_empire = yes }
+		uses_district_set = edersphere_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		uses_district_set = edersphere_world
+		NAND = {
+			is_capital = yes
+			owner = {
+				has_menace_perk = menp_behemoth_mind_meld
+			}
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_ssh_edersphere_nexus
+		district_ssh_edersphere_city
+		district_mindlink
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1250
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3000
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_2 }
+		}
+		modifier = {
+			planet_housing_add = 500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		modifier = {
+			job_coordinator_add = @base_district_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_extended_hives }
+		}
+		modifier = {
+			planet_housing_add = 500
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				has_deposit = d_arcane_generator
+				NOT = { has_district = district_ssh_edersphere_hive }
+			}
+		}
+		text = arcane_generator_upkeep_desc
+	}
+}
+
+district_ssh_edersphere_nexus = {
+	base_buildtime = @edersphere_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_city_government
+		slot_city_01
+		slot_city_02
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		from = { is_machine_empire = yes }
+		uses_district_set = edersphere_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+		uses_district_set = edersphere_world
+		NAND = {
+			is_capital = yes
+			owner = {
+				has_menace_perk = menp_behemoth_mind_meld
+			}
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_ssh_edersphere_hive
+		district_ssh_edersphere_city
+		district_mindlink
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1250
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2500
+		job_technician_drone_add = @base_district_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_2 }
+		}
+		modifier = {
+			planet_housing_add = 500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_optimized_nexus }
+		}
+		modifier = {
+			planet_housing_add = 500
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				has_deposit = d_arcane_generator
+				NOT = { has_district = district_ssh_edersphere_nexus }
+			}
+		}
+		text = arcane_generator_upkeep_desc
+	}
+}
+
+
+district_ssh_edersphere_urban_1 = {
+	icon = district_ssh_edersphere_housing_secondary
+	base_buildtime = @edersphere_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_ssh_edersphere_urban_01
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = edersphere_world
+	}
+
+	potential = {
+		uses_district_set = edersphere_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ssh_edersphere_city
+		district_ssh_edersphere_nexus
+		district_ssh_edersphere_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1250
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3000
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+}
+
+district_ssh_edersphere_urban_2 = {
+	icon = district_ssh_edersphere_housing_secondary
+	base_buildtime = @edersphere_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_ssh_edersphere_urban_02
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = edersphere_world
+	}
+
+	potential = {
+		uses_district_set = edersphere_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ssh_edersphere_city
+		district_ssh_edersphere_nexus
+		district_ssh_edersphere_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1250
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3000
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+}
+
+district_ssh_edersphere_urban_3 = {
+	icon = district_ssh_edersphere_housing_secondary
+	base_buildtime = @edersphere_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_ssh_edersphere_urban_03
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = edersphere_world
+	}
+
+	potential = {
+		uses_district_set = edersphere_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ssh_edersphere_city
+		district_ssh_edersphere_nexus
+		district_ssh_edersphere_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1250
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3000
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+}
+
+district_ssh_edersphere_urban_4 = {
+	icon = district_ssh_edersphere_housing_secondary
+	base_buildtime = @edersphere_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_ssh_edersphere_urban_04
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = edersphere_world
+	}
+
+	potential = {
+		uses_district_set = edersphere_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ssh_edersphere_city
+		district_ssh_edersphere_nexus
+		district_ssh_edersphere_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1250
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3000
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+}
+
+district_ssh_edersphere_farming = {
+	expansion_planner = yes
+
+	base_buildtime = @edersphere_district_buildtime
+	is_capped_by_modifier = no
+
+	#min_for_deposits_on_planet = 3
+	#max_for_deposits_on_planet = 15
+
+	zone_slots = {
+		slot_food
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		from = { is_wilderness_empire = no }
+		uses_district_set = edersphere_world
+		NOT = { has_modifier = resort_colony }
+		has_planet_flag = ssh_eco_edersphere # Must contain a habitable surface
+	}
+
+	potential = {
+		uses_district_set = edersphere_world
+		has_planet_flag = ssh_eco_edersphere # Must contain a habitable surface
+		OR = {
+			NOT = { exists = owner }
+			NOT = { owner = { is_anglers_empire = yes } }
+			AND = {
+				owner = { is_anglers_empire = yes }
+				NOT = { is_planet_class = pc_ocean }
+			}
+		}
+		NOT = {
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+					country_uses_food = no
+				}
+			}
+		}
+		OR = {
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = no }
+			}
+		}
+		NOT = { has_modifier = resort_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ssh_edersphere_city
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts_farming
+		cost = {
+			minerals = 1250
+		}
+		# Anglers Civic cost effect
+		cost = {
+			trigger = {
+				AND = {
+					exists = owner
+					owner = { is_anglers_empire = yes }
+					planet = { has_climate = wet }
+				}
+			}
+			minerals = -50
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	inline_script = {
+		script = jobs/farmers_add
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_wilderness_empire = no }
+		}
+		modifier = {
+			planet_housing_add = 1500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 400
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_agrarian_idyll
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 200
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+
+	inline_script = {
+		script = districts/district_triggered_name_farming
+	}
+
+	inline_script = {
+		script = districts/district_triggered_flavor_desc_farming
+	}
+
+	prerequisites = {
+		tech_industrial_farming
+	}
+
+	destroy_trigger = {
+		exists = owner
+		AND = {
+			owner = { is_ai = yes }
+			owner = { country_uses_food = no }
+		}
+	}
+
+	ai_weight_coefficient = 0.8
+}

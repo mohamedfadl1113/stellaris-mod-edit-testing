@@ -1,0 +1,528 @@
+#######################################################################################
+# If Gigas is installed, these are additional optional stages for some gigastructures #
+#######################################################################################
+
+
+nidavellir_forge_5 = {
+	entity = "nidavellir_entity"
+	construction_entity = "nidavellir_construction_entity"
+	portrait = "GFX_megastructure_nidavellir"
+	upgrade_from = { nidavellir_forge_4 }
+
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 30000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 30000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 30000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		produces = {
+			alloys = 1500
+			sr_cultrobium = 500
+		}
+		upkeep = {
+			minerals = 4000
+		}
+		upkeep = {
+			trigger = { NOT = { has_global_flag = giga_disable_influence_upkeep } }
+			influence = 1
+		}
+	}
+
+	potential = {
+		has_gigastructures = yes
+		NOT = {
+			has_global_flag = nidavellir_disabled
+		}
+	}
+	possible = {
+		from = {
+			has_technology = ssh_tech_nuclei_modification
+			has_technology = giga_tech_nidavellir
+		}
+	}
+
+	country_modifier = {
+		country_alloys_produces_mult = 0.05
+		country_sr_cultrobium_produces_mult = 0.05
+		army_damage_mult = 0.5
+		ship_weapon_damage = 0.10
+		ship_armor_mult = 0.1
+	}
+
+	ai_weight = { factor = 10 }
+
+	on_build_complete = {
+		save_event_target_as = giga_system
+		if = { limit = { exists = fromfrom.planet } fromfrom.planet = { save_event_target_as = giga_planet } }
+		from = {
+			country_event = {
+				id = ssh_cn.83
+			}
+		}
+	}
+}
+
+### Stellar Shellworld Upgrade for Gigas' Scaled Dyson Spheres ###
+dyson_hab_0_gigas_a = {
+	entity = "ssh_dyson_hab_0_entity"
+	construction_entity = "ssh_dyson_hab_0_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 1800 #5years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = {
+		has_gigastructures = yes
+		has_technology = ssh_tech_dyson_hab
+		NOT = {
+			has_global_flag = ssh_bwc_megas_deactivated
+		}
+	}
+	show_prereqs = no
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 30000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 30000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 30000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		dyson_sphere_5_a_star
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			#name = "Stellar Shellworld Foundation"
+			type = dyson_hab_1
+			owner = from
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = fromfrom.planet
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.142
+			}
+		}
+	}
+}
+dyson_hab_0_gigas_b = {
+	entity = "ssh_dyson_hab_0_entity"
+	construction_entity = "ssh_dyson_hab_0_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 1800 #5years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = {
+		has_gigastructures = yes
+		has_technology = ssh_tech_dyson_hab
+		NOT = {
+			has_global_flag = ssh_bwc_megas_deactivated
+		}
+	}
+	show_prereqs = no
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 25000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 25000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 25000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		dyson_sphere_5_b_star
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			#name = "Stellar Shellworld Foundation"
+			type = dyson_hab_1
+			owner = from
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = fromfrom.planet
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.142
+			}
+		}
+	}
+}
+dyson_hab_0_gigas_m_giant = {
+	entity = "ssh_dyson_hab_0_entity"
+	construction_entity = "ssh_dyson_hab_0_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 1800 #5years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = {
+		has_gigastructures = yes
+		has_technology = ssh_tech_dyson_hab
+		NOT = {
+			has_global_flag = ssh_bwc_megas_deactivated
+		}
+	}
+	show_prereqs = no
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 20000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 20000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 20000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		dyson_sphere_5_m_giant_star
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			#name = "Stellar Shellworld Foundation"
+			type = dyson_hab_1
+			owner = from
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = fromfrom.planet
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.142
+			}
+		}
+	}
+}
+dyson_hab_0_gigas_f = {
+	entity = "ssh_dyson_hab_0_entity"
+	construction_entity = "ssh_dyson_hab_0_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 1800 #5years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = {
+		has_gigastructures = yes
+		has_technology = ssh_tech_dyson_hab
+		NOT = {
+			has_global_flag = ssh_bwc_megas_deactivated
+		}
+	}
+	show_prereqs = no
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 17500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 17500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 17500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		dyson_sphere_5_f_star
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			#name = "Stellar Shellworld Foundation"
+			type = dyson_hab_1
+			owner = from
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = fromfrom.planet
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.142
+			}
+		}
+	}
+}
+dyson_hab_0_gigas_g = {
+	entity = "ssh_dyson_hab_0_entity"
+	construction_entity = "ssh_dyson_hab_0_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 1800 #5years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = {
+		has_gigastructures = yes
+		has_technology = ssh_tech_dyson_hab
+		NOT = {
+			has_global_flag = ssh_bwc_megas_deactivated
+		}
+	}
+	show_prereqs = no
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 15000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		dyson_sphere_5_g_star
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			#name = "Stellar Shellworld Foundation"
+			type = dyson_hab_1
+			owner = from
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = fromfrom.planet
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.142
+			}
+		}
+	}
+}
+dyson_hab_0_gigas_k = {
+	entity = "ssh_dyson_hab_0_entity"
+	construction_entity = "ssh_dyson_hab_0_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 1800 #5years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = {
+		has_gigastructures = yes
+		has_technology = ssh_tech_dyson_hab
+		NOT = {
+			has_global_flag = ssh_bwc_megas_deactivated
+		}
+	}
+	show_prereqs = no
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 12500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 12500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 12500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		dyson_sphere_5_k_star
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			#name = "Stellar Shellworld Foundation"
+			type = dyson_hab_1
+			owner = from
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = fromfrom.planet
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.142
+			}
+		}
+	}
+}
+dyson_hab_0_gigas_m = {
+	entity = "ssh_dyson_hab_0_entity"
+	construction_entity = "ssh_dyson_hab_0_entity"
+	portrait = "GFX_megastructure_dyson_sphere_background"
+	build_time = 1800 #5years
+	#scales_with_planet = yes
+	prerequisites = { ssh_tech_dyson_hab }
+	potential = {
+		has_gigastructures = yes
+		has_technology = ssh_tech_dyson_hab
+		NOT = {
+			has_global_flag = ssh_bwc_megas_deactivated
+		}
+	}
+	show_prereqs = no
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		dyson_sphere_5_m_star
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			#name = "Stellar Shellworld Foundation"
+			type = dyson_hab_1
+			owner = from
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = fromfrom.planet
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.142
+			}
+		}
+	}
+}
+
+
+############### Dyson Sphere Upgrades to Stellar Harvester ##################
+# stellar harvester dyson sphere upgrade
+#stellar_harvester_gigadyson_g_upgrade = {
+#	entity = "ssh_stellar_harvester_3_entity"
+#	construction_entity = "ssh_stellar_harvester_3_entity"
+#	portrait = "GFX_megastructure_construction_background"
+#	build_time = 1800
+#	place_entity_on_planet_plane = yes
+#	prerequisites = { ssh_tech_stellar_harvester }
+#	potential = { has_technology = ssh_tech_stellar_harvester }
+#
+#	resources = {
+#		category = megastructures
+#		cost = {
+#			alloys = 10000
+#			energy = 25000
+#		}
+#		produces = {
+#			energy = 250
+#		}
+#	}
+#
+#	upgrade_from = {
+#		dyson_sphere_5_g_star
+#	}
+#
+#	on_build_complete = {
+#		#set_star_class = sc_g
+#		from = { save_event_target_as = ssh_stellar_harvester_owner }
+#		fromfrom.planet = {
+#			save_event_target_as = ssh_stellar_harvester_star
+#			planet_event = {
+#				id = ssh_me.11
+#			}
+#		}
+#	}
+#}

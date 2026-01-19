@@ -1,0 +1,30 @@
+# Edersphere Inital Setup
+
+if = {
+	limit = {
+		exists = owner
+		owner = {
+			has_origin = origin_ssh_edersphere
+		}
+	}
+
+	# 1 Housing, 1 Farming, 1 Turbine/Energy, 1 Industry
+	
+	change_variable = {
+		which = energy_districts
+		value = 1
+	}
+	change_variable = {
+		which = mining_districts
+		value = 1
+	}
+	change_variable = {
+		which = farming_districts
+		value = 1
+	}
+
+	# Dont think I need this
+	#set_planet_flag = uncapped_energy
+	#set_planet_flag = uncapped_mining
+	#set_planet_flag = uncapped_farming
+}

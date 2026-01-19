@@ -1,0 +1,992 @@
+#####################
+# D I S T R I C T S #
+#####################
+
+####### WIP, need an update once the hab dyson is gonne get a rework.
+
+@ssh_sh_cost = 1000
+@ssh_sh_alloys_cost = 200
+@ssh_sh_cost_sr = 50
+@ssh_sh_maintenance = 5
+@ssh_sh_maintenance_sr = 2
+@ssh_sh_district_buildtime = 360
+
+
+# Stellar Shellworld/Habitable Dyson Sphere Districts
+district_ssh_hab_dyson_city = {
+	base_buildtime = 360
+	is_capped_by_modifier = no
+	#exempt_from_ai_planet_specialization = yes
+
+	show_on_uncolonized = {
+		exists = from
+		from = { is_regular_empire = yes }
+		uses_district_set = hab_dyson_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_regular_empire = yes }
+		uses_district_set = hab_dyson_world
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_ssh_hab_dyson_nexus
+		district_ssh_hab_dyson_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @ssh_sh_cost
+		}
+		upkeep = {
+			energy = @ssh_sh_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 25
+		job_enforcer_add = 2
+		planet_max_buildings_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 5 #In this case extra housing for agrarian idylls
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_clerk_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_mercantile_trickle_up_economics }
+		}
+		modifier = {
+			job_clerk_add = 3
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_clerk_effect_desc
+	}
+}
+
+district_ssh_hab_dyson_hive = {
+	base_buildtime = 360
+	is_capped_by_modifier = no
+	#exempt_from_ai_planet_specialization = yes
+
+	show_on_uncolonized = {
+		exists = from
+		from = { is_hive_empire = yes }
+		uses_district_set = hab_dyson_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		uses_district_set = hab_dyson_world
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_ssh_hab_dyson_nexus
+		district_ssh_hab_dyson_city
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @ssh_sh_cost
+		}
+		upkeep = {
+			energy = @ssh_sh_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 30
+		planet_max_buildings_add = 1
+		job_maintenance_drone_add = 15
+		job_synapse_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_2 }
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_maintenance_drone_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_extended_hives }
+		}
+		modifier = {
+			planet_housing_add = 5
+		}
+	}
+}
+
+district_ssh_hab_dyson_nexus = {
+	base_buildtime = 360
+	is_capped_by_modifier = no
+	#exempt_from_ai_planet_specialization = yes
+
+	show_on_uncolonized = {
+		exists = from
+		from = { is_machine_empire = yes }
+		uses_district_set = hab_dyson_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+		uses_district_set = hab_dyson_world
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_ssh_hab_dyson_hive
+		district_ssh_hab_dyson_city
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @ssh_sh_cost
+		}
+		upkeep = {
+			energy = @ssh_sh_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 25
+		planet_max_buildings_add = 1
+		job_maintenance_drone_add = 10
+		job_technician_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_2 }
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_maintenance_drone_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_optimized_nexus }
+		}
+		modifier = {
+			planet_housing_add = 5
+		}
+	}
+}
+
+district_ssh_hab_dyson_generator = {
+	base_buildtime = @ssh_sh_district_buildtime
+	is_capped_by_modifier = yes
+	base_cap_amount = 15
+
+	show_on_uncolonized = {
+		uses_district_set = hab_dyson_world
+		exists = from
+	}
+
+	potential = {
+		exists = owner
+		uses_district_set = hab_dyson_world
+	}
+
+	convert_to = {
+		district_ssh_hab_dyson_starlifting
+		district_ssh_hab_dyson_vr
+	}
+
+	resources = {
+		category = planet_districts_generator
+		cost = {
+			minerals = @ssh_sh_cost
+			rare_crystals = @ssh_sh_cost_sr
+		}
+		produces = {
+			energy = 250
+		}
+		upkeep = {
+			#energy = @ssh_sh_maintenance
+			rare_crystals = @ssh_sh_maintenance_sr
+		}
+	}
+
+	#triggered_planet_modifier = {
+	#	planet_housing_add = 15
+	#}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		#job_ssh_stellar_technician_drone_add = 10
+		job_technician_drone_add = 5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		planet_housing_add = 5
+		job_technician_drone_add = 5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_technician_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = 10
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				has_deposit = d_arcane_generator
+				NOT = { has_district = district_rw_generator }
+			}
+		}
+		text = arcane_generator_upkeep_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = no }
+			#is_fallen_empire_spiritualist = no # triggers an error message in error.log so I have put it in the right scope
+		}
+		text = job_technician_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_generator_effect_desc
+	}
+}
+
+district_ssh_hab_dyson_organic_housing = {
+	base_buildtime = 360
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = hab_dyson_world
+		from = {
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+
+	potential = {
+		uses_district_set = hab_dyson_world
+		owner = {
+			exists = owner
+			has_valid_civic = civic_machine_servitor
+			OR = {
+				has_technology = ssh_tech_vr
+				has_origin = origin_ssh_habitable_dyson
+			}
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		#district_ssh_hab_dyson_leisure
+		district_ssh_hab_dyson_city
+		district_ssh_hab_dyson_nexus
+		district_ssh_hab_dyson_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @ssh_sh_cost
+			exotic_gases = @ssh_sh_cost_sr
+		}
+		upkeep = {
+			energy = @ssh_sh_maintenance
+			exotic_gases = @ssh_sh_maintenance_sr
+		}
+	}
+
+	planet_modifier = {
+		job_ssh_bio_trophy_vr_add = 15
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { has_valid_civic = civic_machine_servitor }
+		}
+		text = job_ssh_bio_trophy_vr_effect_desc
+	}
+}
+
+# VR District/Computing District
+district_ssh_hab_dyson_vr = {
+	base_buildtime = @ssh_sh_district_buildtime
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = hab_dyson_world
+		exists = from
+	}
+
+	potential = {
+		exists = owner
+		uses_district_set = hab_dyson_world
+		owner = {
+			has_technology = ssh_tech_vr
+		}
+	}
+
+	convert_to = {
+		district_ssh_hab_dyson_generator
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @ssh_sh_cost
+			exotic_gases = @ssh_sh_cost_sr
+		}
+		upkeep = {
+			energy = @ssh_sh_maintenance
+			exotic_gases = @ssh_sh_maintenance_sr
+		}
+	}
+
+	triggered_planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_ssh_vr_researcher_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_ssh_vr_brain_drone_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_ssh_vr_calculator_add = 10
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				has_deposit = d_arcane_generator
+				NOT = { has_district = district_rw_science }
+			}
+		}
+		text = arcane_generator_upkeep_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_ssh_vr_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_ssh_vr_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_ssh_vr_calculator_effect_desc
+	}
+}
+
+district_ssh_hab_dyson_starlifting = {
+	base_buildtime = @ssh_sh_district_buildtime
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = hab_dyson_world
+		exists = from
+	}
+
+	potential = {
+		exists = owner
+		uses_district_set = hab_dyson_world
+	}
+
+	convert_to = {
+		#district_ssh_hab_dyson_generator
+	}
+
+	resources = {
+		category = planet_districts_mining
+		cost = {
+			alloys = @ssh_sh_alloys_cost
+		}
+		upkeep = {
+			energy = @ssh_sh_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+	}
+
+	triggered_planet_modifier = {
+		planet_housing_add = 15
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_ssh_stellar_lifter_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			job_ssh_stellar_lifter_drone_add = 10
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		text = job_ssh_stellar_lifter_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		text = job_ssh_stellar_lifter_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		text = job_ssh_stellar_lifter_effect_desc
+	}
+
+	prerequisites = {
+		tech_mechanized_mining
+		#star lifting
+	}
+}
+
+district_ssh_hab_dyson_forge = {
+	base_buildtime = @ssh_sh_district_buildtime
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = hab_dyson_world
+	}
+
+	potential = {
+		uses_district_set = hab_dyson_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ssh_hab_dyson_generator
+		district_ssh_hab_dyson_vr
+		district_ssh_hab_dyson_starlifting
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @ssh_sh_cost
+			volatile_motes = @ssh_sh_cost_sr
+		}
+		upkeep = {
+			energy = @ssh_sh_maintenance
+			volatile_motes = @ssh_sh_maintenance_sr
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_edict = industrial_maintenance
+				}
+			}
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 15
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_fabricator_add = 5
+			job_ssh_cultrobium_foundry_drone_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_alloy_drone_add = 5
+			job_ssh_cultrobium_foundry_drone_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_drone_add = 5
+			job_ssh_cultrobium_foundry_drone_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_foundry_add = 5
+			job_ssh_cultrobium_foundry_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_technician_add = 5
+			job_ssh_cultrobium_foundry_add = 5
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_foundry_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_technician_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_alloy_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_fabricator_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_drone_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		text = job_maintenance_drone_effect_desc
+	}
+}
+
+district_ssh_hab_dyson_industrial = {
+	base_buildtime = 360
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = { uses_district_set = hab_dyson_world }
+
+	potential = {
+		uses_district_set = hab_dyson_world
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @ssh_sh_cost
+			volatile_motes = @ssh_sh_cost_sr
+		}
+		upkeep = {
+			energy = @ssh_sh_maintenance
+			volatile_motes = @ssh_sh_maintenance_sr
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_edict = industrial_maintenance
+				}
+			}
+			energy = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		planet_housing_add = 15
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_crafter_empire = no
+			}
+		}
+		modifier = {
+			job_artisan_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_crafter_empire = yes
+			}
+		}
+		modifier = {
+			job_artificer_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_artisan_drone_add = 10
+			#job_fabricator_add = -1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_artisan_drone_add = 10
+			#job_catalytic_drone_add = -1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_crafter_empire = no
+			}
+		}
+		text = job_artisan_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				has_civic = civic_crafters
+			}
+		}
+		text = job_artificer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+		text = job_artisan_drone_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		text = job_maintenance_drone_effect_desc
+	}
+}

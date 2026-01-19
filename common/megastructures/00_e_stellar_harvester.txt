@@ -1,0 +1,826 @@
+stellar_harvester_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	prerequisites = { ssh_tech_stellar_harvester }
+	potential = {
+		has_technology = ssh_tech_stellar_harvester
+		NOT = {
+			has_global_flag = ssh_stellar_harvester_deactivated
+		}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_colony"
+			NOT = {
+				any_system_planet = {
+					is_colony = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_black_hole"
+			NOT = { is_star_class = sc_black_hole }
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_special_star"
+			NOT = { ssh_is_special_star = yes }
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_neutron"
+			NOR = { 
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+				is_star_class = sc_ssh_quark_star
+				# Hypo Stars
+				is_star_class = sc_strange_star
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_black_dwarf"
+			NOT = {
+				is_star_class = sc_ssh_black_dwarf
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			influence = 50
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+				NOR = {
+					is_planet_class = pc_black_dwarf_star
+					is_planet_class = pc_black_hole
+					is_planet_class = pc_pulsar
+					is_planet_class = pc_neutron_star
+					is_planet_class = pc_quark_star
+					ssh_is_special_star = yes #Gigas Galactic Core etc
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOT = {
+					has_planet_flag = has_megastructure
+					#has_planet_flag = megastructure
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+				set_planet_flag = active_stellar_harvester_planet
+				save_event_target_as = stellar_harvester_planet
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		from = {
+			set_country_flag = ssh_is_constructing_stellar_harvester
+			country_event = { id = ssh_cn.84 }
+		}
+	}
+
+	ai_weight = {
+		weight = 15
+		# Do we need the resources?
+		modifier = {
+			factor = 2.0
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 100
+				}
+			}
+		}
+		# Are we constructing one already? (in case of unlimited mega build capacity)
+		modifier = {
+			factor = 0
+			from = { has_country_flag = ssh_is_constructing_stellar_harvester }
+		}
+		# Do we have enough resources?
+		modifier = {
+			factor = 0.1
+			from = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value < 35000
+				}
+			}
+		}
+		# Upkeep Affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				has_monthly_income = {
+					resource = alloys
+					value < 30
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 1.15
+			from = {
+				OR = {
+					has_ai_personality = erudite_explorers
+					has_authority = auth_corporate
+					has_authority = auth_hive_mind
+					has_authority = auth_machine_intelligence
+					has_ethic = ethic_fanatic_materialist
+					has_civic = civic_technocracy
+					is_anthropocentric = yes # E&C
+				}
+			}
+		}
+	}
+}
+
+stellar_harvester_1 = {
+	entity = "ssh_stellar_harvester_1_entity"
+	construction_entity = "ssh_stellar_harvester_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_stellar_harvester }
+	potential = { has_technology = ssh_tech_stellar_harvester }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		produces = {
+			energy = 250
+		}
+	}
+
+	upgrade_from = {
+		stellar_harvester_0
+	}
+
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
+		set_asteroid_belt = {
+			radius = 0
+		}
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+		from = { country_event = { id = ssh_cn.85 } }
+	}
+}
+
+stellar_harvester_2 = {
+	entity = "ssh_stellar_harvester_2_entity"
+	construction_entity = "ssh_stellar_harvester_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_stellar_harvester }
+	potential = { has_technology = ssh_tech_stellar_harvester }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		produces = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		stellar_harvester_1
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.86 } }
+	}
+}
+
+stellar_harvester_3 = {
+	entity = "ssh_stellar_harvester_3_entity"
+	construction_entity = "ssh_stellar_harvester_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_stellar_harvester }
+	potential = { has_technology = ssh_tech_stellar_harvester }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		produces = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		stellar_harvester_2
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.87 } }
+	}
+}
+
+stellar_harvester_4 = {
+	entity = "ssh_stellar_harvester_active_entity"
+	construction_entity = "ssh_stellar_harvester_active_entity"
+	portrait = "GFX_mega_ssh_stellar_harvester"
+	build_time = 30
+	prerequisites = { ssh_tech_stellar_harvester }
+	potential = { has_technology = ssh_tech_stellar_harvester }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 25000
+		}
+		produces = {
+			energy = 500
+		}
+	}
+
+	upgrade_from = {
+		stellar_harvester_3
+	}
+
+	on_build_complete = {
+		remove_megastructure = fromfrom
+		### Spawned through planet_event ssh_me.7 ###
+		#spawn_megastructure = {
+		#	name = "Active Fusion Accelerator"
+		#	type = stellar_harvester_active
+		#	owner = from
+		#	orbit_angle = 0
+		#	orbit_distance = 0
+		#	planet = fromfrom.planet
+		#}
+		from = {
+			save_event_target_as = ssh_stellar_harvester_owner
+			set_country_flag = ssh_has_built_or_repaired_tier_e_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			country_event = {id = ssh_cn.88 }
+		}
+		every_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					ssh_is_any_gas_giant = yes
+					is_asteroid = yes
+					ssh_is_special_planet = yes
+					has_planet_flag = megastructure
+					habitable_planet = yes
+				}
+			}
+			change_pc = pc_barren
+		}
+		every_system_planet = {
+			limit = { habitable_planet = yes }
+			change_pc = pc_nuked
+			add_modifier = {
+				modifier = neutron_bombarded
+				days = 3600
+			}
+		}
+		fromfrom.planet = {
+			planet_event = {
+				id = ssh_me.7
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+# Giga Dyson Sphere Output Values
+# I'm gonna keep the value static though for every star and make the time the mega lasts (=output time) dependant on the star class (so B stars are going to provide most energy due to their size/energy output, m stars are depleted fast)
+#o_star		= 20000		# 500%
+#b_star		= 10000		# 250%
+#m_giant_star	= 8000	# 200%
+#a_star		= 6000		# 150%
+#f_star		= 5000		# 125%
+#g_star		= 4000		# 100% Vanilla
+#k_star		= 3000		# 75%
+#m_star		= 2000		# 50%
+
+stellar_harvester_active = {
+	entity = "ssh_stellar_harvester_active_entity"
+	construction_entity = "ssh_stellar_harvester_active_entity"
+	portrait = "GFX_mega_ssh_stellar_harvester"
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			trigger = { this.planet = { is_planet_class = pc_b_star } }
+			energy = 15000
+		}
+		produces = {
+			trigger = { this.planet = { is_planet_class = pc_m_giant_star } }
+			energy = 13000
+		}
+		produces = {
+			trigger = { this.planet = { is_planet_class = pc_a_star } }
+			energy = 11000
+		}
+		produces = {
+			trigger = { this.planet = { is_planet_class = pc_f_star } }
+			energy = 10000
+		}
+		produces = {
+			trigger = { this.planet = { is_planet_class = pc_g_star } }
+			energy = 9000
+		}
+		produces = {
+			trigger = { this.planet = { is_planet_class = pc_k_star } }
+			energy = 8000
+		}
+		produces = {
+			trigger = { this.planet = { is_planet_class = pc_m_star } }
+			energy = 7000
+		}
+		produces = {
+			trigger = { this.planet = { is_planet_class = pc_blue_dwarf_star } }
+			energy = 6000
+		}
+		produces = {
+			trigger = {
+				this.planet = {
+					OR = {
+						is_planet_class = pc_gigaignited_star
+						is_planet_class = pc_white_dwarf_star
+					}
+				}
+			}
+			energy = 5000
+		}
+		produces = { # Brown Dwarves
+			trigger = {
+				this.planet = {
+					OR = {
+						is_planet_class = pc_t_star
+						# Gigas Stars
+						is_planet_class = pc_gigabrown_dwarf
+					}
+				}
+			}
+			energy = 1000
+		}
+		produces = { # Hypo Stars
+			trigger = {
+				has_global_flag = has_hypothetical_stars_mod
+				this.planet = { is_planet_class = pc_antimatter_star }
+			}
+			energy = 5000
+			sr_antimatter = 150
+		}
+		produces = { # Hypo Stars
+			trigger = {
+				has_global_flag = has_hypothetical_stars_mod
+				this.planet = { is_planet_class = pc_dark_star }
+			}
+			sr_dark_matter = 150
+		}
+		produces = {
+			trigger = {
+				this.planet = { #fromfrom.planet
+					NOR = {
+						is_planet_class = pc_b_star
+						is_planet_class = pc_m_giant_star
+						is_planet_class = pc_a_star
+						is_planet_class = pc_f_star
+						is_planet_class = pc_g_star
+						is_planet_class = pc_k_star
+						is_planet_class = pc_m_star
+						is_planet_class = pc_blue_dwarf_star
+						is_planet_class = pc_gigaignited_star
+						is_planet_class = pc_white_dwarf_star
+						is_planet_class = pc_t_star
+						# Gigas Stars
+						is_planet_class = pc_gigabrown_dwarf
+						# Hypo Stars
+						is_planet_class = pc_antimatter_star
+						is_planet_class = pc_dark_star
+					}
+				}
+			}
+			energy = 1
+		}
+		upkeep = {
+			alloys = 25
+		}
+	}
+}
+
+stellar_harvester_dismantle = {
+	entity = "ssh_stellar_harvester_active_entity"
+	construction_entity = "ssh_stellar_harvester_active_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360
+	
+	upgrade_from = {
+		stellar_harvester_active
+	}
+
+	possible = {
+		from = {
+			has_technology = ssh_tech_stellar_harvester
+		}
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+
+	on_build_complete = {
+		fromfrom = {
+			remove_megastructure = this
+		}
+		fromfrom.planet = {
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = active_stellar_harvester_planet
+		}
+		# Set according star class (if not trinary/binary
+		if = {
+			limit = {
+				NOR = {
+					is_binary_star = yes
+					is_trinary_star = yes
+				}
+			}
+			fromfrom.planet = {
+				# only the classes the star can be transformed into by the harvester matter
+				if = {
+					limit = { is_planet_class = pc_g_star }
+					solar_system = { set_star_class = sc_g }
+				}
+				else_if = {
+					limit = { is_planet_class = pc_m_star }
+					solar_system = { set_star_class = sc_m }
+				}
+				else_if = {
+					limit = { is_planet_class = pc_blue_dwarf_star }
+					solar_system = { set_star_class = sc_ssh_blue_dwarf }
+				}
+				else_if = {
+					limit = { is_planet_class = pc_white_dwarf_star }
+					solar_system = { set_star_class = sc_ssh_white_dwarf }
+				}
+				else_if = {
+					limit = { is_planet_class = pc_black_dwarf_star }
+					solar_system = { set_star_class = sc_ssh_black_dwarf }
+				}
+			}
+		}
+	}
+}
+
+stellar_harvester_ruined = {
+	entity = "ssh_stellar_harvester_ruined_entity"
+	portrait = "GFX_megastructure_construction_background"
+	
+	potential = {
+		always = no
+	}
+}
+
+stellar_harvester_restored = {
+	entity = "ssh_stellar_harvester_3_entity"
+	construction_entity = "ssh_stellar_harvester_3_entity"
+	portrait = "GFX_mega_ssh_stellar_harvester"
+	build_time = 1800
+	place_entity_on_planet_plane = yes
+	
+	possible = {
+		from = {
+			has_technology = ssh_tech_stellar_harvester
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 25000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 20000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 20000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 20000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+	}
+
+	upgrade_from = {
+		stellar_harvester_ruined
+	}
+
+	on_build_complete = {
+		remove_megastructure = fromfrom
+		from = {
+			save_event_target_as = ssh_stellar_harvester_owner
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			country_event = {id = ssh_cn.88 }
+		}
+		every_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					ssh_is_any_gas_giant = yes
+					is_asteroid = yes
+					ssh_is_special_planet = yes
+					has_planet_flag = megastructure
+					habitable_planet = yes
+				}
+			}
+			change_pc = pc_barren
+		}
+		every_system_planet = {
+			limit = { habitable_planet = yes }
+			change_pc = pc_nuked
+			add_modifier = {
+				modifier = neutron_bombarded
+				days = 3600
+			}
+		}
+		fromfrom.planet = {
+			planet_event = {
+				id = ssh_me.7
+			}
+		}
+	}
+}
+
+# stellar harvester dyson sphere upgrade
+stellar_harvester_dyson_upgrade = {
+	entity = "ssh_stellar_harvester_3_entity"
+	construction_entity = "ssh_stellar_harvester_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800
+	#scales_with_planet = yes
+	place_entity_on_planet_plane = yes
+	prerequisites = { ssh_tech_stellar_harvester }
+	potential = { has_technology = ssh_tech_stellar_harvester }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 25000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		produces = {
+			energy = 250
+		}
+	}
+
+	upgrade_from = {
+		dyson_sphere_5
+		# cant take 2 megas sadly
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_stellar_harvester_owner
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			remove_country_flag = built_dyson_sphere_swarm # So you can build a second Dyson Sphere
+		}
+		every_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					ssh_is_any_gas_giant = yes
+					is_asteroid = yes
+					ssh_is_special_planet = yes
+					has_planet_flag = megastructure
+					habitable_planet = yes
+					is_planet_class = pc_broken
+					is_planet_class = pc_machine_broken
+				}
+			}
+			change_pc = pc_barren
+		}
+		every_system_planet = {
+			limit = { habitable_planet = yes }
+			change_pc = pc_nuked
+			add_modifier = {
+				modifier = neutron_bombarded
+				days = 3600
+			}
+		}
+		fromfrom.planet = {
+			save_event_target_as = ssh_stellar_harvester_star
+			planet_event = {
+				id = ssh_me.11
+			}
+		}
+	}
+}
+
+stellar_harvester_dyson_upgrade_2 = {
+	entity = "ssh_stellar_harvester_3_entity"
+	construction_entity = "ssh_stellar_harvester_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800
+	#scales_with_planet = yes
+	place_entity_on_planet_plane = yes
+	prerequisites = { ssh_tech_stellar_harvester }
+	potential = { has_technology = ssh_tech_stellar_harvester }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 25000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		produces = {
+			energy = 250
+		}
+	}
+
+	upgrade_from = {
+		dyson_sphere_restored
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_stellar_harvester_owner
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			remove_country_flag = built_dyson_sphere_swarm # So you can build a second Dyson Sphere
+		}
+		every_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					ssh_is_any_gas_giant = yes
+					is_asteroid = yes
+					ssh_is_special_planet = yes
+					has_planet_flag = megastructure
+					habitable_planet = yes
+					is_planet_class = pc_broken
+					is_planet_class = pc_machine_broken
+				}
+			}
+			change_pc = pc_barren
+		}
+		every_system_planet = {
+			limit = { habitable_planet = yes }
+			change_pc = pc_nuked
+			add_modifier = {
+				modifier = neutron_bombarded
+				days = 3600
+			}
+		}
+		fromfrom.planet = {
+			save_event_target_as = ssh_stellar_harvester_star
+			planet_event = {
+				id = ssh_me.11
+			}
+		}
+	}
+}

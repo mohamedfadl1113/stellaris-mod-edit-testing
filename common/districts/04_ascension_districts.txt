@@ -1,0 +1,80 @@
+#####################
+# D I S T R I C T S #
+#####################
+
+@ssh_ascension_cost = 250
+@ssh_ascension_district_buildtime = 1000
+
+
+# Ascension Portal
+district_ssh_exodus_portal = {
+	base_buildtime = @ssh_ascension_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_empty
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		from = {
+			NOT = {
+				is_wilderness_empire = yes
+			}
+			has_country_flag = exodus_crisis_country
+			has_country_flag = ssh_completed_exodus_country
+		}
+		uses_district_set = exodus_portal
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			NOT = {
+				is_wilderness_empire = yes
+			}
+			#has_country_flag = exodus_crisis_country
+			has_country_flag = ssh_completed_exodus_country
+		}
+		# Wilderness? idk how this civic/origin works
+		uses_district_set = exodus_portal
+		NAND = {
+			is_capital = yes
+			owner = {
+				has_menace_perk = menp_behemoth_mind_meld
+			}
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_mindlink
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			sr_dark_matter = @ssh_ascension_cost
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 10000
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_country_flag = ssh_completed_exodus_country
+			}
+		}
+		modifier = {
+			country_resource_max_add = 100000
+		}
+	}
+}

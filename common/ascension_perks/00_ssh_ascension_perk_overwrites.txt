@@ -1,0 +1,556 @@
+#################
+# AP Overwrites
+#################
+
+# COMPATIBILITY LOC WITH AND WITHOUT GIGAS
+
+# Gigas' Values
+@galwonders_weight = 5000
+@mega_engineering_perks = 5
+@structure_perks = 4
+
+ap_galactic_wonders_utopia = {
+	on_enabled = {
+		if = {
+			# Gigas' Overwrite Effects
+			limit = { has_gigastructures = yes }
+			custom_tooltip = "add_research_options_galactic_wonders_utopia_2"
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_technology = tech_ring_world }
+					}
+					add_research_option = tech_ring_world
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_dyson_sphere }
+					}
+					add_research_option = tech_dyson_sphere
+				}
+
+				if = {
+					limit = {
+						is_ai = yes
+						NOT = { has_technology = tech_mega_engineering }
+					}
+					add_research_option = tech_mega_engineering
+				}
+			}
+		}
+		# Vanilla Effect + Hyperconstruct only tooltip
+		else = {
+			custom_tooltip = "add_research_options_galactic_wonders_utopia"
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_technology = tech_ring_world }
+					}
+					add_research_option = tech_ring_world
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_dyson_sphere }
+					}
+					add_research_option = tech_dyson_sphere
+				}
+			}
+		}
+	}
+
+	possible = {
+		# Gigas Effect
+		if = {
+			limit = { has_gigastructures = yes }
+			# change to allow the AI an easier time catching up
+			custom_tooltip = {
+				fail_text = "requires_mega_engineering"
+				or = {
+					has_technology = tech_mega_engineering
+					and = {
+						is_ai = yes
+						or = {
+							any_country = {
+								is_ai = no
+								has_galactic_wonders = yes
+							}
+							num_ascension_perks >= @mega_engineering_perks
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_built_or_repaired_megastructure"
+				or = {
+					has_country_flag = has_built_or_repaired_megastructure
+					and = {
+						is_ai = yes
+						or = {
+							any_country = {
+								is_ai = no
+								has_galactic_wonders = yes
+							}
+							num_ascension_perks >= @structure_perks
+						}
+					}
+				}
+			}
+		}
+		# Vanilla Effect
+		else = {
+			custom_tooltip = {
+				fail_text = "requires_mega_engineering"
+				has_technology = tech_mega_engineering
+			}
+			custom_tooltip = {
+				fail_text = "requires_built_or_repaired_megastructure"
+				has_country_flag = has_built_or_repaired_megastructure
+			}
+		}
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		NOR = {
+			host_has_dlc = "Megacorp"
+			has_ascension_perk = ap_galactic_wonders_utopia
+		}
+	}
+
+	ai_weight = {
+		factor = @galwonders_weight # vanilla = 20
+		#modifier = {
+		#	factor = 2
+		#	has_ethic = ethic_pacifist
+		#}
+		#modifier = {
+		#	factor = 3
+		#	has_ethic = ethic_fanatic_pacifist
+		#}
+		#modifier = {
+		#	factor = 2
+		#	has_ethic = ethic_materialist
+		#}
+		#modifier = {
+		#	factor = 3
+		#	has_ethic = ethic_fanatic_materialist
+		#}
+	}
+}
+
+ap_galactic_wonders_utopia_and_megacorp = {
+	on_enabled = {
+		#custom_tooltip = "add_research_options_galactic_wonders_utopia"
+		# W/ Gigas
+		if = {
+			limit = { has_gigastructures = yes }
+			custom_tooltip = "add_research_options_galactic_wonders_utopia_megacorp_2"
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_technology = tech_ring_world }
+					}
+					add_research_option = tech_ring_world
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_dyson_sphere }
+					}
+					add_research_option = tech_dyson_sphere
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_matter_decompressor }
+					}
+					add_research_option = tech_matter_decompressor
+				}
+	
+				if = {
+					limit = {
+						is_ai = yes
+						NOT = { has_technology = tech_mega_engineering }
+					}
+					add_research_option = tech_mega_engineering
+				}
+			}
+		}
+		# Without gigas
+		else = {
+			custom_tooltip = "add_research_options_galactic_wonders_utopia_megacorp"
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_technology = tech_ring_world }
+					}
+					add_research_option = tech_ring_world
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_dyson_sphere }
+					}
+					add_research_option = tech_dyson_sphere
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_matter_decompressor }
+					}
+					add_research_option = tech_matter_decompressor
+				}
+			}
+		}		
+	}
+
+	possible = {
+		if = {
+			limit = { has_gigastructures = yes }
+			custom_tooltip = "add_research_options_galactic_wonders_utopia_megacorp_2" ### remove test test
+			# change to allow the AI an easier time catching up
+			custom_tooltip = {
+				fail_text = "requires_mega_engineering"
+				or = {
+					has_technology = tech_mega_engineering
+					and = {
+						is_ai = yes
+						or = {
+							any_country = {
+								is_ai = no
+								has_galactic_wonders = yes
+							}
+							num_ascension_perks >= @mega_engineering_perks
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_built_or_repaired_megastructure"
+				or = {
+					has_country_flag = has_built_or_repaired_megastructure
+					and = {
+						is_ai = yes
+						or = {
+							any_country = {
+								is_ai = no
+								has_galactic_wonders = yes
+							}
+							num_ascension_perks >= @structure_perks
+						}
+					}
+				}
+			}
+		}
+		else = {
+			custom_tooltip = {
+				fail_text = "requires_mega_engineering"
+				has_technology = tech_mega_engineering
+			}
+			custom_tooltip = {
+				fail_text = "requires_built_or_repaired_megastructure"
+				has_country_flag = has_built_or_repaired_megastructure
+			}
+		}
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		host_has_dlc = "Megacorp"
+		NOT = {
+			has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+		}
+	}
+
+	ai_weight = {
+		factor = @galwonders_weight # vanilla = 20
+		# modifier = {
+		# 	factor = 2
+		# 	has_ethic = ethic_pacifist
+		# }
+		# modifier = {
+		# 	factor = 3
+		# 	has_ethic = ethic_fanatic_pacifist
+		# }
+		# modifier = {
+		# 	factor = 2
+		# 	has_ethic = ethic_materialist
+		# }
+		# modifier = {
+		# 	factor = 3
+		# 	has_ethic = ethic_fanatic_materialist
+		# }
+	}
+}
+
+#ap_become_the_crisis = {
+#	potential = {
+#		has_nemesis = yes
+#		NOR = {
+#			has_ascension_perk = ap_become_the_crisis
+#			has_ascension_perk = ap_cosmogenesis
+#			has_ascension_perk = ap_behemoths
+#			has_ascension_perk = ap_hyperdimensional_exodus
+#			has_ascension_perk = ap_defender_of_the_galaxy
+#			has_origin = origin_slavers
+#		}
+#	}
+#
+#	possible = {
+#		custom_tooltip = {
+#			fail_text = "requires_ascension_perks_3"
+#			num_ascension_perks > 2
+#		}
+#		custom_tooltip = {
+#			fail_text = "requires_independence"
+#			is_subject = no
+#		}
+#		custom_tooltip = {
+#			fail_text = "must_not_be_custodian"
+#			is_galactic_custodian = no
+#		}
+#		custom_tooltip = {
+#			fail_text = "must_not_be_emperor"
+#			is_galactic_emperor = no
+#		}
+#		NOR = {
+#			has_ethic = ethic_xenophile
+#			has_ethic = ethic_fanatic_xenophile
+#			has_ethic = ethic_pacifist
+#			has_ethic = ethic_fanatic_pacifist
+#			has_civic = civic_machine_servitor
+#		}
+#	}
+#
+#	on_enabled = {
+#		hidden_effect = {
+#			set_ai_personality = became_the_crisis
+#		}
+#		activate_crisis_progression = nemesis_path
+#	}
+#
+#	ai_weight = {
+#		factor = 7.5
+#		modifier = {
+#			factor = 0
+#			NOR = {
+#				is_militarist = yes
+#				is_xenophobe = yes
+#				is_gestalt = yes
+#			}
+#		}
+#		modifier = {
+#			factor = 10
+#			is_homicidal = yes
+#		}
+#		modifier = {
+#			factor = 2
+#			has_tradition = tr_supremacy_finish
+#		}
+#		modifier = {
+#			factor = 0
+#			galaxy_percentage < 0.1
+#		}
+#		modifier = {
+#			factor = 2
+#			galaxy_percentage > 0.2
+#		}
+#		modifier = {
+#			factor = 0
+#			count_playable_country = {
+#				count > 1
+#				limit = {
+#					has_ascension_perk = ap_become_the_crisis
+#				}
+#			}
+#		}
+#		modifier = {
+#			factor = 0
+#			blocks_disruptive_gameplay = yes
+#		}
+#	}
+#}
+
+#################
+# Cybernetics ASCENSION PERKS
+#################
+
+#ap_cosmogenesis = {
+#	potential = {
+#		has_machine_age_dlc = yes
+#		NOR = {
+#			has_ascension_perk = ap_become_the_crisis
+#			has_ascension_perk = ap_cosmogenesis
+#			has_ascension_perk = ap_behemoths
+#			has_ascension_perk = ap_hyperdimensional_exodus
+#			has_ascension_perk = ap_defender_of_the_galaxy
+#			has_origin = origin_slavers # No crisis for MSI
+#		}
+#	}
+#
+#	possible = {
+#		custom_tooltip = {
+#			fail_text = "requires_ascension_perks_3"
+#			num_ascension_perks > 2
+#		}
+#		custom_tooltip = {
+#			fail_text = "requires_independence"
+#			is_subject = no
+#		}
+#		custom_tooltip = {
+#			fail_text = "must_not_be_custodian"
+#			is_galactic_custodian = no
+#		}
+#		custom_tooltip = {
+#			fail_text = "must_not_be_emperor"
+#			is_galactic_emperor = no
+#		}
+#	}
+#
+#	on_enabled = {
+#		hidden_effect = {
+#			set_variable = {
+#				which = cosmogenesis_world_advanced_logic_produced
+#				value = 0
+#			}
+#		}
+#		activate_crisis_progression = cosmogenesis_path
+#	}
+#
+#	ai_weight = {
+#		factor = 7.5
+#		modifier = {
+#			factor = 0
+#			OR = {
+#				is_egalitarian = yes
+#				is_xenophile = yes
+#			}
+#		}
+#		modifier = {
+#			factor = 2
+#			has_tradition = tr_discovery_finish
+#		}
+#		modifier = {
+#			factor = 2
+#			has_ascension_perk = ap_technological_ascendancy
+#		}
+#		modifier = {
+#			factor = 2
+#			has_ascension_perk = ap_enigmatic_engineering
+#		}
+#		modifier = {
+#			factor = 2
+#			vassals > 0
+#			any_subject = {
+#				any_agreement = {
+#					has_active_specialization = specialist_scholarium
+#				}
+#			}
+#		}
+#		modifier = {
+#			factor = 10
+#			has_country_flag = whisperers_covenant_confirmed
+#		}
+#		modifier = {
+#			factor = 0
+#			galaxy_percentage < 0.1
+#		}
+#		modifier = {
+#			factor = 2
+#			galaxy_percentage > 0.2
+#		}
+#	}
+#}
+
+#ap_behemoths = {
+#	potential = {
+#		has_biogenesis_dlc = yes
+#		NOR = {
+#			has_ascension_perk = ap_become_the_crisis
+#			has_ascension_perk = ap_cosmogenesis
+#			has_ascension_perk = ap_behemoths
+#			has_ascension_perk = ap_hyperdimensional_exodus
+#			has_ascension_perk = ap_defender_of_the_galaxy
+#			has_origin = origin_slavers # No crisis for MSI
+#			is_wilderness_empire = yes
+#		}
+#	}
+#
+#	possible = {
+#		custom_tooltip = {
+#			fail_text = "requires_ascension_perks_3"
+#			num_ascension_perks > 2
+#		}
+#		custom_tooltip = {
+#			fail_text = "requires_independence"
+#			is_subject = no
+#		}
+#		custom_tooltip = {
+#			fail_text = "must_not_be_custodian"
+#			is_galactic_custodian = no
+#		}
+#		custom_tooltip = {
+#			fail_text = "must_not_be_emperor"
+#			is_galactic_emperor = no
+#		}
+#		custom_tooltip = {
+#			fail_text = "must_use_bioships"
+#			country_uses_bio_ships = yes
+#		}
+#		NOR = {
+#			has_ethic = ethic_xenophile
+#			has_ethic = ethic_fanatic_xenophile
+#			has_ethic = ethic_pacifist
+#			has_ethic = ethic_fanatic_pacifist
+#		}
+#	}
+#
+#	on_enabled = {
+#		activate_crisis_progression = behemoth_path
+#	}
+#
+#	ai_weight = {
+#		factor = 7.5
+#		modifier = {
+#			factor = 0
+#			is_xenophile = yes
+#			is_spiritualist = yes
+#		}
+#
+#		modifier = {
+#			factor = 0.5
+#			is_lithoid = yes
+#		}
+#
+#		modifier = {
+#			factor = 4
+#			is_homicidal = yes
+#		}
+#
+#		modifier = {
+#			factor = 6
+#			has_civic = civic_hive_devouring_swarm
+#		}
+#
+#		modifier = {
+#			factor = 2
+#			has_tradition = tr_enmity_finish
+#		}
+#		modifier = {
+#			factor = 2
+#			has_ascension_perk = ap_engineered_evolution
+#		}
+#		modifier = {
+#			factor = 2
+#			has_ascension_perk = ap_nihilistic_acquisition
+#		}
+#		modifier = {
+#			factor = 10
+#			has_country_flag = eater_covenant_confirmed
+#		}
+#		modifier = {
+#			factor = 0
+#			galaxy_percentage < 0.1
+#		}
+#		modifier = {
+#			factor = 2
+#			galaxy_percentage > 0.2
+#		}
+#	}
+#}

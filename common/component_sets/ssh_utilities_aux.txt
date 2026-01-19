@@ -1,0 +1,13 @@
+component_set = {
+	key = "AUTO_REPAIR_NANOBOTS"
+
+	icon = "GFX_ship_part_auto_repair_nanobots"
+	icon_frame = 1
+}
+
+component_set = {
+	key = "AUTO_REPAIR_CONMAT"
+
+	icon = "GFX_ship_part_auto_repair_conmat"
+	icon_frame = 1
+}

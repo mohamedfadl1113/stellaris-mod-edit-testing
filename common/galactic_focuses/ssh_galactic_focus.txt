@@ -1,0 +1,26 @@
+#example_focus = {
+#	effect = {} # effect applied to community members if fulfilled, scope is country
+#	potential = {} # potential trigger, no scope check
+#	trigger = {} # trigger to determine if the focus has been fulfilled, no scope check
+#}
+
+galactic_focus_crisis_vacdec = {
+	icon = "GFX_galactic_focus_escape_the_reality_collapse"
+
+	effect = {
+		add_resource = { influence = 100 }
+		#tooltip = { country_event = { id = crisis.211 } }
+	}
+
+	potential = {
+		has_global_flag = galactic_focus_crisis_vacdec
+		NOT = { has_global_flag = ssh_vacdec_crisis_defeated }
+	}
+
+	trigger = {
+		custom_tooltip = {
+			fail_text = "galactic_focus_crisis_vacdec"
+			has_global_flag = ssh_vacdec_crisis_defeated
+		}
+	}
+}

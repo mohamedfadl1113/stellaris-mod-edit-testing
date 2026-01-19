@@ -1,0 +1,255 @@
+#################
+# Megastructure APs
+#################
+ap_galactic_hyperstructures = {
+	on_enabled = {
+		custom_tooltip = "ssh_add_research_options_galactic_hyperstructures"
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_technology = ssh_tech_gas_giant_compression }
+				}
+				add_research_option = ssh_tech_gas_giant_compression
+			}
+			if = {
+				limit = {
+					NOT = { has_technology = ssh_tech_microscale_engineering }
+				}
+				add_research_option = ssh_tech_microscale_engineering
+			}
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_mega_engineering"
+			has_technology = tech_mega_engineering
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_built_or_repaired_big_megastructure"
+			#has_country_flag = has_built_or_repaired_megastructure
+			OR = {
+				has_country_flag = ssh_has_built_or_repaired_tier_c_mega
+				has_country_flag = ssh_has_built_or_repaired_tier_d_mega
+				has_country_flag = has_built_or_repaired_megastructure
+				ssh_has_built_or_repaired_galactic_wonders_mega = yes
+				# Gigastructures
+				has_country_flag = has_built_or_repaired_gigastructure
+				AND = {
+					is_ai = yes
+					num_ascension_perks > 5
+				}
+			}
+		}
+	}
+
+	modifier = {
+		country_megastructure_build_cap_add = 1
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = {
+			has_ascension_perk = ap_galactic_hyperstructures
+		}
+	}
+
+	ai_weight = {
+		factor = 999
+		#modifier = {
+		#	factor = 1.5
+		#	has_ethic = ethic_pacifist
+		#}
+		#modifier = {
+		#	factor = 2
+		#	has_ethic = ethic_fanatic_pacifist
+		#}
+		#modifier = {
+		#	factor = 1.5
+		#	has_ethic = ethic_materialist
+		#}
+		#modifier = {
+		#	factor = 2
+		#	has_ethic = ethic_fanatic_materialist
+		#}
+	}
+}
+
+# Reality Manipulation (BTC)
+ap_hyperdimensional_exodus = {
+	potential = {
+		host_has_dlc = "Utopia"
+		OR = {
+			host_has_dlc = "Nemesis"
+			host_has_dlc = "The Machine Age"
+			host_has_dlc = "BioGenesis"
+		}
+		NOR = {
+			is_player_crisis = yes # Checks for all four vanilla BTC Perks
+			has_ascension_perk = ap_hyperdimensional_exodus
+			has_ascension_perk = ap_defender_of_the_galaxy
+			has_origin = origin_slavers # No crisis for MSI
+			# Deactivated
+			has_global_flag = ssh_dim_tearer_deactivated
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_3"
+			num_ascension_perks > 2
+		}
+		custom_tooltip = {
+			fail_text = "requires_independence"
+			is_subject = no
+		}
+		custom_tooltip = {
+			fail_text = "must_not_be_custodian"
+			is_galactic_custodian = no
+		}
+		custom_tooltip = {
+			fail_text = "must_not_be_emperor"
+			is_galactic_emperor = no
+		}
+		#custom_tooltip = {
+		#	fail_text = "ssh_requires_elementary_tampering"
+		#	has_technology = ssh_tech_elementary_tampering
+		#}
+		#NOR = {
+		#	has_ethic = ethic_militarist
+		#	has_ethic = ethic_fanatic_militarist
+		#	NAND = {
+		#		has_ethic = ethic_gestalt_consciousness
+		#		has_valid_civic = civic_machine_servitor
+		#	}
+		#}
+		NOR = {
+			has_ethic = ethic_militarist
+			has_ethic = ethic_fanatic_militarist
+			has_civic = civic_fanatic_purifiers
+			AND = {
+				has_ethic = ethic_gestalt_consciousness
+				NOT = { has_valid_civic = civic_machine_servitor }
+			}
+		}
+		#OR = {
+		#	has_ethic = ethic_xenophile
+		#	has_ethic = ethic_fanatic_xenophile
+		#	has_ethic = ethic_pacifist
+		#	has_ethic = ethic_fanatic_pacifist
+		#	has_civic = civic_machine_servitor
+		#}
+	}
+
+	on_enabled = {
+		set_country_flag = is_player_crisis # To prohibit taking any other vanilla/modded crisis path
+		activate_crisis_progression = hyperdim_exodus_path
+	}
+
+	ai_weight = {
+		factor = 7.5
+		# Limit AI Exoduses per run
+		modifier = {
+			factor = 0.25
+			count_playable_country = {
+				count > 1
+				limit = {
+					is_ai = yes
+					has_ascension_perk = ap_hyperdimensional_exodus
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_xenophile
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = {
+			factor = 1.5
+			has_tradition = tr_discovery_finish
+		}
+		modifier = {
+			factor = 1.25
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		# We lost a war so everything is pointless lets exodus to become powerful entities
+		modifier = {
+			factor = 2.5
+			recently_lost_war = yes
+		}
+		modifier = {
+			factor = 5
+			has_civic = civic_inwards_perfection
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				has_civic = civic_dimensional_worship
+				has_civic = civic_corporate_dimensional_worship
+				has_civic = civic_ascensionists
+				has_civic = civic_machine_ascensionists
+				has_civic = civic_hive_ascensionists
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_civic = civic_machine_servitor
+				is_pacifist = yes
+			}
+			any_neighbor_country = {
+				OR = {
+					is_homicidal = yes
+					has_ethic = ethic_fanatic_militarist
+				}
+			}
+		}
+		# Servitors must. protect. trophies.
+		modifier = {
+			factor = 10
+			has_ai_personality = aggressive_servitors #diplomatic_servitors # Dynamic Civic Overhaul Mod
+			any_playable_country = { is_homicidal = yes }
+		}
+		#modifier = {
+		#	factor = 5
+		#	has_civic = civic_machine_servitor
+		#	any_playable_country = { is_homicidal = yes }
+		#}
+		modifier = {
+			factor = 1.5
+			has_federation = yes
+			federation = { has_federation_type = research_federation }
+		}
+		modifier = {
+			factor = 4
+			has_country_flag = composer_covenant_confirmed
+		}
+		modifier = {
+			factor = 8
+			has_country_flag = covenant_end_of_the_cycle
+		}
+		#modifier = {
+		#	factor = 3.0
+		#	has_country_flag = dportal_country
+		#}
+		#modifier = {
+		#	factor = 0.5
+		#	galaxy_percentage < 0.1
+		#}
+		#modifier = {
+		#	factor = 2
+		#	galaxy_percentage > 0.2
+		#}
+	}
+}

@@ -1,0 +1,262 @@
+# CRISIS LEVELS
+# Levels can be unlocked in the order they are written in this file. A later listed level with lower requirements will not be unlocked until the previous levels have been unlocked.
+#
+# level_name = {
+#	perks = {
+#		menp_undertaker		# The menace perks that will be applied when the level is unlocked.
+#		menp_ship_chipper
+#	}
+#	required_menace = 0		# The required amount of Menace to unlock the level
+#	allow = { has_completed_special_project_in_log = CRISIS_SPECIAL_PROJECT_1 }	# You can only unlock this level when this trigger returns true
+#																			# scope COUNTRY, This = country trying to unlock the level
+#	on_unlock = { set_country_flag = CRISIS_LEVEL_FLAG }	# an effect that is triggered when you unlock the level
+#															# scope COUNTRY, This = country the level is being unlocked for
+# }
+
+crisis_hyperdim_exodus_level_1 = {
+	# REQUIREMENTS
+	required_crisis_currency = 0
+
+	# REWARDS
+	perks = {
+		menp_hyperdim_exodus_objectives
+		menp_system_disintegration
+		menp_dimensional_observer
+	}
+
+	on_unlock = {
+		#add_hyperdim_exodus_level_1_perks = yes
+		hidden_effect = {
+			owner = {
+				set_country_flag = exodus_crisis_country
+				add_hyperdim_exodus_level_1_perks = yes
+				country_event = { id = ssh_crisis.1 }
+			}
+		}
+	}
+}
+
+crisis_hyperdim_exodus_level_2 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = ssh_exodus_level_2_req_clear_tooltip
+			fail_text =	ssh_exodus_level_2_req_tooltip
+			has_country_flag = ssh_hyperdim_exodus_special_project_1_complete
+		}
+		hidden_trigger = {
+			NOT = {
+				has_active_event = {
+					ssh_crisis.10
+				}
+			}
+		}
+	}
+	required_crisis_currency = 2500
+
+	# REWARDS
+	perks = {
+		menp_micro_dimensions
+		menp_in_depth_defense
+		menp_scientific_focus
+	}
+
+	on_unlock = {
+		#add_hyperdim_exodus_level_2_perks = yes
+		hidden_effect = {
+			owner = {
+				add_event_chain_counter = {
+					event_chain = "hyperdimensional_exodus_chain"
+					counter = "hyperdimensional_exodus_chain_level_reached"
+					amount = 1
+				}
+				add_hyperdim_exodus_level_2_perks = yes
+				country_event = { id = ssh_crisis.2 days = 3 }
+			}
+		}
+	}
+}
+
+crisis_hyperdim_exodus_level_3 = {
+	# REQUIREMENTS
+	#allow = {
+	#	custom_tooltip = {
+	#		success_text =	cosmogenesis_level_3_req_clear_tooltip
+	#		fail_text =	cosmogenesis_level_3_req_tooltip
+	#		has_technology = tech_cosmogenesis_crisis_2
+	#	}
+	#}
+	allow = {
+		custom_tooltip = {
+			success_text = ssh_exodus_level_3_req_clear_tooltip
+			fail_text =	ssh_exodus_level_3_req_tooltip
+			has_country_flag = ssh_hyperdim_exodus_special_project_2_complete
+		}
+		hidden_trigger = {
+			NOT = {
+				has_active_event = {
+					ssh_crisis.15
+				}
+			}
+		}
+	}
+	required_crisis_currency = 6500
+
+	# REWARDS
+	perks = {
+		menp_hyperdim_exodus_dimensional_techs
+		menp_scientific_integration
+		menp_astral_skills
+		menp_anomaly_master
+	}
+
+	on_unlock = {
+		#add_hyperdim_exodus_level_3_perks = yes
+		hidden_effect = {
+			owner = {
+				add_event_chain_counter = {
+					event_chain = "hyperdimensional_exodus_chain"
+					counter = "hyperdimensional_exodus_chain_level_reached"
+					amount = 1
+				}
+				add_hyperdim_exodus_level_3_perks = yes
+				country_event = { id = ssh_crisis.3 days = 3 }
+			}
+		}
+	}
+}
+
+crisis_hyperdim_exodus_level_4 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = ssh_exodus_level_4_req_clear_tooltip
+			fail_text =	ssh_exodus_level_4_req_tooltip
+			has_country_flag = ssh_hyperdim_exodus_special_project_3_complete
+		}
+		hidden_trigger = {
+			NOT = {
+				has_active_event = {
+					ssh_crisis.20
+				}
+			}
+		}
+	}
+	required_crisis_currency = 16000
+
+	# REWARDS
+	perks = {
+		menp_hyperdim_exodus_dark_matter_techs
+		menp_jump_drive_enhancements
+		menp_defensive_deterrence
+		
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				add_event_chain_counter = {
+					event_chain = "hyperdimensional_exodus_chain"
+					counter = "hyperdimensional_exodus_chain_level_reached"
+					amount = 1
+				}
+				# Required Technologies
+				### Doesn't seem to work for whatever reason. Techs will instead pop up by chance for now
+				#if = {
+				#	limit = {
+				#		OR = {
+				#			is_machine_empire = yes
+				#			is_individual_machine = yes
+				#		}
+				#	}
+				#	#add_research_option = ssh_tech_exodus_stage_4_machine
+				#	add_tech_progress = {
+				#		tech = ssh_tech_exodus_stage_4_machine
+				#		progress = 0.05
+				#	}
+				#}
+				#else = {
+				#	add_tech_progress = {
+				#		tech = ssh_tech_exodus_stage_4_biological
+				#		progress = 0.05
+				#	}
+				#}
+				add_hyperdim_exodus_level_4_perks = yes
+				country_event = { id = ssh_crisis.4 days = 3 }
+				#set_country_flag = ssh_hyperdim_exodus_can_research_consciousness_adaptation
+			}
+		}
+	}
+}
+
+crisis_hyperdim_exodus_level_5 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = ssh_exodus_level_5_req_clear_tooltip
+			fail_text =	ssh_exodus_level_5_req_tooltip
+			has_country_flag = ssh_hyperdim_exodus_special_project_4_complete
+		}
+		custom_tooltip = {
+			success_text = ssh_exodus_level_5_req_technology_clear_tooltip
+			fail_text =	ssh_exodus_level_5_req_technology_tooltip
+			if = {
+				limit = {
+					NOR = {
+						is_machine_empire = yes
+						is_individual_machine = yes
+					}
+				}
+				has_technology = ssh_tech_exodus_stage_4_biological
+			}
+			if = {
+				limit = {
+					OR = {
+						is_machine_empire = yes
+						is_individual_machine = yes
+					}
+				}
+				has_technology = ssh_tech_exodus_stage_4_machine
+			}
+		}
+		hidden_trigger = {
+			NOT = {
+				has_active_event = {
+					ssh_crisis.25
+				}
+			}
+		}
+		is_subject = no
+	}
+	required_crisis_currency = 28000
+
+	# REWARDS
+	perks = {
+		menp_dimensional_tearer
+		menp_reality_shaping
+	}
+
+	on_unlock = {
+		#add_hyperdim_exodus_level_5_perks = yes
+		hidden_effect = {
+			every_system = {
+				limit = {
+					ssh_is_special_system = yes
+					NOT = { has_star_flag = ssh_dimensional_wave_blocked_system }
+				}
+				set_star_flag = ssh_dimensional_wave_blocked_system # Block dimensional waves
+			}
+			owner = {
+				capital_scope = { solar_system = { set_star_flag = ssh_dimensional_wave_blocked_system } }
+				add_event_chain_counter = {
+					event_chain = "hyperdimensional_exodus_chain"
+					counter = "hyperdimensional_exodus_chain_level_reached"
+					amount = 1
+				}
+				add_hyperdim_exodus_level_5_perks = yes
+				end_event_chain = hyperdimensional_exodus_chain
+				country_event = { id = ssh_crisis.5 days = 5 }
+			}
+		}
+	}
+}

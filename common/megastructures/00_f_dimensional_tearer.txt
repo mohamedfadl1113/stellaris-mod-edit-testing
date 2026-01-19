@@ -1,0 +1,874 @@
+dimensional_tearer_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	#show_prereqs = yes
+	build_time = 900
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -7
+		y = -7
+	}
+	#prerequisites = { ssh_tech_reality_shaping }
+	potential = {
+		#has_technology = ssh_tech_reality_shaping
+		has_country_flag = ssh_can_build_dim_tearer
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_existing_dimensional_tearer"
+			from = {
+				NOR = {
+					has_country_flag = built_dimensional_tearer
+					has_country_flag = ssh_completed_exodus_country
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					colonizable_planet = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_class_a_or_b"
+			OR = {
+				is_star_class = sc_a
+				is_star_class = sc_b
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			#NOT = { has_any_megastructure = yes }
+			has_no_non_gate_megastructure = yes
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+		}
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		set_star_flag = ssh_dimensional_tearer_system
+		set_star_flag = ssh_dimensional_wave_blocked_system # No nullvoid/static waves here!
+		set_star_flag = crisis_spawn_exclude # No Unbidden here!
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
+		from = {
+			set_country_flag = built_dimensional_tearer
+			country_event = {
+				id = ssh_cn.62
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 999
+		# Upkeep affordable?
+		modifier = {
+			factor = 0.5
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 1500
+				}
+			}
+		}
+		# Do we have enough resources?
+		modifier = {
+			factor = 0.5
+			from = {
+				AND = {
+					resource_stockpile_compare = {
+						resource = alloys
+						value < 35000
+					}
+					resource_stockpile_compare = {
+						resource = sr_cultrobium
+						value < 25000
+					}
+					resource_stockpile_compare = {
+						resource = rare_crystals
+						value < 300
+					}
+					# will it even start constructing it in that case lol idk
+					resource_stockpile_compare = {
+						resource = energy
+						value < 90000
+					}
+					resource_stockpile_compare = {
+						resource = sr_dark_matter
+						value < 15000
+					}
+				}
+			}
+		}
+		# Location?
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+	}
+}
+
+dimensional_tearer_1 = {
+	entity = "ssh_dim_tearer_1_entity"
+	construction_entity = "ssh_dim_tearer_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = no
+	#prerequisites = { ssh_tech_reality_shaping }
+	#potential = { has_technology = ssh_tech_reality_shaping }
+	#prerequisites = { ssh_tech_reality_shaping }
+	potential = { has_country_flag = ssh_can_build_dim_tearer }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 1000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 40
+		}
+	}
+
+	upgrade_from = {
+		dimensional_tearer_0
+	}
+
+	on_build_complete = {
+		every_system_planet = {
+			if = {
+				limit = { is_star = no }
+				remove_planet = yes
+			}
+		}
+		set_asteroid_belt = {
+			radius = 0
+		}
+		# Own Notification
+		from = {
+			country_event = {
+				id = ssh_cn.63
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+dimensional_tearer_2 = {
+	entity = "ssh_dim_tearer_2_entity"
+	construction_entity = "ssh_dim_tearer_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #10 years
+	scales_with_planet = no
+	#prerequisites = { ssh_tech_reality_shaping }
+	potential = { has_country_flag = ssh_can_build_dim_tearer }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { is_ai = no } ### TEMPORARY solution till I figured out how to make AI focus more on cultrobium production
+			sr_cultrobium = 10000
+		}
+		cost = {
+			trigger = { is_ai = yes }
+			sr_cultrobium = 3000
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		dimensional_tearer_1
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.64
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+dimensional_tearer_3 = {
+	entity = "ssh_dim_tearer_3_entity"
+	construction_entity = "ssh_dim_tearer_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800
+	scales_with_planet = no
+	#prerequisites = { ssh_tech_reality_shaping }
+	potential = { has_country_flag = ssh_can_build_dim_tearer }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 250
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		dimensional_tearer_2
+	}
+
+	on_build_complete = {
+		# all empires notice something
+		every_country = {
+			limit = {
+				NOR = { 
+					is_same_value = from 
+					has_civic = civic_hive_devouring_swarm
+					has_civic = civic_fanatic_purifiers
+					has_civic = civic_machine_terminator
+				}
+			}
+			country_event = {
+				id = ssh_on.4
+				days = 1
+			}
+		}
+		# own notification
+		from = {
+			country_event = {
+				id = ssh_cn.65
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+dimensional_tearer_4 = {
+	entity = "ssh_dim_tearer_4_entity"
+	construction_entity = "ssh_dim_tearer_4_entity"
+	portrait = "GFX_mega_ssh_dimensional_tearer"
+	build_time = 3600
+	scales_with_planet = no
+	#prerequisites = { ssh_tech_reality_shaping }
+	potential = { has_country_flag = ssh_can_build_dim_tearer }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { is_ai = no } ### Temporary solution till I figure out how to make AI want cultrobium more
+			sr_cultrobium = 10000
+		}
+		cost = {
+			trigger = { is_ai = yes }
+			sr_cultrobium = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		dimensional_tearer_3
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_ascensionist_country
+			set_country_flag = ssh_dimensional_ascension_empire
+			if = {
+				limit = { has_civic = civic_machine_servitor }
+				set_ai_personality = hyperdimensional_exodus_machines
+			}
+			else = {
+				set_ai_personality = hyperdimensional_exodus_aspirants
+			}
+			### Change room ###
+			store_hyperdim_exodus_country_backup_data = {
+				ROOM = yes
+			}
+			room_name_override = "exodus_empire_room"
+			
+			remove_from_galactic_community = yes
+			country_event = {
+				id = ssh_cn.66
+			}
+		}
+		# Introduce Plans of Exodus
+		every_playable_country = {
+			limit = {
+				NOR = {
+					is_same_value = from 
+					has_civic = civic_hive_devouring_swarm
+					has_civic = civic_fanatic_purifiers
+					has_civic = civic_machine_terminator
+				}
+				has_communications = from
+			}
+			country_event = {
+				id = ssh_on.5
+				days = 1
+			}
+		}
+		if = { # Blokkats Comment
+			limit = {
+				has_gigastructures = yes
+				has_global_flag = blokkat_crisis_ongoing
+				NOT = { from = { has_country_flag = blokkats_commented_dim_tearer } }
+			}
+			from = {
+				set_country_flag = blokkats_commented_dim_tearer
+				country_event = {
+					id = ssh_on.70
+					days = 29
+					random = 91
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+# Partially Finished / First Rift
+dimensional_tearer_5 = {
+	entity = "ssh_dim_tearer_4_entity"
+	construction_entity = "ssh_dim_tearer_gateway_1_opening_entity"
+	portrait = "GFX_mega_ssh_dimensional_tearer"
+	build_time = 1800
+	scales_with_planet = no
+	#prerequisites = { ssh_tech_reality_shaping }
+	potential = { has_country_flag = ssh_can_build_dim_tearer }
+	possible = {
+		owner = { has_technology = ssh_tech_reality_shaping }
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 1500
+			energy = 15000
+		}
+		upkeep = {
+			energy = 100
+			sr_dark_matter = 1
+		}
+	}
+
+	upgrade_from = {
+		dimensional_tearer_4
+	}
+
+	on_build_complete = {
+		set_global_flag = ssh_dim_tearer_active # For yearly on_actions
+		from = {
+			save_event_target_as = ssh_ascensionist_country
+			ssh_roll_dim_tearer_rift = yes
+			# Notify every country of first open rift
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = prev }
+					is_ai = no
+				}
+				country_event = {
+					id = ssh_tearer.10
+					days = 5
+				}
+			}
+		}
+		spawn_megastructure = {
+			type = dimensional_tearer_6
+			owner = from
+			planet = fromfrom.planet
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+# First Rift Open
+dimensional_tearer_6 = {
+	entity = "ssh_dim_tearer_5_entity"
+	construction_entity = "ssh_dim_tearer_5_entity"
+	portrait = "GFX_mega_ssh_dimensional_tearer"
+	build_time = 5
+	scales_with_planet = no
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 100
+			sr_dark_matter = 1
+		}
+	}
+
+	country_modifier = {
+		country_produces_mult = 0.1
+	}
+}
+
+# Partially Finished / Second Rift
+dimensional_tearer_7 = {
+	entity = "ssh_dim_tearer_5_entity"
+	construction_entity = "ssh_dim_tearer_gateway_2_opening_entity"
+	portrait = "GFX_mega_ssh_dimensional_tearer"
+	build_time = 1800
+	scales_with_planet = no
+	prerequisites = { ssh_tech_reality_shaping }
+	potential = { has_country_flag = ssh_can_build_dim_tearer }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 1500
+			energy = 15000
+		}
+		upkeep = {
+			energy = 100
+			sr_dark_matter = 1
+		}
+	}
+
+	upgrade_from = {
+		dimensional_tearer_6
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_ascensionist_country
+			ssh_roll_dim_tearer_rift = yes
+			# Notify every country of second open rift
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = prev }
+					is_ai = no
+				}
+				country_event = {
+					id = ssh_tearer.11
+					days = 5
+				}
+			}
+		}
+		#event_target:global_event_country = {
+		#	# Fire dim. energy wave
+		#	country_event = { id = ssh_tearer.501 days = 10 }
+		#}
+		spawn_megastructure = {
+			type = dimensional_tearer_8
+			owner = from
+			planet = fromfrom.planet
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+# Second Rift Open
+dimensional_tearer_8 = {
+	entity = "ssh_dim_tearer_6_entity"
+	construction_entity = "ssh_dim_tearer_6_entity"
+	portrait = "GFX_mega_ssh_dimensional_tearer"
+	build_time = 5
+	scales_with_planet = no
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 200
+			sr_dark_matter = 5
+		}
+	}
+
+	country_modifier = {
+		country_produces_mult = 0.2
+	}
+}
+
+# Partially Finished / Third Rift
+dimensional_tearer_9 = {
+	entity = "ssh_dim_tearer_5_entity"
+	construction_entity = "ssh_dim_tearer_gateway_3_opening_entity"
+	portrait = "GFX_mega_ssh_dimensional_tearer"
+	build_time = 1800
+	scales_with_planet = no
+	prerequisites = { ssh_tech_reality_shaping }
+	potential = { has_country_flag = ssh_can_build_dim_tearer }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 1500
+			energy = 15000
+		}
+		upkeep = {
+			energy = 200
+			sr_dark_matter = 5
+		}
+	}
+
+	upgrade_from = {
+		dimensional_tearer_8
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_ascensionist_country
+			ssh_roll_dim_tearer_rift = yes
+			# Notify every country of third open rift
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = prev }
+					is_ai = no
+				}
+				country_event = {
+					id = ssh_tearer.12
+					days = 5
+				}
+			}
+		}
+		spawn_megastructure = {
+			type = dimensional_tearer_10
+			owner = from
+			planet = fromfrom.planet
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+# Third Rift Open
+dimensional_tearer_10 = {
+	entity = "ssh_dim_tearer_7_entity"
+	construction_entity = "ssh_dim_tearer_7_entity"
+	portrait = "GFX_mega_ssh_dimensional_tearer"
+	build_time = 5
+	scales_with_planet = no
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 300
+			sr_dark_matter = 10
+		}
+	}
+
+	country_modifier = {
+		country_produces_mult = 0.3
+	}
+}
+
+# Partially Finished / Fourth Rift
+dimensional_tearer_11 = {
+	entity = "ssh_dim_tearer_5_entity"
+	construction_entity = "ssh_dim_tearer_gateway_4_opening_entity"
+	portrait = "GFX_mega_ssh_dimensional_tearer"
+	build_time = 1800
+	scales_with_planet = no
+	prerequisites = { ssh_tech_reality_shaping }
+	potential = { has_country_flag = ssh_can_build_dim_tearer }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 1500
+			energy = 15000
+		}
+		upkeep = {
+			energy = 300
+			sr_dark_matter = 10
+		}
+	}
+
+	upgrade_from = {
+		dimensional_tearer_10
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_ascensionist_country
+			ssh_roll_dim_tearer_rift = yes
+			country_event = {
+				id = ssh_cn.71
+				days = 2
+			}
+			# Notify every country of third open rift
+			every_playable_country = {
+				limit = {
+					NOT = { is_same_value = prev }
+					is_ai = no
+				}
+				country_event = {
+					id = ssh_tearer.13
+					days = 1
+				}
+			}
+		}
+		spawn_megastructure = {
+			type = dimensional_tearer_12
+			owner = from
+			planet = fromfrom.planet
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}
+
+# Fourth Rift Open
+dimensional_tearer_12 = {
+	entity = "ssh_dim_tearer_8_entity"
+	construction_entity = "ssh_dim_tearer_8_entity"
+	portrait = "GFX_mega_ssh_dimensional_tearer"
+	build_time = 5
+	scales_with_planet = no
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 400
+			sr_dark_matter = 15
+		}
+	}
+
+	country_modifier = {
+		country_produces_mult = 0.4
+	}
+}
+
+# Trigger Rift Collision (Fire Dark matter through each portal to destabilize/lots of energy through each portal to overcharge/overload?)
+dimensional_tearer_13 = {
+	entity = "ssh_dim_tearer_9_entity"
+	construction_entity = "ssh_dim_tearer_main_active_entity"
+	portrait = "GFX_mega_ssh_dimensional_tearer"
+	build_time = 3600 #900
+	scales_with_planet = no
+	prerequisites = { ssh_tech_reality_shaping }
+	potential = { has_country_flag = ssh_can_build_dim_tearer }
+
+	resources = {
+		category = megastructures
+		cost = {
+			#energy = 35000
+			# 50 energy / pop sent into the Fundament
+			mult = value:num_pop_groups #trigger:num_pops # if this doesnt work idc thank 4.0 for that
+			energy = 100
+		}
+		upkeep = {
+			energy = 400
+			sr_dark_matter = 15
+		}
+	}
+
+	country_modifier = {
+		country_produces_mult = 0.5
+	}
+
+	upgrade_from = {
+		dimensional_tearer_12
+	}
+
+	on_build_start = {
+		# Notify all players that crisis is about to win
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = { is_same_value = from }
+			}
+			country_event = {
+				id = ssh_on.20
+				days = 5
+			}
+		}
+	}
+
+	on_build_complete = {
+		save_event_target_as = ssh_dim_tearer_system
+		from = {
+			create_exodus_empire_capital = yes # Creates temporary capital in the tearer system
+			# Notify Subjects
+			if = {
+				limit = { is_overlord = yes }
+				every_playable_country = {
+					limit = {
+						is_subject = yes
+						has_overlord = prev
+					}
+					country_event = {
+						id = ssh_on.17
+						#days = 1
+					}
+				}
+			}
+			# Blokkat Comment
+			if = {
+				limit = {
+					has_gigastructures = yes
+					has_global_flag = blokkat_crisis_ongoing
+				}
+				country_event = {
+					id = ssh_on.72
+					#days = 29
+					#random = 91
+				}
+			}
+			# Farewell galaxy
+			country_event = {
+				id = ssh_crisis.45
+				days = 3
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 999
+	}
+}

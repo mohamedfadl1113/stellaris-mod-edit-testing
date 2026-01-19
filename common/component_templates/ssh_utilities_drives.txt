@@ -1,0 +1,82 @@
+# Icons set here are the ones show in the actual slot.
+
+@cost1 = 5
+@cost2 = 10
+@cost3 = 15
+@cost4 = 20
+
+@power0 = -5
+@power1 = -10
+@power2 = -15
+@power3 = -20
+@power4 = -30
+@power5 = -35
+
+#############
+# UTILITIES #
+#############
+
+### Jump drives
+utility_component_template = {
+	key = "INTERDIMENSIONAL_JUMP_DRIVE_1"
+	size = small
+	icon = "GFX_ship_part_interdim_jump_drive_1"
+	icon_frame = 1
+	power = @power5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost4
+			sr_dark_matter = @cost3
+		}
+	}
+	ftl = yes
+	jumpdrive = yes
+	ship_modifier = {
+		ship_disengage_opportunities_add = 2
+		ship_windup_mult = -0.9
+		ship_ftl_jumpdrive_range_mult = 2.50
+		ship_astral_rift_speed_mult = 0.15
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+
+	class_restriction = { shipclass_military shipclass_constructor shipclass_colonizer shipclass_science_ship shipclass_transport shipclass_military_special shipclass_starbase }
+	prerequisites = { "ssh_tech_vacdec_warp_field" }
+	component_set = "ftl_components"
+}
+
+#### TEST
+#utility_component_template = {
+#	key = "INTERDIMENSIONAL_JUMP_DRIVE_2"
+#	size = small
+#	icon = "GFX_ship_part_interdim_jump_drive_1"
+#	icon_frame = 1
+#	power = @power5
+#	resources = {
+#		category = ship_components
+#		cost = {
+#			alloys = @cost4
+#			sr_dark_matter = @cost3
+#		}
+#	}
+#	ftl = yes
+#	jumpdrive = yes
+#	ship_modifier = {
+#		ship_disengage_opportunities_add = 2
+#		ship_windup_mult = -0.9
+#		ship_ftl_jumpdrive_range_mult = 2.50
+#		ship_astral_rift_speed_mult = 0.15
+#	}
+#
+#	ai_weight = {
+#		weight = 10
+#	}
+#
+#	#class_restriction = { shipclass_military shipclass_constructor shipclass_colonizer shipclass_science_ship shipclass_transport shipclass_military_special shipclass_starbase }
+#	prerequisites = { "ssh_tech_vacdec_warp_field" }
+#	component_set = "ftl_components"
+#	size_restriction = { ssh_captive_star }
+#}

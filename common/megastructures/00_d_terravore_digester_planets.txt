@@ -1,0 +1,479 @@
+terravore_digester_p_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	show_prereqs = yes
+	scales_with_planet = no #yes
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = 0
+		y = -7
+	}
+	prerequisites = { ssh_tech_terravore_digester }
+	potential = {
+		always = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_hostile_or_primitive"
+				NOR = {
+					planet_is_hostile_or_crisis = yes
+					AND = {
+						exists = owner
+						owner = {
+							is_country_type = primitive
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_no_colony"
+				NOT = {
+					is_colony = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				NOT = {
+					is_star = yes
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+			}
+		}
+		# Since in vanilla you can only build one mega at a time it makes more sense to spawn them via decisions
+		#from = {
+		#	country_event = {
+		#		id = ssh_cn.48
+		#	}
+		#}
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
+
+terravore_digester_p_1 = {
+	entity = "ssh_nanite_disassembler_entity"
+	construction_entity = "ssh_nanite_disassembler_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 900 #2.5 years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_terravore_digester }
+	potential = {
+		has_technology = ssh_tech_terravore_digester
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 2500
+		}
+		upkeep = {
+			energy = 25
+		}
+	}
+
+	upgrade_from = {
+		terravore_digester_p_0
+	}
+
+	on_build_complete = {
+		fromfrom = {
+			remove_megastructure = this
+		}
+		if = {
+			limit = {
+				fromfrom.planet = {
+					ssh_is_any_gas_giant = yes
+				}
+			}
+			spawn_megastructure = {
+				name = "Celestial Digester"
+				type = terravore_digester_p_gas
+				orbit_angle = 0
+				orbit_distance = 0
+				owner = fromfrom.owner
+				planet = fromfrom.planet
+			}
+		}
+		else_if = {
+			limit = {
+				fromfrom.planet = {
+					ssh_is_any_crystal_planet = yes
+				}
+			}
+			spawn_megastructure = {
+				name = "Celestial Digester"
+				type = terravore_digester_p_crystal
+				orbit_angle = 0
+				orbit_distance = 0
+				owner = fromfrom.owner
+				planet = fromfrom.planet
+			}
+		}
+		else_if = {
+			limit = {
+				fromfrom.planet = {
+					ssh_is_any_alloy_planet = yes
+				}
+			}
+			spawn_megastructure = {
+				name = "Celestial Digester"
+				type = terravore_digester_p_artificial
+				orbit_angle = 0
+				orbit_distance = 0
+				owner = fromfrom.owner
+				planet = fromfrom.planet
+			}
+		}
+		else_if = {
+			limit = {
+				fromfrom.planet = {
+					is_planet_class = pc_shrouded
+				}
+			}
+			spawn_megastructure = {
+				name = "Celestial Digester"
+				type = terravore_digester_p_zro
+				orbit_angle = 0
+				orbit_distance = 0
+				owner = fromfrom.owner
+				planet = fromfrom.planet
+			}
+		}
+		else_if = {
+			limit = {
+				fromfrom.planet = {
+					ssh_is_any_toxic_planet = yes
+				}
+			}
+			spawn_megastructure = {
+				name = "Celestial Digester"
+				type = terravore_digester_p_toxic
+				orbit_angle = 0
+				orbit_distance = 0
+				owner = fromfrom.owner
+				planet = fromfrom.planet
+			}
+		}
+		else = {
+			fromfrom.planet = {
+				change_pc = pc_molten
+			}
+			spawn_megastructure = {
+				name = "Celestial Digester"
+				type = terravore_digester_p_rocky
+				orbit_angle = 0
+				orbit_distance = 0
+				owner = fromfrom.owner
+				planet = fromfrom.planet
+			}
+		}
+		fromfrom.planet = {
+			planet_event = {
+				id = ssh_me.2
+			}
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.49
+			}
+		}
+	}
+}
+
+terravore_digester_p_rocky = {
+	entity = "ssh_nanite_disassembler_active_entity"
+	construction_entity = "ssh_nanite_disassembler_active_entity"
+	portrait = "GFX_mega_ssh_nanite_disassembler"
+	build_time = 900 #2.5years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_terravore_digester }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			trigger = { has_gigastructures = no }
+			minerals = 100
+		}
+		produces = {
+			trigger = { has_gigastructures = yes }
+			minerals = 100
+			giga_sr_bulk_matter = 1
+		}
+		produces = {
+			trigger = {
+				AND = {
+					has_gigastructures = no
+					OR = {
+						has_modifier = mineral_rich
+						has_modifier = carbon_world
+					}
+				}
+			}
+			minerals = 125
+		}
+		produces = {
+			trigger = {
+				AND = {
+					has_gigastructures = yes
+					OR = {
+						has_modifier = mineral_rich
+						has_modifier = carbon_world
+					}
+				}
+			}
+			minerals = 125
+			giga_sr_bulk_matter = 1
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		terravore_digester_p_1
+	}
+
+	on_build_complete = {}
+}
+
+terravore_digester_p_gas = {
+	entity = "ssh_nanite_disassembler_active_entity"
+	construction_entity = "ssh_nanite_disassembler_active_entity"
+	portrait = "GFX_mega_ssh_nanite_disassembler"
+	build_time = 900 #2.5years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_terravore_digester }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			trigger = { has_gigastructures = no }
+			sr_hydrogen = 100
+			exotic_gases = 25
+			minerals = 25
+		}
+		produces = {
+			trigger = { has_gigastructures = yes }
+			sr_hydrogen = 100
+			exotic_gases = 25
+			minerals = 25
+			giga_sr_bulk_matter = 1
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		terravore_digester_p_1
+	}
+
+	on_build_complete = {}
+}
+
+terravore_digester_p_artificial = {
+	entity = "ssh_nanite_disassembler_active_entity"
+	construction_entity = "ssh_nanite_disassembler_active_entity"
+	portrait = "GFX_mega_ssh_nanite_disassembler"
+	build_time = 900 #2.5years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_terravore_digester }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			alloys = 30
+			minerals = 25
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		terravore_digester_p_1
+	}
+
+	on_build_complete = {}
+}
+
+terravore_digester_p_crystal = {
+	entity = "ssh_nanite_disassembler_active_entity"
+	construction_entity = "ssh_nanite_disassembler_active_entity"
+	portrait = "GFX_mega_ssh_nanite_disassembler"
+	build_time = 900 #2.5years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_terravore_digester }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			trigger = { has_gigastructures = no }
+			minerals = 75
+			rare_crystals = 25
+		}
+		produces = {
+			trigger = { has_gigastructures = yes }
+			minerals = 75
+			rare_crystals = 25
+			giga_sr_bulk_matter = 1
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		terravore_digester_p_1
+	}
+
+	on_build_complete = {}
+}
+
+terravore_digester_p_zro = {
+	entity = "ssh_nanite_disassembler_active_entity"
+	construction_entity = "ssh_nanite_disassembler_active_entity"
+	portrait = "GFX_mega_ssh_nanite_disassembler"
+	build_time = 900 #2.5years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_terravore_digester }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			trigger = { has_gigastructures = no }
+			minerals = 75
+			sr_zro = 15
+		}
+		produces = {
+			trigger = { has_gigastructures = yes }
+			minerals = 75
+			sr_zro = 15
+			giga_sr_bulk_matter = 1
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		terravore_digester_p_1
+	}
+
+	on_build_complete = {}
+}
+
+terravore_digester_p_toxic = {
+	entity = "ssh_nanite_disassembler_active_entity"
+	construction_entity = "ssh_nanite_disassembler_active_entity"
+	portrait = "GFX_mega_ssh_nanite_disassembler"
+	build_time = 900 #2.5years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_terravore_digester }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			trigger = { has_gigastructures = no }
+			minerals = 75
+			volatile_motes = 25
+		}
+		produces = {
+			trigger = { has_gigastructures = yes }
+			minerals = 75
+			volatile_motes = 25
+			giga_sr_bulk_matter = 1
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		terravore_digester_p_1
+	}
+
+	on_build_complete = {}
+}
+
+terravore_digester_p_core = {
+	entity = "ssh_nanite_disassembler_active_entity"
+	construction_entity = "ssh_nanite_disassembler_active_entity"
+	portrait = "GFX_mega_ssh_nanite_disassembler"
+	build_time = 900 #2.5years
+	scales_with_planet = yes
+	prerequisites = { ssh_tech_terravore_digester }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			trigger = { has_gigastructures = no }
+			minerals = 15
+			alloys = 50
+		}
+		produces = {
+			trigger = { has_gigastructures = yes }
+			minerals = 15
+			alloys = 50
+			giga_sr_bulk_matter = 1
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		terravore_digester_p_1
+	}
+
+	on_build_complete = {}
+}

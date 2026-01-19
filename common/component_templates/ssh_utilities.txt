@@ -1,0 +1,106 @@
+# Icons set here are the ones show in the actual slot. The reason is so that we can support different icons for different sizes.
+
+#############
+# UTILITIES #
+#############
+
+# Cultrobium Armor
+utility_component_template = {
+	key = "SMALL_ARMOR_CULTROBIUM"
+	size = small
+	icon = "GFX_ship_part_armor_cultrobium"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_armor_add = 350 #370 would be dragonscale armor ,290 @armor_S5
+	}
+
+	prerequisites = { "ssh_tech_nuclei_modification" }
+	component_set = "ARMOR_CULTROBIUM"
+	upgrades_to = "SMALL_DRAGON_ARMOR"
+	resources = {
+		category = ship_components
+		cost = {
+			sr_cultrobium = 17 #17 = @s_t4_cost (tier 4)
+		}
+		upkeep = {
+			energy = @s_t4_upkeep_energy
+			sr_cultrobium = @s_t4_upkeep_alloys
+		}
+	}
+	
+	ai_weight = {
+		weight = @T5_weight
+		inline_script = {
+			script = ship_components/weights/roles_stealth
+			MULT = 2
+		}
+	}
+}
+
+
+utility_component_template = {
+	key = "MEDIUM_ARMOR_CULTROBIUM"
+	size = medium
+	icon = "GFX_ship_part_armor_cultrobium"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_armor_add = 900 #925 would be dragon, 725 = @armor_M5
+	}
+
+	prerequisites = { "ssh_tech_nuclei_modification" }
+	component_set = "ARMOR_CULTROBIUM"
+	upgrades_to = "MEDIUM_DRAGON_ARMOR"
+	resources = {
+		category = ship_components
+		cost = {
+			sr_cultrobium = 34 #44 = @m_t5_cost
+		}
+		upkeep = {
+			energy = @m_t4_upkeep_energy
+			sr_cultrobium = @m_t4_upkeep_alloys
+		}
+	}
+	
+	ai_weight = {
+		weight = @T5_weight
+		inline_script = {
+			script = ship_components/weights/roles_stealth
+			MULT = 2
+		}
+	}
+}
+
+utility_component_template = {
+	key = "LARGE_ARMOR_CULTROBIUM"
+	size = large
+	icon = "GFX_ship_part_armor_cultrobium"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_armor_add = 2100 #1740 = @armor_L5, 2220 = dragon
+	}
+
+	prerequisites = { "ssh_tech_nuclei_modification" }
+	component_set = "ARMOR_CULTROBIUM"
+	upgrades_to = "LARGE_DRAGON_ARMOR"
+	resources = {
+		category = ship_components
+		cost = {
+			sr_cultrobium = 68 #88 = tier 5 cost
+		}
+		upkeep = {
+			energy = @l_t5_upkeep_energy
+			sr_cultrobium = @l_t5_upkeep_alloys
+		}
+	}
+	
+	ai_weight = {
+		weight = @T5_weight
+		inline_script = {
+			script = ship_components/weights/roles_stealth
+			MULT = 2
+		}
+	}
+}

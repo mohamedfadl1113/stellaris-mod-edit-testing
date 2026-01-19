@@ -1,0 +1,534 @@
+mega_temple_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	prerequisites = { "ssh_tech_mega_temple" }
+	potential = {
+		has_technology = ssh_tech_mega_temple
+		NOT = {
+			has_global_flag = ssh_mega_temple_deactivated
+		}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					colonizable_planet = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_mega_temple_already_built"
+			from = {
+				NOR = {
+					has_country_flag = ssh_has_mega_temple
+					has_country_flag = ssh_has_completed_mega_temple
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_megatemple_star"
+			OR = { 
+				is_star_class = sc_black_hole
+				is_star_class = sc_ssh_quark_star
+			}
+		}
+		#custom_tooltip = {
+		#	fail_text = "requires_no_existing_megastructure"
+		#	has_no_non_gate_megastructure = yes
+		#}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOR = {
+					has_anomaly = yes
+					any_moon = { has_anomaly = yes }
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					is_planet_class = pc_habitat
+				}
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_megatemple_star"
+				OR = {
+					is_planet_class = pc_black_hole
+					is_planet_class = pc_quark_star
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+				set_planet_flag = mega_temple_star
+				save_event_target_as = ssh_mega_temple_star
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		set_star_flag = abyssal_anchor_system
+		from = {
+			set_country_flag = ssh_has_mega_temple
+			country_event = { id = ssh_cn.110 }
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+		modifier = {
+			factor = 0.001
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+	}
+}
+
+# Radiation Shields
+mega_temple_1 = {
+	entity = "ssh_mega_temple_1_entity"
+	construction_entity = "ssh_mega_temple_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_mega_temple }
+	potential = { has_technology = ssh_tech_mega_temple }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 1500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		mega_temple_0
+	}
+
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				is_star = no
+				is_artificial = no
+			}
+			remove_planet = yes
+		}
+		if = {
+			limit = { fromfrom.planet = { is_planet_class = pc_black_hole } }
+			fromfrom.planet = {
+				set_planet_entity = {
+					entity = "ssh_black_hole_norings_entity"
+				}
+			}
+		}
+		from = { country_event = { id = ssh_cn.111 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# Pillars
+mega_temple_2 = {
+	entity = "ssh_mega_temple_2_entity"
+	construction_entity = "ssh_mega_temple_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 3600 #10years
+	prerequisites = { ssh_tech_mega_temple }
+	potential = { has_technology = ssh_tech_mega_temple }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		mega_temple_1
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.112 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# Observation Platform
+mega_temple_3 = {
+	entity = "ssh_mega_temple_3_entity"
+	construction_entity = "ssh_mega_temple_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 2520 #7 years
+	prerequisites = { ssh_tech_mega_temple }
+	potential = { has_technology = ssh_tech_mega_temple }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 110
+		}
+	}
+
+	upgrade_from = {
+		mega_temple_2
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.113 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# Triangles
+mega_temple_4 = {
+	entity = "ssh_mega_temple_4_entity"
+	construction_entity = "ssh_mega_temple_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_mega_temple }
+	potential = { has_technology = ssh_tech_mega_temple }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 2000
+		}
+		upkeep = {
+			energy = 150
+		}
+	}
+
+	upgrade_from = {
+		mega_temple_3
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.114 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# Distribute Zro
+mega_temple_5 = {
+	entity = "ssh_mega_temple_5_entity"
+	construction_entity = "ssh_mega_temple_5_entity"
+	portrait = "GFX_mega_ssh_shroud_anchor"
+	scales_with_planet = yes
+	build_time = 3600 #10 years
+	prerequisites = { ssh_tech_mega_temple }
+	potential = { has_technology = ssh_tech_mega_temple }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_zro = 7500
+		}
+		produces = {
+			unity = 200
+		}
+		upkeep = {
+			energy = 150
+			sr_zro = 1
+		}
+	}
+
+	upgrade_from = {
+		mega_temple_4
+	}
+
+	country_modifier = {
+		country_unity_produces_mult = 0.15
+		intel_encryption_add = 1
+	}
+
+	on_build_complete = {
+		star = {
+			create_ambient_object = {
+				type = "psi_storm_1"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = psi_storm_object
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+		from = {
+			set_country_flag = ssh_has_completed_mega_temple
+			set_country_flag = ssh_has_built_or_repaired_tier_f_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			country_event = { id = ssh_cn.115 }
+			country_event = {
+				id = ssh_on.32
+				days = 30
+				random = 60
+			}
+		}
+		fromfrom = { remove_megastructure = this }
+		spawn_megastructure = {
+			type = mega_temple_6
+			owner = from
+			planet = fromfrom.planet
+		}
+		# within 60 days timed country event about the first report blah blah and enter the shroud
+		every_country = {
+			limit = {
+				is_ai = no
+				has_communications = from
+				has_tradition = tr_psionics_adopt # Only psionics notice the psionic wave
+			}
+			country_event = {
+				id = ssh_on.35
+				days = 5
+				random = 30
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# Main Anchor (after all the initial events) - used to access abyssal anchor hub
+mega_temple_6 = {
+	entity = "ssh_mega_temple_5_entity"
+	construction_entity = "ssh_mega_temple_5_entity"
+	portrait = "GFX_mega_ssh_shroud_anchor"
+	scales_with_planet = yes
+	build_time = 1
+	prerequisites = { ssh_tech_mega_temple }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_zro = 7500
+		}
+		produces = {
+			unity = 200
+		}
+		upkeep = {
+			energy = 150
+			sr_zro = 1
+		}
+	}
+
+	upgrade_from = {
+		mega_temple_5
+	}
+
+	country_modifier = {
+		country_unity_produces_mult = 0.15
+		intel_encryption_add = 1
+	}
+}
+
+# Access Shroud Hub
+mega_temple_7 = {
+	entity = "ssh_mega_temple_5_entity"
+	construction_entity = "ssh_mega_temple_5_entity"
+	portrait = "GFX_mega_ssh_shroud_anchor"
+	scales_with_planet = yes
+	build_time = 1
+	prerequisites = { ssh_tech_mega_temple }
+	potential = {
+		has_technology = ssh_tech_mega_temple
+	}
+	possible = {
+		hidden_trigger = {
+			from = {
+				has_country_flag = ssh_mega_temple_hub_unlocked #After the initial shroud venture event
+				NOT = {
+					has_modifier = ssh_shroud_espionage_cooldown
+				}
+			}
+		}
+		custom_tooltip = "ssh_mega_temple_cooldown_tooltip"
+	}
+
+	upgrade_from = {
+		mega_temple_6
+	}
+
+	on_build_complete = {
+		fromfrom = { remove_megastructure = this }
+		spawn_megastructure = {
+			type = mega_temple_6
+			owner = from
+			planet = fromfrom.planet
+		}
+		from = {
+			country_event = {
+				id = ssh_megatemple.1
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 50 #AI will use this when possible
+		#modifier = {
+		#	factor = 100
+		#	NOT = {
+		#		owner = {
+		#			has_technology = ssh_tech_shroud_supernova
+		#		}
+		#	}
+		#}
+		#modifier = {
+		#	factor = 100
+		#	owner = {
+		#		any_owned_megastructure = {
+		#			is_megastructure_type = stellar_zro_detonator_ready
+		#		}
+		#	}
+		#}
+	}
+}

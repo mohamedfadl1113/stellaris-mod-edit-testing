@@ -1,0 +1,240 @@
+d_hydrogen_deposit = {
+	resources = {
+		category = orbital_mining_deposits
+		produces = {
+			sr_hydrogen = 2
+		}
+	}
+	station = shipclass_mining_station
+	is_for_colonizable = no
+
+	potential = {
+		is_planet_class = pc_gas_giant
+	}
+
+	drop_weight = {
+		weight = 5.0
+	}
+}
+
+d_hydrogen_3_deposit = {
+	resources = {
+		category = orbital_mining_deposits
+		produces = {
+			sr_hydrogen = 3
+		}
+	}
+	station = shipclass_mining_station
+	is_for_colonizable = no
+
+	potential = {
+		is_planet_class = pc_gas_giant
+	}
+
+	drop_weight = {
+		weight = 5.0
+	}
+}
+
+d_hydrogen_5_deposit = {
+	resources = {
+		category = orbital_mining_deposits
+		produces = {
+			sr_hydrogen = 5
+		}
+	}
+	station = shipclass_mining_station
+	is_for_colonizable = no
+
+	potential = {
+		is_planet_class = pc_gas_giant
+	}
+
+	drop_weight = {
+		weight = 5.0
+	}
+}
+
+d_giant_glass_domes_deposit = {
+	icon = "d_giant_glass_domes"
+	is_for_colonizable = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		#planet_immigration_pull_mult = 0.1
+		BIOLOGICAL_pop_growth_from_immigration = 0.1
+		LITHOID_pop_growth_from_immigration = 0.1
+	}
+
+	potential = {
+		is_planet_class = pc_gas_giant_shellworld
+	}
+}
+
+d_scrapyard_deposit = {
+	icon = "d_metal_boneyard"
+	is_for_colonizable = yes
+
+	category = deposit_cat_blockers
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1 #2
+	}
+
+	triggered_planet_modifier = {
+		potential = { owner = { is_gestalt = yes } }
+		job_ssh_scrap_collector_drone_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = { owner = { is_gestalt = no } }
+		job_ssh_scrap_collector_add = 1
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				alloys = 1500
+				minerals = 2000
+			}
+		}
+	}
+
+	prerequisites = { "tech_housing_1" }
+
+	potential = {
+		is_planet_class = pc_edersphere
+	}
+}
+
+d_black_hole_suprashell_deposit = {
+	icon = "d_black_hole_suprashell"
+	is_for_colonizable = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		pop_happiness = 0.15
+		BIOLOGICAL_pop_growth_from_immigration = 0.1
+		LITHOID_pop_growth_from_immigration = 0.1
+		#planet_bio_trophies_unity_produces_mult = 0.1
+	}
+
+	potential = {
+		is_planet_class = pc_black_hole_shellworld
+	}
+}
+
+d_black_hole_suprashell_zro_deposit = {
+	icon = "d_black_hole_suprashell_zro"
+	is_for_colonizable = yes
+
+	category = deposit_cat_rare
+	
+	resources = {
+		category = planet_jobs
+		produces = {
+			sr_zro = 2
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_black_hole_shellworld
+	}
+}
+
+d_black_hole_suprashell_motes_deposit = {
+	icon = "d_black_hole_suprashell_motes"
+	is_for_colonizable = yes
+
+	category = deposit_cat_rare
+	
+	resources = {
+		category = planet_jobs
+		produces = {
+			volatile_motes = 2
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_black_hole_shellworld
+	}
+}
+
+d_black_hole_suprashell_great_wound_deposit = {
+	icon = "d_black_hole_suprashell_great_wound"
+	is_for_colonizable = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.15
+		pop_amenities_usage_mult = -0.25
+		BIOLOGICAL_pop_growth_from_immigration = 0.4
+		LITHOID_pop_growth_from_immigration = 0.4
+	}
+
+	potential = {
+		is_planet_class = pc_black_hole_shellworld
+	}
+}
+
+d_ark_deposit = {
+	resources = {
+		category = orbital_mining_deposits
+		produces = {
+			alloys = 10
+			minerals = 15
+			sr_cultrobium = 1
+		}
+	}
+	station = shipclass_mining_station
+	is_for_colonizable = no
+
+	potential = {
+		has_planet_flag = ssh_ark_debris
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_discorld_deposit = {
+	icon = "d_buzzing_plains"
+	is_for_colonizable = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		planet_building_build_speed_mult = 0.5
+	}
+
+	potential = {
+		is_planet_class = pc_discworld
+	}
+}
+
+d_hoopworld_deposit = {
+	icon = "d_ship_in_orbit"
+	is_for_colonizable = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		planet_building_build_speed_mult = 0.25
+		planet_pops_upkeep_mult = -0.15
+	}
+
+	potential = {
+		is_planet_class = pc_hoopworld
+	}
+}

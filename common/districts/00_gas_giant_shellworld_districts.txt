@@ -1,0 +1,759 @@
+#####################
+# D I S T R I C T S #
+#####################
+
+# Gas Giant Shellworld
+# +1 jobs each sector compared to ecumenopolis
+
+@gas_giant_shellworld_district_buildtime = 540 #1.5x Ringworld
+
+district_ssh_gas_shellworld_housing = {
+	base_buildtime = @gas_giant_shellworld_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+	#default_starting_district = yes ### ?
+
+	zone_slots = {
+		slot_city_government
+		slot_city_01
+		slot_city_02
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = gas_shell_world
+		#is_special_colony_type = no
+	}
+
+	potential = {
+		exists = owner
+		#owner = { is_regular_empire = yes }
+		uses_district_set = gas_shell_world
+		#NOT = { has_modifier = resort_colony }
+	}
+
+	#allow = {
+	#	is_special_colony_type = no
+	#}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ssh_gas_shellworld_urban_1
+	}
+
+	resources = {
+		category = planet_districts_cities
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 4000 #Pre 4.0: 40
+		#planet_max_buildings_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = -300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 400
+		}
+	}
+
+	inline_script = {
+		script = districts/district_triggered_name_urban
+	}
+
+	inline_script = {
+		script = districts/district_triggered_flavor_desc_urban
+	}
+
+	inline_script = {
+		script = districts/ai_urban_district_extra_weighting
+	}
+}
+
+# Fun District
+#district_ssh_gas_shellworld_leisure = {
+#	base_buildtime = 600
+#	is_capped_by_modifier = no
+#
+#	zone_slots = {
+#		#slot_city_government
+#		slot_city_01
+#		slot_city_02
+#	}
+#
+#	show_on_uncolonized = {
+#		uses_district_set = gas_shell_world
+#		from = {
+#			is_regular_empire = yes
+#			NOT = { has_civic = civic_dystopian_society }
+#			is_wilderness_empire = no
+#		}
+#	}
+#
+#	potential = {
+#		#always = no ### ?
+#		has_modifier = resort_colony
+#	}
+#
+#	conversion_ratio = 1
+#	convert_to = {
+#		district_city
+#		district_nexus
+#		district_hive
+#		district_ssh_gas_shellworld_housing
+#	}
+#
+#	resources = {
+#		category = planet_districts
+#		cost = {
+#			minerals = 1000
+#			exotic_gases = 50
+#		}
+#		upkeep = {
+#			energy = 5
+#			exotic_gases = 1
+#		}
+#	}
+#
+#	planet_modifier = {
+#		planet_housing_add = 1000
+#	}
+#
+#	inline_script = {
+#		script = jobs/entertainers_add
+#		AMOUNT = 600
+#	}
+#}
+
+### Secondary Urban Slots (specialized via zones)
+
+district_ssh_gas_shellworld_urban_1 = {
+	icon = district_ssh_gas_shellworld_housing_secondary
+	base_buildtime = @gas_giant_shellworld_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_ssh_gas_shell_world_urban_01
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = gas_shell_world
+	}
+
+	potential = {
+		uses_district_set = gas_shell_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_city
+		district_nexus
+		district_hive
+		#district_ssh_gas_shellworld_housing
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1500
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 400
+		}
+	}
+}
+
+district_ssh_gas_shellworld_urban_2 = {
+	icon = district_ssh_gas_shellworld_housing_secondary
+	base_buildtime = @gas_giant_shellworld_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_ssh_gas_shell_world_urban_02
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = gas_shell_world
+	}
+
+	potential = {
+		uses_district_set = gas_shell_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1500
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+}
+
+district_ssh_gas_shellworld_urban_3 = {
+	icon = district_ssh_gas_shellworld_housing_secondary
+	base_buildtime = @gas_giant_shellworld_district_buildtime
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	zone_slots = {
+		slot_ssh_gas_shell_world_urban_03
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = gas_shell_world
+	}
+
+	potential = {
+		uses_district_set = gas_shell_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1500
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+}
+
+district_ssh_gas_shellworld_turbine = {
+	expansion_planner = yes
+
+	base_buildtime = @gas_giant_shellworld_district_buildtime
+	is_capped_by_modifier = no
+
+	#min_for_deposits_on_planet = 3
+	#max_for_deposits_on_planet = 15
+
+	zone_slots = {
+		slot_energy
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = gas_shell_world
+		exists = from
+		from = { is_wilderness_empire = no }
+		NOT = { has_modifier = resort_colony }
+	}
+
+	potential = {
+		uses_district_set = gas_shell_world
+		OR = {
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = no }
+			}
+		}
+		NOT = { has_modifier = resort_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ssh_gas_shellworld_housing
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts_generator
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 1 #5
+		}
+	}
+
+	inline_script = {
+		script = jobs/technicians_add
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1500
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+
+	inline_script = {
+		script = districts/district_triggered_name_generator
+	}
+
+	inline_script = {
+		script = districts/district_triggered_flavor_desc_generator
+	}
+
+	prerequisites = {
+		tech_power_plant_1
+	}
+
+	ai_weight_coefficient = 0.8
+}
+
+district_ssh_gas_shellworld_gas_collection = {
+	expansion_planner = yes
+
+	base_buildtime = @gas_giant_shellworld_district_buildtime
+	is_capped_by_modifier = no
+
+	#min_for_deposits_on_planet = 1
+	#max_for_deposits_on_planet = 15
+
+	zone_slots = {
+		slot_ssh_gas_extraction
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = gas_shell_world
+		NAND = {
+			exists = from
+			from = {
+				OR = {
+					is_subterranean_empire = yes
+					is_wilderness_empire = yes
+				}
+			}
+		}
+		NOT = { has_modifier = resort_colony }
+	}
+
+	potential = {
+		uses_district_set = gas_shell_world
+		NAND = {
+			exists = owner
+			owner = { is_subterranean_empire = yes }
+		}
+		OR = {
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = no }
+			}
+		}
+		NOT = { has_modifier = resort_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ssh_gas_shellworld_housing
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts_mining
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	inline_script = {
+		script = jobs/ssh_gas_collector_add
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1500
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_modifier = metal_planet
+		}
+		modifier = {
+			planet_housing_add = 500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+
+	#inline_script = {
+	#	script = districts/district_triggered_name_mining
+	#}
+
+	#inline_script = {
+	#	script = districts/district_triggered_flavor_desc_mining
+	#}
+
+	prerequisites = {
+		tech_mine_exotic_gases
+	}
+
+	ai_weight_coefficient = 0.8
+}
+
+district_ssh_gas_shellworld_farming = {
+	expansion_planner = yes
+
+	base_buildtime = @gas_giant_shellworld_district_buildtime
+	is_capped_by_modifier = no
+
+	#min_for_deposits_on_planet = 3
+	#max_for_deposits_on_planet = 15
+
+	zone_slots = {
+		slot_food
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		from = { is_wilderness_empire = no }
+		uses_district_set = gas_shell_world
+		NOT = { has_modifier = resort_colony }
+	}
+
+	potential = {
+		uses_district_set = gas_shell_world
+		OR = {
+			NOT = { exists = owner }
+			NOT = { owner = { is_anglers_empire = yes } }
+			AND = {
+				owner = { is_anglers_empire = yes }
+				NOT = { is_planet_class = pc_ocean }
+			}
+		}
+		NOT = {
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+					country_uses_food = no
+				}
+			}
+		}
+		OR = {
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = no }
+			}
+		}
+		NOT = { has_modifier = resort_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ssh_gas_shellworld_housing
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts_farming
+		cost = {
+			minerals = 1000
+		}
+		# Anglers Civic cost effect
+		cost = {
+			trigger = {
+				AND = {
+					exists = owner
+					owner = { is_anglers_empire = yes }
+					planet = { has_climate = wet }
+				}
+			}
+			minerals = -50
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	inline_script = {
+		script = jobs/farmers_add
+		AMOUNT = @gas_giant_shellworld_district_1_job #@gas_giant_shellworld_district_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_wilderness_empire = no }
+		}
+		modifier = {
+			planet_housing_add = 1500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 400
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_agrarian_idyll
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 200
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+
+	inline_script = {
+		script = districts/district_triggered_name_farming
+	}
+
+	inline_script = {
+		script = districts/district_triggered_flavor_desc_farming
+	}
+
+	prerequisites = {
+		tech_industrial_farming
+	}
+
+	destroy_trigger = {
+		exists = owner
+		AND = {
+			owner = { is_ai = yes }
+			owner = { country_uses_food = no }
+		}
+	}
+
+	ai_weight_coefficient = 0.8
+}

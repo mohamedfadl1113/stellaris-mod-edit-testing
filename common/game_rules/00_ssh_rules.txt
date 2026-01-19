@@ -1,0 +1,117 @@
+# Overwritten to add isolated systems
+can_enter_system_by_jump = {
+	custom_tooltip = {
+		#success_text = "debug: can jump"
+		# is commented out in vanilla, doesn't seem to do anything either way
+		fail_text = cannot_jump_to_system
+
+		# Sealed system
+		OR = {
+			NOT = { has_star_flag = sealed_system }
+			AND = {
+				root = { has_country_flag = entered_sealed_system }
+				has_star_flag = sealed_system
+			}
+		}
+		OR = {
+			# L-Cluster
+			NOT = { has_star_flag = lcluster }
+
+			# Formless system
+			NOT = { has_star_flag = formless_system }
+
+			# Hyperconstructs Vacdec/Ark Stuff
+			NOR = {
+				has_star_flag = ssh_ark_system
+				has_star_flag = ssh_ark_jump_capital
+				has_star_flag = ssh_ark_jump_cluster_core
+				has_star_flag = ssh_ark_jump_new_system
+				has_star_flag = ssh_basement_universe_center
+				has_star_flag = ssh_basement_universe_system
+			}
+		}
+	}
+}
+
+### Exodus included
+# This = country
+can_be_part_of_galactic_community = {
+	custom_tooltip = {
+		fail_text = "community_default_failtext"
+		OR = {
+			is_country_type = default
+			AND = {
+				is_country_type = awakened_fallen_empire
+				has_country_flag = fallen_empire_hive_control
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "community_homicidal_failtext"
+		NOR = {
+			has_civic = civic_fanatic_purifiers
+			has_civic = civic_hive_devouring_swarm
+			has_civic = civic_machine_terminator
+			has_menace_perk = menp_behemoth_ever_hungry
+			has_civic = civic_scorched_earth
+			has_civic = civic_hive_scorched_earth
+		}
+	}
+	custom_tooltip = {
+		fail_text = "community_declared_crisis_failtext"
+		has_been_declared_crisis = no
+	}
+	custom_tooltip = {
+		fail_text = "community_declared_crisis_failtext"
+		#fail_text = "community_overlord_declared_crisis_failtext"
+		OR = {
+			NOT = { exists = overlord }
+			overlord = { has_been_declared_crisis = no }
+		}
+	}
+	custom_tooltip = { ### Exodus
+		fail_text = "community_declared_exodus_failtext"
+		NOT = { exodus_empire_has_made_announcement = yes }
+	}
+}
+
+# This = country
+can_be_part_of_galactic_empire = {
+	custom_tooltip = {
+		fail_text = "community_default_failtext"
+		OR = {
+			is_country_type = default
+			AND = {
+				is_country_type = awakened_fallen_empire
+				has_country_flag = fallen_empire_hive_control
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "community_homicidal_failtext"
+		NOR = {
+			has_civic = civic_fanatic_purifiers
+			has_civic = civic_hive_devouring_swarm
+			has_civic = civic_machine_terminator
+			has_menace_perk = menp_behemoth_ever_hungry
+			has_civic = civic_scorched_earth
+			has_civic = civic_hive_scorched_earth
+		}
+	}
+	custom_tooltip = {
+		fail_text = "community_declared_crisis_failtext"
+		has_been_declared_crisis = no
+	}
+	custom_tooltip = {
+		fail_text = "community_declared_crisis_failtext"
+		#fail_text = "community_overlord_declared_crisis_failtext"
+		OR = {
+			NOT = { exists = overlord }
+			overlord = { has_been_declared_crisis = no }
+		}
+	}
+	custom_tooltip = { ### Exodus
+		fail_text = "community_declared_exodus_failtext"
+		NOT = { exodus_empire_has_made_announcement = yes }
+	}
+}

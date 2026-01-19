@@ -1,0 +1,16 @@
+civic_galactic_sovereign_bio_brain = {
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/civic_galactic_sovereign.dds"
+	potential = {
+		civics = {
+			value = civic_galactic_sovereign_bio_brain # civic_galactic_sovereign # Added via event - this trigger prevents the civic from being picked by others
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		country_civics_influence_produces_add = 1
+		country_unity_produces_mult = 0.15
+		empire_size_mult = -0.25
+		country_trust_cap_add = 25
+	}
+}
