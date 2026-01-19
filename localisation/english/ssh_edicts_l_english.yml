@@ -1,0 +1,24 @@
+﻿l_english:
+
+ ###################
+ ### Edicts      ###
+ ###################
+ 
+ edict_ssh_sacrifice_conmat: "Convert Pops to Conscious Matter"
+ edict_ssh_sacrifice_conmat_desc: "We can sacrifice some of our livestock to serve a higher purpose - for example, we could utilise their conscious matter in our ship hulls or computers."
+
+ edict_ssh_access_abyssal_anchor: "Enter the §rAbyssal Anchor§!"
+ edict_ssh_access_abyssal_anchor_desc: "Access the Hub for our Shroud espionage operations."
+
+ edict_ssh_insight_death_cult: "Afterlife Prayers"
+ edict_ssh_insight_death_cult_desc: "Many of our brave soldiers die in the terrible battlefields, but they are heroicly defending us - so paradise awaits them. We will organize mass prayers during this time of crisis to improve morality in our population and engage in a higher effort to win this war."
+ ssh_insight_death_cult_requirements: "Can only be enacted during §Ytimes of crisis§! or §Ydefensive wars§!!"
+
+ edict_ssh_insight_ingsoc: "History Rewriting Campaign"
+ edict_ssh_insight_ingsoc_desc: "Depending on our current political situation, we can utilise our insights about history rewriting methods to change some... unfavourable past mistakes with something that fits our current political agenda. Our Psi-Corps will prevent any thoughtcrimes from happening and make sure the population accepts and embraces the new history."
+
+ edict_ssh_access_acb: "Enter the §HArk Construction Bureau§!"
+ edict_ssh_access_acb_desc: "Contact the overseers of the Ark's construction."
+
+ edict_ssh_unfreeze_vacdec_cryo_pops: "§YUnfreeze Pops§!"
+ edict_ssh_unfreeze_vacdec_cryo_pops_desc: "Unfreeze some pops within our §H$building_ssh_vacdec_cryo_chambers$§!."

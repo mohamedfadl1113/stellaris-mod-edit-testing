@@ -1,0 +1,51 @@
+﻿l_english:
+ 
+ #############
+ # Resources #
+ #############
+ sr_cultrobium: "Cultrobium"
+ sr_cultrobium_desc: "Cultrobium is a Customized Ultra-Robust element which does not appear in nature. It is made up of artificially created ultra-strong atoms and therefore immensely durable and resistant, which makes it a great material for megastructure active support and ship armor. Only a highly technologically advanced civilization would be able to create this form of elements."
+
+ sr_hydrogen: "Hydrogen"
+ sr_hydrogen_desc: "Hydrogen is the lightest element and highly combustible, which makes it great for energy generation. It is the most abundant chemical substance in the universe, constituting roughly 75% of all normal matter."
+
+ sr_conscious_matter: "Conscious Matter"
+ sr_conscious_matter_desc: "Conscious Matter, or Conmat, is a compound made up of raw biological neurons. It can be stimulated in various ways through some highly advanced biochemical cocktails and appears to be constantly trying to form neural connections at an exponential rate. If concentrated into larger clumps, it has been observed to 'act' like other conscious organisms, e.g. trying to communicate with the observer through various ways."
+
+ sr_nuclei_soup: "Nuclei Soup"
+ sr_nuclei_soup_desc: "Like the name suggests, Nuclei Soup is pretty much raw nuclei matter that has been stripped away its electrons through extremely advanced and complex technology. Any civilization lucky enough to possess such technology and the means to store this matter can easily add electrons back to the matter to form pretty much any element they desire."
+
+ #### Deficit Tooltips ####
+ nuclei_soup_deficit: "A lack of Nuclei Soup halts any of its transmutation production."
+ nuclei_soup_deficit_tooltip: "A lack of Nuclei Soup halts any of its transmutation production."
+
+ # Deposits
+ d_hydrogen_deposit: "Hydrogen Deposit"
+ d_hydrogen_3_deposit: "Hydrogen Deposit"
+ d_hydrogen_5_deposit: "Hydrogen Deposit"
+
+ d_giant_glass_domes_deposit: "Giant Glass Domes"
+ d_giant_glass_domes_deposit_desc: "There are two giant glass dome at the poles of this planet, which provide a beautiful view on the gas giant below and attract many tourists."
+
+ d_scrapyard_deposit: "Vast Scrapyards"
+ d_scrapyard_deposit_desc: "Large scrapyards spread over this Edersphere's surface between the ruined infrastructure."
+
+ d_black_hole_suprashell_deposit: "Melancholical View"
+ d_black_hole_suprashell_deposit_desc: "Platforms below the inner side of the suprashell provide a stunning view into the dark abyss below that turns most organics sentimental. What cosmic secrets lie beneath the horizon? Will our knowledge ever end? What does it even mean to exist?"
+
+ d_black_hole_suprashell_zro_deposit: "Large Zro Concentration"
+ d_black_hole_suprashell_zro_deposit_desc: "An unusually large concentration of Zro particles can be found on the innermost layers of this black hole's accretion disk. The suprashell allows us to farm these deposits with relative ease."
+
+ d_black_hole_suprashell_motes_deposit: "Large Volatile Motes Concentration"
+ d_black_hole_suprashell_motes_deposit_desc: "An unusually large concentration of Volatile Mote particles can be found on the innermost layers of this black hole's accretion disk. The suprashell allows us to farm these deposits with relative ease."
+
+ d_black_hole_suprashell_great_wound_deposit: "Warped Skies"
+ d_black_hole_suprashell_great_wound_deposit_desc: "Due to the unnatural amount of black holes inside this solar system, the skies appear warped from the surface of the suprashell, sparking creativity and providing a unique view that can be seen nowhere else in the galaxy."
+
+ d_ark_deposit: "Ark Debris"
+
+ d_discorld_deposit: "Flat Environment"
+ d_discorld_deposit_desc: "The lack of large mountains and other natural blockers allows for much easier and faster construction of any buildings on the surface."
+
+ d_hoopworld_deposit: "Torus Environment"
+ d_hoopworld_deposit_desc: "The torus shape of this planet allows for unique logistics infrastructure. Need to get from one side of the torus to the opposite side quickly? Transportation capsules can be launched straight into the sky to arrive safely on the other side of the torus."

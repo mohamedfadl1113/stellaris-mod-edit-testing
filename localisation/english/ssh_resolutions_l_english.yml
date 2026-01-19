@@ -1,0 +1,33 @@
+﻿l_english:
+ 
+ #######################################
+ ###### Galcom/Empire Resolutions ######
+ #######################################
+ resolution_category_ssh_megaconstruction: "Megaconstruction"
+ 
+ resolution_megaconstruction_streamlined_protocols: "Streamlined Megaconstruction Protocols"
+ resolution_megaconstruction_streamlined_protocols_desc: "Megastructures offer the potential of resource extraction on an entirely new scale. We should introduce a common construction standard to ease the construction process of such structures."
+ resolution_megaconstruction_megastructure_subsidies: "Megastructure Subsidies"
+ resolution_megaconstruction_megastructure_subsidies_desc: "Much potential lies in megastructures, be it for housing, resource extraction or other aspects. We should encourage the construction of such wonders."
+ resolution_megaconstruction_architecural_renaissance: "Architectural Renaissance"
+ resolution_megaconstruction_architecural_renaissance_desc: "Megastructures are rightfully regarded as the wonders of our time. Everybody should profit from the benefits and potential which megastructures provide."
+ resolution_megaconstruction_architecural_renaissance_tt: "Unlocks the §Y$tech_mega_engineering$§! Technology for all Galactic Community Members."
+ resolution_megaconstruction_extraction_initiative: "Megascale Extraction Initiative"
+ resolution_megaconstruction_extraction_initiative_desc: "The amount of resources megastructures can extract from celestial bodies is immense. Perhaps a future awaits us where the dangerous work in mines has become obsolete?"
+ resolution_megaconstruction_extraction_initiative_tt: "Unlocks the §Y$tech_dyson_swarm$§!, §Y$tech_orbital_arc_furnace$§!, §Y$ssh_tech_gas_giant_lifting$§! Technologies for all Galactic Community Members."
+ resolution_megaconstruction_workforce_revolution: "Workforce Revolution"
+ resolution_megaconstruction_workforce_revolution_desc: "A new era has begun. Dangerous workplaces like mines have become obsolete. Megastructures shall harvest entire celestial bodies for the benefit of the galaxy, and our population shall enjoy a tremendous rise of wealth."
+ resolution_megaconstruction_workforce_revolution_tt: "- Unlocks the §Y$tech_nanite_transmutation$§! and §Y$ssh_tech_nanite_disassembler$§! Technologies for all Galactic Community Members. \n- Construction cost of §YNanite Disassemblers§! reduced by §H50%§! \n- Chance for the §Y$ssh_tech_system_disintegrator$§! Technology appearing increased by §H50%§!"
+
+ galcom_member_must_have_nanite_transmutation: "At least one Galactic Community member must already possess the §Y$tech_nanite_transmutation$§! Technology."
+
+ resolution_megaconstruction_repeal_1: "§RRepeal $resolution_megaconstruction_streamlined_protocols$§!"
+ resolution_megaconstruction_repeal_1_desc: "The [global_event_country.GetGalCommunityOrGalImperium] has no place meddling with the megastructures of our members. We should not be forcing our views on other empires."
+ resolution_megaconstruction_repeal_2: "§RRepeal $resolution_megaconstruction_megastructure_subsidies$§!"
+ resolution_megaconstruction_repeal_2_desc: "$resolution_megaconstruction_repeal_1_desc$"
+ resolution_megaconstruction_repeal_3: "§RRepeal $resolution_megaconstruction_architecural_renaissance$§!"
+ resolution_megaconstruction_repeal_3_desc: "$resolution_megaconstruction_repeal_1_desc$"
+ resolution_megaconstruction_repeal_4: "§RRepeal $resolution_megaconstruction_extraction_initiative$§!"
+ resolution_megaconstruction_repeal_4_desc: "$resolution_megaconstruction_repeal_1_desc$"
+ resolution_megaconstruction_repeal_5: "§RRepeal $resolution_megaconstruction_workforce_revolution$§!"
+ resolution_megaconstruction_repeal_5_desc: "$resolution_megaconstruction_repeal_1_desc$"

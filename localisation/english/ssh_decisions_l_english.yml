@@ -1,0 +1,107 @@
+﻿l_english:
+ 
+ ##### Decisions ####
+ decision_construct_nanite_disassembler: "Construct Nanite Disassembler"
+ decision_construct_nanite_disassembler_desc: "We will disassemble this planetary body to serve our stockpile using advanced nanite technology."
+
+ decision_construct_nanite_disassembler_system: "Dismantle Solar System"
+ decision_construct_nanite_disassembler_system_desc: "We will construct Nanite Disassemblers above every system planet to fuel our stockpile. \n§HCost scales with amount of system planets!§!"
+
+ decision_construct_star_nanite_disassembler: "Construct Nanite Disassembler"
+ decision_construct_star_nanite_disassembler_desc: "We will disassemble this star to serve our stockpile using advanced nanite technology."
+
+ decision_construct_celestial_digester: "Devour Planet"
+ decision_construct_celestial_digester_desc: "We will consume this planet using swarms of gene-modified resistant drones."
+
+ decision_close_ascension_portal: "Close Interdimensional Anchor"
+ decision_close_ascension_portal_desc: "We will close the Interdimensional Anchor for good. \nAn infinity of other realms awaits us. \n§GWin the game§!"
+
+ decision_shellworld_arcology_project: "Arcology Core Project"
+ decision_shellworld_arcology_project_desc: "We will use our resource stockpile to transform our shellworld's innermost layer into an ecumenopolis."
+ decision_shellworld_arcology_project_effects: "Turns the planet into an §Y$pc_shellworld_core_city$§!, increasing £housing£ §Y$PLANET_HOUSING_TITLE$§!, §YResource Production§! and §YPop Growth§! and unlocking special £district£ §YArcology Districts§! at the expense of the planet's natural resources becoming §Rinaccessible§!, preventing all further construction of £district£ §YGenerator§!, §YMining§! and §YAgriculture Districts§!."
+
+ decision_shellworld_hive_project: "Hive Core Project"
+ decision_shellworld_hive_project_desc: "We will use our resource stockpile to transform our shellworld's innermost layer into an organic hive world."
+ decision_shellworld_hive_project_effects: "Turns the planet into a §Y$pc_shellworld_core_hive$§!, increasing £housing£ §Y$PLANET_HOUSING_TITLE$§!, §YResource Production§! and §YPop Growth§!."
+
+ decision_shellworld_nexus_project: "Nexus Core Project"
+ decision_shellworld_nexus_project_desc: "We will strip away our shellworld's innermost layer's geosphere and turn it into a machine world."
+ decision_shellworld_nexus_project_effects: "Turns the planet into a §Y$pc_shellworld_core_machine$§!, increasing £housing£ §Y$PLANET_HOUSING_TITLE$§! and §YResource Production§!."
+
+ decision_shellworld_hive_project_requirements: "The amount of §YFree Districts§! and §YUncleared Blockers§! must be zero!"
+ decision_shellworld_machine_project_requirements: "The amount of §YFree Districts§! and §YUncleared Blockers§! must be zero and §Rno§! §YAgriculture Districts§! must exist on the planet!"
+
+ decision_construct_zro_detonator: "Construct Zro Detonator"
+ decision_construct_zro_detonator_desc: "We will infuse this star with Zro and accumulate matter to fire it on the star and remove its outer layers."
+ decision_construct_zro_detonator_effects: "Constructs a device that turns the star into a §YZro-Infused Star§! and accumulates £minerals£ £sr_hydrogen£ §YMatter§! to fire on the star, stripping away its outer layers and causing it to §Pexplode§! in form of a §rPsi-Supernova§!, flinging any active psionic network nearby far beyond this galaxy."
+ decision_construct_zro_detonator_requirements: "There must be no §YMegastructures§!, §YColonies§! and §YAnomalies§! in this system!"
+
+ decision_eco_edersphere_project: "Eco-Sphere Project"
+ decision_eco_edersphere_project_desc: "We will initiate a project to cover the behemoth surface of this Edersphere in a habitable layer, allowing us to live on the surface of this giant habitat and use it for farming."
+ decision_eco_edersphere_project_effects: "Allows the construction of §Y$district_ssh_edersphere_farming_plural$§!, providing £job_farmer£ §Y$job_farmer$§! Jobs§!. \nAdds the §H$ssh_eco_eder_planet_modifier$ Modifier§!, increasing £housing£ §Y$PLANET_HOUSING_TITLE$§!, §YImmigration Pull§!, §YPop Happiness§!, §YFood Production§! and §YPop Growth§!."
+
+ decision_pyrosphere_project: "Pyrosphere Project"
+ decision_pyrosphere_project_desc: "We will initiate a project to install ignition devices on the inside of this Edersphere, which can be activated in self-defense as a last resort to ignite the hydrogen inside of it and detonate the structure."
+ decision_pyrosphere_project_effects: "Enables the §YDecision§! to §PDetonate the Edersphere§!, destroying any hostile fleets in orbit along with it. \nOur population will safely be transported to our capital shortly before that via emergency pods."
+
+ decision_activate_pyrosphere: "§RDetonate§! Edersphere"
+ decision_activate_pyrosphere_desc: "By igniting the behemoth core of Hydrogen inside this habitat, the Edersphere will be detonated and destroy any ships in orbit. nition devices on the inside of this Edersphere, which can be activated in self-defense as a last resort to ignite the hydrogen inside of it and detonate the structure."
+ decision_activate_pyrosphere_effects: "Our population will safely be transported to our §YCapital§!. The Edersphere will §RDetonate§!, destroying any orbiting fleets along with it."
+
+ decision_establish_horizon_prisons: "Establish §PHorizon Prisons§!"
+ decision_establish_horizon_prisons_desc: "By relocating our prison facilities below the shell's surface and regularily detaching certain prison cells, we can create a deterrent effect on potential criminals on this habitat."
+ decision_establish_horizon_prisons_effects: "§H$ssh_suprashell_horizon_prisons_planet_modifier$§! Modifier added, reducing £pops£ §YCrime§! and increasing £job_enforcer£ §H$job_enforcer$§! £physics£ §H$physics$§! Output, but also decreasing £happiness£ §YHappiness§!."
+
+ decision_remove_horizon_prisons: "Abandon §PHorizon Prisons§!"
+ decision_remove_horizon_prisons_desc: "Establishing the Horizon Prisons was a mistake. We should get rid of them."
+
+ decision_establish_horizon_trains: "Construct §YHorizon Train Infrastructure§!"
+ decision_establish_horizon_trains_desc: "We can construct special hyperloop vehicles that use the immense gravity of the black hole beneath the shell to accelerate to extreme speeds and therefore ease the process of global travel around the shell."
+ decision_establish_horizon_trains_effects: "§H$ssh_suprashell_horizon_trains_planet_modifier$§! Modifier added, increasing £time£ §YConstruction Speed§! and £trade_value£ §HTrade Value§! and reducing £pops£ §YPop Upkeep§!."
+
+ decision_shellworld_reduce_social_division: "Invest in Social Campaigns"
+ decision_shellworld_reduce_social_division_desc: "We can try to unite our people by investing in large-scale campaigns and cooperative social projects."
+
+ decision_habitat_upgrade_to_edersphere: "§YEdersphere§! Project"
+ decision_habitat_upgrade_to_edersphere_desc: "We will initiate a huge construction project to upgrade these system's habitat stations into one large Edersphere habitat."
+ decision_habitat_upgrade_to_edersphere_effects: "Planet changes into §H$pc_edersphere$§!, providing many £planetsize£ §YDistricts§! and §YHousing§! and unique §YDistricts§!. \nAll system habitat orbital stations will be §Premoved§!."
+
+ # Artificial System
+ decision_artsys_ringworld_construction: "Construct Ringworld"
+ decision_artsys_ringworld_construction_desc: "We will construct a foundation for a future ringworld around this star. Takes §Y900 days§!. \n§HMutually exclusive with any other construction decision!§!"
+ 
+ decision_artsys_planet_construction: "Create Proto-Planets"
+ decision_artsys_planet_construction_desc: "We will use our mineral stockpile to create new barren planets which can be terraformed later on. Takes §Y900 days§!. \n§HMutually exclusive with any other construction decision!§!"
+ decision_artsys_planet_construction_effects: "Creates six §YSize 10 Barren Planets§! around this star. The planets can be turned into gas giants later on." #with the §HTerraforming Candidate§!-Modifier
+
+ decision_art_planet_gas_giant: "Gas Giant Terraforming"
+ decision_art_planet_gas_giant_desc: "By dumping large quantities of hydrogen and various other elements onto the rocky planet below, we can create an artificial gas giant."
+ decision_art_planet_gas_giant_effects: "Terraforms this planet into a §YSize 15 Gas Giant§Y."
+
+ decision_artsys_alderson_construction: "Construct Alderson Disk"
+ decision_artsys_alderson_construction_desc: "We will construct a foundation for a future Alderson Disk around this star. Takes §Y1800 days§!. \n§HMutually exclusive with any other construction decision!§!"
+
+ # Shroud Insight Decisions
+ decision_insight_natural_harmony: "Celebrate Natural Harmony"
+ decision_insight_natural_harmony_desc: "This beautiful natural environment surrounding us should be appreciated - we will celebrate this paradise we live in and adapt our towns and cities so that they can coexist with the local flora and fauna of this planet peacefully."
+ decision_insight_natural_harmony_effect: "This decision will adapt the local cities to the natural environment, increasing §YJob Production§! as well as §YAmenities§! and §!Happiness§!. \n§SCan only be taken once per planet!§!"
+ decision_insight_natural_harmony_requirements: "This decision can only be enacted on §Ynatural planets§! with a stable biosphere!"
+
+ decision_insight_bnw: "Distribute Zro"
+ decision_insight_bnw_desc: "We will create temporary Zro Distribution Centers on this planet to help our specialists with their work. The priviliged ones, of course, can get some as well... for the right price. \nThe lower classes? They get what's left."
+ decision_insight_bnw_effect: "This decision will §Bincrease§! §YStability§! and §GHappiness§! among our §YSpecialists§! and §YRulers§!, but §Plower§! morale among the §YWorkers§!."
+
+ # Reality Collapse Crisis
+ decision_vacdec_block_system: "Initiate Subspace Blockade"
+ decision_vacdec_block_system_desc: "We will shift our resources to temporarily stretch the local subspace surrounding this system to slow down the expansion of the True Vacuum."
+ decision_vacdec_block_system_requirements: "We can only maintain §Pone active subspace blockade§! at a time!"
+ decision_vacdec_block_system_effects: "This decision will §Gprevent§! this system from being devoured by the True Vacuum for a few years. \n§HThis effect will stop after §Yfive§! years. \nCan only have §YOne§! Active Subspace Blockade at a time.§! \n\n§PCan only be enacted once per system!§!"
+
+ decision_vacdec_basement_uni_probing: "§BProbe§! Celestial Body"
+ decision_vacdec_basement_uni_probing_desc: "We will initiate a §YSpecial Project§! to conduct experiments near this celestial body in order to see if it poses a possible candidate for the creation of a §BBasement Universe§!."
+ decision_vacdec_basement_uni_probing_effects: "Starts a §YSpecial Project§! to conduct experiments near this celestial body in order to see if it poses a possible candidate for the creation of a §BBasement Universe§!. \n§HMust be done on §YBlack Holes§!, §YNeutron Stars or Pulsars§!, §YRegular Stars§! and §YDwarf Stars§! each.§!"
+ ssh_basement_uni_currently_probing: "§PWe are already currently probing another celestial body!§!"
+ ssh_basement_uni_already_probed_regular_star: "§PWe have already probed a §YRegular Star§!!§!"
+ ssh_basement_uni_already_probed_dwarf_star: "§PWe have already probed a §YDwarf Star§!!§!"
+ ssh_basement_uni_already_probed_neutron_star: "§PWe have already probed a §YNeutron Star§!!§!"
+ ssh_basement_uni_already_probed_black_hole: "§PWe have already probed a §YBlack Hole§!!§!"

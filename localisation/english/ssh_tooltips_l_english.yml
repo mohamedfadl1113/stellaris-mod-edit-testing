@@ -1,0 +1,106 @@
+﻿l_english:
+ 
+ ############
+ # Tooltips #
+ ############
+ ssh_requires_built_or_repaired_big_megastructure: "§PMust have built or repaired at least one of the following megastructures:§! \n§YDyson Sphere§! \n§YMatter Decompressor§! \n§YGas Giant Lifter§! \n§YGas Giant Shellworld§! \n§YEdersphere§! \n§YGas Giant Compressor§! \n\n§VIf Gigastructures is installed, any §YGigastructure§! will do as well!§!"
+
+ ssh_requires_elementary_tampering: "Must have researched $ssh_tech_elementary_tampering$!"
+
+
+ ssh_cant_be_megastructure: "Can't be constructed on megastructures due to their fragility!"
+ ssh_requires_star: "Must be built in a system with a star!"
+
+ ssh_requires_shellworld: "Must be built around a shellworld!"
+ ssh_requires_double_shellworld: "Must be built around a two-layer shellworld!"
+ ssh_double_shellworld_already_built: "This planet already has two shells surrounding it!"
+ ssh_triple_shellworld_already_built: "This planet already has three shells surrounding it!"
+
+ ssh_requires_gas_giant: "Must be built around a gas giant!"
+ ssh_requires_no_gas_giant: "Must be built above rocky planets for material!"
+
+ ssh_requires_no_planets: "There must not be any planets orbiting this star!"
+ ssh_requires_2_planets: "The system must have at least two planets for material!"
+ ssh_requires_min_one_gas_giant: "At least one of the system's planets must be a gas giant for material!"
+ ssh_requires_no_colony: "Cannot build in systems with colonies."
+
+ ssh_requires_no_neutron: "Cannot build around neutron stars due to their extreme gravity and radiation."
+ ssh_requires_neutron: "Must be built around a neutron stars or pulsars due to their strong gravity!"
+ ssh_requires_class_a_or_b: "Must be built around a class A or B star due to power consumption!"
+ ssh_requires_black_hole: "Must be built around a black hole!"
+ ssh_requires_no_black_hole: "Can't be built around black holes!"
+ ssh_requires_no_black_dwarf: "Can't be built around black dwarves!"
+ ssh_requires_no_special_star: "Can't be built around this type of star!"
+ ssh_requires_regular_star: "Must be built around regular class stars!"
+
+ ssh_requires_dyson: "Must be built around a finished dyson sphere!"
+
+ ssh_requires_no_existing_dimensional_tearer: "Can only build one Dimensional Tearer!"
+
+ ssh_not_fanatic_militarist: "Fanatic Militarists would rather become the Crisis!"
+
+ is_infested_planet: "§R$TRIGGER_FAIL$Target is not a habitable planet or megastructure§!"
+
+ is_own_colony: "§R$TRIGGER_FAIL$We should not eat or own colonies§!"
+ is_undigestible_star: "§R$TRIGGER_FAIL$We can't eat stars... yet!§!"
+ cannot_eat_neutron_yet: "§R$TRIGGER_FAIL$We can't digest the dense core of neutron stars... yet!§!"
+ cannot_eat_black_hole_yet: "§R$TRIGGER_FAIL$We can't digest a singularity!§!"
+
+ # ASCENSION MEGAS TOOLTIPS
+ ssh_requires_habitable_planet: "Must be built on a habitable planet to turn into nutritient biomass!"
+ ssh_mega_brain_already_built: "One Mega Brain requires so much monitoring, testing and maintenance personnel that we can't afford the upkeep of a second one!"
+
+ ssh_requires_megatemple_star: "Must be built around the most extreme galactic objects, e.g. a black hole or quark star!"
+ ssh_mega_temple_already_built: "We only have the psionic and logistical capacities for one central mega temple for our empire's psionics!"
+
+ ssh_mega_temple_cooldown_tooltip: "§YOur psionics are still recovering from their recent Shroud venture!§!"
+ 
+ active_zro_detonator_construction: "We are already constructing a Zro Infuser!"
+ ssh_zro_detonator_tooltip: "There must be a manned §YScience Ship§! in the system and its scientists requires the §rPsychic§! Trait - \n§YYou can fire the energy jet via the §rShroud Hub§! through the Abyssal Anchor!§!"
+
+ ssh_horizon_brain_already_built: "We only have the logistical capacities for one Horizon Brain!"
+
+
+ #### Tech Tooltips ####
+ ssh_needed_for_larger_housing_megas: "§PThis technology will unlock more technologies for increasingly large habitable megastructures!§!"
+ ssh_needed_for_subatomic_manipulation: "§PThis technology will unlock more technologies that advance further into the microcosmos!§!"
+ ssh_tech_nuclei_modification_tooltip: "§PThis tech will further push us to the limits of physics.§!\n§HUnlocks Bombardment Stance:§! §PNanites§!"
+ ssh_certain_worth_it: "§PAre you certain whatever you are doing is worth it?§!"
+
+ ssh_basement_universe_tooltip: "Unlocks §HBasement Universe§! Technologies"
+ ssh_vr_tooltip: "Unlocks §HVirtual Reality§! Features"
+ ssh_vr_tooltip_desc: "Unlocks §HVirtual Reality Districts§! on §YStellar Shellworlds§! \n\nUnlocks the §YHorizon Brain§!, which requires one of the following: \n§Y$ap_the_flesh_is_weak$§! \n§Y$ap_organo_machine_interfacing$§! \n§Y$ap_organo_machine_interfacing_assimilator$§! \n§Y$ap_synthetic_evolution$§! \n§Y$ap_synthetic_age$§!"
+
+ ssh_bwc: "§YThis technology will unlock the research options for BWC-Megastructures!§!"
+ ssh_bwc_desc: "§YBWC-Megastructures§!, or §YBecause-We-Can Megastructures§!, are giant theoretical structures that are considered impractical or unnecessary by most. Some of them do, however, actually have practical uses, like increases hydrogen and dark matter storage capacities or unity-boosting tourist attractions."
+
+ ssh_dna_resequencing_tooltip: "This technology unlocks new special traits and will §Padvance our knowledge further into the microcosmos!§!\nUnlocks §PUltra-Virus§! Bombardment Stance"
+
+ ssh_stance_virus_tooltip: "Unlocks §PUltra-Virus§! Bombardment Stance"
+ ssh_stance_nanite_tooltip: "Unlocks §PNanite§! Bombardment Stance"
+
+ #### Galcom Tooltips ####
+ resolution_galactic_focus_crisis_vacdec_effect_success: "All empires within the [global_event_country.GetGalCommunityOrGalImperium] will open borders to one another and focus their research on the Vacuum Decay."
+
+ community_declared_exodus_failtext: "§RThe Community does not approve of our Exodus plan.§!"
+
+ 
+ ###### Scripted Actions Tooltips ######
+ captive_star_action_activity_key: "Destroying Solar System"
+ #captive_star_action_activity_key_DESC: "The collision of the two stars will trigger a supernova.\n\n§RWhen the star detonates, ALL colonies, megastructures, and stations in the system are destroyed - including our own. All fleets in the system will go MIA. The Captive Star will be destroyed.§!"
+ captive_star_ship_button: "Collide Stars"
+ captive_star_context_menu_title: "Collide Stars"
+
+ dark_wmd_action_activity_key: "Destroying Solar System"
+ dark_wmd_ship_button: "Detonate Missile"
+ dark_wmd_context_menu_title: "Detonate Missile"
+ dark_wmd_action_progress_activity_key: "§HDetonating Warhead: $PROGRESS$%§!"
+ dark_wmd_large_action_activity_key: "Destroying Star Cluster"
+
+ ssh_can_use_dark_missile_tt: "Can only be detonated in §YUninhabited§! Systems or within the borders of an empire we are at §PWar§! with!"
+
+ # Brain Behemoth
+ sk_brain_maw_action_activity_key: "Consuming Celestial Body"
+ sk_brain_maw_ship_button: "Devour Celestial Body"
+ sk_brain_maw_context_menu_title: "Consume Celestial Body"
+ sk_brain_maw_action_progress_activity_key: "§HConsuming Celestial Body: $PROGRESS$%§!"

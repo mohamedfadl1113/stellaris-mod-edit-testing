@@ -1,0 +1,784 @@
+﻿l_english:
+
+ ###########################
+ ### Megastructures      ###
+ ###########################
+
+ shellworld_0: "Shellworld Frame"
+ shellworld_0_DESC: "A frame for a massive planet-enveloping shell constructed through orbital rings, offering much space for districts as well as a minor engineering research boost."
+ shellworld_0_MEGASTRUCTURE_DETAILS: "A §YShellworld§! is a massive planet-enveloping shell constructed through orbital rings, offering much space for districts as well as a minor engineering research boost. §PThis will terraform natural planets!§!"
+
+ shellworld_1: "Shell"
+ shellworld_1_DESC: "An artificial planet-enveloping shell which will offer much space for districts as well as a minor engineering research boost."
+
+ shellworld_2: "Dump Minerals Onto Surface"
+ shellworld_2_DESC: "An artificial planet-enveloping shell which offers much space for districts as well as a minor engineering research boost. Deep layers of various minerals and soils have been added onto the metallic surface, as well as an artifical atmosphere."
+
+ shellworld_ruined: "Ruined Shellworld"
+ shellworld_ruined_DESC: "The destroyed remains of a shellworld."
+ shellworld_ruined_MEGASTRUCTURE_DETAILS: "The destroyed remains of a shellworld."
+
+ shellworld_restored: "Restored Shell"
+ shellworld_restored_DESC: "An artificial planet-enveloping shell which offers much space for districts as well as a minor engineering research boost. Deep layers of various minerals and soils have been added onto the metallic surface, as well as an artifical atmosphere."
+
+
+
+ double_shellworld_0: "Double Shellworld Frame"
+ double_shellworld_0_DESC: "A frame for another shell-enveloping shell constructed through orbital rings, offering even more space for districts and an engineering research boost."
+ double_shellworld_0_MEGASTRUCTURE_DETAILS: "A second §YShellworld§! constructed through orbital rings, offering even more space for districts and an engineering research boost."
+
+ double_shellworld_1: "Partly Double Shell"
+ double_shellworld_1_DESC: "One half of a second artificial shell which envelops a smaller shell. It already offers some space for districts."
+
+ double_shellworld_2: "Double Shell"
+ double_shellworld_2_DESC: "A second planet-enveloping shell which envelops a smaller shell. It offers tremendous space for districts as well as an engineering research boost."
+
+ double_shellworld_3: "Dump Minerals Onto Surface"
+ double_shellworld_3_DESC: "This shellworld envelops yet another shell, which provides the planet beneath an incredible amount of districts. It has been filled with deep layers of minerals and an artificial atmosphere."
+
+
+ triple_shellworld_0: "Triple Shellworld Frame"
+ triple_shellworld_0_DESC: "A frame for yet another shell-enveloping shell constructed through orbital rings, offering... what's the point of describing this anymore, you know what it offers by now."
+ triple_shellworld_0_MEGASTRUCTURE_DETAILS: "Yet another §YShellworld§! constructed through orbital rings, offering... what's the point of describing this anymore, you know what it offers by now."
+
+ triple_shellworld_1: "Partly Triple Shell"
+ triple_shellworld_1_DESC: "One third of another artificial shell which envelops a smaller shell which envelops yet another smaller shell..."
+
+ triple_shellworld_2: "Partly Triple Shell"
+ triple_shellworld_2_DESC: "Two thirds of another artificial shell which envelops a smaller shell which envelops yet another smaller shell..."
+
+ triple_shellworld_3: "Triple Shell"
+ triple_shellworld_3_DESC: "Three giant shells enveloping one another around this planet. The amount of space for districts is incredible."
+
+ triple_shellworld_4: "Dump Minerals Onto Surface"
+ triple_shellworld_4_DESC: "You didn't have any better way to spend your resources, did you?"
+
+ # Gas Giant Shellworld
+ gas_giant_shellworld_0: "Gas Giant Shellworld Site"
+ gas_giant_shellworld_0_DESC: "A construction platform for a giant shellworld around a gas giant which can be colonized."
+ gas_giant_shellworld_0_MEGASTRUCTURE_DETAILS: "A §YGiant Shellworld§! around a gas giant which can be §!§Scolonized§!. Offers §YSpecial Districts§!."
+ gas_giant_shellworld_1: "Equatorial Foundation Ring"
+ gas_giant_shellworld_1_DESC: "The first ring orbiting the gas giant for a soon-to-be shellworld. More rings have to be added yet though."
+ gas_giant_shellworld_2: "Second Foundation Ring"
+ gas_giant_shellworld_2_DESC: "Two rings orbiting the gas giant for a soon-to-be shellworld. More rings have to be added yet though."
+ gas_giant_shellworld_3: "Third Foundation Ring"
+ gas_giant_shellworld_3_DESC: "Three rings orbiting the gas giant for a soon-to-be shellworld. We need to construct one more ring before filling the empty space between them."
+ gas_giant_shellworld_4: "Fourth Foundation Ring"
+ gas_giant_shellworld_4_DESC: "Four massive rings orbiting the gas giant. They are the foundation for our shellworld around it."
+ gas_giant_shellworld_5: "Final Foundation Ring"
+ gas_giant_shellworld_5_DESC: "Five massive rings orbiting the gas giant. They are the foundation for our shellworld around it."
+ gas_giant_shellworld_6: "Shell"
+ gas_giant_shellworld_6_DESC: "The rings' rotations have been aligned and the space between them has been filled with robust metals. The poles of the gas giant have been covered in two huge glass domes."
+ gas_giant_shellworld_7: "Dump Minerals Onto Surface"
+ gas_giant_shellworld_7_DESC: "We will finally dump many layers of minerals onto the shell and give it an artificial atmosphere. After that, we will be able to colonize it."
+ gas_giant_shellworld_ruined: "Ruined Gas Giant Shellworld"
+ gas_giant_shellworld_ruined_DESC: "The remains of a destroyed shellworld."
+ gas_giant_shellworld_ruined_MEGASTRUCTURE_DETAILS: "The remains of a destroyed shellworld."
+ gas_giant_shellworld_restored: "Repair Gas Giant Shellworld"
+ gas_giant_shellworld_restored_DESC: "We will restore the Gas Giant Shellworld."
+ gas_giant_shellworld_skip_rings: "Shell"
+ gas_giant_shellworld_skip_rings_DESC: "We will construct all orbital rings at once and connect them to accelerate the construction process."
+ 
+ # Edersphere
+ edersphere_0: "Edersphere Construction Site"
+ edersphere_0_DESC: "A construction platform for an artificial habitat three times the size of an average gas giant."
+ edersphere_0_MEGASTRUCTURE_DETAILS: "An §YEdersphere§! is an artificial §6habitat§! three times the size of an average gas giant - §PREMOVES SOME SYSTEM PLANETS§!."
+ edersphere_1: "Shell Frame"
+ edersphere_1_DESC: "The giant frame for our edersphere."
+ edersphere_2: "Inner Shell"
+ edersphere_2_DESC: "The inner shell which will contain the gas of our edersphere."
+ edersphere_3: "Superconductive Coil Tubes"
+ edersphere_3_DESC: "To keep our population safe from the star's radiation we will use huge coils to generate an artificial magnetic field that shields a considerable amount of solar radiation."
+ edersphere_4: "Mineral-Alloy Layers"
+ edersphere_4_DESC: "We will use additional layers made out of the system's planet's minerals and alloys to further absorp any solar radiation. We'll still have to use some of our stockpiles in addition though."
+ edersphere_5: "Life Support Systems"
+ edersphere_5_DESC: "Life Support Systems on the inside of the shell are going to make it habitable. In addition, huge pumps on the poles of it will be installed to pump in the hydrogen that prevents the sphere from collapsing on itself."
+ edersphere_6: "Start The Pumps"
+ edersphere_6_DESC: "We'll begin pumping hydrogen into the inside of our shell so that the gas pressure keeps it stable."
+ edersphere_ruined: "Ruined Edersphere"
+ edersphere_ruined_DESC: "The broken remains of an Edersphere."
+ edersphere_ruined_MEGASTRUCTURE_DETAILS: "The broken remains of an Edersphere."
+ edersphere_restored: "Restore Edersphere"
+ edersphere_restored_DESC: "We will restore the Edersphere."
+
+ # Gas Giant Compressor
+ gas_giant_compressor_0: "Gas Giant Compressor Site"
+ gas_giant_compressor_0_DESC: "A construction platform for a structure that feeds and compresses a gas giant with a ton of minerals, turning it into a brown dwarf."
+ gas_giant_compressor_0_MEGASTRUCTURE_DETAILS: "A huge structure that feeds and compresses a gas giant with a ton of minerals, turning it into a §Lbrown dwarf§! or §Hstar§! and providing £physics_research£ §Y$physics_research$§!."
+ gas_giant_compressor_1: "Orbital Compressor Ring"
+ gas_giant_compressor_1_DESC: "A ring that will serve as the hub from which all minerals get thrown into the giant."
+ gas_giant_compressor_2: "Orbital Compressor Cannons"
+ gas_giant_compressor_2_DESC: "These cannons will shoot tons of mineral masses into the gas giant below."
+ gas_giant_compressor_3: "Gas Giant Compressor"
+ gas_giant_compressor_3_DESC: "Thes gas giant compressor's pole stations will feed the giant below with energy to start and keep up a fusion reaction of Deuterium and Lithium, while the orbiting cannons fire tons of mineral masses into the giant."
+ gas_giant_compressor_4: "Brown Dwarf Stage"
+ gas_giant_compressor_4_DESC: "We will continously feeds the gas giant with minerals, turning it into a brown dwarf after some time. The constant feed of energy will keep up the fusion reaction inside of it."
+ gas_giant_compressor_5: "Ignite Brown Dwarf"
+ gas_giant_compressor_5_DESC: "We will keep feeding the brown dwarf with more minerals and compress it even further, while the constant feed of energy keeps up the fusion reaction inside of it. This will eventually ignite the planet and cause a fusion chain reaction, turning it into a star."
+ gas_giant_compressor_6: "Dismantle Megastructure"
+ gas_giant_compressor_6_DESC: "We will dismantle the megastructure."
+
+ # Colonizable Stellar Hoop
+ stellar_hoop_0: "Stellar Hoop Site"
+ stellar_hoop_0_DESC: "A construction platform for a §Lcolonizable structure§! that reaches relatively deep into a star's photosphere, which allows harvesting incredible amounts of £energy£ §Y$energy$§! and other resources."
+ stellar_hoop_0_MEGASTRUCTURE_DETAILS: "A §YStellar Hoop§! is a §Lcolonizable§! structure that reaches relatively deep into a star's photosphere, which allows harvesting incredible amounts of £energy£ §Y$energy$§! and other resources. §R- Removes System Planets!§!"
+ stellar_hoop_1: "Outer Hoop Frame"
+ stellar_hoop_1_DESC: "A ring that will serve as a hub to the ring below and encase two counter-orbiting rings which are going to deflect the star's particles."
+ stellar_hoop_2: "Deflecting Rings"
+ stellar_hoop_2_DESC: "Two spinning rings filled with super-fast moving magnetic material to deflect the star's deadly particles."
+ stellar_hoop_3: "Outer Hoop"
+ stellar_hoop_3_DESC: "The counter-spinning rings are covered and somewhat protected by the outer hoop."
+ stellar_hoop_4: "Superconductive Tethers"
+ stellar_hoop_4_DESC: "The superconductive tethers between the inner ring and the outer ring will transport heat from the star's photosphere away from the inner ring. They also serve as elevators to the main ring inside the photosphere below."
+ stellar_hoop_5: "Inner Ring"
+ stellar_hoop_5_DESC: "A second ring encasing yet another two counter-spinning magnetic rings. While the rings deflect enough of the star's particles, the giant mirrors on the surface reflect its light."
+ stellar_hoop_6: "Stellar Hoop"
+ stellar_hoop_6_DESC: "We will install solar panels attached to the outer ring to provide our colony with the necessary energy to keep up the life support systems."
+ stellar_hoop_ruined: "Ruined Stellar Hoop"
+ stellar_hoop_ruined_DESC: "Debris of a destroyed stellar hoop orbit this star."
+ stellar_hoop_ruined_MEGASTRUCTURE_DETAILS: "Debris of a destroyed stellar hoop orbit this star."
+ stellar_hoop_restored: "Restore Stellar Hoop"
+ stellar_hoop_restored_DESC: "We will reconstruct the stellar hoop."
+
+# Gas Giant Lifter
+ gas_giant_lifter_0: "Gas Giant Lifter Site"
+ gas_giant_lifter_0_DESC: "A construction platform for a giant shellworld around a gas giant which harvests large amounts of £sr_hydrogen£ §Y$sr_hydrogen$§! and £exotic_gases£ §Y$exotic_gases$§!."
+ gas_giant_lifter_0_MEGASTRUCTURE_DETAILS: "A §YGas Giant Lifter§! §Pharvests large amounts of £sr_hydrogen£ §Y$sr_hydrogen$§! and £exotic_gases£ §!§Y$exotic_gases$§!§P from a gas giant's atmosphere§!."
+ gas_giant_lifter_1: "Equatorial Foundation Ring"
+ gas_giant_lifter_1_DESC: "The foundation for the gas giant lifter. More rings have to be added yet though."
+ gas_giant_lifter_2: "Second Foundation Ring"
+ gas_giant_lifter_2_DESC: "Two rings orbiting the gas giant for the gas giant lifter. More rings have to be added yet though."
+ gas_giant_lifter_3: "Third Foundation Ring"
+ gas_giant_lifter_3_DESC: "Three rings orbiting the gas giant for the gas giant lifter. We need to construct one more ring before filling the empty space between them."
+ gas_giant_lifter_4: "Final Foundation Ring"
+ gas_giant_lifter_4_DESC: "Four massive rings orbiting the gas giant. They are the foundation for our shellworld around it."
+ gas_giant_lifter_5: "Shell"
+ gas_giant_lifter_5_DESC: "The rings' rotations have been aligned and the space between them has been filled with robust metals."
+ gas_giant_lifter_6: "Gas Giant Lifter"
+ gas_giant_lifter_6_DESC: "Superconductive coils orbiting the shell generate an extremely strong magnetic field that allows us to mine the gas giant's atmosphere at a very fast rate. A part of the extracted gases can be used for nuclear fusion energy."
+ gas_giant_lifter_skip_rings: "Shell"
+ gas_giant_lifter_skip_rings_DESC: "We will construct all orbital rings at once and mold them together."
+
+ # Nanite Disassembling Complex
+ nanite_disassembler_p_0: "Nanite Disassembler Site"
+ nanite_disassembler_p_0_DESC: "A construction that unleashes nanobots on the planet below to harvest every single piece of its matter."
+ nanite_disassembler_p_0_MEGASTRUCTURE_DETAILS: "A construction that unleashes £nanites£ §Y$nanites$§! nanites on the planet below to harvest every single piece of its matter."
+
+ nanite_disassembler_p_1: "Nanite Disassembler"
+ nanite_disassembler_p_1_DESC: "A disassembling complex that uses nanobots to harvest every single piece of the matter of the planet below."
+
+ nanite_disassembler_p_gas: "Active Nanite Disassembler"
+ nanite_disassembler_p_gas_DESC: "This active disassembler harvests every tiny piece of matter of the planet below using advanced nanobots."
+
+ nanite_disassembler_p_artificial: "Active Nanite Disassembler"
+ nanite_disassembler_p_artificial_DESC: "This active disassembler harvests every tiny piece of matter of the planet below using advanced nanobots."
+
+ nanite_disassembler_p_crystal: "Active Nanite Disassembler"
+ nanite_disassembler_p_crystal_DESC: "This active disassembler harvests every tiny piece of matter of the planet below using advanced nanobots."
+
+ nanite_disassembler_p_rocky: "Active Nanite Disassembler"
+ nanite_disassembler_p_rocky_DESC: "This active disassembler harvests every tiny piece of matter of the planet below using advanced nanobots."
+
+ nanite_disassembler_p_zro: "Active Nanite Disassembler"
+ nanite_disassembler_p_zro_DESC: "This active disassembler harvests every tiny piece of matter as well as the zro particles from the atmosphere of the planet below using advanced nanobots."
+
+ nanite_disassembler_p_toxic: "Active Nanite Disassembler"
+ nanite_disassembler_p_toxic_DESC: "This active disassembler harvests every tiny piece of matter of the planet below using advanced nanobots."
+
+ nanite_disassembler_p_core: "Active Nanite Disassembler"
+ nanite_disassembler_p_core_DESC: "This active disassembler harvests every tiny piece of matter of the core below using advanced nanobots."
+
+ # Celestial Digester (Terravore Nanite Disassembler)
+ terravore_digester_p_0: "Celestial Digester Site"
+ terravore_digester_p_0_DESC: "A construction that unleashes gene-modified drones on the planet below to harvest every single piece of its matter."
+ terravore_digester_p_0_MEGASTRUCTURE_DETAILS: "A construction that unleashes £nanites£ §Y$nanites$§! nanites on the planet below to harvest every single piece of its matter."
+
+ terravore_digester_p_1: "Celestial Digester"
+ terravore_digester_p_1_DESC: "A complex that uses gene-modified drones to harvest every single piece of the matter of the planet below."
+
+ terravore_digester_p_gas: "Active Celestial Digester"
+ terravore_digester_p_gas_DESC: "This active complex uses gene-modified drones to harvest every tiny piece of matter of the planet below."
+
+ terravore_digester_p_artificial: "Active Celestial Digester"
+ terravore_digester_p_artificial_DESC: "This active complex uses gene-modified drones to harvest every tiny piece of matter of the planet below."
+
+ terravore_digester_p_crystal: "Active Celestial Digester"
+ terravore_digester_p_crystal_DESC: "This active complex uses gene-modified drones to harvest every tiny piece of matter of the planet below."
+
+ terravore_digester_p_rocky: "Active Celestial Digester"
+ terravore_digester_p_rocky_DESC: "This active complex uses gene-modified drones to harvest every tiny piece of matter of the planet below."
+
+ terravore_digester_p_zro: "Active Celestial Digester"
+ terravore_digester_p_zro_DESC: "This active complex uses gene-modified drones to harvest every tiny piece of matter as well as the zro particles from the atmosphere of the planet below."
+
+ terravore_digester_p_toxic: "Active Celestial Digester"
+ terravore_digester_p_toxic_DESC: "This active complex uses gene-modified drones to harvest every tiny piece of matter of the planet below."
+
+ terravore_digester_p_core: "Active Celestial Digester"
+ terravore_digester_p_core_DESC: "This active complex uses gene-modified drones to harvest the remaining core of the planet below."
+
+ # Hoopworld
+ hoopworld_0: "Hoopworld Site"
+ hoopworld_0_DESC: "A §YHoopworld§! is a theoretical planet shaped like a torus instead of a classical sphere."
+ hoopworld_0_MEGASTRUCTURE_DETAILS: "A §YHoopworld§! is a theoretical planet shaped like a torus instead of a classical sphere, which serves as a great colonizable tourist attraction that §Pincreases our £unity£ §!§Y$unity$§! §Pand amenities.§!"
+
+ hoopworld_1: "Hoopworld Frame"
+ hoopworld_1_DESC: "A huge torus-shaped frame for our future hoopworld."
+ 
+ hoopworld_2: "Superconductive Tubes"
+ hoopworld_2_DESC: "Superconductive Spinning Tubes inside the torus will generate an artificial magnetic field to shield our population from the star's radiation."
+
+ hoopworld_3: "Hoop Shell"
+ hoopworld_3_DESC: "A closed shell surrounding the superconductive tubes inside the torus."
+
+ hoopworld_4: "Dump Mineral Layers"
+ hoopworld_4_DESC: "We will fill both the inside of the shell as well as the outside of it with layer upon layer of minerals to generate gravity on the torus' surface. An artificially created atmosphere will further protect our population."
+
+ # Discworld
+ discworld_0: "Discworld Site"
+ discworld_0_DESC: "A §YDiscworld§! is a theoretical flat planet shaped like a coin instead of a classical sphere. Aside from being a great tourist attraction it would also act as a great stockpile space for £sr_hydrogen£ §!§Y$sr_hydrogen$§! and £sr_dark_matter£ §!§Y$sr_dark_matter$§!"
+ discworld_0_MEGASTRUCTURE_DETAILS: "A §YDiscworld§! is a theoretical flat planet shaped like a coin instead of a classical sphere. Aside from being a great tourist attraction it would also act as a great stockpile space for £sr_hydrogen£ §!§Y$sr_hydrogen$§! and £sr_dark_matter£ §!§Y$sr_dark_matter$§!"
+
+ discworld_1: "Discworld Shell"
+ discworld_1_DESC: "The ring that will encase the inner coils and tubes of the disc."
+
+ discworld_2: "Superconductive Rings"
+ discworld_2_DESC: "Rings filled with fast-spinning superconductive material will generate a protective magnetic field around the discworld."
+
+ discworld_3: "Stockpile Tubes"
+ discworld_3_DESC: "Many huge empty tubes inside the disc will serve as stockpile capacity for resources like hydrogen and dark matter. If filled, the stored matter will generate gravity affecting the population on the disc."
+
+ discworld_4: "Active Support"
+ discworld_4_DESC: "Massive pillars of extremely robust materials will ensure that the outer parts of the disc won't collapse toward its center."
+
+ discworld_5: "Partly Filled Hydrogen Tubes"
+ discworld_5_DESC: "We will partially fill some of the stockpile tubes with hydrogen to generate gravity on the disc."
+
+ discworld_6: "Dump Minerals"
+ discworld_6_DESC: "We will dump lots of minerals onto the disc's surface to generate more gravity and shape a nice landscape as well as an atmosphere."
+
+
+ # Dimensional Tearer - > Moved to ssh_exodus_crisis
+
+ # Black Hole Shellworld
+ black_hole_shellworld_0: "Black Hole Suprashell Site"
+ black_hole_shellworld_0_DESC: "A §YBlack Hole Suprashell§! is a giant shellworld constructed around a black hole, which offers an extreme amount of space to live on as well as unique districts."
+ black_hole_shellworld_0_MEGASTRUCTURE_DETAILS: "A §YBlack Hole Suprashell§! is a giant shellworld constructed around a black hole, which offers unique £sr_dark_matter£ §!§Y$sr_dark_matter$§!, £sr_cultrobium£ §!§Y$sr_cultrobium$§! and £physics_research£ §!§Y$physics_research$§! districts. §R- Removes System Planets!§!"
+
+ black_hole_shellworld_1: "Partly Finished Orbital Foundation"
+ black_hole_shellworld_1_DESC: "One third of the needed orbital rings, which provide a massive and robust foundation for the layers above."
+
+ black_hole_shellworld_2: "Partly Finished Orbital Foundation"
+ black_hole_shellworld_2_DESC: "Two thirds of the needed orbital rings, which provide a massive and robust foundation for the layers above."
+
+ black_hole_shellworld_3: "Orbital Foundation"
+ black_hole_shellworld_3_DESC: "The many orbital rings provide a massive and robust foundation for the layers above."
+
+ black_hole_shellworld_4: "Suprashell"
+ black_hole_shellworld_4_DESC: "The rings' rotations are aligned and the gaps between them filled."
+
+ black_hole_shellworld_5: "Heat Pumps"
+ black_hole_shellworld_5_DESC: "Two giant heat pumps at the poles of the shell will pump all waste heat into the black hole below."
+
+ black_hole_shellworld_6: "Life Support Systems"
+ black_hole_shellworld_6_DESC: "We will cover the shell with all the system's harvested planetary matter as well as some extra minerals. An artificial atmosphere and additional life support emergency systems will make sure the suprashell is colonizable."
+
+ black_hole_shellworld_ruined: "Ruined Suprashell"
+ black_hole_shellworld_ruined_DESC: "A ruined shellworld above a black hole."
+ black_hole_shellworld_ruined_MEGASTRUCTURE_DETAILS: "A ruined shellworld above a black hole."
+
+ black_hole_shellworld_restored: "Restored Black Hole Suprashell"
+ black_hole_shellworld_restored_DESC: "We will rebuild the suprashell."
+
+ # Stellar Harvester/Fusion Accelerator
+ stellar_harvester_0: "Stellar Harvester Site"
+ stellar_harvester_0_DESC: "A construction platform for a future fusion accelerator. \n§HOutput scales with star class.§!"
+ stellar_harvester_0_MEGASTRUCTURE_DETAILS: "A §YStellar Harvester§! uses artificial nuclear fusion to tremendously accelerate a star's fusion process, granting §Vmany§! £energy£ §Y$energy$§! and depleting the star over time, turning it into an artificial §vBlack Dwarf§!. It causes it to emit all the radiation it would've emitted in its whole lifespan within a century §H- Output scales with star class.§!"
+
+ stellar_harvester_1: "Partly Finished Dyson Shell"
+ stellar_harvester_1_DESC: "One half of the shell to collect the vast amounts of energy this star will radiate."
+
+ stellar_harvester_2: "Dyson Shell"
+ stellar_harvester_2_DESC: "This shell will collect the vast amounts of energy this star will radiate after its fusion has been accelerated."
+
+ stellar_harvester_3: "Fusion Accelerators"
+ stellar_harvester_3_DESC: "These fusion accelerators will heavily increase the speed and efficiency of the fusion process inside the star below."
+
+ stellar_harvester_4: "Begin Fusion Acceleration"
+ stellar_harvester_4_DESC: "The fusion accelerator will heavily increase the speed and efficiency of the fusion process inside the star below."
+
+ stellar_harvester_active: "Active Stellar Harvester"
+ stellar_harvester_active_DESC: "This star's natural fusion process is heavily accelerated through artificial nuclear fusion, causing it to emit all its lifespan's amount of radiation within a century."
+
+ stellar_harvester_ruined: "Ruined Stellar Harvester"
+ stellar_harvester_ruined_DESC: "A ruined device that was seemingly supposed to accelerate this star's fusion process."
+
+ stellar_harvester_restored: "Restore Stellar Harvester"
+ stellar_harvester_restored_DESC: "This star's natural fusion process is heavily accelerated through artificial nuclear fusion, causing it to emit all its lifespan's amount of radiation within a century."
+
+ stellar_harvester_dyson_upgrade: "Upgrade to Stellar Harvester"
+ stellar_harvester_dyson_upgrade_DESC: "We can upgrade this dyson sphere by installing fusion accelerators above the star, which would cause it to emit it's whole lifetime worth of radiation within a few decades, cooling it down and turning it into a Black Dwarf."
+
+ stellar_harvester_dyson_upgrade_2: "Upgrade to Stellar Harvester"
+ stellar_harvester_dyson_upgrade_2_DESC: "We can upgrade this dyson sphere by installing fusion accelerators above the star, which would cause it to emit it's whole lifetime worth of radiation within a few decades, cooling it down and turning it into a Black Dwarf."
+
+ stellar_harvester_dismantle: "Stop Acceleration & Dismantle"
+ stellar_harvester_dismantle_DESC: "We will stop the fusion acceleration and dismantle the megastructure."
+
+ # Star Nanite Disassembler
+ nanite_disassembler_s_0: "Stellar Nanite Disassembler Platform"
+ nanite_disassembler_s_0_DESC: "A construction platform for a stellar nanite disassembler."
+ nanite_disassembler_s_0_MEGASTRUCTURE_DETAILS: "A construction platform for a stellar nanite disassembler."
+ 
+ nanite_disassembler_s_1: "Stellar Nanite Disassembler"
+ nanite_disassembler_s_1_DESC: "This construction will unleash a horde of nanites onto the unfortunate star below, leaving nothing but utterly empty space."
+
+ nanite_disassembler_s_black_dwarf: "Active Stellar Nanite Disassembler"
+ nanite_disassembler_s_black_dwarf_DESC: "This construction unleashes hordes of nanites onto the unfortunate star below, leaving nothing but utterly empty space after consuming it."
+
+ nanite_disassembler_s_brown_dwarf: "Active Stellar Nanite Disassembler"
+ nanite_disassembler_s_brown_dwarf_DESC: "This construction unleashes hordes of nanites onto the unfortunate brown dwarf below, leaving nothing but utterly empty space after consuming it."
+
+ # Freesphere
+ freesphere_0: "Freesphere Site"
+ freesphere_0_DESC: "Freespheres are large, transparent, double-walled open bubbles, ranging from several hundred meters to several thousand kilometers across, filled with air. Appropriately modified lifeforms create a free-fall ecology and a layer of water between the inner and outer walls provides an effective radiation shield. Freespheres are especially popular when placed in planetary orbit due to both the spectacular views and the sense of truly flying 'above' something rather than merely floating in space."
+ freesphere_0_MEGASTRUCTURE_DETAILS: "A §YFreesphere§! is a large, transparent, open bubble filled with air. They grant spectacular views and the sense of truly flying 'above' something, which §Pincreases our £unity£ §!§Y$unity$§! §Pand amenities.§!."
+
+ freesphere_1: "Freesphere Frame"
+ freesphere_1_DESC: "The frame construct will serve as the foundation to support the sphere's membrane."
+
+ freesphere_2: "Bubble Membranes"
+ freesphere_2_DESC: "The two transparent membranes on the outside and inside of the frame will serve as a barrier that prevents the atmosphere to escape later on."
+
+ freesphere_3: "Water Wall"
+ freesphere_3_DESC: "A spinning water wall between the two membranes will protect the freesphere's population from the solar radiation."
+
+ freesphere_4: "Pumps & Life Support Systems"
+ freesphere_4_DESC: "Two pumps on the poles of the bubble will inflate the freesphere with a breathable atmosphere. In addition to that, life support systems are installed on them."
+
+ freesphere_5: "Create Atmosphere & Floating Islands"
+ freesphere_5_DESC: "We will start the pumps to inflate the freesphere with a breathable atmosphere. In addition to that, we will create floating islands and huge drops of water for the freesphere's population."
+
+ # Neutron Star Compressor
+ neutron_compressor_0: "Neutronium Compressor"
+ neutron_compressor_0_DESC: "Through advanced matter injection and extraction methods, a §YNeutronium Compressor§! can harvest large amounts of £sr_cultrobium£ §Y$sr_cultrobium$§! by compressing a neutron star and stripping away its outer layers, leaving a §vQuark Star§!."
+ neutron_compressor_0_MEGASTRUCTURE_DETAILS: "A §YNeutronium Compressor§! can harvest large amounts of £sr_cultrobium£ §Y$sr_cultrobium$§! by compressing a neutron star and stripping away its outer layers, leaving a §vQuark Star§!."
+
+ neutron_compressor_1: "Frame"
+ neutron_compressor_1_DESC: "An extremely robust frame for the compression shell to put the star under increasing pressure."
+
+ neutron_compressor_2: "Compression Shell"
+ neutron_compressor_2_DESC: "An extremely robust shell encases the small neutron star below to put it under increasing pressure. It also refracts it's polar outbursts and uses them to power it's own machinery."
+
+ neutron_compressor_3: "Matter Injector"
+ neutron_compressor_3_DESC: "By feeding it very large amounts of matter, the neutron star's gravity and pressure will increase whilst the shell prevents it from expanding in size."
+
+ neutron_compressor_4: "Matter Extractor"
+ neutron_compressor_4_DESC: "Advanced nano- and makromachines will 'scoop' out the neutron star's surface, stripping away its outer layers over time and turning the neutronium matter into cultrobium."
+
+ neutron_compressor_5: "Begin Compression"
+ neutron_compressor_5_DESC: "We will begin feeding the star lots of raw matter whilst extracting its outer layers - §RWarning: High Energy & Minerals Upkeep!§!."
+
+ neutron_compressor_active: "Active Neutronium Compressor"
+ neutron_compressor_active_DESC: "An advanced structure that scoops out and strips away the outer layers of the neutron star below, turning the neutron matter into cultrobium."
+
+ # Mega Brain
+ mega_brain_0: "B.I.O. Brain Site"
+ mega_brain_0_DESC: "The §YB.I.O. Brain§!, or Biological Imaginative Omnicompetent Brain, is a planet-sized biological neural network. It is made up of Conscious Matter grown inside an artificial structure filled with nutrient solution and provides £society_research£ £physics_research£ £engineering_research£ §YResearch§! and §YSpecial Technologies§!."
+ mega_brain_0_MEGASTRUCTURE_DETAILS: "The B.I.O. Brain is a planet-sized biological neural network supporting and providing £society_research£ £physics_research£ £engineering_research£ §YResearch§! and §YSpecial Technologies§!. §HMust be built on a Habitable Planet.§!"
+
+ mega_brain_1: "Incubation Pod"
+ mega_brain_1_DESC: "A giant pod which will be filled with nutritient solution and stimulation electrodes to grow and discipline the brain."
+
+ mega_brain_2: "Nutritient Solution"
+ mega_brain_2_DESC: "The complex nutritient solution inside the incubation pod will keep our brain alive."
+
+ mega_brain_3: "Stimulation Electrodes"
+ mega_brain_3_DESC: "Vast amounts of electrodes all over the brain will allow us to input stimulation signals and read the brain's response output signals."
+
+ mega_brain_4: "Stem Cell Clump"
+ mega_brain_4_DESC: "The 'foundation' of our brain. Our scientists will use it to grow more stem cells and other important parts like the sensory input cells."
+
+ mega_brain_5: "B.I.O. Brain"
+ mega_brain_5_DESC: "The Biological Imaginative Omnicompetent Brain. It can be fed with information and disciplined through many different stimuli to support our empire's scientists with their research - and it's an interesting object to study."
+
+ mega_brain_6: "B.I.O. Brain"
+ mega_brain_6_DESC: "A somewhat grown Biological Imaginative Omnicompetent Brain. It's currently developing methods to adapt to the hostile space environment and can be fed with information to support our empire's scientists with their research."
+
+ mega_brain_7: "B.I.O. Brain"
+ mega_brain_7_DESC: "A fully grown Biological Imaginative Omnicompetent Brain. It has fully adapted to the hostile space environment and is learning at an exponential rate."
+
+ mega_brain_fallen_xenophobe: "B.I.O. Brain"
+ mega_brain_fallen_xenophobe_DESC: "A behemoth neural network capable of solving complex equations at an insanely high rate."
+ mega_brain_fallen_xenophobe_awoken: "B.I.O. Brain"
+ mega_brain_fallen_xenophobe_awoken_DESC: "A seemingly self-aware leviathan organism capable of solving complex equations at an insanely high rate. It appears to have had a tremendous growth spurt recently."
+
+ # Mega Temple
+ mega_temple_0: "Abyssal Anchor Site" # Gate To Heaven / Heaven's Gate / Dimensional Connector / Heaven's Anchor / Three-Layer Citadel
+ mega_temple_0_DESC: "The §YAbyssal Anchor§! is a mega-temple devoted to the deeper parts of the Shroud. Its proximity to the spacetime-warping object below combined with the creativity-sparking view on such object and extraordinary amounts of zro induced in the local residents allow groups of psionics to access deep parts of the Shroud more often and more easily. Improves £unity£ §YUnity Production§! and £crime£ §YIntel Networks§!. Might also grant access to §YShroud Insights§!."
+ mega_temple_0_MEGASTRUCTURE_DETAILS: "The §YAbyssal Anchor§! is a mega-temple devoted to the deeper parts of the Shroud, granting access to §rShroud Insights§! and improves £political_power£ §YIntel Networks§! and £unity£ §YUnity Production§! - §RREMOVES ALL SYSTEM PLANETS§!"
+
+ mega_temple_1: "Radiation Shields"
+ mega_temple_1_DESC: "A large equatorial radiation shield in addition to two large force fields on both poles will absorp most of the radiation that emits from the star, while still allowing the soon-to-be residents a creativity-sparking view on the celestial body."
+
+ mega_temple_2: "Atlas Pillars"
+ mega_temple_2_DESC: "Eight massive pillars resisting the insane gravity shall hold our temple's habitation quarters."
+
+ mega_temple_3: "Habitation Ring"
+ mega_temple_3_DESC: "A large ring kept above the event horizon and filled with life support and monuments will provide our psionics everything they need in order to observe the spectacle below and dive deep into the Shroud."
+
+ mega_temple_4: "Zro Infusers"
+ mega_temple_4_DESC: "Two magnetic triangles representing the connection of the Three Layers will distribute as much Zro as possible into the star's magnetic field and orbit, tremendously enhancing the psionic abilities of every psionic nearby."
+
+ mega_temple_5: "Abyssal Anchor"
+ mega_temple_5_DESC: "§YAccessible through the §SEdicts-Menu§!§! \nA colossal temple pumped full of Zro granting an incredible view on the celestial body below. Any psionic inside this massive complex experiences mind-enhancing effects, greatly improving their psionic potential and granting them access to the deeper regions of the Shroud on a regular basis. It seems like the Shroud insights, among other things, can be used to tremendously strengthen spy networks and fling into the minds of other species from time to time."
+
+ mega_temple_6: "Abyssal Anchor"
+ mega_temple_6_DESC: "A colossal temple pumped full of Zro granting an incredible view on the celestial body below. Any psionic inside this massive complex experiences mind-enhancing effects, greatly improving their psionic potential and granting them access to the deeper regions of the Shroud on a regular basis. It seems like the Shroud insights, among other things, can be used to tremendously strengthen spy networks and fling into the minds of other species from time to time."
+
+ mega_temple_7: "Enter the §rAbyssal Anchor§!"
+ mega_temple_7_DESC: "Opens the menu of the §YAbyssal Anchor Operations-Hub§!"
+
+ # Zro Infuser
+ stellar_zro_detonator_0: "Zro Detonator Platform"
+ stellar_zro_detonator_0_DESC: "A construction platform for a device that infuses Zro into the star below while accumulating lots of matter and converting them into a high energy jet, which it then fires onto the unfortunate star below, stripping away its outer layers and shifting the balance of pressure inside."
+ stellar_zro_detonator_0_MEGASTRUCTURE_DETAILS: "A construction platform for a device that infuses Zro into the star below while accumulating lots of matter and converting them into a high energy jet, which it then fires onto the unfortunate star below, stripping away its outer layers and shifting the balance of pressure inside."
+
+ stellar_zro_detonator_1: "Matter Concentrator Cannon"
+ stellar_zro_detonator_1_DESC: "This advanced cannon converts raw matter into a high energy jet, which it then fires onto the unfortunate star below, stripping away its outer layers and shifting the balance of pressure inside."
+
+ stellar_zro_detonator_minerals: "Accumulate §PMinerals§!"
+ stellar_zro_detonator_minerals_DESC: "The Zro Detonator is accumulating tons of raw minerals which it will then turn into a high energy jet, while infusing lots of Zro into the Star below, increasing its Shroud resonances and therefore destabilizing it."
+
+ stellar_zro_detonator_hydrogen: "Accumulate §CHydrogen§!"
+ stellar_zro_detonator_hydrogen_DESC: "The Zro Detonator is accumulating tons of hydrogen which it will then turn into a high energy jet, while infusing lots of Zro into the Star below, increasing its Shroud resonances and therefore destabilizing it."
+
+ stellar_zro_detonator_ready: "Stellar Zro Detonator"
+ stellar_zro_detonator_ready_DESC: "A device that makes use of the balance of pressure and minimal Shroud resonances within a star to infuse it with Zro and strip away its outer layers, detonating it and generating an extreme release of psionic energy."
+
+ stellar_zro_detonator_firing: "Fire High-Energy Jet"
+ stellar_zro_detonator_firing_DESC: "A device that makes use of the balance of pressure and minimal Shroud resonances within a star to infuse it with Zro and strip away its outer layers, detonating it and generating an extreme release of psionic energy."
+
+ # Unused
+ stellar_zro_detonator_2: "Zro Infuser"
+ stellar_zro_detonator_2_DESC: "This device infuses Zro into the star below, increasing its Shroud resonances and therefore destabilizing it."
+
+ # Spiritualist FE Zro Infuser
+ fe_stellar_zro_detonator_base: "Ascension Catapult Foundation"
+ fe_stellar_zro_detonator_base_DESC: "An enigmatic device. \nOur sensors can pick up an extreme concentration of Zro from inside this system."
+ fe_stellar_zro_detonator_charging: "Charging Ascension Catapult"
+ fe_stellar_zro_detonator_charging_DESC: "An enigmatic device. \nOur sensors can pick up an extreme concentration of Zro from inside this system."
+ fe_stellar_zro_detonator_ready: "Charged Ascension Catapult"
+ fe_stellar_zro_detonator_ready_DESC: "An enigmatic device filled with gargantuan amounts of Zro. \nHow does it work..?"
+ fe_stellar_zro_detonator_firing: "Active Ascension Catapult"
+ fe_stellar_zro_detonator_firing_DESC: "To infinity and beyond!"
+
+ # System Disintegrator
+ system_disintegrator_0: "System Disintegrator Platform"
+ system_disintegrator_0_DESC: "A foundation for a complex device that accumulates energy to generate a system-spanning force field inside which the electromagnetic forces are shut off completely for the split of a second. Disintegrates a system and produces £sr_nuclei_soup£ §Y$sr_nuclei_soup$§!."
+ system_disintegrator_0_MEGASTRUCTURE_DETAILS: "A §YSystem Disintegrator§! is a complex device that disintegrates a system and produces £sr_nuclei_soup£ §Y$sr_nuclei_soup$§!. §R- Disintegrates anything inside the system.§!"
+
+ system_disintegrator_1: "Injection-Extraction Hub"
+ system_disintegrator_1_DESC: "The energy tappers will collect as much energy from the galactic object as possible in order to reduce the cost of the energy needed to activate the force field. They will also be used later on as cannons from which the dark matter is fired towards the center of the star."
+
+ system_disintegrator_2_b_star: "Injection-Extraction Hub"
+ system_disintegrator_2_b_star_DESC: "The energy tappers will collect as much energy from the galactic object as possible in order to reduce the cost of the energy needed to activate the force field. They will also be used later on as cannons from which the dark matter is fired towards the center of the star."
+
+ system_disintegrator_3_b_star: "Force Field Generator"
+ system_disintegrator_3_b_star_DESC: "This generator will use the accumulated energy along with some other resources to generate a system-sized force field inside which the electromagnetic forces that keep electrons around the nuclei are turned off for the split of a second. The escaping electrons will radiate away while the rest of the matter will be turned into raw nuclei soup."
+
+ system_disintegrator_4_b_star: "Entanglement Device" #Quantum Entanglement
+ system_disintegrator_4_b_star_DESC: "By shooting dark matter through the star towards one tiny spot, the core, the gravity there will furtherly increase for a short amount of time. This will increase the chances of spontaneous quantum foam wormholes forming, one of which we will then try to entangle for a short amount of time. Since the star will have turned into disintegrated nuclei soup by then, the fusion process will have stopped and gravity will take over, pushing the gargantuan amount of matter towards the core. Instead of creating a black hole, however, the matter and extreme heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a temporal 'Basement Universe'. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat back outside the pocket dimension into our universe, where we can collect it. This device also serves as a hub for the nanite swarms that are going to collect the matter later on."
+
+ system_disintegrator_5_b_star: "Accumulate Energy"
+ system_disintegrator_5_b_star_DESC: "Depending on the star class, a lot of energy might be needed for the force field generation and quantum entanglement."
+
+
+ system_disintegrator_2_m_giant_star: "Injection-Extraction Hub"
+ system_disintegrator_2_m_giant_star_DESC: "The energy tappers will collect as much energy from the galactic object as possible in order to reduce the cost of the energy needed to activate the force field. They will also be used later on as cannons from which the dark matter is fired towards the center of the star."
+
+ system_disintegrator_3_m_giant_star: "Force Field Generator"
+ system_disintegrator_3_m_giant_star_DESC: "This generator will use the accumulated energy along with some other resources to generate a system-sized force field inside which the electromagnetic forces that keep electrons around the nuclei are turned off for the split of a second. The escaping electrons will radiate away while the rest of the matter will be turned into raw nuclei soup."
+
+ system_disintegrator_4_m_giant_star: "Entanglement Device"
+ system_disintegrator_4_m_giant_star_DESC: "By shooting dark matter through the star towards one tiny spot, the core, the gravity there will furtherly increase for a short amount of time. This will increase the chances of spontaneous quantum foam wormholes forming, one of which we will then try to entangle for a short amount of time. Since the star will have turned into disintegrated nuclei soup by then, the fusion process will have stopped and gravity will take over, pushing the gargantuan amount of matter towards the core. Instead of creating a black hole, however, the matter and extreme heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a temporal 'Basement Universe'. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat back outside the pocket dimension into our universe, where we can collect it. This device also serves as a hub for the nanite swarms that are going to collect the matter later on."
+
+ system_disintegrator_5_m_giant_star: "Accumulate Energy"
+ system_disintegrator_5_m_giant_star_DESC: "Depending on the star class, a lot of energy might be needed for the force field generation and quantum entanglement."
+
+
+ system_disintegrator_2_a_star: "Injection-Extraction Hub"
+ system_disintegrator_2_a_star_DESC: "The energy tappers will collect as much energy from the galactic object as possible in order to reduce the cost of the energy needed to activate the force field. They will also be used later on as cannons from which the dark matter is fired towards the center of the star."
+
+ system_disintegrator_3_a_star: "Force Field Generator"
+ system_disintegrator_3_a_star_DESC: "This generator will use the accumulated energy along with some other resources to generate a system-sized force field inside which the electromagnetic forces that keep electrons around the nuclei are turned off for the split of a second. The escaping electrons will radiate away while the rest of the matter will be turned into raw nuclei soup."
+
+ system_disintegrator_4_a_star: "Entanglement Device"
+ system_disintegrator_4_a_star_DESC: "By shooting dark matter through the star towards one tiny spot, the core, the gravity there will furtherly increase for a short amount of time. This will increase the chances of spontaneous quantum foam wormholes forming, one of which we will then try to entangle for a short amount of time. Since the star will have turned into disintegrated nuclei soup by then, the fusion process will have stopped and gravity will take over, pushing the gargantuan amount of matter towards the core. Instead of creating a black hole, however, the matter and extreme heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a temporal 'Basement Universe'. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat back outside the pocket dimension into our universe, where we can collect it. This device also serves as a hub for the nanite swarms that are going to collect the matter later on."
+
+ system_disintegrator_5_a_star: "Accumulate Energy"
+ system_disintegrator_5_a_star_DESC: "Depending on the star class, a lot of energy might be needed for the force field generation and quantum entanglement."
+
+ 
+ system_disintegrator_2_f_star: "Injection-Extraction Hub"
+ system_disintegrator_2_f_star_DESC: "The energy tappers will collect as much energy from the galactic object as possible in order to reduce the cost of the energy needed to activate the force field. They will also be used later on as cannons from which the dark matter is fired towards the center of the star."
+
+ system_disintegrator_3_f_star: "Force Field Generator"
+ system_disintegrator_3_f_star_DESC: "This generator will use the accumulated energy along with some other resources to generate a system-sized force field inside which the electromagnetic forces that keep electrons around the nuclei are turned off for the split of a second. The escaping electrons will radiate away while the rest of the matter will be turned into raw nuclei soup."
+
+ system_disintegrator_4_f_star: "Entanglement Device"
+ system_disintegrator_4_f_star_DESC: "By shooting dark matter through the star towards one tiny spot, the core, the gravity there will furtherly increase for a short amount of time. This will increase the chances of spontaneous quantum foam wormholes forming, one of which we will then try to entangle for a short amount of time. Since the star will have turned into disintegrated nuclei soup by then, the fusion process will have stopped and gravity will take over, pushing the gargantuan amount of matter towards the core. Instead of creating a black hole, however, the matter and extreme heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a temporal 'Basement Universe'. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat back outside the pocket dimension into our universe, where we can collect it. This device also serves as a hub for the nanite swarms that are going to collect the matter later on."
+
+ system_disintegrator_5_f_star: "Accumulate Energy"
+ system_disintegrator_5_f_star_DESC: "Depending on the star class, a lot of energy might be needed for the force field generation and quantum entanglement."
+
+
+ system_disintegrator_2_g_star: "Injection-Extraction Hub"
+ system_disintegrator_2_g_star_DESC: "The energy tappers will collect as much energy from the galactic object as possible in order to reduce the cost of the energy needed to activate the force field. They will also be used later on as cannons from which the dark matter is fired towards the center of the star."
+
+ system_disintegrator_3_g_star: "Force Field Generator"
+ system_disintegrator_3_g_star_DESC: "This generator will use the accumulated energy along with some other resources to generate a system-sized force field inside which the electromagnetic forces that keep electrons around the nuclei are turned off for the split of a second. The escaping electrons will radiate away while the rest of the matter will be turned into raw nuclei soup."
+
+ system_disintegrator_4_g_star: "Entanglement Device"
+ system_disintegrator_4_g_star_DESC: "By shooting dark matter through the star towards one tiny spot, the core, the gravity there will furtherly increase for a short amount of time. This will increase the chances of spontaneous quantum foam wormholes forming, one of which we will then try to entangle for a short amount of time. Since the star will have turned into disintegrated nuclei soup by then, the fusion process will have stopped and gravity will take over, pushing the gargantuan amount of matter towards the core. Instead of creating a black hole, however, the matter and extreme heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a temporal 'Basement Universe'. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat back outside the pocket dimension into our universe, where we can collect it. This device also serves as a hub for the nanite swarms that are going to collect the matter later on."
+
+ system_disintegrator_5_g_star: "Accumulate Energy"
+ system_disintegrator_5_g_star_DESC: "Depending on the star class, a lot of energy might be needed for the force field generation and quantum entanglement."
+
+
+ system_disintegrator_2_k_star: "Injection-Extraction Hub"
+ system_disintegrator_2_k_star_DESC: "The energy tappers will collect as much energy from the galactic object as possible in order to reduce the cost of the energy needed to activate the force field. They will also be used later on as cannons from which the dark matter is fired towards the center of the star."
+
+ system_disintegrator_3_k_star: "Force Field Generator"
+ system_disintegrator_3_k_star_DESC: "This generator will use the accumulated energy along with some other resources to generate a system-sized force field inside which the electromagnetic forces that keep electrons around the nuclei are turned off for the split of a second. The escaping electrons will radiate away while the rest of the matter will be turned into raw nuclei soup."
+
+ system_disintegrator_4_k_star: "Entanglement Device"
+ system_disintegrator_4_k_star_DESC: "By shooting dark matter through the star towards one tiny spot, the core, the gravity there will furtherly increase for a short amount of time. This will increase the chances of spontaneous quantum foam wormholes forming, one of which we will then try to entangle for a short amount of time. Since the star will have turned into disintegrated nuclei soup by then, the fusion process will have stopped and gravity will take over, pushing the gargantuan amount of matter towards the core. Instead of creating a black hole, however, the matter and extreme heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a temporal 'Basement Universe'. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat back outside the pocket dimension into our universe, where we can collect it. This device also serves as a hub for the nanite swarms that are going to collect the matter later on."
+
+ system_disintegrator_5_k_star: "Accumulate Energy"
+ system_disintegrator_5_k_star_DESC: "Depending on the star class, a lot of energy might be needed for the force field generation and quantum entanglement."
+
+ 
+ system_disintegrator_2_m_star: "Injection-Extraction Hub"
+ system_disintegrator_2_m_star_DESC: "The energy tappers will collect as much energy from the galactic object as possible in order to reduce the cost of the energy needed to activate the force field. They will also be used later on as cannons from which the dark matter is fired towards the center of the star."
+
+ system_disintegrator_3_m_star: "Force Field Generator"
+ system_disintegrator_3_m_star_DESC: "This generator will use the accumulated energy along with some other resources to generate a system-sized force field inside which the electromagnetic forces that keep electrons around the nuclei are turned off for the split of a second. The escaping electrons will radiate away while the rest of the matter will be turned into raw nuclei soup."
+
+ system_disintegrator_4_m_star: "Entanglement Device"
+ system_disintegrator_4_m_star_DESC: "By shooting dark matter through the star towards one tiny spot, the core, the gravity there will furtherly increase for a short amount of time. This will increase the chances of spontaneous quantum foam wormholes forming, one of which we will then try to entangle for a short amount of time. Since the star will have turned into disintegrated nuclei soup by then, the fusion process will have stopped and gravity will take over, pushing the gargantuan amount of matter towards the core. Instead of creating a black hole, however, the matter and extreme heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a temporal 'Basement Universe'. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat back outside the pocket dimension into our universe, where we can collect it. This device also serves as a hub for the nanite swarms that are going to collect the matter later on."
+
+ system_disintegrator_5_m_star: "Accumulate Energy"
+ system_disintegrator_5_m_star_DESC: "Depending on the star class, a lot of energy might be needed for the force field generation and quantum entanglement."
+
+
+ system_disintegrator_2_blue_dwarf_star: "Injection-Extraction Hub"
+ system_disintegrator_2_blue_dwarf_star_DESC: "The energy tappers will collect as much energy from the galactic object as possible in order to reduce the cost of the energy needed to activate the force field. They will also be used later on as cannons from which the dark matter is fired towards the center of the star."
+
+ system_disintegrator_3_blue_dwarf_star: "Force Field Generator"
+ system_disintegrator_3_blue_dwarf_star_DESC: "This generator will use the accumulated energy along with some other resources to generate a system-sized force field inside which the electromagnetic forces that keep electrons around the nuclei are turned off for the split of a second. The escaping electrons will radiate away while the rest of the matter will be turned into raw nuclei soup."
+
+ system_disintegrator_4_blue_dwarf_star: "Entanglement Device"
+ system_disintegrator_4_blue_dwarf_star_DESC: "By shooting dark matter through the star towards one tiny spot, the core, the gravity there will furtherly increase for a short amount of time. This will increase the chances of spontaneous quantum foam wormholes forming, one of which we will then try to entangle for a short amount of time. Since the star will have turned into disintegrated nuclei soup by then, the fusion process will have stopped and gravity will take over, pushing the gargantuan amount of matter towards the core. Instead of creating a black hole, however, the matter and extreme heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a temporal 'Basement Universe'. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat back outside the pocket dimension into our universe, where we can collect it. This device also serves as a hub for the nanite swarms that are going to collect the matter later on."
+
+ system_disintegrator_5_blue_dwarf_star: "Accumulate Energy"
+ system_disintegrator_5_blue_dwarf_star_DESC: "Depending on the star class, a lot of energy might be needed for the force field generation and quantum entanglement."
+
+
+ system_disintegrator_2_white_dwarf_star: "Injection-Extraction Hub"
+ system_disintegrator_2_white_dwarf_star_DESC: "The energy tappers will collect as much energy from the galactic object as possible in order to reduce the cost of the energy needed to activate the force field. They will also be used later on as cannons from which the dark matter is fired towards the center of the star."
+
+ system_disintegrator_3_white_dwarf_star: "Force Field Generator"
+ system_disintegrator_3_white_dwarf_star_DESC: "This generator will use the accumulated energy along with some other resources to generate a system-sized force field inside which the electromagnetic forces that keep electrons around the nuclei are turned off for the split of a second. The escaping electrons will radiate away while the rest of the matter will be turned into raw nuclei soup."
+
+ system_disintegrator_4_white_dwarf_star: "Entanglement Device"
+ system_disintegrator_4_white_dwarf_star_DESC: "By shooting dark matter through the star towards one tiny spot, the core, the gravity there will furtherly increase for a short amount of time. This will increase the chances of spontaneous quantum foam wormholes forming, one of which we will then try to entangle for a short amount of time. Since the star will have turned into disintegrated nuclei soup by then, the fusion process will have stopped and gravity will take over, pushing the gargantuan amount of matter towards the core. Instead of creating a black hole, however, the matter and extreme heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a temporal 'Basement Universe'. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat back outside the pocket dimension into our universe, where we can collect it. This device also serves as a hub for the nanite swarms that are going to collect the matter later on."
+
+ system_disintegrator_5_white_dwarf_star: "Accumulate Energy"
+ system_disintegrator_5_white_dwarf_star_DESC: "Depending on the star class, a lot of energy might be needed for the force field generation and quantum entanglement."
+
+
+ system_disintegrator_ready: "System Disintegrator"
+ system_disintegrator_ready_DESC: "A system disintegrator, ready to dismantle the system and collapse the star into a basement universe."
+
+ system_disintegrator_fire: "Disintegrate System"
+ system_disintegrator_fire_DESC: "Generate a strong force field that disintegrates any matter inside of it and fire dark matter toward the star's core to detect and entangle a temporal quantum foam wormhole."
+
+ system_disintegrator_harvester_idle: "Matter Harvester Hub"
+ system_disintegrator_harvester_idle_DESC: "The disintegrated planetary matter is falling toward the center of the system, where it accumulates into the disintegrated star which itself is collapsing into a micro-wormhole to a basement universe. As long as matter, heat and energy are falling into the wormhole, the pocket universe on the other side expands; afterwards gravity will take over and push all the matter and energy outside into our dimension again where hordes of nanite swarms can efficiently collect the disintegrated matter."
+
+ system_disintegrator_harvester_active: "Active Matter Harvester"
+ system_disintegrator_harvester_active_DESC: "All matter, energy and heat of the disintegrated solar system have collapsed into the micro-wormhole, expanding the basement universe on the other side. Now that matter has stopped falling in and the heat is cooling down, the basement universe slowly retracts, pushing out all the matter and energy back into our universe. Efficient hordes of nanite swarms collect and store anything that leaves the wormhole."
+
+ # Artificial System Creation Device
+ system_creator_0: "Interstellar System Site"
+ system_creator_0_DESC: "The foundation from which we will create a new §YArtificial Solar System§! by coordinating and transferring personnel and resources to empty space between this star and a neighboring one."
+ system_creator_0_MEGASTRUCTURE_DETAILS: "The foundation from which we will create a new §YArtificial Solar System§! by coordinating and transferring personnel and resources to empty space between this star and a neighboring one."
+ # When completed -> event to decide what kind of system & where (north,south,west,east)
+ system_creator_fusioncandle_1: "Fusion Candle Site"
+ system_creator_fusioncandle_1_DESC: "The foundation from which we will construct the fusion candle which will provide light and gravity to the system."
+ system_creator_fusioncandle_2: "Gravity Generator"
+ system_creator_fusioncandle_2_DESC: "A behemoth hydrogen storage container whose content will generate gravity in the system. The hydrogen will also be used for the fusion reaction later on to generate light."
+ system_creator_fusioncandle_3: "Fusion Reactor"
+ system_creator_fusioncandle_3_DESC: "The fusion reactor will tap the hydrogen storage for tiny amounts of hydrogen to use to generate energy and therefore light in the system."
+ system_creator_fusioncandle_4: "Accumulate Hydrogen"
+ system_creator_fusioncandle_4_DESC: "Millions of tons of hydrogen will provide the center of the system with a bit of gravity."
+ system_creator_fusioncandle_5: "Start Fusion Reaction"
+ system_creator_fusioncandle_5_DESC: "Start the fusion reaction to power the giant light bulb."
+ # Star
+ system_creator_star_1: "Artificial Star Site"
+ system_creator_star_1_DESC: "The foundation from which we will construct the dark matter container to generate additional gravity."
+ system_creator_star_2: "Dark Matter Containers"
+ system_creator_star_2_DESC: "In order to customize the gravity of the star without needing to add tons of heavier elements to it, we will use dark matter to save space."
+ system_creator_star_3: "Hydrogen Distribution Platform"
+ system_creator_star_3_DESC: "These platforms will dump vast amounts of hydrogen onto the container below until gravity and heat trigger the star's fusion reaction."
+ system_creator_star_4: "Distribute Hydrogen - §BBlue Dwarf§!"
+ system_creator_star_4_DESC: "We will dump gargantuan amounts of hydrogen onto the foundation below until a §BBlue Dwarf§! forms."
+ system_creator_star_4_m: "Distribute Hydrogen - §RM-Class§!"
+ system_creator_star_4_m_DESC: "We will dump gargantuan amounts of hydrogen and additional dark matter onto the foundation below until a §RM-Class§! Star forms."
+ system_creator_star_4_g: "Distribute Hydrogen - §YG-Class§!"
+ system_creator_star_4_g_DESC: "We will dump gargantuan amounts of hydrogen and additional dark matter onto the foundation below until a §YG-Class§! Star forms."
+ system_creator_star_4_a: "Distribute Hydrogen - §CA-Class§!"
+ system_creator_star_4_a_DESC: "We will dump gargantuan amounts of hydrogen and additional dark matter onto the foundation below until a §CA-Class§! Star forms."
+ # Black Hole
+ system_creator_bh_1: "Artificial Black Hole Site"
+ system_creator_bh_1_DESC: "The foundation from which we will construct the behemoth iron sphere to implode."
+ system_creator_bh_2: "Iron Sphere"
+ system_creator_bh_2_DESC: "This behemoth, dense sphere of heavy elements will be imploded to be compressed to a degree beyond its Schwarzschild radius, creating a black hole."
+ system_creator_bh_3: "Explosives Belt"
+ system_creator_bh_3_DESC: "Evenly distributed antimatter bombs around the sphere will cause it to implode upon detonation, collapsing the sphere into a black hole."
+ system_creator_bh_4: "Implode Sphere"
+ system_creator_bh_4_DESC: "The construction is ready to be detonated."
+
+ # The Interdimensional ARK
+ interdim_ark_0: "Interstellar Construction Platform"
+ interdim_ark_0_DESC: "This behemoth platform will serve as the foundation from which we will construct the Ark's frame."
+ interdim_ark_0_MEGASTRUCTURE_DETAILS: "Ark"
+ 
+ interdim_ark_1: "Arkship Frame"
+ interdim_ark_1_DESC: "This behemoth metal frame will hold everything in place."
+ 
+ interdim_ark_2: "Kugelblitz Generator"
+ interdim_ark_2_DESC: "The Kugelblitz 'battery' has been created, but right now only a tiny amount of its full capacity is charged."
+ 
+ interdim_ark_3: "Habitation Sectors"
+ interdim_ark_3_DESC: "Four gargantuan ringworlds, larger than any known megastructure so far, will serve as the crew sectors of the Ark."
+ 
+ interdim_ark_4: "Interdimensional Rift Generator"
+ interdim_ark_4_DESC: "This marvel of engineering will use the overcharge of the Ark's kugelblitz battery to temporarily tear open a four-dimensional rift in spacetime where the Ark will carry us through."
+ 
+ interdim_ark_5: "The Ark"
+ interdim_ark_5_DESC: "The gargantuan warp drive will generate a warp bubble around the Ark, allowing us to hopefully safely cross dimensions and reach distances never deemed possible before. \nThe kugelblitz battery yet has to be charged before launch."
+ 
+ interdim_ark_6: "The Ark"
+ interdim_ark_6_DESC: "The gargantuan warp drive will generate a warp bubble around the Ark, allowing us to hopefully safely cross dimensions and reach distances never deemed possible before. \nThe kugelblitz battery yet has to be charged before launch."
+ 
+ interdim_ark_7: "§YThe Ark§!"
+ interdim_ark_7_DESC: "§HThis is it. \nThe Ark has been charged, the habitation sectors have been boarded. \nWhere will we arrive?§!"
+ 
+ interdim_ark_8: "§YThe Ark§!"
+ interdim_ark_8_DESC: "§HThis is it. \nThe Ark has been charged, the habitation sectors have been boarded. \nWhere will we arrive?§!"
+
+ # Caretaker Ark
+ caretakers_ark_1: "The Caretaker Foundation"
+ caretakers_ark_1_DESC: "The Fallen Machine Consciousness is turning its ringworld sanctuaries into a behemoth spaceship, powered by a warp drive that can sustain the warp bubble for an extremely long time."
+ 
+ caretakers_ark_2: "Partly Finished Caretaker Ship"
+ caretakers_ark_2_DESC: "The Fallen Machine Consciousness is turning its ringworld sanctuaries into a behemoth spaceship, powered by a warp drive that can sustain the warp bubble for an extremely long time."
+
+ caretakers_ark_3: "Partly Finished Caretaker Ship"
+ caretakers_ark_3_DESC: "The Fallen Machine Consciousness is turning its ringworld sanctuaries into a behemoth spaceship, powered by a warp drive that can sustain the warp bubble for an extremely long time."
+
+ caretakers_ark_4: "The Caretaker Ship"
+ caretakers_ark_4_DESC: "The Fallen Machine Consciousness has turned its ringworld sanctuaries into a behemoth spaceship, powered by a warp drive that can sustain the warp bubble for an extremely long time."
+
+ caretakers_ark_5: "The Caretaker Ship"
+ caretakers_ark_5_DESC: "The Fallen Machine Consciousness are currently activating their Caretaker Ship's warp drive."
+
+ # Basement Universe Creator
+ basement_gateway_0: "Basement Gateway Platform"
+ basement_gateway_0_DESC: "The foundation for a structure that utilises a neutron star's radiation and strong mass to create a §YBasement Universe§!."
+ basement_gateway_0_MEGASTRUCTURE_DETAILS: "The foundation for a structure that utilises a neutron star's radiation and strong mass to create a §YBasement Universe§!. \n§RRemoves all planets in the system!§!"
+
+ basement_gateway_1: "Basement Gateway: Entanglement Device"
+ basement_gateway_1_DESC: "The Entanglement Device will try to entangle certain quantum foam wormholes for a short amount of time. Once we star the device, the matter, energy and heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a 'Basement Universe'. Lots of dark matter will be pushed into this wormhole as well, ensuring this basement realm won't collapse after having fully expanded."
+
+ basement_gateway_2: "Basement Gateway: Gamma-Ray Lense"
+ basement_gateway_2_DESC: "The neutron star's polar gamma ray bursts are a great source of both energy and heavy elements. By redirecting and channeling them with an advanced lense, we can shoot them right into the basement universe later on to inflate it."
+
+ basement_gateway_3: "§YDestabilize Spacetime§!"
+ basement_gateway_3_DESC: "Before triggering the artificial 'big bang', we must destabilize spacetime in the contained field below the star so that once we trigger the explosion, all heat, energy and matter fall directly into this region and therefore expand it on the other side."
+
+ basement_gateway_4: "Basement Gateway"
+ basement_gateway_4_DESC: "The spacetime below this star has been destabilized enough that we can trigger an artificial 'big bang' to inflate a basement universe."
+
+ basement_gateway_5: "§EInflate Universe§!"
+ basement_gateway_5_DESC: "By initiating a large matter-antimatter explosion, we will distribute tons of basic elements inside the basement realm that expand along with it so that stars and planets can form over time."
+
+ basement_gateway_6: "Active Basement Gateway"
+ basement_gateway_6_DESC: "The neutron star's energy and elements are being pushed into the Basement Universe. We will have to wait until it has expanded and cooled down before we can send in probes to locate a habitable zone."
+
+ basement_gateway_7: "Depleted Basement Gateway"
+ basement_gateway_7_DESC: "The neutron star's energy and elements have been pushed into the Basement Universe. It has expanded and cooled down enough to send in a probe and locate a habitable zone."
+
+ basement_gateway_8: "The Civilization Ship"
+ basement_gateway_8_DESC: "Most of the basement gateway's resources have been recycled to reduce the cost of the colony ship that will carry us to our new home."
+ ssh_requires_basement_uni_project_complete: "§PWe must first complete the §YSpecial Project§! to locate a habitable zone inside the basement universe before we can turn the structure into a colony ship!§!"
+
+ # Star Shellworld
+ dyson_hab_0: "Upgrade to Stellar Shellworld"
+ dyson_hab_0_DESC: "We will turn this Dyson Sphere into a behemoth shellworld."
+ dyson_hab_0_swarm: "Stellar Shellworld"
+ dyson_hab_0_swarm_DESC: "We will turn this Dyson Swarm into a habitable Dyson Sphere."
+
+ dyson_hab_1: "Stellar Shellworld Foundation"
+ dyson_hab_1_DESC: "This Dyson Sphere's energy output is being transferred to serve the construction of a habitable shellworld around this star."
+
+ dyson_hab_2: "Heat Pumps"
+ dyson_hab_2_DESC: "In order to make the surface of the Dyson Sphere habitable, we must transfer the immense surplus heat from within and release it into space, whilst these heat transportation tubes can act as giant artificial light bulbs at the same time."
+
+ dyson_hab_3: "Radiation Shield"
+ dyson_hab_3_DESC: "The surface of the Dyson Sphere is currently way too thin to be considered habitable even in the slightest. We must dump thick layers of radiation-shielding materials in order to block the star's radiation from penetrating the sphere where it's not supposed to do so."
+
+ # Horizon Brain
+ horizon_brain_0: "Horizon Brain Platform"
+ horizon_brain_0_DESC: "The Horizon Brain is a behemoth supercomputer powered by a black hole's penrose process. It is designed to simulate entire universes for any organism linked to it, providing an eternal home even after the last stars have died."
+ horizon_brain_0_MEGASTRUCTURE_DETAILS: "The Horizon Brain is a behemoth supercomputer powered by a black hole's penrose process, generating £physics_research£ §Y$physics_research$§! and boosting £pops£ §YResearcher Output§!. It also offers unique specialized £empire£ §YVR Districts§!."
+
+ horizon_brain_1: "Penrose Sphere"
+ horizon_brain_1_DESC: "The penrose sphere harvests energy from the black hole's ergosphere."
+
+ horizon_brain_2: "Central Processing Complex"
+ horizon_brain_2_DESC: "The spines will serve as the main computing hub and equally distribute processing power over the computing grid."
+
+ horizon_brain_3: "Computing Grid"
+ horizon_brain_3_DESC: "The behemoth grid connects all neural pods, allowing for shared experiences for the linked inhabitants."
+
+ horizon_brain_4: "Horizon Brain"
+ horizon_brain_4_DESC: "This marvel of engineering and computer science taps a black hole for energy and utilises this energy to simulate an entire virtual universe for any lifeforms connected to one of its many neural pods. Any civilization owning such a structure will likely be able to outlive the death of the universe, long after the last stars have died."
+
+ # Captive Star
+ captive_star_0: "Captive Star Platform"
+ captive_star_0_DESC: "The foundation for a heavily modified Dyson Sphere equipped with behemoth thrusters. Instead of using the star's radiation for energy output, the beams are focused into a behemoth lense to generate thrust and thus turn the Dyson Sphere into a gargantuan vessel, capable of destroying entire star systems at once."
+ captive_star_0_MEGASTRUCTURE_DETAILS: "A heavily modified Dyson Sphere equipped with behemoth thrusters. The Captive Star is a §Y§PSystem Killer§!-Class Vessel§! capable of destroying entire star systems at once. \n§RRemoves all planets in the system!§!"
+ captive_star_1: "Dyson Sphere Frame"
+ captive_star_1_DESC: "The frame of the Dyson Sphere."
+ captive_star_2: "Partial Dyson Sphere"
+ captive_star_2_DESC: "A partial star-enveloping sphere. Right now it generates energy we can use, once the Sphere is completed this energy will be focused to generate thrust."
+ captive_star_3: "Partial Dyson Sphere"
+ captive_star_3_DESC: "A partial star-enveloping sphere. Once the lense along with the stellar thrusters have been constructed, the generated energy will be focused to generate thrust on a stellar scale."
+ captive_star_4: "Stellar Thrusters"
+ captive_star_4_DESC: "The final stage of the Mobile Star. The gargantuan lense utilises the focused energy of the Dyson Sphere to generate thrust on a stellar scale."
+
+ captive_star_contingency_0: "Captive Star Frame"
+ captive_star_contingency_0_DESC: "The Contingency's construction units are capturing this star in a heavily modified Dyson Sphere equipped with behemoth thrusters in a breathtaking efficiency. Instead of using the star's radiation for energy output, the beams are focused into a behemoth lense to generate thrust and thus turn the Dyson Sphere into a gargantuan vessel, capable of destroying entire star systems at once."
+ captive_star_contingency_1: "Captive Star"
+ captive_star_contingency_1_DESC: "The Contingency's construction units are capturing this star in a heavily modified Dyson Sphere equipped with behemoth thrusters. Instead of using the star's radiation for energy output, the beams are focused into a behemoth lense to generate thrust and thus turn the Dyson Sphere into a gargantuan vessel, capable of destroying entire star systems at once."
+
+ 
+ # Others
+ matter_decompressor_cosmogenesis: "Matter Decompressor"
+ matter_decompressor_cosmogenesis_DESC: "Whatever the passengers of the Horizon Needle have done, the bore of twisted gravity extracts organic matter and heavy elements from this black hole."
+
+ ssh_bypass_remover: "Sparbleroni Pizza"
+ ssh_bypass_remover_DESC: "If you see this megastructure there's something wrong with the game"

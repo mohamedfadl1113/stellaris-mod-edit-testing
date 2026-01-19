@@ -1,0 +1,18 @@
+﻿l_english:
+
+ ########################
+ # FALLEN EMPIRE EVENTS #
+ ########################
+ 
+ ssh_fe.51.name: "Launch Site Detected!"
+ ssh_fe.51_01.desc: "Our sensors have picked up unusual subspace fluctuations within §H[From.GetAdjective]§! territory. It appears that until recently, the §H[From.GetSpeciesNamePlural]§! had successfully managed to shield a relatively small system within their space from outside sensors. From what intel we could gather it seems that their vessels have begun restoring an ancient §YQuantum Catapult§!, and the reactivation of its subspace array has likely caused interferences with the system-spanning cloaking field. \n\nWhilst the purpose and mission of the structure are unknown, it is not far fetched to assume that it has and will likely serve as a §PStrategic Launch Site§! for System-Killer Class Weapons. Should this assumption turn out to be true, for the first time in an age, the stability and security of the entire galaxy will be at stake."
+ ssh_fe.51_02.desc: "Our sensors have picked up yet another unusual subspace fluctuation, this time within §H[From.GetAdjective]§! territory. As with the other Sleepers before, it appears that the §H[From.GetSpeciesNamePlural]§! have also begun the repairing process of an ancient §YQuantum Catapult§! \n\nBy now it is almost certain that these structures within Fallen Empire space serve as a §PStrategic Launch Sites§! for System-Killer Class Weapons. We should prepare for the worst."
+ ssh_fe.51.a: "This is not good."
+
+ ssh_fe.101.name: "Communication from §H[event_target:wmd_awakened_empire.GetName]§!"
+ ssh_fe.101.desc: "Arrogant little wretch! You have gone too far. \nShould you dare taking one more step into our core territory, you will face our true might and be annihilated once and for all. \nThis is our final warning. Surrender our territory or face consequences on a scale your primitive kind has never seen before!"
+ ssh_fe.101.a: "Very well."
+ ssh_fe.101.a.tt: "We will lose control of §H[event_target:fe_system.GetName]§!.\n§PAll§! our fleets in §H[event_target:fe_system.GetName]§! will go §YMIA§!."
+ ssh_fe.101.b: "Hah! Never."
+ ssh_fe.101.b.tt: "The §H[event_target:wmd_awakened_empire.GetName]§! may or may not make use of their §RDark Missiles§! if we continue conquering their core territory."
+ # FromFromFrom?

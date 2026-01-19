@@ -1,0 +1,47 @@
+﻿l_english:
+
+ tech_thought_enforcement:0 "Thought Enforcement"
+ tech_thought_enforcement_desc:0 "Telepaths can monitor the citizenry for incorrect thoughts, but with some study they could also correct thought aberrations that they find - be it from the individual themselves or from outside interference. \n\n§CReduces chances of revealing intel to §YAbyssal Anchor§!-Operations§!"
+
+ add_research_options_galactic_wonders_utopia:0 "Research options gained:\n£engineering_research£§Y$tech_ring_world$§!\n£physics_research£§Y$tech_dyson_sphere$§!\n\nResearch options requiring this:\n£engineering_research£§Y$ssh_tech_stellar_harvester$§!\n£engineering_research£§Y$ssh_tech_star_disassembler$§!\n£engineering_research£§Y$ssh_tech_black_hole_shellworld$§!\n£society_research£§Y$ssh_tech_because_we_can$§!"
+
+ add_research_options_galactic_wonders_utopia_megacorp:0 "Research options gained:\n£engineering_research£§Y$tech_ring_world$§!\n£physics_research£§Y$tech_dyson_sphere$§!\n£physics_research£§Y$tech_matter_decompressor$§!\n\nResearch options requiring this:\n£engineering_research£§Y$ssh_tech_stellar_harvester$§!\n£engineering_research£§Y$ssh_tech_star_disassembler$§!\n£engineering_research£§Y$ssh_tech_black_hole_shellworld$§!\n£society_research£§Y$ssh_tech_because_we_can$§!"
+
+ add_research_options_galactic_wonders_utopia_2: "Research options gained:\n£engineering_research£§Y$tech_ring_world$§!\n£physics_research£§Y$tech_dyson_sphere$§!\n\nResearch options requiring this:\n£physics_research£§Y$giga_tech_fusion_suppressor$§!\n£physics_research£§Y$giga_tech_penrose_sphere_2$§!\n£physics_research£§Y$giga_tech_ringworld_titanic_1$§!\n£society_research£§Y$giga_tech_planetary_computer$§!\n£engineering_research£§Y$giga_tech_star_lifter$§!\n£engineering_research£§Y$giga_tech_neutronium_gigaforge$§!\n£engineering_research£§Y$giga_tech_penrose_sphere_3$§!\n£engineering_research£§Y$giga_tech_ringworld_upgrade$§!\n£engineering_research£§Y$giga_tech_ringworld_titanic_2$§!\n£engineering_research£§Y$giga_tech_interstellar_ringworld$§!\n£engineering_research£§Y$giga_tech_war_moon_2$§!\n£engineering_research£§Y$tech_sm_megastructure$§!\n\nAscension Perks requiring this:\n§Y$ap_gigastructural_constructs$§! \n£engineering_research£§Y$ssh_tech_stellar_harvester$§!\n£engineering_research£§Y$ssh_tech_star_disassembler$§!\n£engineering_research£§Y$ssh_tech_black_hole_shellworld$§!\n£society_research£§Y$ssh_tech_because_we_can$§!"
+
+ add_research_options_galactic_wonders_utopia_megacorp_2: "Research options gained:\n£engineering_research£§Y$tech_ring_world$§!\n£physics_research£§Y$tech_matter_decompressor$§!\n£physics_research£§Y$tech_dyson_sphere$§!\n\nResearch options requiring this:\n£physics_research£§Y$giga_tech_fusion_suppressor$§!\n£physics_research£§Y$giga_tech_penrose_sphere_2$§!\n£physics_research£§Y$giga_tech_ringworld_titanic_1$§!\n£society_research£§Y$giga_tech_planetary_computer$§!\n£engineering_research£§Y$giga_tech_star_lifter$§!\n£engineering_research£§Y$giga_tech_neutronium_gigaforge$§!\n£engineering_research£§Y$giga_tech_penrose_sphere_3$§!\n£engineering_research£§Y$giga_tech_ringworld_upgrade$§!\n£engineering_research£§Y$giga_tech_ringworld_titanic_2$§!\n£engineering_research£§Y$giga_tech_interstellar_ringworld$§!\n£engineering_research£§Y$giga_tech_war_moon_2$§!\n£engineering_research£§Y$tech_sm_megastructure$§!\n\nAscension Perks requiring this:\n§Y$ap_gigastructural_constructs$§! \n£engineering_research£§Y$ssh_tech_stellar_harvester$§!\n£engineering_research£§Y$ssh_tech_star_disassembler$§!\n£engineering_research£§Y$ssh_tech_black_hole_shellworld$§!\n£society_research£§Y$ssh_tech_because_we_can$§!"
+ 
+ ### AP Overwrites
+ engineered_evolution_tooltip:00 "$access_tradition_tree$ ['tradition_category:tradition_genetics']\n$UNLOCKS_AGENDA$ $council_agenda_agenda_engineered_evolution_name$, which grants Genetic technologies as Research Options.\n- $REQUIRES_TRADITION_SLOT$ \n\nResearch options requiring this:\n£society_research£§Y$ssh_tech_conscious_matter$§!\n£society_research£§Y$ssh_tech_mega_brain$§!"
+
+ engineered_evolution_biogenesis_tt: "- Starts the §Y$genetic_ascension_situation$ Situation§! which unlocks the ['tradition_category:tradition_purity'], ['tradition_category:tradition_cloning'] or ['tradition_category:tradition_mutation'] Tradition Trees.\n- $UNLOCKS_AGENDA$ §Y$council_agenda_agenda_engineered_evolution_name$§!, which grants Genetic Modification technologies as Research Options\n- $genomic_research_facility_unlocked_tt$\n- $REQUIRES_TRADITION_SLOT$ \n\nResearch options requiring this:\n£society_research£§Y$ssh_tech_conscious_matter$§!\n£society_research£§Y$ssh_tech_mega_brain$§!"
+
+ mind_over_matter_tooltip:00 "Only a fraction of the potential contained within our minds has been unlocked. The latent psionic abilities of our species are only now beginning to manifest in certain individuals.\n\nResearch options requiring this:\n£society_research£§Y$ssh_tech_triangle_theory$§!\n£society_research£§Y$ssh_tech_mega_temple$§!\n£society_research£§Y$ssh_tech_shroud_supernova$§!"
+ 
+ flesh_is_weak_tooltip:00 "$access_tradition_tree$ ['tradition_category:tradition_cybernetics']\n$UNLOCKS_AGENDA$ $council_agenda_agenda_flesh_is_weak_name$, which grants Cybernetic technologies as Research Options.\n- $REQUIRES_TRADITION_SLOT$ \n\nResearch options requiring this:\n£physics_research£§Y$ssh_tech_horizon_brain$§!"
+
+ organo_machine_interfacing_tooltip:00 "- Gain access to the §Y$tradition_cybernetics$§! tradition tree.\n- $UNLOCKS_AGENDA$ $council_agenda_agenda_organo_machine_interfacing_name$, which grants Cybernetic technologies as Research Options.\n- $REQUIRES_TRADITION_SLOT$ \n\nResearch options requiring this:\n£physics_research£§Y$ssh_tech_horizon_brain$§!"
+
+ synthetic_evolution_tooltip:00 "$access_tradition_tree$ ['tradition_category:tradition_synthetics']\n$UNLOCKS_AGENDA$ $council_agenda_agenda_synthetic_evolution_name$, which grants Robotic technologies as Research Options.\n- $REQUIRES_TRADITION_SLOT$ \n\nResearch options requiring this:\n£physics_research£§Y$ssh_tech_horizon_brain$§!"
+ 
+ ap_voidborn_habitat_effect:1 "Can construct advanced housing buildings on §YHabitats§!. \n\nResearch options requiring this:\n£engineering_research£§Y$ssh_tech_ederspheres$§!"
+
+ ap_eternal_vigilance_desc:0 "To display weakness is to invite attack. The price of invading our space must be so high that as few as possible are prepared to meet it. \n\nDecisions requiring this:\n§Y$decision_pyrosphere_project$§!"
+ 
+ 
+ resolution_ecology_paradise_initiative_tooltip: "£unity£ $unity$ from Naturally Occuring Blockers for §YEnvironmentalist Empires§!: §G+3§! £unity£\n\n£job_ranger£ $job_ranger$ Jobs from Naturally Occuring Blockers for §YEnvironmentalist Empires§!: §G+1§! £job_ranger£ \n\nCost of the §Y$decision_eco_edersphere_project$§! §HDecision§!: §G-50%§!"
+ 
+ 
+ CRISIS_TAB_DISABLED:1 "Only available with $TRAD|Y$, §Y$ap_cosmogenesis$§! or §Y$ap_hyperdimensional_exodus$§! Ascension Perk"
+ 
+ requires_built_or_repaired_gigastructure:00 "$TRIGGER_FAIL$Requires having repaired or fully upgraded any of the following Gigastructures: \n$dyson_sphere_5$ \n$matter_decompressor_4$ \n$name_psychic_beacon$ \n$name_psy_siphon$ \n$name_planetary_computer$ \n$name_fusion_suppressor$ \n$name_starlifter$ \n$name_neut_gigaforge$ \n$name_ringworld_titanic$ \n$name_penrose$ \n$name_interstellar_ring$ \n$ehof_ehofp4$ \nBlack Hole Suprashell \nNeutronium Compressor \nStellar Harvester \nStellar Hoop \nB.I.O. Brain \nAbyssal Anchor \nInterstellar System \nSystem Disintegrator \nDiscworld \nHoopworld \nFreesphere"
+
+ 
+ resolution_rulesofwar_reverence_for_life_tooltip:00 "§YPurging§! (other than Displacement) and the use of §YWorld Crackers§! and §YSystem Killer-Class Weapons§! is §Rbanned§!."
+ resolution_rulesofwar_independent_tribunals_tooltip:00 "§YArmageddon§! and §YIndiscriminate§! bombardment stances, and using any §YSystem Killer-Class Weapons§! or any Colossus weapon other than a §YGlobal Pacifier§! are §Rbanned§!."
+ resolution_ecology_environmental_control_board_tooltip:2 "Converting planets into an §YEcumenopolis§! or §YTerraforming§! them into anything other than a §YGaia World§! is §Rbanned§!.\n£unity£ $unity$ from Naturally Occuring Blockers for §YEnvironmentalist Empires§!: §G+2§! £unity£ \nThe use of §YSolar System Disintegrators§! is §Rbanned§!."
+ resolution_ecology_paradise_initiative_tooltip:0 "£unity£ $unity$ from Naturally Occuring Blockers for §YEnvironmentalist Empires§!: §G+3§! £unity£\n\n£job_ranger£ $job_ranger$ Jobs from Naturally Occuring Blockers for §YEnvironmentalist Empires§!: §G+1§! £job_ranger£ \nThe use of §YSolar System Disintegrators§! is §Rbanned§!."
+
+
+ tech_quantum_catapult_desc:1 "A §YQuantum Catapult§! harnesses the power of a Neutron Star or Pulsar to twist the fabric of space, skipping a fleet across great distances. \nIt can also be used to launch §PSystem Killer-Class§! Vessels§!."
+ quantum_catapult_0_MEGASTRUCTURE_DETAILS:1 "A device that focuses the forces of a Neutron Star or Pulsar in order to twist space and skip a fleet across great distances. \nAlso used to launch §PSystem Killer-Class§! Vessels§!."

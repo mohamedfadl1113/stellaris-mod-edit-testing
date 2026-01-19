@@ -1,0 +1,39 @@
+﻿l_english:
+ 
+ ### Special Projects ###
+ SSH_SHROUD_TEMPLE_CANDIDATE: "Research Shroud-Spacetime-Relations"
+ SSH_SHROUD_TEMPLE_CANDIDATE_DESC: "The deep venture into the Shroud has shown us that certain events can potentially affect the barrier between real space and the Shroud. Our scientists theorize that an observed active spacetime-warping source or event on a galactic scale could in theory 'shrink' the barrier so much that, when the mind is stimulated enough and enough observers are nearby, it could allow a large group of skilled psionics to temporarily access into relatively deep regions of it for a feasible cost. A team of our empire's most skilled psionics, engineers and scientists will research promising extreme galactic objects and try to find a way to create a structure that allows permanent living quarters near such celestial bodies to improve our psionic abilities."
+
+ SSH_SHROUD_SUPERNOVA: "Shroud-Insight Area Experiments" #Subspace-Triggered Shroud Movement
+ SSH_SHROUD_SUPERNOVA_DESC: "What if we could expand the area in which we can secretly gain insights through the Shroud? \nThere are only few stellar events we can think of so disruptive and massive that they could overshadow extreme objects like black holes or quark stars. But they do exist - the most promising and feasible one being supernovae. \nWhat if there was a way to trigger an artificial supernova and project its violent subspace-disruptions onto our Abyssal Anchor? \nWhat if our telepaths could manage to dive deeper into the Shroud than ever before? \nWhat if there was a way of charging supernovae with Zro, creating §rPsi-Supernovae§!? \nOur empire's most skilled scientists will research if there's a way of combining the effects of supernovae with psionic observers and our Abyssal Anchor."
+ SSH_SHROUD_SUPERNOVA_GESTALT: "$SSH_SHROUD_SUPERNOVA$"
+ SSH_SHROUD_SUPERNOVA_GESTALT_DESC: "What if we could expand the area in which we can secretly gain insights through the Shroud? \nThere are only few stellar events we know of so disruptive and massive that they could overshadow extreme objects like black holes or quark stars. But they do exist - the most promising and feasible one being supernovae. \nWhat if there was a way to trigger an artificial supernova and project its violent subspace-disruptions onto our Abyssal Anchor? \nWhat if we could manage to dive deeper into the Shroud than ever before? \nWhat if there was a way of charging supernovae with Zro, creating §rPsi-Supernovae§!? \nWe will dedicate our research to finding a way of combining the effects of supernovae with psionic observers and our Abyssal Anchor."
+
+ SSH_VACDEC_PREVENTION: "Stabilized Disintegration Project"
+ SSH_VACDEC_PREVENTION_DESC: "Even though the chances are low, the risk of a total collapse of reality caused by a §YFalse Vacuum Decay§! is an existential threat to all sapient life - we must invest in a large research project to find a way to stabilize the quantum fields during the disintegration process, otherwise we might cause an irreversible chain reaction of doom one day."
+
+ SSH_VACDEC_SLOWDOWN_PROJECT: "Vacuum Decay Slowdown Research"
+ SSH_VACDEC_SLOWDOWN_PROJECT_DESC: "Our previous theories suggested that usually, a True Vacuum would only expand at the speed of light. However, the ongoing crisis proves us wrong; the ever expanding 'bubble' somehow travels through subspace itself, allowing it to expand at a speed way faster than light. Our scientific theories suggest that it is impossible to stop such decay, but it is likely that this phenomena can be influenced to some degree due to its reaction to subspace itself - we could conduct experiments on warping subspace in various ways to see if there's a way to alter the speed at which the vacuum expands. It will most likely take quite some time, but if these experiments were to prove successful, we could potentially develop the technology to temporarily save a few of our systems near the True Vacuum for a short amount of time."
+
+ SSH_VACDEC_BASEMENT_UNIVERSE_PROBING: "Probing Celestial Body"
+ SSH_VACDEC_BASEMENT_UNIVERSE_PROBING_DESC: "We must probe how various different celestial bodies affect rips in spacetime near them. Some might prove to ease or hinder the creation of Basement Universes more than others, depending on their composition, mass, heat and radiation."
+
+ SSH_VACDEC_BASEMENT_UNIVERSE_HABITABLE_ZONE: "Locate Habitable Zone"
+ SSH_VACDEC_BASEMENT_UNIVERSE_HABITABLE_ZONE_DESC: "By sending a probe into the Basement Universe, we can search for a place suitable for colonization. This will most likely take a while though, as the universe will still be too hot to sustain life in most regions and most of the proto-planets and stars are still in the forming process."
+
+ 
+ COSMOGENESIS_VICTORY_ARK: "Calculate Jump Vector"
+ COSMOGENESIS_VICTORY_ARK_DESC: "The Ark is most likely protected by Galactic Community defense forces. We need to calibrate the jump drive of the Horizon Needle and calculate the exact coordinates that will allow us to dive into the kugelblitz black hole that powers the Ark."
+
+ 
+ BEHEMOTH_CRISIS_SPECIAL_PROJECT_4_MEGABRAIN: "The Absorption Metabolism"
+ BEHEMOTH_CRISIS_SPECIAL_PROJECT_4_MEGABRAIN_DESC: "The Brain hungers, and so do we. Soon the endless farms stretching over our colonies will no longer be enough to keep our metabolism running. \n\nWe must adapt. \nOur endless hunger demands a harvest on a galactic scale that will require new methods of digestion. By simply absorbing baryonic matter we will efficiently feast on the galaxy. We must only find a way to do so."
+
+ BEHEMOTH_BRAIN_WINNING_PROJECT: "Finishing the Feast"
+ BEHEMOTH_BRAIN_WINNING_PROJECT_DESC: "Our metabolism has stabilized. We have asserted our dominance in this galaxy. No one will ever be able to stop us anymore."
+
+ BEHEMOTH_BRAIN_WINNING_PROJECT_GALCORE: "The Grand Dessert"
+ BEHEMOTH_BRAIN_WINNING_PROJECT_GALCORE_DESC: "Nourishing on the galactic core is a daunting task. If we are to stand a chance against the nature of this hole, we should first try to devour a few smaller singularities in order to grow, both in size and strength. \n\n§HThe §Ymore§! singularities we devour, the §Yhigher§! the chance of us successfully nourishing on the core is. However, if we eat too many singularities, we might eventually §Psuccumb§! to the brutal nature of the proximity of the black holes inside our body and outside.§! \n\n§EOnce we are ready, we can research the path towards the core and start devouring it.§! \nA daunting task, but worth the risk."
+
+ GARGANTUAN_OVERMIND_FATE_PROJECT: "Deciphering the Signal"
+ GARGANTUAN_OVERMIND_FATE_PROJECT_DESC: "We picked up a strange tachyon signal. It appears to be encrypted on a level only an extremely advanced civilization could ever achieve."

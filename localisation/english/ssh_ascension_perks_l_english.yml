@@ -1,0 +1,16 @@
+﻿l_english:
+ 
+ ##### ASCENSION PERKS #####
+ #test Our megastructure creations have shown the galaxy what we are already capable of, but that's not enough.
+ ap_galactic_hyperstructures: "Galactic Hyperstructures"
+ ap_galactic_hyperstructures_desc: "Our ingenuity knows no limits. We will furtherly dedicate our research to both the macroscale and microscale to achieve even greater megastructural ambitions."
+ 
+ ssh_add_research_options_galactic_hyperstructures: "Unlocks the following research options:\n§Y$ssh_tech_gas_giant_compression$§!\n\nResearch options requiring this:\n£engineering_research£§Y$ssh_tech_stellar_hoop$§!\n£engineering_research£§Y$ssh_tech_black_hole_shellworld$§!\n£engineering_research£§Y$ssh_tech_stellar_harvester$§!\n£engineering_research£§Y$ssh_tech_star_disassembler$§!\n£engineering_research£§Y$ssh_tech_neutronium_compression$§!\n£engineering_research£§Y$ssh_tech_system_disintegrator$§!\n£engineering_research£§Y$ssh_tech_system_creator$§!\n£society_research£§Y$ssh_tech_mega_brain$§!\n£society_research£§Y$ssh_tech_mega_temple$§!\n£engineering_research£§Y$ssh_tech_horizon_brain$§!\n£society_research£§Y$ssh_tech_because_we_can$§!\n£society_research£§Y$ssh_tech_discworld$§!\n£society_research£§Y$ssh_tech_hoopworld$§!\n£society_research£§Y$ssh_tech_freesphere$§!"
+ #\n§Y$ssh_tech_microscale_engineering$§!
+
+
+ ap_hyperdimensional_exodus: "Hyperdimensional Exodus"
+ ap_hyperdimensional_exodus_desc: "The galaxy is trapped in an endless cycle of gruesome conflicts. We are better than that. We will find out what lies beyond this reality, and we will ascend to become one with the fundament of the universe itself. \nNo longer shall we watch the galaxy burn, and no longer shall we try to fix something unfixable."
+ #We are already able to manipulate the foundations of reality - one last push and we could to break it. §RWe will tear each and every dimensional barrier apart and connect them to §Ha new, ultimate reality§! §R- and we will be the ones to transcend it.§!
+ # and care about primitive conflicts
+ # The Universe will become our playground.

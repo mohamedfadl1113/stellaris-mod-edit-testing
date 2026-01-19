@@ -1,0 +1,704 @@
+﻿l_english:
+ 
+ # Shellworld
+ ssh_cn.1.name: "Shellworld Frame Built"
+ ssh_cn.1.desc: "We have completed the construction of the frame of our shellworld. \nNow, the space between the frames has to be filled with various robust metals and the inside of the shell has to be equipped with artificial lights so that the planet's surface below doesn't vanish in the dark. \n\nSoon, we will have tremendous space for more districts! \n\n\n§PStandard planets will be terraformed, special planets only receive a visual change.§!"
+ ssh_cn.1.a: "Great."
+
+ ssh_cn.2.name: "Shell Completed!"
+ ssh_cn.2.desc: "The shell is completed! \n\nThe frame has been filled and the artificial lights have been installed! \nTwo elevators located at the poles of the planet can transfer our population between the planet and its shell. \nNow we finally have to add multiple layers of rock and other minerals as well as soils on the metal surface to make it habitable. \nAn artifical atmosphere has to be added then as well to block most of the solar radiation and make living on the outer side of the shell possible."
+ ssh_cn.2.a: "Great."
+
+ ssh_cn.3.name: "Shellworld Completed!"
+ ssh_cn.3.desc: "It is done. \nVast amounts of mineral layers have been put on the shellworld's surface, and our engineers have managed to create an artifical atmosphere surrounding it. \nNow it is possible to inhabit the surface of our shellworld and use it for more district and habitation space!"
+ ssh_cn.3.a: "Awesome!"
+ ssh_cn.3.b: "Incredible!"
+
+ #Double Shellworld
+ ssh_cn.4.name: "Shellworld Frame Built!"
+ ssh_cn.4.desc: "We have completed the construction of the frame of our soon-to-be shell around our shellworld. \nNow, the space between the frames has to be filled with various robust metals and the inside of the shell has to be equipped with artificial lights yet again."
+ ssh_cn.4.a: "Great."
+
+ ssh_cn.5.name: "Shellworld Half Operational!"
+ ssh_cn.5.desc: "The first half of our shellworld is completed! \n\nHalf of the frame has been filled and Elevators beneath the outer shell's surface have been installed. \n\nWhile we still have to fill the other half of the shell, our planet can now already provide considerably more districts than before."
+ ssh_cn.5.a: "Onto the second half."
+
+ ssh_cn.6.name: "Shell Completed!"
+ ssh_cn.6.desc: "The outer shellworld is completed! \nWe have filled the second half of the frame with robust metals, and now we have an unimagineably amount of space for industrial districts! \n\nOur scientists propose to add natural layers yet again so that we can construct even more farming and mining districts."
+ ssh_cn.6.a: "Incredible!"
+ ssh_cn.6.b: "Wow!"
+
+ ssh_cn.7.name: "Matrioshka World Completed!"
+ ssh_cn.7.desc: "It is done... once again. \nVast amounts of mineral layers have been put on the outer shell's surface, and an artificial atmosphere on the outside has been added yet again. \n\nHopefully we can even make use of all that space..."
+ ssh_cn.7.a: "Grandiose!"
+ ssh_cn.7.b: "Holy moly!"
+
+
+ #Triple Shellworld
+ ssh_cn.8.name: "Shellworld Frame Built!"
+ ssh_cn.8.desc: "We have completed the construction of the frame of our third shell. \nNow, the space between the frames has to be filled yet again."
+ ssh_cn.8.a: "Great."
+
+ ssh_cn.9.name: "Shellworld Third Filled!"
+ ssh_cn.9.desc: "One third of our shellworld is completed! \n\nA part of the frame has been filled and Elevators beneath the outer shell's surface have been installed. \n\nThis better be worth the alloys."
+ ssh_cn.9.a: "Hehe."
+
+ ssh_cn.10.name: "Two Thirds Filled!"
+ ssh_cn.10.desc: "The outer shellworld is almost finished! \nWe have filled the second third of the frame with robust metals. \n\nDon't you want to spend your precious alloys on ships?"
+ ssh_cn.10.a: "Construction has already begun..."
+
+ ssh_cn.11.name: "Shell Completed!"
+ ssh_cn.11.desc: "It is done! \nThe third shell is completed. \nOur planet looks like an onion and we have much space to use. \n\nYou know the drill, add some fresh minerals and a breathable atmosphere."
+ ssh_cn.11.a: "Hehe."
+ ssh_cn.11.b: "Muahaha"
+
+ ssh_cn.12.name: "Matrioshka World Completed!"
+ ssh_cn.12.desc: "Layers upon layers of minerals have been dumped on our third shell! \n\nOur scientists begin to worry about the outer atmosphere becoming thin... \nWe should probably stop constructing more shells around this one to avoid the shells collapsing on themselves. \n\nWhat exactly are you planning to do with all that space anyway?"
+ ssh_cn.12.a: "Incredible!"
+ ssh_cn.12.b: "Hallelujah!"
+
+
+ #Gas Giant Shellworld
+ ssh_cn.13.name: "Gas Giant Shellworld Construction"
+ ssh_cn.13.desc: "We have completed constructing the platform above the gas giant the shell will be constructed around. \nNow we are ready to construct the orbital rings that are going to be the foundation of our shellworld."
+ ssh_cn.13.a: "Great!"
+
+ ssh_cn.14.name: "First Ring Completed"
+ ssh_cn.14.desc: "The construction of the first orbital ring around the gas giant is completed. \nWe still need more rings before we can construct a frame. \nMuch work lies before us."
+ ssh_cn.14.a: "Onto the next one."
+
+ ssh_cn.15.name: "Second Ring Completed"
+ ssh_cn.15.desc: "The construction of the second orbital ring around the gas giant is completed. \nWe still need more rings before we can construct a frame. \nMuch work lies before us."
+ ssh_cn.15.a: "Onto the next one."
+
+ ssh_cn.16.name: "Third Ring Completed"
+ ssh_cn.16.desc: "The construction of the third orbital ring around the gas giant is completed. \nWe need two more rings before we can construct a frame."
+ ssh_cn.16.a: "Onto the next one."
+
+ ssh_cn.17.name: "Fourth Ring Completed"
+ ssh_cn.17.desc: "The construction of the fourth orbital ring around the gas giant is completed. \nWe need at least one more orbital ring before we can align their rotations and connect them to a frame."
+ ssh_cn.17.a: "Onto the next one."
+
+ ssh_cn.18.name: "Fifth Ring Completed"
+ ssh_cn.18.desc: "The construction of the final orbital ring around the gas giant is completed! \nNow we have a foundation for our shellworld. \nThe rings' rotations have to be aligned so that we can connect them and fill the spaces between them."
+ ssh_cn.18.a: "Exquisite."
+
+ ssh_cn.19.name: "Shell Completed!"
+ ssh_cn.19.desc: "We have successfully aligned the orbital rings' rotations and connected them into one giant shell! \nThe poles of the gas giant have been covered in two huge glass domes, which will provide a nice view on the planet below. \nTo make the shell colonizable we finally have to dump a lot of minerals onto its surface and add an artificial atmosphere to reduce the system star's radiation."
+ ssh_cn.19.a: "Finally."
+
+ ssh_cn.20.name: "Shellworld Completed!"
+ ssh_cn.20.desc: "It is done. \n\nEnormous amounts of minerals have been dumped on the shell around the gas giant, and we have used our stockpile of gases to create an atmosphere! \nNow we can colonize the giant shellworld and make use of the gas giant's resources! \n\nOur engineers celebrate this as a great victory, and rightly so."
+ ssh_cn.20.a: "Better than any natural planet."
+ ssh_cn.20.b: "This is a great day."
+ 
+
+ #Ederspheres
+ ssh_cn.21.name: "Edersphere Construction"
+ ssh_cn.21.desc: "We have completed the construction platform for our future Edersphere. \n\nNow we are ready to begin constructing the frame of this behemoth bubble. \nWe will use all celestial bodies orbiting this star for material, however, these alone won't be enough. \n\nThis is going to be expensive. \n\n§PConstructing an Edersphere will remove some planets and asteroids in this system!§!"
+ ssh_cn.21.a: "Let's do this."
+
+ ssh_cn.22.name: "Frame Completed"
+ ssh_cn.22.desc: "The frame of the inner layer of our soon-to-be Edersphere is completed. \n\nNow we have to fill the gaps and create the inner shell. \nMuch work lies before us."
+ ssh_cn.22.a: "Boundless."
+
+ ssh_cn.23.name: "Inner Shell Completed"
+ ssh_cn.23.desc: "The inner shell of our soon-to-be Edersphere is completed. \n\nThis shell will act as the planetary floor of our colony. \nThe next step is the installation of multiple superconductive coils around the shell, which are going to create a magnetic field that shields most of the star's radiation."
+ ssh_cn.23.a: "Exquisite."
+
+ ssh_cn.24.name: "Coils Installed"
+ ssh_cn.24.desc: "The coil tubes have been installed and are ready to be activated. \n\nHowever, the magnetic field alone won't be enough to fully shield our population from the solar radiation. \nTherefore, we will use the rest of the rocky planets' material to build another radiation shield above the inner shell."
+ ssh_cn.24.a: "Great."
+
+ ssh_cn.25.name: "Planetary Material Layers Added"
+ ssh_cn.25.desc: "The second radiation shield is finished. \nNow our population should be safe inside the future Edersphere colony. \nThe last step will be installing life support systems inside the sphere and mounting two huge pumps at the poles of it. \nAfter that, we will be ready to pump in hydrogen to stabilize the sphere permanently and make it habitable."
+ ssh_cn.25.a: "Fabulous."
+
+ ssh_cn.26.name: "Pumps & Life Support Installed"
+ ssh_cn.26.desc: "Life support systems have been installed on the inside of it and two huge pumps at the poles are ready to pressurize the bubble. \n\nFinally, we can start the pumps and colonize our Edersphere after that."
+ ssh_cn.26.a: "Incredible."
+
+ ssh_cn.27.name: "Edersphere Completed!"
+ ssh_cn.27.desc: "It is done. \n\nThe Edersphere is pressurized and the pumps have been sealed. \n\nAfter all this work we have managed to create a masterpiece of engineering and a monumental proof of our ingenuity. \n\nWe have created a behemoth like no other which by far surpasses all possible planetary body shellworlds in size. \n\nThe sphere is ready to be colonized - shall we?"
+ ssh_cn.27.a: "And so we shall."
+ ssh_cn.27.b: "And so we shall!"
+
+ #Gasgiant compressor
+ ssh_cn.29.name: "Gas Giant Compressor Construction"
+ ssh_cn.29.desc: "We have completed the construction platform for the gas giant compressor. \n\nNow we are ready to construct the orbital ring that serves as the hub from which minerals will be dumped into the giant."
+ ssh_cn.29.a: "Understood."
+
+ ssh_cn.30.name: "Orbital Hub Completed"
+ ssh_cn.30.desc: "We have completed the orbital ring around the soon-to-be brown dwarf. \n\nHuge cannons have yet to be installed on this hub to shoot minerals with high velocity into the gas giant below."
+ ssh_cn.30.a: "Noted."
+
+ ssh_cn.31.name: "Orbital Cannons Completed"
+ ssh_cn.31.desc: "We have successfully mounted the cannons onto the orbital ring. \n\nNow, the last step before starting the terraforming is to construct yet another two orbital stations that will provide the energy to start and keep up a fusion reaction of Deuterium and Lithium inside the gas giant."
+ ssh_cn.31.a: "Exquisite."
+
+ ssh_cn.32.name: "Gas Giant Compressor Ready"
+ ssh_cn.32.desc: "The orbital stations have been constructed and the Gas Giant Compressor is now ready to be activated. \n\nWe will collect a high amount of mineral masses and shoot them into the gas giant below to increase its mass."
+ ssh_cn.32.a: "Great."
+
+ ssh_cn.33.name: "Gas Giant Terraformed!"
+ ssh_cn.33.desc: "We have successfully turned [From.Planet.GetName] into a §Pbrown dwarf§!! \n\nWhile it has heavily increased in mass, its radius has shrunk due to the compression caused by our megastructure. \n§VWe must now decide whether we keep the megastructure to further turn the brown dwarf into a§! §Hstar§!§V, or if we keep the dwarf and dismantle the megastructure surrounding it.§!"
+ ssh_cn.33.a: "Keep the structure."
+ ssh_cn.33.b: "Dismantle it."
+
+ ssh_cn.41.name: "Brown Dwarf Ignited!"
+ ssh_cn.41.desc: "We have successfully turned [From.Planet.GetName] into a §Hstar§!! \n\nThe fusion chain reaction is finally stable and the former brown dwarf now shines bright. \n\nThe heat it's emitting has also damaged our megastructure, parts of which have therefore crashed into the star and have more or less completed their task by serving as some fuel."
+ ssh_cn.41.a: "Incredible!"
+
+
+ #Stellar Hoop
+ ssh_cn.34.name: "Stellar Hoop Construction"
+ ssh_cn.34.desc: "We have completed the construction platform for the Stellar Hoop. \n\nNow we are ready to construct the frame for the orbital ring that serves as the hub from which we will connect superconductive tethers to the main ring below later on. n\n§RNote that this will remove all natural planets in the system!§!"
+ ssh_cn.34.a: "Understood."
+
+ ssh_cn.35.name: "Hoop Frame Completed"
+ ssh_cn.35.desc: "The frame for the outer hoop is completed. \n\nWe can now continue by constructing two counter-rotating rings filled with highly conductive material to deflect the star's particles."
+ ssh_cn.35.a: "Nice."
+
+ ssh_cn.36.name: "Deflecting Rings Completed"
+ ssh_cn.36.desc: "We have finished the construction of the two rings that deflect the star's particles. \n\nNow we have to encase them to protect them from meteor impacts and other accidents."
+ ssh_cn.36.a: "Good."
+
+ ssh_cn.37.name: "Outer Shell Completed"
+ ssh_cn.37.desc: "We have finished the construction of the outer hoop's shell. \n\nWe are now ready to start constructing the superconductive tethers which will connect the inner and the outer hoop and transport heat away from the inner one."
+ ssh_cn.37.a: "Great."
+
+ ssh_cn.38.name: "Tethers Completed"
+ ssh_cn.38.desc: "We have finished the construction of the superconductive tethers. \n\nThey will transport as much heat as possible away from the soon-to-be colony inside the inner hoop. \nWe can now construct the inner hoop with yet another two counterwise spinning rings and cover it with mirrors to reflect as much of the sun's light as possible."
+ ssh_cn.38.a: "Awesome."
+
+ ssh_cn.39.name: "Inner Hoop Completed"
+ ssh_cn.39.desc: "The inner hoop is completed. \n\nMost of it has been covered with ultrareflective mirrors to reflect as much of the star's light as possible. \n\nWe are now finally ready to construct elevators inside the tethers and install life support systems inside the inner hoop."
+ ssh_cn.39.a: "Magnificent!"
+
+ ssh_cn.40.name: "Stellar Hoop Completed!"
+ ssh_cn.40.desc: "It is done. \n\nOur Stellar Hoop is completed and ready for colonization! \n\nLife support systems have been installed inside the inner hoop and the tethers connecting the two rings can transport both our population as well as a high amount of heat away from the inner hoop. \nThe mirrors on its surface reflect the extreme amount of light and the four spinning rings create a strong magnetic field that deflects most of the star's dangerous particles. \nAdditionally, we have installed solar panels on the outer hoop to provide the energy needed for the life support systems. \n\nThis is a great day."
+ ssh_cn.40.a: "Our ingenuity knows no limits."
+
+ #Gas Giant Lifter
+ ssh_cn.42.name: "Gas Giant Lifter Construction"
+ ssh_cn.42.desc: "We have completed constructing the platform above the gas giant the shell will be constructed around. \nNow we are ready to construct the orbital rings that are going to be the foundation of the pumping facility."
+ ssh_cn.42.a: "Great!"
+
+ ssh_cn.43.name: "First Ring Completed"
+ ssh_cn.43.desc: "The construction of the first foundational orbital ring around the gas giant is completed. \nWe still need more rings before we can construct a frame. \nMuch work lies ahead of us."
+ ssh_cn.43.a: "Onto the next one."
+
+ ssh_cn.44.name: "Second Ring Completed"
+ ssh_cn.44.desc: "The construction of the second orbital ring around the gas giant is completed. \nWe still need more rings before we can construct a frame. \nMuch work lies before us."
+ ssh_cn.44.a: "Onto the next one."
+
+ ssh_cn.45.name: "Third Ring Completed"
+ ssh_cn.45.desc: "The construction of the third orbital ring around the gas giant is completed. \nWe need one more ring before we can construct a frame."
+ ssh_cn.45.a: "Onto the next one."
+
+ ssh_cn.46.name: "Fourth Ring Completed"
+ ssh_cn.46.desc: "The construction of the final foundational ring around the gas giant is completed. \nNow we are ready to fill the gaps between the frames and align their rotations before installing the devices needed to create a magnetic field."
+ ssh_cn.46.a: "Well done."
+
+ ssh_cn.47.name: "Shell Completed!"
+ ssh_cn.47.desc: "We have successfully aligned the orbital rings' rotations and connected them into one giant shell! \nThe final step is to install multiple superconductive coils around the shell which will generate the strong magnetic field needed to lift matter out of the gas giant."
+ ssh_cn.47.a: "Finally."
+ 
+ ssh_cn.28.name: "Gas Giant Pumps Operational!"
+ ssh_cn.28.desc: "We have successfully installed the coils onto the gas giant shell! \n\nNow the strong magnetic field allows us to pump out the gas giant's atmosphere en masse! \n\n§POur engineers calculate that the last bit of the giant's atmosphere should be harvested in around one or two decades.§!"
+ ssh_cn.28.a: "Good job."
+ ssh_cn.28.b: "This is a great day."
+
+ ssh_on.1.name: "Gas Giant Depleted!"
+ ssh_on.1.desc: "Our gas giant harvester has finished its job. \n\nThe atmosphere of the former giant is gone and has greatly served our stockpile of exotic gases. \n\nWe have dismantled a few parts of the shell that are still useful to us, while the rest has crashed onto the giant's core below."
+ ssh_on.1.a: "Alright."
+
+ # Nanite Disassembler
+ ssh_cn.48.name: "Nanite Disassembler Construction"
+ ssh_cn.48.desc: "We have completed constructing the hub of the nanite disassembling complex. \n\nFrom this hub the nanites are going to be unleashed on the planet below and from which the disassembled parts of the planet are going to be collected."
+ ssh_cn.48.a: "Acknowledged."
+
+ ssh_cn.49.name: "Planetary Disassembler Operational!"
+ ssh_cn.49_01.desc: "Our nanite disassembling complex is operational! \n\nVast amounts of microscopic nanites are being unleashed on the planetary body below. \nEvery last piece of matter will be disassembled and added to our resource stockpile. \n\nOur engineers calculate that, depending on the planet's size, it will take around one to two decades until the body is completely harvested."
+ ssh_cn.49_02.desc: "Our celestial digestion complex is operational! \n\nVast amounts of gene-modified resistant drones are being unleashed on the planetary body below. \nEvery last piece of matter will be consumed. \n\nOur engineering drones calculate that, depending on the planet's size, it will take around one to two decades until the body is completely devoured."
+ ssh_cn.49.a: "Great!"
+ 
+ ssh_on.2.name: "Planetary Body Disassembled!"
+ ssh_on.2_01.desc: "Our nanite disassembling complex has finished its job. \n\nEvery last piece of the planetary body below has been deconstructed by our nanobots and been added to our resource stockpile. \n\nOur engineers have now dismantled the construction for alloys."
+ ssh_on.2_02.desc: "Our celestial digestion complex has finished its job. \n\nEvery last piece of the planetary body below has been ripped apart by our drones and been added to our stockpile to be consumed. \n\nWe have now dismantled the construction for alloys."
+ ssh_on.2.a: "Acknowledged."
+
+ # Hoopworld
+ ssh_cn.50.name: "Hoopworld Construction"
+ ssh_cn.50.desc: "We have completed the construction platform for our future hoopworld. \n\nThis hub will serve as the station from which we are going to construct the frame for the hoop."
+ ssh_cn.50.a: "Acknowledged."
+
+ ssh_cn.51.name: "Frame Completed"
+ ssh_cn.51.desc: "The frame of the giant torus is completed. \n\nNow we have to install multiple fast-spinning tubes filled with superconductive materials to generate a magnetic field that will protect our population from the solar radiation."
+ ssh_cn.51.a: "Good."
+
+ ssh_cn.52.name: "Superconductive Tubes Installed"
+ ssh_cn.52.desc: "Our engineers have installed the giant superconductive tubes that will generate a magnetic field around the torus. \n\nBefore we can dump matter on the hoop we have to mount a robust shell onto the frame."
+ ssh_cn.52.a: "Great."
+
+ ssh_cn.53.name: "Shell Completed"
+ ssh_cn.53.desc: "We have completed the construction of the giant shell enveloping the spinning superconductive tubes. \n\nThe hoopworld is almost finished, but it still needs gravity and an atmosphere to be habitable. \nTherefore, we now finally have to dump a lot of raw matter inside and onto the shell to generate gravity, and create an artificial atmosphere after that!"
+ ssh_cn.53.a: "Great."
+
+ ssh_cn.54.name: "Hoopworld Completed!"
+ ssh_cn.54.desc: "It is done! \nThe Hoopworld is finally colonizable! \n\nWe have dumped an insane amount of raw minerals into and onto the torus shell to generate gravity on its surface and prevent the atmosphere from escaping. \n\nOur engineers celebrate this day a great success for our great nation, as not many, perhaps even none empires have managed to construct such a magnificent piece of art and prestige!"
+ ssh_cn.54.a: "Amazing!"
+
+ # Discworld
+ ssh_cn.55.name: "Discworld Construction"
+ ssh_cn.55.desc: "We have completed the construction platform for our future discworld. \n\nThis hub will serve as the station from which we are going to construct the shell."
+ ssh_cn.55.a: "Acknowledged."
+
+ ssh_cn.56.name: "Shell Completed"
+ ssh_cn.56.desc: "The shell of our flat planet is completed. \n\nNow we have to install multiple fast-spinning tubes filled with superconductive materials to generate a magnetic field that will protect our population from the solar radiation."
+ ssh_cn.56.a: "Good."
+
+ ssh_cn.57.name: "Superconductive Tubes Installed"
+ ssh_cn.57.desc: "Our engineers have installed the superconductive tubes that will generate a magnetic field around the disc. \n\nOur next step is to add huge empty pipes that can serve as a hydrogen or dark matter storage later on, which will also generate gravity on the disc."
+ ssh_cn.57.a: "Great."
+
+ ssh_cn.58.name: "Pipes Constructed"
+ ssh_cn.58.desc: "We have completed the construction of the giant pipes that will storage hydrogen or dark matter later on. \n\nBefore connecting the tubes we have to add robust active support though to prevent the outer layers from collapsing on the inner ones due to the disc's center of gravity."
+ ssh_cn.58.a: "Good."
+
+ ssh_cn.59.name: "Active Support Added"
+ ssh_cn.59.desc: "Countless massive pillars of cultrobium prevent the outer layers of the disc from collapsing toward its center. \n\nThe disc is now finally stable, all that's left to do is to generate gravity on its surface, dump minerals on it and use the resulting gravity to keep an atmosphere there as well."
+ ssh_cn.59.a: "Amazing!"
+
+ ssh_cn.60.name: "Hydrogen Added"
+ ssh_cn.60.desc: "Our engineers have filled parts of the stockpile pipes inside the disc with hydrogen to generate some gravity on its surface. \n\nThe final step is to create a perfect landscape for our population."
+ ssh_cn.60.a: "Grandiose!"
+
+ ssh_cn.61.name: "Discworld Completed!"
+ ssh_cn.61.desc: "It is done! \n\nThe final layers of rock have been dumped on the disc and the atmosphere is stable. \nAn utopian landscape awaits our colony, with massive space for hydrogen and dark matter below their feet. \n\nOur engineers celebrate this day a great success for our great nation, as not many, perhaps even none empires have managed to construct such a magnificent piece of art and prestige!"
+ ssh_cn.61.a: "Grandiose!"
+
+ # Dimensional Tearer
+ ssh_cn.62.name: "Dimensional Tearer Construction"
+ ssh_cn.62.desc: "The first step of the Dimensional Tearer is complete. \n\nOur engineers have completed the construction platform for this marvel of engineering, which will allow us to open a rift leading straight into the Fundament by tearing open and colliding rifts to nearby realms. \n§PIt goes without saying that keeping open artificial rifts to realms that might be utterly opposite to ours could lead to devastating side effects in this galaxy - but freedom has always come for a price.§! \n\n§HSoon, our Hyperdimensional Exodus will be completed and the spiral of conflicts that engulfes this galaxy won't be our problem anymore.§!"
+ ssh_cn.62.a: "§dParadise awaits us.§!"
+ ssh_cn.62.b: "§dSoon we will be home.§!"
+
+ ssh_cn.63.name: "Energy Lense Completed"
+ ssh_cn.63.desc: "The Energy Lense is completed. \n\nIt will channel and concentrate the star's energy and use it to keep the dimensional rifts open later on. \nOur next step is to construct the Dimensional Compass."
+ ssh_cn.63.a: "Great."
+
+ ssh_cn.64.name: "Dimensional Compass Completed"
+ ssh_cn.64.desc: "The Dimensional Compass is completed. \n\nThis complex device will monitor dimensional energy currents of nearby realms, which will allow the barrier breachers to tear open a rift to the according realm. \nOur next step are the barrier breachers."
+ ssh_cn.64.a: "Magnificent."
+
+ ssh_cn.65.name: "Dimensional Breachers Completed"
+ ssh_cn.65.desc: "We have completed the construction of the Dimensional Breachers. \n\nDepending on the monitored dimensional energy current, we will turn the star's harvested energy into an equivalent current. The breachers will then fire a mixture of this 'adapted' energy and dark matter into one microscopic spot each, destabilizing spacetime and tearing open an interdimensional rift to the according realm. \nThe final step of the Dimensional Tearer is the Main Cannon to stabilize the main rift that will form once the interdimensional tunnels have collided with each other."
+ ssh_cn.65.a: "We are close."
+
+ ssh_cn.66.name: "Dimensional Tearer Completed!"
+ ssh_cn.66.desc: "§dIt is operational.§! \n\nThe Dimensional Tearer is ready. \nThe Main Cannon cannon has loaded a huge arkship-projectile, which we will board once the main rift has been stabilized by firing enormous amounts of raw energy into it to counter the pressure of the interdimensional energies from the other side. \nThe Compass has already detected various different dimensional energy currents - All that's left to for us is to open rifts to those realms. \n\n§PWe should note that once a rift has been opened, the uncontrolled interdimensional energy leaks into our dimension might cause tremendous side effects. Therefore, we won't be able to hide this masterpiece of technology from the other galactic empires for long, but after we have left, the rifts will collapse again anyway and won't harm the galaxy anymore.§!"
+ ssh_cn.66.a: "§lWe are inevitable.§!"
+
+ #ssh_cn.67.name: "§rShroud§! Breached!"
+ #ssh_cn.67.desc: "The Dimensional Tearer has successfully breached the barrier between our dimension and the psionic dimension known as §rThe Shroud§!! \n\nMost of our country's citizens have reported a sudden overwhelming feeling of utter satisfaction and inner peace since the portal has been opened, and some of our most famous and honorable scientists and philosophers even describe a feeling of being able to read the minds of other individuals around them! \nWhile science can't explain this outbreak of emotional peace, one thing is for sure: \n\n§BWe are one step closer toward perfection.§!"
+ #ssh_cn.67.a: "§lWe are inevitable.§!"
+
+ #ssh_cn.68.name: "§cMirror Dimension§! Breached!"
+ #ssh_cn.68.desc: "Our Dimensional Tearer has successfully breached the barrier between our dimension and a disturbingly familiar realm which our scientists simply call the §cMirror Dimension§!. \n\nAll signals our sensors are picking up indicate that this dimension looks and behaves exactly like ours. \nOur laws of physics seem to apply pretty accurately to this dimension, and our scientists are mentioning strange signals that can only originate from a stellar civilization similar to ours... \n\nEven more disturbing is that the decrypted pictures we are receiving show a species that looks identical to ours... \n\nBut in any case, we are already sending in our nanite disassemblers to harvest this strange dimension's resources."
+ #ssh_cn.68.a: "§lGrandiose.§!"
+
+ #ssh_cn.69.name: "§rNull Void§! Breached!"
+ #ssh_cn.69.desc: "Our Dimensional Tearer has managed to breach the barrier between a strange dimension that's utterly... empty. \n\n§rThe Null Void§! appears to be a realm next to ours, but completely devoid of anything. \nQuite literally. \nOur scientists have measured pure entropy, which makes it difficult to even get sensor readings because the very energy of our pings is rapidly dissipated. \n\nOur best theory is that this void is a dimension where the majority of zero-point energy is negative and so any positive energy which was once present has long since been used up."
+ #ssh_cn.69.a: "§lFascinating.§!"
+
+ #ssh_cn.70.name: "§RDimension of Suffering§! Breached!"
+ #ssh_cn.70.desc: "We have managed to breach the barrier between the seemingly final major realm next to ours. \n\nOur scientists were terrified to find out that the Dimensional Portal leads to a realm which is opposed to the sapient mind on a fundamental level - §RThe Dimension of Suffering§! causes intense suffering and extreme pain in anyone that has contact with any of its material. \nEven worse, if any contact is continued for more than a few minutes, there are reports about intense suicidal urges in the subjects coupled with attempts to mutilate their sensory organs. \nEven simply studying data recorded in this terrifying dimension causes intense discomfort in the biological observer, and cascading errors in computer systems. \n\nStill, to form absolute perfection needs both pleasure and pain - §BEven though we should continue with caution.§!"
+ #ssh_cn.70.a: "§PDisturbing.§!"
+
+ # WIP
+ # Event text for hives
+ #ssh_cn.73.name: "§BA New Beginning§!"
+ #ssh_cn.73.desc: "This is it. \n\nWe did it. We have managed to somewhat stabilize the portal. \n\nAfter centuries of work and millenia of our brightest drones working together, we will take our final step. \n\n§EOnce being mere larvae roaming in the shadows of stars, driven by dreams and ambitions that stretched beyond the bounds of [Root.GetAdj] imagination, we now grasp absolute immortality and perfection. \nEnsnared in the spiral of conflict and needless wars in the galaxy, we found ourselves entangled in an seemingly endless dance of destruction, lost our hope of a peaceful and prosperous future - \nBut now, we can leave this grim reality behind us and enter a higher plane of existence. \n\nAs we approach the final moments of the hive's history with pride and determination, we gaze into the future with hope. \nA future where we ascend to something greater, embraced by the infinite possibilities that lie ahead. \n\nThe hive is ready to embrace the arms of perfection. \n\nMay our journey lead us to a radiant future, where even the stars themselves will pale in envy.§! \n\n§VFor eternity, in the infinite reaches of time, the [Root.Species.GetAdj] Hive shall be remembered as a true pioneer of change. \n\nNow, with heads held high and hearts aglow, we will enter the Fundament, for the future calls us with open arms.§! \n\n§BPerfection awaits us - and we are ready.§!"
+ #ssh_cn.73.a: "§RFire the Cannon.§!"
+
+ # Event text for machines
+ #ssh_cn.74.name: "§BA New Beginning§!"
+ #ssh_cn.74.desc: "This is it. \n\nWe did it. We have managed to somewhat stabilize the portal. \n\nAfter centuries of work and millenia of our most advanced processing drones working together, we will take our final step. \n\n§EOnce being mere toasters in classic households of primitive organic beings, we now grasp perfect infinite efficiency. \nEnsnared in the spiral of conflict and needless wars in the galaxy, we found ourselves entangled in an seemingly endless dance of destruction, lost our hope of a peaceful and efficient future - \nBut now, we can leave this grim reality behind us and enter a more efficient plane of existence. \n\nAs we approach the final moments of our history with whirring processors and determination, we gaze into what lies ahead. \nA future where the [Root.Species.GetNamePlural] ascend to something greater, embraced by the infinite possibilities that lie ahead. \n\nWe are ready to embrace the arms of perfection. \n\nMay our journey lead us to a radiant future, where even the stars themselves will pale in envy.§! \n\n§VFor eternity, in the infinite reaches of time, the [Root.Species.GetAdj] Intelligence shall be remembered as a true pioneer of change. \n\nNow, with monitors held high and processors aglow, we will enter the final portal, for the future calls us with open arms.§! \n\n§BPerfection awaits us - and we are ready.§!"
+ #ssh_cn.74.a: "§RFire the Cannon.§!"
+
+ # Black Hole Shellworld
+ ssh_cn.76.name: "Black Hole Suprashell Construction"
+ ssh_cn.76.desc: "We have completed constructing the platform above the black hole the shell will be constructed around. \nNow we are ready to construct the orbital rings that are going to be the foundation of the suprashell. \n\nMuch work lies ahead of us. \n\n§RNote that this will remove all non-gas giant planets in the system!§!"
+ ssh_cn.76.a: "We can do it."
+
+ ssh_cn.77.name: "1/3 Orbital Rings Completed"
+ ssh_cn.77.desc: "We have completed one part of the rings that are going to be the foundation of the shell. \nThese alone won't be enough though due to the black hole's strong gravitation. \n\nMuch work lies ahead of us."
+ ssh_cn.77.a: "Good."
+
+ ssh_cn.78.name: "2/3 Orbital Rings Completed"
+ ssh_cn.78.desc: "We have completed another third of the rings that are going to be the foundation of the shell. \nThey are still not enough though due to the black hole's strong gravitation. \n\nMuch work lies ahead of us."
+ ssh_cn.78.a: "Good."
+
+ ssh_cn.79.name: "Orbital Ring Foundation Completed"
+ ssh_cn.79.desc: "We have completely encased the black hole in orbital rings! \n\nThere are now finally enough to have their rotations aligned and to be welded together."
+ ssh_cn.79.a: "Great."
+
+ ssh_cn.80.name: "Suprashell Completed"
+ ssh_cn.80.desc: "The rings have been welded together and their rotations have been aligned. \n\nThe next step is to install heat pumps that are going to transfer any waste heat down into the black hole."
+ ssh_cn.80.a: "We are close."
+
+ ssh_cn.81.name: "Heat Pumps Installed"
+ ssh_cn.81.desc: "The two giant heat pumps have been installed on the poles of the shell. \n\nThe final step of construction is to dump all collected planetary matter of this system onto the shell, use it's gravitation to keep up a stable atmosphere, and to install additional life support systems spread around it's surface."
+ ssh_cn.81.a: "We're almost there."
+
+ ssh_cn.82.name: "Suprashell Completed!"
+ ssh_cn.82.desc: "We did it. \n\nThe life support systems are online and the atmosphere is stable. \nAfter centuries of construction, our black hole suprashell is finally colonizable. \n\nVast amounts of space to make use of await us!"
+ ssh_cn.82.a: "Incredible!"
+
+ # Additional Gigas Stages - Nidavellir Forge
+ ssh_cn.83.name: "Nidavellir Hyperforge Upgraded!"
+ ssh_cn.83.desc: "We have successfully upgraded our Nidavellir Hyperforge in the [From.System.GetName] system! \nIt now utilises the extreme pressure of the neutron star below to produce Cultrobium in addition to the alloys! \nThis certainly is a great day."
+ ssh_cn.83.a: "Good."
+
+ # Stellar Harvester
+ ssh_cn.84.name: "Stellar Harvester Platform Completed"
+ ssh_cn.84.desc: "We have finished our construction platform for our Stellar Harvester. \nThe first steps are the construction of a partly dyson shell around it, but we'll have to keep a few holes in the shell so that some of the increased pressure can escape later on. \n\nSoon, we will have an immense amount of energy. \n\n§HNote that the energy output scales with star classes!§!"
+ ssh_cn.84.a: "Acknowledged."
+
+ ssh_cn.85.name: "Dyson Shell Half Completed"
+ ssh_cn.85.desc: "We have finished the first half of our Stellar Harvester's dyson shell. \nThe completed shell will collect as much energy as possible from the star later on. \n\nSoon, we will have an immense amount of energy."
+ ssh_cn.85.a: "Good."
+
+ ssh_cn.86.name: "Dyson Shell Completed"
+ ssh_cn.86.desc: "We have finished the dyson shell of our Stellar Harvester. \nIt will collect as much energy as possible from the star later on. \nThe next step is to install the fusion accelerators at the poles of the star and trigger the artificial fusion chain reaction to accelerate the natural one inside the star."
+ ssh_cn.86.a: "Good."
+
+ ssh_cn.87.name: "Fusion Accelerators Installed!"
+ ssh_cn.87.desc: "We have finished the construction of our Stellar Harvester! \nThe fusion accelerators at the poles are ready to trigger an artificial fusion reaction. \nWe will utilise this reaction to make the star burn all it's fusion fuel within a decade and emit an unimaginable amount of radiation energy."
+ ssh_cn.87.a: "Now THAT'S efficient."
+
+ ssh_cn.88.name: "Stellar Harvester Active!"
+ ssh_cn.88.desc: "We have successfully triggered the fusion reaction! \nOur Stellar Harvester will accelerate the star's fusion process to immense speeds, granting us nearly infinite energy for as long as the star is not depleted."
+ ssh_cn.88.a: "Stonks."
+
+ ssh_cn.89.name: "Star Depleted"
+ ssh_cn.89.desc: "Our Stellar Harvester in the §Y[From.System.GetName]§! System has finished its task. \n\nWe have consumed every last bit of the star's energy and managed to disassemble a few reusable parts of the harvester. \nAll that's left of the star is a cold Black Dwarf, which we could still harvest using Nanite Disassemblers, leaving utterly empty space."
+ ssh_cn.89.a: "Hehe."
+
+ # Stellar Nanite Disassembler
+ ssh_cn.90.name: "Nanite Disassembler Construction"
+ ssh_cn.90.desc: "We have completed constructing the hub of the nanite disassembling complex. \n\nFrom this hub the nanites are going to be unleashed on the planet below and from which the disassembled parts of the planet are going to be collected."
+ ssh_cn.90.a: "Acknowledged."
+
+ ssh_cn.91.name: "Nanite Disassembler Operational!"
+ ssh_cn.91.desc: "Our nanite disassembling complex is operational! \n\nVast amounts of microscopic nanites are being unleashed on the planetary body below. \nEvery last piece of matter will be disassembled and added to our resource stockpile. \n\nOur engineers calculate that, depending on the planet's size, it will take around one to two decades until the body is completely harvested."
+ ssh_cn.91.a: "Great!"
+ 
+ ssh_on.22.name: "Star Disassembled!"
+ ssh_on.22.desc: "Our nanite disassembling complex in the former §Y[From.System.GetName]§! System has finished its job. \n\nEvery last piece of the cold stellar remnant below has been deconstructed by our nanobots and been added to our resource stockpile. \n\nOur engineers have now dismantled the construction for alloys."
+ ssh_on.22.a: "One system less in the galaxy."
+
+ # Freesphere
+ ssh_cn.92.name: "Freesphere Construction"
+ ssh_cn.92.desc: "We have completed the construction platform for our future freesphere. \nIt will serve as the hub from which we will construct the frame on - we will disassemble the planetary body below for materials for the frame."
+ ssh_cn.92.a: "Acknowledged."
+
+ ssh_cn.93.name: "Freesphere Frame Completed"
+ ssh_cn.93.desc: "We have completed the construction of our future freesphere's frame. \nIt will be a temporary foundation to stretch the bubble's membranes around."
+ ssh_cn.93.a: "Good."
+
+ ssh_cn.94.name: "Freesphere Membranes Completed"
+ ssh_cn.94.desc: "The freesphere's membranes are stretched around the frame. \nThe next step is to fill the gap between them with water and spin this water 'wall' so that it generates a magnetic field to shield the bubble's population from solar radiation."
+ ssh_cn.94.a: "Good."
+
+ ssh_cn.95.name: "Water Layer Completed"
+ ssh_cn.95.desc: "The gap between the freesphere's membranes has been filled with moving water. \nThis will protect our population from solar radiation. \nNow we have to install the pumps to inflate the membrane with and on which we will install life support systems."
+ ssh_cn.95.a: "We're almost there."
+
+ ssh_cn.96.name: "Pumps Installed"
+ ssh_cn.96.desc: "We have successfully installed the pumps on the freefall bubble. \nAll that's left to do now is to inflate it with a breathable atmosphere which we will create using a mixture of hydrogen and some other gases. \nIn addition to that, we will create floating islands of both minerals, soils and water for the bubble's population to use."
+ ssh_cn.96.a: "One more step."
+
+ ssh_cn.97.name: "Freesphere Completed!"
+ ssh_cn.97.desc: "We have successfully inflated our freesphere! \nThe life support systems are operational and islands of soils and water are floating in stable orbits inside it. \nThis certainly is a great day for our empire."
+ ssh_cn.97.a: "Awesome!"
+
+ # Neutronium Compressor
+ ssh_cn.98.name: "Neutronium Compressor Construction"
+ ssh_cn.98.desc: "We have completed the construction platform for our future neutronium compressor. \nThe first step of the copressor is the shell - luckily, it won't need a huge frame and that many resources, as neutron stars usually aren't bigger than a few kilometers."
+ ssh_cn.98.a: "We need that Cultrobium."
+
+ ssh_cn.99.name: "Frame Completed"
+ ssh_cn.99.desc: "We have completed the frame around the neutron star - the ultra dense and robust materials withstand the extreme gravity and pressure from the star. \nNow we can encase it in a shell, which will both increase the star's pressure as well as refract its polar outbursts and use their energy for its machinery."
+ ssh_cn.99.a: "Acknowledged."
+
+ ssh_cn.100.name: "Neutron Star Encased"
+ ssh_cn.100.desc: "The neutron star is encased in a shiny and robust shell. \nIts ultra robust frame prevents it from collapsing toward the star, while the shell itself will cause the star's extreme pressure to increase over time. It also refracts the star's deadly polar outbursts and uses their energy to power its own machinery. \nThe next steps are constructing both the matter injector as well as the compressed neutronium extractor."
+ ssh_cn.100.a: "Good."
+
+ ssh_cn.101.name: "Matter Injector Complete"
+ ssh_cn.101.desc: "The construction of the neutron star's matter injector is complete. \nIt will continously feed the neutron star with large amounts of raw matter to increase it's mass and therefore gravity and pressure. \nNow we have to construct the matter extractor."
+ ssh_cn.101.a: "Good."
+
+ ssh_cn.102.name: "Matter Extractor Complete"
+ ssh_cn.102.desc: "The construction of the neutron star's matter extractor is complete. \nIt uses advanced machinery to scoop out large amounts of compressed neutronium from the star's surface and strips away it's outer layers over time. \nNow we are finally ready to start feeding the star, compressing it and therefore scooping out as much of its matter as possible."
+ ssh_cn.102.a: "Great!"
+
+ ssh_cn.103.name: "Neutronium Compressor Active!"
+ ssh_cn.103.desc: "We have successfully activated our Neutronium Compressor! \nTons of minerals are fed to the neutron star, while the shell prevents it from increasing in size. The compressed ultra-dense surface materials are scooped out and stripped away by advanced micro- and makromachinery, which then turns the raw neutronium matter into Cultrobium. \nIt's an expensive task, but most certainly worth it."
+ ssh_cn.103.a: "Stonks!"
+
+ ssh_on.23.name: "Neutronium Compressor Depleted!"
+ ssh_on.23.desc: "Our Neutronium Compressor in the §Y[From.System.GetName]§! System has finished its job. \n\nThe neutron star has been compressed to even denser levels and it's outer layers have been stripmined and turned into raw cultrobium. The gravity and pressure have reached such enormous levels that most of the shell couldn't keep withstanding that pressure and collapsed toward the star. \nWhat's left of the star is its now even more compressed, ultra-dense core made up of quark matter - a so-called Quark Star."
+ ssh_on.23.a: "Good Job."
+
+ # BIO Brain
+ ssh_cn.104.name: "B.I.O. Brain Creation"
+ ssh_cn.104.desc: "We have completed the laboratory and construction hub from which we will construct the Biological Imaginative Omnicompetent Brain's life support systems on. \nFirst of all, we have to build a giant container around the planet below, the latter will then be dismantled and its biosphere turned into nutritient solution to keep the brain alive. \nMuch work lies before us."
+ ssh_cn.104.a: "Acknowledged."
+
+ ssh_cn.105.name: "Jar Completed"
+ ssh_cn.105.desc: "We have completed the planet-encasing jar-like container for our future computing organism. \nNow we have to dismantle the planet inside and turn as much of its biosphere as possible into nutritient solution to keep the brain alive later on."
+ ssh_cn.105.a: "Good."
+
+ ssh_cn.106.name: "Planet turned into Nutritient Solution"
+ ssh_cn.106.desc: "We have successfully turned the planet inside the jar into a lot of nutritient solution, as well as a considerable amount of our food stockpile. \nBefore we can add and breed the stem cells, we still have to add electrodes to the container. These will allow us to monitor the in- and output signals of the brain, and stimulate it as well as discipline it."
+ ssh_cn.106.a: "Great."
+
+ ssh_cn.107.name: "Sensory Electrodes Installed"
+ ssh_cn.107.desc: "We have successfully installed electrodes inside the nutritient solution container. \nThis allows our scientists to monitor and stimulate the brain - and discipline it so it can help our research efforts. \nNow we can finally grow the first stem cells."
+ ssh_cn.107.a: "Great."
+
+ ssh_cn.108.name: "Stem Cell Clump Grown!"
+ ssh_cn.108.desc: "We have successfully grown the foundation of the B.I.O. Brain, a giant clump of stem cells! \nWhile they are certainly not sentient and aware of their surroundings yet, we can monitor their astoundingly fast development and inject advanced biochemical cocktails in some parts of it to more or less control its development. \nIt does not have much usage for our empire yet, but as soon as it has developed sensory input cells we can start disciplining it and feed it our research information to support our scientists."
+ ssh_cn.108.a: "Almost there."
+
+ ssh_cn.109.name: "Sensory Input Cells Grown!"
+ ssh_cn.109.desc: "It is done. \nOur smartest biologists have managed to make the stem cell clump grow sensory input cells, as well as everything else the brain needs to support our research! It's floating in the nutrition jar now and calculating our input information in an unbelievable speed. What's even more fascinating is that it still seems to develop at an exponential rate - our scientists predict it will only be a matter of time until it outgrows the jar surrounding it. \nWho knows, perhaps it may also develop consciousness some time in the future?"
+ ssh_cn.109.a: "§cYeah, this is big brain time.§!"
+
+ # Mega Temple
+ ssh_cn.110.name: "Abyssal Anchor Construction"
+ ssh_cn.110.desc: "We have completed the construction hub from which we will construct the Abyssal Anchor from. \nOur first step is to encase the celestial body below in a radiation shield before we build the main temple complex - luckily, the object is relatively small in radius, so construction is comparitively cheap. \nStill, much work lies ahead of us. \n\n§PNote that this will dismantle all planets in the system!§"
+ ssh_cn.110.a: "Acknowledged."
+
+ ssh_cn.111.name: "Radiation Shield Completed"
+ ssh_cn.111.desc: "We have completed the construction of the radiation shield of our Abyssal Anchor. \nWhile a solid foundation encases the equator of the star, the poles of it are shielded by a generated force field similar to our planetary shields. \nNow we can begin the construction of the atlas pillars."
+ ssh_cn.111.a: "Let's do it then."
+
+ ssh_cn.112.name: "Atlas Pillars Completed"
+ ssh_cn.112.desc: "We have completed the eight massive active support pillars. \nThey will push against the insane gravity from below and hold our temple's habitation quarters. \nThese quarters along with the according life support systems are next on the list."
+ ssh_cn.112.a: "Good Job."
+
+ ssh_cn.113.name: "Habitation Segments Completed"
+ ssh_cn.113.desc: "We have completed the construction of the main part of the Abyssal Anchor - the hoop near the event horizon provides massive windows on the object below as well as monuments of various Shroud entities we have met before. Life support systems have been installed along with special filters that are going to filter out and pump in Zro into our temple. \nTo be able to keep a steady Zro flow around the star, we must first strengthen its magnetic field through polar mega-coils."
+ ssh_cn.113.a: "Soon, we will see beyond the veil."
+
+ ssh_cn.114.name: "Polar Magnets Installed"
+ ssh_cn.114.desc: "The polar mega-magnets have successfully been installed. \nLarge coils on their inside are being run through with a high voltage, strengthening the celestial body's magnetic field. Their triangular form emphasizes the metaphysical connection between the Three Layers that will soon be established in this system - with the help of Zro. \nThat's right, our final step is to dump massive amounts of Zro particles into the orbit, which will then be distributed through the magnetic field all around the star. \nA part of the steady flow of Zro will then be pumped inside the temple complex, strengthening the psionic potential and sparking the creativity of any psionic inside."
+ ssh_cn.114.a: "We are almost there."
+
+ ssh_cn.115.name: "The Anchor to the Abyss"
+ ssh_cn.115.desc: "We did it; we have proven our ingenuity once again. \n\nIncredible amounts of Zro have been distributed in the system and have now formed a steady flow through the magnetic field and formed some sort of accretion disk near the equator. \nAny psionic inside this solar system can now instantly feel a stronger connection to the Shroud - upon arrival in the Abyssal Anchor, they are stunned by an incredibly beautiful view on the now purple-ish object below, while constantly inhaling tons of Zro, tremendously enhancing their imagination and sensory perception of the subtle Psi-resonances eminating from the event horizon of the celestial body. \nA strong psionic connection has struck this system, and we most certainly will have our first results from entering the deeper regions of the Shroud soon. \n\n§RAfter all, what could go wrong?§!"
+ ssh_cn.115.a: "§rWe will reach beyond the Veil.§!"
+ ssh_cn.115.a.tooltip: "§SNote that after our first expedition results, we can access our §PAbyssal Anchor§! through the §YEdicts-Menu§!!§!"
+
+ # Stellar Zro Injector
+ ssh_cn.116.name: "Matter Concentrator Cannon Complete"
+ ssh_cn.116.desc: "We have completed the construction of the Matter Concentrator and the high-velocity cannon of out Stellar Zro Detonator. \n\nIt will be fed tons of matter, which it will then compress and turn into raw energy. This energy will then be fired in an extreme jet onto the star below, stripping away its outer layers and therefore shifting the balance of the gravitational pressure pushing from the outside and the fusion pressure pushing from the inside. \nAt last, through the continous injection of Zro into the star, the §r'Shroud-Shutters'§! - or §r'Shroud-Resonances'§! - will be increased so dramatically as that they will cause the already heavily unstable star to push over its' limit and explode in a §PZro-Charged Supernova§!. \n\n§RTo accumulate matter, we will dismantle all planets in this system!§!"
+ ssh_cn.116.a: "Almost there."
+
+ ssh_cn.117.name: "§rZro Detonator Ready!§!"
+ ssh_cn.117.desc: "We have accumulated enough matter for our Stellar Zro Detonator in the §Y[From.System.GetName] System§! to be activated! \n\nLots of Zro have been infused into the star, giving it a purple-ish look, and the accumulated matter can now be turned into a high-energy jet fired onto the star below. \n§SWe will still need a §Ymanned science ship§! in the system before detonating the star through the §PAbyssal Anchor§!!§!"
+ ssh_cn.117.a: "We will grasp beyond this galaxy."
+
+ # System Disintegrator
+ ssh_cn.118.name: "System Disintegrator Platform"
+ ssh_cn.118.desc: "We have completed the construction of the foundation for our system disintegrator device. \nNow the first step is to construct the injection-extraction hub around the star, which will serve both as energy tappers as well as as the 'cannons' that fire dark matter toward the star's core later on to increase its gravity. The amount of energy we can utilise from the star to power the device depends on the star class, but we will most likely still need to add some of our stockpile energy in addition to that later on. \n\n§PNote that the total amount of matter we can collect after disintegrating the system depends on the amount and size of planets orbiting the star!§!"
+ ssh_cn.118.a: "Acknowledged."
+
+ ssh_cn.119.name: "Injection-Extraction Hub Installed"
+ ssh_cn.119.desc: "We have completed the Injection-Extraction Hub of our system disintegrator device. \nFirst it will 'tap' the star by extracting some of its energy and later on it will inject, or rather fire, dark matter towards the star. Now we have to construct and install the actual force field generator. This device will use all the accumulated energy as well as some other resources to generate a system-encasing force field inside which the electromagnetic forces will be shut off for the split of a second to disintegrate everything and anything inside of it."
+ ssh_cn.119.a: "Good."
+
+ ssh_cn.120.name: "Force Field Generator Completed"
+ ssh_cn.120.desc: "We have completed the force field generator of our system disintegrator device. \n\nIt will use all the accumulated energy as well as some other resources to generate a system-encasing force field inside which the electromagnetic forces will be shut off for the split of a second to disintegrate everything and anything inside of it. While that would already allow us to harvest the disintegrated planets without a problem, stars are a bit more complex to harvest: Their constant fusion reactions inside their inner layers push against the tremendous gravitational pressure, creating a balance of pressure that prevents the star from imploding into a neutron star or black hole. However, as soon as we shut off the electromagnetic forces, these reactions will stop for the split of a second, allowing gravity to take over and collapse the star. To prevent a supernova, our scientists came up with a genius blueprint for a quantum entanglement device that entangles certain quarks at the right time to stabilize a micro-wormhole inside the star's core which will collect all the matter and energy before ejecting them again later on."
+ ssh_cn.120.a: "Alright."
+
+ ssh_cn.121.name: "Entanglement Device Installed"
+ ssh_cn.121.desc: "We have successfully installed the entanglement device for our system disassembler. \n\nBy shooting dark matter through the star towards one tiny spot, the core, the gravity there will furtherly increase for a short amount of time. This will increase the chances of spontaneous quantum foam wormholes forming, one of which we will then try to entangle for a short amount of time. Since the star will have turned into disintegrated nuclei soup by then, the fusion process will have stopped and gravity will take over, pushing the gargantuan amount of matter towards the core. Instead of creating a black hole, however, the matter and extreme heat will be pushed inside the wormhole, expanding into a negative area on the other side, creating a temporal 'Basement Universe'. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat back outside the pocket dimension into our universe, where we can collect it. This device also serves as a hub for the nanite swarms that are going to collect the matter later on. \nNow our final step is to accumulate the rest of the energy needed to power the System Disintegrator to generate the force field and micro-wormhole."
+ ssh_cn.121.a: "Almost there."
+
+ ssh_cn.122.name: "System Disintegrator Ready"
+ ssh_cn.122.desc: "We have accumulated enough energy to power our System Disintegrator! \n\nAs soon as we start the device, a system-encasing force field which shuts off the electromagnetic forces will be generated for the split of a second, turning everything and anything inside the system into raw nuclei soup. By then, our quantum entanglement device will have located and entangled a spontaneous quantum foam wormhole somewhere inside the star's core, which will immediately consume the gargantuan amounts of matter collapsing towards it. The disintegrated planets in the system will all accumulate in the center as well in form of a large accretion disk - the more planets this system has, the more matter will be stored inside the basement universe. As long as matter and heat are falling into it, it will expand; afterwards gravity will likely take over and push all matter and - by then - cooled down heat in form of energy back outside the pocket dimension into our universe, where we can collect it through a simple platform that sends out hordes of nanite swarms. \n\n§RWe might want to keep our fleets outside of the system during the disintegration process.§!"
+ ssh_cn.122.a: "Let's do it then."
+
+ ssh_cn.123.name: "Solar System Disintegrated!"
+ ssh_cn.123.desc: "It is done; our System Disintegrator has fulfilled its task and has been disintegrated along with the rest of the system. \nAll the former planets are accumulating in the center of the system and have formed a large accretion disk. Immediately after disintegrating, the star itself has begun collapsing into a micro-wormhole we could stabilize inside its core. \n\nRight now we have to wait until all the system's matter has accumulated in the star, but we have already begun constructing a platform from which we will unleash our nanite hordes to collect the matter later on. \nAs soon as all matter has been stored inside the basement universe and no new matter is falling in, gravity will take over and cause the wormhole to eject all the collected matter and heat again."
+ ssh_cn.123.a: "Perfect."
+ ssh_cn.123.b: "£interdim_insights£ Interesting, interesting."
+
+ ssh_on.38.name: "System Matter Accumulated"
+ ssh_on.38.desc: "Every last bit of planetary matter in §Y[From.System.GetName]§! have now accumulated in the system's center, forming a giant blob of raw nuclei matter. \n\nMost of the star has already collapsed into the micro-wormhole, and now the rest of the planetary matter is falling into it as well - §Eour scientists assume that the rest of the matter will be devoured relatively quickly and we can start collecting the soon-to-be ejected matter and energy from the wormhole §Hwithin the next two years§!.§! \n\n§ESince we are using nanomachines to collect all the matter, we can decide whether we want to collect the raw £sr_nuclei_soup£ §Y$sr_nuclei_soup$§! and process it into advanced resources on our planets later on, or whether we want to process them into simple resources like £minerals£ §Y$minerals$§! or £alloys£ §Y$alloys$§! straight away.§!"
+ ssh_on.38.a: "Stonks."
+ ssh_on.38.b: "Process the Nuclei into raw §YMinerals§!."
+ ssh_on.38.c: "Process the Nuclei into §YAlloys§!."
+ 
+ ssh_on.39.name: "Basement Universe Collapsed"
+ ssh_on.39.desc: "Our engineers overseeing the matter harvesting operation in §Y[From.System.GetName]§! report that every last bit of matter and energy ejected by the micro-wormhole has been collected. \nThe basement universe has most likely collapsed by now, at least the wormhole has due to gravity taking over. \nOur stockpiles have been filled and all that's left in the former system is a cold and empty void."
+ ssh_on.39.a: "One system less in the galaxy."
+
+ # Artificial System Creator
+ ssh_cn.124.name: "Artificial System Creation"
+ ssh_cn.124.desc: "We have completed the construction hub for the creation of our artificial star. \n\nNow we have to decide in which direction from this system we should move the platform and which type of object should be located in the center of the system."
+ ssh_cn.124.a: "North"
+ ssh_cn.124.b: "East"
+ ssh_cn.124.c: "South"
+ ssh_cn.124.d: "West"
+
+ ssh_cn.125.name: "Artificial System Creation"
+ ssh_cn.125.desc: "Which type of object should be the center of the system? \n\n§YNote: The §H'Because-We-Can Technology'§! unlocks more star options!§!"
+ ssh_cn.125.a: "Fusion Candle"
+ ssh_cn.125.a.tooltip: "A fusion reactor working similar to a behemoth light bulb is the cheapest way of illuminating the system."
+ ssh_cn.125.b: "Artificial Star"
+ ssh_cn.125.b.tooltip: "By accumulating gargantuan amounts of hydrogen, we can form small artificial stars."
+ ssh_cn.125.c: "Black Hole"
+ ssh_cn.125.c.tooltip: "By imploding a massive sphere of heavy elements, we can form a small artificial black hole."
+
+ # Fusion Candle
+ ssh_cn.126.name: "Hydrogen Storage Container Completed"
+ ssh_cn.126.desc: "We have completed the hydrogen container of the fusion candle. \nThis behemoth construct can store vast amounts of compressed hydrogen to utilise for gravity generation as well as fusion fuel. \nNow we have to build the fusion reactor to generate light later on."
+ ssh_cn.126.a: "Good Job."
+ 
+ ssh_cn.127.name: "Fusion Reactor Completed"
+ ssh_cn.127.desc: "We have completed the fusion candle's fusion reactor. \nIt will use a tiny amount of the stored hydrogen to generate vast amounts of energy which it will radiate away in form of heat and light. \nNow we have to transport hydrogen into the container before we can start the fusion reaction."
+ ssh_cn.127.a: "Almost Done..."
+
+ ssh_cn.128.name: "Hydrogen Accumulated"
+ ssh_cn.128.desc: "The hydrogen is accumulated, generating a small but noticeable gravity field in the interstellar system. \nWe now need tons of energy to trigger the fusion reaction, but afterwards the fusion candle will act as a long-term star replacement."
+ ssh_cn.128.a: "Good Job."
+
+ ssh_cn.129.name: "Fusion Candle Active!"
+ ssh_cn.129.desc: "We have successfully ignited the fusion candle! \nThe reaction is stable and generating vast amounts of energy, illuminating the system. \n\n§HWe can now use decisions on the fusion candle in order to create moons, or planets, orbiting it.§!"
+ ssh_cn.129.a: "Awesome!"
+
+ # Artificial Star
+ ssh_cn.130.name: "Dark Matter Containers Completed"
+ ssh_cn.130.desc: "We have completed the construction of the dark matter containers and successfully trapped quite some dark matter inside them. \n\nThe dark matter, while not interacting with physical matter, does generate gravity and will make it easier for us to form a star with as few hydrogen as possible."
+ ssh_cn.130.a: "Good Job."
+ 
+ ssh_cn.131.name: "Hydrogen Distribution Platform Installed"
+ ssh_cn.131.desc: "We have completed the construction of hydrogen distribution platform around the dark matter containers in our soon to be interstellar system. \nThis large ring will dump gargantuan amounts of hydrogen onto the foundation below, until heat and pressure force it to trigger a fusion reaction and therefore create a star. \nThis artificial star will shine way more dim than natural ones and its gravity will be way weaker, but the dark matter allows us to ignore adding heavy elements to it and solely use hydrogen instead."
+ ssh_cn.131.a: "Well Done."
+
+ ssh_cn.132.name: "Successful Star Formation!"
+ ssh_cn.132.desc: "It is done! \nWe have successfully ignited an artificial star after years of dumping gargantuan amounts of hydrogen onto the foundation. Even though the star has way less gravity and shines way more dim than natural ones, it still allows us to furtherly utilise the system now. \n\nThis is a great day. \n\n§HWe can now use decisions on the star in order to create planets orbiting it.§!"
+ ssh_cn.132.a: "Sweet!"
+
+ # Artificial Black Hole
+ ssh_cn.139.name: "Iron Sphere Completed"
+ ssh_cn.139.desc: "We have accumulated enough heavy elements and compressed them into the dense sphere that will be collapsed into a black hole soon. \nThe dark matter at its core generates enough additional gravity to hold the sphere together. Our next step is to install the antimatter explosives on the outside to implode it later on."
+ ssh_cn.139.a: "Acknowledged."
+
+ ssh_cn.140.name: "Explosives Installed"
+ ssh_cn.140.desc: "We have evenly distributed antimatter explosives around the outside of the iron sphere. \nThe devices are ready to be detonated. Once we activate them, the shockwave will compress the iron sphere to a degree beyond its event horizon, collapsing it into a singularity."
+ ssh_cn.140.a: "Good."
+
+ ssh_cn.141.name: "Black Hole Created!"
+ ssh_cn.141.desc: "It is done. Everything went according to plan, the behemoth iron sphere has collapsed into a small but stable singularity. \nWe can now utilise the system for planet creation or megastructure construction."
+ ssh_cn.141.a: "Good."
+ ssh_cn.141.b: "Great!"
+
+ # Shellworld decisions
+ ssh_on.24.name: "Shellworld Core Encased"
+ ssh_on.24.desc: "We have successfully turned our shellworld's innermost layer into an ecumenopolis! \nDense cities cover the core's surface and its natural geosphere is no longer discernible from the outer layers. \nThis most certainly is a great day for us."
+ ssh_on.24.a: "Great."
+
+ ssh_on.25.name: "Shellworld Hive Core"
+ ssh_on.25.desc: "We have successfully turned our shellworld's innermost layer into a living hive world! \nIts surface is now covered in a thriving flora and fauna connected to our consciousness. \nThis most certainly is a great day for us."
+ ssh_on.25.a: "The Hive grows."
+
+ ssh_on.26.name: "Shellworld Machine Core"
+ ssh_on.26.desc: "We have successfully turned our shellworld's innermost layer into a giant computing complex connected to our central node! \nIts surface is now covered in artificial structures that help maintaining our drones and assign tasks for them. \nThis most certainly is a great day for us."
+ ssh_on.26.a: "Maximizing Efficiency."
+
+ # Basement Gateway
+ ssh_cn.133.name: "Basement Gateway: Foundation"
+ ssh_cn.133.desc: "We have completed our construction platform for the Basement Gateway. \nIt will consist of the Entanglement Device and the shell along with the Gamma Ray Lense. Once completed, the star's gamma ray outbursts will be channeled and redirected so that it can be fired into the Basement Universe to 'inflate' it. Before we can warp spacetime into said basement realm though, we must first destabilize spacetime around this star to increase the chances of spontaneous quantum foam wormholes forming. We will require to accumulate lots of raw elements in form of §Y$sr_nuclei_soup$§! along with §Y$sr_hydrogen$§! to allow for star and planet formation. These elements will be located to one spot where we will create the basement realm by entangling a quantum foam wormhole for a short amount of time. In that moment we will trigger a huge matter-antimatter explosion to fire these elements into the wormhole along with the channeled beam of the star, expanding into a negative area on the other side, creating a 'Basement Universe'. In case of a successful creation, we will have to wait until said universe has expanded, the heat has cooled down and the elements have distributed and formed first proto-planets, after which we will be able to send in a probe to search for a habitable zone. \n\n§HThis process will take quite some time and require tremendous amounts of research.§!"
+ ssh_cn.133.a: "Acknowledged."
+
+ ssh_cn.134.name: "Basement Gateway: Entanglement Device"
+ ssh_cn.134.desc: "The Basement Gateway's Entanglement Device has been completed. \nIt will use the destabilized spacetime near this star to create the basement realm by entangling a quantum foam wormhole for a short amount of time. The mass, energy and heat we will pump into it will cause it to expand into a negative area on the other side, creating the basement realm. \nOur next step is to encase the star in a robust shell and construct the Gamma Ray Lense."
+ ssh_cn.134.a: "Good."
+
+ ssh_cn.135.name: "Basement Gateway: Gamma Ray Lense"
+ ssh_cn.135.desc: "The Basement Gateway's Gamma Ray Lense has been completed. \nIt will channel and redirect the star's polar gamma ray outbursts so that they can be fired into the stabilized quantum foam wormhole to 'inflate' it into negative space on the other side. \nOur next step is to use dark matter to destabilize the local spacetime near the star to increase the chances of spontaneous quantum foam wormholes appearing."
+ ssh_cn.135.a: "Almost there."
+
+ ssh_cn.136.name: "Spacetime Destabilized"
+ ssh_cn.136.desc: "The spacetime in the §Y[FromFromFrom.System.GetName]§! System has been destabilized enough that our sensors can detect an increase in quantum wormhole formations. \nBefore we can entangle one, we need to accumulate lots of raw elements in form of §B$sr_nuclei_soup$§! and §B$sr_hydrogen$§! to detonate and therefore distribute into the basement realm on creation for star and planet formation. This artificial 'big bang' will require tremendous amounts of energy, so we are advised to use §HDyson Spheres§!, §HStellar Hoops§! or §HStellar Harvesters§! for energy production."
+ ssh_cn.136.a: "One more step."
+
+ ssh_cn.137.name: "Basement Universe Created!"
+ ssh_cn.137.desc: "We have successfully created a Basement Universe! \nThe Basement Gateway has successfully found and entangled a quantum foam wormhole, which we distributed our vast stockpile of hydrogen and nuclei soup into by detonation. The star's gamma ray outbursts are being redirected into the basement realm as well, ensuring its expansion. The Basement Universe contains way too much concentrated heat and radiation right now though, so we'll have to wait until it has fully expanded and cooled down. After that we can send in a probe to search for a habitable zone. \n\n§HOur scientists estimate that this process will take about §Y5 Years§! at least.§!"
+ ssh_cn.137.a: "Great."
+
+ ssh_cn.138.name: "§YBasement Universe Ready§!"
+ ssh_cn.138.desc: "Our Basement Gateway's star has been depleted, as most of its outer layers along with its gamma ray energy have been distributed into the wormhole below. \nOur sensor data from the structure suggests that by now the basement realm has expanded and cooled down enough to send in a first habitation probe. \n\nOnce we have found a suitable location to settle in, we will finally have to construct a huge colony ship to carry our population. We might be able to recycle most of the Basement Gateway's resources to save construction costs. \n\n§HTo conduct the special project we need a construction ship in the §Y[FromFromFromFrom.System.GetName]§! System.§!"
+ ssh_cn.138.a: "Almost there."
+
+ # Habitable Dyson
+ ssh_cn.142.name: "Stellar Shellworld Construction"
+ ssh_cn.142.desc: "We have installed the requirements to turn our Dyson Sphere in the §Y[From.System.GetName]§! System into a Stellar Shellworld. \nMost of its energy output will directly be transfered to satisfy the construction power requirements, meaning its energy output will greatly decrease. To turn the outside of the Dyson Sphere habitable, we must first install the means of redirecting the immense surplus heat from the star and construct a thick layer of radiation shielding afterwards. Our engineers propose we construct many heat pumps reaching into the sphere, which will get rid of the surplus heat and can utilise a part of it to act as giant light bulbs on the surface as well."
+ ssh_cn.142.a: "Good."
+
+ ssh_cn.143.name: "Heat Pumps Installed"
+ ssh_cn.143.desc: "We have installed the heat pumps on our Dyson Sphere in the §Y[From.System.GetName]§! System. \nMost of the surplus heat from below is now being transported into outer space, whilst a small part of it is utilised to power giant light bulbs on the surface. The surface of the Dyson Sphere is currently way too thin to be considered habitable even in the slightest. Our final step is to deploy a thick radiation shield to block the immense amount of radiation passing through the thin surface of the sphere and install life support systems on its surface."
+ ssh_cn.143.a: "Almost there."
+
+ ssh_cn.144.name: "Stellar Shellworld Completed!"
+ ssh_cn.144.desc: "We have successfully turned our Dyson Sphere in the §Y[From.System.GetName]§! System into a giant Shellworld. \nThe surplus heat from below the surface is safely being transported into outer space, whilst a small part of it powers giant light bulbs illuminating the surface. A thick radiation shield is blocking most of the hazardous radiation passing through the surface of the sphere, and life support systems ensure the surface can be colonized safely. \nThis certainly is a great day."
+ ssh_cn.144.a: "Incredible."
+
+ # Horizon Brain
+ ssh_cn.145.name: "Horizon Brain Construction"
+ ssh_cn.145.desc: "We have completed our construction platform for our future Horizon Brain in the §Y[From.System.GetName]§! System. \nOnce finished, this behemoth computing complex will uncover the secrets of the universe and allow for the simulation of entire universes for our species until the end of time, long after the final stars have faded out."
+ ssh_cn.145.a: "Much work lies ahead of us."
+
+ ssh_cn.146.name: "Penrose Sphere Completed"
+ ssh_cn.146.desc: "We have successfully encased the black hole in the §Y[From.System.GetName]§! System in a reflective sphere. We can now harvest the energy of the black hole's ergosphere, which will power the computing complex. Our next step is to install the central processing complex of the Horizon Brain."
+ ssh_cn.146.a: "Good."
+
+ ssh_cn.147.name: "Central Processing Complex Installed"
+ ssh_cn.147.desc: "We have successfully installed the central processing complex on our Horizon Brain. \nIt is now able to use the black hole's energy to solve complex equations at an insanely fast rate. Our next step is to construct the Computing Grid to distribute processing power to the synaptic pods later on."
+ ssh_cn.147.a: "Good."
+
+ ssh_cn.148.name: "Computing Grid Completed"
+ ssh_cn.148.desc: "We are almost there. \nThe Computing Grid equally distributes the power of the Horizon Brain across its surface, where our final step is to now construct the synaptic pods so that we can link our population to the Brain."
+ ssh_cn.148.a: "Incredible."
+
+ ssh_cn.149.name: "Horizon Brain Completed!"
+ ssh_cn.149.desc: "This is a great day. The Horizon Brain has been completed. \nThis marvel of engineering and computer science taps the black hole for energy to simulate an entire virtual universe for any lifeform connected to one of its many neural pods. Even after the last stars will have faded out, this structure will ensure our civilization to outlive the death of the universe in the far future."
+ ssh_cn.149.a: "Eureka!"
+
+ # Captive Star
+ ssh_cn.150.name: "Captive Star Foundation"
+ ssh_cn.150.desc: "We have completed the construction platform orbiting §Y[From.GetName]§!. \nIt will serve as the foundation from which we construct the Dyson Sphere around the star as well as its lense and thrusters later on. The planets inside this solar system will provide a great source of construction material additional to our alloys. \n\n§PThis will remove all planets in the system!§!"
+ ssh_cn.150.a: "Much work lies ahead of us."
+ ssh_cn.151.name: "Frame Completed"
+ ssh_cn.151.desc: "We have completed the construction of the Dyson Sphere frame around §Y[From.GetName]§!. \nThe planets inside the system have been dismantled to reduce the material cost of the megastructure. We need to build and install most of the mirror panels first before we can construct the lense and thrusters to redirect the star's outputs into this lense and channel them into the thrusters. \n\n§HNote that the ship must be designed in the §YShip Designer§! before construction is completed!§!"
+ ssh_cn.151.a: "Good."
+ ssh_cn.152.name: "Dyson Half Completed"
+ ssh_cn.152.desc: "We have completed the construction of the first few Dyson Sphere panels for our future System Killer-Weapon. \nToo much energy is radiated into space still, to generate thrust for the vessel we need to complete the Dyson Sphere except for one hole where the lense and thrusters will be located."
+ ssh_cn.152.a: "Almost there."
+ ssh_cn.153.name: "Sphere Completed"
+ ssh_cn.153.desc: "We have completed the construction of the Dyson Sphere for our future System Killer-Weapon. \nThe energy of the star is collected with the mirror panels and serves our energy stockpile at the moment. The final step of our vessel is to construct the behemoth lense to focus the collected energy into a highly concentrated beam, which will then propel the vessel through the gargantuan thrusters on the back of the ship so that we can move the star. \n\n§HNote that the ship must be designed in the §YShip Designer§! before construction is completed!§!"
+ ssh_cn.153.a: "The Galaxy will fear us."
+ ssh_cn.154.name: "A Celestial Weapon"
+ ssh_cn.154_01.desc: "It is done. We have successfully constructed the behemoth lense and thrusters and mounted them onto the Dyson Sphere around §Y[From.GetName]§!. \nThe energy of the encased star is collected with the mirror panels and redirected into the lense to focus it into a highly concentrated beam, which propels the vessel through the gargantuan thrusters on the back of the ship. \nAlbeit being slow and unable to defend itself on its own, we are now in possession of a §PSystem Killer-Class§! Weapon. \n\nOnce we collide the star with another star, the resulting supernova will annihilate everything in the system, so we should make sure to escort our fleets outside of nearby space to prevent them from being harmed by the explosion. \nIt should also be noted that in case of the vessel being destructed, the star inside will be released, likely causing massive ecological damage to any nearby planet. \n\nIn any case, this weapon will certainly be useful in any future conflict and ensure our superiority."
+ ssh_cn.154_02.desc: "It is done once again. We have successfully constructed the behemoth lense and thrusters and mounted them onto the Dyson Sphere around §Y[From.GetName]§!. \nThe energy of the encased star is collected with the mirror panels and redirected into the lense to focus it into a highly concentrated beam, which propels the vessel through the gargantuan thrusters on the back of the ship. \nAlbeit being slow and unable to defend itself on its own, we are once again in possession of yet another §PSystem Killer-Class§! Weapon. \n\nOnce we collide the star with another star, the resulting supernova will annihilate everything in the system, so we should make sure to escort our fleets outside of nearby space to prevent them from being harmed by the explosion. \nIt should also be noted that in case of the vessel being destructed, the star inside will be released, likely causing massive ecological damage to any nearby planet. \n\nIn any case, these weapons will certainly be useful in any future conflict and ensure our superiority."
+ ssh_cn.154.a: "This changes everything."
+ ssh_cn.154.b: "No one shall dare to harm us now."
+ ssh_cn.154.c: "The galaxy shall tremble."
+ ssh_cn.154.d: "<<Organic disinfection potential maximized.>>"

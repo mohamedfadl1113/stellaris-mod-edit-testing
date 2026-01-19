@@ -1,0 +1,112 @@
+﻿l_english:
+ 
+ ##################
+ # Enclave Events #
+ ##################
+
+ # The Company #[from.contact_country.GetName] [event_target:company_enclave.GetName]
+ company_enclave_header: "The Company"
+ ssh_enclave.5.desc: "The Company is hiring! \n\nWelcome, welcome [Species.GetNamePlural]! \nI'm an ambassador sent by the Company. We run efficient programmes of planetary industrial cleanup operations. Our skilled crews make sure to collect any scrap left behind by previous inhabitants for a new and clean environment. \nDo you, by any chance, have any assets looking for employment?"
+ ssh_enclave.5.a: "End Communications."
+ 
+ ssh_enclave.19.desc_01: "Bah! Filthy [Species.GetNamePlural]! \nYour never ending hunger exceeds even Jeb's endless appetite. You are a threat to our profits. Be gone, the Company wants to have nothing to do with you!"
+ ssh_enclave.19.desc_02: "Filthy [Species.GetNamePlural]! \nYour pointless slaughter of innocents makes our CEO's stomach turn! Your pitiful species wouldn't even survive a night on Gordion. Be gone, you filthy useless assets!"
+ ssh_enclave.19.desc_03: "Filthy [Species.GetNamePlural]! \nYour corrupted code makes you even worse than the Old Birds on Embrion! You are nothing more but scrap to be collected by our employees. Be gone!"
+ ssh_enclave.19.a: "Prey..."
+ ssh_enclave.19.b: "Vermin!"
+ ssh_enclave.19.c: "ID: §R-Organic Vermin-§!"
+
+ ssh_enclave.20.desc_01: "Well met, [Species.GetNamePlural]. \nOur profit quotas this year have all successfully been reached!"
+ ssh_enclave.20.desc_02: "The Company is hiring! \nWould you, by any chance, be interested in signing an asset contract?"
+ ssh_enclave.20.desc_03: "The Company is hiring! \nAre there, by any chance, any [Species.GetNamePlural] looking for employment?"
+ ssh_enclave.20.desc_04: "The Company will swiftly deal with any asset not reaching the quota. We must gain profits, after all."
+ ssh_enclave.20.desc_05: "You have a truly fascinating biology, [Species.GetNamePlural]. \nImagine how many scrap collector crews could be working simultaneously under a hive mind!"
+ ssh_enclave.20.desc_06: "We are more alike than you think, [Species.GetNamePlural]."
+ ssh_enclave.20.desc_07: "[Species.GetNamePlural]! \nHow delightful. Your assets are working great, the quota has almost always been reached so far! \nOf course, any asset not reaching the quota has been dealt with."
+ ssh_enclave.20.desc_08: "[Species.GetNamePlural]! \nWe see you are leaving many... byproducts. Do you need a swift and professional scrap clean-up operation?"
+ ssh_enclave.20.desc_09: "[Species.GetNamePlural]! \nThe Company shows great interest in your methods of scavenging debris. Would you be interested in a mutually beneficial contract?"
+ ssh_enclave.20.a: "We'd like to purchase some scrap."
+ ssh_enclave.20.a.tooltip: "Buy Scrap in form of £alloys£ $alloys$, £minerals£ $minerals$ or £exotic_gases£ £volatile_motes£ £rare_crystals£ §YStrategic Resources§! from the Company"
+ ssh_enclave.20.b: "We'd like to purchase some scrap."
+ ssh_enclave.20.scrap.cooldown.response: "Unfortunately, our current scrap stockpile has been depleted. We have already sent out new crews to collect more scrap, but it will take some time to replenish our stockpile."
+ ssh_enclave.20.c: "We'd be interested in a Clean-Up Operation."
+ ssh_enclave.20.c.tooltip: "Pay the Company to clean any debris from a colony"
+ ssh_enclave.20.d: "We'd be interested in a Clean-Up Operation."
+ ssh_enclave.20.cleanup.ongoing.response: "Unfortunately, all our clean-up crews are currently busy. We have to wait a bit for them to return home."
+ ssh_enclave.20.e: "We'd be interested in a Clean-Up Operation."
+ ssh_enclave.20.cleanup.cooldown.response: "Unfortunately a few valuable assets were lost during our last clean-up operation. We are currently hiring and teaching new assets, but we need some time before we can perform another clean-up."
+ ssh_enclave.20.f: "We'd like to trade Assets."
+ ssh_enclave.20.sell_assets.tooltip: "The Company can always use more assets!"
+ ssh_enclave.20.g: "End Communications."
+
+ ssh_enclave.21.desc_01: "Well met, [Species.GetNamePlural]. \nOur profit quotas this year have all successfully been reached!"
+ ssh_enclave.21.desc_02: "The Company is hiring! \nWould you, by any chance, be interested in signing an asset contract?"
+ ssh_enclave.21.desc_03: "The Company is hiring! \nAre there, by any chance, any [Species.GetNamePlural] looking for employment?"
+ ssh_enclave.21.desc_04: "The Company will swiftly deal with any asset not reaching the quota. We must gain profits, after all."
+ ssh_enclave.21.desc_05: "You have a truly fascinating biology, [Species.GetNamePlural]. \nImagine how many scrap collector crews could be working simultaneously under a hive mind!"
+ ssh_enclave.21.desc_06: "We are more alike than you think, [Species.GetNamePlural]."
+ ssh_enclave.21.desc_07: "[Species.GetNamePlural]! \nHow delightful. Your assets are working great, the quota has almost always been reached so far! \nOf course, any asset not reaching the quota has been dealt with."
+ ssh_enclave.21.desc_08: "[Species.GetNamePlural]! \nWe see you are leaving many... byproducts. Do you need a swift and professional scrap clean-up operation?"
+ ssh_enclave.21.desc_09: "[Species.GetNamePlural]! \nThe Company shows great interest in your methods of scavenging debris. Would you be interested in a mutually beneficial contract?"
+ ssh_enclave.21.a: "We'd like to purchase some scrap."
+ ssh_enclave.21.b: "We'd like to purchase some scrap."
+ ssh_enclave.21.c: "We'd be interested in a Clean-Up Operation."
+ ssh_enclave.21.d: "We'd be interested in a Clean-Up Operation."
+ ssh_enclave.21.e: "We'd be interested in a Clean-Up Operation."
+ ssh_enclave.21.f: "End Communications."
+
+ ssh_enclave.30.desc: "Of course! \nWe have some surplus scrap which we store in unused storages. Since we don't keep track of what scrap is stored in which storage, we can't exactly tell you what you get, but we would gladly have you take off some of this surplus scrap nontheless. \nWould you like to buy the contents of such a storage?"
+ ssh_enclave.30.a: "Purchase a §YScrap Storage§!"
+ ssh_enclave.30.b: "On second thought..."
+ ssh_enclave.30.c: "End Communications."
+
+ ssh_enclave.31_01.desc: "§HWe unlock the gate and open the storage.§! \n\nThe storage is filled with a huge stockpile of broken ship parts and other metallic objects."
+ ssh_enclave.31_02.desc: "§HWe unlock the gate and open the storage.§! \n\nThe storage contains a stockpile of metallic objects and various mined minerals."
+ ssh_enclave.31_03.desc: "§HWe unlock the gate and open the storage.§! \n\nThe storage contains a large stockpile of various different types of crystals, chemical jugs and other advanced resources."
+ ssh_enclave.31_04.desc: "§HWe unlock the gate and open the storage.§! \n\nThe storage smells terrible - There's a huge pile of rotten fruits from various different planets next to other piles of metallic scrap."
+ ssh_enclave.31_05.desc: "§HWe unlock the gate and open the storage.§! \n\nThe storage is filled with various electronic devices, some of which appear to still be intact!"
+ ssh_enclave.31_06.desc: "§HWe unlock the gate and open the storage.§! \n\nThe storage appears to be empty - But then we recognize a thick layer of exotic dust on the floor."
+ ssh_enclave.31_07.desc: "§HWe unlock the gate and open the storage.§! \n\nThe storage is filled with a dust-like layer of tiny complex nanobots, drowned in a pool of some sort of exotic liquid metal!"
+ ssh_enclave.31_08.desc: "§HWe unlock the gate and open the storage.§! \n\nThe storage contains various different artifacts from past alien cultures!"
+ ssh_enclave.31_09.desc: "§HWe unlock the gate and open the storage.§! \n\nWhat's that smell?! \nThe storage contains a huge stockpile of employee corpses! What happened to them?!"
+ ssh_enclave.31_10.desc: "§HWe unlock the gate and open the storage.§! \n\nWhat's that smell?! \nThe storage contains a huge stockpile of employee corpses! On top of them lies what resembles a bloody page. What happened to them?"
+ ssh_enclave.31_11.desc: "§HWe unlock the gate and open the storage.§! \n\nThe storage contains a stockpile of highly advanced broken ship parts. Some of these appear to be made of some sort of ultra robust elements!"
+
+ ssh_enclave.31.a: "Re-Animate the dead employees!"
+ ssh_enclave.31.b: "Very Well."
+ ssh_enclave.31.c: "End Communications."
+
+ ssh_enclave.40.desc: "Of course! \nThe Company would be happy to send one of our experienced crews to clean up one of your planets. \nAny debris left behind by ground battle, bombardment or other conflicts will swiftly be collected and removed. \n\nWhich planet should be cleaned?"
+ ssh_enclave.cleanup.tooltip: "The Company will send a crew to our planet to clean up any debris. \n§HRemoves any §YPlanet Devastation§!§!"
+ ssh_enclave.40.a: "[event_target:company_cleanup_planet_1.GetName]"
+ ssh_enclave.40.b: "[event_target:company_cleanup_planet_2.GetName]"
+ ssh_enclave.40.c: "[event_target:company_cleanup_planet_3.GetName]"
+ ssh_enclave.40.d: "[event_target:company_cleanup_planet_4.GetName]"
+ ssh_enclave.40.e: "[event_target:company_cleanup_planet_5.GetName]"
+ ssh_enclave.40.f: "On second thought..."
+ ssh_enclave.40.g: "End Communications."
+
+ ssh_enclave.42.desc: "Very well, a great investment! \nWe have sent out one of our highly skilled crews to the destination. The planet will be cleaned from any scrap within 30 days. \nThank you for your purchase, and always remember: The Company is there for you!"
+ ssh_enclave.cleanup_started.tooltip: "The Company will make sure to remove any §YPlanet Devastation§! on our planet."
+ ssh_enclave.42.a: "There was something else."
+ ssh_enclave.42.b: "End Communications."
+
+ ssh_enclave.43_01.desc: "[Species.GetNamePlural]! \nThe planetary cleanup operation has been successful. Our assets have made sure that every piece of scrap has been collected and swiftly removed. \nThank you for using the Company's services!"
+ ssh_enclave.43_02.desc: "[Species.GetNamePlural]! \nUnfortunately, there were... complications during the planetary cleanup operation. Our employee crew somehow went missing. The Company has already started an investigation and will make sure to deal with these incompetent assets at once. \nThere are no refunds. Thank you for using the Company's services!"
+ ssh_enclave.43.a: "Very Well."
+ ssh_enclave.43.b: "What?!"
+
+ ssh_enclave.50.desc: "Great! The Company can always use more assets! The job is simple. \nYou have your very own ship! Your very own crew! \nYour job? Collect worthless garbage and return it to the Company Desk. It's easy!"
+ ssh_enclave.50.a: "It's a deal!"
+ ssh_enclave.50.a.tooltip: "We will §Bsell§! an enslaved or purged £pops£ §YPop§! to The Company."
+ ssh_enclave.50.b: "On second thought..."
+
+ ssh_enclave.51.desc: "A wonderful deal! \nWe trust they will be a great asset to the Company."
+ ssh_enclave.51.a: "There was something else..."
+ ssh_enclave.51.b: "End Communications."
+
+
+ ### Artisan Troupe Events ###
+ ssh_enclave.200.desc: "[This.GetName]! How delightful! \n\nWe've taken notice of your recently finished megastructure. It's truly an artistic masterpiece on a scale the galaxy has never seen before! \nCongratulations, really impressive!"
+ ssh_enclave.200.a: "Glad you like it."
+ ssh_enclave.200.b: "Scum."

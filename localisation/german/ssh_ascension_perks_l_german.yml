@@ -1,0 +1,14 @@
+﻿l_german:
+ 
+ ##### ASCENSION PERKS #####
+ 
+ ap_galactic_hyperstructures: "Galactische Hyperstrukturen"
+ ap_galactic_hyperstructures_desc: "Unser Einfallsreichtum kennt keine Grenzen. Wir werden unseren wissenschaftlichen Fokus noch mehr auf sowohl den Makro- als auch Mikrokosmos wenden, um noch größere Megastrukturen zu erschaffen."
+ 
+ ssh_add_research_options_galactic_hyperstructures: "Schaltet die folgenden Forschungen frei: \n§Y$ssh_tech_stellar_hoop$§! \n§Y$ssh_tech_gas_giant_compression$§! \n§Y$ssh_tech_black_hole_shellworld$§! \n§Y$ssh_tech_stellar_harvester$§! \n§Y$ssh_tech_star_disassembler$§! \n§Y$ssh_tech_microscale_engineering$§! \n§Y$ssh_tech_discworld$§! \n§Y$ssh_tech_hoopworld$§!"
+
+
+ ap_hyperdimensional_ascension: "Hyperdimensionaler Aufstieg"
+ ap_hyperdimensional_ascension_desc: "Wir können bereits die Bausteine dieser Realität manipulieren - Ein letzter Schub und wir könnten sie brechen. §RWir werden jede einzelne Dimensionale Barriere zerreißen, und vereinen sie zu einer §Hneuen, ultimativen Realität§! §R- Und wir werden diejenigen sein, die in diese aufsteigen.§!"
+
+ ssh_add_research_options_hyperdimensional_ascension: "Schaltet folgende Forschung frei: \n§YRealitätsformung§!"

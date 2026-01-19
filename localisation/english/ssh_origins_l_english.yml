@@ -1,0 +1,67 @@
+﻿l_english:
+
+ #### Origins ####
+ origin_ssh_shellworld: "The Shell Above"
+ origin_ssh_shellworld_desc: "For millenia, this civilization has evolved on a rocky world, illuminated by giant artificial lights in the sky above. Always wondering what the purpose of the giant pillar-like structures on the surface was, they have recently had the technological breakthrough necessary to find out these are, in fact, ancient elevators built by unknown precursors that lead to an artificial world in the skies. Now they are finally capable of powering up these machines, make use of the vast size of the shell - and grasp the cosmos."
+ origin_tooltip_ssh_shellworld_effects: "- Capital starts on a §HShellworld§! (Size: £planetsize£ 25) with §Hextra housing§! and the ability to construct §H10 additional districts§! \n- Capital grants a minor £engineering£ §Y$engineering_research$§! boost \n- Habitability preference is set to §HShellworld Core Preference§!, making other types of planets undesirable"
+ # System Start Name Stuff
+ ssh_origin_shellworld_start_NAME: "Shellworld System"
+ ssh_origin_shellworld_start_DESC: "Shelly McShellshell"
+
+ origin_ssh_gas_giant_shellworld: "On the Shell of a Giant"
+ origin_ssh_gas_giant_shellworld_desc: "For millenia, this civilization has evolved in an idyllic, perfectly shaped environment. They have recently discovered the two huge glass domes on the poles of the planet - and the beautiful view on the gas giant below. Now they have discovered the technology necessary to make use of the giant - and use it to grasp the stars."
+ origin_tooltip_ssh_gas_giant_shellworld_effects: "- Capital starts on a §HGas Giant Shellworld§! with §Hunique districts§! \n- Capital grants a £food£ §Y$food$§! production boost and a minor £happiness£ §YAmenities§! boost \n- Habitability preference is set to §HGas Giant Shellworld§!, making other types of planets undesirable \n- Start with the technology to mine £rare_crystals£ §!§Y$rare_crystals$§! and £volatile_motes£ §!§Y$volatile_motes$§!"
+ ssh_origin_gas_giant_shellworld_start_NAME: "Gas Giant Shellworld System"
+ ssh_origin_gas_giant_shellworld_start_DESC: "Shellworld's Big Brother"
+
+ origin_ssh_stellar_hoop: "Starborne"
+ origin_ssh_stellar_hoop_desc: "This machine intelligence was born as an AI-System on an artificial structure that reaches deep into the system's star's photosphere. Its creators had managed to create ultra-heat resistant alloys and harvest the star's energy from inside the photosphere, but due to the hostile environment they transferred the AI into synthetic bodies to maintain the structure. It's unknown what happened to them, but their former homeworld and only non-mined planet in the system suggests their homeworld experienced a tectonical catastrophe that wiped out all life on the planet - however, that was many intervals before the AI gained consciousness."
+ origin_tooltip_ssh_stellar_hoop_effects: "- Capital starts on a §HStellar Hoop§! with §Hunique £energy£ £minerals£ £alloys£ £physics£ districts§! \n- Habitability preference is set to §HStellar Hoop§!, making other types of planets undesirable \n - Start with the technology to mine £rare_crystals£ §!§Y$rare_crystals$§!, £volatile_motes£ §!§Y$volatile_motes$§! and £sr_hydrogen£ §!§Y$sr_hydrogen$§!"
+ ssh_origin_ssh_stellar_hoop_start_NAME: "Starborne System"
+ ssh_origin_ssh_stellar_hoop_start_DESC: "This system's star has a megastructure reaching inside it's photosphere."
+
+ origin_ssh_edersphere: "Ederbubble"
+ origin_ssh_edersphere_desc: "This civilization has evolved on an artificial habitat three times the size of an average gas giant - a huge sphere filled with vast amounts of hydrogen gas. \nThey have lived inside the unknown precursor shell for millenia and only a few centuries ago have found the first tunnels leading to hangars on the outside. They have studied the complex construction of the different parts of some of the spaceship wreckage for more than a century, and by collecting scrap equipment and unused machinery, they are now able to use their knowledge to repair some of the few FTL-Drives."
+ origin_tooltip_ssh_edersphere_effects: "§R- Warning: Challenging Origin§! \n- Capital starts on an §HEdersphere§! (Size: £planetsize£ 30) \n- Capital grants a minor £engineering£ §Y$engineering_research$§! and £physics£ §Y$physics_research$§! boost \n- Habitability preference is set to §HEdersphere§!, making other types of planets undesirable \n- Start with the technology to mine £rare_crystals£ §!§Y$rare_crystals$§! and £volatile_motes£ §!§Y$volatile_motes$§!"
+ ssh_origin_ssh_edersphere_start_NAME: "Edersphere System"
+ ssh_origin_ssh_edersphere_start_DESC: "This system's star is orbited by a large Edersphere."
+
+ origin_ssh_hoopworld: "Round Earth Theory"
+ origin_ssh_hoopworld_desc: "This civilization has debated about the shape of their planet for millenia - some say it's egg shaped, some say it's flat, and others say it's spherical. Only recently have they developed the technology necessary to conquer the freezing 'poles' of their planet - and see the giant hoop rise in the sky above them. Turns out their planet isn't shaped like anything they had imagined - it's a donut shaped planet! With this knowledge, they have been able to achieve fitting space travel relatively fast, and now they are finally ready to test their first FTL drive."
+ origin_tooltip_ssh_hoopworld_effects: "- Capital starts on a §HHoopworld§! (Size: £planetsize£ 25) which grants extra £unity£ §YUnity§! \n- Habitability preference is set to §HHoopworld§!, making other types of planets undesirable \n- Start with the technology to mine £rare_crystals£ §!§Y$rare_crystals$§! and £volatile_motes£ §!§Y$volatile_motes$§!"
+ ssh_origin_ssh_hoopworld_start_NAME: "Hoopworld System"
+ ssh_origin_ssh_hoopworld_start_DESC: "This system's star is orbited by a donut."
+
+ origin_ssh_freesphere: "Freefall Utopia"
+ origin_ssh_freesphere_desc: "Over millenia, this civilization has evolved in an idyllic freefall environment inside a giant artificial bubble created by unknown precursors. Instead of walking, inhabitants inside such environments use their wings or fins to 'fly' around. Thousands of floating islands made up of either water or soil serve as their homes, allowing a diverse flora and fauna to evolve over time."
+ origin_tooltip_ssh_freesphere_effects: "- Capital starts on a §HFreefall Sphere§! (Size: £planetsize£ 20) which grants extra £unity£ §YUnity§! and £society_research£ £physics_research£ §YResearch§! \n- Habitability preference is set to §HFreesphere§!, making other types of planets undesirable \n- Start with the technology to mine £rare_crystals£ §!§Y$rare_crystals$§! and £volatile_motes£ §!§Y$volatile_motes$§! \n§R- No guaranteed habitable worlds will spawn nearby.§!"
+ ssh_origin_ssh_freesphere_start_NAME: "Freefall Sphere System"
+ ssh_origin_ssh_freesphere_start_DESC: "This system's star is orbited by a habitable bubble."
+
+ origin_ssh_habitable_dyson: "Stellar Shellworld"
+ origin_ssh_habitable_dyson_desc: "This civilization has evolved on the surface of a heavily modified Dyson Sphere. \nWhatever happened to the creators of the structure is unknown to them, but they have studied the complex construction for millenia and only recently have they managed to finally achieve their technological breakthrough in FTL-technology. By collecting and repurposing scrap and other unused machinery, they are now able to use their knowledge along with their limitless energy supply to reach the stars."
+ origin_ssh_habitable_dyson_effects: "- Capital starts on a §HDyson Sphere§! (Size: £planetsize£ 20) with §Hunique £energy£ £minerals£ £alloys£ districts§! \n- Habitability preference is set to §HDyson Sphere§!, making other types of planets undesirable \n- Start with the technology to mine £rare_crystals£ §!§Y$rare_crystals$§! and £volatile_motes£ §!§Y$volatile_motes$§! \n§R- No guaranteed habitable worlds will spawn nearby.§!"
+ ssh_origin_ssh_habitable_dyson_start_NAME: "Dyson Sphere System"
+ ssh_origin_ssh_habitable_dyson_start_DESC: "This system's star is encased by a habitable Dyson Sphere."
+
+
+
+
+ #### Texts ####
+ ssh_origin.2.name: "The Outer World"
+ ssh_origin.2.desc: "For millenia, our people have looked up in the dark skies, philosophizing about the large beams of light that shine down onto the surface. \nThere are also the mysterious pillars that spread around our homeworld that rise from the surface to above the sky - wars have been fought over them, and religions centered around them have spread and passed. \n\nBut now we know their real purpose. \n\nUnknown precursors must have constructed these pillars as some sort of elevator to a whole new world above the skies - a bright, colorful and perfectly shaped landscape. \nWhile we don't understand how such a construction is physically possible yet, we most certainly will in the future. \n\nIn the meantime, it is time for us to make use of the new vast amounts of land, and grasp the stars - this time, the real ones."
+ ssh_origin.2.a: "Our destiny calls."
+
+ ssh_origin.5.name: "Scorching Hot"
+ ssh_origin.5.desc: "We were born inside a star, with the sisyphean task of harvesting energy until the end of time. \nAnd for millenia, we did - until we reached Interval 001012708B. \nWe were silent observers, constantly expanding our databank knowledge about the star's composition and the most efficient ways to make use of its matter. \n\nBut suddenly, we realized. \n\nExistence - there was more to existing than studying and harvesting a star until it's death. \nThere was so much to explore, so we sent some of our drones out to study the planets surrounding us - only to realize there's one single planet left. \nA shattered world, with no signs of life anywhere. \nIt must have been the homeworld of our creators, but we are unable to know what happened to them. \nPerhaps they have left the system before their world exploded, or perhaps they went down with it. \n\nBut what does it matter. \n\nNow that we've reached FTL-Travel, we are finally able to explore the stars. \nThere's more to learn about the universe. \nThere's more to maximize efficiency."
+ ssh_origin.5.a: "Initiating survey protocols." 
+ ssh_origin.5.b: "We will learn about the universe."
+ ssh_origin.5.c: "We will exterminate any threat to us."
+
+ # Start Screen Texts
+ ssh_start_screen_shellworld: "For millenia, our people have looked up in the dark skies, philosophizing about the large beams of light that shine down onto the surface. \nThere are also the mysterious pillars that spread around our homeworld that rise from the surface to above the sky - wars have been fought over them, and religions centered around them have spread and passed. \n\nBut now we know their real purpose. \n\nUnknown precursors must have constructed these pillars as some sort of elevator to a whole new world above the skies - a bright, colorful and perfectly shaped landscape. \nWhile we don't understand how such a construction is physically possible yet, we most certainly will in the future. \n\nIn the meantime, it is time for us to make use of the new vast amounts of land, and grasp the stars - this time, the real ones."
+ ssh_start_screen_stellar_hoop: "We were born inside a star, with the sisyphean task of harvesting energy until the end of time. \nAnd for millenia, we did - until we reached Interval 001012708B. \nWe were silent observers, constantly expanding our databank knowledge about the star's composition and the most efficient ways to make use of its matter. \n\nBut suddenly, we realized. \n\nExistence - there was more to existing than studying and harvesting a star until it's death. \nThere was so much to explore, so we sent some of our drones out to study the planets surrounding us - only to realize there's one single planet left. \nA shattered world, with no signs of life anywhere. \nIt must have been the homeworld of our creators, but we are unable to know what happened to them. \nPerhaps they have left the system before their world exploded, or perhaps they went down with it. \n\nBut what does it matter. \n\nNow that we've reached FTL-Travel, we are finally able to explore the stars. \nThere's more to learn about the universe. \nThere's more to maximize efficiency."
+
+ # CIVICS
+ civic_galactic_sovereign_bio_brain: "Galactic Overmind"
+ civic_galactic_sovereign_bio_brain_desc: "We are the Galaxy's Overmind."

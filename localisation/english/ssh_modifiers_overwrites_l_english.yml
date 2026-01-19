@@ -1,0 +1,35 @@
+﻿l_english:
+
+ ####################
+ # Modifier Effects #
+ ####################
+ mod_country_resource_max_minerals_add: "£minerals£ $minerals$! Storage Capacity"
+ mod_country_resource_max_alloys_add: "£alloys£ $alloys$ Storage Capacity"
+ mod_country_resource_max_energy_add: "£energy£ $energy$ Storage Capacity"
+ mod_country_resource_max_sr_dark_matter_add: "£sr_dark_matter£ $sr_dark_matter$ Storage Capacity"
+ mod_country_resource_max_sr_nanites_add: "£nanites£ $nanites$ Storage Capacity"
+ mod_country_resource_max_sr_hydrogen_add: "£sr_hydrogen£ $sr_hydrogen$ Storage Capacity"
+ mod_country_resource_max_sr_cultrobium_add: "£sr_cultrobium£ $sr_cultrobium$ Storage Capacity"
+ mod_country_resource_max_sr_nuclei_soup_add: "£sr_nuclei_soup£ $sr_nuclei_soup$ Storage Capacity"
+
+ mod_country_nanites_produces_mult: "£nanites£ $nanites$ Production"
+ mod_country_sr_cultrobium_produces_mult: "Monthly £sr_cultrobium£ Cultrobium"
+ 
+ mod_planet_jobs_sr_dark_matter_produces_mult: "£sr_dark_matter£ $sr_dark_matter$ from Jobs"
+ mod_planet_jobs_sr_cultrobium_produces_mult: "£sr_cultrobium£ $sr_cultrobium$ from Jobs"
+ planet_enforcers_physics_research_produces_add: "£physics£ $physics$ from £job_enforcer£ §H$job_enforcer_plural$§!"
+
+ mod_country_sr_dark_matter_produces_mult: "Monthly £sr_dark_matter£ $sr_dark_matter$"
+ mod_ships_sr_dark_matter_upkeep_mult: "£sr_dark_matter£ $sr_dark_matter$ Ship Upkeep"
+
+ mod_planet_pops_food_upkeep_mult: "Pop Food Upkeep"
+ mod_planet_livestock_rare_crystals_produces_add: "£rare_crystals£ $rare_crystals$ from §YLivestock§!"
+ mod_planet_livestock_exotic_gases_produces_add: "£exotic_gases£ $exotic_gases$ from §YLivestock§!"
+ mod_planet_livestock_volatile_motes_produces_add: "£volatile_motes£ $volatile_motes$ from §YLivestock§!"
+
+ mod_op_cat_infiltration_difficulty_mult: "Infiltration Difficulty"
+ mod_op_cat_infiltration_speed_mult: "Infiltration Speed"
+
+ mod_shipsize_ssh_dark_matter_missile_build_speed_mult: "§YDark Missile§! Construction Speed"
+ mod_shipsize_ssh_dark_matter_missile_hull_mult: "§YDark Missile§! Hull Points"
+ mod_quantum_catapult_ship_windup_mult: "Quantum Catapult Ship Windup"

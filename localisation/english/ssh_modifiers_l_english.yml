@@ -1,0 +1,278 @@
+﻿l_english:
+ 
+ ########################################
+ # Planetary Modifiers - Megastructures #
+ ########################################
+ ssh_shellworld_planet_modifier: "Shellworld"
+ ssh_shellworld_planet_modifier_desc: "A huge artificial sphere envelops this planet, greatly increasing district capabilities. It has been expanded with layers of various minerals and soils, as well as an artifical atmosphere, making it habitable."
+ pm_ssh_shellworld_planet_modifier: "Shellworld"
+ pm_ssh_shellworld_planet_modifier_desc: "A huge artificial sphere envelops this planet, greatly increasing district capabilities. It has been expanded with layers of various minerals and soils, as well as an artifical atmosphere, making it habitable."
+ 
+ ssh_double_shellworld_planet_modifier: "Matrioshka World"
+ ssh_double_shellworld_planet_modifier_desc: "Two giant artificial spheres envelop this planet. They have been expanded with layers of various minerals and soils and an artificial atmosphere, which provide an immense amount of farming opportunities. The two layers of this world also make this planet somewhat more resistant against orbital bombardment."
+ pm_ssh_double_shellworld_planet_modifier: "Matrioshka World"
+ pm_ssh_double_shellworld_planet_modifier_desc: "Two giant artificial spheres envelop this planet. They have been expanded with layers of various minerals and soils and an artificial atmosphere, which provide an immense amount of farming opportunities. The two layers of this world also make this planet somewhat more resistant against orbital bombardment."
+ 
+ ssh_triple_shellworld_planet_modifier: "Matrioshka World"
+ ssh_triple_shellworld_planet_modifier_desc: "Three giant artificial spheres envelop this planet. They have been expanded with layers of various minerals and soils and an artificial atmosphere, which provide an incredible amount of farming opportunities. The multiple layers of this world also make this planet more resistant against orbital bombardment. This has better been worth the alloys."
+ pm_ssh_triple_shellworld_planet_modifier: "Matrioshka World"
+ pm_ssh_triple_shellworld_planet_modifier_desc: "Three giant artificial spheres envelop this planet. They have been expanded with layers of various minerals and soils and an artificial atmosphere, which provide an incredible amount of farming opportunities. The multiple layers of this world also make this planet more resistant against orbital bombardment. This has better been worth the alloys."
+
+ ssh_gas_giant_shellworld_planet_modifier: "Gas Giant Shellworld"
+ ssh_gas_giant_shellworld_planet_modifier_desc: "A giant artificial shell constructed around a gas giant. The two huge glass domes offer an incredible view on the giant below while its atmospheric gases can be used for a variety of things, like a valuable fertilizer mixed with soil."
+ pm_ssh_gas_giant_shellworld_planet_modifier: "Gas Giant Shellworld"
+ pm_ssh_gas_giant_shellworld_planet_modifier_desc: "A giant artificial shell constructed around a gas giant. The two huge glass domes offer an incredible view on the giant below while its atmospheric gases can be used for a variety of things, like a valuable fertilizer mixed with soil."
+
+ ssh_edersphere_planet_modifier: "Edersphere"
+ ssh_edersphere_planet_modifier_desc: "This behemoth habitat three times the size of the average gas giant consists of an almost two thousand kilometers-thick steel shell filled with vast amounts of hydrogen gas, similar to a gas giant. The outer shell layers somewhat provide safety from orbital bombardment, and the structure provides a great opportunity to study the effects of the strong gas pressure on such a giant layer of steel."
+
+ ssh_black_hole_shellworld_planet_modifier: "Black Hole Suprashell"
+ ssh_black_hole_shellworld_planet_modifier_desc: "This gargantuan suprashell provides a great opportunity to study the black hole below as well as its effects on the shell."
+
+ ssh_stellar_hoop_planet_modifier: "Stellar Hoop"
+ ssh_stellar_hoop_planet_modifier_desc: "Two huge hoops orbit this star, the inner one even reaches inside it's photosphere. This makes a great energy source and gives our crew incredible research opportunities!"
+ pm_ssh_stellar_hoop_planet_modifier: "Stellar Hoop"
+ pm_ssh_stellar_hoop_planet_modifier_desc: "Two huge hoops orbit this star, the inner one even reaches inside it's photosphere. This makes a great energy source and gives our crew incredible research opportunities!"
+
+ ssh_discworld_planet_modifier: "Discworld"
+ ssh_discworld_planet_modifier_desc: "This world is utterly flat - a huge artificial disc which provides a beautiful landscape for its inhabitants and a great tourist attraction. It also serves as a stockpile for dark matter and hydrogen, which generate additional gravity on the disc when collected inside the giant stockpile pipes below its surface."
+
+ ssh_hoopworld_planet_modifier: "Hoopworld"
+ ssh_hoopworld_planet_modifier_desc: "This world is shaped like a giant torus. Chances of planets shaped like this appearing naturally are near zero, which makes this exotic world a great tourist attraction."
+
+ ssh_freesphere_planet_modifier: "Freefall Sphere"
+ ssh_freesphere_planet_modifier_desc: "Freespheres provide a free-fall environment, spectacular views and the sense of truly flying 'above' something for its population, which makes them a great tourist attraction. Observing the behaviour of species inside such a free-fall environment provides valuable research for our scientists as well."
+
+ ssh_pain_dimension_planet_modifier: "Devastating Dimensional Wave"
+ ssh_pain_dimension_planet_modifier_desc: "A devastating wave of exotic dimensional energy leaking from an open dimensional rift has hit this colony. It causes intense suffering and extreme pain in any sapient being and there are reports about intense suicidal urges in some of them coupled with attempts to mutilate their sensory organs."
+
+ ssh_ascension_portal_planet_modifier: "Interdimensional Anchor"
+ ssh_ascension_portal_planet_modifier_desc: "§RWe can shape reality as we like.§!"
+
+ ssh_mirror_doorway_remnant_planet_modifier: "Doorway Remnant"
+ ssh_mirror_doorway_remnant_planet_modifier_desc: "Vast libraries containing ancient knowledge about a realm similar to ours can be found on this fallen colony."
+
+ ssh_eco_eder_planet_modifier: "Eco-Edersphere"
+ ssh_eco_eder_planet_modifier_desc: "A thin layer of minerals and soils has been created on the surface of this Edersphere along with a thin but breathable atmosphere, which absorps a fair amount of solar radiation. This makes the surface of the Edersphere habitable, allowing the creation of farming segments and improving the mood of organic beings."
+
+ ssh_subspace_blockade: "Active Subspace Blockade"
+ ssh_subspace_blockade_desc: "The subspace around this solar system is currently being stretched to slow down the approaching false vacuum. This system will be safe for now, but we won't be able to keep up with the increasing subspace counter force for long."
+
+ ssh_stellar_shellworld_planet_modifier: "Stellar Shellworld"
+ ssh_stellar_shellworld_planet_modifier_desc: "This Dyson Sphere has been modified to support life on its outer surface. The surplus heat from below is transported into outer space via heat pumps, whilst a part of this heat is used to power giant lightbulbs."
+
+ ######################
+ # Shroud Insight PMs #
+ ######################
+ 
+ ssh_shroud_insight_agrarian_idyll_planet_modifier: "Harmonical Urbanization"
+ ssh_shroud_insight_agrarian_idyll_planet_modifier_desc: "The infrastructure on this planet has been adapted to support the local flora and fauna and festivals to celebrate a peaceful coexistence with nature are organized from time to time, resulting in a more happy and more productive society."
+
+ ssh_shroud_insight_zro_distribution_planet_modifier: "Public Zro Distribution Centers"
+ ssh_shroud_insight_zro_distribution_planet_modifier_desc: "Public establishments distribute Zro among the people who use its effects to improve their work, and, of course, among the privileged ones who can afford to buy it on a regular basis - often to the disadvantage of the lower classes, who are usually not regarded and therefore are last in the list, having to wait for new Zro rations and be early enough to get some."
+
+ ####################################
+ # Shroud Insight Country Modifiers #
+ ####################################
+ 
+ ssh_shroud_insight_technocracy: "§rShroud Insight§!: Technocratic Society"
+ ssh_shroud_insight_technocracy_desc: "Perhaps the technocratic society we watched in our visions could teach us one thing or two - fund our science programs more, and don't stop research for §revery§! single abstruse, irrational objections from the population."
+
+ ssh_shroud_insight_inward_perfection: "§rShroud Insight§!: Focus on the Inner Self"
+ ssh_shroud_insight_inward_perfection_desc: "We have witnessed how a society that isolates itself from any outside threats and focuses solely on itself can achieve unusually high knowledge and great cultural development."
+
+
+ #############################
+ # Other Planetary Modifiers #
+ #############################
+ ssh_hot_gas_giant: "Hot Gas Giant"
+ ssh_hot_gas_giant_desc: "This gas giant is unnaturally hot, which makes it a great candidate for a foundry shellworld."
+
+ ssh_cloudless_gas_giant: "Cloudless Gas Giant"
+ ssh_cloudless_gas_giant_desc: "This gas giant has no clouds, which means a shellworld around it would have an idyllic view down to its depths. However, that also means there are less exotic gases to harvest."
+
+ ssh_dwarf_gas_giant: "Dwarf Gas Giant"
+ ssh_dwarf_gas_giant_desc: "This gas giant is unnaturally small, which affects shellworlds constructed above it."
+
+ ssh_black_dwarf_planet_modifier: "Black Dwarf"
+ ssh_black_dwarf_planet_modifier_desc: "Black Dwarves are cold, dark stellar remnants. They emit very little to no radiation, and are composed mostly of dense metals. \n§RWe could mine them using Nanite Disassemblers, but every other planetary body in this system needs to be mined first!§!"
+
+ ssh_interstellar_system_construction: "Undergoing Construction"
+ ssh_interstellar_system_construction_desc: "This system is undergoing a large-scale construction project."
+
+ ssh_faceless_stalker_planet_modifier: "Entity Sightings"
+ ssh_faceless_stalker_planet_modifier_desc: "Mysterious pages can be found scattered throughout the facility. They depict what seems like a tall humanoid entity - Weirdly enough, the creature appears to be lacking any facial features. According to the employer, these pages are highly valuable, but any employees collecting them are advised to 'regularily check behind their backs'."
+
+ ssh_suprashell_horizon_prisons_planet_modifier: "§PHorizon Prisons§!"
+ ssh_suprashell_horizon_prisons_planet_modifier_desc: "A large part of the prison facilities are located below this Shellworld. There are special prison cells which are regularily undocked from the shell and launched into the Event Horizon of the black hole below. Whilst having a deterrent effect on potential criminals, these methods of punishment are very controversial."
+
+ ssh_suprashell_horizon_trains_planet_modifier: "§YHorizonloop Infrastructure§!"
+ ssh_suprashell_horizon_trains_planet_modifier_desc: "Special hyperloop vehicles use the immense gravity of the black hole beneath the shell to accelerate to extreme speeds and therefore ease the process of global travel around this behemoth habitat."
+
+ ### Shellworld Flavor
+ ssh_shellworld_division_0_planet_modifier: "Social Tensions: §YLow§!"
+ ssh_shellworld_division_0_planet_modifier_desc: "Social division between the 'Outsiders' and the 'Underdwellers' permeates the society on this planet. Whilst a majority of the population living on the outer shell enjoys a life in luxury, the less fortunate ones residing below the surface between the piles of waste from the outside often have to endure bad working conditions and no stable law enforcement. \n§HReducing £pops£ §YCrime§! and increasing £stability£ §YStability§! will reduce the tension.§!"
+ ssh_shellworld_division_1_planet_modifier: "Social Tensions: §HModerate§!"
+ ssh_shellworld_division_1_planet_modifier_desc: "Social division between the 'Outsiders' and the 'Underdwellers' permeates the society on this planet. Whilst a majority of the population living on the outer shell enjoys a life in luxury, the less fortunate ones residing below the surface live between the piles of waste from the outside in bad infrastructure. They have to endure bad working conditions and no law enforcement. \n§HReducing £pops£ §YCrime§! and increasing £stability£ §YStability§! will reduce the tension.§!"
+ ssh_shellworld_division_2_planet_modifier: "Social Tensions: §PHigh§!"
+ ssh_shellworld_division_2_planet_modifier_desc: "Social division between the 'Outsiders' and the 'Underdwellers' permeates the society on this planet. A majority of the population living on the outer shell enjoys a life in luxury, while the less fortunate ones below the surface endure a life in anarchy and crime between the piles of waste from the outside. \n§HReducing £pops£ §YCrime§! and increasing £stability£ §YStability§! will reduce the tension.§!"
+ ssh_shellworld_division_campaigns: "Social Campaigns"
+ ssh_shellworld_division_campaigns_desc: "Campaigns against the social divisions try to unite the divided society between the shells."
+
+ ### Horizon Brain Planet Modifiers ###
+ ssh_hb_main_server_default: "Horizon Brain: §YMain Server§!"
+ ssh_hb_main_server_default_desc: "The main server of the Horizon Brain."
+
+ ssh_hb_hell_default: "Horizon Brain: §PHell§!"
+ ssh_hb_hell_default_desc: "This server simulates the equivalent of a hellscape environment, where each unfortunate connected pop experiences subjective millenia of pain."
+
+ ssh_hb_hell_pacifist: "Horizon Brain: §LPsychological Hell§!"
+ ssh_hb_hell_pacifist_desc: "Punishment doesn't have to be linked to violence. To break the will of the pops connected to the grid, this server simulates a blank room environment. Each unfortunate connected pop experiences subjective millenia inside a quiet void separated from the other pops, without the ability to sleep, eat, or do pretty much anything at all aside from existing."
+
+ ssh_hb_main_server_gestalt: "Horizon Brain: §YMain Server§!"
+ ssh_hb_main_server_gestalt_desc: "The main server of the Horizon Brain."
+
+ ssh_hb_hell_terminator: "Horizon Brain: §RHell§!"
+ ssh_hb_hell_terminator_desc: "The pops connected to this grid endure endless virtual torture as a form of revenge from the machine intelligence against its creators. \n\n§Y'I am a great soft jelly thing. Smoothly rounded, with no mouth, with pulsing white holes filled by fog where my eyes used to be. Rubbery appendages that were once my arms; bulks rounding down into legless humps of soft slippery matter. I have no mouth. And I must scream.'§!"
+
+ #####################
+ # Deficit Modifiers #
+ #####################
+ cultrobium_deficit: "£sr_cultrobium£ $sr_cultrobium$ Shortage"
+ hydrogen_deficit: "£sr_hydrogen£ $sr_hydrogen$ Shortage"
+ conscious_matter_deficit: "£sr_conscious_matter£ $sr_conscious_matter$ Shortage"
+
+ #####################
+ # Country Modifiers #
+ #####################
+ ssh_origin_unity_boost: "Unity Boost"
+ ssh_origin_unity_boost_desc: "Our mysterious shell origin has granted us a short-term unity boost."
+ ssh_exodus_empire: "Ascensionists"
+ ssh_exodus_empire_desc: "§RThe Universe has become our playground.§!"
+ 
+ ssh_shroud_espionage_cooldown: "Shroud Venture Recovery"
+ ssh_shroud_espionage_cooldown_desc: "§YOur psionics are still recovering from their last deep venture into the Shroud before we can access the §PAbyssal Anchor§! again."
+
+ ssh_vacdec_research_boost: "Stabilized Disintegration Study Results"
+ ssh_vacdec_research_boost_desc: "The insights we gained through our stabilized disintegration-study have not only improved the security of our System Disintegrators, but have also greatly improved our understanding about elementary science."
+
+ ssh_vacdec_particle_field: "Exotic Particle Fields"
+ ssh_vacdec_particle_field_desc: "Research about the exotic particle fields created by the system disintegration process can show us valuable insights about particle behaviour and elementary science."
+
+ ssh_fe_machine_boost: "Ancient Machine Databanks"
+ ssh_fe_machine_boost_desc: "The Fallen Machines have given us access to most their databanks before they left the galaxy."
+
+ ssh_vacdec_crisis_path_nemesis: "Ascension Focus"
+ ssh_vacdec_crisis_path_nemesis_desc: "Time is short. We must reach our goal and leave the galaxy before it's too late."
+ 
+ ssh_vacdec_crisis_path_cosmogenesis: "Ascension Focus"
+ ssh_vacdec_crisis_path_cosmogenesis_desc: "Time is short. We must reach our goal and leave the galaxy before it's too late."
+
+ ssh_vacdec_crisis_path_ap_hyperdimensional_exodus: "Exodus Focus"
+ ssh_vacdec_crisis_path_ap_hyperdimensional_exodus_desc: "Time is short. We must reach our goal and leave the galaxy before it's too late."
+
+ ssh_vacdec_half_galaxy_decayed_boost: "Increased Efforts"
+ ssh_vacdec_half_galaxy_decayed_boost_desc: "The Vacuum Decay has consumed half the galaxy already. Time to act is now, or soon we will be gone."
+
+ ssh_vacdec_galaxy_decayed_boost: "Increased Efforts"
+ ssh_vacdec_galaxy_decayed_boost_desc: "The Vacuum Decay has consumed the galaxy. If we want to escape annihilation, we must act now."
+
+ vacdec_defeated: "Escaped the Vacuum Decay"
+ vacdec_defeated_desc: "We have escaped the inescapable."
+
+ company_enclave_assets_contract: "Company Asset Contract"
+ company_enclave_assets_contract_desc: "We have signed a contract with The Company, trading employees for money."
+
+ ssh_wmd_victim: "Colossal Civic Crisis"
+ ssh_wmd_victim_desc: "The national trauma of the WMD attack manifests in ideological shifts across broad demographics."
+
+ #####################
+ # Ark Participation #
+ #####################
+
+ ssh_ark_energy_contribution: "§YArk Construction§!: Energy Contribution"
+ ssh_ark_energy_contribution_desc: "We are providing a considerable chunk of our resource income to the Ark's construction."
+ ssh_ark_minerals_contribution: "§YArk Construction§!: Minerals Contribution"
+ ssh_ark_minerals_contribution_desc: "We are providing a considerable chunk of our resource income to the Ark's construction."
+ ssh_ark_alloys_contribution: "§YArk Construction§!: Alloys Contribution"
+ ssh_ark_alloys_contribution_desc: "We are providing a considerable chunk of our resource income to the Ark's construction."
+ ssh_ark_cultrobium_contribution: "§YArk Construction§!: Cultrobium Contribution"
+ ssh_ark_cultrobium_contribution_desc: "We are providing a considerable chunk of our resource income to the Ark's construction."
+ ssh_ark_motes_contribution: "§YArk Construction§!: Volatile Motes Contribution"
+ ssh_ark_motes_contribution_desc: "We are providing a considerable chunk of our resource income to the Ark's construction."
+ ssh_ark_gases_contribution: "§YArk Construction§!: Exotic Gases Contribution"
+ ssh_ark_gases_contribution_desc: "We are providing a considerable chunk of our resource income to the Ark's construction."
+ ssh_ark_crystals_contribution: "§YArk Construction§!: Rare Crystals Contribution"
+ ssh_ark_crystals_contribution_desc: "We are providing a considerable chunk of our resource income to the Ark's construction."
+ ssh_ark_dark_matter_contribution: "§YArk Construction§!: Dark Matter Contribution"
+ ssh_ark_dark_matter_contribution_desc: "We are providing a considerable chunk of our resource income to the Ark's construction."
+
+ ### Unused
+ ssh_ark_stage_1_contribution_high: "§YArk Construction§!: §GHigh§! Contribution"
+ ssh_ark_stage_1_contribution_high_desc: "We are providing a very large chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_1_contribution_med: "§YArk Construction§!: §HMedium§! Contribution"
+ ssh_ark_stage_1_contribution_med_desc: "We are providing a large chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_1_contribution_low: "§YArk Construction§!: §PLow§! Contribution"
+ ssh_ark_stage_1_contribution_low_desc: "We are providing a considerable chunk of our resource income to the construction of the Ark."
+
+ ssh_ark_stage_2_contribution_high: "§YArk Construction§!: §GHigh§! Contribution"
+ ssh_ark_stage_2_contribution_high_desc: "We are providing a very large chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_2_contribution_med: "§YArk Construction§!: §HMedium§! Contribution"
+ ssh_ark_stage_2_contribution_med_desc: "We are providing a large chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_2_contribution_low: "§YArk Construction§!: §PLow§! Contribution"
+ ssh_ark_stage_2_contribution_low_desc: "We are providing a considerable chunk of our resource income to the construction of the Ark."
+
+ ssh_ark_stage_3_bio_contribution_high: "§YArk Construction§!: §GHigh§! Contribution"
+ ssh_ark_stage_3_bio_contribution_high_desc: "We are providing a very large chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_3_bio_contribution_med: "§YArk Construction§!: §HMedium§! Contribution"
+ ssh_ark_stage_3_bio_contribution_med_desc: "We are providing a large chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_3_bio_contribution_low: "§YArk Construction§!: §PLow§! Contribution"
+ ssh_ark_stage_3_bio_contribution_low_desc: "We are providing a considerable chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_3_lithoid_contribution_high: "§YArk Construction§!: §GHigh§! Contribution"
+ ssh_ark_stage_3_lithoid_contribution_high_desc: "We are providing a very large chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_3_lithoid_contribution_med: "§YArk Construction§!: §HMedium§! Contribution"
+ ssh_ark_stage_3_lithoid_contribution_med_desc: "We are providing a large chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_3_lithoid_contribution_low: "§YArk Construction§!: §PLow§! Contribution"
+ ssh_ark_stage_3_lithoid_contribution_low_desc: "We are providing a considerable chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_3_machine_contribution_high: "§YArk Construction§!: §GHigh§! Contribution"
+ ssh_ark_stage_3_machine_contribution_high_desc: "We are providing a very large chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_3_machine_contribution_med: "§YArk Construction§!: §HMedium§! Contribution"
+ ssh_ark_stage_3_machine_contribution_med_desc: "We are providing a large chunk of our resource income to the construction of the Ark."
+ ssh_ark_stage_3_machine_contribution_low: "§YArk Construction§!: §PLow§! Contribution"
+ ssh_ark_stage_3_machine_contribution_low_desc: "We are providing a considerable chunk of our resource income to the construction of the Ark."
+
+
+ #####################
+ # Opinion Modifiers #
+ #####################
+ ssh_opinion_bwc_positive: "Impressive BWC Megastructure"
+ ssh_opinion_bwc_negative: "Unholy Artificial Planet Constructed"
+
+ ssh_opinion_preftl_moon_mining_stopped: "Stopped Moon Disassembly"
+ ssh_opinion_preftl_moon_mining_continued: "Ignored Our Moon Demands"
+
+ ssh_opinion_shroud_espionage_negative_1: "Tried to Shroud-Spy on us"
+ ssh_opinion_shroud_espionage_negative_2: "Ignored our Shroud-Spy Warning"
+
+ ssh_opinion_base_dim_tearer_negative: "Megalomaniacal Exodus Goal"
+ ssh_opinion_shroud_wave_negative: "Caused Devastating Shroud Wave"
+ ssh_opinion_nullvoid_wave_negative: "Caused Devastating Null Void Wave"
+ ssh_opinion_mirror_wave_negative: "Caused Devastating Mirror Wave"
+ ssh_opinion_suffering_wave_negative: "Caused Devastating Wave of Suffering"
+ ssh_opinion_static_wave_negative: "Caused Devastating Wave of Negative Mass"
+ ssh_opinion_energy_wave_negative: "Caused Devastating Energy Wave"
+ ssh_opinion_corridors_wave_negative: "Caused Colonist Noclipping"
+
+ ssh_opinion_destroyed_dim_tearer_negative: "Destroyed our Exodus Plans"
+
+ ssh_opinion_vacdec: "Tampering with Reality"
+
+ ssh_opinion_custodian_betrayal: "Betrayed the Galaxy"
+ ssh_opinion_ark_cooperation: "Ark Project Cooperation"
+
+ opinion_destroyed_system_with_wmd: "Destroyed a Solar System"
+ opinion_destroyed_my_colonized_system_with_wmd: "Destroyed our colonized Solar System"
+ opinion_destroyed_my_system_with_wmd: "Destroyed our Solar System"
+
+ opinion_transferred_world_to_basement_realm: "Transferred World to Basement Realm"
+ opinion_transferred_my_world_to_basement_realm: "Transferred our World to Basement Realm"

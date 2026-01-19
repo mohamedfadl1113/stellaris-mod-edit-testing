@@ -1,0 +1,119 @@
+﻿l_english:
+ 
+ ### Bombardment Stances ###
+ bombardment_ssh_nanites: "Nanite Bombardment"
+ bombardment_ssh_nanites_desc: "We will bombard the planet below with controlled nanites that turn any atom they interact with into more of their kind. \n-§PHeavy§! damage to §YPlanet§! \n-§PHeavy§! damage to §YArmies§! \n-§PHeavy§! damage to §YPops§! \n-Will bombard undefended planets"
+ bombardment_ssh_virus: "Ultra-Virus Bombardment"
+ bombardment_ssh_virus_desc: "We will bombard the planet below with a carefully tailored and extremely resistant and deadly virus. \n-§HModerate§! damage to §YPlanet§! \n-§PHeavy§! damage to §YArmies§! \n-§PHeavy§! damage to §GBiological§! §YPops§! \n-Will bombard undefended planets"
+ bombardment_ssh_reality_warp: "Reality Eradication"
+ bombardment_ssh_reality_warp_desc: "Why bombard a planet if you can simply warp it's inhabitants out of existence?"
+
+ # Casus Belli
+ casus_belli_cb_ssh_preventive_inclusion: "Preventive Inclusion"
+ MESSAGE_NEW_CASUS_BELLI_PREVENTIVE_INCLUSION: "You have been a threat for us for long enough. You shall aid us in our quest for the fundamental equation."
+ casus_belli_cb_ssh_stop_ascensionists: "Stop Ascensionists"
+ MESSAGE_NEW_CASUS_BELLI_STOP_EXODUS: "Your fools! Your megalomanic goals are going to destroy this galaxy! This ends now!"
+ 
+ # War Goals
+ war_goal_wg_ssh_bring_into_the_fold: "Bring Into The Fold"
+ war_goal_wg_ssh_bring_into_the_fold_desc: "We will subjugate the country and take them with us on our way to perfection."
+ war_goal_wg_ssh_stop_ascensionists: "Stop Ascensionists"
+ war_goal_wg_ssh_stop_ascensionists_desc: "We will stop the mad ascensionists' tampering with our reality."
+
+ # Resolutions
+ resolution_galactic_focus_crisis_vacdec: "Focus: Reality Collapse"
+ resolution_galactic_focus_crisis_vacdec_desc: "The quickly expanding true vacuum is a threat to all sapient life. We must put the Galactic Community in a state of emergency and focus all our research to possible solutions to this crisis."
+ 
+ # Anomalies
+ brain_gasgiant_category: "Unusual Wave Emissions"
+ brain_gasgiant_category_desc: "This gas giant emits unusual sound waves unlike any planet we've ever seen before. What could cause such waves?"
+
+
+ #### NAMES ####
+ NAME_Shellworld_Rebels: "United Underdwellers"
+ NAME_Invading_Underdwellers: "Underdweller Militia"
+ NAME_Underweller_War: "Underdweller Rebellion"
+
+ # Planet Names
+ Love: "Love"
+
+ # System Names
+ Blecksbi: "Blecksbi"
+ Sparbelius: "Sparbelius"
+ Ringus: "Ringus"
+ Donut: "Donut"
+ Kitkat: "Kitkat"
+ Paulus: "Paulcraftus"
+
+ # Species Names
+ Kapitali: "Kapitali"
+ 
+ # Ships
+ bio_brain: "B.I.O. Brain"
+ bio_brain_plural: "B.I.O. Brains"
+ bio_brain_desc: "A hostile brain floating in space."
+
+ starbase_company: "Company Starbase"
+ starbase_company_plural: "Company Starbases"
+
+ # Ship Designs
+ NAME_Bio_Brain: "B.I.O. Brain"
+ NAME_Brain_Behemoth_ship: "B.I.O. Brain"
+
+ # Other Stuff 
+ BIO_BRAIN_HOSTILE: "Angered Brain"
+ Edersphere: "Colonizable Edersphere"
+ Infinity: "Infinity"
+ Gaia: "Gaia"
+
+ 01_SSH_FRIENDLY_GREETING: "Hey, just wondering if you got your photos printed?"
+ 02_SSH_FRIENDLY_GREETING: "Bogos binted?"
+ 03_SSH_FRIENDLY_GREETING: "Vorp?"
+ 04_SSH_FRIENDLY_GREETING: "Zeekiebo vlorp, zeegiedeegie bogos binted?"
+ 05_SSH_FRIENDLY_GREETING: "Photos printed?"
+ 06_SSH_FRIENDLY_GREETING: "What will this new galaxy bring?"
+ 07_SSH_FRIENDLY_GREETING: "We will never forget the amazing cooperation for the Ark Project."
+ 08_SSH_FRIENDLY_GREETING: "We still can't believe the Ark Project worked out."
+ # Exodus greetings
+ 09_SSH_FRIENDLY_GREETING: "Look at you! You are so small, so primitive, so... irrelevant!"
+ 10_SSH_FRIENDLY_GREETING: "Let us tell you, your reality is flawed. Your reality is pain."
+ 11_SSH_FRIENDLY_GREETING: "The Fundament is awesome! We can do whatever we want!"
+ 12_SSH_FRIENDLY_GREETING: "How does it feel like being trapped in a flawed universe, [Species.GetNamePlural]?"
+ 13_SSH_FRIENDLY_GREETING: "What have you done?!"
+ 14_SSH_FRIENDLY_GREETING: "The galaxy is a mess because of what you''ve done!"
+
+ # Note: was too lazy to search if theres a vanilla stellaris keyword for ??? and Shroud so I made these 
+ SSH_SHROUD_UNKNOWN: "???"
+ SSH_SHROUD_KNOWN: "The Shroud"
+ SSH_SHROUD_HUB: "§rAbyssal Anchor§!"
+ SSH_ARK_BUREAU: "§YArk Construction Bureau§!"
+
+ ### Message Types ###
+ MESSAGE_SYSTEM_DESTROYED_WMD: "Solar System Devastated"
+ MESSAGE_SYSTEM_DESTROYED_WMD_TEXT: "The $SYSTEM|Y$ system has been destroyed by a §PSystem Killer-Class Weapon§!!"
+ MESSAGE_WMD_DETECTED: "WMD Detected"
+ MESSAGE_WMD_DETECTED_TEXT: "We have detected a §PSystem Killer-Class Weapon§! in the $SYSTEM|Y$ system!"
+ MESSAGE_SYSTEM_DISINTEGRATED: "Solar System Disintegrated"
+ MESSAGE_SYSTEM_DISINTEGRATED_TEXT: "We have successfully disintegrated the $SYSTEM|Y$ system!"
+ MESSAGE_SHIP_VACUUM_DECAYED: "Fleet Decayed"
+ MESSAGE_SHIP_VACUUM_DECAYED_TEXT: "Our fleet has been devoured by the true vacuum in the $SYSTEM|Y$ system!"
+ 
+ MESSAGE_EXODUS_WAVE_NULLVOID: "Solar System Vanished"
+ MESSAGE_EXODUS_WAVE_NULLVOID_TEXT: "The $SYSTEM|Y$ system has vanished due to a §PNullvoid Energy Wave§!!"
+ MESSAGE_EXODUS_WAVE_HELL: "Suffering Unleashed"
+ MESSAGE_EXODUS_WAVE_HELL_TEXT: "The $SYSTEM|Y$ system has been hit by energies of suffering due to a §PHell Energy Wave§!!"
+ MESSAGE_EXODUS_WAVE_STATIC: "Solar System Destroyed"
+ MESSAGE_EXODUS_WAVE_STATIC_TEXT: "The $SYSTEM|Y$ system has been destroyed due to a §PStatic Dimension Energy Wave§!!"
+ MESSAGE_EXODUS_WAVE_MIRROR: "Solar System Shuffled"
+ MESSAGE_EXODUS_WAVE_MIRROR_TEXT: "Planets inside the $SYSTEM|Y$ system have been hit by a §PMirror Realm Energy Wave§!!"
+ MESSAGE_EXODUS_WAVE_ENERGY: "Star Inflated"
+ MESSAGE_EXODUS_WAVE_ENERGY_TEXT: "The $SYSTEM|Y$ system has been hit by a §PRaw Energy Realm Wave§!!"
+ MESSAGE_EXODUS_WAVE_CORRIDORS: "Star Inflated"
+ MESSAGE_EXODUS_WAVE_CORRIDORS_TEXT: "A chunk of our population has gone missing on colonies inside the $SYSTEM|Y$, likely due to a §PCorridors Energy Wave§!!"
+
+ MESSAGE_SYSTEM_DESTROYED_BRAIN_MAW: "Solar System Devoured"
+ MESSAGE_SYSTEM_DESTROYED_BRAIN_MAW_TEXT: "The $SYSTEM|Y$ system and all its planets have been consumed by the §PB.I.O. Brain Behemoth§!!"
+
+ ### Doctrines ###
+ mutually_assured_destruction_doctrine: "Mutually Assured Destruction"
+ mutually_assured_destruction_doctrine_desc: "The enemy won't dare to attack us if we are capable of launching a retaliation strike. It's very simple: If we shall go down, we will take them down with us."

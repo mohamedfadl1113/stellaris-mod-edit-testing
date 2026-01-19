@@ -1,0 +1,309 @@
+﻿l_english:
+ 
+ ############
+ # Classes  #
+ ############
+ 
+ pc_shellworld_core: "Shellworld Core"
+ pc_shellworld_core_desc: "The innermost layer of a shellworld. Most of the natural sunlight is blocked by the shell around this planet and therefore replaced by artificial lighting on the inside of the shell. The shell itself provides vast amounts of district capacities."
+ pc_shellworld_core_adj: "shelly"
+ mod_pc_shellworld_core_habitability: "Shellworld Core Habitability"
+
+ trait_pc_shellworld_core_preference: "Shellworld Preference"
+ trait_pc_shellworld_core_preference_desc: "This species prefers a cozy shell around its planet."
+ trait_pc_shellworld_core_preference_short: "Shellworld"
+ 
+ 
+ pc_shellworld_core_city: "Shellworld Arcology Core"
+ pc_shellworld_core_city_desc: "The innermost layer of a shellworld. Most of the natural sunlight is blocked by the shell around this planet and therefore replaced by artificial lighting on the inside of the shell. The shell itself provides vast amounts of district capabilities."
+ pc_shellworld_core_city_adj: "shelly"
+ mod_pc_shellworld_core_city_habitability: "Shellworld Arcology Core Habitability"
+
+ trait_pc_shellworld_core_city_preference: "Shellworld Arcology Preference"
+ trait_pc_shellworld_core_city_preference_desc: "This species prefers a cozy shell around its ecumenopolis."
+ trait_pc_shellworld_core_city_preference_short: "Shellworld"
+
+ 
+ pc_shellworld_core_machine: "Machine Shellworld Core"
+ pc_shellworld_core_machine_desc: "The innermost layer of a shellworld. Most of the natural sunlight is blocked by the shell around this planet and therefore replaced by artificial lighting on the inside of the shell. The shell itself provides vast amounts of district capabilities."
+ pc_shellworld_core_machine_adj: "shelly"
+ mod_pc_shellworld_core_machine_habitability: "Machine Shellworld Core Habitability"
+
+ trait_pc_shellworld_core_machine_preference: "Machine Shellworld Preference"
+ trait_pc_shellworld_core_machine_preference_desc: "This species prefers a cozy shell around its machine planet."
+ trait_pc_shellworld_core_machine_preference_short: "Shellworld"
+
+ 
+ pc_shellworld_core_hive: "Hive Shellworld Core"
+ pc_shellworld_core_hive_desc: "The innermost layer of a shellworld. Most of the natural sunlight is blocked by the shell around this planet and therefore replaced by artificial lighting on the inside of the shell. The shell itself provides vast amounts of district capabilities."
+ pc_shellworld_core_hive_adj: "shelly"
+ mod_pc_shellworld_core_hive_habitability: "Hive Shellworld Core Habitability"
+
+ trait_pc_shellworld_core_hive_preference: "Hive Shellworld Preference"
+ trait_pc_shellworld_core_hive_preference_desc: "This species prefers a cozy shell around its hive planet."
+ trait_pc_shellworld_core_hive_preference_short: "Shellworld"
+
+
+ pc_shellworld_core_gaia: "Gaia Shellworld"
+ pc_shellworld_core_gaia_desc: "The innermost layer of a shellworld. Even though the sky is darkened by the giant artificial planet-encasing shell, the core layer inhabits a uniquely diverse and beautiful flora and fauna."
+ pc_shellworld_core_gaia_adj: "shelly"
+ mod_pc_shellworld_core_gaia_habitability: "Gaia Shellworld Habitability"
+
+ trait_pc_shellworld_core_gaia_preference: "Gaia Shellworld Preference"
+ trait_pc_shellworld_core_gaia_preference_desc: "This species prefers a cozy shell around its gaia planet."
+ trait_pc_shellworld_core_gaia_preference_short: "Shellworld"
+
+
+
+ pc_gas_giant_shellworld: "Gas Giant Shellworld"
+ pc_gas_giant_shellworld_desc: "A giant artificial shell constructed around a gas giant. Mineral layers have been dumped on the surface and an artificial atmosphere supports life on its surface. The atmospheric pressure from the gas giant below prevents it from collapsing on itself."
+ pc_gas_giant_shellworld_adj: "shelly"
+ mod_pc_gas_giant_shellworld_habitability: "Gas Giant Shellworld Base Habitability"
+ 
+ trait_pc_gas_giant_shellworld_preference: "Gas Giant Shellworld Preference"
+ trait_pc_gas_giant_shellworld_preference_desc: "This species prefers to live on a cozy shell around a ball of gas."
+ trait_pc_gas_giant_shellworld_preference_short: "Pressurized Shellworld"
+
+
+ pc_edersphere: "Edersphere"
+ pc_edersphere_desc: "'What is the largest orbiting habitat that could be built?' - Zar Eder's insight was that all mass, even the gas mixture inside a pressurized vessel, generates a gravitational effect. In this habitat gravity holds the structure together against atmospheric pressure just as a planet does. However, instead of having a rocky core holding on to an atmospheric envelope, this habitat has a core filled with gas that is massive enough to halt its own expansion through self-gravitation and thus, by using hydrogen as a light gas at the core, is way bigger than any average gas giant could ever be."
+ pc_edersphere_adj: "ederspherical"
+ mod_pc_edersphere_habitability: "Edersphere Habitability"
+ 
+ trait_pc_edersphere_preference: "Edersphere Preference"
+ trait_pc_edersphere_preference_desc: "This species prefers to live inside a giant shell encasing pure gas."
+ trait_pc_edersphere_preference_short: "Edersphere"
+
+
+ pc_stellar_hoop: "Stellar Hoop"
+ pc_stellar_hoop_desc: "This artificial structure allows both organic and synthetic life to colonize the star below. Inside the two main hoops are yet another two rings which spin in different directions to deflect the star's deadly particles. The giant mirrors on the inner hoop reflect most of the star's light. This makes living inside the inner hoop possible, even though uncomfortable and not necessarily very healthy. However, being able to virtually live on the surface of a star allows extremely efficient mining of both energy and the resources the star is made of, like helium and hydrogen."
+ pc_stellar_hoop_adj: "ederspherical"
+ mod_pc_stellar_hoop_habitability: "Stellar Hoop Habitability"
+ 
+ trait_pc_stellar_hoop_preference: "Stellar Hoop Preference"
+ trait_pc_stellar_hoop_preference_desc: "For whatever reason, this species prefers to virtually live on the surface of stars through advanced megastructures."
+ trait_pc_stellar_hoop_preference_short: "Stellar"
+
+
+ pc_hoopworld: "Hoopworld"
+ pc_hoopworld_desc: "A habitable planet that instead of being a sphere is shaped like a perfect torus, which allows its form to remain stable. Chances of such planets appearing naturally are near absolute zero, which makes it a great tourist attraction and sign of prestige."
+
+ pc_hoopworld_adj: "hoopy"
+ mod_pc_hoopworld_habitability: "Hoopworld Habitability"
+ 
+ trait_pc_hoopworld_preference: "Hoopworld Preference"
+ trait_pc_hoopworld_preference_desc: "This species prefers to live on a... donut?"
+ trait_pc_hoopworld_preference_short: "Hoopworld"
+
+
+ pc_discworld: "Discworld"
+ pc_discworld_desc: "An artificial and habitable flat planet that is shaped like a disc or coin instead of being a natural sphere. Extremely durable active support on the inside allows its form to remain stable. Chances of such planets appearing naturally are absolute zero, which makes it a great tourist attraction and sign of prestige."
+
+ pc_discworld_adj: "flat"
+ mod_pc_discworld_habitability: "Discworld Habitability"
+ 
+ trait_pc_discworld_preference: "Discworld Preference"
+ trait_pc_discworld_preference_desc: "This species prefers to live on a flat planet."
+ trait_pc_discworld_preference_short: "Discworld"
+
+
+ pc_freesphere: "Freefall Sphere"
+ pc_freesphere_desc: "A freefall sphere, or 'Freesphere', is a freefall environment inside a huge inflated membrane. Instead of walking, its inhabitants float from one island to another using wings, fins or other means of transportation. These bubbles provide an incredibly beautiful view on the planets and stars surrounding it, and therefore are a great tourist attraction and sign of prestige."
+
+ pc_freesphere_adj: "free"
+ mod_pc_freesphere_habitability: "Freesphere Habitability"
+ 
+ trait_pc_freesphere_preference: "Hoopworld Preference"
+ trait_pc_freesphere_preference_desc: "This species prefers to live inside a huge inflated bubble."
+ trait_pc_freesphere_preference_short: "Freesphere"
+
+
+
+ pc_black_hole_shellworld: "Black Hole Suprashell"
+ pc_black_hole_shellworld_desc: "A behemoth shell around a black hole. Living this close to such an exotic stellar object provides great research opportunities as well as matter decompressing and dark matter farming opportunities."
+
+ pc_black_hole_shellworld_adj: "shelly"
+ mod_pc_black_hole_shellworld_habitability: "Suprashell Habitability"
+ 
+ trait_pc_black_hole_shellworld_preference: "Black Hole Preference"
+ trait_pc_black_hole_shellworld_preference_desc: "This species prefers to live on a shell around a black hole."
+ trait_pc_black_hole_shellworld_preference_short: "Suprashell"
+
+ 
+ pc_habitable_dyson: "Dyson Sphere"
+ pc_habitable_dyson_desc: "A behemoth shell around a star. Highly advanced life support systems, radiation shields and heat pumps allow for the outer surface to be colonized."
+
+ pc_habitable_dyson_adj: "dyson"
+ mod_pc_habitable_dyson_habitability: "Dyson Sphere Habitability"
+ 
+ trait_pc_habitable_dyson_preference: "Dyson Sphere Preference"
+ trait_pc_habitable_dyson_preference_desc: "This species is used to live on an artificial sphere around stars."
+ trait_pc_habitable_dyson_preference_short: "Dyson Sphere"
+
+
+ #### Special Habitable Planet Classes ####
+ pc_exodus_portal: "Fundament Gateway"
+ pc_exodus_portal_desc: "An interdimensional anchor which seems to lead to another realm. It harbors the manifestations of the hyperdimensional ascensionists inside this realm."
+
+ pc_exodus_portal_adj: "foundational"
+ mod_pc_exodus_portal_habitability: "Fundament Realm Habitability"
+ 
+ trait_pc_exodus_portal_preference: "Fundament Preference"
+ trait_pc_exodus_portal_preference_desc: "This species has managed to ascend to the fundamental plane of existence without crashing somehow. Mad respect."
+ trait_pc_exodus_portal_preference_short: "Portal"
+
+
+ pc_horizon_brain: "Horizon Brain"
+ pc_horizon_brain_desc: "A supercooled megacomputer powered by a black hole. It can simulate a vast variety of environments for any individuals linked to its neural ports."
+ pc_horizon_brain_adj: "horizonish"
+ mod_pc_horizon_brain_habitability: "Horizon Brain Habitability"
+ trait_pc_horizon_brain_preference: "Horizon Brain Preference"
+ trait_pc_horizon_brain_preference_desc: "This species is unable to survive without being linked to its artificial simulation grid."
+ trait_pc_horizon_brain_preference_short: Horizon Brain
+
+
+
+ #### Uninhabitable Classes ####
+ pc_ssh_lava: "Planet Core"
+ pc_ssh_lava_desc: "Advanced stripmining methods have removed the outer layers of this former planet, revealing it's mineral-rich scorching hot core."
+
+ pc_ssh_disintegrated_matter: "Disintegrated Matter Cloud"
+ pc_ssh_disintegrated_matter_desc: "This former planet has been disintegrated, radiating away its electrons and leaving a cloud of raw nuclei. It is currently being sucked up by the system star in form of a large accretion disk."
+ 
+ pc_ssh_empty_space: "Empty Space"
+ pc_ssh_empty_space_desc: "Utterly empty space completely devoid of anything. Our scientists can only measure minimal zero-point vacuum fluctuations."
+
+ pc_white_dwarf_star: "White Dwarf"
+ pc_white_dwarf_star_desc: "A very dense stellar core remnant composed mostly of electron-degenerate matter. These stellar objects have low luminosity caused by the emission of residual thermal energy and no fusion takes place inside them."
+
+ pc_blue_dwarf_star: "Blue Dwarf"
+ pc_blue_dwarf_star_desc: "A trillion-year old red dwarf with less than 0.25 solar masses that increased its radiative rate by increasing its surface temperature instead of expanding. These types of stars do not occur naturally in this universe, as it is way too young for them to form."
+
+ pc_black_dwarf_star: "Black Dwarf"
+ pc_black_dwarf_star_desc: "A cold stellar remnant that emits very little to no radiation. Estimates say it takes at least 10^15 years for a white dwarf to cool down to such temperatures, which makes these objects not occur naturally in this universe since it's way too young for them to form."
+
+ pc_quark_star: "Quark Star"
+ pc_quark_star_desc: "An ultra-dense compressed star made up of raw quarks instead of neutrons. This super dense matter can usually be only found inside the cores of neutron stars where the pressure is so extreme that neutrons are compressed so much that they turn into a quark-gluon-plasma."
+
+ pc_zro_star: "Zro-Infused Star"
+ pc_zro_star_desc: "Large amounts of Zro have been infused into this star, altering its appearance by turning it more purple-ish. Any organic individual near this star experiences considerable mind-altering effects due to the amount of Zro in this system."
+
+ pc_disintegrated_star: "Disintegrated Star"
+ pc_disintegrated_star_desc: "This former star has been disintegrated into a dense cloud of raw nuclei, which is currently collapsing towards its core into a temporarily stabilized micro-wormhole."
+
+ pc_fusion_candle: "Fusion Candle"
+ pc_fusion_candle_desc: "This behemoth machine contains a large concentration of hydrogen, generating gravity and acting as fuel for the fusion reactor inside it, while acting as a cheap giant light bulb."
+
+
+ #### Star Classes ####
+ sc_ssh_space: "Empty Space"
+ sc_ssh_space_desc: "An utterly empty vacuum completely devoid of anything."
+
+ sc_ssh_blue_dwarf: "Blue Dwarf"
+ sc_ssh_blue_dwarf_desc: "A trillion-year old red dwarf with less than 0.25 solar masses that increased its radiative rate by increasing its surface temperature instead of expanding. These types of stars do not occur naturally in this universe, as it is way too young for them to form."
+
+ sc_ssh_white_dwarf: "White Dwarf"
+ sc_ssh_white_dwarf_desc: "A very dense stellar core remnant composed mostly of electron-degenerate matter. These stellar objects have low luminosity caused by the emission of residual thermal energy and no fusion takes place inside them."
+
+ sc_ssh_black_dwarf: "Black Dwarf"
+ sc_ssh_black_dwarf_desc: "A cold stellar remnant that emits very little to no radiation. Estimates say it takes at least 10^15 years for a white dwarf to cool down to such temperatures, which makes these objects not occur naturally in this universe since it's way too young for them to form."
+
+ sc_ssh_quark_star: "Quark Star"
+ sc_ssh_quark_star_desc: "An ultra-dense compressed star made up of raw quarks instead of neutrons. This super dense matter can usually be only found inside the cores of neutron stars where the pressure is so extreme that neutrons are compressed so much that they turn into a quark-gluon-plasma."
+
+ sc_ssh_zro_star: "Zro-Infused Star"
+ sc_ssh_zro_star_desc: "Large amounts of Zro have been infused into this star, altering its appearance by turning it more purple-ish. Any organic individual near this star experiences considerable mind-altering effects due to the amount of Zro in this system."
+
+ sc_ssh_disintegrated_star: "Disintegrated Matter Cloud"
+ sc_ssh_disintegrated_star_desc: "This system has been disintegrated into a dense cloud of raw nuclei."
+
+ sc_ssh_binary_1: "Binary Stars"
+ sc_ssh_binary_1_desc: "This binary system consists of a star and black hole orbiting each other."
+
+ sc_ssh_binary_2: "Binary Stars"
+ sc_ssh_binary_2_desc: "This binary system consists of a star and black hole orbiting each other."
+
+ sc_ssh_fusion_candle: "Artificial Star"
+ sc_ssh_fusion_candle_desc: "This artificial system contains a behemoth fusion reactor acting as the system's light bulb."
+
+ sc_ssh_true_vacuum: "Decayed Space"
+ sc_ssh_true_vacuum_desc: "This true vacuum is instantly disintegrating anything it comes in contact with."
+
+ sc_ssh_suprashell: "Suprashell"
+ sc_ssh_suprashell_desc: "A behemoth shellworld encases the black hole in this system."
+
+ sc_ssh_dyson_hab: "Dyson Sphere"
+ sc_ssh_dyson_hab_desc: "A Dyson Sphere encases this system's star."
+
+ #### Colony Types ####
+ col_gas_shellworld_mix: "Gas Giant Shellworld"
+ col_gas_shellworld_mix_desc: "This Shellworld has not been specialized for any particular industry."
+
+ col_gas_shellworld_industrial: "Industrial Shellworld"
+ col_gas_shellworld_industrial_desc: "Heavy industry with mixed production dominates this shellworld."
+
+ col_gas_shellworld_foundry: "Forge Shellworld"
+ col_gas_shellworld_foundry_desc: "The heat of alloy foundries can be felt almost everywhere on this shellworld."
+
+ col_gas_shellworld_factory: "Factory Shellworld"
+ col_gas_shellworld_factory_desc: "This shellworld specializes in manufactories, workshops, and civilian industries."
+
+ col_gas_shellworld_raw: "Extraction Shellworld"
+ col_gas_shellworld_raw_desc: "This shellworld specializes on the extraction of raw resources from the gas giant below, mainly energy and the various elements from its atmosphere."
+
+ col_gas_shellworld_farming: "Agrarian Shellworld"
+ col_gas_shellworld_farming_desc: "This shellworld makes use of the planet's elements by filtering and utilising them for vast sections of farmlands."
+
+ col_gas_shellworld_resort: "Resort Shellworld"
+ col_gas_shellworld_resort_desc: "Huge entertainment complexes, casinos and other means to spend your free time stretch over this shellworld."
+
+ col_gas_shellworld_bio_trophy: "Sanctuary Shellworld"
+ col_gas_shellworld_bio_trophy_desc: "This shellworld is dedicated to the care and protection of organic life."
+
+ col_eder_mix: "Edersphere"
+ col_eder_mix_desc: "This Edersphere has not been specialized for any particular industry."
+
+ col_eder_industrial: "Industrial Edersphere"
+ col_eder_industrial_desc: "Heavy industry with mixed production dominates this Edersphere."
+
+ col_eder_foundry: "Forge Edersphere"
+ col_eder_foundry_desc: "The heat of alloy foundries can be felt almost everywhere on this Edersphere."
+
+ col_eder_factory: "Factory Edersphere"
+ col_eder_factory_desc: "This Edersphere specializes in manufactories, workshops, and civilian industries."
+
+ col_eder_research: "Research Edersphere"
+ col_eder_research_desc: "This behemoth Edersphere is dedicated to the advancement of knowledge and experiments under complex conditions."
+
+ col_eder_trade: "Commercial Edersphere"
+ col_eder_trade_desc: "If you can't buy it here, it either doesn't exist or you didn't really want it anyway."
+
+ col_eder_farming: "Agrarian Edersphere"
+ col_eder_farming_desc: "Endless fields are supported by the infrastructure of this Edersphere to maximize growing potential."
+
+ col_eder_resort: "Resort Edersphere"
+ col_eder_resort_desc: "The ultimate resort center - from relaxing in artificial natural domes to spending your credits in behemoth arcades and casinos, everything is possible here."
+
+ col_eder_bio_trophy: "Sanctuary Edersphere"
+ col_eder_bio_trophy_desc: "A gargantuan world dedicated to the care and protection of organic life."
+
+ col_black_hole_shell_mix: "Black Hole Suprashell"
+ col_black_hole_shell_mix_desc: "This gargantuan shellworld has not been specialized for any particular industry."
+
+ col_black_hole_shell_extraction: "Extraction Suprashell"
+ col_black_hole_shell_extraction_desc: "This gargantuan shellworld focuses on the extraction and production of various resources - from giant drilling bores to practically infinite rows of behemoth clanking factories, everything can be found here."
+
+ col_black_hole_shell_immaterial: "Entertainment Suprashell"
+ col_black_hole_shell_immaterial_desc: "This gargantuan shellworld provides everything non-extraction one can think of: Infinite rows of behemoth entertainment complexes, trade centers, shopping malls, science simulation centers..."
+
+ col_stellar_hoop_mix: "Stellar Hoop"
+ col_stellar_hoop_mix_desc: "This stellar hoop has not been specialized for any kind of resource production."
+
+ col_stellar_hoop_extraction: "Extraction Hoop"
+ col_stellar_hoop_extraction_desc: "This stellar hoop has been specialized in resource extraction from the star."
+
+ col_stellar_hoop_foundry: "Foundry Hoop"
+ col_stellar_hoop_foundry_desc: "This stellar hoop has been specialized in utilising the immense pressure and heat from the star to produce high quality alloys of any kind."
+
+ col_stellar_hoop_research: "Research Hoop"
+ col_stellar_hoop_research_desc: "This stellar hoop is filled with science labs and stations to conduct experiments under extreme conditions inside the star."

@@ -1,0 +1,89 @@
+﻿l_english:
+
+ ###################
+ ### Buildings   ###
+ ###################
+ 
+ building_ssh_conmat_lab: "Conscious Matter Laboratory"
+ building_ssh_conmat_lab_desc: "Special incubation equipment fills these labs, making the creation of Conscious Matter possible through very advanced neural tailoring methods."
+
+ building_ssh_triangle_temple_tt: "\n\n§HThis building will help us advance into the deep Shroud regions.§!"
+ building_ssh_triangle_temple: "§YTri-Temple§!"
+ building_ssh_triangle_temple_desc: "A huge temple filled with Zro, representing the connection between the Physical World, the Mind and the Shroud to each other. Weekly mass prayers and meditation lessons are held in this complex while both scientists and psionics dedicate their research to the Triangle Theory in here.$building_ssh_triangle_temple_tt$"
+
+ building_ssh_triangle_temple_hive: "§YThree-Layer Node§!"
+ building_ssh_triangle_temple_hive_desc: "A center of massive psionic synapses, these Zro-filled nodes - tended to and assisted by dedicated psionic drones - explore the connection between the Physical World, the Mind and the Shroud to each other and receive and transmit the will of the Hive into the deeper regions of the Shroud.$building_ssh_triangle_temple_tt$"
+
+ building_ssh_triangle_temple_machine: "§YThree-Layer Nexus§!"
+ building_ssh_triangle_temple_machine_desc: "A computation complex containing specialized Zro-filled cooling, dedicated to solve calculations related to the connection between the Physical World, the <<Mind>> and the Shroud to each other.$building_ssh_triangle_temple_tt$"
+
+ building_ssh_nuclei_soup_transmuter_sr: "Nuclei Specialized Resources Transmuter"
+ building_ssh_nuclei_soup_transmuter_sr_desc: "This factory mass-produces a variety of rare resources by processing raw nuclei into custom atoms through carefully adding electrons in a certain order. A Nuclei Soup Deficit will halt production."
+
+ building_ssh_nuclei_soup_transmuter_minerals: "Nuclei Mineral Transmuter"
+ building_ssh_nuclei_soup_transmuter_minerals_desc: "This factory mass-produces simple minerals by processing raw nuclei into custom atoms through carefully adding electrons in a certain order. A Nuclei Soup Deficit will halt production."
+
+ building_ssh_nuclei_soup_transmuter_food: "Nuclei Nutritients Transmuter"
+ building_ssh_nuclei_soup_transmuter_food_desc: "This factory mass-produces tasteless but nutritient proteine bars by processing raw nuclei into custom atoms through carefully adding electrons in a certain order. A Nuclei Soup Deficit will halt production."
+
+ building_ssh_nuclei_soup_foundry: "Nuclei Foundry"
+ building_ssh_nuclei_soup_foundry_desc: "This extremely complex foundry mass-produces advanced alloys by processing raw nuclei into custom atoms through carefully adding electrons in a certain order. A Nuclei Soup Deficit will halt production."
+
+ building_ssh_nuclei_soup_transmuter_nano: "Nuclei Nanomachinery Transmuter"
+ building_ssh_nuclei_soup_transmuter_nano_desc: "This factory mass-produces complex nanomachinery by processing raw nuclei into custom atoms through carefully adding electrons in a certain order. A Nuclei Soup Deficit will halt production."
+
+ building_ssh_hydrogen_plant: "Hydrogen Power Plant"
+ building_ssh_hydrogen_plant_desc: "This facility increases the energy output of planetary technicians by burning additional hydrogen."
+ building_ssh_hydrogen_plant_upgrade: "Enhanced Hydrogen Power Plant"
+ building_ssh_hydrogen_plant_upgrade_desc: "This upgraded facility efficiently generates energy by burning lots of hydrogen."
+
+ building_ssh_atomic_foundry: "Atomic Foundry"
+ building_ssh_atomic_foundry_desc: "With the help of high pressure chambers, our special machinery can create custom atoms to create ultra-dense and robust elements that do not occur naturally in this universe."
+
+ # Horizon Brain Buildings
+ building_ssh_hb_capital: "Main Server"
+ building_ssh_hb_capital_desc: "The main server of the Horizon Brain offers the very basic development engines and environments for us to program further specialized server sections. We can add content to this virtual world via §YConfiguration Buildings§!."
+
+ hb_building_jobs_tt: "\n\n§HThis building will provide additional Jobs to the §YServer Segments§!!§!"
+ building_ssh_hb_server_entertainment: "§BEntertainment§! Configuration"
+ building_ssh_hb_server_entertainment_desc: "This part of the server complex hosts a multiplayer simulation of a virtual utopia full of personalized content, which can be accessed through the neural grid. \n§HAdditional Jobs: £job_ssh_vr_content_creator£ $job_ssh_vr_content_creator$§!§! $hb_building_jobs_tt$"
+
+ building_ssh_hb_server_administrative: "§BAdministrative§! Configuration"
+ building_ssh_hb_server_administrative_desc: "This part of the server complex hosts administrative simulations that aid us in managing the databanks of our empire. \n§HAdditional Jobs: £job_ssh_vr_bureaucrat£ $job_ssh_vr_bureaucrat$§!§! $hb_building_jobs_tt$"
+
+ building_ssh_hb_server_temple: "§MGospel§! Configuration"
+ building_ssh_hb_server_temple_desc: "This part of the server complex hosts additional content for priests and other officials that allows us to efficiently incorporate and spread our beliefs through the community. \n§HAdditional Jobs: £job_ssh_vr_priest£ $job_ssh_vr_priest$§!§! $hb_building_jobs_tt$"
+
+ building_ssh_hb_server_premium: "§HPremium§! Configuration"
+ building_ssh_hb_server_premium_desc: "This part of the server complex adds additional Premium Membership subscription plans and hosts special VIP resorts where the wealthier members can retreat and enjoy the high society life. \n§HAdditional Jobs: £job_ssh_vr_premium_member£ $job_ssh_vr_premium_member$§!§! $hb_building_jobs_tt$"
+
+ building_ssh_hb_server_colosseum: "§PBattle Dome§! Configuration"
+ building_ssh_hb_server_colosseum_desc: "The virtual environment allows for resurrection of fallen warriors and arena tweaks we could have never deemed possible. This part of the server complex hosts a gargantuan Battle Arena where gladiator fights provide a great spectacle and aspiring warriors can test their skills. \n§HAdditional Jobs: £job_ssh_vr_gladiator£ $job_ssh_vr_gladiator$ £job_ssh_vr_spectator£ $job_ssh_vr_spectator$§! $hb_building_jobs_tt$"
+
+ building_ssh_hb_server_universe_sandbox: "§rSandbox§! Configuration"
+ building_ssh_hb_server_universe_sandbox_desc: "This part of the server complex hosts a vast amount of virtual galaxies that can be messed with and conducted experiments on. \n§HAdditional Jobs: £job_ssh_vr_universe_sandbox£ $job_ssh_vr_universe_sandbox$§!§! $hb_building_jobs_tt$"
+
+ building_ssh_hb_server_philosophy: "§GPhilosophy§! Configuration"
+ building_ssh_hb_server_philosophy_desc: "This part of the server complex hosts a special environment for Pops with an interest in philosophy where they can simulate pretty much any thought experiment imaginable, change details about them, and rerun them to document the various outcomes. \n§HAdditional Jobs: £job_ssh_vr_philosopher£ $job_ssh_vr_philosopher$§!§! $hb_building_jobs_tt$"
+
+ building_ssh_hb_server_army_training: "§VRecruitment§! Configuration"
+ building_ssh_hb_server_army_training_desc: "This part of the server complex hosts advanced army training programs that add recruitment complexes to the server, where anybody can be turned into a master of the martial arts in real life, given enough time. \n§HAdditional Jobs: £job_ssh_vr_soldier£ $job_ssh_vr_soldier$§!§! $hb_building_jobs_tt$"
+
+ building_ssh_hb_server_defense_simulation: "§cDefense Training§! Configuration"
+ building_ssh_hb_server_defense_simulation_desc: "This part of the server complex hosts advanced simulations of pretty much every form of hostile attacks imaginable, so that we can adapt and be prepared against any hostile force. \n§HAdditional Jobs: £job_ssh_vr_defense_engineer£ $job_ssh_vr_defense_engineer$§!§! $hb_building_jobs_tt$"
+
+ building_ssh_hb_server_offense_simulation: "§cBattle Simulation§! Configuration"
+ building_ssh_hb_server_offense_simulation_desc: "This part of the server complex allows us to simulate the effects of weapon concepts and therefore adapt our strategies for attacks. \n§HAdditional Jobs: £job_ssh_vr_defense_engineer£ $job_ssh_vr_defense_engineer$§!§! $hb_building_jobs_tt$"
+
+ building_ssh_hb_server_netrunner: "§_Netrunner§! Configuration"
+ building_ssh_hb_server_netrunner_desc: "This part of the server complex hosts the tools necessary to recruit and train Netrunners who infiltrate other Empires for us. \n§HAdditional Jobs: £job_ssh_vr_netrunner£ $job_ssh_vr_netrunner$§!§! $hb_building_jobs_tt$"
+
+
+ # Other Horizon Brain Buildings
+ building_ssh_hb_server_livestock: "§GMeat Farm§! Configuration"
+ building_ssh_hb_server_livestock_desc: "The virtual environment allows us to link our Livestock to the grid and simulate an artificial landscape for them with everything they need, resulting in a happier population. \n§HAllows §YLivestock Pops§! on this planet to take £job_ssh_vr_livestock£ §Y$job_ssh_vr_livestock$§! Jobs.§!"
+
+
+ ### Special Buildings
+ building_ssh_vacdec_cryo_chambers: "Cryogenic Archive"
+ building_ssh_vacdec_cryo_chambers_desc: "Endless halls filled with cryogenic chambers containing the frozen population of this empire fill this building. \n§HCan be accessed via the §YEdicts Menu§!.§! \n§HMust be located on the §YCapital§!.§!"

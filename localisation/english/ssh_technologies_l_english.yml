@@ -1,0 +1,228 @@
+﻿l_english:
+ 
+ ##########################
+ # Technology Engineering #
+ ##########################
+ ssh_tech_shellworlds: "Shellworlds"
+ ssh_tech_shellworlds_desc: "By using our knowledge about megastructural engineering and advanced construction templates, our scientists propose we could find a way to utilise these technologies to construct massive shells around our planets and fill them with an artificial landscape to provide much more space for districts."
+
+ ssh_tech_matrioshka_worlds: "Matrioshka Worlds"
+ ssh_tech_matrioshka_worlds_desc: "One shell around our planet is already marvelous, however, we still need more space. Our scientists propose we could construct yet another shell around our shellworld, which would tremendously boost our industrial capabilities once again."
+
+ ssh_tech_gas_giant_shellworlds: "Pressurized Shellworlds"
+ ssh_tech_gas_giant_shellworlds_desc: "Shellworlds don't necessarily have to be supported by pillars. Instead, we could make use the atmospheric pressure of gas giants to stabilize huge shells around them, which would give us §Pway more space than any normal shellworld could§! and potentially §Blet us harvest the atmosphere of it§!."
+
+ ssh_tech_gas_giant_lifting: "Gas Giant Lifting"
+ ssh_tech_gas_giant_lifting_desc: "We can install giant coils onto shells around gas giants to create a very strong magnetic field that would allow us to harvest its atmosphere en masse."
+
+ ssh_tech_ederspheres: "Ederspheres"
+ ssh_tech_ederspheres_desc: "Ederspheres, also known as Ederbubbles oder Ederworlds, are the biggest artificial star-orbiting habitats possible. Instead of being constructed around celestial bodies, they are built in the void of space and later on filled with gas, which pressurizes the shell so it doesn't collapse on itself. They can be as big as three times the size of an average gas giant and surpass any shellworld created around a planetary body."
+
+ ssh_tech_gas_giant_compression: "Gas Giant Compression"
+ ssh_tech_gas_giant_compression_desc: "Our engineers propose that given enough energy and external mass, a gas giant could be compressed into a brown dwarf, a substellar object that is not massive enough to sustain nuclear fusion of ordinary hydrogen into helium in their cores, unlike a main-sequence star."
+
+ ssh_tech_stellar_hoop: "Star Colonization"
+ ssh_tech_stellar_hoop_desc: "Our breakthroughs in molecular manipulation and the creation of new strong materials has allowed our scientists to develop a new ultra heat resisting material. They propose this could be used in combination with particle de- and reflection to build a habitable structure that reaches well inside the photosphere of a star. This would allow us to harvest its energy and other resources way more efficient than before."
+
+ ssh_tech_hoopworld: "Hoopworlds"
+ ssh_tech_hoopworld_desc: "Even though many consider them impractical and unnecessary, Hoopworlds actually provide much space to live on and utilise for farming or other purposes. Plus, they make a great tourist attraction and show every nation in this galaxy our prestige!"
+
+ ssh_tech_discworld: "Discworlds"
+ ssh_tech_discworld_desc: "Even though many consider them impractical and unnecessary, Discworlds actually provide a noticeable amount of space to live on and utilise for farming on both sides of the disc. Plus, they can be used to store large amounts of Hydrogen or Dark Matter and they make a great tourist attraction!"
+
+ ssh_tech_freesphere: "Freefall Environments"
+ ssh_tech_freesphere_desc: "Most species without wings or fins consider them unnecessary, but freefall environments are not only fun to live in, they also provide a great opportunity to study the affects of the environment on its inhabitants and their behaviour."
+
+ ssh_tech_black_hole_shellworld: "Black Hole Suprashells"
+ ssh_tech_black_hole_shellworld_desc: "Black Hole Suprashells, or Black Hole Shellworlds, are behemoth shells constructed around a black hole. Aside from the vast amounts of space to live on they offer some unique districts."
+
+ ssh_tech_stellar_harvester: "Fusion Acceleration"
+ ssh_tech_stellar_harvester_desc: "We can use artificial nuclear fusion to tremendously accelerate the natural fusion inside a star and therefore heavily increase its energy output while depleting it, which we could harvest with a classical dyson sphere."
+
+ ssh_tech_star_disassembler: "Stellar Disassembly"
+ ssh_tech_star_disassembler_desc: "We can modify our nanites to be more heat resistant, which would allow them to consume relatively cool stellar remnants like brown dwarves and black dwarves."
+ ssh_star_disassembler_info: "§EDecision only available if system stars are §LBlack Dwarves§! or §LBrown Dwarves§! & §Pall planets/asteroids§! must have been mined first!§!"
+
+ ssh_tech_neutronium_compression: "Neutronium Compression"
+ ssh_tech_neutronium_compression_desc: "We could increase the already extreme pressure and gravity of neutron stars to compress them even more, whilst harvesting layer after layer of the resulting ultra-dense surface and turning it into raw cultrobium."
+
+ ssh_tech_dyson_hab: "Stellar Shellworlds"
+ ssh_tech_dyson_hab_desc: "By developing advanced means of heat transfer and radiation shielding we could theoretically utilise the outer surface of our dyson spheres by turning it into a giant habitat."
+ ssh_tech_dyson_hab_tt: "§YOnly available for Dyson Spheres built around one of the following classes:§! \nM Star\nWhite Dwarf\nBrown Dwarf"
+
+ ssh_tech_nanite_disassembler: "Streamlined Nanite Extraction"
+ ssh_tech_nanite_disassembler_desc: "By unleashing controlled swarms of nanites onto a celestial body, we could extract resources on a scale never seen before."
+
+ # Non-Megastructure stuff
+ ssh_tech_hydrogen: "Hydrogen Farming"
+ ssh_tech_hydrogen_desc: "Hydrogen is the most abundant resource in the universe and can be an important resource for gravity generation in megastructures... We could find out how to harvest and store it for later use."
+
+ ######################
+ # Technology Physics #
+ ######################
+ 
+ ssh_tech_microscale_engineering: "Microscale Engineering"
+ ssh_tech_microscale_engineering_desc: "While the unimaginable size of space is fascinating, we should not forget to focus on the smaller scales of the universe. Worlds full of microorganisms and other fascinating building blocks of life and the universe itself can provide us the key to the universe, life, and ultimately the theory of everything."
+
+ ssh_tech_molecular_bond_manipulation: "Molecular Bond Manipulation"
+ ssh_tech_molecular_bond_manipulation_desc: "The findings we have made in DNA manipulation are already astounding, but there's way more to find in the microcosmos. We have to focus our research on even smaller scales and try to manipulate the molecular bonds that make up materials themselves to become a Type III-Minus Civilization."
+
+ ssh_tech_atomic_manipulation: "Direct Atomic Manipulation"
+ ssh_tech_atomic_manipulation_desc: "Manipulating molecular bonds has helped us to create new materials very efficiently, but that's not enough. We shall become masters of the atoms themselves and utilise this knowledge to allow us to engineer tiny nanobots on a molecular scale, which can be controlled as we wish. We shall become a Type IV-Minus Civilization."
+
+ ssh_tech_nuclei_modification: "Nuclei Modification"
+ ssh_tech_nuclei_modification_desc: "We are reaching the limits of science. Our advanced research about the microcosmos has gifted us with incredibly precious knowledge and power... we have to keep going. By directly modifying nuclei we might be able to create new, artificial atoms that can't appear naturally in this universe and make up impossibly durable and resistant materials. We will finally become a Type V-Minus Civilization. §PWhat could go wrong?§!"
+
+ ssh_tech_elementary_tampering: "Elementary Tampering"
+ ssh_tech_elementary_tampering_desc: "§PThis is it. We have reached the limits of science and physics in general. Experiments on the direct tampering with the elementary particles that make up the foundation of this universe might allow us to manipulate the physical forces themselves. Finally, as a Type VI-Minus Civilization, we might soon be able to shape reality to our will.§!"
+
+ ssh_tech_reality_shaping: "Reality Shaping"
+ ssh_tech_reality_shaping_desc: "§PWe will pushed beyond the boundaries of science. We will shape the fabric of spacetime to our will. We will ascend as a Type Omega-Minus civilization and grasp perfection.§!"
+
+ ssh_tech_basement_universe: "Temporal Quantum Entanglement"
+ ssh_tech_basement_universe_desc: "The existence of quantum entanglement over infinite distances is nothing new for our scientists, but the usage of such entanglements has always remained a mystery to us - until now. \nRecent experiments on the nature of elementary particles have resulted in a groundbreaking insight: On the most foundational layer of our universe, so-called 'quantum foam' pops in and out of existence, depending on the degree of observation and measurement. In areas of high density and extremely concentrated matter, such as the cores of neutron stars, we could measure evidence of spontaneous micro-wormholes forming and instantly un-forming when being observed. If, in theory, we could manage to entangle a 'clump' of the exact quarks that form these wormholes - and therefore stabilize them - for a short amount of time, our scientists theorize that it could be possible to shove basic information, perhaps in form of simple matter, into them, creating some sort of 'basement universe' storing this exact information on the other side."
+
+ ssh_tech_pk_basement_universe: "Contained Spacetime Separation"
+ ssh_tech_pk_basement_universe_desc: "With our ability to create Basement Universes, we could theoretically modify a colossus to create a temporary wormhole next to a planet, sucking it into a blank tiny Basement Universe and hence separate the planet from this universe."
+
+ ssh_tech_system_disintegrator: "Spatio-Temporal Electromagnetic Force Altering"
+ ssh_tech_system_disintegrator_desc: "Our recent experiments on the tampering with the elementary particles have led our scientists to believe that there could be a way of decreasing or even 'deactivating' one the three fundamental forces - the electromagnetic force - inside a contained field, releasing every electron from its former atom for a short amount of time. Such a process will most likely be incredibly expensive, as a large amount of energy would be needed to even slightly alter these forces, yet it still might be possible. If such experiments would turn out to be successful and bear fruit, we could, in theory, use these local force-altered fields to disintegrate pretty much any type of matter into its respective raw nuclei for a short amount of time, during which we could simply 'scoop up' and split the raw nuclei matter before the now free-roaming electrons would rearrange themselves to each nuclei."
+
+ ssh_tech_system_creator: "Interstellar Non-Hyperlane Logistics"
+ ssh_tech_system_creator_desc: "If we were able to master the logistical challenge of transporting the gargantuan amounts of megastructural resources and construction equipment to interstellar space far away from hyperlanes, we could in theory set up the foundation of an interstellar construction hub from which we might be able to build the foundation for new artificial systems."
+
+ ssh_tech_vr: "Synaptic Environment Emulation"
+ ssh_tech_vr_desc: "Evolving computing capacities and biological breakthroughs are opening the door to revolutionary simulations of reality. The sheer amount of raw processing power we are able to generate by now along with our biological advancements provide the possibility for true virtual worlds. New state-of-the-art neural chips will revolutionize Virtual Reality by directly linking the simulated environment to the observer's brain, emulating dream-like environments with no restrictions."
+
+ ssh_tech_horizon_brain: "Eternal Computing Networks"
+ ssh_tech_horizon_brain_desc: "Whilst there still are plenty of stars to harvest for now, this won't be the case forever. At some point in the far future, there will only be stellar remnants. If we want to survive eternity, we must adapt. By harnessing the power of a Penrose Sphere and utilising it to simulate virtual environments for our future selfs, we can ensure that our kind will go on, even when the universe is dead."
+
+ ssh_tech_captive_star: "Artificial Stellar Propulsion"
+ ssh_tech_captive_star_desc: "Our scientists theorize that with our current knowledge of Dyson Spheres, it should be possible to rework some already existing blueprints for Dyson Spheres to utilise their energy output and focus their beams into a behemoth mega-thruster to propel the star through space. This would revolutionize galactic warfare, as a mobile star could then simply be thrown into another star to cause a devastating supernova."
+
+ ssh_tech_dark_warhead: "Dark Matter Warheads"
+ ssh_tech_dark_warhead_desc: "Our scientists have come up with blueprints for an immensely powerful warhead that draws its energy directly from dark matter, releasing more energy than should be possible according to the laws of physics. \nThis would revolutionize galactic warfare."
+
+ ssh_tech_dark_warhead_yields: "Stabilized Dark Warheads"
+ ssh_tech_dark_warhead_yields_desc: "If we manage to stabilize the dark matter inside the dark warheads we could tremendously increase the concentration of such matter and hence increase the energy contained to maximize destructive potential."
+
+
+ ######################
+ # Technology Society #
+ ######################
+ ssh_tech_advanced_dna_resequencing: "Advanced DNA Resequencing"
+ ssh_tech_advanced_dna_resequencing_desc: "Our research in the smaller scales of the universe leads us to biology and the genetic codes of living creatures. As a Type II-Minus civilization, we will be able to modify biological species to posess some tremendous advantages which would not be possible to gain through normal evolution."
+
+ ssh_tech_because_we_can: "Because-We-Can Megastructures"
+ ssh_tech_because_we_can_desc: "§YBWC-Megastructures§!, or §YBecause-We-Can Megastructures§!, are theoretical structure concepts of a behemoth scale that are considered impractical or unnecessary by most. Some of them actually do have practical usage, like increasing hydrogen and dark matter storage capacities or unity-boosting tourist attractions."
+
+ ssh_tech_conscious_matter: "Neural Tailoring"
+ ssh_tech_conscious_matter_desc: "Our breakthroughs in biology have already allowed us to shape our species' looks and properties to our will - but why stop there? We could focus our research on neural networks and neurons themselves, and try to use the gained knowledge in combination with our past biological breakthroughs to create brain tissue and perhaps even some sort of sentient matter from scratch."
+
+ ssh_tech_mega_brain: "Megascale Neural Networks"
+ ssh_tech_mega_brain_desc: "Conscious Matter provides so much potential in various ways, yet its most promising one is its computing and exponential learning ability. Our scientists have found a way to stabilize and sustain larger clumps of Conscious Matter over long periods of time already - if we dedicate our research further to these large-scale neural networks, we could probably grow and sustain some sort of Mega-Brain, similar to a Boltzmann Brain but artificially created, that can survive in the harsh environment of space."
+
+ # Bio Brain-Special Technologies
+ ssh_tech_genetic_databanks: "Genetic Databanks"
+ ssh_tech_genetic_databanks_desc: "Instead of regular synthetic databanks, we can grow biological storage mediums which save information in form of DNA and other biological structures. Every biological pop in our empire will therefore be able to carry administrative information inside their bodies instead of external servers."
+ 
+ ssh_tech_conmat_computer: "Sapient Bio-Processing"
+ ssh_tech_conmat_computer_desc: "Instead of using synthetic computing parts in our ships, we can replace the core processing units with a genetically enhanced sapient brain specially adjusted to each vessel. By making the ship a part of its body it will do anything to defend itself and the vessel from enemy attacks."
+
+ ssh_tech_conmat_hull: "Sapient Hull Tissue"
+ ssh_tech_conmat_hull_desc: "Replacing our ships' artifical hulls with genetically enhanced sapient biological tissue will allow our vessels to regenerate and reconstruct their hulls at a speed never seen before in the galaxy."
+
+ ssh_tech_pk_zombie: "Controlled Bacterial Infection"
+ ssh_tech_pk_zombie_desc: "The B.I.O. Brain's calculations have shown us the great potential of bacteria: There appear to be various complex but feasible ways of programming them to do certain actions over a distance, like infiltrating the brains of other pops and cutting through certain nerves, turning them into zombie-like husks."
+
+ ssh_tech_neural_tampering: "Neural Tampering"
+ ssh_tech_neural_tampering_desc: "The B.I.O. Brain has shown us new ways of modifying species by tampering with and 'reprogramming' a part of their neurons to grow or modify any amount of body cells."
+
+ # Hyperstructures
+ ssh_tech_terravore_digester: "Ultra-Efficient Macroscale Digestion"
+ ssh_tech_terravore_digester_desc: "Our hunger grows. While we were previously limited to consuming habitable planets piece by piece, we now possess the technology of constructing megastructures bigger than planets - let's focus our research on a structure that would allow us to consume whole planets in an efficiency never seen before in this galaxy!"
+
+ #######################
+ # Technology Psionics #
+ #######################
+
+ ssh_tech_triangle_theory: "The Triangle Theory"
+ ssh_tech_triangle_theory_desc: "Our current research into psionics suggests that the three layers of existence - the Physical World, the Mind and the Shroud - are all loosely connected to each other, like the edges of a triangle. If we dedicate our research to this theory and should we prove it true, this would revolutionize our knowledge about the Shroud and how it works and affects our physical world. Who knows, we might even be able to find practical use to manipulate each layer?"
+
+ ssh_tech_mega_temple: "Three-Layer Bending"
+ ssh_tech_mega_temple_desc: "We will furtherly research feasible ways of long-term habitation close to Shroud-resonating objects - the only candidates so far are black holes and quark stars - combined with excessive Zro consumption over long periods of time to create a place for our empire's most skilled psionics to allow them to reach into the deeper regions of the Shroud. This will most certainly grant us immense power and provides great potential if successfull - after all, §Rwhat could go wrong?§!"
+
+ ssh_tech_shroud_supernova: "Zro-Infused Star Detonation"
+ ssh_tech_shroud_supernova_desc: "We can make use of the gravitational instability of Zro-infused stars by stripping away their outer layers and therefore shift the balance between their inner and outer pressure to make them explode. The immense subspace wave of such a psionically-charged supernova, if observed by telepaths accessing the Shroud at the right moment, could quite literally 'fling' their local Shroud region outside of the galaxy. Who knows what awaits us there? What insights might await us?"
+
+
+ ### Abyssal Anchor - Insight Techs
+
+ ssh_tech_insight_collectivist: "Efficient Labour Assignment Processes"
+ ssh_tech_insight_collectivist_desc: "The Shroud venture has shown us that there are indeed some benefits of a totally equal society - notably that the process of everybody getting a job assigned where they are needed happening very efficiently due to the absence of class divisions, causing unemployment rates to be near zero. This satisfies both the state as well as the people - perhaps we can learn a thing or two from this society."
+
+ ssh_tech_insight_agrarian_idyll: "Natural Urbanization Techniques"
+ ssh_tech_insight_agrarian_idyll_desc: "The Shroud venture has shown us how positively a peaceful coexistence with nature can improve the minds of people - and more happiness means more motivation, meaning a higher productivity."
+
+ ssh_tech_insight_anarchist: "Patchwork Promotions"
+ ssh_tech_insight_anarchist_desc: "We have witnessed how teamwork makes the dream work - by promoting unity and an open patchwork mentality among the individuals we can make sure there is tolerance and support for those in need."
+
+ ssh_tech_insight_death_cult: "Afterlife Propaganda"
+ ssh_tech_insight_death_cult_desc: "By promoting the idea of an afterlife in our society we can give our people hope during times of crisis. Plus, with the idea of a paradise for the well-behaving in mind, some might overthink becoming a criminal."
+
+ ssh_tech_insight_ingsoc: "History Rewriting Programs"
+ ssh_tech_insight_ingsoc_desc: "From time to time it can be pretty useful to 'change' some past mistakes written down in history books. We have now gained an insight on how such a program could be developed on mass-scale, and by utilising our psi-corps, we could eradicate and rewrite history not only from the books, but also the minds of our people."
+
+ ssh_tech_insight_neutrals: "Effective Diplomatic Appeasement Techniques"
+ ssh_tech_insight_neutrals_desc: "Being neutral on certain topics can assure us to develop good relations with two conflicting parties and grow trust in us."
+
+ #############################
+ # Vacuum Decay Related Tech #
+ #############################
+ ssh_tech_vacdec_logistics: "Behemoth Logistic Programs"
+ ssh_tech_vacdec_logistics_desc: "To escape the approaching true vacuum, we must develop a way to satisfy logistical requirements in a scale never seen before."
+ 
+ ssh_tech_vacdec_energy: "Contained Kugelblitz Manipulation"
+ ssh_tech_vacdec_energy_desc: "The only way to charge and store the gargantuan amounts of energy required by the Ark's warp drive will be by creating artificial black holes in a contained environment."
+
+ ssh_tech_vacdec_habitation: "Artificial Environment Adaptation"
+ ssh_tech_vacdec_habitation_desc: "Through comprehensive study of zero-g environments and planetary environments of all kind we will allow our population to adapt better to the environment of the Ark."
+
+ ssh_tech_vacdec_warp_field: "Interdimensional Breaching Techniques"
+ ssh_tech_vacdec_warp_field_desc: "Incredibly complex combinations of contained quantum entanglements allow for short-term breaches in the fabric of spacetime itself, enabling us to temporarily reach into higher dimensions - that is, of course, if we were to provide the vast amounts of energy required by this process as well as the materials that are not being destroyed by such dimensions."
+
+ ssh_tech_vacdec_warp_drive: "Interdimensional Breaching Techniques"
+ ssh_tech_vacdec_warp_drive_desc: "Incredibly complex combinations of contained quantum entanglements allow for short-term breaches in the fabric of spacetime itself, enabling us to temporarily reach into higher dimensions - that is, of course, if we were to provide the vast amounts of energy required by this process."
+
+ TECH_UNLOCK_INTERDIM_JUMPDRIVE_TITLE: "§HUnlocks Component:§! Interdimensional Warp Drive"
+ TECH_UNLOCK_INTERDIM_JUMPDRIVE_DESC: "§HUnlocks Component:§! Interdimensional Warp Drive"
+
+ ssh_tech_vacdec_slowdown: "Temporary Subspace Bending"
+ ssh_tech_vacdec_slowdown_desc: "It might be possible to continuously keep subspace bended for a short amount of time - however, experiments have shown us that the longer and the more intense we try to bend it, the stronger it starts pushing back. This prohibits a permanent manipulation of subspace, but if we focus our research on this field of physics, we could potentially develop the means to stretch, or 'flatten out', subspace for a short amount of time to slow down the speed at which the True Vacuum expands through this subspace-bended area."
+
+ ssh_tech_ark_boost_physics: "Improved Research Algorithms"
+ ssh_tech_ark_boost_physics_desc: "The Ark's technological requirements are extraordinary. We must focus on developing more efficient ways of studying and conducting experiments to boost our research."
+ ssh_tech_ark_boost_society: "Improved Research Algorithms"
+ ssh_tech_ark_boost_society_desc: "The Ark's technological requirements are extraordinary. We must focus on developing more efficient ways of our biology research."
+ ssh_tech_ark_boost_engineering: "Improved Research Algorithms"
+ ssh_tech_ark_boost_engineering_desc: "The Ark's technological requirements are extraordinary. We must focus on developing more efficient ways of studying everything related to engineering, logistics and industry."
+
+ ssh_tech_basement_universe_probing: "Spacetime-Rift Probing"
+ ssh_tech_basement_universe_probing_desc: "Celestial bodies not only affect their planetary environment, but also the spacetime surrounding them. Each star and other celestial bodies affect this environment differently, which could give us insights on which objects could be a good foundation for a stable Basement Universe and which ones aren't."
+
+ ssh_tech_basement_gateway_1: "Warped Spacetime Tampering"
+ ssh_tech_basement_gateway_1_desc: "The already heavily warped spacetime near neutron stars and pulsars could efficiently be altered through some advanced quantum tunneling methods. If we enhance our current methods of creating basement universes we could likely take advantage of warped spacetime to save a lot of energy costs."
+ ssh_tech_basement_gateway_2: "Spacetime Medium Stabilization"
+ ssh_tech_basement_gateway_2_desc: "In order to make a basement universe habitable, it must consist of a stable medium which on one hand allows for large expansion without ripping apart and on the other hand doesn't implode once it has reached its maximum expansion. Exotic resources such as Dark Matter seem to be promising candidates for keeping such a medium stable."
+ ssh_tech_basement_gateway_3: "Advanced Energetic Inflation Methods"
+ ssh_tech_basement_gateway_3_desc: "In order to expand the basement universe to sizes that allow for at least a few solar systems, it must be inflated with gargantuan amounts of energy. By concentrating and redirecting the neutron beam of pulsars or neutron stars straight into the basement gateway, we save a lot of energy, since this highly concentrated beam's heat inflates the universe on one hand and already provides a few heavier elements from the star's core as well."
+ ssh_tech_basement_gateway_4: "Artificial Big Bangs"
+ ssh_tech_basement_gateway_4_desc: "A habitable universe requires galaxies, stars and planets. We must find a way to concentrate very basic elements into a very small space, send them into the basement universe, and then distribute them there to form stars and planets. A huge matter-antimatter detonation could simulate a 'small' artificial big bang, distributing these elements throughout the medium."
+
+ #########################
+ # Hyperdim Exodus Techs #
+ #########################
+ ssh_tech_exodus_stage_4_biological: "Psionic Consciousness Embedment"
+ ssh_tech_exodus_stage_4_biological_desc: "In order to survive the exotic environment of the fundamental realm, we must find a way of adapting, or rather embedding, our consciousness to the hyperdimensional energy streams. Our physical bodies might be gone, but as long as our consciousness survives the trip we shall be freed from the terrible restraints of this flawed reality."
+ ssh_tech_exodus_stage_4_machine: "Fundamental Computing"
+ ssh_tech_exodus_stage_4_machine_desc: "In order to survive the exotic environment of the fundamental realm, we must find a method of binary computing there. The hyperdimensional energy streams are a promising candidate for exotic logic gates. Our physical bodies might be gone, but as long as our consciousness survives the trip we shall be freed from the terrible restraints of this flawed reality."

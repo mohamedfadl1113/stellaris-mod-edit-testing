@@ -1,0 +1,160 @@
+﻿l_english:
+ 
+ ##################
+ ### SHIP PARTS ###
+ ##################
+ ARMOR_CULTROBIUM: "Cultrobium Armor"
+ ARMOR_CULTROBIUM_DESC: "Cultrobium is a Customized Ultra-Robust element which does not appear in nature. It is made up of artificially created ultra-strong atoms and therefore immensely durable and resistant, which makes it great for ship armor."
+
+ SMALL_ARMOR_CULTROBIUM: "Small Cultrobium Armor"
+ MEDIUM_ARMOR_CULTROBIUM: "Medium Cultrobium Armor"
+ LARGE_ARMOR_CULTROBIUM: "Large Cultrobium Armor"
+
+ AUTO_REPAIR_NANOBOTS: "Nanobot Repair System"
+ AUTO_REPAIR_NANOBOTS_DESC: "Billions of efficient tiny nanobots are working 24/7 on repairing the ship's hull."
+
+ AUTO_REPAIR_CONMAT: "Living Hull Repair System"
+ AUTO_REPAIR_CONMAT_DESC: "Gene-Modified Conscious Matter can replace a part of our ship's hull. It is sapient and therefore regenerates any damage to its body at ludicrous speeds."
+
+ # CONMAT COMPUTERS
+ COMBAT_COMPUTER_SWARM_CONMAT: "Sapient Bio-Processor (Swarm)"
+ COMBAT_COMPUTER_SWARM_CONMAT_DESC: "A sapient brain attached to the vessel will do anything to defend itself and the vessel from enemy attacks."
+
+ COMBAT_COMPUTER_TORPEDO_CONMAT: "Sapient Bio-Processor (Torpedo)"
+ COMBAT_COMPUTER_TORPEDO_CONMAT_DESC: "A sapient brain attached to the vessel will do anything to defend itself and the vessel from enemy attacks."
+
+ COMBAT_COMPUTER_PICKET_CONMAT: "Sapient Bio-Processor (Picket)"
+ COMBAT_COMPUTER_PICKET_CONMAT_DESC: "A sapient brain attached to the vessel will do anything to defend itself and the vessel from enemy attacks."
+
+ COMBAT_COMPUTER_LINE_CONMAT: "Sapient Bio-Processor (Line)"
+ COMBAT_COMPUTER_LINE_CONMAT_DESC: "A sapient brain attached to the vessel will do anything to defend itself and the vessel from enemy attacks."
+
+ COMBAT_COMPUTER_ARTILLERY_CONMAT: "Sapient Bio-Processor (Artillery)"
+ COMBAT_COMPUTER_ARTILLERY_CONMAT_DESC: "A sapient brain attached to the vessel will do anything to defend itself and the vessel from enemy attacks."
+
+ COMBAT_COMPUTER_CARRIER_CONMAT: "Sapient Bio-Processor (Carrier)"
+ COMBAT_COMPUTER_CARRIER_CONMAT_DESC: "A sapient brain attached to the vessel will do anything to defend itself and the vessel from enemy attacks."
+
+ COMBAT_COMPUTER_PLATFORM_CONMAT: "Sapient Bio-Processor (Platform)"
+ COMBAT_COMPUTER_PLATFORM_CONMAT_DESC: "A sapient brain attached to the platform will do anything to defend itself and the vessel from enemy attacks."
+
+ # SPECIAL COMPUTERS
+ SSH_CAPTIVE_STAR_COMPUTER: "Stellar Processor"
+ SSH_CAPTIVE_STAR_COMPUTER_DESC: "A considerable part of the energy produced by the star is used to control and steer the celestial vessel."
+
+ SSH_DARK_MATTER_MISSILE_COMPUTER: "Warhead Computer"
+ SSH_DARK_MATTER_MISSILE_COMPUTER_DESC: "The warhead's computer controls the trigger to ensure the weapon doesn't detonate on accident."
+
+ # Hyperdrives
+ INTERDIMENSIONAL_JUMP_DRIVE_1: "Interdimensional Jump Drive"
+ INTERDIMENSIONAL_JUMP_DRIVE_1_DESC: "Incredibly complex combinations of contained quantum entanglements allow for short-term breaches in the fabric of spacetime itself, enabling us to temporarily reach into higher dimensions - that is, of course, if we were to provide the vast amounts of energy and dark matter required by this process."
+
+ # Reactors
+ REACTOR_CAPTIVE_STAR: "Captive Star"
+ REACTOR_CAPTIVE_STAR_DESC: "The emitted radiation and heat from the star are used to power the sphere's thrusters."
+
+ REACTOR_DARK_MATTER_MISSILE: "Warhead Battery"
+ REACTOR_DARK_MATTER_MISSILE_DESC: "The missile is powered by tapping a small quantity of the dark matter warhead's contained energy."
+
+ # Thrusters
+ THRUSTER_CAPTIVE_STAR: "Stellar Thrusters"
+ THRUSTER_CAPTIVE_STAR_DESC: "The emissions from the star are focused in a strong lense, artificially accelerated and exhausted to propel the celestial vessel. Due to the massive size of the ship, it's difficult to enter subspace, rendering jump drives less efficient."
+
+ THRUSTER_DARK_MATTER_MISSILE: "Missile Thrusters"
+ THRUSTER_DARK_MATTER_MISSILE_DESC: "The thrusters allow the warhead to travel between systems, even though they are quite slow."
+
+ # SYSTEM KILLERS
+ SYSTEM_KILLER_CAPTIVE_STAR: "Star"
+ SYSTEM_KILLER_CAPTIVE_STAR_DESC: "Once we collide this celestial body with another star, the resulting fusion of both objects will result in a massive supernova, annihilating the entire solar system surrounding them."
+ 
+ SYSTEM_KILLER_DARK_WMD: "Dark Warhead"
+ SYSTEM_KILLER_DARK_WMD_DESC: "An immensely powerful warhead that draws its energy directly from dark matter, releasing more energy than should be possible according to the laws of physics when detonated."
+ SYSTEM_KILLER_DARK_WMD_LARGE: "Large Dark Warhead"
+ SYSTEM_KILLER_DARK_WMD_LARGE_DESC: "An even more powerful warhead that draws its energy directly from a huge concentration of dark matter, releasing an unimaginable amount of energy when detonated."
+
+ SYSTEM_KILLER_BRAIN_MAW: "Apex Brain Absorber"
+ SYSTEM_KILLER_BRAIN_MAW_DESC: "Whatever touches the tissue of the brain is immediately absorbed into its behemoth belly. It has grown enough to even consume the stars themselves."
+
+ ##############
+ # SHIP SIZES #
+ ##############
+ ssh_captive_star: "Captive Star"
+ ssh_captive_star_plural: "Captive Stars"
+ captive_star_key: "Captive Star"
+
+ ssh_dark_matter_missile: "Dark Warhead"
+ ssh_dark_matter_missile_plural: "Dark Warheads"
+ dark_matter_missile_key: "Dark Warhead"
+
+ NAME_Brain_Behemoth_fleet: "B.I.O. Brain"
+
+ ssh_brain_behemoth_01: "B.I.O. Brain"
+ ssh_brain_behemoth_01_plural: "B.I.O. Brains"
+ brain_behemoth_01_key: "B.I.O. Brain"
+ NAME_Brain_Behemoth_01: "B.I.O. Brain"
+
+ ssh_brain_behemoth_02: "Grown B.I.O. Brain"
+ ssh_brain_behemoth_02_plural: "Grown B.I.O. Brains"
+ brain_behemoth_02_key: "B.I.O. Brain"
+ NAME_Brain_Behemoth_02: "Grown B.I.O. Brain"
+
+ ssh_brain_behemoth_03: "Apex B.I.O. Brain"
+ ssh_brain_behemoth_03_plural: "Apex B.I.O. Brains"
+ brain_behemoth_03_key: "B.I.O. Brain"
+ NAME_Brain_Behemoth_03: "Apex B.I.O. Brain"
+
+ ssh_brain_behemoth_04: "The Overmind"
+ ssh_brain_behemoth_04_plural: "Overminds"
+ brain_behemoth_04_key: "Overmind"
+ NAME_Brain_Behemoth_04: "Overmind"
+
+ ssh_brain_behemoth_05: "Apex Overmind"
+ ssh_brain_behemoth_05_plural: "Apex Overminds"
+ brain_behemoth_05_key: "Apex Overmind"
+ NAME_Brain_Behemoth_05: "Apex Overmind"
+
+ ssh_brain_behemoth_06: "§PThe Gargantuan Overmind§!"
+ ssh_brain_behemoth_06_plural: "§PGargantuan Overminds§!"
+ brain_behemoth_06_key: "§PThe Gargantuan Overmind§!"
+ NAME_Brain_Behemoth_06: "§PThe Gargantuan Overmind§!"
+
+
+ ##################
+ # Component Sets #
+ ##################
+ wmd_components: "System Annihilating-Class Components"
+ wmd_components_DESC: "All interstellar WMDs consist of a component that unleashes ludicruous amounts of energy once triggered."
+ 
+ 
+ #####################
+ ### Colossi Stuff ###
+ #####################
+ PLANET_KILLER_ZOMBIE: "Infection Beam"
+ PLANET_KILLER_ZOMBIE_DESC: "A beam of billions of tiny bacteria programmed to infest any sapient being's mind and cut most nerves related to free will, rendering them pretty much unable to do much except for the most simplest of tasks."
+ PLANET_KILLER_ZOMBIE_ACTION: "Infect World"
+
+ FLEETORDER_DESTROY_PLANET_WITH_PLANET_KILLER_ZOMBIE: "Preparing to infect $PLANET|Y$"
+ MESSAGE_DESC_FOR_PLANET_KILLER_ZOMBIE: "was entirely infected by"
+
+  # Events
+ ssh_colossus.2.name: "Planet Infected"
+ ssh_colossus.2.desc: "As [From.From.GetName] finished firing the loads of bacteria, [From.GetName]'s population turns quiet. \nPreviously densely populated cities and districts have been devoured by silence as every single former sapient being on the planet has lost its' free will and pretty much turned into a lifeless husk."
+ ssh_colossus.2.a: "Interesting."
+
+ 
+ PLANET_KILLER_BASEMENT_UNIVERSE: "Basement Separator"
+ PLANET_KILLER_BASEMENT_UNIVERSE_DESC: "A temporary wormhole is generated next to the planet, sucking it into a blank tiny Basement Universe."
+ PLANET_KILLER_BASEMENT_UNIVERSE_ACTION: "Transfer World"
+
+ FLEETORDER_DESTROY_PLANET_WITH_PLANET_KILLER_BASEMENT_UNIVERSE: "Preparing to transfer $PLANET|Y$"
+ MESSAGE_DESC_FOR_PLANET_KILLER_BASEMENT_UNIVERSE: "was transferred into a Basement Realm by"
+
+ ssh_colossus.4.name: "Planet Transferred"
+ ssh_colossus.4.desc: "As [From.From.GetName] successfully located and entangled a spontaneous quantum foam wormhole, [From.GetName] is gone. \nThe entire celestial body has been sucked into a separate Basement Realm, after which the unstable wormhole immediately collapsed onto itself. Where once densely populated cities and districts sprawled is now only blank, empty space. \nWhereever [From.GetName] and its population went, we'll probably never hear from them again."
+ ssh_colossus.4.a: "Adios."
+
+ PLANET_KILLER_BRAIN_MAW: "Brain Absorber"
+ PLANET_KILLER_BRAIN_MAW_DESC: "Whatever touches the tissue of the brain is immediately absorbed into its behemoth belly."
+ PLANET_KILLER_BRAIN_MAW_ACTION: "Absorb Planet"
+ FLEETORDER_DESTROY_PLANET_WITH_PLANET_KILLER_BRAIN_MAW: "Preparing to absorb $PLANET|Y$"
+ MESSAGE_DESC_FOR_PLANET_KILLER_BRAIN_MAW: "was devoured by"

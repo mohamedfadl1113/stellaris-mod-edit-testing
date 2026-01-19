@@ -1,0 +1,425 @@
+﻿l_english:
+
+ ###################
+ ### Districts   ###
+ ###################
+ 
+ district_ssh_gas_shellworld_housing: "Habitation District"
+ district_ssh_gas_shellworld_housing_plural: "Habitation Districts"
+ district_ssh_gas_shellworld_housing_desc: "These widespread yet dense city districts provide comfortable residences for their population. The cities next to the two glass domes provide an incredible view down on the gas giant below."
+
+ district_ssh_gas_shellworld_urban_1: "Unspecialized Arcology"
+ district_ssh_gas_shellworld_urban_1_plural: "Unspecialized Arcologies"
+ district_ssh_gas_shellworld_urban_1_desc: "Towering arcologies lie waiting, stretching into the clouds, awaiting a designated purpose."
+
+ district_ssh_gas_shellworld_urban_2: "Unspecialized Arcology"
+ district_ssh_gas_shellworld_urban_2_plural: "Unspecialized Arcologies"
+ district_ssh_gas_shellworld_urban_2_desc: "Towering arcologies lie waiting, stretching into the clouds, awaiting a designated purpose."
+
+ district_ssh_gas_shellworld_urban_3: "Unspecialized Arcology"
+ district_ssh_gas_shellworld_urban_3_plural: "Unspecialized Arcologies"
+ district_ssh_gas_shellworld_urban_3_desc: "Towering arcologies lie waiting, stretching into the clouds, awaiting a designated purpose."
+
+ district_ssh_gas_shellworld_leisure: "Entertainment & Spa District"
+ district_ssh_gas_shellworld_leisure_plural: "Entertainment & Spa Districts"
+ district_ssh_gas_shellworld_leisure_desc: "Denizens of the shellworld can unwind in their leisure hours in many ways, for example in the exotic spas that make use of the gas giant's filtered gases."
+ 
+ district_ssh_gas_shellworld_turbine: "Turbine District"
+ district_ssh_gas_shellworld_turbine_plural: "Turbine Districts"
+ district_ssh_gas_shellworld_turbine_desc: "Massive turbines mounted on the inside of the shell reach into the gas giant's atmosphere to turn its turbulent winds into energy."
+
+ district_ssh_gas_shellworld_gas_collection: "Refinery District"
+ district_ssh_gas_shellworld_gas_collection_plural: "Refinery Districts"
+ district_ssh_gas_shellworld_gas_collection_desc: "Drone pilots maneuver drones into the lower atmosphere of the gas giant below to collect exotic gases and refine them on the surface."
+ zone_unavailable_tech_gas_harvesting: "$zone_unavailable_tech$$engineering_research_icon_with_space$$tech_exotic_gases$\n$zone_unavailable_tech$$engineering_research_icon_with_space$$ssh_tech_hydrogen$"
+
+ district_ssh_gas_shellworld_farming: "Farming District"
+ district_ssh_gas_shellworld_farming_plural: "Farming Districts"
+ district_ssh_gas_shellworld_farming_desc: "Endless seas of farmland stretch across this section of the shell, growing massive amounts of food on the artificial soil. A part of the gas giant's refined gases is used to fertilize the soil."
+ 
+ # Swap Types
+ district_ssh_gas_shellworld_mixed_industry: "Industrial District"
+ district_ssh_gas_shellworld_mixed_industry_plural: "Industrial Districts"
+ district_ssh_gas_shellworld_mixed_industry_desc: "Workshops filled with artisans and civilian industries as well as roaring smelters and metallurgies line the stacked streets of this district."
+
+ district_ssh_gas_shellworld_arms_industry: "Foundry District"
+ district_ssh_gas_shellworld_arms_industry_plural: "Foundry Districts"
+ district_ssh_gas_shellworld_arms_industry_desc: "Geared towards military industries, this segment of the shellworld is filled with the roar of smelters and the clang of metallurgies."
+
+ district_ssh_gas_shellworld_civilian_industry: "Factory District"
+ district_ssh_gas_shellworld_civilian_industry_plural: "Factory Districts"
+ district_ssh_gas_shellworld_civilian_industry_desc: "Workshops filled with artisans and civilian industries line the stacked streets of this district."
+
+ district_ssh_gas_shellworld_research: "Research District"
+ district_ssh_gas_shellworld_research_plural: "Research Districts"
+ district_ssh_gas_shellworld_research_desc: "Capitals of scientific discovery, these districts employ researchers from every field of study, no matter how niche."
+
+ district_ssh_gas_shellworld_research_physics: "Physics District"
+ district_ssh_gas_shellworld_research_physics_plural: "Physics Districts"
+ district_ssh_gas_shellworld_research_physics_desc: "With particle accelerators below the shell like an ancient sewer network, quantum computers, and field manipulators as tall as skyscrapers, it might seem as if the laws of reality are being violated. But that's only because the denizens don't understand it. Yet."
+ 
+ district_ssh_gas_shellworld_research_society: "Biology District"
+ district_ssh_gas_shellworld_research_society_plural: "Biology Districts"
+ district_ssh_gas_shellworld_research_society_desc: "Passing through the sprawling parks of this arcology might seem like a visit to a zoo, but in reality, the visitors are also a subject, observed in hermetically sealed labs scattered in plain sight."
+ ### Bacteria in gas giant clouds text
+
+ district_ssh_gas_shellworld_research_engineering: "Engineering District"
+ district_ssh_gas_shellworld_research_engineering_plural: "Engineering Districts"
+ district_ssh_gas_shellworld_research_engineering_desc: "An arcology of motion, with constantly shifting buildings and a sky filled with experimental crafts. Home of esoteric materials testing, quantum chemical synthesis, and nanoscale fabrication, it was once theorized, now it is proven. Let's hope the shell doesn't take critical damage from the experiments."
+
+ district_ssh_gas_shellworld_administrative: "Administrative District"
+ district_ssh_gas_shellworld_administrative_plural: "Administrative Districts"
+ district_ssh_gas_shellworld_administrative_desc: "Where hordes of administrative staff and bureaucrats toil away to meet the growing expectations of an expanding bureaucracy."
+
+ district_ssh_gas_shellworld_spiritualist: "Ecclesiastical District"
+ district_ssh_gas_shellworld_spiritualist_plural: "Ecclesiastical Districts"
+ district_ssh_gas_shellworld_spiritualist_desc: "A true testament to our devotion, these spires may hold the key to the spiritual well-being of our empire."
+
+ district_ssh_gas_shellworld_organic_housing: "Sanctuary District"
+ district_ssh_gas_shellworld_organic_housing_plural: "Sanctuary Districts"
+ district_ssh_gas_shellworld_organic_housing_desc: "These towering structures feature AI-controlled artificial climates that mimic any environment a sapient organic being could require. The organics within have their housing needs completely fulfilled."
+
+ district_ssh_gas_shellworld_fortress: "Fortress District"
+ district_ssh_gas_shellworld_fortress_plural: "Fortress Districts"
+ district_ssh_gas_shellworld_fortress_desc: "This shell segment features integrated command structures, planetary bunkers, training facilities, and officer housing."
+
+ district_ssh_gas_shellworld_trade: "Commercial District"
+ district_ssh_gas_shellworld_trade_plural: "Commercial Districts"
+ district_ssh_gas_shellworld_trade_desc: "A sprawling arcology of warehouses and logistics, where business is conducted, deals are struck, and the trading floor reaches beyond the horizon. If you can not find it here, it can't be bought."
+
+ district_ssh_gas_shellworld_cultrobium_industry: "Atomic Foundry District"
+ district_ssh_gas_shellworld_cultrobium_industry_plural: "Atomic Foundry Districts"
+ district_ssh_gas_shellworld_cultrobium_industry_desc: "Using the strong pressure from the gas giant below, special machinery can create custom atoms to create ultra-dense and robust elements that do not occur naturally in this universe."
+ 
+
+ ### Edersphere
+ district_ssh_edersphere_city: "City Segment"
+ district_ssh_edersphere_city_plural: "City Segments"
+ district_ssh_edersphere_city_desc: "Dense cities fill this part of the edersphere, providing comfortable residences for their population."
+ 
+ district_ssh_edersphere_urban_1: "Unspecialized Segment"
+ district_ssh_edersphere_urban_1_plural: "Unspecialized Segments"
+ district_ssh_edersphere_urban_1_desc: "Vast empty segments lie waiting, stretching into the almost infinite distance, awaiting a designated purpose."
+ district_ssh_edersphere_urban_2: "Unspecialized Segment"
+ district_ssh_edersphere_urban_2_plural: "Unspecialized Segments"
+ district_ssh_edersphere_urban_2_desc: "Vast empty segments lie waiting, stretching into the almost infinite distance, awaiting a designated purpose."
+ district_ssh_edersphere_urban_3: "Unspecialized Segment"
+ district_ssh_edersphere_urban_3_plural: "Unspecialized Segments"
+ district_ssh_edersphere_urban_3_desc: "Vast empty segments lie waiting, stretching into the almost infinite distance, awaiting a designated purpose."
+ district_ssh_edersphere_urban_4: "Unspecialized Segment"
+ district_ssh_edersphere_urban_4_plural: "Unspecialized Segments"
+ district_ssh_edersphere_urban_4_desc: "Vast empty segments lie waiting, stretching into the almost infinite distance, awaiting a designated purpose."
+
+
+ district_ssh_edersphere_nexus: "Nexus Segment"
+ district_ssh_edersphere_nexus_plural: "Nexus Segments"
+ district_ssh_edersphere_nexus_desc: "Efficient maintenance districts fill this Edersphere section, provide locations for drones to be serviced and repaired before they are deployed to their work assignments."
+ district_ssh_edersphere_hive: "Hive Segment"
+ district_ssh_edersphere_hive_plural: "Hive Segments"
+ district_ssh_edersphere_hive_desc: "Towering spires stretch across this Edersphere section for drones to gather when not working to rejuvenate and consume nutrients."
+
+ # Swap Types
+ district_ssh_edersphere_mixed_industry: "Industrial Segment"
+ district_ssh_edersphere_mixed_industry_plural: "Industrial Segments"
+ district_ssh_edersphere_mixed_industry_desc: "Clanking factories and powerful machinery fill this Edersphere section, providing a strong industrial base for the Empire."
+ district_ssh_edersphere_arms_industry: "Foundry Segment"
+ district_ssh_edersphere_arms_industry_plural: "Foundry Segments"
+ district_ssh_edersphere_arms_industry_desc: "Geared towards military industries, this segment of the shellworld is filled with the roar of smelters and the clang of metallurgies."
+ district_ssh_edersphere_civilian_industry: "Factory Segment"
+ district_ssh_edersphere_civilian_industry_plural: "Factory Segments"
+ district_ssh_edersphere_civilian_industry_desc: "Workshops filled with artisans and civilian industries line the stacked streets of this district."
+ district_ssh_edersphere_research: "Laboratory Segment"
+ district_ssh_edersphere_research_plural: "Laboratory Segments"
+ district_ssh_edersphere_research_desc: "A giant habitable artificial bubble filled with gas is the perfect object to conduct experiments on."
+ district_ssh_edersphere_organic_housing: "Sanctuary Segment"
+ district_ssh_edersphere_organic_housing_plural: "Sanctuary Segments"
+ district_ssh_edersphere_organic_housing_desc: "These towering structures feature AI-controlled artificial climates that mimic any environment a sapient organic being could require. The organics within have their housing needs completely fulfilled."
+ district_ssh_edersphere_trade: "Commercial Segment"
+ district_ssh_edersphere_trade_plural: "Commercial Segments"
+ district_ssh_edersphere_trade_desc: "Civilian industry and infrastructure populate this Edersphere segment dedicated to commerce where merchants and clerks conduct business."
+ district_ssh_edersphere_cultrobium_industry: "Atomic Foundry Segment"
+ district_ssh_edersphere_cultrobium_industry_plural: "Atomic Foundry Segments"
+ district_ssh_edersphere_cultrobium_industry_desc: "Using the strong pressure from the compressed hydrogen below the shell, special machinery can create custom atoms to create ultra-dense and robust elements that do not occur naturally in this universe."
+ district_ssh_edersphere_fortress: "Fortress Segment"
+ district_ssh_edersphere_fortress_plural: "Fortress Segments"
+ district_ssh_edersphere_fortress_desc: "This segment features integrated command structures, planetary bunkers, training facilities, and officer housing."
+ district_ssh_edersphere_research_physics: "Physics Segment"
+ district_ssh_edersphere_research_physics_plural: "Physics Segments"
+ district_ssh_edersphere_research_physics_desc: "With particle accelerators below the shell like an ancient sewer network, quantum computers, and field manipulators as tall as skyscrapers, it might seem as if the laws of reality are being violated. But that's only because the denizens don't understand it. Yet."
+ district_ssh_edersphere_research_society: "Biology Segment"
+ district_ssh_edersphere_research_society_plural: "Biology Segments"
+ district_ssh_edersphere_research_society_desc: "Passing through the sprawling parks of this arcology might seem like a visit to a zoo, but in reality, the visitors are also a subject, observed in hermetically sealed labs scattered in plain sight."
+ district_ssh_edersphere_research_engineering: "Engineering Segment"
+ district_ssh_edersphere_research_engineering_plural: "Engineering Segments"
+ district_ssh_edersphere_research_engineering_desc: "An arcology of motion, with constantly shifting buildings and the walls of the habitat sphere filled with experimental machinery. Home of esoteric materials testing, quantum chemical synthesis, and nanoscale fabrication, it was once theorized, now it is proven. Let's hope the Edersphere doesn't take critical damage from the experiments."
+ district_ssh_edersphere_administrative: "Administrative Segment"
+ district_ssh_edersphere_administrative_plural: "Administrative Segments"
+ district_ssh_edersphere_administrative_desc: "Where hordes of administrative staff and bureaucrats toil away to meet the growing expectations of an expanding bureaucracy."
+ district_ssh_edersphere_spiritualist: "Ecclesiastical Segment"
+ district_ssh_edersphere_spiritualist_plural: "Ecclesiastical Segments"
+ district_ssh_edersphere_spiritualist_desc: "A true testament to our devotion, these spires may hold the key to the spiritual well-being of our empire."
+
+ district_ssh_edersphere_farming: "Utopian Farming Segment"
+ district_ssh_edersphere_farming_plural: "Utopian Farming Segments"
+ district_ssh_edersphere_farming_desc: "Endless idyllic seas of farmland stretch across this Edersphere section, growing massive amounts of food."
+ district_ssh_edersphere_leisure: "Leisure Segment"
+ district_ssh_edersphere_leisure_plural: "Leisure Segments"
+ district_ssh_edersphere_leisure_desc: "Who needs the great outdoors, with vast hubs of entertainment like these?"
+
+
+ ### Stellar Hoop
+ district_ssh_stellar_hoop_maintenance: "Maintenance Segment"
+ district_ssh_stellar_hoop_maintenance_plural: "Maintenance Segments"
+ district_ssh_stellar_hoop_maintenance_desc: "This hoop segment is filled with maintenance devices and provides a location for some specialized buildings as well as a place for drones to be serviced and repaired before they are deployed to their work assignments."
+
+ district_ssh_stellar_hoop_urban_1: "Unspecialized Segment"
+ district_ssh_stellar_hoop_urban_1_plural: "Unspecialized Segments"
+ district_ssh_stellar_hoop_urban_1_desc: "This segment of the hoop lies waiting, stretching into the burning hot star, awaiting a designated purpose."
+ district_ssh_stellar_hoop_urban_2: "Unspecialized Segment"
+ district_ssh_stellar_hoop_urban_2_plural: "Unspecialized Segments"
+ district_ssh_stellar_hoop_urban_2_desc: "This segment of the hoop lies waiting, stretching into the burning hot star, awaiting a designated purpose."
+ 
+
+ district_ssh_stellar_hoop_generator: "Generator Segment"
+ district_ssh_stellar_hoop_generator_plural: "Generator Segments"
+ district_ssh_stellar_hoop_generator_desc: "This part of the stellar hoop is filled with enormous amounts of generators which make use of the star's photosphere surrounding them and provide an immense amount of energy."
+ 
+ district_ssh_stellar_hoop_starlifting: "Star Lifting Segment"
+ district_ssh_stellar_hoop_starlifting_plural: "Star Lifting Segments"
+ district_ssh_stellar_hoop_starlifting_desc: "This hoop segment is filled with advanced complex machinery that makes use of the superconductive rings' magnetic field to extract massive amounts of raw matter from the dense star layers below."
+ zone_unavailable_tech_starlifting: "$zone_unavailable_tech$$engineering_research_icon_with_space$$ssh_tech_stellar_hoop$"
+ 
+ # Secondary
+ district_ssh_stellar_hoop_arms_industry: "Stellar Foundry Segment"
+ district_ssh_stellar_hoop_arms_industry_plural: "Stellar Foundry Segments"
+ district_ssh_stellar_hoop_arms_industry_desc: "Vast amounts of roaring smelters and metallurgies make use of the star's extreme heat below to forge high-quality alloys en masse."
+
+ district_ssh_stellar_hoop_cultrobium_industry: "Atomic Foundry Segment"
+ district_ssh_stellar_hoop_cultrobium_industry_plural: "Atomic Foundry Segments"
+ district_ssh_stellar_hoop_cultrobium_industry_desc: "Using the vast amount of energy and heat provided by the star surrounding the hoop, special machinery can create custom atoms to create ultra-dense and robust elements that do not occur naturally in this universe."
+
+ district_ssh_stellar_hoop_research: "Solar Science Segment"
+ district_ssh_stellar_hoop_research_plural: "Solar Science Segments"
+ district_ssh_stellar_hoop_research_desc: "Living inside a star's outer layers provides us with new possibilities to perform experiments under extreme conditions. This segment is filled with various tools needed for such experiments."
+
+
+
+ 
+ # Black Hole Shellworld
+ district_ssh_black_hole_shell_city: "City Segment"
+ district_ssh_black_hole_shell_city_plural: "City Segments"
+ district_ssh_black_hole_shell_city_desc: "Dense cities fill this part of the suprashell, providing comfortable residences for their population."
+ 
+ district_ssh_black_hole_shell_nexus: "Nexus Segment"
+ district_ssh_black_hole_shell_nexus_plural: "Nexus Segments"
+ district_ssh_black_hole_shell_nexus_desc: "Efficient districts fill this suprashell section, provide locations for drones to be serviced and repaired before they are deployed to their work assignments."
+
+ district_ssh_black_hole_shell_hive: "Hive Segment"
+ district_ssh_black_hole_shell_hive_plural: "Hive Segments"
+ district_ssh_black_hole_shell_hive_desc: "Towering spires stretch across this suprashell section for drones to gather when not working to rejuvenate and consume nutrients."
+ 
+ district_ssh_black_hole_shell_urban_1: "Unspecialized Segment"
+ district_ssh_black_hole_shell_urban_1_plural: "Unspecialized Segments"
+ district_ssh_black_hole_shell_urban_1_desc: "Vast empty segments of the suprashell lie waiting, stretching into the seemingly infinite distance, awaiting a designated purpose."
+ district_ssh_black_hole_shell_urban_2: "Unspecialized Segment"
+ district_ssh_black_hole_shell_urban_2_plural: "Unspecialized Segments"
+ district_ssh_black_hole_shell_urban_2_desc: "Vast empty segments of the suprashell lie waiting, stretching into the seemingly infinite distance, awaiting a designated purpose."
+ district_ssh_black_hole_shell_urban_3: "Unspecialized Segment"
+ district_ssh_black_hole_shell_urban_3_plural: "Unspecialized Segments"
+ district_ssh_black_hole_shell_urban_3_desc: "Vast empty segments of the suprashell lie waiting, stretching into the seemingly infinite distance, awaiting a designated purpose."
+ district_ssh_black_hole_shell_urban_4: "Unspecialized Segment"
+ district_ssh_black_hole_shell_urban_4_plural: "Unspecialized Segments"
+ district_ssh_black_hole_shell_urban_4_desc: "Vast empty segments of the suprashell lie waiting, stretching into the seemingly infinite distance, awaiting a designated purpose."
+
+ # Swap Types
+ district_ssh_black_hole_shell_mixed_industry: "Industrial Segment"
+ district_ssh_black_hole_shell_mixed_industry_plural: "Industrial Segments"
+ district_ssh_black_hole_shell_mixed_industry_desc: "Clanking factories and powerful machinery fill this suprashell section, providing a strong industrial base for the Empire."
+ district_ssh_black_hole_shell_arms_industry: "Foundry Segment"
+ district_ssh_black_hole_shell_arms_industry_plural: "Foundry Segments"
+ district_ssh_black_hole_shell_arms_industry_desc: "Geared towards military industries, this segment of the shellworld is filled with the roar of smelters and the clang of metallurgies."
+ district_ssh_black_hole_shell_civilian_industry: "Factory Segment"
+ district_ssh_black_hole_shell_civilian_industry_plural: "Factory Segments"
+ district_ssh_black_hole_shell_civilian_industry_desc: "Workshops filled with artisans and civilian industries line the stacked streets of this district."
+ district_ssh_black_hole_shell_research: "Laboratory Segment"
+ district_ssh_black_hole_shell_research_plural: "Laboratory Segments"
+ district_ssh_black_hole_shell_research_desc: "Being this near to a natural event horizon provides incredible possibilities for experiments."
+ district_ssh_black_hole_shell_organic_housing: "Sanctuary Segment"
+ district_ssh_black_hole_shell_organic_housing_plural: "Sanctuary Segments"
+ district_ssh_black_hole_shell_organic_housing_desc: "These towering structures feature AI-controlled artificial climates that mimic any environment a sapient organic being could require. The organics within have their housing needs completely fulfilled."
+ district_ssh_black_hole_shell_trade: "Commercial Segment"
+ district_ssh_black_hole_shell_trade_plural: "Commercial Segments"
+ district_ssh_black_hole_shell_trade_desc: "Civilian industry and infrastructure fill this suprashell segment dedicated to commerce where merchants and clerks conduct business."
+ district_ssh_black_hole_shell_cultrobium_industry: "Atomic Foundry Segment"
+ district_ssh_black_hole_shell_cultrobium_industry_plural: "Atomic Foundry Segments"
+ district_ssh_black_hole_shell_cultrobium_industry_desc: "Using the insanely strong gravity and energy provided by the black hole below, special machinery can create custom atoms to create ultra-dense and robust elements that do not occur naturally in this universe."
+ district_ssh_black_hole_shell_administrative: "Administrative Segment"
+ district_ssh_black_hole_shell_administrative_plural: "Administrative Segments"
+ district_ssh_black_hole_shell_administrative_desc: "Where hordes of administrative staff and bureaucrats toil away to meet the growing expectations of an expanding bureaucracy."
+ district_ssh_black_hole_shell_spiritualist: "Ecclesiastical Segment"
+ district_ssh_black_hole_shell_spiritualist_plural: "Ecclesiastical Segments"
+ district_ssh_black_hole_shell_spiritualist_desc: "A true testament to our devotion, these spires may hold the key to the spiritual well-being of our empire."
+ district_ssh_black_hole_shell_fortress: "Fortress Segment"
+ district_ssh_black_hole_shell_fortress_plural: "Fortress Segments"
+ district_ssh_black_hole_shell_fortress_desc: "This segment features integrated command structures, planetary bunkers, training facilities, and officer housing."
+ district_ssh_black_hole_shell_research_physics: "Physics Segment"
+ district_ssh_black_hole_shell_research_physics_plural: "Physics Segments"
+ district_ssh_black_hole_shell_research_physics_desc: "Being this near to a natural event horizon is the ultimate dream of every physicist."
+ district_ssh_black_hole_shell_research_society: "Biology Segment"
+ district_ssh_black_hole_shell_research_society_plural: "Biology Segments"
+ district_ssh_black_hole_shell_research_society_desc: "Passing through the sprawling parks of this segment might seem like a visit to a zoo, but in reality, the visitors are also a subject, observed in hermetically sealed labs scattered in plain sight."
+ district_ssh_black_hole_shell_research_engineering: "Engineering Segment"
+ district_ssh_black_hole_shell_research_engineering_plural: "Engineering Segments"
+ district_ssh_black_hole_shell_research_engineering_desc: "A segment of motion, with constantly shifting buildings and the floor of the suprashell filled with experimental machinery. Home of esoteric materials testing, quantum chemical synthesis, and nanoscale fabrication, it was once theorized, now it is proven. Let's hope the Suprashell doesn't collapse from the experiments."
+
+ # Secondary
+ district_ssh_black_hole_shell_leisure: "Leisure Segment"
+ district_ssh_black_hole_shell_leisure_plural: "Leisure Segments"
+ district_ssh_black_hole_shell_leisure_desc: "Who needs the great outdoors, with vast hubs of entertainment like these?"
+ 
+ district_ssh_black_hole_shell_decompressing: "Matter Decompressing Segment"
+ district_ssh_black_hole_shell_decompressing_plural: "Matter Decompressing Segments"
+ district_ssh_black_hole_shell_decompressing_desc: "Giant Matter Decompressing Facilities are installed below this shell segment, extracting lots of raw matter from the black hole's event horizon below."
+ zone_unavailable_tech_matter_decompressing: "$zone_unavailable_tech$$engineering_research_icon_with_space$$tech_matter_decompressor$"
+ 
+ district_ssh_black_hole_shell_surveillance: "Surveillance Segment"
+ district_ssh_black_hole_shell_surveillance_plural: "Surveillance Segments"
+ district_ssh_black_hole_shell_surveillance_desc: "Giant data centers containing hyperefficient quantum supercomputers support our local surveillance troops with their tasks all around the suprashell."
+
+ district_ssh_black_hole_shell_farming: "Farming Segment"
+ district_ssh_black_hole_shell_farming_plural: "Farming Segments"
+ district_ssh_black_hole_shell_farming_desc: "Vast amounts of greenhouses stretch across this section of the suprashell, growing massive amounts of food on the artificial soil."
+
+
+ ### BWC Districts
+ district_ssh_bwc_city: "Urban City Segment"
+ district_ssh_bwc_city_plural: "Urban City Segments"
+ district_ssh_bwc_city_desc: "These cities are powered by 100% renewable energy and live in total harmony with nature. Plants are growing everywhere - from the streets to the rooftops."
+
+ district_ssh_bwc_hive: "Hive Segment"
+ district_ssh_bwc_hive_plural: "Hive Segments"
+ district_ssh_bwc_hive_desc: "Towering spires stretch across this segment in total harmony with nature. Drones can rejuvenate and consume nutrients here."
+
+ district_ssh_bwc_nexus: "Nexus Segment"
+ district_ssh_bwc_nexus_plural: "Nexus Segments"
+ district_ssh_bwc_nexus_desc: "Urban drone repair centers fill this segment, which provide locations for drones to be serviced and repaired before they are deployed to their work assignments."
+
+ # Secondary
+ district_ssh_bwc_urban_1: "Unspecialized Landscape"
+ district_ssh_bwc_urban_1_plural: "Unspecialized Landscapes"
+ district_ssh_bwc_urban_1_desc: "Vast empty fields lie waiting, stretching into the distance, awaiting a designated purpose."
+ district_ssh_bwc_urban_2: "Unspecialized Landscape"
+ district_ssh_bwc_urban_2_plural: "Unspecialized Landscapes"
+ district_ssh_bwc_urban_2_desc: "Vast empty fields lie waiting, stretching into the distance, awaiting a designated purpose."
+ district_ssh_bwc_urban_3: "Unspecialized Landscape"
+ district_ssh_bwc_urban_3_plural: "Unspecialized Landscapes"
+ district_ssh_bwc_urban_3_desc: "Vast empty fields lie waiting, stretching into the distance, awaiting a designated purpose."
+
+ district_ssh_bwc_leisure: "Idyllic Garden Segment"
+ district_ssh_bwc_leisure_plural: "Idyllic Garden Segments"
+ district_ssh_bwc_leisure_desc: "Beautiful gardens and parks fill this segment, where the local population can do many outdoor activities or simply enjoy the peaceful nature."
+
+ district_ssh_bwc_organic_housing: "Idyllic Garden Segment"
+ district_ssh_bwc_organic_housing_plural: "Idyllic Garden Segments"
+ district_ssh_bwc_organic_housing_desc: "Gardens and parks fill this segment, which stimulate organic beings' brains in a positive and peaceful way."
+
+ district_ssh_bwc_farming: "Utopian Farming Segment"
+ district_ssh_bwc_farming_plural: "Utopian Farming Segments"
+ district_ssh_bwc_farming_desc: "Endless idyllic seas of farmland stretch across this landscape, growing massive amounts of tasty food."
+ 
+ district_ssh_bwc_energy: "Renewable Segment"
+ district_ssh_bwc_energy_plural: "Renewable Segments"
+ district_ssh_bwc_energy_desc: "These energy parks generate energy through advanced solar panels and strong wind turbines."
+
+ district_ssh_bwc_research: "Observation Segment"
+ district_ssh_bwc_research_plural: "Observation Segments"
+ district_ssh_bwc_research_desc: "Our scientists can get valuable data by studying the effects of this utopian environment on its population as well as other flora and fauna."
+
+ # Swap Types
+ district_ssh_bwc_mixed_industry: "Industrial District"
+ district_ssh_bwc_mixed_industry_plural: "Industrial Districts"
+ district_ssh_bwc_mixed_industry_desc: "Clanking factories and powerful machinery powered by 100% renewable energy fill this section, providing a strong industrial base for the Empire."
+ district_ssh_bwc_arms_industry: "Foundry District"
+ district_ssh_bwc_arms_industry_plural: "Foundry Districts"
+ district_ssh_bwc_arms_industry_desc: "Geared towards military industries, this district is filled with the roar of smelters and the clang of metallurgies. Entirely powered by renewables."
+ district_ssh_bwc_civilian_industry: "Factory District"
+ district_ssh_bwc_civilian_industry_plural: "Factory Districts"
+ district_ssh_bwc_civilian_industry_desc: "Workshops filled with artisans and civilian industries line the stacked streets of this district. Entirely powered by renewables."
+ district_ssh_bwc_trade: "Commercial District"
+ district_ssh_bwc_trade_plural: "Commercial Districts"
+ district_ssh_bwc_trade_desc: "Civilian industry and a broad variety of workshops fill this district dedicated to commerce where merchants and clerks conduct business."
+ district_ssh_bwc_administrative: "Administrative District"
+ district_ssh_bwc_administrative_plural: "Administrative Districts"
+ district_ssh_bwc_administrative_desc: "Where hordes of administrative staff and bureaucrats toil away to meet the growing expectations of an expanding bureaucracy."
+ district_ssh_bwc_spiritualist: "Ecclesiastical District"
+ district_ssh_bwc_spiritualist_plural: "Ecclesiastical Districts"
+ district_ssh_bwc_spiritualist_desc: "A true testament to our devotion, these spires may hold the key to the spiritual well-being of our empire."
+ district_ssh_bwc_fortress: "Fortress District"
+ district_ssh_bwc_fortress_plural: "Fortress Districts"
+ district_ssh_bwc_fortress_desc: "This District features integrated command structures, planetary bunkers, training facilities, and officer housing, ready to defend this marvel of engineering at any time."
+ district_ssh_bwc_research_physics: "Physics District"
+ district_ssh_bwc_research_physics_plural: "Physics Districts"
+ district_ssh_bwc_research_physics_desc: "This artificial yet utopian habitat provides an interesting opportunity to study physics."
+ district_ssh_bwc_research_society: "Observation District"
+ district_ssh_bwc_research_society_plural: "Observation Districts"
+ district_ssh_bwc_research_society_desc: "This artificial yet utopian habitat provides an interesting opportunity to study its effect on its inhabitants."
+ district_ssh_bwc_research_engineering: "Engineering District"
+ district_ssh_bwc_research_engineering_plural: "Engineering Districts"
+ district_ssh_bwc_research_engineering_desc: "This artificial yet utopian habitat provides an interesting opportunity to study its composition."
+
+
+ # Ascension Portal
+ district_ssh_exodus_portal: "Hyperdimensional Resource Silo"
+ district_ssh_exodus_portal_plural: "Hyperdimensional Resource Silos"
+ district_ssh_exodus_portal_desc: "We can inflate spacetime to store a tremendous amount of resources from this realm."
+
+ 
+ # Habitable Dyson Sphere Districts
+ district_ssh_hab_dyson_city: "City Segment"
+ district_ssh_hab_dyson_city_plural: "City Segments"
+ district_ssh_hab_dyson_city_desc: "Dense cities fill this part of the sphere, providing somewhat comfortable residences for their population."
+
+ district_ssh_hab_dyson_hive: "Hive Segment"
+ district_ssh_hab_dyson_hive_plural: "Hive Segments"
+ district_ssh_hab_dyson_hive_desc: "Towering spires stretch across this sphere section for drones to gather when not working to rejuvenate and consume nutrients."
+
+ district_ssh_hab_dyson_nexus: "Server Segment"
+ district_ssh_hab_dyson_nexus_plural: "Server Segments"
+ district_ssh_hab_dyson_nexus_desc: "Vast computing complexes fill this part of the sphere, powered by the solar energy collected from the star below."
+
+ district_ssh_hab_dyson_generator: "Generator Segment"
+ district_ssh_hab_dyson_generator_plural: "Generator Segments"
+ district_ssh_hab_dyson_generator_desc: "This part of the dyson sphere is used to collect enormous amounts of energy from the star."
+
+ district_ssh_hab_dyson_organic_housing: "Paradise Server Segment"
+ district_ssh_hab_dyson_organic_housing_plural: "Paradise Server Segments"
+ district_ssh_hab_dyson_organic_housing_desc: "Vast solar-powered computing complexes fill this part of the sphere. They are connected with the life pods of our Trophies to simulate an utopian paradise for them."
+
+ district_ssh_hab_dyson_vr: "VR Segment"
+ district_ssh_hab_dyson_vr_plural: "VR Segments"
+ district_ssh_hab_dyson_vr_desc: "These behemoth computing complexes can simulate a vast amount of different environments to conduct experiments in."
+
+ district_ssh_hab_dyson_starlifting: "Star Lifting Segment"
+ district_ssh_hab_dyson_starlifting_plural: "Star Lifting Segments"
+ district_ssh_hab_dyson_starlifting_desc: "This sphere segment is filled with advanced machinery that generates strong magnetic fields to extract massive amounts of raw matter from the dense star layers below."
+
+ district_ssh_hab_dyson_forge: "Stellar Forge Segment"
+ district_ssh_hab_dyson_forge_plural: "Stellar Forge Segments"
+ district_ssh_hab_dyson_forge_desc: "The immense pressure and heat from the star below is used to forge high-quality and ultra robust alloys here."
+
+ district_ssh_hab_dyson_industrial: "Industrial Segment"
+ district_ssh_hab_dyson_industrial_plural: "Industrial Segments"
+ district_ssh_hab_dyson_industrial_desc: "Clanking machinery powered by the vast heat from the star below forges many different entertainment devices in this sphere segment."
+
+ # Horizon Brain
+ district_ssh_horizon_brain_grid: "Neural Grid"
+ district_ssh_horizon_brain_grid_plural: "Neural Grids"
+ district_ssh_horizon_brain_grid_desc: "Additional neural grids allow for more pops to be linked to the Horizon Brain."
+
+ district_ssh_horizon_brain_cpu: "Core Processing Unit"
+ district_ssh_horizon_brain_cpu_plural: "Core Processing Units"
+ district_ssh_horizon_brain_cpu_desc: "Additional CPUs provide more processing power to the Horizon Brain's simulation."
+
+ district_ssh_horizon_brain_server: "Server Segment"
+ district_ssh_horizon_brain_server_plural: "Server Segments"
+ district_ssh_horizon_brain_server_desc: "The servers provide virtual environments for the linked pops to inhabit. \n\n§HAdditional Jobs are provided by §YConfiguration Buildings§!.§!"

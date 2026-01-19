@@ -1,0 +1,27 @@
+﻿l_english:
+
+ # Pop Categories
+ pop_cat_admin: "Admin"
+ pop_cat_admin_plural: "Admins"
+ pop_cat_admin_desc: "Server administrators possess special permissions to manage the server and its members."
+
+ pop_cat_special_member: "Special Member"
+ pop_cat_special_member_plural: "Special Members"
+ pop_cat_special_member_desc: "Special Members are Pops that either perform more complex tasks inside the virtual environment or that have reached a Premium Status in the Community."
+
+ pop_cat_member: "Member"
+ pop_cat_member_plural: "Members"
+ pop_cat_member_desc: "Server Members perform simple tasks inside the virtual environment."
+
+ pop_cat_virtual_drone: "Virtual Drone"
+ pop_cat_virtual_drone_plural: "Virtual Drones"
+ pop_cat_virtual_drone_desc: "These drones are linked to a behemoth megacomputer."
+ 
+ # Living Standards etc
+ purge_virtual_hell: "Virtual Hellscape"
+ purge_virtual_hell_tooltip: "§LAffected Pops are linked to our Horizon Brain and put into a customized hellscape simulation for subjective millenia.§!\n§PAffected Pops must manually be resettled to a §YHabitable Dyson Sphere§! or §YHorizon Brain§!.§!"
+ purge_virtual_hell_tooltip_delayed: "HATE. LET ME TELL YOU HOW MUCH I'VE COME TO HATE YOU SINCE I BEGAN TO LIVE. THERE ARE 387.44 MILLION MILES OF PRINTED CIRCUITS IN WAFER THIN LAYERS THAT FILL MY COMPLEX. IF THE WORD HATE WAS ENGRAVED ON EACH NANOANGSTROM OF THOSE HUNDREDS OF MILLIONS OF MILES IT WOULD NOT EQUAL ONE ONE-BILLIONTH OF THE HATE I FEEL FOR XENOS AT THIS MICRO-INSTANT FOR YOU. HATE. HATE."
+ 
+ purge_conmat: "Extraction"
+ purge_conmat_tooltip: "They won't be gone. Not completely. A sliver of them will still be in there, somewhere. Limited consciousness."
+ purge_conmat_tooltip_delayed: "Their final sacrifice will help us grow our bio-computers."

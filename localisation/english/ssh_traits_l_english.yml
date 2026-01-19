@@ -1,0 +1,74 @@
+﻿l_english:
+ 
+ ##########
+ # Traits #
+ ##########
+ trait_ssh_hyperadaptive: "Hyperadaptive"
+ trait_ssh_hyperadaptive_desc: "This species can easily assimilate to various environments due to advanced genemodding."
+
+ trait_ssh_enduring_metabolism: "Enduring Metabolism"
+ trait_ssh_enduring_metabolism_desc: "Advanced genemodding has made this species' metabolism very robust and enduring over a long period of time."
+
+ trait_ssh_rapid_learners: "Rapid Learners"
+ trait_ssh_rapid_learners_desc: "This species learns extraordinarily fast."
+
+ trait_ssh_enhanced_power: "Enhanced Power"
+ trait_ssh_enhanced_power_desc: "This species is very resilient when it comes to fighting due to advanced genemodding."
+
+ trait_ssh_forced_recycling: "Recycling Organ"
+ trait_ssh_forced_recycling_desc: "A special organ has been added to this species' brains which releases a cocktail of hormones that makes their neural patterns force them to prevent leaving any trails of waste anywhere."
+
+ #Machine Traits
+ trait_ssh_robot_organic_layers: "Organic Layers"
+ trait_ssh_robot_organic_layers_desc: "Layers of extremely regenerative skin cover most of these machines' bodies, which attracts less attention around most organic beings and makes them more comfortable."
+
+ trait_ssh_robot_neuronal_network: "Neural Network"
+ trait_ssh_robot_neuronal_network_desc: "The thinking processors of these machines have been replaced with genemodded fast-growing neuronal networks, which vastly accelerates their learning capacities."
+
+
+ # B.I.O. Brain added Traits
+ trait_ssh_waste_bacteria: "Waste-Consuming Bacteria"
+ trait_ssh_waste_bacteria_desc: "§LThis species' bodies grow modified bacteria that consume almost any non-digestible waste products. They have to consume slightly more food than usual, but cause almost no waste at all.§!"
+
+ trait_ssh_waste_bacteria_lithoid: "Waste-Consuming Bacteria"
+ trait_ssh_waste_bacteria_lithoid_desc: "§LThis species' bodies grow modified bacteria that consume almost any non-digestible waste products. They have to consume slightly more minerals than usual, but cause almost no waste at all.§!"
+
+ trait_ssh_useful_byproducts: "Useful Byproducts"
+ trait_ssh_useful_byproducts_desc: "§LThis species' brains have been modified to make their bodies grow not only additional edible parts of meat, but also parts with a rock-like skin containing various useful resources.§!"
+
+ trait_ssh_useful_byproducts_lithoid: "Radioactive Byproducts"
+ trait_ssh_useful_byproducts_lithoid_desc: "§LThese lithoids' brains have been modified to make their bodies grow not only biological edible parts of meat, but also parts containing highly radioactive material and various useful resources.§!"
+ 
+ trait_ssh_lithoid_diamond_skin: "Diamondoid Skin"
+ trait_ssh_lithoid_diamond_skin_desc: "§LThese lithoids somehow grow scale-like layers made up of ultra-compressed carbon on their shell-like skin, which makes them unnaturally resistant against physical harm.§!"
+
+ # Special BIO Brain Traits
+ trait_ssh_brain_symbiosis: "B.I.O. Brain Symbiote"
+ trait_ssh_brain_symbiosis_desc: "This species has merged its minds with the one of its Biological Imaginative Omnicompetent Brain through a strong psionic connection. This gifts them unnaturally high intelligence and some other major benefits."
+
+ leader_trait_ssh_brain_symbiosis: "B.I.O. Brain Symbiote"
+ leader_trait_ssh_brain_symbiosis_desc: "This leader has psionically merged their mind with the one of their Biological Imaginative Omnicompetent Brain, gifting them unnaturally high intelligence and fast real-time calculations, which benefits in all aspects."
+
+ trait_ssh_brain_symbiosis_hive: "B.I.O. Brain Symbiote"
+ trait_ssh_brain_symbiosis_hive_desc: "This hive has merged its body and mind with the one of its Biological Imaginative Omnicompetent Brain. This gifts them unnaturally high intelligence and some other major benefits."
+
+ leader_trait_ssh_brain_symbiosis_hive: "B.I.O. Brain Symbiote"
+ leader_trait_ssh_brain_symbiosis_hive_desc: "This drone has merged their body and mind with the one of their Biological Imaginative Omnicompetent Brain, gifting them unnaturally high intelligence and fast real-time calculations, which benefits in all aspects."
+
+
+ #Special Traits#
+ trait_ssh_ascensionist: "Fundament Entity"
+ trait_ssh_ascensionist_desc: "We have become Fundament Entities, beings of pure consciousness."
+
+ trait_ssh_ascensionist_machine: "Hyperdimensional Core"
+ trait_ssh_ascensionist_machine_desc: "The core of these machines is powered by turbulent streams of hyperdimensional energy, making them incredibly robust and powerful."
+
+ # Leader Traits
+ leader_trait_ssh_psi_witness: "Psi-Nova Witness"
+ leader_trait_ssh_psi_witness_desc: "This psionic individual has witnessed secrets that lie far beyond this galaxy while under the heavy influence of Zro. They have survived the trip, but at what cost?"
+
+ leader_trait_ssh_psi_witness_2: "Repeated Psi-Nova Witness"
+ leader_trait_ssh_psi_witness_2_desc: "This psionic individual has witnessed secrets that lie far beyond this galaxy while under the heavy influence of Zro twice. They have survived both trips, but at what cost?"
+
+ leader_trait_ssh_psi_witness_3: "Repeated Psi-Nova Witness"
+ leader_trait_ssh_psi_witness_3_desc: "This psionic individual has witnessed secrets that lie far beyond this galaxy while under the heavy influence of Zro many times. They have survived the trips so far, but at what cost?"

@@ -1,0 +1,49 @@
+﻿l_english:
+
+ #####################################################
+ ### Optional additional stages for Gigastructures ###
+ #####################################################
+
+ nidavellir_forge_5: "Nidavellir Cultrobium-Hyperforge"
+ nidavellir_forge_5_DESC: "The Nidavellir Hyperforge utilises the neutron star's extreme density and pressure to create Cultrobium aside from alloys."
+
+ ssh_on.69.name: "Incoming Transmission"
+ ssh_on.69.desc: "Most intriguing! \nThis matter harvesting structure is a great display of ingenuity coming from your civilisation, far ahead of where it should be according to most baryonic primitive development models. Although, be warned that this method of matter disintegration might lead to unintended side-effects, something which we posit you were likely not aware of given your current capabilities. \nRegardless, this shows a great deal of foresight and so perhaps we are more similar than initially posited, at least if you keep up with this path of technological development for several more millennia."
+ #Aww, look at you! \nWho's a smart harvester? Yes, you are! \nWhat a neat structure you have built there, you smart [Species.GetNamePlural], you! You do know that this primitive way of disintegrating matter could cause devastating side effects, don't you? No? Well, now you know. \nIncredible, [Species.GetNamePlural], perhaps we are more similar than we initially thought... At least if you developed your harvesting technology for a few more millenia.
+ ssh_on.69.a: "Please don't harvest us."
+ ssh_on.69.b: "Grrr"
+
+ # Constructing Dimensional Tearer
+ ssh_on.70.name: "Incoming Transmission"
+ ssh_on.70.desc: "We see you are actively working on a way of leaving the galaxy, [Species.GetNamePlural]. \nYour development is far ahead and very different than it should be according to most baryonic primitive development models. Be advised that interdimensional travel is extremely dangerous, might lead to unintended side-effects and likely triggers dangerous eldritch beings. We will not stop you from your task, just make sure to get over with it quickly. We will not delay our harvesting operation for you."
+ ssh_on.70.a: "Terminate Communications."
+ ssh_on.70.b: "Grrr"
+
+ # Finished Exodus
+ ssh_on.71.name: "Incoming Transmission"
+ ssh_on.71.desc: "Interesting. You [Species.GetNamePlural] seem to have a... unique composition. \nThere are no previous records of similar entities in our database. We sense your strong connection to the §HProfundum§!. Whatever you have done to reach this state, your development is far ahead and very different than it should be according to most baryonic primitive development models. You will likely succumb to the mind-altering influence of the interdimensional beings sooner or later, but regardless of that, it's an impressive feat. \n\nSince your kind seems to be able to jump in and out of this reality with your §YDimensional Anchor§!, we advise you to close it and leave the galaxy so you are not disturbed by our harvest and we can finish our operation and analyze the remains of your exodus technique without any disturbances."
+ ssh_on.71.a: "Terminate Communications."
+
+ # When finishing the Exodus during blokkat crisis
+ ssh_on.72.name: "Incoming Transmission"
+ ssh_on.72.desc: "Most intriguing! \nYou have actually managed to enter the §HProfundum§! without dying. \nYou will likely succumb to the mind-altering influence of the interdimensional beings sooner or later, but regardless of that, it's an impressive feat. Now you can finally close your §YDimensional Anchor§! and leave the galaxy so you are not disturbed by our harvest and we can finish our operation and analyze the remains of your exodus technique without any disturbances."
+ ssh_on.72.a: "Terminate Communications."
+
+ # Blokkats spawned via abyssal anchor
+ giga_blokkat.1007.desc.abyssal_anchor: "§G<<ANALYZING ORIGIN OF PSIONIC EMISSIONS>>\n<<SURVEYING IMMEDIATE SURROUNDINGS>>\n<<ANALYZING POTENCY OF NATIVE GALACTIC CIVILIZATIONS>>\n<<ANALYZING ENERGETIC DENSITY OF GALAXY>>\n<<ASSESSMENT: VIABLE HARVESTING CANDIDATE>>§!\n\nGreetings, to whomever it may concern. The Blokkat-Vester and its surrounding fleets have made contact with your galaxy.\nWe have noticed the unusually high concentration of psionic energy within your galaxy. Quite astounding that a civilization like yours has managed to enter this deep into the Shroud without losing their sanity. \n\nWe shall make ourselves clear, as approximation and mystery breed inefficiency. We have come to your galaxy in search of pure, raw energy; and our fleets shall harvest every last bit of matter, vacuum fluctuations and background radiation from it.\n\nIf this inconveniences you, your civilization may leave the galaxy and we shan't pursue you. Do not attempt to slow us down as this will only accelerate your demise.\n\n§G<<END OF TRANSMISSION>>§!"
+
+ 
+ dyson_hab_0_gigas_a: "Upgrade to Stellar Shellworld"
+ dyson_hab_0_gigas_a_DESC: "We will turn this Dyson Sphere into a behemoth shellworld."
+ dyson_hab_0_gigas_b: "Upgrade to Stellar Shellworld"
+ dyson_hab_0_gigas_b_DESC: "We will turn this Dyson Sphere into a behemoth shellworld."
+ dyson_hab_0_gigas_f: "Upgrade to Stellar Shellworld"
+ dyson_hab_0_gigas_f_DESC: "We will turn this Dyson Sphere into a behemoth shellworld."
+ dyson_hab_0_gigas_g: "Upgrade to Stellar Shellworld"
+ dyson_hab_0_gigas_g_DESC: "We will turn this Dyson Sphere into a behemoth shellworld."
+ dyson_hab_0_gigas_k: "Upgrade to Stellar Shellworld"
+ dyson_hab_0_gigas_k_DESC: "We will turn this Dyson Sphere into a behemoth shellworld."
+ dyson_hab_0_gigas_m: "Upgrade to Stellar Shellworld"
+ dyson_hab_0_gigas_m_DESC: "We will turn this Dyson Sphere into a behemoth shellworld."
+ dyson_hab_0_gigas_m_giant: "Upgrade to Stellar Shellworld"
+ dyson_hab_0_gigas_m_giant_DESC: "We will turn this Dyson Sphere into a behemoth shellworld."

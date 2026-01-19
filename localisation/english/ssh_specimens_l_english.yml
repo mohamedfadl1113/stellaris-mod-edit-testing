@@ -1,0 +1,17 @@
+﻿l_english:
+
+ ############################
+ ### Specimens & Relics   ###
+ ############################
+ ssh_iron_sphere: "Iron Sphere"
+ ssh_iron_sphere_desc: "A perfectly round sphere of more than ninety-nine percent pure wrought iron. This object was discovered orbiting a black hole."
+ ssh_iron_sphere_desc_short: "A perfectly round sphere of more than ninety-nine percent pure wrought iron. This object was discovered orbiting a black hole."
+ ssh_iron_sphere_desc_details: "Oddly enough, its engraving roughly translates to: 'It's like 'treer' - But sphere'. The exact meaning of this sentence remains a mystery."
+
+ ssh_faceless_stalker_page: "Strange Page"
+ ssh_faceless_stalker_page_desc_short: "This page depicts what seems like a tall humanoid entity - Weirdly enough, the creature appears to be lacking any facial features."
+ ssh_faceless_stalker_page_desc_details: "Any physical contact with this item is strictly prohibited, as any individual that came in contact with it went missing shortly after."
+
+ ssh_dimensional_tearer_compass: "Dimensional Compass"
+ ssh_dimensional_tearer_compass_desc_short: "A relic found in the debris of the Dimensional Tearing Device. It resembles a Compass that's able to locate and identify the dimensional energy currents of nearby realms."
+ ssh_dimensional_tearer_compass_desc_details: "Luckily for us, it was not vaporized by the explosion of the Tearer's core when the latter was destroyed."

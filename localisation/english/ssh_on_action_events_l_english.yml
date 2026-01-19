@@ -1,0 +1,168 @@
+﻿l_english:
+
+ ssh_game_start.2.name: "§BSparble's Stellar Hyperconstructs§! §Cv2.5§!"
+ ssh_game_start.2.desc: "§YHyperconstructs v2.5 has finally been released, bringing the mod to Stellaris v4.0! This mod has also had its two year anniversary - it's been quite a journey starting from simple Shellworlds the now broad variety of megastructures, player crises, an endgame crisis and many other features. \nThank you, to every one of you, for your support, ideas and general feedback over time. I really appreciate it!§! \n\nBefore you start the game, you can decide whether you want to deactivate any Megastructures, Crises and other things. \n\n§GHave fun!§!"
+ ssh_game_start.2.a: "§GStart!§!"
+ ssh_game_start.2.b: "§BSettings§!"
+
+ ssh_game_start.6.name: "§BSparble's Stellar Hyperconstructs§! §Cv2.5§!"
+ ssh_game_start.6.desc: "Here you choose whether to enable or disable certain Megastructures, Crises and certain non-megastructure related stuff like AI bonuses. \n\n§GHave fun!§!"
+ ssh_game_start.6.a: "§GContinue§!"
+ ssh_game_start.6.b: "§BMegastructure§! Settings"
+ ssh_game_start.6.b.tooltip: "Here you can disable any Megastructure."
+ ssh_game_start.6.c: "§PSystem-Killer Component§! Settings"
+ ssh_game_start.6.c.tooltip: "Here you can enable or disable Components capable of destroying entire Star Systems or -Clusters."
+ ssh_game_start.6.d: "§RCrisis§! Settings"
+ ssh_game_start.6.d.tooltip: "Here you can change Crisis Spawn Chances."
+ ssh_game_start.6.e: "§EHyperdimensional Exodus§! Settings"
+ ssh_game_start.6.e.tooltip: "Here you can toggle the §YHyperdimensional Exodus§! Crisis Path."
+ ssh_game_start.6.f: "§YEnclave§! Settings"
+ ssh_game_start.6.f.tooltip: "Here you can toggle special §YEnclaves§!."
+ ssh_game_start.6.g: "§PDisable§! §HRuined Hyperstructure Systems§!"
+ ssh_game_start.6.g.tooltip: "This includes the systems containing a §YRuined Shellworld, Edersphere and Black Hole Suprashell§!."
+ ssh_game_start.6.h: "Activate §HAI Nanite Bonus§! (Recommended)"
+ ssh_game_start.6.h.tooltip: "Enabling this will trigger a §HMid-Game Event§! that gives every regular AI empire the §YNanite Transmutation§! research option, which is required for many Hyperstructures and which is usually only available by having a Nanite deposit within your borders. \n§HThis will make it easier for AI empires to research and compete with Hyperstructures.§!" #§Ptremendously§!
+
+ ssh_game_start.7.name: "§BCrisis Settings§!"
+ ssh_game_start.7.desc: "Here you can tweak the spawn chances for the §PReality Collapse§! Endgame Crisis. \n\nThe setting chances will multiply with the normal spawn chance, which is rolled every five years after being 25 years in the Endgame and after at least one crisis has been beaten. The base chances are set to make it trigger rather rarely, with chances increasing in the very late game. \nYou can also deactivate it entirely, or guarantee it to appear in the late Endgame."
+ ssh_game_start.7.a: "§YDone§!"
+ ssh_game_start.7.a.tooltip: "Back to the Main Settings"
+ ssh_game_start.7.b: "§LStandard Chance§!"
+ ssh_game_start.7.b.tooltip: "The Crisis will have the standard trigger chances."
+ ssh_game_start.7.c: "§PDeactivate§! Crisis"
+ ssh_game_start.7.c.tooltip: "The Crisis will §Rnot§! trigger at all."
+ ssh_game_start.7.d: "50%"
+ ssh_game_start.7.d.tooltip: "§YIncrease§! the Base Spawn Chances by §Y50%§!."
+ ssh_game_start.7.e: "75%"
+ ssh_game_start.7.e.tooltip: "§YIncrease§! the Base Spawn Chances by §Y75%§!."
+ ssh_game_start.7.f: "100%"
+ ssh_game_start.7.f.tooltip: "§YDouble§! the Base Spawn Chances."
+ ssh_game_start.7.g: "200%"
+ ssh_game_start.7.g.tooltip: "§YQuadruple§! the Base Spawn Chances."
+ ssh_game_start.7.h: "§GGuarantee§! Crisis"
+ ssh_game_start.7.h.tooltip: "The Crisis §gwill be guaranteed§! to trigger in the late Endgame."
+
+ ssh_game_start.8.name: "§EHyperdimensional Exodus§! §BSettings§!"
+ ssh_game_start.8.desc: "Here you can choose to toggle the §YHyperdimensional Exodus§! Crisis Path. \nThis includes the Dimensional Tearer-Hyperstructure and the Reality Shaping Technology."
+ ssh_game_start.8.a: "§YDone§!"
+ ssh_game_start.8.b: "§GEnable§! Hyperdimensional Exodus"
+ ssh_game_start.8.c: "§RDisable§! Hyperdimensional Exodus"
+
+ ssh_game_start.9.name: "§YEnclave§! §BSettings§!"
+ ssh_game_start.9.desc: "Here you can choose whether the §YCompany Enclave§! should spawn or not."
+ ssh_game_start.9.a: "Back"
+ ssh_game_start.9.b: "§GEnable§! §YThe Company§!"
+ ssh_game_start.9.b.tooltip: "§YThe Company§! will have its default spawning chances."
+ ssh_game_start.9.c: "§RDisable§! §YThe Company§!"
+ ssh_game_start.9.c.tooltip: "§YThe Company§! will not spawn at all."
+ ssh_game_start.9.d: "§BGuarantee§! §YThe Company§!"
+ ssh_game_start.9.d.tooltip: "§YThe Company§! will be guaranteed to spawn."
+
+ ssh_game_start.50.name: "§BSparble's Stellar Hyperconstructs§! §Cv2.0§!"
+ ssh_game_start.50.desc: "Before you start the game, you can decide if you want to deactivate any regular Mega- and Hyperstructures."
+ ssh_game_start.50.a: "§GBack§!"
+ ssh_game_start.50.b: "§YHabitable§! Structures"
+ ssh_game_start.50.c: "§YResource§! Structures"
+ ssh_game_start.50.d: "§YAscension§! Structures"
+ ssh_game_start.50.e: "§YOther§! Structures"
+
+ ssh_game_start.51.a: "§GBack§!"
+ ssh_game_start.51.b: "§PDisable§! Shellworlds & Matrioshka Worlds"
+ ssh_game_start.51.c: "§PDisable§! Gas Giant Shellworlds"
+ ssh_game_start.51.d: "§PDisable§! Ederspheres"
+ ssh_game_start.51.e: "§PDisable§! Black Hole Suprashells"
+ ssh_game_start.51.f: "§PDisable§! Stellar Hoops"
+ ssh_game_start.51.g: "§PDisable§! BWC-Megastructures"
+ ssh_game_start.51.g.tooltip: "This includes §YHoopworlds§!, §YDiscworlds§!, §YFreespheres§! and §YStellar Shellworlds§!!"
+
+ ssh_game_start.52.a: "§GBack§!"
+ ssh_game_start.52.b: "§PDisable§! Gas Giant Lifters"
+ ssh_game_start.52.c: "§PDisable§! Nanite Disassemblers"
+ ssh_game_start.52.c.tooltip: "This includes both Planetary as well as Stellar Nanite Disassemblers!"
+ ssh_game_start.52.d: "§PDisable§! Stellar Harvesters"
+ ssh_game_start.52.e: "§PDisable§! Neutronium Compressors"
+ 
+ ssh_game_start.53.a: "§GBack§!"
+ ssh_game_start.53.b: "§PDisable§! the B.I.O. Brain"
+ ssh_game_start.53.c: "§PDisable§! the Abyssal Anchor"
+ ssh_game_start.53.d: "§PDisable§! the Horizon Brain"
+
+ ssh_game_start.54.a: "§GBack§!"
+ ssh_game_start.54.b: "§PDisable§! Gas Giant Compressors"
+ ssh_game_start.54.c: "§PDisable§! Interstellar Systems"
+ ssh_game_start.54.c.tooltip: "Prevents the creation of artificial interstellar systems."
+ ssh_game_start.54.d: "§PDisable§! Captive Stars"
+ ssh_game_start.54.d_tt: "§YCaptive Stars§! are massive vessels capable of destroying an entire Solar System."
+
+ ssh_game_start.80.name: "§PSystem-Killer Components§! §BSettings§!"
+ ssh_game_start.80.desc: "Here you can choose whether §PSystem Killer-Class§! Components should be enabled or not. \n§HNote that §YCaptive Stars§! listed under Megastructure Options also count as these."
+ ssh_game_start.80.a: "§GBack§!"
+ ssh_game_start.80.b: "§PDisable§! Dark Matter Missiles"
+ ssh_game_start.80.b_tt: "§HDestroys a §YSolar System§! at once. \nIt is recommended to §Ponly§! keep these activated if you are playing with mostly humans as AI cannot use these at the moment!§!"
+ ssh_game_start.80.c: "§HEnable§! Large Dark Matter Missiles"
+ ssh_game_start.80.c_tt: "§HDestroys a §YStar Cluster§! at once. \nIt is recommended to §Ponly§! activate these if you are playing with mostly humans as AI cannot use these at the moment!§!"
+ 
+ 
+
+
+
+ ### Other On Actions 
+ ssh_action.2.name: "Colony Devoured By Nanites!"
+ ssh_action.2.desc: "Terrible news reach us that our colony [From.Planet.GetName] has been devoured by nanites! \nEvery last piece of the planet's biosphere and our population there has been transformed into more self-replicating nanobots, which now lay deactivated on the planet's surface! \nThere's no way to recover the colony."
+ ssh_action.2.a: "Terrible!"
+
+ ssh_action.3.name: "Planet Devoured By Nanites"
+ ssh_action.3.desc: "We have finished our orbital bombardment of [From.Planet.GetName]. \n\nOur nanites have fully transformed every last bit of the planet's population and biosphere, and all that's left is a surface covered in inactive nanites."
+
+ ssh_action.5.name: "Planetary Megastructure Destroyed"
+ ssh_action.5.desc: "We have finished our orbital bombardment of [From.Planet.GetName]. \n\nThe heavy damage the structure has taken has caused it collapse on itself. \nAll that's left of the colony is destroyed debris."
+
+ ssh_action.6.name: "Shellworld Destroyed!"
+ ssh_action.6.desc: "Our shellworld above [From.Planet.GetName] has been destroyed! \n\nThe heavy damage the structure has taken from ongoing [From.GetAdj] bombardment has caused it collapse on itself! \nMost of its parts have crashed on the planet below, rendering it mostly uninhabitable. \n\nWhile we are still able to restore the shellworld, all that's left of the colony is destroyed debris."
+ ssh_action.6.a: "Terrible!"
+
+ ssh_action.7.name: "Edersphere Destroyed!"
+ ssh_action.7.desc: "Our Edersphere in the [From.System.GetName] system has been destroyed! \n\nThe heavy orbital bombardment damage the structure has taken from the ongoing [From.GetAdj] bombardment has caused it collapse on itself! \n\nMost of the hydrogen has escaped the sphere and most of the shell is gone. \n\nWhile we are still able to restore the Edersphere, all that's left of the colony is destroyed debris."
+ ssh_action.7.a: "Terrible!"
+
+ ssh_action.8.name: "Suprashell Destroyed!"
+ ssh_action.8.desc: "Our suprashell above [From.Planet.GetName] has been destroyed! \n\nThe heavy damage the structure has taken from [From.GetAdj] bombardment has caused it collapse on itself! \nMost of its parts have crashed below the black hole's event horizon and are irreversibly gone forever. \n\nWe are still able to restore the suprashell though, but all that's left of the colony is destroyed debris."
+ ssh_action.8.a: "Terrible!"
+
+ ssh_action.9.name: "Stellar Hoop Destroyed!"
+ ssh_action.9.desc: "Our stellar hoop inside [From.Planet.GetName] has been destroyed! \n\nThe heavy damage the structure has taken from [From.GetAdj] bombardment has caused it collapse! \nMost of its parts have crashed into the star's denser layers below and are have melted away. \n\nWhile we are still able to restore the hoop, all that's left of the former colony is destroyed debris."
+ ssh_action.9.a: "Terrible!"
+
+ #Ruined Mega Systems
+ ssh_action.10.name: "Ruined Shellworlds"
+ ssh_action.10.desc: "Upon entering the [From.GetName] system, our scientists were stunned to find two huge shellworlds!  \n\nThey seem to have taken heavy damage though and their former owners must have left them a long time ago, probably because of their star turning into a huge red giant. \nIf we would have the technology to restore such megastructures we could easily repair them and colonize them again. \n\nThis system could prove to be useful in the future."
+ ssh_action.10.a: "Acknowledged."
+
+ ssh_action.11.name: "Ruined Edersphere"
+ ssh_action.11.desc: "Upon entering the [From.GetName] system, our scientists were stunned to find a giant artificial sphere orbiting the black hole instead of planets! \n\nThe sphere is heavily damaged, and our scientists assume this was caused by the system's star collapsing into a black hole a long time ago. \nThey think it was used as a giant planet-like habitat filled with hydrogen gas instead of a natural core. \nWe could probably easily repair it in the future if we were to posess such an advanced technology by then. \n\nThis system could prove to be useful in the future."
+ ssh_action.11.a: "Acknowledged."
+
+ ssh_action.12.name: "Ruined Suprashell"
+ ssh_action.12.desc: "Upon entering the [From.GetName] system, our scientists were wondering why the black hole's accretion disk isn't emitting any light. \n\nUpon closer inspection they were stunned to find out this is caused by a gargantuan artificial sphere constructed around the black hole! \n\nThe sphere is heavily damaged and most of it has fallen down beyond the event horizon over time, but our scientists assume it was used as an incredibly huge planet-like habitat that used the black hole's gravitational pull to generate gravity at its core. \nWhile such a technology is incredibly advanced and far beyond our engineering capabilities at the moment, we could probably repair the shell in the future if we were to posess such an advanced technology by then. \n\nThis system could prove to be very useful in the future."
+ ssh_action.12.a: "Acknowledged."
+
+ # Hoopworld Primitives
+ ssh_action.13.name: "Torus Shaped Planet"
+ ssh_action.13.desc: "Upon entering the [From.GetName] system, our scientists noticed something very odd. \n\nOne of the few system's planets turns out to be... shaped like a torus? \nChances of such planets appearing naturally are near zero, but not impossible. \nIndeed it is possible that if the torus has a uniform shape, its gravity balances so that it does not collapse toward the center. \n\nThis system definitely seems interesting enough to fully survey."
+ ssh_action.13.a: "How odd."
+
+ # Brain Leviathan
+ ssh_action.101.name: "An Odd System"
+ ssh_action.101.desc: "Upon entering the [From.GetName] system, our scientists were stunned to find out that every single system planet appears to have been utterly destroyed - except for one planet. Aside from a single gas giant there are only colossal remains of shattered planets orbiting the black hole. \nWhat happened here?"
+ ssh_action.101.a: "Disturbing."
+ ssh_action.101.b: "Minerals!"
+ ssh_action.101.c: "A Feast."
+
+ # Horizon Brain Captured
+ ssh_action.70.name: "Horizon Brain Captured"
+ ssh_action.70_01.desc: "With the capture of [horizon_brain.solar_system.GetName] the Horizon Brain megacomputer falls into our possession. This marvel of engineering and computer science is still intact, with millions of inhabitants still linked to it. With our advanced knowledge about organic-machine interfaces, we could easily reverse-engineer the neural pods and keep the structure as is. However, we could also decide to shut down the computer and dismantle it - which would surely anger its creators and give us some beneficial engineering insights. The effect on the still linked pops would be fatal, however."
+ ssh_action.70_02.desc: "With the capture of [horizon_brain.solar_system.GetName] the Horizon Brain megacomputer falls into our possession. The device is still intact, with millions of inhabitants still linked to it. Unfortunately we lack the knowledge about organic-machine interfaces, meaning we can't keep the structure running for much longer, nor safely disconnect the population inside. The only thing we can do is shut down the computer and dismantle it - which would surely anger its creators and give us some beneficial engineering insights. The effect on the still linked pops would be fatal, however."
+ ssh_action.70.a: "Keep the structure!"
+ ssh_action.70.b: "Locate the power button and dismantle the structure afterwards."
+ ssh_action.70.b_tt: "The inhabitants will still feel subjective millenia before vanishing into nothingness."
+ ssh_action.70.c: "Forcefully shut down the simulation and dismantle the structure."
