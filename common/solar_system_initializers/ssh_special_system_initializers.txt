@@ -1,0 +1,701 @@
+###############################
+##### SPECIAL SYSTEMS     #####
+###############################
+
+# Pre-FTL Hardcore Capitalists (W/ Communist Moon?)
+ssh_preftl_hoopworld_initializer = {
+	flags = { preftl_hoopworld_system }
+
+	usage = misc_system_init
+
+	usage_odds = 0
+
+	max_instances = 1
+
+	name = "Ringus"
+
+	class = sc_g
+	planet = {
+		class = pc_g_star
+		size = 20
+		orbit_distance = 0
+		orbit_angle = 1
+		has_ring = no
+	}
+
+	change_orbit = 50
+
+	planet = {
+		class = rl_unhabitable_planets
+		orbit_angle = 0
+		orbit_distance = 0
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 1 }
+            class = pc_molten
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	change_orbit = 80
+
+	planet = {
+		name = "Donut"
+		class = pc_hoopworld
+		size = 25
+		orbit_angle = 200
+		orbit_distance = 0
+		flags = { ignore_startup_effect megastructure }
+		init_effect = {
+			save_event_target_as = ssh_kapitali_planet
+			prevent_anomaly = yes
+			add_modifier = { modifier = ssh_hoopworld_planet_modifier }
+			set_planet_flag = kapitali_home_planet
+			create_species = {
+				name = "Kapitali"
+				class = HUM
+				portrait = humanoid_03
+				namelist = HUMAN3
+				homeworld = event_target:ssh_kapitali_planet
+				traits = {
+					trait = trait_industrious
+					trait = trait_strong
+					trait = trait_thrifty
+					trait = trait_decadent
+					trait = trait_wasteful
+					trait = trait_quarrelsome
+				}
+				effect = {
+					save_event_target_as = kapitali_species
+				}
+			}
+			event_target:kapitali_species = {
+				if = {
+					limit = { has_humanoids = yes }
+					change_species_portrait = humanoid_hp_02
+				}
+			}
+			while = {
+				count = 10
+				create_pop = {
+					species = event_target:kapitali_species
+				}
+			}
+			create_country = {
+				name = "Kapitali Nation"
+				authority = auth_oligarchic
+				civics = {
+					civic = civic_increasing_urbanization
+					civic = civic_flat_world_theory
+				}
+				species = event_target:kapitali_species
+				ethos = {
+					ethic = ethic_spiritualist
+					ethic = ethic_fanatic_pacifist
+				}
+				origin = origin_default_pre_ftl
+				flag = {
+					icon={
+						category = "human"
+						file = "flag_human_13.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors = {
+						"orange"
+						"black"
+						"null"
+						"null"
+					}
+				}
+				type = primitive
+			}
+			last_created_country = {
+				set_country_flag = philosophy_age
+				set_country_flag = recently_advanced
+				set_country_flag = preftl_hoopworld_country
+				set_pre_ftl_age = philosophy_age
+				set_graphical_culture = industrial_01
+				#random_situation = {
+				#	limit = {
+				#		is_situation_type = pre_ftl_tech_progress_situation
+				#	}
+				#	set_situation_flag = has_ongoing_observation_event_chain
+				#	# Setting this flag from the beginning on
+        		#	# to prevent other observation events from interfering (like meteors)
+				#}
+			}
+			set_owner = last_created_country
+			set_capital = yes
+			add_building = building_primitive_capital
+			add_building = building_mp_primitive_philosophers_palace
+			add_building = building_mp_primitive_academy
+			add_building = building_primitive_dwellings
+			add_building = building_primitive_mine
+		}
+	}
+
+	change_orbit = 90
+
+	planet = {
+		class = pc_gas_giant
+		size = 28
+		orbit_angle = 60
+		orbit_distance = 0
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+            count = { min = 1 max = 1 }
+            class = pc_arctic
+			size = 15
+            orbit_distance = 5
+            orbit_angle = { min = 0 max = 90 }
+        }
+
+        moon = {
+            count = { min = 0 max = 3 }
+            class = pc_barren_cold
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+}
+
+# Natural Bio Brain
+#ssh_init_brain_leviathan = {
+#	class = "sc_black_hole" ###
+#	usage = misc_system_init
+#
+#	flags = { ssh_brain_leviathan_system guardian hostile_system }
+#
+#	usage_odds = {
+#		base = 0
+#		modifier = {
+#			has_leviathans = yes
+#			add = 100
+#		}
+#		modifier = {
+#			factor = 0
+#			OR = {
+#				is_fe_cluster = yes
+#				has_star_flag = empire_cluster
+#			}
+#		}
+#		modifier = {
+#			factor = 0
+#			is_bottleneck_system = yes
+#		}
+#	}
+#
+#	max_instances = 1
+#	scaled_spawn_chance = 8	# scales by galaxy size (1000 stars = 10x base)
+#
+#	planet = {
+#		count = 1
+#		class = star
+#		orbit_distance = 0
+#		orbit_angle = 1
+#		size = { min = 20 max = 30 }
+#		has_ring = no
+#	}
+#
+#	change_orbit = 35
+#
+#	planet = {
+#		class = pc_broken
+#		orbit_angle = 0
+#		orbit_distance = 0
+#
+#		init_effect = {
+#			clear_deposits = yes
+#			add_deposit = d_minerals_10
+#		}
+#	}
+#
+#	change_orbit = 20
+#
+#	planet = {
+#		count = { min = 2 max = 5 }
+#		class = pc_broken
+#		orbit_distance = 0
+#		orbit_angle = { min = 90 max = 270 }
+#		init_effect = {
+#			clear_deposits = yes
+#			add_deposit = d_minerals_10
+#		}
+#	}
+#
+#	change_orbit = 10
+#
+#	planet = {
+#		class = pc_gas_giant
+#		orbit_distance = 0
+#		orbit_angle = { min = 90 max = 270 }
+#		init_effect = {
+#			clear_deposits = yes
+#			add_deposit = d_food_3
+#			#add_anomaly = {
+#			#	category = AIANOM_CLUE_CAT
+#			#}
+#		}
+#	}
+#}
+
+# The Company
+ssh_init_company = {
+	class = "sc_ssh_white_dwarf"
+	usage = misc_system_init
+
+	flags = { ssh_company_system }
+
+	#name = random #RANDOM
+
+	usage_odds = {
+		base = 0
+		modifier = {
+			add = 9000
+			has_global_flag = ssh_company_enclave_guaranteed
+		}
+		#base = 9000
+		#modifier = {
+		#	factor = 0.5
+		#	is_fe_cluster = yes
+		#}
+		#modifier = {
+        #    factor = 0
+        #    has_star_flag = empire_cluster
+        #}
+	}
+
+	max_instances = 1
+	#scaled_spawn_chance = 8	# scales by galaxy size (1000 stars = 10x base)
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 15 max = 25 }
+		has_ring = no
+
+		init_effect = {
+			create_species = {
+				class = MOL
+				name = "Jeb" #random
+				portrait = mol6
+				traits = {
+					trait = trait_pc_ocean_preference
+					trait = trait_thrifty
+					trait = trait_conservational
+					trait = trait_decadent
+				}
+				effect = {
+					save_event_target_as = lethal_company_species
+				}
+			}
+			create_country = {
+				species = last_created_species
+				type = lethal_company
+				authority = "auth_corporate"
+				civics = {
+					#civic = civic_brand_loyalty
+					civic = civic_indentured_assets
+				}
+				origin = "origin_default"
+				flag = {
+					icon = {
+						category = "human"
+						file = "flag_human_13.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "flag_BG_1.dds"
+					}
+					colors = {
+						"orange"
+						"red"
+						"null"
+						"null"
+					}
+				}
+				ethos = {
+					ethic = ethic_fanatic_authoritarian
+					ethic = ethic_xenophobe
+				}
+				ignore_initial_colony_error = yes
+			}
+			last_created_country = {
+				save_global_event_target_as = lethal_company_country
+				set_name = "The Company"
+				set_country_flag = ssh_company_enclave_country
+				set_graphical_culture = pirate_01 #root.owner
+			}
+			create_starbase = {
+				size = starbase_citadel #"starbase_company"
+				owner = last_created_country #event_target:lethal_company_country
+				module = detection_array
+				module = shipyard
+				module = hangar_bay
+				building = hydroponics_bay
+				building = crew_quarters
+				building = resource_silo
+				building = deep_space_black_site
+			}
+		}
+	}
+
+	change_orbit = 25
+
+	planet = {
+		name = "Rend"
+		class = pc_frozen
+		orbit_angle = { min = 0 max = 180 }
+		orbit_distance = 0
+
+		#init_effect = {
+		#	clear_deposits = yes
+		#	add_deposit = d_minerals_10
+		#}
+	}
+
+	change_orbit = 20
+
+	planet = {
+		name = "Dine"
+		class = pc_frozen
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 0
+
+		init_effect = {
+			add_modifier = {
+				modifier = hazardous_weather
+				days = -1
+			}
+		}
+	}
+
+	change_orbit = 10
+
+	planet = {
+		name = "Titan"
+		class = pc_barren_cold
+		orbit_angle = { min = 0 max = 270 }
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_minerals_10
+			add_modifier = {
+				modifier = mineral_rich
+				days = -1
+			}
+		}
+	}
+
+	change_orbit = 65
+
+	planet = {
+		name = "Big Grin"
+		class = pc_gas_giant
+		size = 26
+		orbit_distance = 0
+		orbit_angle = { min = 0 max = 270 }
+		init_effect = {
+			clear_deposits = yes
+			#add_deposit = d_society_3
+			add_deposit = d_hydrogen_deposit
+		}
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+			name = "Gordion"
+            class = pc_ocean
+            orbit_distance = 3
+            orbit_angle = { min = 180 max = 270 }
+			init_effect = {
+				create_colony = { owner = event_target:lethal_company_country }
+				add_colony_progress = 100
+				#generate_start_buildings_and_districts = yes
+				set_capital = yes
+				set_name = "Gordion"
+				set_colony_type = col_capital
+				while = {
+					count = 9
+					add_district = district_mining_uncapped
+				}
+				while = {
+					count = 20
+					create_pop = { species = owner_main_species }
+				}
+				add_building = building_colony_shelter
+				#add_building = building_slave_processing
+				#add_building = building_commercial_zone
+				#add_building = building_commercial_zone
+				#add_building = building_commercial_zone
+				add_building = building_fortress
+				add_building = building_fortress
+				add_building = building_fortress
+			}
+        }
+		moon = {
+			name = "Experimentation"
+            class = pc_arid
+            orbit_distance = 3
+            orbit_angle = { min = 0 max = 180 }
+			init_effect = {
+				create_colony = { owner = event_target:lethal_company_country }
+				add_colony_progress = 100
+				set_name = "Experimentation"
+				add_building = building_colony_shelter
+				while = {
+					count = 3
+					create_pop = { species = owner_main_species }
+					add_district = district_mining_uncapped
+				}
+			}
+        }
+		moon = {
+			name = "Assurance"
+            class = pc_arid
+            orbit_distance = 5
+            orbit_angle = { min = 180 max = 360 }
+			init_effect = {
+				add_modifier = {
+					modifier = hostile_animal_life
+					days = -1
+				}
+				create_colony = { owner = event_target:lethal_company_country }
+				add_colony_progress = 100
+				set_name = "Assurance"
+				while = {
+					count = 3
+					create_pop = { species = owner_main_species }
+					add_district = district_mining_uncapped
+				}
+			}
+        }
+		moon = {
+			name = "Vow"
+            class = pc_continental
+            orbit_distance = 8
+            orbit_angle = { min = 180 max = 360 }
+			init_effect = {
+				add_modifier = {
+					modifier = hostile_animal_life
+					days = -1
+				}
+				create_colony = { owner = event_target:lethal_company_country }
+				add_colony_progress = 100
+				set_name = "Vow"
+				while = {
+					count = 3
+					create_pop = { species = owner_main_species }
+					add_district = district_mining_uncapped
+				}
+				if = {
+					limit = { has_planetary_diversity = yes }
+					pd_lake_world_effect = yes
+				}
+			}
+        }
+		moon = {
+			name = "March"
+            class = pc_continental
+            orbit_distance = 8
+            orbit_angle = { min = 0 max = 180 }
+			init_effect = {
+				add_modifier = {
+					modifier = lush_planet
+					days = -1
+				}
+				add_modifier = {
+					modifier = ssh_faceless_stalker_planet_modifier
+					days = -1
+				}
+				create_colony = { owner = event_target:lethal_company_country }
+				add_colony_progress = 100
+				set_name = "March"
+				while = {
+					count = 3
+					create_pop = { species = owner_main_species }
+					add_district = district_mining_uncapped
+				}
+				if = {
+					limit = { has_planetary_diversity = yes }
+					pd_forest_world_effect = yes
+				}
+			}
+        }
+		moon = {
+			name = "Offense"
+            class = pc_arid
+            orbit_distance = 5
+            orbit_angle = { min = 10 max = 90 }
+			init_effect = {
+				add_modifier = {
+					modifier = hostile_animal_life
+					days = -1
+				}
+				create_colony = { owner = event_target:lethal_company_country }
+				add_colony_progress = 100
+				set_name = "Offense"
+				while = {
+					count = 3
+					create_pop = { species = owner_main_species }
+					add_district = district_mining_uncapped
+				}
+			}
+        }
+		moon = {
+			name = "Adamance"
+            class = pc_alpine
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 180 }
+			init_effect = {
+				if = {
+					limit = { has_planetary_diversity = yes }
+					pd_boreal_world_effect = yes
+				}
+				create_colony = { owner = event_target:lethal_company_country }
+				add_colony_progress = 100
+				set_name = "Adamance"
+				while = {
+					count = 3
+					create_pop = { species = owner_main_species }
+					add_district = district_mining_uncapped
+				}
+			}
+        }
+		moon = {
+			name = "Artifice"
+            class = pc_barren
+            orbit_distance = 3
+            orbit_angle = { min = 0 max = 360 }
+			init_effect = {
+				if = {
+					limit = { has_planetary_diversity = yes }
+					pd_boreal_world_effect = yes
+				}
+			}
+        }
+		moon = {
+			name = "Embrion"
+            class = pc_molten
+            orbit_distance = 8
+            orbit_angle = { min = 0 max = 360 }
+			init_effect = {
+				if = {
+					limit = { has_planetary_diversity = yes }
+					change_pc = pc_diamond
+				}
+			}
+        }
+	}
+}
+
+### Dimensional Tearer System (for AI) ###
+# Artificial Star
+ssh_init_exodus_tearer = {
+	flags = { ssh_dimensional_tearer_system }
+	name = RANDOM
+	class = sc_a
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 50
+	}
+
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+
+	change_orbit = 25
+
+	planet = {
+		count = { min = 2 max = 6 }
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 25 max = 270 }
+		# If Gigas: Asteroid Artillery
+		init_effect = {
+			if = {
+				limit = { has_gigastructures = yes }
+				spawn_megastructure = {
+					type = asteroid_artillery_1
+					owner = root.owner
+				}
+				set_planet_flag = has_megastructure
+			}
+		}
+	}
+
+	init_effect = {
+		# Tearer spawned via event ssh_crisis.6
+		create_ambient_object = {
+			type = nebula_1
+			duration = 3600
+		}
+	}
+}
+
+# Devoured Galactic Core
+ssh_init_empty_space = {
+	flags = { galactic_core }
+	name = "The Gargantuan Overmind"
+	class = sc_ssh_space
+
+	planet = {
+		class = pc_ssh_empty_space
+		size = 0
+		orbit_distance = 0
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_dark_matter_deposit_10
+		}
+	}
+
+	init_effect = {
+		create_ambient_object = {
+			type = nebula_1
+			duration = 3600
+		}
+		set_star_flag = galactic_core # Just to be sure
+	}
+}
+
+
+### Fallen Empire Launch Site ###
+ssh_fe_wmd_launch_site = {
+	flags = { fe_wmd_launch_site }
+	#name = RANDOM #"Launch Site"
+	class = sc_pulsar
+
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+
+	#change_orbit = 25
+
+	init_effect = {
+		set_star_flag = fe_wmd_launch_site
+		spawn_megastructure = {
+			type = quantum_catapult_restored
+			graphical_culture = event_target:wmd_awakened_empire
+			owner = event_target:wmd_awakened_empire
+			#owner = fromfromfrom
+			planet = star
+		}
+		create_ambient_object = {
+			type = nebula_1
+			duration = 3600
+		}
+	}
+}

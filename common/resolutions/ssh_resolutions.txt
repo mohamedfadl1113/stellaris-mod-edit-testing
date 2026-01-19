@@ -1,0 +1,1141 @@
+@resolution_weight_hated = 3
+@resolution_weight_disliked = 4
+@resolution_weight_unpopular = 5
+@resolution_weight_normal = 6
+@resolution_weight_popular = 6.5
+@resolution_weight_loved = 7
+
+@resolution_cost_t1 = 100
+@resolution_cost_t2 = 150
+@resolution_cost_t3 = 200
+@resolution_cost_t4 = 250
+@resolution_cost_t5 = 300
+@resolution_cost_denounce = 25
+
+@resolution_flag_timer = 360
+
+# GALACTIC FOCUS RESOLUTIONS
+resolution_galactic_focus_crisis_vacdec = {
+	icon = "GFX_resolution_emergency_measure"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = 75
+		}
+	}
+	target = no
+
+	effect = {
+		custom_tooltip = resolution_galactic_focus_crisis_vacdec_effect_success
+
+		hidden_effect = {
+			repeal_all_galactic_focus_resolutions = yes
+			set_global_flag = galactic_focus_crisis_vacdec
+			set_global_flag = galactic_community_crisis_fighting
+
+			set_global_flag = galactic_community_resolution_passed
+
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_global_flag = ssh_vacdec_crisis_ongoing
+		NOT = { has_global_flag = galactic_focus_crisis_vacdec }
+	}
+
+	active = { # Resolution only in effect while this trigger is met
+		has_global_flag = ssh_vacdec_crisis_ongoing
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular
+
+		#modifier = {
+		#	factor = 2
+		#
+		#	any_neighbor_country = {
+		#		is_country_type = swarm
+		#	}
+		#	desc = gal_com_is_neighboring_swarm
+		#}
+
+		#modifier = {
+		#	factor = 0.75
+		#
+		#	NOT = {
+		#		any_neighbor_country = {
+		#			is_country_type = swarm
+		#		}
+		#	}
+		#	desc = gal_com_is_not_neighboring_swarm
+		#}
+
+		modifier = {
+			factor = 0.75
+		
+			has_crisis_stage_1 = yes
+			desc = gal_com_crisis_stage_1
+		}
+
+		modifier = {
+			factor = 1.25
+		
+			has_crisis_stage_3 = yes
+			desc = gal_com_crisis_stage_3
+		}
+
+		modifier = {
+			factor = 10
+		
+			has_crisis_stage_4 = yes
+			desc = gal_com_crisis_stage_4
+		}
+
+		modifier = {
+			factor = 10
+		
+			has_ascension_perk = ap_defender_of_the_galaxy
+			desc = ap_defender_of_the_galaxy
+		}
+
+		#modifier = {
+		#	factor = 1.2
+		#	is_militarist = yes
+		#	desc = ethic_militarist
+		#}
+
+		modifier = {
+			factor = 1.1
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+
+		#modifier = {
+		#	factor = 0.5
+		#	is_xenophobe = yes
+		#
+		#	NOT = {
+		#		any_neighbor_country = {
+		#			is_country_type = swarm
+		#		}
+		#	}
+		#	desc = ethic_xenophobe
+		#}
+	}
+}
+
+### MEGACONSTRUCTION CATEGORY
+resolution_megaconstruction_repeal_1 = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_industry_repeal_1_effect_success ###
+		hidden_effect = {
+			cancel_resolution = "resolution_megaconstruction_streamlined_protocols"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_megaconstruction_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_megaconstruction_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_megaconstruction_streamlined_protocols"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		modifier = {
+			factor = 0.8
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 0.8
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_environmentalist
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_agrarian_idyll
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 2
+			is_environmental_architects_empire = yes
+			desc = civic_environmental_architects
+		}
+	}
+}
+
+resolution_megaconstruction_repeal_2 = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t2
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_industry_repeal_2_effect_success ###
+		hidden_effect = {
+			cancel_resolution = "resolution_megaconstruction_megastructure_subsidies"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_megaconstruction_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_megaconstruction_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_megaconstruction_megastructure_subsidies"
+	}
+
+	modifier = {
+		resolution_megaconstruction_streamlined_protocols = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		modifier = {
+			factor = 0.8
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 0.8
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_environmentalist
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_agrarian_idyll
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 2
+			is_environmental_architects_empire = yes
+			desc = civic_environmental_architects
+		}
+	}
+}
+
+resolution_megaconstruction_repeal_3 = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_industry_repeal_3_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_megaconstruction_architecural_renaissance"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_megaconstruction_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_megaconstruction_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_megaconstruction_architecural_renaissance"
+	}
+
+	modifier = {
+		resolution_megaconstruction_streamlined_protocols = 1
+		resolution_megaconstruction_megastructure_subsidies = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		modifier = {
+			factor = 0.8
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 0.8
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_environmentalist
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_agrarian_idyll
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 2
+			is_environmental_architects_empire = yes
+			desc = civic_environmental_architects
+		}
+	}
+}
+
+resolution_megaconstruction_repeal_4 = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_industry_repeal_4_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_megaconstruction_extraction_initiative"
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_megaconstruction_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_megaconstruction_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_megaconstruction_extraction_initiative"
+	}
+
+	modifier = {
+		resolution_megaconstruction_streamlined_protocols = 1
+		resolution_megaconstruction_megastructure_subsidies = 1
+		resolution_megaconstruction_architecural_renaissance = 1
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		modifier = {
+			factor = 0.8
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 0.8
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_environmentalist
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_agrarian_idyll
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 2
+			is_environmental_architects_empire = yes
+			desc = civic_environmental_architects
+		}
+	}
+}
+
+resolution_megaconstruction_repeal_5 = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_industry_repeal_5_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_megaconstruction_workforce_revolution"
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_megaconstruction_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+		custom_tooltip = resolution_industry_environmental_ordinance_waivers_tooltip
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_megaconstruction_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_megaconstruction_workforce_revolution"
+	}
+
+	modifier = {
+		resolution_megaconstruction_streamlined_protocols = 1
+		resolution_megaconstruction_megastructure_subsidies = 1
+		resolution_megaconstruction_architecural_renaissance = 1
+		resolution_megaconstruction_extraction_initiative = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		modifier = {
+			factor = 0.8
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 0.8
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_environmentalist
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_agrarian_idyll
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 2
+			is_environmental_architects_empire = yes
+			desc = civic_environmental_architects
+		}
+	}
+}
+
+# Megaconstructs Resolution
+resolution_megaconstruction_streamlined_protocols = {
+	icon = "GFX_resolution_ssh_megaconstruction"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+	level = 1
+
+	modifier = {
+		#resolution_industry_regulatory_facilitation = 1
+		resolution_megaconstruction_streamlined_protocols = 1
+	}
+
+	effect = {
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_megaconstruction days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_harvesting days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		has_technology = tech_mega_engineering
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOR = {
+				is_active_resolution = "resolution_megaconstruction_streamlined_protocols"
+				is_active_resolution = "resolution_megaconstruction_megastructure_subsidies"
+				is_active_resolution = "resolution_megaconstruction_architecural_renaissance"
+				is_active_resolution = "resolution_megaconstruction_extraction_initiative"
+				is_active_resolution = "resolution_megaconstruction_workforce_revolution"
+			}
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_loved
+
+		modifier = {
+			factor = 1.2
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = {
+			factor = 1.2
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 0.5
+			has_valid_civic = civic_environmentalist
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 0.5
+			has_valid_civic = civic_agrarian_idyll
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 0.5
+			is_ecocentric = yes
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 1.5
+			is_anthropocentric = yes
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = {
+			factor = 1.8
+			OR = {
+				has_valid_civic = civic_relentless_industrialists
+				has_valid_civic = civic_corporate_relentless_industrialists
+				is_gestalt = yes
+			}
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = {
+			factor = 0.5
+			is_environmental_architects_empire = yes
+			desc = civic_environmental_architects
+		}
+	}
+}
+
+# Subsidies
+resolution_megaconstruction_megastructure_subsidies = {
+	icon = "GFX_resolution_ssh_megaconstruction"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t2
+		}
+	}
+	target = no
+	level = 2
+
+	modifier = {
+		resolution_megaconstruction_streamlined_protocols = 1
+		resolution_megaconstruction_megastructure_subsidies = 1
+	}
+
+	effect = {
+		#custom_tooltip = resolution_harvesting_non_sapient_workforce_tt
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_megaconstruction days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			# If any member doesn't possess nanite transmutation yet, give tech option
+			every_playable_country = {
+				limit = {
+					is_regular_empire = yes
+					is_galactic_community_member = yes
+					NOT = { has_technology = tech_nanite_transmutation }
+				}
+				add_tech_progress = {
+					tech = tech_nanite_transmutation
+					progress = 0.1
+				}
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_harvesting days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		is_active_resolution = "resolution_megaconstruction_streamlined_protocols"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_loved
+
+		modifier = {
+			factor = 1.2
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = {
+			factor = 1.2
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 0.5
+			has_valid_civic = civic_environmentalist
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 0.5
+			has_valid_civic = civic_agrarian_idyll
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 0.5
+			is_ecocentric = yes
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 1.5
+			is_anthropocentric = yes
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = {
+			factor = 1.8
+			OR = {
+				has_valid_civic = civic_relentless_industrialists
+				has_valid_civic = civic_corporate_relentless_industrialists
+				is_gestalt = yes
+			}
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = {
+			factor = 0.5
+			is_environmental_architects_empire = yes
+			desc = civic_environmental_architects
+		}
+	}
+}
+
+#Architectural Renaissance #3
+resolution_megaconstruction_architecural_renaissance = {
+	icon = "GFX_resolution_ssh_megaconstruction"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	level = 3
+
+	modifier = {
+		resolution_megaconstruction_streamlined_protocols = 1
+		resolution_megaconstruction_megastructure_subsidies = 1
+		resolution_megaconstruction_architecural_renaissance = 1
+	}
+
+	effect = {
+		custom_tooltip = resolution_megaconstruction_architecural_renaissance_tt
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_megaconstruction days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			# If any member doesn't possess mega engineering yet, give tech progress
+			every_playable_country = {
+				limit = {
+					is_regular_empire = yes
+					is_galactic_community_member = yes
+					NOT = { has_technology = tech_mega_engineering }
+				}
+				add_tech_progress = {
+					tech = tech_mega_engineering
+					progress = 0.1
+				}
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_harvesting days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		is_active_resolution = "resolution_megaconstruction_megastructure_subsidies"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_loved
+
+		modifier = {
+			factor = 2.0
+			NOT = { has_technology = tech_mega_engineering }
+			desc = tech_mega_engineering
+		}
+
+		modifier = {
+			factor = 1.2
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = {
+			factor = 0.5
+			has_valid_civic = civic_environmentalist
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 0.5
+			has_valid_civic = civic_agrarian_idyll
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 0.5
+			is_ecocentric = yes
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 1.5
+			is_anthropocentric = yes
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = {
+			factor = 1.8
+			OR = {
+				has_valid_civic = civic_relentless_industrialists
+				has_valid_civic = civic_corporate_relentless_industrialists
+				is_gestalt = yes
+			}
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = {
+			factor = 0.5
+			is_environmental_architects_empire = yes
+			desc = civic_environmental_architects
+		}
+	}
+}
+
+resolution_megaconstruction_extraction_initiative = {
+	icon = "GFX_resolution_ssh_megaconstruction"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+	target = no
+	level = 4
+
+	modifier = {
+		resolution_megaconstruction_streamlined_protocols = 1
+		resolution_megaconstruction_megastructure_subsidies = 1
+		resolution_megaconstruction_architecural_renaissance = 1
+		resolution_megaconstruction_extraction_initiative = 1
+	}
+
+	effect = {
+		custom_tooltip = resolution_megaconstruction_extraction_initiative_tt
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_megaconstruction days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			# Give tech progresses
+			if = {
+				limit = { host_has_dlc = "The Machine Age" }
+				every_playable_country = {
+					limit = {
+						is_regular_empire = yes
+						is_galactic_community_member = yes
+					}
+					if = {
+						limit = { NOT = { has_technology = tech_dyson_swarm } }
+						add_tech_progress = {
+							tech = tech_dyson_swarm
+							progress = 0.5
+						}
+					}
+					if = {
+						limit = { NOT = { has_technology = tech_orbital_arc_furnace } }
+						add_tech_progress = {
+							tech = tech_orbital_arc_furnace
+							progress = 0.5
+						}
+					}
+				}
+			}
+			every_playable_country = {
+				limit = {
+					is_regular_empire = yes
+					is_galactic_community_member = yes
+					NOT = { has_technology = ssh_tech_gas_giant_lifting }
+				}
+				if = {
+					limit = { NOT = { has_technology = ssh_tech_shellworlds } } # Prereq
+					give_technology = { tech = ssh_tech_shellworlds }
+				}
+				add_tech_progress = {
+					tech = ssh_tech_gas_giant_lifting
+					progress = 0.5
+				}
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_harvesting days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		is_active_resolution = "resolution_megaconstruction_architecural_renaissance"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_loved
+
+		modifier = {
+			factor = 1.2
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = {
+			factor = 0.5
+			has_valid_civic = civic_environmentalist
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 0.5
+			has_valid_civic = civic_agrarian_idyll
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 0.5
+			is_ecocentric = yes
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 1.5
+			is_anthropocentric = yes
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = {
+			factor = 1.8
+			OR = {
+				has_valid_civic = civic_relentless_industrialists
+				has_valid_civic = civic_corporate_relentless_industrialists
+				is_gestalt = yes
+			}
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = {
+			factor = 0.5
+			is_environmental_architects_empire = yes
+			desc = civic_environmental_architects
+		}
+	}
+}
+
+# Workforce Revolution
+resolution_megaconstruction_workforce_revolution = {
+	icon = "GFX_resolution_ssh_megaconstruction"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+	level = 5
+
+	modifier = {
+		resolution_megaconstruction_streamlined_protocols = 1
+		resolution_megaconstruction_megastructure_subsidies = 1
+		resolution_megaconstruction_architecural_renaissance = 1
+		resolution_megaconstruction_extraction_initiative = 1
+		resolution_megaconstruction_workforce_revolution = 1
+	}
+
+	effect = {
+		custom_tooltip = resolution_megaconstruction_workforce_revolution_tt
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_megaconstruction days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			# Give tech progresses
+			every_playable_country = {
+				limit = {
+					is_regular_empire = yes
+					is_galactic_community_member = yes
+				}
+				if = {
+					limit = { NOT = { has_technology = tech_nanite_transmutation } }
+					give_technology = { tech = tech_nanite_transmutation }
+				}
+				if = {
+					limit = { NOT = { has_technology = ssh_tech_nanite_disassembler } }
+					add_tech_progress = {
+						tech = ssh_tech_nanite_disassembler
+						progress = 0.75
+					}
+				}
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_harvesting days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		is_active_resolution = "resolution_megaconstruction_extraction_initiative"
+		custom_tooltip = {
+			fail_text = "galcom_member_must_have_nanite_transmutation"
+			any_galcom_member = {
+				is_regular_empire = yes
+				has_technology = tech_nanite_transmutation
+			}
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_loved
+
+		modifier = {
+			factor = 1.2
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = {
+			factor = 2.0
+			NOT = { has_technology = ssh_tech_nanite_disassembler }
+			desc = ssh_tech_nanite_disassembler
+		}
+
+		modifier = {
+			factor = 0.1
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 0.5
+			has_valid_civic = civic_environmentalist
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 0.5
+			has_valid_civic = civic_agrarian_idyll
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 0.5
+			is_ecocentric = yes
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 1.5
+			is_anthropocentric = yes
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = {
+			factor = 1.8
+			OR = {
+				has_valid_civic = civic_relentless_industrialists
+				has_valid_civic = civic_corporate_relentless_industrialists
+				is_gestalt = yes
+			}
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = {
+			factor = 0.5
+			is_environmental_architects_empire = yes
+			desc = civic_environmental_architects
+		}
+	}
+}
+
+# Repeal Resolutions

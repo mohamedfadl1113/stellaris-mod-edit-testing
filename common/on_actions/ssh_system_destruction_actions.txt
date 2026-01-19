@@ -1,0 +1,47 @@
+on_captive_star_target_planet_reached = {
+	events = {
+		ssh_action.500 # Destroy star system
+	}
+}
+
+on_captive_star_action_cancel = {
+	events = {
+		# None for now
+	}
+}
+
+on_dark_wmd_target_planet_reached = {
+	events = {
+		ssh_action.550 # Destroy star system
+	}
+}
+on_dark_wmd_action_cancel = {
+	events = {
+		# None for now
+	}
+}
+
+on_dark_wmd_large_target_planet_reached = {
+	events = {
+		ssh_action.600 # Destroy star cluster
+	}
+}
+on_dark_wmd_large_action_cancel = {
+	events = {
+		# None for now
+	}
+}
+
+# Behemoth Brain Maw
+on_sk_brain_maw_target_planet_reached = {
+	events = {
+		ssh_crisis.3101 # Handle Variable + Opinion Stuff
+		ssh_action.701 # Chance to be devoured by the black hole
+		ssh_action.700 # Destruction/Consumption Effect
+	}
+}
+on_sk_brain_maw_action_cancel = {
+	events = {
+		# None for now
+	}
+}

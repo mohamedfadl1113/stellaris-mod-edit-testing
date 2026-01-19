@@ -1,0 +1,69 @@
+########################################
+# Artificial Solar System Initializers #
+########################################
+
+# Fusion Candle
+ssh_artsys_fusion_candle = {
+	flags = { ssh_artificial_system }
+	name = "Artificial System"
+	class = sc_ssh_space
+
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+
+	init_effect = {
+		spawn_megastructure = {
+			type = system_creator_fusioncandle_1
+		}
+		create_ambient_object = {
+			type = nebula_1
+			duration = 3600
+		}
+	}
+}
+
+# Artificial Star
+ssh_artsys_artificial_star = {
+	flags = { ssh_artificial_system }
+	name = "Artificial System"
+	class = sc_ssh_space
+
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+
+	init_effect = {
+		spawn_megastructure = {
+			type = system_creator_star_1
+		}
+		create_ambient_object = {
+			type = nebula_1
+			duration = 3600
+		}
+	}
+}
+
+# Artificial Black Hole
+ssh_artsys_artificial_bh = {
+	flags = { ssh_artificial_system }
+	name = "Artificial System"
+	class = sc_ssh_space
+
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+
+	init_effect = {
+		spawn_megastructure = {
+			type = system_creator_bh_1
+		}
+		create_ambient_object = {
+			type = nebula_1
+			duration = 3600
+		}
+	}
+}

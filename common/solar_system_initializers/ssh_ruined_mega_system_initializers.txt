@@ -1,0 +1,517 @@
+###############################
+##### RUINED MEGA SYSTEMS #####
+###############################
+
+# Shellworld
+ssh_ruined_shellworlds_system = {
+	flags = { ruined_shellworlds_system }
+	usage = misc_system_init
+	usage_odds = {
+		base = 8000
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+		modifier = {
+            factor = 0
+            has_global_flag = ssh_ruined_hypers_disabled
+        }
+	}
+	scaled_spawn_chance = 4
+	max_instances = 1
+
+	name = "Blecksbi"
+
+	class = sc_m_giant
+	planet = {
+		class = pc_m_giant_star
+		size = 40
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+
+	change_orbit = 50
+
+	planet = {
+		class = pc_barren
+		size = 25
+		orbit_angle = 200
+		orbit_distance = 0
+		flags = { ignore_startup_effect has_megastructure blecksbi_shellworld }
+		init_effect = {
+			save_event_target_as = ssh_shellworld_planet
+			prevent_anomaly = yes
+			add_modifier = { modifier = terraforming_candidate }
+		}
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 1 }
+            class = pc_shattered
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	change_orbit = 60
+
+	planet = {
+		class = rl_unhabitable_planets
+		orbit_angle = 0
+		orbit_distance = 0
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 2 }
+            class = pc_molten
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	change_orbit = 70
+
+	planet = {
+		class = pc_gas_giant
+		size = 28
+		orbit_angle = 60
+		orbit_distance = 0
+		flags = { ignore_startup_effect has_megastructure }
+		init_effect = {
+			save_event_target_as = ssh_gas_giant_shellworld_planet
+			prevent_anomaly = yes
+			add_modifier = { modifier = ssh_cloudless_gas_giant }
+		}
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 5 }
+            class = pc_barren_cold
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	init_effect = {
+		spawn_megastructure = {
+			name = "Ruined Shellworld"
+			type = shellworld_ruined
+			planet = event_target:ssh_shellworld_planet
+		}
+		spawn_megastructure = {
+			name = "Ruined Gas Giant Shellworld"
+			type = gas_giant_shellworld_ruined
+			planet = event_target:ssh_gas_giant_shellworld_planet
+		}
+	}
+}
+
+# Ruined Edersphere System
+ssh_ruined_edersphere_system = {
+	flags = { ruined_edersphere_system }
+	usage = misc_system_init
+	usage_odds = {
+		base = 8000
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+		modifier = {
+            factor = 0
+            has_global_flag = ssh_ruined_hypers_disabled
+        }
+	}
+	scaled_spawn_chance = 4
+	max_instances = 1
+
+	prevent_anomalies = yes
+
+	name = "Kitkat"
+
+	class = sc_black_hole
+	planet = {
+		class = pc_black_hole
+		size = 15
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+
+	init_effect = {
+		spawn_megastructure = {
+			name = "Ruined Edersphere"
+			type = edersphere_ruined
+			orbit_angle = 30
+			orbit_distance = 80
+			planet = star
+		}
+		while = {
+			count = 10
+			create_ambient_object = {
+				type = "large_debris_object"
+				entity_offset_height = { min = -0 max = -25 }
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 60
+					angle = random
+				}
+			}
+		}
+		while = {
+			count = 15
+			create_ambient_object = {
+				type = "medium_debris_01_object"
+				entity_offset_height = { min = -0 max = -25 }
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 60
+					angle = random
+				}
+			}
+		}
+		while = {
+			count = 15
+			create_ambient_object = {
+				type = "medium_debris_02_object"
+				entity_offset_height = { min = -0 max = -25 }
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 60
+					angle = random
+				}
+			}
+		}
+		while = {
+			count = 25
+			create_ambient_object = {
+				type = "small_debris_object"
+				entity_offset_height = { min = -0 max = -25 }
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 60
+					angle = random
+				}
+			}
+		}
+	}
+}
+
+# Ruined Suprashell System
+ssh_ruined_black_hole_shellworld_system = {
+	flags = { ruined_black_hole_shellworld_system }
+	usage = misc_system_init
+	usage_odds = {
+		base = 0 #12000 #4 ### Spawned via game start event
+		modifier = {
+			factor = 0.75
+			is_fe_cluster = yes
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+		modifier = {
+            factor = 0
+            has_global_flag = ssh_ruined_hypers_disabled
+        }
+		modifier = {
+			factor = 2.0
+			any_neighbor_system = {
+				is_fe_cluster = yes
+				owner = { is_fallen_empire_materialist = yes }
+			}
+		}
+		#modifier = {
+		#	factor = 0
+		#	NOT = {
+		#		any_neighbor_system = {
+		#			is_fe_cluster = yes
+		#			owner = { is_fallen_empire_materialist = yes }
+		#		}
+		#	}
+		#}
+	}
+	scaled_spawn_chance = 4
+	max_instances = 1
+
+	prevent_anomalies = yes
+
+	name = "Spar'bl"
+
+	class = sc_black_hole
+	planet = {
+		class = pc_black_hole
+		size = 30
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+
+	change_orbit = 90
+
+	planet = {
+		class = pc_barren_cold
+		orbit_angle = 0
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_deposit}
+
+		init_effect = {
+			create_ambient_object = {
+				type = "medium_debris_01_object"
+				entity_offset_height = -15
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = 0
+				}
+			}
+			set_deposit = d_nanites_deposit
+			set_planet_flag = starting_deposit
+		}
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 2 }
+            class = pc_molten
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	change_orbit = 120
+
+	planet = {
+		class = pc_gas_giant
+		orbit_angle = 270
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_deposit}
+			init_effect = {
+				set_deposit = d_hydrogen_deposit
+				set_planet_flag = starting_deposit
+			}
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 5 }
+            class = pc_barren_cold
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	init_effect = {
+		spawn_megastructure = {
+			name = "Ruined Black Hole Suprashell"
+			type = black_hole_shellworld_ruined
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = star
+		}
+		while = {
+			count = 15
+			create_ambient_object = {
+				type = "large_debris_object"
+				entity_offset_height = { min = -0 max = -25 }
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 45
+					angle = random
+				}
+			}
+		}
+		while = {
+			count = 25
+			create_ambient_object = {
+				type = "medium_debris_01_object"
+				entity_offset_height = { min = -0 max = -25 }
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 45
+					angle = random
+				}
+			}
+		}
+		while = {
+			count = 25
+			create_ambient_object = {
+				type = "medium_debris_02_object"
+				entity_offset_height = { min = -0 max = -25 }
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 45
+					angle = random
+				}
+			}
+		}
+		while = {
+			count = 50
+			create_ambient_object = {
+				type = "small_debris_object"
+				entity_offset_height = { min = -0 max = -25 }
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 45
+					angle = random
+				}
+			}
+		}
+	}
+}
+
+# Ruined Stellar Harvester - Nanite System
+ssh_ruined_stellar_harvester_system = {
+	flags = { ruined_black_hole_shellworld_system }
+	usage = misc_system_init
+	usage_odds = {
+		base = 9000
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+		modifier = {
+            factor = 0
+            has_distar = no
+        }
+	}
+	max_instances = 4
+
+	prevent_anomalies = yes
+
+	class = sc_ssh_white_dwarf
+	planet = {
+		class = pc_white_dwarf_star
+		size = 12
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+
+	change_orbit = 90
+
+	planet = {
+		class = pc_gray_goo
+		orbit_angle = 0
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_deposit}
+
+		init_effect = {
+			create_ambient_object = {
+				type = "medium_debris_01_object"
+				entity_offset_height = -15
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = 0
+				}
+			}
+			set_deposit = d_nanites_deposit
+			set_planet_flag = starting_deposit
+		}
+	}
+
+	change_orbit = 120
+
+	planet = {
+		class = pc_gas_giant
+		orbit_angle = 270
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_deposit}
+			init_effect = {
+				set_deposit = d_hydrogen_deposit
+				set_planet_flag = starting_deposit
+			}
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 1 }
+            class = pc_gray_goo
+			flags = { ignore_startup_effect starting_deposit}
+			init_effect = {
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					entity_offset_height = -15
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
+				}
+				set_deposit = d_nanites_deposit
+				set_planet_flag = starting_deposit
+			}
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	# Gotta figure out why the stellar harvester doesnt spawn after restoring it
+	#init_effect = {
+	#	spawn_megastructure = {
+	#		name = "Ruined Fusion Accelerator"
+	#		type = stellar_harvester_ruined
+	#		orbit_angle = 0
+	#		orbit_distance = 0
+	#		planet = star
+	#	}
+	#	create_ambient_object = {
+	#		type = "large_debris_object"
+	#		entity_offset_height = -1
+	#		location = this
+	#	}
+	#	last_created_ambient_object = {
+	#		set_location = {
+	#			target = star
+	#			distance = 0
+	#			angle = 0
+	#		}
+	#	}
+	#}
+}

@@ -1,0 +1,393 @@
+# Triggers when the game starts
+on_game_start = {
+	events = {
+		ssh_game_start.1 # Spawn special/hidden countries
+		ssh_game_start.4 # Planet Modifiers + Visual Stuff (Cloudless Gas Giants)
+		ssh_fe_megas.1 # Spawn FE Suprashell + Discworld/Freesphere
+	}
+}
+
+# Called during empire initialization when starting a new game if has_secondary_species game rule is true.
+# Called before empire_init_create_capital_pops.
+# scope: planet
+# from: founder species
+# fromfrom: secondary species (if exists)
+empire_init_capital_planet = {
+	events = {
+		ssh_game_start.3 # starting buildings, districts
+	}
+}
+
+# Planet has reached 0 pops from orbital bombardment
+# This = Planet
+# From = Bombarder
+on_planet_zero_pops = {
+	events = {
+		ssh_action.1
+		ssh_action.4
+	}
+}
+
+# Starbase Destruction Triggers
+# This = starbase being destroyed (not ship!)
+# From = fleet that destroyed the starbase
+on_starbase_destroyed = {
+	events = {
+		ssh_tearer.600 # Crisis destroys Dimensional Tearer
+		ssh_crisis.2010 # FE Bio Brain destroys its owner's starbase
+		ssh_brain.50 # Starbase of BIO Brain System destroyed
+
+		### WIP ###
+		#ssh_fe.94 # Fallen Empire Core Territory conquered - Restore Missiles
+		#ssh_fe.99 # Fallen Empire Core Territory conquered - send out WMD threat
+	}
+}
+
+# Fired when starbase is occupied and changes controller
+# This = New controller
+# From = Starbase being occupied
+on_starbase_occupied = {
+	events = {
+		ssh_action.70 # Horizon Brain Captured
+
+		### WIP ###
+		#ssh_fe.95 # Fallen Empire Core Territory conquered - Restore Missiles
+		#ssh_fe.100 # Fallen Empire Core Territory conquered - send out WMD threat
+	}
+}
+
+# This = owner of fleet 1 (destroyed)
+# From = owner of fleet 2 (combatant)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_fleet_destroyed_victim = {
+	events = {
+		ssh_crisis.2005 # FE Bio Brain destroyed by FE
+		ssh_action.501 # Captive Star Destroyed
+	}
+}
+
+# This = owner of fleet 1
+# From = owner of fleet 2
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_entering_battle = {
+	events = {
+		ssh_tearer.699 # Hyperdimensional Exodus Entity that stayed behind attacked
+	}
+}
+
+
+# THIS = System: system being occupied
+# FROM = Country: Conqueror of the system
+# FROMFROM = Country: Original owner of the system
+on_system_occupied = {
+	events = {
+		ssh_tearer.601 # Dimensional Tearer Destroyed
+	}
+}
+
+# Triggers event when each country first sends a ship into the system (once per country)
+# Scope = Ship
+# From = System
+# FromFrom = Country
+on_entering_system_first_time = {
+	events = {
+		ssh_tearer.620 # Info about the Dimensional Tearer
+		ssh_action.10
+		ssh_action.11
+		ssh_action.12
+		#ssh_action.13 #hoopworld system
+	}
+}
+
+# A fleet has entered a system | See also: on_fleet_auto_move_arrival
+# Scope = Fleet
+# From = System
+on_entering_system_fleet = {
+	events = {
+		ssh_action.17 # Fleet enters vacuum decay system
+		ssh_action.554 # Dark Matter Missile enters another countrys borders
+	}
+}
+
+# Triggered when two empires discover each other
+# This = Empire 1
+# From = Empire 2
+# Fromfromfrom = System where contact occurred
+on_first_contact = {
+	events = {
+		ssh_contact.1 # Company Enclave Contact
+	}
+}
+
+# No scope, like on_game_start
+on_monthly_pulse = {
+	events = {
+		ssh_action.50 # enable resources for galactic market
+		ssh_vacdec.115 # Vacuum Decay FE Reactions
+		ssh_vacdec.130 # Vacuum Decay Player & AI Empire Options/Reactions
+		ssh_vacdec.300 # Initiate the Ark Project
+		ssh_vacdec.500 # Ark Project Counter Updates
+		ssh_vacdec.510 # Ark Project Counter Updates #2
+	}
+}
+
+# Via pre_ftl_tech_progress_situation / preftl.50
+on_monthly_pulse_pre_ftl_observation = {
+	random_events = {
+		250 = ssh_preftl.1 # Pre-FTLs notice their moon shrinking (nanite disassembler) -> Put in this on_action because on_country_monthly_pulse won't fire the event for whatever reason
+	}
+}
+
+# No scope, like on_game_start
+on_mid_game_pulse = {
+	events = {
+		ssh_effect.6 # Give AI Countries Nanite Transmutation Research Option (if activated)
+	}
+}
+
+# this = country
+on_monthly_pulse_country = {
+	events = {
+		ssh_vacdec.606 # Vacdec Basement Universe Probing Completed
+		ssh_fe.200 #### REMOVE
+	}
+}
+
+# Fires for each planet every month (counting up from colonisation date, includes home planet)
+on_colony_monthly_pulse = {
+	events = {
+		ssh_action.16 # Planet devastation if shrinking moon reaches certain size
+	}
+}
+
+# Fires for each planet every year (counting up from colonisation date, includes home planet)
+#on_colony_yearly_pulse = {
+#	events = {
+#		ssh_action.19 # Refugee Wave (Reality Collapse Crisis)
+#	}
+#}
+
+# Zombie Colossus
+on_destroy_planet_with_PLANET_KILLER_ZOMBIE = {
+	events = {
+		crisis.5015
+		planet_destruction.600
+		ssh_colossus.1
+		awareness.150
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_ZOMBIE_queued = {
+	events = {
+		fircon.5035
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_ZOMBIE_unqueued = {
+}
+
+# Basement Universe Colossus
+on_destroy_planet_with_PLANET_KILLER_BASEMENT_UNIVERSE = {
+	events = {
+		crisis.5015
+		planet_destruction.600
+		ssh_colossus.3
+		awareness.150
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_BASEMENT_UNIVERSE_queued = {
+	events = {
+		fircon.5035
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_BASEMENT_UNIVERSE_unqueued = {
+}
+
+# Bio Brian Behemoth Maw
+on_destroy_planet_with_PLANET_KILLER_BRAIN_MAW = {
+	events = {	
+		ssh_crisis.3100
+		planet_destruction.1005
+		origin.3245
+		awareness.150 # Planet cracker used OR planet terraformed, chance to gain 20 awareness.
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_BRAIN_MAW_queued = {
+}
+
+on_destroy_planet_with_PLANET_KILLER_BRAIN_MAW_unqueued = {
+}
+
+
+
+# No scope, like on_game_start
+on_yearly_pulse = {
+	events = {
+		ssh_vacdec.109 # Vacuum Decay Spread
+		ssh_action.19 # Check if all players have dealt w/ vacuum decay crisis (& end it if yes)
+		ssh_crisis.600 # Menance Objective - Control BIO Brain or Horizon Brain
+		ssh_crisis.601 # Menance Objective - Control BIO Brain
+		ssh_crisis.800 # Menace Objective - Galcom Extradimensional Science Resolution
+		ssh_crisis.900 # Menance Objective - Have lasting peace
+		ssh_crisis.1100 # Menance Objective - Have Matrioshka Brain (Gigas)
+		ssh_vacdec.9000 # Contingency Flees Reality Collapse 
+	}
+}
+
+# this = country
+on_yearly_pulse_country = {
+	events = {
+		ssh_brain.1 # B.I.O. Brain growth
+		ssh_brain.11 # B.I.O. Brain Tech Events
+		ssh_brain.17 # Brain demands food
+		ssh_vacdec.249 # Reality Collapse - Enable Slowdown Project for threatened countries
+		ssh_crisis.3060 # Behemoth Victory - BIO Brain Path
+		ssh_crisis.9005 # Contingency Captive Star - Check for closest colony ### Might be unnecessary - keeping it for now though
+	}
+	random_events = {
+		50 = 0
+		25 = ssh_brain.21 # B.I.O. Brain growth #2
+		25 = ssh_brain.22 # Final Brain event
+	}
+}
+
+# No scope, like on_game_start
+on_bi_yearly_pulse = {
+	events = {
+		ssh_vacdec.112 # Vacuum Decay: Check how much of the galaxy has decayed (& set flags+events)
+		ssh_tearer.500 # Interdimensional Energy Waves
+	}
+}
+
+# this = country
+on_bi_yearly_pulse_country = {
+	events = {
+		ssh_flavor.5 # Social Division on Shellworld - Update Tension Status
+		ssh_crisis.9000 # Spawn Contingency Captive Star Construction Fleet
+		ssh_fe.200 # FE is producing Dark Missiles
+	}
+	random_events = {
+		75 = 0
+		25 = ssh_flavor.10 # Initiate Social Division on Shellworld
+	}
+}
+
+# No scope, like on_game_start
+on_five_year_pulse = {
+	events = {
+		ssh_vacdec.1 # Reality Collapse - Trigger
+	}
+	random_events = {
+		50 = 0
+		50 = ssh_crisis.2000 # Fallen Xenophobe B.I.O. Brain Awakening - Trigger
+	}
+}
+
+# a new leader is created
+# scope: country, from: leader
+on_leader_spawned = {
+	events = {
+		ssh_action.14 # New Leaders Get Brain Symbiote Trait
+		ssh_action.15 # New Hive Leaders Get Brain Symbiote Trait
+	}
+}
+
+# A colony has been destroyed. Called just before owner and controller is cleared
+# Scope = Planet
+on_colony_destroyed = {
+	events = {
+		ssh_action.18 # Colony consumed by true vacuum
+	}
+}
+
+# A country has increased the level of a tech, use last_increased_tech trigger to check tech and level.
+# This = Country
+on_tech_increased = {
+	events = {
+		ssh_crisis.500 # Menace Objective - Research Technologies
+	}
+}
+
+# This = Country
+on_relic_activated = {
+	events = {
+		ssh_crisis.1000 # Menace Objective - Activate Vultaum Reality Perforator
+	}
+}
+
+# Triggers when trying to open the diplomacy view for countries with custom diplomacy.
+# Country scope
+# This = target country (player)
+# From = source country
+on_custom_diplomacy = {
+	events = {
+		ssh_enclave.1 # The Company enclave
+		ssh_vacdec.9015 # Contingency Diplomacy during Vacuum Decay
+	}
+}
+
+
+# Via pre_ftl_tech_progress_situation / preftl.50
+#on_monthly_pulse_pre_ftl_observation = {
+#	random_events = {
+#		# Hoopworld Pre-FTL Event Chain Trigger
+#		500 = ssh_preftl.1
+#	}
+#}
+
+# Executed when the exploration of an astral rift ends
+# THIS = Country: Explorer country
+# FROM = AstralRift: Explored astral rift
+# FROMFROM = Exploring Fleet
+on_astral_rift_exploration_complete = {
+	events = {
+		ssh_crisis.700 # Menance Objective - Explore Astral Rifts
+	}
+}
+
+# Scope: Ship Event
+#A ship has been built
+# Root = Ship
+# From = Planet
+on_ship_built = {
+	events = {
+		ssh_on.100 # Dark Matter Missile constructed first time
+	}
+}
+
+# Called upon a catapult jump being finished, per fleet
+# THIS = Fleet
+# FROM = System jumping to
+# FROMFROM = System jumped from
+# bullshit scope FROM doesnt work
+on_fleet_quantum_catapult = {
+	events = {
+		ssh_on.110 # Dark Missile Launched
+		ssh_action.555 # Notification for following missiles
+	}
+}
+
+# This = owner of ship 1 (destroyed)
+# From = owner of ship 2 (combatant)
+# FromFrom = ship 1
+# FromFromFrom = ship 2
+on_ship_destroyed_victim = {
+	events = {
+		#biocrisis.170 		# Elder Voidspawn dies
+		ssh_crisis.3099 		# BIO Brain dies
+	}
+}
+
+# This = owner of fleet
+# From = fleet
+# FromFrom = planet (if any)
+on_fleet_auto_move_arrival = {
+	events = {
+		ssh_crisis.9010 # Contingency Captive Star reaches destination
+	}
+}

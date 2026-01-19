@@ -1,0 +1,449 @@
+#reloadable with 'reload stats'
+# This file is where you start when you want to configure something new, then go to sections
+
+@corvette_collision_radius = 2.0
+
+@destroyer_collision_radius = 2.5
+
+@cruiser_collision_radius = 3
+
+@battleship_collision_radius = 3
+
+@titan_collision_radius = 15
+
+@build_block_radius_none = 0
+@build_block_radius_civilian = 20
+@build_block_radius_military = 200
+
+@speed_crawl = 30
+@speed_very_slow = 80
+@speed_slow = 100
+@speed_default = 120
+@speed_fast = 140
+@speed_very_fast = 160
+
+@salvagecostlarge = 5000
+@salvagecostlargerare = 200
+
+# B.I.O. Brain
+#
+# Tough regeneration, but it's literally a gigasmart hyerregenerative brain so yeah
+# it's also easily manageable to defeat with ~70k fleets
+bio_brain = {
+	is_space_object = yes
+	#graphical_culture = { "guardian_01" }
+	graphical_culture = no
+	can_be_inspected = no
+	max_speed = @speed_very_fast
+	acceleration = 0.4
+	rotation_speed = 0.50
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 25000 #dragon has 100000
+		#ship_hull_regen_add_perc = 0.15
+	}
+	max_hitpoints = 60000 #50000 # dragon has 150000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 8
+	#section_slots = { "mid" = { locator = "part1" } }
+	section_slots = { "mid" = { locator = "locator_brain" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+
+	class = shipclass_military
+	is_designable = no
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 200
+		}
+	}
+}
+
+# B.I.O. Brain Stage 1 - Behemoth Fury
+ssh_brain_behemoth_01 = {
+	graphical_culture = no
+	entity = "ssh_ship_brain_behemoth_01_entity"
+	can_be_inspected = yes
+	max_speed = @speed_default
+	acceleration = 0.4 #0.2
+	rotation_speed = 0.20
+	collision_radius = 7
+	modifier = { # Same as Teenage Behemoth
+		ship_evasion_add = 40
+		ship_armor_add = 437500
+		ship_hull_regen_add_perc = 0.05 # -0.1
+
+	}
+	ship_modifier = { # Same as Teenage Behemoth
+		ship_weapon_damage = 1.5
+		ship_disengage_chance_mult = -0.75
+		ship_fire_rate_mult = 1.5
+		damage_vs_country_type_behemoth_hatchling_mult = 5
+	}
+	max_hitpoints = 218750 # 0.5x Teenage Behemoth -> insane regeneration
+	combat_size_multiplier = 50 #25
+	size_multiplier = 32 #16
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "root" } }
+	num_target_locators = 0
+	never_lost = yes
+	is_space_station = no
+
+	icon = ship_size_behemoth
+	on_click_sound = "ui_kaiju_select_fleet"
+	ship_class_icon_frame = 57
+	map_icon_override = {
+		normal = GFX_fleet_presence_kaiju_icons
+		mixed = GFX_fleet_presence_kaiju_icons_mixed
+		cloaked = GFX_fleet_presence_kaiju_icons_cloaked
+	}
+
+	class = shipclass_military_special
+	is_designable = no
+	is_hero_ship = yes
+	#custom_state_loc_prefix = "HANGER_STATE"
+
+	#bioship_growth_progress_required = 150
+
+	hero_ship_fleet_background = "GFX_fleet_view_behemoth_stage_2" ### Might make a custom background eventually
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 250
+		}
+		cost = {
+			food = 5000
+		}
+	}
+}
+
+# B.I.O. Brain Stage 2 - Behemoth Fury
+ssh_brain_behemoth_02 = {
+	graphical_culture = no
+	entity = "ssh_ship_brain_behemoth_02_entity"
+	can_be_inspected = yes
+	hull_scale = 1
+	max_speed = @speed_default
+	acceleration = 0.4 #0.2
+	rotation_speed = 0.15
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 750000 #0.75x Adult Behemoth -> regeneration
+		#ship_hull_regen_add_perc = 0.1
+	}
+	ship_modifier = {
+		ship_windup_mult = 0.5
+		ship_disengage_chance_mult = -1
+		ship_weapon_damage = 2
+		ship_fire_rate_mult = 2
+		damage_vs_country_type_behemoth_hatchling_mult = 5
+	}
+	max_hitpoints = 1000000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "root" } }
+	num_target_locators = 0
+	never_lost = yes
+	is_space_station = no
+
+	icon = ship_size_behemoth
+	on_click_sound = "ui_kaiju_select_fleet"
+	ship_class_icon_frame = 57
+	map_icon_override = {
+		normal = GFX_fleet_presence_kaiju_icons
+		mixed = GFX_fleet_presence_kaiju_icons_mixed
+		cloaked = GFX_fleet_presence_kaiju_icons_cloaked
+	}
+
+	class = shipclass_military_special
+	is_designable = no
+	is_hero_ship = yes
+	#custom_state_loc_prefix = "HANGER_STATE"
+
+	#bioship_growth_progress_required = 150
+
+	required_component_set = "wmd_components" # To eat stars
+
+	hero_ship_fleet_background = "GFX_fleet_view_behemoth_stage_3" ### Might make a custom background eventually
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 1000
+		}
+		cost = {
+			food = 25000
+		}
+	}
+}
+
+# B.I.O. Brain Stage 3 - Behemoth Fury
+ssh_brain_behemoth_03 = {
+	graphical_culture = no
+	entity = "ssh_ship_brain_behemoth_03_entity"
+	can_be_inspected = yes
+	hull_scale = 1
+	max_speed = @speed_default
+	acceleration = 0.3 #0.2
+	rotation_speed = 0.1
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 1000000
+		#ship_hull_regen_add_perc = 0.1
+	}
+	ship_modifier = {
+		ship_windup_mult = 0.5
+		ship_disengage_chance_mult = -1
+		ship_weapon_damage = 2
+		ship_fire_rate_mult = 2
+		damage_vs_country_type_behemoth_hatchling_mult = 5
+	}
+	max_hitpoints = 2500000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "root" } }
+	num_target_locators = 0
+	never_lost = yes
+	is_space_station = no
+
+	icon = ship_size_behemoth
+	on_click_sound = "ui_kaiju_select_fleet"
+	ship_class_icon_frame = 57
+	map_icon_override = {
+		normal = GFX_fleet_presence_kaiju_icons
+		mixed = GFX_fleet_presence_kaiju_icons_mixed
+		cloaked = GFX_fleet_presence_kaiju_icons_cloaked
+	}
+
+	class = shipclass_military_special
+	is_designable = no
+	is_hero_ship = yes
+	#custom_state_loc_prefix = "HANGER_STATE"
+
+	#bioship_growth_progress_required = 150
+
+	hero_ship_fleet_background = "GFX_fleet_view_behemoth_stage_3" ### Might make a custom background eventually
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 2500
+		}
+		cost = {
+			food = 50000
+		}
+	}
+}
+
+# B.I.O. Brain Stage 4 - Behemoth Fury
+ssh_brain_behemoth_04 = {
+	graphical_culture = no
+	entity = "ssh_ship_brain_behemoth_04_entity"
+	can_be_inspected = yes
+	hull_scale = 1
+	max_speed = @speed_default
+	acceleration = 0.25
+	rotation_speed = 0.1
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 1500000
+		#ship_hull_regen_add_perc = 0.1
+	}
+	ship_modifier = {
+		ship_windup_mult = 0.5
+		ship_disengage_chance_mult = -5
+		ship_weapon_damage = 3 #4
+		ship_fire_rate_mult = 3
+		damage_vs_country_type_behemoth_hatchling_mult = 5
+	}
+	max_hitpoints = 4000000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "root" } }
+	num_target_locators = 0
+	never_lost = yes
+	is_space_station = no
+
+	icon = ship_size_behemoth
+	on_click_sound = "ui_kaiju_select_fleet"
+	ship_class_icon_frame = 57
+	map_icon_override = {
+		normal = GFX_fleet_presence_kaiju_icons
+		mixed = GFX_fleet_presence_kaiju_icons_mixed
+		cloaked = GFX_fleet_presence_kaiju_icons_cloaked
+	}
+
+	class = shipclass_military_special
+	is_designable = no
+	is_hero_ship = yes
+	#custom_state_loc_prefix = "HANGER_STATE"
+
+	#bioship_growth_progress_required = 150
+
+	hero_ship_fleet_background = "GFX_fleet_view_behemoth_stage_3"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 3000
+		}
+		cost = {
+			food = 80000
+		}
+	}
+}
+
+# B.I.O. Brain Stage 5 - Final Behemoth Fury
+ssh_brain_behemoth_05 = {
+	graphical_culture = no
+	entity = "ssh_ship_brain_behemoth_05_entity"
+	can_be_inspected = yes
+	hull_scale = 1
+	max_speed = @speed_default
+	acceleration = 0.25
+	rotation_speed = 0.1
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 25
+		ship_armor_add = 2500000
+		#ship_hull_regen_add_perc = 0.1
+	}
+	ship_modifier = {
+		ship_windup_mult = 0.5
+		ship_disengage_chance_mult = -7
+		ship_weapon_damage = 4
+		ship_fire_rate_mult = 4
+		damage_vs_country_type_behemoth_hatchling_mult = 5
+	}
+	max_hitpoints = 8500000
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "root" } }
+	num_target_locators = 0
+	never_lost = yes
+	is_space_station = no
+
+	icon = ship_size_behemoth
+	on_click_sound = "ui_kaiju_select_fleet"
+	ship_class_icon_frame = 57
+	map_icon_override = {
+		normal = GFX_fleet_presence_kaiju_icons
+		mixed = GFX_fleet_presence_kaiju_icons_mixed
+		cloaked = GFX_fleet_presence_kaiju_icons_cloaked
+	}
+
+	class = shipclass_military_special
+	is_designable = no
+	is_hero_ship = yes
+	#custom_state_loc_prefix = "HANGER_STATE"
+
+	#bioship_growth_progress_required = 150
+
+	hero_ship_fleet_background = "GFX_fleet_view_behemoth_stage_4"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				from = {
+					is_country_type = default
+				}
+			}
+			food = 4000
+		}
+		cost = {
+			food = 100000
+		}
+	}
+}
+
+# The Gargantuan Overmind
+ssh_brain_behemoth_06 = {
+	graphical_culture = no
+	entity = "ssh_ship_brain_behemoth_06_entity"
+	can_be_inspected = yes
+	hull_scale = 1
+	max_speed = @speed_slow
+	acceleration = 0.01
+	rotation_speed = 0.01
+	collision_radius = 7
+	max_hitpoints = 500000000
+	modifier = {
+		ship_armor_add = 300000000
+		ship_shield_add = 300000000
+		#ship_hull_regen_add_perc = 1.0 ### Regen overflow
+	}
+	ship_modifier = {
+		ship_windup_mult = 0.5
+		ship_disengage_chance_mult = -10
+		ship_weapon_damage = 10
+		ship_fire_rate_mult = 10
+	}
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "root" } }
+	num_target_locators = 0
+	never_lost = yes
+	is_space_station = no
+
+	icon = ship_size_space_monster #ship_size_behemoth
+	on_click_sound = "ui_kaiju_select_fleet"
+	ship_class_icon_frame = 57
+	map_icon_override = {
+		normal = GFX_fleet_presence_kaiju_icons
+		mixed = GFX_fleet_presence_kaiju_icons_mixed
+		cloaked = GFX_fleet_presence_kaiju_icons_cloaked
+	}
+
+	class = shipclass_military_special
+	is_hero_ship = yes
+
+	hero_ship_fleet_background = "GFX_fleet_view_behemoth_stage_4"
+
+	is_designable = no
+	components_add_to_cost = no
+
+	resources = {
+		category = ships
+	}
+
+}

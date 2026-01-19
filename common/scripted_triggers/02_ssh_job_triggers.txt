@@ -1,0 +1,84 @@
+### Horizon Brain Virtual Job Triggers ###
+admin_is_noble = {
+	exists = owner
+	owner = {
+		ssh_is_noble_society = yes
+	}
+}
+admin_is_moderator = {
+	exists = owner
+	owner = {
+		is_egalitarian = yes
+		is_capitalist = no
+		#has_corporate_government = no
+	}
+}
+admin_is_corporate = {
+	exists = owner
+	owner = {
+		is_egalitarian = no
+		is_capitalist = yes # Includes is_megacorp, merchant guilds, megacorp civic
+	}
+}
+
+vr_bureaucrat_is_priest = {
+	exists = owner
+	OR = {
+		owner = {
+			OR = {
+				is_spiritualist = yes
+				has_make_spiritualist_perk = yes
+			}
+		}
+		AND = {
+			owner = {
+				has_valid_civic = civic_imperial_cult
+				ruler = {
+					has_trait = trait_imperial_heir
+				}
+			}
+			owner.ruler = {
+				is_background_planet = prev
+			}
+		}
+	}
+}
+vr_bureaucrat_is_death_chronicler = {
+	exists = owner
+	owner = {
+		has_valid_civic = civic_memorialist
+	}
+}
+vr_bureaucrat_is_premium = {
+	exists = owner
+	owner = {
+		OR = {
+			is_capitalist = yes
+			is_competitive = yes # Bug Branch
+			is_elitist = yes # Bug Branch
+		}
+	}
+}
+vr_entertainer_is_gladiator_trigger = {
+	exists = owner
+	owner = {
+		ssh_is_warrior_society = yes
+		#has_valid_civic = civic_warrior_culture
+	}
+}
+
+member_is_communist = {
+	exists = owner
+	owner = {
+		OR = {
+			has_valid_civic = civic_shared_burden
+			has_valid_civic = civic_worker_coop
+		}
+	}
+}
+member_is_peasant = {
+	exists = owner
+	owner = {
+		ssh_is_noble_society = yes
+	}
+}

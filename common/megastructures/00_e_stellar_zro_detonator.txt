@@ -1,0 +1,635 @@
+stellar_zro_detonator_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	prerequisites = { ssh_tech_shroud_supernova }
+	potential = {
+		#has_technology = ssh_tech_shroud_supernova
+		#NOT = {
+		#	has_global_flag = ssh_mega_temple_deactivated
+		#}
+		always = no #Constructed via decision
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					colonizable_planet = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_anomaly"
+			NOT = {
+				any_system_planet = {
+					has_anomaly = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_black_hole"
+			NOT = { is_star_class = sc_black_hole }
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_special_star"
+			NOT = { ssh_is_special_star = yes }
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_neutron"
+			NOR = { 
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_black_dwarf"
+			NOT = {
+				is_star_class = sc_ssh_black_dwarf
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+		custom_tooltip = {
+			fail_text = "active_zro_detonator_construction"
+			NOT = {
+				owner = {
+					has_country_flag = ssh_is_constructing_zro_detonator
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			influence = 50
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 1000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 1000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOT = {
+					has_planet_flag = has_megastructure
+					#has_planet_flag = megastructure
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+				set_planet_flag = stellar_zro_detonator_planet
+				save_event_target_as = stellar_zro_detonator_planet
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		from = {
+			set_country_flag = ssh_is_constructing_zro_detonator
+		}
+	}
+
+	#ai_weight = {
+	#	weight = 1000
+	#	# Have we already gained all important Shroud Insights?
+	#	modifier = {
+	#		factor = 0
+	#		from = { ssh_has_all_shroud_insights = yes }
+	#	}
+	#	# Are we constructing one already?
+	#	modifier = {
+	#		factor = 0
+	#		from = { has_country_flag = ssh_is_constructing_zro_detonator }
+	#	}
+	#	# Do we have enough resources?
+	#	modifier = {
+	#		factor = 0.01
+	#		from = {
+	#			resource_stockpile_compare = {
+	#				resource = alloys
+	#				value < 10000
+	#			}
+	#			resource_stockpile_compare = {
+	#				resource = sr_zro
+	#				value < 2000
+	#			}
+	#			OR = {
+	#				resource_stockpile_compare = {
+	#					resource = minerals
+	#					value < 11500
+	#				}
+	#				resource_stockpile_compare = {
+	#					resource = sr_hydrogen
+	#					value < 25000
+	#				}
+	#			}
+	#		}
+	#	}
+	#	# Upkeep Affordable?
+	#	modifier = {
+	#		factor = 0.01
+	#		from = {
+	#			has_monthly_income = {
+	#				resource = energy
+	#				value < 250
+	#			}
+	#			has_monthly_income = {
+	#				resource = sr_zro
+	#				value < 1
+	#			}
+	#		}
+	#	}
+	#	# System good?
+	#	modifier = {
+	#		factor = 0.01
+	#		any_neighbor_system = {
+	#			exists = owner
+	#			NOT = {
+	#				owner = { is_same_value = from }
+	#			}
+	#		}
+	#	}
+	#}
+}
+
+# Matter Concentrator Cannon
+stellar_zro_detonator_1 = {
+	entity = "ssh_zro_infuser_1_entity"
+	construction_entity = "ssh_zro_infuser_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1080 #3years
+	prerequisites = { ssh_tech_shroud_supernova }
+	potential = { has_technology = ssh_tech_shroud_supernova }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		stellar_zro_detonator_0
+	}
+
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
+		set_asteroid_belt = {
+			radius = 0
+		}
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+		from = { country_event = { id = ssh_cn.116 } }
+	}
+}
+
+# Accumulate Matter - Minerals
+stellar_zro_detonator_minerals = {
+	entity = "ssh_zro_infuser_charging_entity"
+	construction_entity = "ssh_zro_infuser_charging_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 720 # 2 years
+	prerequisites = { ssh_tech_shroud_supernova }
+	potential = { has_technology = ssh_tech_shroud_supernova }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_zro = 500
+			minerals = 15000
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		stellar_zro_detonator_1
+	}
+
+	on_build_complete = {
+		set_star_class = sc_ssh_zro_star
+		star = { change_pc = pc_zro_star }
+		every_system_planet = {
+			limit = {
+				NOT = {
+					is_star = yes
+				}
+			}
+			remove_planet = yes
+		}
+		fromfrom = {
+			remove_megastructure = this
+		}
+		spawn_megastructure = {
+			type = stellar_zro_detonator_ready
+			owner = from
+			planet = star
+		}
+		from = { country_event = { id = ssh_cn.117 } }
+	}
+
+	ai_weight = {
+		weight = 200
+		modifier = {
+			factor = 0
+			owner = {
+				resource_stockpile_compare = {
+					resource = sr_hydrogen
+					value > 30000
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value < 20000
+				}
+			}
+		}
+	}
+}
+
+# Hydrogen
+stellar_zro_detonator_hydrogen = {
+	entity = "ssh_zro_infuser_charging_entity"
+	construction_entity = "ssh_zro_infuser_charging_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 720 # 2 years
+	prerequisites = { ssh_tech_shroud_supernova }
+	potential = { has_technology = ssh_tech_shroud_supernova }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_zro = 500
+			sr_hydrogen = 25000
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		stellar_zro_detonator_1
+	}
+
+	on_build_complete = {
+		# Change star class into shrouded/zro infused star
+		set_star_class = sc_ssh_zro_star
+		star = { change_pc = pc_zro_star }
+		every_system_planet = {
+			limit = {
+				NOT = {
+					is_star = yes
+				}
+			}
+			remove_planet = yes
+		}
+		fromfrom = {
+			remove_megastructure = this
+		}
+		spawn_megastructure = {
+			type = stellar_zro_detonator_ready
+			owner = from
+			planet = star
+		}
+		from = { country_event = { id = ssh_cn.117 } }
+	}
+
+	ai_weight = {
+		weight = 200
+		modifier = {
+			factor = 0
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value > 30000
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			owner = {
+				resource_stockpile_compare = {
+					resource = sr_hydrogen
+					value < 28000
+				}
+			}
+		}
+	}
+}
+
+# Ready
+stellar_zro_detonator_ready = {
+	entity = "ssh_zro_infuser_ready_entity"
+	construction_entity = "ssh_zro_infuser_ready_entity"
+	portrait = "GFX_mega_ssh_zro_infuser"
+	build_time = 720 # 2 years
+	prerequisites = { ssh_tech_shroud_supernova }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 250
+			sr_zro = 1
+		}
+	}
+}
+
+# Firing
+stellar_zro_detonator_firing = {
+	entity = "ssh_zro_infuser_active_entity"
+	construction_entity = "ssh_zro_infuser_active_entity"
+	portrait = "GFX_mega_ssh_zro_infuser"
+	build_time = 45
+	prerequisites = { ssh_tech_shroud_supernova }
+	potential = {
+		has_technology = ssh_tech_shroud_supernova
+	}
+	possible = {
+		# Requires a psionic observer
+		hidden_trigger = {
+			always = no # Flavor, to inform the player via tooltip that they must activate via shroud hub
+		}
+		custom_tooltip = "ssh_zro_detonator_tooltip"
+	}
+
+	upgrade_from = {
+		stellar_zro_detonator_ready
+	}
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 250
+			sr_zro = 1
+		}
+	}
+
+	on_build_complete = {
+		fromfrom.planet = {
+			remove_planet_flag = has_megastructure
+		}
+		ssh_destroy_star_system_shroud = yes
+		from = {
+			remove_country_flag = ssh_is_constructing_zro_detonator
+			country_event = {
+				id = ssh_megatemple.9 #Flavour Text + Determine Event Outcome
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_global_flag = ssh_first_zro_detonator_fired
+				}
+			}
+			every_country = {
+				limit = {
+					is_ai = no
+					has_communications = from
+				}
+				country_event = { id = ssh_on.36 }
+			}
+		}
+	}
+}
+
+
+
+### Spiritualist FE Engine ###
+fe_stellar_zro_detonator_base = {
+	entity = "ssh_zro_infuser_fe_1_entity"
+	construction_entity = "ssh_zro_infuser_fe_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1080 #3years
+	prerequisites = { ssh_tech_shroud_supernova }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
+		set_asteroid_belt = {
+			radius = 0
+		}
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+
+fe_stellar_zro_detonator_charging = {
+	entity = "ssh_zro_infuser_fe_2_entity"
+	construction_entity = "ssh_zro_infuser_fe_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600 # 10 years
+	prerequisites = { ssh_tech_shroud_supernova }
+	potential = {
+		OR = {
+			is_country_type = fallen_empire
+			is_country_type = awakened_fallen_empire
+		}
+	}
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		fe_stellar_zro_detonator_base
+	}
+
+	on_build_complete = {
+		set_star_class = sc_ssh_zro_star
+		#star = { change_pc = pc_zro_star }
+		fromfrom = {
+			remove_megastructure = this
+		}
+		spawn_megastructure = {
+			type = fe_stellar_zro_detonator_ready
+			owner = from
+			planet = star
+		}
+		space_owner = {
+			every_owned_megastructure = {
+				limit = { is_megastructure_type = fe_stellar_zro_detonator_ready }
+				upgrade_megastructure_to = fe_stellar_zro_detonator_firing
+			}
+		}
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_on.49
+				days = 1
+			}
+		}
+	}
+}
+
+fe_stellar_zro_detonator_ready = {
+	entity = "ssh_zro_infuser_fe_3_entity"
+	construction_entity = "ssh_zro_infuser_fe_3_entity"
+	portrait = "GFX_mega_ssh_zro_infuser"
+	build_time = 720 # 2 years
+	prerequisites = { ssh_tech_shroud_supernova }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 250
+			sr_zro = 1
+		}
+	}
+}
+
+fe_stellar_zro_detonator_firing = {
+	entity = "ssh_zro_infuser_fe_4_entity"
+	construction_entity = "ssh_zro_infuser_fe_4_entity"
+	portrait = "GFX_mega_ssh_zro_infuser"
+	build_time = 45 #30
+	prerequisites = { ssh_tech_shroud_supernova }
+	potential = {
+		OR = {
+			is_country_type = fallen_empire
+			is_country_type = awakened_fallen_empire
+		}
+	}
+
+	upgrade_from = {
+		fe_stellar_zro_detonator_ready
+	}
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 250
+			sr_zro = 1
+		}
+	}
+
+	on_build_complete = {
+		set_global_flag = ssh_vacdec_fe_spiritualist_left # Used for cosmogenesis endings
+		fromfrom.planet = {
+			remove_planet_flag = has_megastructure
+		}
+		every_playable_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = ssh_on.50
+				#days = 10
+			}
+		}
+		from = {
+			every_system_within_border = {
+				ssh_destroy_star_system_shroud = yes
+			}
+		}
+		every_system_planet = {
+			limit = { is_star = no }
+			clear_deposits = yes
+			add_deposit = d_zro_deposit_2
+		}
+		every_system_planet = {
+			limit = { is_star = yes }
+			clear_deposits = yes
+			add_deposit = d_zro_deposit_5
+		}
+	}
+
+	ai_weight = {
+		factor = 10000
+	}
+}

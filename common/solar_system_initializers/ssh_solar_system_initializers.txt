@@ -1,0 +1,881 @@
+##########################
+##### ORIGIN SYSTEMS #####
+##########################
+
+# Shellworld Origin
+ssh_origin_shellworld_start = {
+	flags = { empire_home_system }
+	usage = origin
+
+	init_effect = {
+		set_star_flag = sol_sector ### to stop New Frontiers from overriding 'planet' classes
+
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+
+	class = rl_standard_stars
+	planet = {
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+
+	change_orbit = 40
+
+	planet = {
+		class = pc_molten
+		size = 10
+		orbit_angle = 200
+		orbit_distance = 0
+	}
+
+	change_orbit = 43
+
+	planet = {
+		class = pc_molten
+		size = 15
+		orbit_angle = 40
+		orbit_distance = 0
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 2 }
+            class = pc_molten
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	change_orbit = 45
+
+	planet = {
+		class = rl_all_normal_planets
+		orbit_angle = 250
+		orbit_distance = 0
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 3 }
+            class = pc_barren_cold
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	change_orbit = 60
+
+	planet = {
+		class = pc_shattered
+		name = "Gaia"
+		size = 25
+		orbit_angle = 45
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+
+		init_effect = {
+			create_ambient_object = {
+				type = "medium_debris_01_object"
+				entity_offset_height = -1
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = 0
+				}
+			}
+			set_deposit = d_society_5
+			set_planet_flag = starting_research_target
+			set_planet_flag = starting_deposit
+		}
+	}
+
+	change_orbit = 75
+
+	planet = {
+		class = "pc_shellworld_core"
+		size = 25
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		starting_planet = yes
+		flags = { } #ignore_startup_effect #megastructure #special_start_planet
+		init_effect = {
+			prevent_anomaly = yes
+			add_modifier = {
+				modifier = ssh_shellworld_planet_modifier
+				days = -1
+			}
+			set_planet_flag = shellworld
+		}
+	}
+
+	change_orbit = 90
+
+	planet = {
+		class = rl_no_atmosphere_planets
+		orbit_angle = 300
+		orbit_distance = 0
+	}
+
+	change_orbit = 100
+
+	planet = {
+		class = pc_barren_cold
+		orbit_angle = 190
+		orbit_distance = 0
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 1 }
+            class = pc_barren_cold
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+}
+
+# Gas Giant Shellworld Origin
+ssh_origin_gas_giant_shellworld_start = {
+	flags = { empire_home_system }
+	usage = origin
+
+	init_effect = {
+		set_star_flag = sol_sector ### to stop New Frontiers from overriding 'planet' classes
+
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+
+	class = rl_standard_stars
+	planet = {
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+
+	change_orbit = 30
+
+	planet = {
+		class = pc_molten
+		flags = { ignore_startup_effect starting_mining_target starting_deposit } #ignore_startup_effect
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			set_deposit = d_minerals_10 #### So that theres no bankruptcy after starting a game
+			set_planet_flag = starting_deposit
+		}
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 1 }
+			size = 5
+            class = pc_molten
+            orbit_distance = 2
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	change_orbit = 35
+
+	planet = {
+		class = pc_molten
+		flags = { ignore_startup_effect starting_mining_target starting_deposit }
+		orbit_angle = 90
+		orbit_distance = 0
+		init_effect = {
+			set_deposit = d_rare_crystals_2
+			set_planet_flag = starting_deposit
+		}
+	}
+
+	change_orbit = 45
+
+	planet = {
+		class = rl_all_normal_planets
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+		orbit_angle = 10
+		orbit_distance = 0
+		init_effect = {
+			set_deposit = d_minerals_8
+			set_planet_flag = starting_deposit
+		}
+	}
+
+	change_orbit = 60
+
+	planet = {
+		class = rl_all_normal_planets
+		orbit_angle = 120
+		orbit_distance = 0
+	}
+
+	change_orbit = 75
+
+	planet = {
+		class = "pc_gas_giant_shellworld"
+		orbit_angle = 70
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		starting_planet = yes
+		flags = { ignore_startup_effect ssh_special_start_planet megastructure } #special_start_planet
+		init_effect = {
+			prevent_anomaly = yes
+			add_modifier = {
+				modifier = ssh_gas_giant_shellworld_planet_modifier
+				days = -1
+			}
+			add_deposit = d_giant_glass_domes_deposit
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+            count = { min = 1 max = 1 }
+            class = pc_shattered
+			name = "Gaia"
+			flags = { ignore_startup_effect starting_mining_target starting_deposit }
+			size = 15
+            orbit_distance = 7
+            orbit_angle = 65
+			deposit_blockers = none
+			init_effect = {
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					entity_offset_height = -1
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
+				}
+				set_deposit = d_society_5
+				set_planet_flag = starting_research_target
+				set_planet_flag = starting_deposit
+			}
+        }
+
+        moon = {
+            count = { min = 2 max = 5 }
+            class = pc_barren
+            orbit_distance = 5
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	change_orbit = 90
+
+	planet = {
+		class = rl_no_atmosphere_planets
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+		orbit_angle = 50
+		orbit_distance = 0
+		init_effect = {
+			set_deposit = d_volatile_motes_2
+			set_planet_flag = starting_deposit
+		}
+	}
+
+	change_orbit = 100
+
+	planet = {
+		class = pc_barren_cold
+		orbit_angle = 0
+		orbit_distance = 0
+	}
+}
+
+# Stellar Hoop Origin
+ssh_origin_stellar_hoop_start = {
+	flags = { empire_home_system }
+	usage = origin
+
+	init_effect = {
+		set_star_flag = sol_sector ### to stop New Frontiers from overriding 'planet' classes
+
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+
+	class = rl_standard_stars
+	planet = {
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+		init_effect = {
+			set_planet_size = 20
+		}
+	}
+
+	planet = {
+		class = "pc_stellar_hoop"
+		orbit_angle = 0
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		starting_planet = yes
+		flags = { ignore_startup_effect ssh_special_start_planet megastructure } #ignore_startup_effect #special_start_planet
+		init_effect = {
+			prevent_anomaly = yes
+			add_modifier = {
+				modifier = ssh_stellar_hoop_planet_modifier
+				days = -1
+			}
+			#add_building = building_machine_capital
+			#add_district = district_ssh_stellar_hoop_generator
+			#add_district = district_ssh_stellar_hoop_starlifting
+			#add_district = district_ssh_stellar_hoop_alloys_industry
+		}
+	}
+
+	change_orbit = 90
+
+	planet = {
+		class = pc_shattered
+		size = 15
+		orbit_angle = 45
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+
+		init_effect = {
+			create_ambient_object = {
+				type = "medium_debris_01_object"
+				entity_offset_height = -15
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = 0
+				}
+			}
+			set_deposit = d_society_5
+			set_planet_flag = starting_research_target
+			set_planet_flag = starting_deposit
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 1 max = 1 }
+			class = random_non_colonizable
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 120 }
+			deposit_blockers = none
+			flags = { ignore_startup_effect starting_mining_target starting_deposit }
+			init_effect = {
+				set_deposit = d_rare_crystals_3
+			}
+		}
+
+		moon = {
+			count = { min = 1 max = 1 }
+			class = random_non_colonizable
+			orbit_distance = 5
+			orbit_angle = { min = 120 max = 270 }
+			flags = { ignore_startup_effect starting_mining_target starting_deposit }
+			init_effect = {
+				set_deposit = d_volatile_motes_2
+			}
+		}
+	}
+}
+
+# Edersphere Origin
+ssh_origin_edersphere_start = {
+	flags = { empire_home_system }
+	usage = origin
+
+	init_effect = {
+		set_star_flag = sol_sector ### to stop New Frontiers from overriding 'planet' classes
+
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+
+	class = rl_standard_stars
+	planet = {
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+
+	change_orbit = 90
+
+	planet = {
+		class = pc_molten
+		orbit_angle = 45
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit }
+		init_effect = {
+			set_deposit = d_rare_crystals_3
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 1 max = 3 }
+			class = random_non_colonizable
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 270 }
+			flags = { ignore_startup_effect starting_mining_target starting_deposit }
+			init_effect = {
+				set_deposit = d_volatile_motes_2
+			}
+		}
+	}
+
+	change_orbit = 110
+
+	planet = {
+		class = random_non_colonizable
+		orbit_angle = 120
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit }
+		init_effect = {
+			set_deposit = d_minerals_10
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 1 max = 3 }
+			class = random_non_colonizable
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 270 }
+		}
+	}
+
+	change_orbit = 130
+
+	planet = {
+		class = pc_edersphere
+		orbit_angle = 180
+		orbit_distance = 0
+		#deposit_blockers = none
+		modifiers = none
+		starting_planet = yes
+		flags = { ignore_startup_effect ssh_special_start_planet megastructure starting_deposit } #special_start_planet
+		init_effect = {
+			prevent_anomaly = yes
+			add_modifier = {
+				modifier = ssh_edersphere_planet_modifier
+				days = -1
+			}
+			while = {
+				count = 3
+				add_blocker = {
+					type = d_scrapyard_deposit
+					blocked_deposit = none
+				}
+			}
+		}
+	}
+
+	change_orbit = 135
+
+	planet = {
+		class = pc_barren_cold
+		orbit_angle = 90
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit }
+		init_effect = {
+			set_deposit = d_minerals_10
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 1 max = 3 }
+			class = random_non_colonizable
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 270 }
+			flags = { ignore_startup_effect starting_mining_target starting_deposit }
+			init_effect = {
+				set_deposit = d_minerals_8
+			}
+		}
+	}
+}
+
+# Hoopworld Origin
+ssh_origin_hoopworld_start = {
+	flags = { empire_home_system }
+	usage = origin
+
+	init_effect = {
+		set_star_flag = sol_sector ### to stop New Frontiers from overriding 'planet' classes
+
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+
+	class = rl_standard_stars
+	planet = {
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+
+	change_orbit = 30
+
+	planet = {
+		class = pc_molten
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			set_deposit = d_minerals_10 #### So that theres no bankruptcy after starting a game
+			set_planet_flag = starting_deposit
+		}
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 1 }
+			size = 5
+            class = pc_molten
+            orbit_distance = 2
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	change_orbit = 40
+
+	planet = {
+		class = pc_toxic
+		orbit_angle = 95
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit }
+		init_effect = {
+			set_deposit = d_volatile_motes_2
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 1 max = 3 }
+			class = random_non_colonizable
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 270 }
+		}
+	}
+
+	change_orbit = 50
+
+	planet = {
+		class = random_non_colonizable
+		orbit_angle = 120
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit }
+		init_effect = {
+			set_deposit = d_rare_crystals_2
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 1 max = 3 }
+			class = random_non_colonizable
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 270 }
+		}
+	}
+
+	change_orbit = 60
+
+	planet = {
+		class = pc_hoopworld
+		orbit_angle = 180
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		starting_planet = yes
+		flags = { ignore_startup_effect ssh_special_start_planet megastructure } #special_start_planet
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+}
+
+# Freesphere Origin
+ssh_origin_freesphere_start = {
+	flags = { empire_home_system }
+	usage = origin
+
+	init_effect = {
+		set_star_flag = sol_sector ### to stop New Frontiers from overriding 'planet' classes
+
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+
+	class = rl_standard_stars
+	planet = {
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+	}
+
+	change_orbit = 30
+
+	planet = {
+		class = pc_molten
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+		orbit_angle = 30
+		orbit_distance = 0
+		init_effect = {
+			set_deposit = d_minerals_10 #### So that theres no bankruptcy after starting a game
+			set_planet_flag = starting_deposit
+		}
+
+		change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 1 }
+			size = 5
+            class = pc_molten
+            orbit_distance = 2
+            orbit_angle = { min = 90 max = 270 }
+        }
+	}
+
+	change_orbit = 40
+
+	planet = {
+		class = pc_toxic
+		orbit_angle = 95
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit }
+		init_effect = {
+			set_deposit = d_volatile_motes_2
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 1 max = 3 }
+			class = random_non_colonizable
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 270 }
+		}
+	}
+
+	change_orbit = 50
+
+	planet = {
+		class = random_non_colonizable
+		orbit_angle = 120
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit }
+		init_effect = {
+			set_deposit = d_rare_crystals_2
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 1 max = 3 }
+			class = random_non_colonizable
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 270 }
+		}
+	}
+
+	change_orbit = 60
+
+	planet = {
+		class = pc_freesphere
+		orbit_angle = 180
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		starting_planet = yes
+		flags = { ignore_startup_effect ssh_special_start_planet megastructure } #special_start_planet
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 80
+
+	planet = {
+		class = pc_gas_giant
+		orbit_angle = 15
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_deposit }
+		init_effect = {
+			set_deposit = d_exotic_gases_1
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 3 }
+			class = random_non_colonizable
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 270 }
+		}
+	}
+}
+
+# Dyson Origin
+ssh_origin_dyson_hab_start = {
+	flags = { empire_home_system }
+	usage = origin
+
+	init_effect = {
+		set_star_flag = sol_sector ### to stop New Frontiers from overriding 'planet' classes
+		
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+
+	class = rl_standard_stars
+	planet = {
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+		init_effect = {
+			set_planet_size = 15
+		}
+	}
+
+	planet = {
+		class = "pc_habitable_dyson"
+		entity = "ssh_dyson_hab_planet_01_entity" # Invisible without for some reason?
+		orbit_angle = 0
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		starting_planet = yes
+		flags = { special_start_planet ssh_special_start_planet megastructure } #ignore_startup_effect
+		init_effect = {
+			prevent_anomaly = yes
+			add_modifier = {
+				modifier = ssh_stellar_shellworld_planet_modifier
+				days = -1
+			}
+			while = {
+				count = 3
+				add_blocker = {
+					type = d_scrapyard_deposit
+					blocked_deposit = none
+				}
+			}
+		}
+	}
+
+	change_orbit = 45
+
+	planet = {
+		class = pc_barren_cold
+		size = 15
+		orbit_angle = 45
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+
+		init_effect = {
+			set_deposit = d_minerals_8
+			set_planet_flag = starting_mining_target
+			set_planet_flag = starting_deposit
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = pc_frozen
+			orbit_distance = 5
+			orbit_angle = { min = 90 max = 120 }
+			deposit_blockers = none
+			flags = { ignore_startup_effect starting_mining_target starting_deposit }
+			init_effect = {
+				set_deposit = d_rare_crystals_3
+			}
+		}
+	}
+
+	change_orbit = 20
+
+	planet = {
+		class = pc_frozen
+		size = 20
+		orbit_angle = 120
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+
+		init_effect = {
+			set_deposit = d_rare_crystals_4
+			set_planet_flag = starting_mining_target
+			set_planet_flag = starting_deposit
+		}
+	}
+
+	change_orbit = 20
+
+	planet = {
+		class = pc_gas_giant
+		size = 20
+		orbit_angle = 0
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+
+		init_effect = {
+			set_deposit = d_exotic_gases_3
+			set_planet_flag = starting_mining_target
+			set_planet_flag = starting_deposit
+			add_modifier = {
+				modifier = ssh_cloudless_gas_giant
+				days = -1
+			}
+		}
+	}
+}

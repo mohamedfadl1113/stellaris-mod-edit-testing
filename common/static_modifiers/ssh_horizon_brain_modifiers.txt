@@ -1,0 +1,40 @@
+#### HORIZON BRAIN PLANET MODIFIERS ####
+#ssh_hb_main_server_default = {
+#	planet_jobs_unity_produces_mult = 0.15
+#	# Add 1 admin job per 50 pops
+#	
+#	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_shellworld_planet_modifier.dds" ###
+#	icon_frame = 1
+#}
+
+# Non-Gestalts
+#ssh_hb_hell_default = {
+#	pop_government_ethic_attraction = -0.75
+#	
+#	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_shellworld_planet_modifier.dds" ###
+#	icon_frame = 1
+#}
+
+#ssh_hb_hell_pacifist = {
+#	pop_government_ethic_attraction = 0.15
+#	
+#	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_shellworld_planet_modifier.dds" ###
+#	icon_frame = 1
+#}
+
+# Gestalts
+#ssh_hb_main_server_gestalt = {
+#	planet_jobs_unity_produces_mult = 0.15
+#	# Add 1 cpu job per 50 pops
+#	
+#	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_shellworld_planet_modifier.dds" ###
+#	icon_frame = 1
+#}
+
+#ssh_hb_hell_terminator = {
+#	pop_cat_purge_happiness = -1.0
+#	pop_cat_slave_happiness = -1.0
+#	
+#	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_shellworld_planet_modifier.dds" ###
+#	icon_frame = 1
+#}

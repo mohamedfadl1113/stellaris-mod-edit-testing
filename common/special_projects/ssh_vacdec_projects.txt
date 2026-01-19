@@ -1,0 +1,121 @@
+# Everything related to the Reality Collapse + Ark Project
+special_project = {
+	key = "SSH_VACDEC_SLOWDOWN_PROJECT"
+	cost = 40000
+	tech_department = physics_technology
+	picture = GFX_evt_ssh_vacuum_decay
+
+	event_scope = country_event
+
+	requirements = {
+		
+	}
+	
+	on_success = {
+		owner = {
+			country_event = { id = ssh_vacdec.250 }
+		}
+	}
+}
+
+special_project = {
+	key = "SSH_VACDEC_BASEMENT_UNIVERSE_PROBING"
+	cost = 80000
+	days_to_research = -1
+	tech_department = physics_technology
+	picture = GFX_evt_ssh_basement_universe
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		skill = 2
+	}
+
+	on_success = {
+		from.owner = { remove_country_flag = ssh_vacdec_basement_uni_currently_researching_probing_project }
+		if = {
+			limit = { from.owner = { has_country_flag = probing_black_hole } }
+			from.owner = {
+				remove_country_flag = probing_black_hole
+				country_event = { id = ssh_vacdec.602 }
+			}
+		}
+		else_if = {
+			limit = { from.owner = { has_country_flag = probing_neutron_star } }
+			from.owner = {
+				remove_country_flag = probing_neutron_star
+				country_event = { id = ssh_vacdec.603 }
+			}
+		}
+		else_if = {
+			limit = { from.owner = { has_country_flag = probing_regular_star } }
+			from.owner = {
+				remove_country_flag = probing_regular_star
+				country_event = { id = ssh_vacdec.604 }
+			}
+		}
+		else_if = {
+			limit = { from.owner = { has_country_flag = probing_dwarf_star } }
+			from.owner = {
+				remove_country_flag = probing_dwarf_star
+				country_event = { id = ssh_vacdec.605 }
+			}
+		}
+		else = {
+			# Nothing crash
+		}
+	}
+
+	on_fail = {
+		if = {
+			limit = { from.owner = { has_country_flag = probing_black_hole } }
+			from.owner = {
+				remove_country_flag = probing_black_hole
+			}
+		}
+		if = {
+			limit = { from.owner = { has_country_flag = probing_neutron_star } }
+			from.owner = {
+				remove_country_flag = probing_neutron_star
+			}
+		}
+		if = {
+			limit = { from.owner = { has_country_flag = probing_regular_star } }
+			from.owner = {
+				remove_country_flag = probing_regular_star
+			}
+		}
+		if = {
+			limit = { from.owner = { has_country_flag = probing_dwarf_star } }
+			from.owner = {
+				remove_country_flag = probing_dwarf_star
+			}
+		}
+	}
+}
+
+special_project = {
+	key = "SSH_VACDEC_BASEMENT_UNIVERSE_HABITABLE_ZONE"
+	cost = 120000 #80000
+	days_to_research = -1
+	tech_department = physics_technology
+	picture = GFX_evt_ssh_wormhole_spherical
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		from.owner = {
+			set_country_flag = ssh_vacdec_basement_uni_habitable_project_completed
+			country_event = { id = ssh_vacdec.607 }
+		}
+	}
+
+	on_fail = {
+	}
+}

@@ -1,0 +1,72 @@
+# Compat stuff
+has_stellar_hyperconstructs = { always = yes }
+
+is_ssh_fusion_candle = { is_planet_class = pc_fusion_candle }
+is_ssh_exodus_portal = { is_planet_class = pc_exodus_portal }
+
+
+### Cross-Mod Support ###
+# Check if PD is installed
+has_planetary_diversity = {
+    always = no
+}
+
+# Check if More Primitives is installed
+has_more_primitives = {
+    always = no
+}
+
+# Check for ACOT
+has_acot = {
+	always = no
+}
+
+# Doorway Expanded
+has_doorway_expanded = {
+    has_global_flag = has_doorway_expanded
+}
+
+# Check if Hypothetical Stars is installed
+has_hypothetical_stars = {
+    has_global_flag = has_hypothetical_stars_mod
+}
+
+# GIGAS COMPAT
+has_gigastructures = { 
+    always = no 
+}
+giga_has_completed_matrioshka_brain = {
+    always = no
+}
+giga_is_black_hole = { always = no }
+giga_is_birch_world = { always = no }
+giga_is_pc_giga_edge_of_eternity = { always = no }
+giga_is_pc_giga_frameworld = { always = no }
+giga_is_pc_flusion_gaia_ecu = { always = no }
+is_pki_flusion_ecu = { always = no }
+
+# BUG BRANCH COMPAT
+has_bug_branch = {
+    always = no
+}
+
+is_competitive = { always = no }
+
+is_elitist = { always = no }
+
+is_ecocentric = { always = no }
+
+is_anthropocentric = { always = no }
+
+is_bugged_gravity_cult = {
+	always = no
+}
+is_bugged_luminosity_cult = {
+	always = no
+}
+
+# Secrets of the shroud
+is_sots_soulsphere = { always = no }
+
+# GPM
+is_gpm_precursor_tomb = { always = no }

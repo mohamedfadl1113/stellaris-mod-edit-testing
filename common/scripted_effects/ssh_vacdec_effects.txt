@@ -1,0 +1,2272 @@
+# Set decay effect speed
+ssh_set_vacdec_speed = {
+	# Check for Galaxy size & Set speed of Reality Collapse
+	if = {
+		limit = { num_galaxy_systems < 200 }
+		set_global_flag = ssh_vacdec_speed_tiny_modded
+	}
+	else_if = {
+		limit = {
+			num_galaxy_systems > 199
+			num_galaxy_systems < 400
+		}
+		set_global_flag = ssh_vacdec_speed_tiny
+	}
+	else_if = {
+		limit = {
+			num_galaxy_systems > 399
+			num_galaxy_systems < 600
+		}
+		set_global_flag = ssh_vacdec_speed_small
+	}
+	else_if = {
+		limit = {
+			num_galaxy_systems > 599
+			num_galaxy_systems < 800
+		}
+		set_global_flag = ssh_vacdec_speed_medium
+	}
+	else_if = {
+		limit = {
+			num_galaxy_systems > 799
+			num_galaxy_systems < 1000
+		}
+		set_global_flag = ssh_vacdec_speed_large
+	}
+	else_if = {
+		limit = {
+			num_galaxy_systems > 999
+			num_galaxy_systems < 1100
+		}
+		set_global_flag = ssh_vacdec_speed_huge
+	}
+	else_if = {
+		limit = { num_galaxy_systems > 1099 }
+		set_global_flag = ssh_vacdec_speed_huge_modded
+	}
+}
+
+ssh_system_decay_effect = {
+	set_spawn_system_batch = begin #This has to be done to force the cache to regenerate and so the effect works when rerun - can also be used when removing and adding hyperlanes
+
+	save_event_target_as = decayed_system
+	set_star_class = sc_ssh_true_vacuum
+	set_star_flag = ssh_decayed_system
+	if = {
+		limit = { has_star_flag = ssh_vacdec_marked_system }
+		remove_star_flag = ssh_vacdec_marked_system
+	}
+	#set_name = BLANK_STRING
+	every_system_ambient_object = {
+		limit = {
+			# Preserve Unbidden crisis effects
+			NOR = {
+				has_ambient_object_flag = extradimensional_system_effect
+				has_ambient_object_flag = extradimensional_system_effect_2
+			}
+		}
+		destroy_ambient_object = this
+	}
+	every_system_planet = {
+		limit = { exists = orbital_station }
+		orbital_station = { dismantle = yes }
+	}
+	every_system_planet = {
+		limit = { is_star = yes }
+		#create_ambient_object = {
+		#	type = "star_explosion"
+		#	play_animation_once = yes
+		#	location = this
+		#}
+		#last_created_ambient_object = {
+		#	set_location = {
+		#		target = prev
+		#		distance = 0
+		#		angle = random
+		#	}
+		#}
+		set_planet_size = 0
+	}
+	set_asteroid_belt = { radius = 0 }
+
+	# Handle Contingency Machine Worlds
+	every_system_planet = {
+		limit = {
+			is_planet_class = pc_ai
+			NOT = { has_planet_flag = machine_lair }
+		}
+		destroy_machine_world = yes
+	}
+	random_system_planet = {
+		limit = {
+			is_planet_class = pc_ai
+			has_planet_flag = machine_lair
+		}
+		from.owner = { save_event_target_as = final_machine_world_destroyer }
+		stop_crisis_sound = yes
+		planet_event = { id = crisis.2046 }
+	}
+	# Destroy the rest
+	every_system_planet = {
+		limit = { is_star = no }
+		if = {
+			limit = { is_colony = yes }
+			if = {
+				limit = { exists = orbital_defence }
+				destroy_fleet = orbital_defence
+			}
+			set_planet_flag = ssh_vacdec_destroyed_colony # For owner notification
+			remove_all_buildings = yes
+			destroy_colony = yes
+			remove_planet = yes
+		}
+		else = {
+			remove_planet = yes
+		}
+	}
+	every_system_planet = {
+		clear_deposits = yes
+		clear_planet_modifiers = yes
+		prevent_anomaly = yes
+	}
+	every_fleet_in_system = {
+		limit = {
+			#NOR = {
+			#	# except Extradimensionals or Blokkats
+			#	exists = owner
+			#	owner = {
+			#		OR = {
+			#			is_country_type = portal_holder
+			#			is_country_type = extradimensional
+			#			is_country_type = extradimensional_2
+			#			is_country_type = extradimensional_3
+			#			# Blokkats
+			#			is_country_type = blokkat_stripminers
+			#			is_country_type = blokkat_stripminers_defeated
+			#			is_country_type = blokkat_stripminers_blokkwork
+			#			is_country_type = blokkat_stripminers_ascended_country
+			#			is_country_type = swarm_fleeing_blokkats
+			#		}
+			#	}
+			#}
+			owner = {
+				NOR = {
+					is_country_type = portal_holder
+					is_country_type = extradimensional
+					is_country_type = extradimensional_2
+					is_country_type = extradimensional_3
+					# Blokkats
+					is_country_type = blokkat_stripminers
+					is_country_type = blokkat_stripminers_defeated
+					is_country_type = blokkat_stripminers_blokkwork
+					is_country_type = blokkat_stripminers_ascended_country
+					is_country_type = swarm_fleeing_blokkats
+				}
+			}
+		}
+		if = {
+			#limit = { is_mobile = yes }
+			limit = {
+				is_mobile = yes
+				owner = {
+					NOR = {
+						is_country_type = enclave
+						is_country_type = enclave_mercenary
+					}
+				}
+			}
+			set_mia = mia_return_home
+		}
+		else = {
+			destroy_fleet = this
+		}
+	}
+	#every_ship_in_system = {
+	#	limit = {
+	#		NOR = {
+	#			# except Extradimensionals or Blokkats
+	#			exists = owner
+	#			owner = {
+	#				OR = {
+	#					is_country_type = portal_holder
+	#					is_country_type = extradimensional
+	#					is_country_type = extradimensional_2
+	#					is_country_type = extradimensional_3
+	#					# Blokkats
+	#					is_country_type = blokkat_stripminers
+	#					is_country_type = blokkat_stripminers_defeated
+	#					is_country_type = blokkat_stripminers_blokkwork
+	#					is_country_type = blokkat_stripminers_ascended_country
+	#					is_country_type = swarm_fleeing_blokkats
+	#				}
+	#			}
+	#		}
+	#	}
+	#	destroy_ship = this
+	#}
+	ssh_bypass_remove_every_system_megastructure = yes
+	isolate_system = yes
+	#every_neighbor_system = {
+	#	limit = { has_star_flag = ssh_decayed_system }
+	#	remove_hyperlane = {
+	#		from = this
+	#		to = prev
+	#	}
+	#}
+
+	set_spawn_system_batch = end
+}
+
+ssh_vacdec_cryogenic_species_effect = {
+	set_variable = { # All pops except colonists frozen
+		which = country_frozen_pop_amount@from
+		value = 0
+	}
+	change_variable = { which = country_frozen_pop_amount@from value = trigger:num_pops } #solar_system.trigger:num_planets_in_system
+	set_country_flag = country_has_cryogenic_vacdec_pops #@from
+}
+
+# Calculate cost for each research stage of the Ark Project
+ssh_calculate_ark_research_cost = {
+	if = {
+		limit = {
+			has_gigastructures = yes
+			has_acot = no
+		}
+		multiply_variable = {
+			which = ark_research_stage_1_goal
+			value = 1.5
+		}
+		multiply_variable = {
+			which = ark_research_stage_2_goal
+			value = 1.5
+		}
+		multiply_variable = {
+			which = ark_research_stage_3_goal
+			value = 1.5
+		}
+		multiply_variable = {
+			which = ark_research_stage_4_goal
+			value = 1.5
+		}
+		multiply_variable = {
+			which = ark_research_stage_5_goal
+			value = 1.5
+		}
+	}
+	else_if = {
+		limit = {
+			has_gigastructures = no
+			has_acot = yes
+		}
+		multiply_variable = {
+			which = ark_research_stage_1_goal
+			value = 3.0
+		}
+		multiply_variable = {
+			which = ark_research_stage_2_goal
+			value = 3.0
+		}
+		multiply_variable = {
+			which = ark_research_stage_3_goal
+			value = 3.0
+		}
+		multiply_variable = {
+			which = ark_research_stage_4_goal
+			value = 3.0
+		}
+		multiply_variable = {
+			which = ark_research_stage_5_goal
+			value = 3.0
+		}
+	}
+	else_if = {
+		limit = {
+			has_gigastructures = yes
+			has_acot = yes
+		}
+		multiply_variable = {
+			which = ark_research_stage_1_goal
+			value = 5.0
+		}
+		multiply_variable = {
+			which = ark_research_stage_2_goal
+			value = 5.0
+		}
+		multiply_variable = {
+			which = ark_research_stage_3_goal
+			value = 5.0
+		}
+		multiply_variable = {
+			which = ark_research_stage_4_goal
+			value = 5.0
+		}
+		multiply_variable = {
+			which = ark_research_stage_5_goal
+			value = 5.0
+		}
+	}
+	else = {
+		# Do nothing (the values stay as they are)
+	}
+}
+
+# Spawn Ark System
+ssh_ark_system_spawn_effect = {
+	if = {
+		limit = { NOT = { has_global_flag = ark_country_generated } }
+		set_global_flag = ark_country_generated
+		# Create Galcom Country
+		create_country = {
+			name = "NAME_Galcom"
+			type = neutral_faction
+			flag = {
+				icon= {
+					category = "special"
+					file = "gdf.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "circle.dds"
+				}
+				colors={
+					"black"
+					"blue"
+					"null"
+					"null"
+				}
+			}
+		}
+		last_created_country = {
+			save_event_target_as = galcom_country
+		}
+		every_country = {
+			limit = { has_country_flag = ssh_ark_project_country }
+			establish_communications_no_message = event_target:galcom_country
+			establish_contact = { who = event_target:galcom_country }
+		}
+	}
+	if = {
+		limit = { has_global_flag = ssh_vacdec_speed_tiny_modded }
+		no_scope = {
+			# makes system positions originate from galactic core
+			spawn_system = {
+				min_distance >= 35
+				max_distance <= 35
+				min_orientation_angle = 90
+				max_orientation_angle = 90
+				initializer = ssh_vacdec_ark
+				hyperlane = no
+			}
+			last_created_system = {
+				create_starbase = {
+					size = starbase_citadel
+					owner = event_target:galcom_country
+				}
+				random_system_megastructure = {
+					limit = { is_megastructure_type = interdim_ark_0 }
+					set_owner = event_target:galcom_country
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_vacdec_speed_tiny }
+		no_scope = {
+			# makes system positions originate from galactic core
+			spawn_system = {
+				min_distance >= 40
+				max_distance <= 40
+				min_orientation_angle = 90
+				max_orientation_angle = 90
+				initializer = ssh_vacdec_ark
+				hyperlane = no
+			}
+			last_created_system = {
+				create_starbase = {
+					size = starbase_citadel
+					owner = event_target:galcom_country
+				}
+				random_system_megastructure = {
+					limit = { is_megastructure_type = interdim_ark_0 }
+					set_owner = event_target:galcom_country
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_vacdec_speed_small }
+		no_scope = {
+			# makes system positions originate from galactic core
+			spawn_system = {
+				min_distance >= 60
+				max_distance <= 60
+				min_orientation_angle = 90
+				max_orientation_angle = 90
+				initializer = ssh_vacdec_ark
+				hyperlane = no
+			}
+			last_created_system = {
+				create_starbase = {
+					size = starbase_citadel
+					owner = event_target:galcom_country
+				}
+				random_system_megastructure = {
+					limit = { is_megastructure_type = interdim_ark_0 }
+					set_owner = event_target:galcom_country
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_vacdec_speed_medium }
+		no_scope = {
+			# makes system positions originate from galactic core
+			spawn_system = {
+				min_distance >= 80
+				max_distance <= 80
+				min_orientation_angle = 90
+				max_orientation_angle = 90
+				initializer = ssh_vacdec_ark
+				hyperlane = no
+			}
+			last_created_system = {
+				create_starbase = {
+					size = starbase_citadel
+					owner = event_target:galcom_country
+				}
+				random_system_megastructure = {
+					limit = { is_megastructure_type = interdim_ark_0 }
+					set_owner = event_target:galcom_country
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_vacdec_speed_large }
+		no_scope = {
+			# makes system positions originate from galactic core
+			spawn_system = {
+				min_distance >= 90
+				max_distance <= 90
+				min_orientation_angle = 90
+				max_orientation_angle = 90
+				initializer = ssh_vacdec_ark
+				hyperlane = no
+			}
+			last_created_system = {
+				create_starbase = {
+					size = starbase_citadel
+					owner = event_target:galcom_country
+				}
+				random_system_megastructure = {
+					limit = { is_megastructure_type = interdim_ark_0 }
+					set_owner = event_target:galcom_country
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_vacdec_speed_huge }
+		no_scope = {
+			# makes system positions originate from galactic core
+			spawn_system = {
+				min_distance >= 95
+				max_distance <= 95
+				min_orientation_angle = 90
+				max_orientation_angle = 90
+				initializer = ssh_vacdec_ark
+				hyperlane = no
+			}
+			last_created_system = {
+				create_starbase = {
+					size = starbase_citadel
+					owner = event_target:galcom_country
+				}
+				random_system_megastructure = {
+					limit = { is_megastructure_type = interdim_ark_0 }
+					set_owner = event_target:galcom_country
+				}
+			}
+		}
+	}
+	else = {
+		# Huge modded
+		no_scope = {
+			# makes system positions originate from galactic core
+			spawn_system = {
+				min_distance >= 105
+				max_distance <= 105
+				min_orientation_angle = 90
+				max_orientation_angle = 90
+				initializer = ssh_vacdec_ark
+				hyperlane = no
+			}
+			last_created_system = {
+				create_starbase = {
+					size = starbase_citadel
+					owner = event_target:galcom_country
+				}
+				random_system_megastructure = {
+					limit = { is_megastructure_type = interdim_ark_0 }
+					set_owner = event_target:galcom_country
+				}
+			}
+		}
+	}
+	every_country = {
+		limit = { has_country_flag = ssh_ark_project_country }
+		last_created_system = {
+			save_global_event_target_as = ssh_ark_system
+			set_surveyed = {
+				surveyed = yes
+				surveyor = from
+			}
+		}
+	}
+}
+
+ssh_ark_construction_reset_global_flags = {
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_1 }
+		remove_global_flag = ssh_ark_construction_stage_1
+	}
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_2 }
+		remove_global_flag = ssh_ark_construction_stage_2
+	}
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_3 }
+		remove_global_flag = ssh_ark_construction_stage_3
+	}
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_4 }
+		remove_global_flag = ssh_ark_construction_stage_4
+	}
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_5 }
+		remove_global_flag = ssh_ark_construction_stage_5
+	}
+}
+
+ssh_ark_construction_remove_donation_flags = {
+	if = {
+		limit = { has_country_flag = ssh_ark_donation_energy }
+		remove_country_flag = ssh_ark_donation_energy
+	}
+	if = {
+		limit = { has_country_flag = ssh_ark_donation_minerals }
+		remove_country_flag = ssh_ark_donation_minerals
+	}
+	if = {
+		limit = { has_country_flag = ssh_ark_donation_alloys }
+		remove_country_flag = ssh_ark_donation_alloys
+	}
+	if = {
+		limit = { has_country_flag = ssh_ark_donation_cultrobium }
+		remove_country_flag = ssh_ark_donation_cultrobium
+	}
+	if = {
+		limit = { has_country_flag = ssh_ark_donation_gases }
+		remove_country_flag = ssh_ark_donation_gases
+	}
+	if = {
+		limit = { has_country_flag = ssh_ark_donation_crystals }
+		remove_country_flag = ssh_ark_donation_crystals
+	}
+	if = {
+		limit = { has_country_flag = ssh_ark_donation_motes }
+		remove_country_flag = ssh_ark_donation_motes
+	}
+	if = {
+		limit = { has_country_flag = ssh_ark_donation_dark_matter }
+		remove_country_flag = ssh_ark_donation_dark_matter
+	}
+}
+
+# UNUSED #
+ssh_ark_construction_remove_contribution_modifiers = {
+	if = {
+		limit = { has_modifier = ssh_ark_alloys_contribution_high }
+		remove_modifier = ssh_ark_alloys_contribution_high
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_alloys_contribution_med }
+		remove_modifier = ssh_ark_alloys_contribution_med
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_alloys_contribution_low }
+		remove_modifier = ssh_ark_alloys_contribution_low
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_cultrobium_contribution_high }
+		remove_modifier = ssh_ark_cultrobium_contribution_high
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_cultrobium_contribution_med }
+		remove_modifier = ssh_ark_cultrobium_contribution_med
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_cultrobium_contribution_low }
+		remove_modifier = ssh_ark_cultrobium_contribution_low
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_energy_contribution_high }
+		remove_modifier = ssh_ark_energy_contribution_high
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_energy_contribution_med }
+		remove_modifier = ssh_ark_energy_contribution_med
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_energy_contribution_low }
+		remove_modifier = ssh_ark_energy_contribution_low
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_minerals_contribution_high }
+		remove_modifier = ssh_ark_minerals_contribution_high
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_minerals_contribution_med }
+		remove_modifier = ssh_ark_minerals_contribution_med
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_minerals_contribution_low }
+		remove_modifier = ssh_ark_minerals_contribution_low
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_crystals_contribution_high }
+		remove_modifier = ssh_ark_crystals_contribution_high
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_crystals_contribution_med }
+		remove_modifier = ssh_ark_crystals_contribution_med
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_crystals_contribution_low }
+		remove_modifier = ssh_ark_crystals_contribution_low
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_gases_contribution_high }
+		remove_modifier = ssh_ark_gases_contribution_high
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_gases_contribution_med }
+		remove_modifier = ssh_ark_gases_contribution_med
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_gases_contribution_low }
+		remove_modifier = ssh_ark_gases_contribution_low
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_motes_contribution_high }
+		remove_modifier = ssh_ark_motes_contribution_high
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_motes_contribution_med }
+		remove_modifier = ssh_ark_motes_contribution_med
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_motes_contribution_low }
+		remove_modifier = ssh_ark_motes_contribution_low
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_dark_matter_contribution_high }
+		remove_modifier = ssh_ark_dark_matter_contribution_high
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_dark_matter_contribution_med }
+		remove_modifier = ssh_ark_dark_matter_contribution_med
+	}
+	if = {
+		limit = { has_modifier = ssh_ark_dark_matter_contribution_low }
+		remove_modifier = ssh_ark_dark_matter_contribution_low
+	}
+}
+
+ssh_ark_construction_set_contribution = {
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_1 }
+		# Check if any resource goal has already been fulfilled
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_construction_stage_1_alloys_reached } }
+			add_modifier = { modifier = ssh_ark_alloys_contribution	days = -1 }
+		}
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_construction_stage_1_cultrobium_reached } }
+			add_modifier = { modifier = ssh_ark_cultrobium_contribution	days = -1 }
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_2 }
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_construction_stage_2_energy_reached } }
+			add_modifier = { modifier = ssh_ark_energy_contribution	days = -1 }
+		}
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_construction_stage_2_crystals_reached } }
+			add_modifier = { modifier = ssh_ark_crystals_contribution	days = -1 }
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_3 }
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_construction_stage_3_alloys_reached } }
+			add_modifier = { modifier = ssh_ark_alloys_contribution	days = -1 }
+		}
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_construction_stage_3_minerals_reached } }
+			add_modifier = { modifier = ssh_ark_minerals_contribution	days = -1 }
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_4 }
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_construction_stage_4_gases_reached } }
+			add_modifier = { modifier = ssh_ark_gases_contribution	days = -1 }
+		}
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_construction_stage_4_motes_reached } }
+			add_modifier = { modifier = ssh_ark_motes_contribution	days = -1 }
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_5 }
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_construction_stage_5_dark_matter_reached } }
+			add_modifier = { modifier = ssh_ark_dark_matter_contribution	days = -1 }
+		}
+		#if = {
+		#	limit = { NOT = { has_global_flag = ssh_ark_construction_stage_5_cultrobium_reached } }
+		#	add_modifier = { modifier = ssh_ark_cultrobium_contribution	days = -1 }
+		#}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_6 }
+		if = {
+			limit = { NOT = { has_global_flag = ssh_ark_construction_stage_6_energy_reached } }
+			add_modifier = { modifier = ssh_ark_energy_contribution	days = -1 }
+		}
+	}
+	else = {
+		# Do nothing
+	}
+}
+
+# Ark Jump: Generate Small Cluster
+ssh_ark_jump_generate_normal_cluster = {
+	set_global_flag = ssh_ark_jump_cluster_normal
+
+	set_spawn_system_batch = begin
+
+	no_scope = {
+		spawn_system = {
+			min_distance >= 450
+			max_distance <= 500
+			min_orientation_angle = 90
+			max_orientation_angle = 90
+			initializer = ssh_vacdec_ark_jump_cluster_core # Core of the cluster
+			hyperlane = no
+			#effect = {
+			#	set_name = "Equilibrium" #The Rift
+			#}
+		}
+	}
+	last_created_system = {
+		while = {
+			count = 4
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = basic_init_02
+				hyperlane = yes
+				effect = { set_star_flag = ssh_ark_jump_new_system }
+			}
+		}
+		while = {
+			count = 4
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = basic_init_03
+				hyperlane = yes
+				effect = { set_star_flag = ssh_ark_jump_new_system }
+			}
+		}
+		while = {
+			count = 4
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = basic_init_04
+				hyperlane = yes
+				effect = { set_star_flag = ssh_ark_jump_new_system }
+			}
+		}
+		while = {
+			count = 4
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = basic_init_05
+				hyperlane = yes
+				effect = { set_star_flag = ssh_ark_jump_new_system }
+			}
+		}
+		while = {
+			count = 4
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = basic_init_06
+				hyperlane = yes
+				effect = { set_star_flag = ssh_ark_jump_new_system }
+			}
+		}
+	}
+
+	set_spawn_system_batch = end
+}
+
+ssh_ark_jump_generate_black_hole_cluster = {
+	set_global_flag = ssh_ark_jump_cluster_black_hole
+
+	set_spawn_system_batch = begin
+
+	no_scope = {
+		spawn_system = {
+			min_distance >= 450
+			max_distance <= 500
+			min_orientation_angle = 90
+			max_orientation_angle = 90
+			initializer = ssh_vacdec_ark_jump_cluster_core # Core of the cluster
+			hyperlane = no
+			#effect = {
+			#	set_name = "Equilibrium" #The Rift
+			#}
+		}
+	}
+	last_created_system = {
+		while = {
+			count = 4
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = ssh_black_hole_cluster_init_01
+				hyperlane = yes
+				effect = { set_star_flag = ssh_ark_jump_new_system }
+			}
+		}
+		while = {
+			count = 4
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = ssh_black_hole_cluster_init_02
+				hyperlane = yes
+				effect = { set_star_flag = ssh_ark_jump_new_system }
+			}
+		}
+		while = {
+			count = 4
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = ssh_black_hole_cluster_init_03
+				hyperlane = yes
+				effect = { set_star_flag = ssh_ark_jump_new_system }
+			}
+		}
+		while = {
+			count = 4
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = ssh_black_hole_cluster_init_04
+				hyperlane = yes
+				effect = { set_star_flag = ssh_ark_jump_new_system }
+			}
+		}
+		spawn_system = {
+			min_distance >= 7
+			max_distance <= 25
+			min_orientation_angle = 0
+			max_orientation_angle = 359
+			initializer = ssh_black_hole_cluster_init_05
+			hyperlane = yes
+			effect = { set_star_flag = ssh_ark_jump_new_system }
+		}
+		spawn_system = {
+			min_distance >= 7
+			max_distance <= 25
+			min_orientation_angle = 0
+			max_orientation_angle = 359
+			initializer = ssh_black_hole_cluster_init_06
+			hyperlane = yes
+			effect = { set_star_flag = ssh_ark_jump_new_system }
+		}
+	}
+
+	set_spawn_system_batch = end
+}
+
+ssh_ark_jump_generate_capitals_or_galaxy = {
+	optimize_memory
+	
+	every_system = { # remove all to-be colonies, even from non ark participants
+		limit = { any_system_planet = { is_under_colonization = yes } }
+		every_system_planet = {
+			limit = { is_under_colonization = yes }
+			destroy_colony = yes ### Gotta check if this works
+		}
+	}
+	if = {
+		limit = { has_global_flag = ssh_ark_generate_cluster }
+
+		#set_spawn_system_batch = begin ### Done in ssh_vacdec.411
+
+		# Relocate all ark participants to the new galaxy cluster
+		ssh_ark_jump_generate_capitals = yes
+
+		#set_spawn_system_batch = end
+	}
+	else = {
+		# If no players left in the galaxy. end the crisis
+		ssh_end_vacdec_crisis = yes
+		if = {
+			limit = { has_global_flag = ssh_ark_generate_normal_galaxy }
+			#ssh_ark_jump_generate_new_galaxy_normal = yes ### Decativated for now
+			ssh_ark_jump_generate_new_galaxy_regular = yes
+		}
+		else = {
+			ssh_ark_jump_generate_new_galaxy_destroyed = yes
+		}
+	}
+}
+
+# Ark Jump: Generate Capital Systems
+ssh_ark_jump_generate_capitals = {
+	every_playable_country = {
+		limit = {
+			has_country_flag = ssh_ark_project_country
+			NOT = { has_country_flag = ssh_ark_jump_successful }
+		}
+		save_event_target_as = ssh_ark_jump_country
+		add_victory_score = {
+			source = SSH_ARK_JUMP_SCORE
+			score = 50000
+		}
+		set_country_flag = ssh_country_escaped_vacdec_crisis
+		if = {
+			limit = { any_owned_megastructure = { is_megastructure_type = mega_brain_7 } }
+			set_country_flag = ssh_mega_brain_owner
+		}
+		if = {
+			limit = { any_owned_megastructure = { is_megastructure_type = grand_archive_0 } }
+			set_country_flag = ssh_grand_archive_owner
+		}
+		random_system = {
+			limit = {
+				has_star_flag = ssh_ark_jump_new_system
+				#NOT = { has_owner = yes }
+			}
+			spawn_system = {
+				min_distance >= 5
+				max_distance <= 10
+				min_orientation_angle = 0
+				max_orientation_angle = 360
+				initializer = ssh_vacdec_ark_jump_capital
+				hyperlane = yes
+				effect = {
+					set_name = "Interstellar Void" #"[FROMFROM.Species.GetAdj] Void"
+				}
+			}
+			last_created_system = {
+				create_starbase = {
+					size = starbase_citadel
+					owner = event_target:ssh_ark_jump_country #fromfrom
+					effect = {
+						set_starbase_module = {
+							slot = 1
+							module = shipyard
+						}
+					}
+				}
+				spawn_planet = {
+					class = pc_ringworld_habitable
+					location = star
+					orbit_distance_offset = 100
+					orbit_angle_offset = 30
+					size = 30
+					init_effect = {
+						set_name = "Intact Habitation Segment"
+						#set_planet_entity = { entity = "ssh_edersphere_planet" }
+						set_surveyed = {
+							surveyed = yes
+							surveyor = event_target:ssh_ark_jump_country #FROMFROMFROM
+						}
+						set_all_comms_surveyed = yes
+						set_planet_flag = megastructure
+						set_planet_flag = ark_capital_planet
+						set_owner = event_target:ssh_ark_jump_country #FROMFROMFROM
+						create_colony = { owner = event_target:ssh_ark_jump_country }
+						add_colony_progress = 100
+						set_capital = yes
+						add_building = building_ssh_vacdec_cryo_chambers
+						if = {
+							limit = { owner = { country_uses_food = yes } }
+							while = { count = 4 add_district = district_rw_farming }
+						}
+						if = {
+							limit = { owner = { is_gestalt = no } }
+							while = { count = 4 add_district = district_rw_city }
+						}
+						else_if = {
+							limit = { owner = { is_gestalt = yes is_hive_empire = yes } }
+							while = { count = 4 add_district = district_rw_hive }
+						}
+						else_if = {
+							limit = { owner = { is_gestalt = yes is_machine_empire = yes } }
+							while = { count = 4 add_district = district_rw_nexus }
+						}
+						while = { count = 4 add_district = district_rw_generator }
+						#while = { count = 4 add_district = district_rw_industrial }
+						save_event_target_as = ssh_ark_jump_capital
+						create_ambient_object = {
+							type = medium_debris_02_object
+							scale = 1.5
+							entity_offset = 0
+							entity_offset_angle = 0
+						}
+					}
+				}
+				spawn_planet = {
+					class = pc_ringworld_seam_damaged
+					location = star
+					orbit_distance_offset = 50
+					orbit_angle_offset = 170
+					size = 35
+					init_effect = {
+						set_name = "Ark Debris"
+						set_planet_flag = ssh_ark_debris
+						set_surveyed = {
+							surveyed = yes
+							surveyor = event_target:ssh_ark_jump_country #FROMFROMFROM
+						}
+						set_all_comms_surveyed = yes
+						set_planet_flag = megastructure
+						add_deposit = d_ark_deposit
+						create_ambient_object = {
+							type = medium_debris_01_object
+							scale = 2.0
+							entity_offset = 0
+							entity_offset_angle = 0
+						}
+					}
+				}
+				if = { # Copy BIO Brain
+					limit = { event_target:ssh_ark_jump_country = { has_country_flag = ssh_mega_brain_owner } }
+					spawn_megastructure = {
+						type = mega_brain_7
+						owner = event_target:ssh_ark_jump_country
+						planet = star
+					}
+					event_target:ssh_ark_jump_country = { remove_country_flag = ssh_mega_brain_owner }
+				}
+				if = { # Copy Grand Archive
+					limit = { event_target:ssh_ark_jump_country = { has_country_flag = ssh_grand_archive_owner } }
+					spawn_megastructure = {
+						type = grand_archive_0
+						owner = event_target:ssh_ark_jump_country
+						planet = event_target:ssh_ark_jump_capital
+					}
+					event_target:ssh_ark_jump_country = { remove_country_flag = ssh_grand_archive_owner }
+				}
+			}
+		}
+		# Resettle Colonists
+		random_owned_pop_group = {
+			limit = { species = { is_same_species = owner_main_species } }
+			resettle_pop_group = {
+				POP_GROUP = THIS
+				PLANET = event_target:ssh_ark_jump_capital
+				AMOUNT = 100 #local_pop_amount
+			}
+		}
+		if = { # Resettle Bio trophies + cyborgs
+			limit = {
+				OR = {
+					has_valid_civic = civic_machine_servitor
+					has_valid_civic = civic_machine_assimilator
+				}
+			}
+			while = {
+				count = 5
+				random_owned_pop_group = {
+					limit = { species = { NOT = { is_same_species = owner_main_species } } }
+					#resettle_pop = {
+					#	pop = THIS
+					#	planet = event_target:ssh_ark_jump_capital
+					#}
+					resettle_pop_group = {
+						POP_GROUP = THIS
+						PLANET = event_target:ssh_ark_jump_capital
+						#AMOUNT = 100 #local_pop_amount
+					}
+				}
+			}
+		}
+		# Destroy all other colonies
+		#every_owned_pop = {
+		#	resettle_pop = {
+		#		pop = THIS
+		#		planet = event_target:ssh_ark_jump_capital
+		#	}
+		#}
+		every_system_within_border = {
+			limit = {
+				NOR = {
+					has_star_flag = ssh_ark_jump_capital
+					has_star_flag = ssh_ark_jump_new_system
+				}
+			}
+			every_ship_in_system = { destroy_ship = this }
+			every_system_planet = {
+				limit = { is_colony = yes }
+				destroy_colony = yes
+			}
+		}
+		every_country = {
+			limit = { NOT = { has_country_flag = ssh_ark_project_country } }
+			remove_communications = event_target:ssh_ark_jump_country
+		}
+		every_system = {
+			limit = { NOT = { has_star_flag = ssh_ark_jump_new_system } }
+			set_surveyed = {
+				surveyed = no
+				surveyor = event_target:ssh_ark_jump_country #from
+			}
+		}
+		set_country_flag = ssh_ark_jump_successful
+	}
+}
+
+ssh_ark_jump_new_galaxy_resettle_participants = {
+	# Resettle ark member pops into void systems
+
+	random_system = {
+		limit = { has_owner = no }
+		set_star_flag = ssh_ark_jump_new_system
+		save_event_target_as = ssh_ark_jump_base_system
+	}
+	every_playable_country = {
+		limit = {
+			has_country_flag = ssh_ark_project_country
+			NOT = { has_country_flag = ssh_ark_jump_successful }
+		}
+		save_event_target_as = ssh_ark_jump_country
+		add_victory_score = {
+			source = SSH_ARK_JUMP_SCORE
+			score = 50000
+		}
+		set_country_flag = ssh_country_escaped_vacdec_crisis
+		random_system = {
+			limit = {
+				has_star_flag = ssh_ark_jump_new_system
+			}
+			spawn_system = {
+				min_distance >= 5
+				max_distance <= 10
+				min_orientation_angle = 0
+				max_orientation_angle = 360
+				initializer = ssh_vacdec_ark_jump_capital
+				hyperlane = yes
+				effect = {
+					set_name = "Interstellar Void"
+				}
+			}
+			last_created_system = {
+				create_starbase = {
+					size = starbase_citadel
+					owner = event_target:ssh_ark_jump_country
+					effect = {
+						set_starbase_module = {
+							slot = 1
+							module = shipyard
+						}
+					}
+				}
+				spawn_planet = {
+					class = pc_ringworld_habitable
+					location = star
+					orbit_distance_offset = 100
+					orbit_angle_offset = 30
+					size = 20
+					init_effect = {
+						set_name = "Intact Habitation Segment"
+						set_surveyed = {
+							surveyed = yes
+							surveyor = event_target:ssh_ark_jump_country
+						}
+						set_all_comms_surveyed = yes
+						set_planet_flag = megastructure
+						set_owner = event_target:ssh_ark_jump_country
+						create_colony = { owner = event_target:ssh_ark_jump_country }
+						add_colony_progress = 100
+						set_capital = yes
+						add_building = building_ssh_vacdec_cryo_chambers
+						while = {
+							count = 4
+							add_district = district_rw_farming
+						}
+						#while = {
+						#	count = 4
+						#	add_district = district_rw_industrial
+						#}
+						save_event_target_as = ssh_ark_jump_capital
+						create_ambient_object = {
+							type = medium_debris_02_object
+							scale = 1.5
+							entity_offset = 0
+							entity_offset_angle = 0
+						}
+					}
+				}
+				spawn_planet = {
+					class = pc_ringworld_seam_damaged
+					location = star
+					orbit_distance_offset = 50
+					orbit_angle_offset = 170
+					size = 20
+					init_effect = {
+						set_name = "Ark Debris"
+						set_planet_flag = ssh_ark_debris
+						set_surveyed = {
+							surveyed = yes
+							surveyor = event_target:ssh_ark_jump_country
+						}
+						set_all_comms_surveyed = yes
+						set_planet_flag = megastructure
+						add_deposit = d_ark_deposit
+						create_ambient_object = {
+							type = medium_debris_01_object
+							scale = 2.0
+							entity_offset = 0
+							entity_offset_angle = 0
+						}
+					}
+				}
+			}
+		}
+		while = { # Resettle Colonists
+			count = 10
+			random_owned_pop_group = {
+				limit = { species = { is_same_species = owner_main_species } }
+				#resettle_pop = {
+				#	pop = THIS
+				#	planet = event_target:ssh_ark_jump_capital
+				#}
+				resettle_pop_group = {
+					POP_GROUP = THIS
+					PLANET = event_target:ssh_ark_jump_capital
+					#AMOUNT = 100 #local_pop_amount
+				}
+			}
+		}
+		if = { # Resettle Bio trophies + cyborgs
+			limit = {
+				OR = {
+					has_valid_civic = civic_machine_servitor
+					has_valid_civic = civic_machine_assimilator
+				}
+			}
+			while = {
+				count = 5
+				random_owned_pop_group = {
+					limit = { species = { NOT = { is_same_species = owner_main_species } } }
+					#resettle_pop = {
+					#	pop = THIS
+					#	planet = event_target:ssh_ark_jump_capital
+					#}
+					resettle_pop_group = {
+						POP_GROUP = THIS
+						PLANET = event_target:ssh_ark_jump_capital
+						#AMOUNT = 100 #local_pop_amount
+					}
+				}
+			}
+		}
+		#every_owned_pop = {
+		#	resettle_pop = {
+		#		pop = THIS
+		#		planet = event_target:ssh_ark_jump_capital
+		#	}
+		#}
+		every_system_within_border = {
+			limit = {
+				NOR = {
+					has_star_flag = ssh_ark_jump_capital
+					has_star_flag = ssh_ark_jump_new_system
+				}
+			}
+			every_ship_in_system = { destroy_ship = this }
+			#every_system_megastructure = { remove_megastructure = this }
+			ssh_bypass_remove_every_system_megastructure = yes
+			every_system_planet = {
+				limit = {
+					OR = {
+						is_colony = yes
+						is_under_colonization = yes
+					}
+				}
+				destroy_colony = yes
+			}
+		}
+		every_system = {
+			limit = { NOT = { has_star_flag = ssh_ark_jump_new_system } }
+			set_surveyed = {
+				surveyed = no
+				surveyor = event_target:ssh_ark_jump_country
+			}
+			# Remove flags?
+		}
+		set_country_flag = ssh_ark_jump_successful
+	}
+}
+
+ssh_ark_jump_shuffle_hyperlanes = {
+	#set_update_modifiers_batch = begin ### Done in ssh_vacdec.410
+	#set_spawn_system_batch = begin
+
+	every_system = {
+		limit = {
+			NOR = {
+				has_star_flag = ssh_ark_jump_capital
+				has_star_flag = ssh_ark_jump_new_system
+				has_star_flag = ssh_ark_system
+				star = {
+					is_planet_class = pc_astral_scar
+					# Gigas' Galactic Core
+					is_planet_class = pc_core_black_hole
+       				is_planet_class = pc_core_quasar
+				}
+			}
+		}
+		set_name = RANDOM
+		isolate_system = yes
+		#every_neighbor_system = {
+		#	remove_hyperlane = {
+		#		from = prev
+		#		to = this
+		#	}
+		#}
+		# Make new hyperlanes
+		every_neighbor_system_euclidean = {
+			random_list = {
+				50 = {
+					add_hyperlane = {
+						from = prev
+						to = THIS
+					}
+				}
+				50 = {
+					# No Hyperlane :)
+				}
+			}
+		}
+		#while = {
+		#	count = 4
+		#	random_neighbor_system_euclidean = {
+		#		random_list = {
+		#			50 = {
+		#				add_hyperlane = {
+		#					from = prev
+		#					to = THIS
+		#				}
+		#			}
+		#			50 = {
+		#				# No Hyperlane :)
+		#			}
+		#		}
+		#	}
+		#}
+	}
+
+	#set_update_modifiers_batch = end
+	#set_spawn_system_batch = end
+}
+
+# Ark Jump: Regenerate Galaxy
+# Stay away from this code its highly unstable
+###################################
+##### DEACTIVATED TILL REWORK #####
+###################################
+ssh_ark_jump_generate_new_galaxy_normal = {
+	#optimize_memory
+	
+	set_global_flag = ssh_ark_jump_new_galaxy_normal
+	#remove_global_flag = ssh_vacdec_crisis_ongoing
+
+	# Leave only the ark participants
+	every_country = {
+		limit = { NOT = { has_country_flag = ssh_ark_project_country } }
+		#every_system_within_border = { every_system_megastructure = { remove_megastructure = this } } # clean previous megas
+		every_system_within_border = {
+			ssh_bypass_remove_every_system_megastructure = yes
+		}
+		###debug destroy_country = yes
+	}
+
+	# Lets see if this prevents crashes
+	set_update_modifiers_batch = begin
+	set_spawn_system_batch = begin
+	
+	# Change Star Classes, Planets & Hyperlanes
+	every_system = {
+		limit = {
+			NOR = {
+				has_star_flag = ssh_ark_jump_capital
+				has_star_flag = ssh_ark_jump_new_system
+				has_star_flag = ssh_ark_system
+				star = { is_planet_class = pc_astral_scar }
+				# Gigas' Galactic Core
+				star = { is_planet_class = pc_core_black_hole }
+				star = { is_planet_class = pc_core_quasar }
+			}
+		}
+		if = {
+			limit = { has_star_flag = ssh_vacdec_marked_system }
+			remove_star_flag = ssh_vacdec_marked_system
+		}
+		if = {
+			limit = { has_star_flag = ssh_decayed_system }
+			remove_star_flag = ssh_decayed_system
+			star = { set_planet_size = 15 }
+		}
+		# Hyperlane code here
+		random_list = {
+			10 = { set_star_class = sc_a } #"rl_all_stars" doesnt work 
+			10 = { set_star_class = sc_b }
+			10 = { set_star_class = sc_f }
+			10 = { set_star_class = sc_g }
+			10 = { set_star_class = sc_k }
+			10 = { set_star_class = sc_m }
+			10 = { set_star_class = sc_m_giant }
+			10 = { set_star_class = sc_t }
+			8 = { set_star_class = sc_black_hole }
+			8 = { set_star_class = sc_neutron_star }
+			8 = { set_star_class = sc_pulsar }
+		}
+		# Remove Megastructures
+		#every_system_megastructure = { remove_megastructure = this }
+		ssh_bypass_remove_every_system_megastructure = yes
+
+		# Crashes the game ?
+		every_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					is_planet_class = pc_astral_scar
+					is_planet_class = pc_gas_giant
+					is_asteroid = yes
+					is_astral_scar = yes
+				}
+			}
+			change_pc = "rl_all_normal_planets"
+		}
+
+		# Generate New Planets - CRASHES THE GAME
+		#every_system_planet = {
+		#	limit = {
+		#		NOR = {
+		#			is_star = yes
+		#			is_planet_class = pc_astral_scar
+		#			is_asteroid = yes
+		#		}
+		#		OR = {
+		#			is_artificial = yes
+		#			has_planet_flag = megastructure
+		#		}
+		#	}
+		#	remove_planet = yes
+		#}
+
+		# Change Planet Classes
+		#every_system_planet = {
+		#	limit = {
+		#		NOR = {
+		#			is_star = yes
+		#			is_planet_class = pc_astral_scar
+		#			is_asteroid = yes
+		#		}
+		#		is_colonizable = yes
+		#	}
+		#	change_pc = "rl_habitable_normal"
+		#	#set_name = RANDOM
+		#}
+		#every_system_planet = {
+		#	limit = {
+		#		NOR = {
+		#			is_star = yes
+		#			is_planet_class = pc_astral_scar
+		#			is_asteroid = yes
+		#			is_artificial = yes
+		#			has_planet_flag = megastructure
+		#			is_colonizable = yes
+		#		}
+		#	}
+		#	random_list = {
+		#		75 = { change_pc = "rl_barren_planets" }
+		#		25 = { change_pc = pc_gas_giant }
+		#	}
+		#	#set_name = RANDOM
+		#}
+	}
+
+	set_update_modifiers_batch = end
+	set_spawn_system_batch = end
+}
+
+ssh_ark_jump_generate_new_galaxy_destroyed = {
+	#optimize_memory
+	
+	set_global_flag = ssh_ark_jump_new_galaxy_destroyed
+	remove_global_flag = ssh_vacdec_crisis_ongoing
+	
+	# Leave only the ark participants
+	every_country = {
+		limit = { NOT = { has_country_flag = ssh_ark_project_country } }
+		#every_system_within_border = { every_system_megastructure = { remove_megastructure = this } } # clean previous megas
+		every_system_within_border = {
+			ssh_bypass_remove_every_system_megastructure = yes
+		}
+		###debug destroy_country = yes
+	}
+
+	# Lets see if this prevents crashes
+	set_update_modifiers_batch = begin
+	set_spawn_system_batch = begin
+
+	# Galaxy Scope - Change Star Classes, Planets & Hyperlanes
+	# Change Star Classes, Planets & Hyperlanes
+	every_system = {
+		limit = {
+			NOR = {
+				has_star_flag = ssh_ark_jump_capital
+				has_star_flag = ssh_ark_jump_new_system
+				has_star_flag = ssh_ark_system
+				star = {
+					is_planet_class = pc_astral_scar
+					# Gigas' Galactic Core
+					is_planet_class = pc_core_black_hole
+       				is_planet_class = pc_core_quasar
+				}
+			}
+		}
+		if = {
+			limit = { has_star_flag = ssh_vacdec_marked_system }
+			remove_star_flag = ssh_vacdec_marked_system
+		}
+		if = {
+			limit = { has_star_flag = ssh_decayed_system }
+			remove_star_flag = ssh_decayed_system
+			star = { set_planet_size = 15 }
+		}
+		# Hyperlane code here
+		set_star_class = sc_black_hole
+		# Remove Megastructures
+		#every_system_megastructure = { remove_megastructure = this }
+		ssh_bypass_remove_every_system_megastructure = yes
+		every_system_planet = {
+			limit = { is_star = yes }
+			change_pc = pc_black_hole
+		}
+
+		every_system_planet = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_black_hole
+					is_planet_class = pc_astral_scar
+					is_planet_class = pc_gas_giant
+					is_asteroid = yes
+					is_astral_scar = yes
+				}
+			}
+			change_pc = pc_broken
+		}
+
+		# Change Planet Classes - CRASHES THE GAME; deactivated for now
+		#every_system_planet = {
+		#	limit = {
+		#		NOR = {
+		#			is_star = yes
+		#			is_planet_class = pc_astral_scar
+		#			is_asteroid = yes
+		#		}
+		#		is_colonizable = yes
+		#	}
+		#	change_pc = "rl_habitable_normal"
+		#	#set_name = RANDOM
+		#}
+		#every_system_planet = {
+		#	limit = {
+		#		NOR = {
+		#			is_star = yes
+		#			is_planet_class = pc_astral_scar
+		#			is_asteroid = yes
+		#			is_artificial = yes
+		#			has_planet_flag = megastructure
+		#			is_colonizable = yes
+		#		}
+		#	}
+		#	random_list = {
+		#		75 = { change_pc = "rl_barren_planets" }
+		#		25 = { change_pc = pc_gas_giant }
+		#	}
+		#	#set_name = RANDOM
+		#}
+	}
+
+	set_update_modifiers_batch = end
+	set_spawn_system_batch = end
+
+	#Set random aero engine system
+	random_system = {
+		limit = { has_owner = no }
+		set_star_flag = destroyed_aerophasic_engine_system
+		spawn_megastructure = {
+			type = crisis_sphere_ruined
+			planet = star
+		}
+		star = {
+			clear_deposits = yes
+			add_deposit = d_dark_matter_deposit_10
+		}
+	}
+}
+
+# Mostly void, partially stars
+ssh_ark_jump_generate_new_galaxy_regular = {
+	set_global_flag = ssh_ark_jump_new_galaxy_regular
+	
+	# Leave only the ark participants
+	every_country = {
+		limit = { NOT = { has_country_flag = ssh_ark_project_country } }
+		every_system_within_border = {
+			ssh_bypass_remove_every_system_megastructure = yes ### Done later in this code anyways
+		}
+		destroy_country = yes
+	}
+
+	# Lets see if this prevents crashes
+	set_update_modifiers_batch = begin
+	set_spawn_system_batch = begin
+	
+	# Change Star Classes, Planets & Hyperlanes
+	every_system = {
+		limit = {
+			NOR = {
+				has_star_flag = ssh_ark_jump_capital
+				has_star_flag = ssh_ark_jump_new_system
+				has_star_flag = ssh_ark_system
+				star = { is_planet_class = pc_astral_scar }
+				# Gigas' Galactic Core
+				star = { is_planet_class = pc_core_black_hole }
+				star = { is_planet_class = pc_core_quasar }
+			}
+		}
+		if = {
+			limit = { has_star_flag = ssh_vacdec_marked_system }
+			remove_star_flag = ssh_vacdec_marked_system
+		}
+		if = {
+			limit = { has_star_flag = ssh_decayed_system }
+			remove_star_flag = ssh_decayed_system
+			star = { set_planet_size = 15 }
+		}
+		# Either empty system, or star system
+		random_list = {
+			29 = {
+				# Empty System
+				set_star_flag = ssh_interstellar_void
+				set_star_class = sc_ssh_space
+				set_asteroid_belt = { radius = 0 }
+				every_system_planet = {
+					limit = { is_star = no }
+					remove_planet = yes
+				}
+			}
+			7 = { set_star_class = sc_a } #"rl_all_stars" doesnt work unfortunately
+			7 = { set_star_class = sc_b }
+			7 = { set_star_class = sc_f }
+			7 = { set_star_class = sc_g }
+			7 = { set_star_class = sc_k }
+			7 = { set_star_class = sc_m }
+			7 = { set_star_class = sc_m_giant }
+			7 = { set_star_class = sc_t }
+			5 = { set_star_class = sc_black_hole }
+			5 = { set_star_class = sc_neutron_star }
+			5 = { set_star_class = sc_pulsar }
+		}
+		# Remove Megastructures
+		ssh_bypass_remove_every_system_megastructure = yes
+
+		if = {
+			limit = { NOT = { has_star_flag = ssh_interstellar_void } }
+			every_system_planet = {
+				limit = {
+					NOR = {
+						is_star = yes
+						is_planet_class = pc_astral_scar
+						is_planet_class = pc_gas_giant
+						is_asteroid = yes
+						is_astral_scar = yes
+					}
+				}
+				change_pc = "rl_all_normal_planets"
+			}
+		}
+	}
+
+	set_update_modifiers_batch = end
+	set_spawn_system_batch = end
+}
+
+
+
+
+
+ssh_end_vacdec_crisis = {
+	remove_global_flag = ssh_vacdec_crisis_ongoing
+	set_global_flag = ssh_vacdec_crisis_defeated
+
+	# Remove Modifier Boosts
+	every_country = {
+		limit = { has_modifier = ssh_vacdec_half_galaxy_decayed_boost }
+		remove_modifier = ssh_vacdec_half_galaxy_decayed_boost
+	}
+	every_country = {
+		limit = { has_modifier = ssh_vacdec_galaxy_decayed_boost }
+		remove_modifier = ssh_vacdec_galaxy_decayed_boost
+	}
+}
+
+
+# Basement Universe: Create Cluster
+ssh_basement_gateway_generate_cluster = {
+	#set_country_flag = ssh_basement_gateway_cluster
+	no_scope = {
+		spawn_system = {
+			min_distance >= 450
+			max_distance <= 500
+			min_orientation_angle = 0
+			max_orientation_angle = 180
+			initializer = ssh_vacdec_basement_uni_center
+			hyperlane = no
+			effect = {
+				set_star_flag = ssh_basement_universe_system
+				create_ambient_object = {
+					type = "star_explosion"
+					play_animation_once = yes
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 0
+						angle = random
+					}
+				}
+			}
+		}
+	}
+	last_created_system = {
+		while = {
+			count = 3
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = ssh_basement_universe_init_01
+				hyperlane = yes
+				effect = {
+					set_star_flag = ssh_basement_universe_system
+					if = {
+						limit = { has_gigastructures = yes }
+						set_star_class = sc_giga_o_star
+						star = {
+							change_planet_size = 10
+						}
+					}
+				}
+			}
+		}
+		while = {
+			count = 3
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = ssh_basement_universe_init_02
+				hyperlane = yes
+				effect = { set_star_flag = ssh_basement_universe_system }
+			}
+		}
+		while = {
+			count = 2
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = ssh_basement_universe_init_03
+				hyperlane = yes
+				effect = { set_star_flag = ssh_basement_universe_system }
+			}
+		}
+		while = {
+			count = 2
+			spawn_system = {
+				min_distance >= 7
+				max_distance <= 25
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = ssh_basement_universe_init_04
+				hyperlane = yes
+				effect = { set_star_flag = ssh_basement_universe_system }
+			}
+		}
+	}
+}
+
+ssh_basement_gateway_generate_capital = {
+	save_event_target_as = ssh_basement_uni_country
+	add_victory_score = {
+		source = SSH_BASEMENT_UNIVERSE_SCORE
+		score = 15000
+	}
+	set_country_flag = ssh_country_escaped_vacdec_crisis
+	ssh_vacdec_cryogenic_species_effect = yes
+	if = {
+		limit = { any_owned_megastructure = { is_megastructure_type = mega_brain_7 } }
+		set_country_flag = ssh_mega_brain_owner
+	}
+	if = {
+		limit = { any_owned_megastructure = { is_megastructure_type = grand_archive_0 } }
+		set_country_flag = ssh_grand_archive_owner
+	}
+	# remove all to-be colonies inside the old galaxy
+	every_system_within_border = {
+		limit = { any_system_planet = { is_under_colonization = yes } }
+		every_system_planet = {
+			limit = { is_under_colonization = yes }
+			destroy_colony = yes ### Gotta check if this works
+		}
+	}
+	random_system = {
+		limit = { has_star_flag = ssh_basement_universe_system }
+		spawn_system = {
+			min_distance >= 5
+			max_distance <= 10
+			min_orientation_angle = 0
+			max_orientation_angle = 360
+			initializer = ssh_basement_universe_init_04 # Brown Dwarf System
+			hyperlane = yes
+			effect = {
+				set_star_flag = ssh_basement_universe_system
+				random_system_planet = {
+					limit = {
+						is_star = no
+						is_asteroid = no
+					}
+					change_pc = pc_desert
+					change_planet_size = 15
+					add_modifier = {
+						modifier = unstable_tectonics
+						days = -1
+					}
+					add_deposit = d_active_volcano
+					add_deposit = d_active_volcano
+					save_event_target_as = ssh_basement_uni_capital
+				}
+			}
+		}
+		last_created_system = {
+			create_starbase = {
+				size = starbase_citadel
+				owner = event_target:ssh_basement_uni_country
+				effect = {
+					set_starbase_module = {
+						slot = 1
+						module = shipyard
+					}
+				}
+			}
+			event_target:ssh_basement_uni_capital = {
+				set_surveyed = {
+					surveyed = yes
+					surveyor = event_target:ssh_basement_uni_country
+				}
+				set_all_comms_surveyed = yes
+				set_planet_flag = megastructure
+				set_owner = event_target:ssh_basement_uni_country
+				create_colony = { owner = event_target:ssh_basement_uni_country }
+				add_colony_progress = 100
+				set_capital = yes
+				add_building = building_ssh_vacdec_cryo_chambers
+				if = {
+					limit = { owner = { country_uses_food = yes } }
+					while = { count = 4 add_district = district_farming_uncapped }
+				}
+				if = {
+					limit = { owner = { is_gestalt = no } }
+					while = { count = 4 add_district = district_city }
+				}
+				else_if = {
+					limit = { owner = { is_gestalt = yes is_hive_empire = yes } }
+					while = { count = 4 add_district = district_hive }
+				}
+				else_if = {
+					limit = { owner = { is_gestalt = yes is_machine_empire = yes } }
+					while = { count = 4 add_district = district_nexus }
+				}
+				#while = { count = 1 add_district = district_industrial }
+				while = { count = 2 add_district = district_mining_uncapped }
+				while = { count = 4 add_district = district_generator_uncapped }
+			}
+			if = { # Copy BIO Brain
+				limit = { event_target:ssh_basement_uni_country = { has_country_flag = ssh_mega_brain_owner } }
+				spawn_megastructure = {
+					type = mega_brain_7
+					owner = event_target:ssh_basement_uni_country
+					planet = star
+				}
+				event_target:ssh_basement_uni_country = { remove_country_flag = ssh_mega_brain_owner }
+			}
+			if = { # Copy Grand Archive
+				limit = { event_target:ssh_basement_uni_country = { has_country_flag = ssh_grand_archive_owner } }
+				spawn_megastructure = {
+					type = grand_archive_0
+					owner = event_target:ssh_basement_uni_country
+					planet = event_target:ssh_basement_uni_country.capital_scope
+				}
+				event_target:ssh_basement_uni_country = { remove_country_flag = ssh_grand_archive_owner }
+			}
+		}
+	}
+	while = {
+		count = 10 # Resettle Colonists
+		random_owned_pop_group = {
+			limit = { species = { is_same_species = owner_main_species } }
+			#resettle_pop = {
+			#	pop = THIS
+			#	planet = event_target:ssh_basement_uni_capital
+			#}
+			resettle_pop_group = {
+				POP_GROUP = THIS
+				PLANET = event_target:ssh_basement_uni_capital
+				#AMOUNT = 100 #local_pop_amount
+			}
+		}
+	}
+	if = { # Resettle Bio trophies + cyborgs
+		limit = {
+			OR = {
+				has_valid_civic = civic_machine_servitor
+				has_valid_civic = civic_machine_assimilator
+			}
+		}
+		while = {
+			count = 5
+			random_owned_pop_group = {
+				limit = { species = { NOT = { is_same_species = owner_main_species } } }
+				#resettle_pop = {
+				#	pop = THIS
+				#	planet = event_target:ssh_basement_uni_capital
+				#}
+				resettle_pop_group = {
+					POP_GROUP = THIS
+					PLANET = event_target:ssh_basement_uni_capital
+					#AMOUNT = 100 #local_pop_amount
+				}
+			}
+		}
+	}
+	#every_owned_pop = {
+	#	resettle_pop = {
+	#		pop = THIS
+	#		planet = event_target:ssh_basement_uni_capital
+	#	}
+	#}
+	every_system_within_border = {
+		limit = {
+			NOR = {
+				has_star_flag = ssh_basement_universe_system
+				has_star_flag = ssh_basement_universe_center
+			}
+		}
+		every_ship_in_system = { destroy_ship = this }
+		every_system_planet = {
+			limit = {
+				OR = {
+					is_colony = yes
+					is_under_colonization = yes
+				}
+			}
+			destroy_colony = yes
+		}
+	}
+	every_country = {
+		remove_communications = event_target:ssh_basement_uni_country
+	}
+	every_system = {
+		limit = { NOT = { has_star_flag = ssh_basement_universe_system } }
+		set_surveyed = {
+			surveyed = no
+			surveyor = event_target:ssh_basement_uni_country
+		}
+	}
+}
+ssh_vacdec_end_all_crises = {
+	if = {
+		limit = { has_global_flag = synth_queen_ongoing }
+		remove_global_flag = synth_queen_ongoing
+		set_global_flag = synth_queen_defeated
+	}
+	if = {
+		limit = {
+			OR = {
+				has_global_flag = synth_terror
+				has_global_flag = ai_ghost_signal
+				has_global_flag = ai_invasion_ongoing
+			}
+		}
+		remove_global_flag = synth_terror
+		remove_global_flag = ai_ghost_signal
+		remove_global_flag = ai_invasion_ongoing
+		set_global_flag = ai_invasion_defeated
+	}
+	if = {
+		limit = {
+			any_country = {
+				OR = {
+					is_country_type = extradimensional
+					is_country_type = extradimensional_2
+					is_country_type = extradimensional_3
+				}
+			}
+		}
+		set_global_flag = extradimensional_invasion_defeated
+	}
+	if = {
+		limit = { has_global_flag = ongoing_prethoryn_invasion }
+		remove_global_flag = ongoing_prethoryn_invasion
+		set_global_flag = prethoryn_invasion_defeated
+	}
+	# Gigas' Blokkats & Aeternum - Use the event that handles the defeat stuff
+	if = {
+		limit = { has_gigastructures = yes }
+		if = {
+			limit = { has_global_flag = blokkat_crisis_ongoing }
+			event_target:global_event_country = {
+				country_event = {
+					id = giga_blokkat.1030
+					days = 1
+				}
+			}
+		}
+		if = {
+			limit = { has_global_flag = aeternum_awakening_ongoing }
+			event_target:global_event_country = {
+				country_event = {
+					id = giga_aeternum.4303
+					days = 1
+				}
+			}
+		}
+	}
+	stop_crisis_sound = yes
+	end_crisis = yes
+}
+
+ssh_end_contingency_vacdec_effect = {
+	optimize_memory
+	
+	every_system = {
+		limit = { any_system_planet = { is_planet_class = pc_ai } }
+		every_system_planet = {
+			limit = {
+				is_planet_class = pc_ai
+				NOT = { has_planet_flag = machine_lair }
+			}
+			destroy_machine_world = yes
+		}
+		random_system_planet = {
+			limit = {
+				is_planet_class = pc_ai
+				has_planet_flag = machine_lair
+			}
+			planet_event = { id = crisis.2046 }
+		}
+	}
+	stop_crisis_sound = yes
+	end_crisis = yes
+	remove_global_flag = ai_invasion_ongoing
+	set_global_flag = ai_invasion_defeated
+	every_country = {
+		limit = { has_event_chain = "ai_crisis_chain" }
+		end_event_chain = "ai_crisis_chain"
+	}
+	random_country = {
+		limit = { is_country_type = ai_empire_vacdec }
+		every_owned_fleet = { delete_fleet = THIS } 
+		destroy_country = yes 
+	}
+}
+
+
+##### Cheats #####
+ssh_enter_next_ark_stage = {
+	# Research Stage
+	if = {
+		limit = { has_global_flag = ssh_ark_research_stage_1 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_step_1_chain" }
+			country_event = {
+				id = ssh_vacdec.303
+				days = 1
+			}
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_ark_research_stage_2 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_step_2_chain" }
+			country_event = {
+				id = ssh_vacdec.304
+				days = 1
+			}
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_ark_research_stage_3 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_step_3_chain" }
+			country_event = {
+				id = ssh_vacdec.305
+				days = 1
+			}
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_ark_research_stage_4 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_step_4_chain" }
+			country_event = {
+				id = ssh_vacdec.306
+				days = 1
+			}
+		}
+	}
+	else_if = {
+		limit = { has_global_flag = ssh_ark_research_stage_5 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_step_5_chain" }
+			country_event = {
+				id = ssh_vacdec.307
+				days = 1
+			}
+		}
+	}
+	# Construction Stage
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_1 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_construction_stage_1_chain" }
+			remove_modifier = ssh_ark_alloys_contribution
+			remove_modifier = ssh_ark_cultrobium_contribution
+			country_event = {
+				id = ssh_vacdec.401
+				days = 1
+			}
+		}
+	}
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_2 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_construction_stage_2_chain" }
+			remove_modifier = ssh_ark_crystals_contribution
+			remove_modifier = ssh_ark_energy_contribution
+			country_event = {
+				id = ssh_vacdec.402
+				days = 1
+			}
+		}
+	}
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_3 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_construction_stage_3_chain" }
+			remove_modifier = ssh_ark_alloys_contribution
+			remove_modifier = ssh_ark_minerals_contribution
+			country_event = {
+				id = ssh_vacdec.403
+				days = 1
+			}
+		}
+	}
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_4 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_construction_stage_4_chain" }
+			remove_modifier = ssh_ark_gases_contribution
+			remove_modifier = ssh_ark_motes_contribution
+			country_event = {
+				id = ssh_vacdec.404
+				days = 1
+			}
+		}
+	}
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_5 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_construction_stage_5_chain" }
+			remove_modifier = ssh_ark_dark_matter_contribution
+			country_event = {
+				id = ssh_vacdec.405
+				days = 1
+			}
+		}
+	}
+	if = {
+		limit = { has_global_flag = ssh_ark_construction_stage_6 }
+		every_playable_country = {
+			limit = { has_event_chain = "ark_construction_stage_6_chain" }
+			remove_modifier = ssh_ark_energy_contribution
+			country_event = {
+				id = ssh_vacdec.406
+				days = 1
+			}
+		}
+	}
+}

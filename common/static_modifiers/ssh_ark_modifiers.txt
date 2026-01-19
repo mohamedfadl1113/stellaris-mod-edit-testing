@@ -1,0 +1,271 @@
+### Vacdec - Ark Modifiers ###
+
+ssh_ark_energy_contribution = {
+	country_energy_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_minerals_contribution = {
+	country_minerals_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_alloys_contribution = {
+	country_alloys_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_cultrobium_contribution = {
+	country_sr_cultrobium_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_gases_contribution = {
+	country_exotic_gases_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_crystals_contribution = {
+	country_rare_crystals_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_motes_contribution = {
+	country_volatile_motes_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_dark_matter_contribution = {
+	country_sr_dark_matter_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+
+
+
+
+
+# Ark Contribution ---- UNUSED
+ssh_ark_stage_1_contribution_high = {
+	country_alloys_produces_mult = -0.85
+	country_sr_cultrobium_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_stage_1_contribution_med = {
+	country_alloys_produces_mult = -0.7
+	country_sr_cultrobium_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_stage_1_contribution_low = {
+	country_alloys_produces_mult = -0.5
+	country_sr_cultrobium_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_stage_2_contribution_high = {
+	country_energy_produces_mult = -0.85
+	country_rare_crystals_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_stage_2_contribution_med = {
+	country_energy_produces_mult = -0.7
+	country_rare_crystals_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_stage_2_contribution_low = {
+	country_energy_produces_mult = -0.5
+	country_rare_crystals_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_stage_3_bio_contribution_high = {
+	country_alloys_produces_mult = -0.85
+	country_food_produces_mult = -0.85
+	country_minerals_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_stage_3_lithoid_contribution_high = {
+	country_alloys_produces_mult = -0.85
+	country_minerals_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+
+ssh_ark_stage_4_contribution_high = {
+	country_exotic_gases_produces_mult = -0.9
+	country_volatile_motes_produces_mult = -0.9
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_stage_5_contribution_high = {
+	country_sr_dark_matter_produces_mult = -0.9
+	country_sr_cultrobium_produces_mult = -0.9
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+
+
+
+
+ssh_ark_energy_contribution_high = {
+	country_energy_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_energy_contribution_med = {
+	country_energy_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_energy_contribution_low = {
+	country_energy_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+
+ssh_ark_minerals_contribution_high = {
+	country_minerals_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_minerals_contribution_med = {
+	country_minerals_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_minerals_contribution_low = {
+	country_minerals_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_alloys_contribution_high = {
+	country_alloys_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_alloys_contribution_med = {
+	country_alloys_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_alloys_contribution_low = {
+	country_alloys_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_cultrobium_contribution_high = {
+	country_sr_cultrobium_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_cultrobium_contribution_med = {
+	country_sr_cultrobium_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_cultrobium_contribution_low = {
+	country_sr_cultrobium_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_food_contribution_high = {
+	country_food_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_food_contribution_med = {
+	country_food_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_food_contribution_low = {
+	country_food_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_crystals_contribution_high = {
+	country_rare_crystals_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_crystals_contribution_med = {
+	country_rare_crystals_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_crystals_contribution_low = {
+	country_rare_crystals_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_gases_contribution_high = {
+	country_exotic_gases_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_gases_contribution_med = {
+	country_exotic_gases_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_gases_contribution_low = {
+	country_exotic_gases_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_motes_contribution_high = {
+	country_volatile_motes_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_motes_contribution_med = {
+	country_volatile_motes_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_motes_contribution_low = {
+	country_volatile_motes_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+
+ssh_ark_dark_matter_contribution_high = {
+	country_sr_dark_matter_produces_mult = -0.85
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_dark_matter_contribution_med = {
+	country_sr_dark_matter_produces_mult = -0.7
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}
+ssh_ark_dark_matter_contribution_low = {
+	country_volatile_motes_produces_mult = -0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_ethic_shift.dds"
+}

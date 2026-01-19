@@ -1,0 +1,2066 @@
+### Virtual Jobs ###
+
+# RULER JOBS #
+# Admin
+ssh_vr_admin = {
+	category = admin
+
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER ### Not sure if this works
+			building_icon = building_capital
+			icon = ssh_vr_admin #politician
+		}
+		swap_type = {
+			trigger = {
+				admin_is_noble = yes
+			}
+			name = ssh_vr_noble
+			building_icon = building_palace
+			icon = ssh_vr_noble
+			desc = job_ssh_vr_noble_desc
+			weight = 10
+		}
+		swap_type = {
+			trigger = {
+				admin_is_moderator = yes
+			}
+			name = ssh_vr_moderator
+			#building_icon = building_capital
+			icon = ssh_vr_moderator
+			desc = job_ssh_vr_moderator_desc
+			weight = 10
+		}
+		swap_type = {
+			trigger = {
+				admin_is_corporate = yes
+			}
+			name = ssh_vr_ceo
+			#building_icon = building_capital
+			icon = ssh_vr_ceo
+			desc = job_ssh_vr_ceo_desc
+			weight = 10
+		}
+	}
+
+	tags = { unity amenities }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_ruler_job ### can_fill_admin_job - might add that soon
+
+	resources = {
+		category = planet_politicians
+		produces = {
+			unity = 8
+		}
+		##VR Noble
+		produces = {
+			trigger = {
+				admin_is_noble = yes
+			}
+			unity = -2 # Adds stability instead
+			#trade = 4
+		}
+		##Capitalist/Corporate Government
+		produces = {
+			trigger = {
+				admin_is_corporate = yes
+			}
+			trade = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 400
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+	### VR Nobles
+	triggered_planet_modifier = {
+		potential = {
+			admin_is_noble = yes
+		}
+		planet_stability_add = 3 # 1 more than regular nobles
+		#mult = idk
+	}
+	### Moderators
+	triggered_planet_modifier = {
+		potential = {
+			admin_is_moderator = yes
+		}
+		planet_stability_add = 1 # 1 less than nobles
+		#mult = idk
+	}
+	triggered_planet_modifier = {
+		potential = {
+			admin_is_moderator = yes
+		}
+		planet_amenities_add = 100
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	inline_script = "output/politician_output_modifier" ### Might make a custom one at some point
+
+	weight = {
+		weight = @ruler_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_admin|RESOURCE|unity|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		modifier = {
+			factor = 0.1
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		# crisis purge
+		modifier = {
+			factor = 0.01
+			exists = planet
+			exists = planet.controller
+			planet.controller = {
+				OR = {
+					is_country_type = swarm
+					is_country_type = ai_empire
+				}
+			}
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = admin
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+# Swap types
+ssh_vr_noble = {
+	category = admin
+
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_capital
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+ssh_vr_moderator = {
+	category = admin
+
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_capital
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+ssh_vr_ceo = {
+	category = admin
+
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_capital
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+
+
+# SPECIALIST JOBS #
+## Unity
+# Virtual Bureaucrats
+ssh_vr_bureaucrat = {
+	category = special_member
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER ### Not sure if this works
+			building_icon = building_capital ###
+			icon = ssh_vr_bureaucrat
+		}
+		swap_type = {
+			trigger = {
+				vr_bureaucrat_is_priest = yes
+			}
+			name = ssh_vr_priest
+			building_icon = building_temple
+			icon = ssh_vr_priest
+			desc = job_ssh_vr_priest_desc
+			weight = 10
+		}
+		swap_type = {
+			trigger = {
+				vr_bureaucrat_is_death_chronicler = yes
+			}
+			name = ssh_vr_death_chronicler
+			building_icon = building_dread_encampment
+			icon = ssh_vr_death_chronicler
+			desc = job_ssh_vr_death_chronicler_desc
+			weight = 15
+		}
+		swap_type = {
+			trigger = {
+				vr_bureaucrat_is_premium = yes
+			}
+			name = ssh_vr_premium_member
+			building_icon = building_commercial_megaplex
+			icon = ssh_vr_premium_member
+			desc = job_ssh_vr_premium_member_desc
+			weight = 15
+		}
+	}
+
+	tags = { unity }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+
+	resources = {
+		category = planet_bureaucrats
+		# PRODUCES
+		produces = {
+			unity = 4
+		}
+		##VR Death Chronicler
+		produces = {
+			trigger = {
+				vr_bureaucrat_is_death_chronicler = yes
+			}
+			society_research = 1
+		}
+		##VR Premium Member
+		produces = {
+			trigger = { vr_bureaucrat_is_premium = yes }
+			trade = 2
+		}
+		produces = {
+			trigger = {
+				is_competitive = yes
+				vr_bureaucrat_is_premium = yes
+			}
+			trade = 1
+		}
+		inline_script = "jobs/ethic_job_resources_memorialist"
+	}
+
+	### Reduce empire size
+	triggered_country_modifier = {
+		potential = { always = yes }
+		empire_size_mult = -0.01 # Used to be -0.005 Pre-4.0
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_byzantine_bureaucracy }
+		}
+		modifier = {
+			planet_stability_add = 1
+		}
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_efficient_bureaucracy }
+		}
+		country_edict_fund_add = 2
+		mult = value:job_total_output_modifier|JOB|ssh_vr_bureaucrat|RESOURCE|unity|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				check_modifier_value = {
+					modifier = planet_bureaucrats_stability_produces_add
+					value > 0
+				}
+			}
+		}
+		planet_stability_add = 1
+		mult = planet.modifier:planet_bureaucrats_stability_produces_add
+	}
+
+	### VR Priest Modifiers
+	triggered_planet_modifier = {
+		potential = {
+			vr_bureaucrat_is_priest = yes
+		}
+		pop_ethic_spiritualist_attraction_mult = 0.05
+	}
+	triggered_planet_modifier = {
+		potential = {
+			vr_bureaucrat_is_priest = yes
+		}
+		planet_amenities_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	### VR Premium Member Modifiers
+	triggered_planet_modifier = {
+		potential = { vr_bureaucrat_is_premium = yes }
+		pop_government_ethic_attraction = 0.05
+	}
+	triggered_planet_modifier = {
+		potential = { vr_bureaucrat_is_premium = yes }
+		planet_amenities_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		planet = {
+	#			exists = owner
+	#			owner = {
+	#				has_tradition = tr_modularity_4
+	#			}
+	#		}
+	#	}
+	#	planet_jobs_worker_produces_mult = 0.02
+	#}
+
+	weight = {
+		weight = @specialist_job_weight ### Might change that at some point
+		mult = value:job_weights_modifier|JOB|ssh_vr_bureaucrat|RESOURCE|unity|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = { has_civic = civic_exalted_priesthood }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 0.1
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = special_member
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+#Swap for vr_bureaucrat_is_priest
+ssh_vr_priest = {
+	category = special_member
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER ### Not sure if this works
+			building_icon = building_capital
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+#Swap for vr_bureaucrat_is_death_chronicler
+ssh_vr_death_chronicler = {
+	category = special_member
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_capital
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+#Swap for vr_bureaucrat_is_premium
+ssh_vr_premium_member = {
+	category = special_member
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_capital
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+
+
+## Entertainment
+# Entertainer (Similar to youtuber/streamer rank)
+ssh_vr_content_creator = {
+	category = special_member
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER ###
+			building_icon = building_holo_theatres
+		}
+		# Duelists
+		swap_type = {
+			trigger = {
+				vr_entertainer_is_gladiator_trigger = yes
+			}
+			name = ssh_vr_gladiator
+			desc = ssh_vr_gladiator
+			icon = ssh_vr_gladiator
+			condition_string = BATTLE_THRALL_JOB_TRIGGER ###???
+			weight = 5
+		}
+	}
+
+	tags = { amenities unity }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	#possible = {
+	#	if = {
+	#		limit = {
+	#			entertainer_is_duelist_trigger = yes
+	#		}
+	#		battle_thrall_job_check_trigger = yes
+	#	}
+	#	else = {
+	#		entertainer_job_check_trigger = yes
+	#	}
+	#}
+
+	resources = {
+		category = planet_entertainers
+		produces = {
+			unity = 1
+		}
+		produces = {
+			trigger = {
+				owner = { is_pacifist = yes }
+			}
+			unity = 1 # Additional Unity
+		}
+	}
+		# Job Swap - Duelist
+		#produces = {
+		#	trigger = {
+		#		vr_entertainer_is_gladiator_trigger = yes
+		#	}
+		#	unity = 1
+		#}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 1250
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	## Duelist
+	triggered_planet_modifier = {
+		potential = {
+			vr_entertainer_is_gladiator_trigger = yes
+			exists = owner
+			owner = {
+				has_councilor = { COUNCILOR = "councilor_warrior_culture" }
+			}
+		}
+		planet_amenities_add = 100
+		mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_amenities_mult|TYPE|councilor_warrior_culture|
+	}
+	triggered_country_modifier = {
+		potential = {
+			vr_entertainer_is_gladiator_trigger = yes
+		}
+		country_naval_cap_add = 2
+	}
+	triggered_country_modifier = {
+		potential = {
+			vr_entertainer_is_gladiator_trigger = yes
+			has_councilor = { COUNCILOR = "councilor_warrior_culture" }
+		}
+
+		country_naval_cap_add = 0.2
+		mult = value:councilor_level|TYPE|councilor_warrior_culture|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			vr_entertainer_is_gladiator_trigger = yes
+		}
+		pop_ethic_militarist_attraction_mult = 0.05
+	}
+
+	# Additional Capitalist Boost
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_capitalist = yes
+			}
+		}
+		planet_jobs_trade_produces_mult = 0.02
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_value_mult|
+	}
+
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		has_councilor = { COUNCILOR = "councilor_corporate_hedonism" }
+	#	}
+	#
+	#	trade_value_add = @councilor_corporate_hedonism_entertainer_trade_value
+	#	mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_trade_mult|TYPE|councilor_corporate_hedonism|
+	#}
+
+	weight = {
+		weight = @high_prio_specialist_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_content_creator|RESOURCE|unity|FACTOR|0.25|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_robot_domestic_protocols
+			OR = {
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
+			}
+		}
+		modifier = {
+			factor = 0.1
+			is_domestic_servant = yes
+		}
+
+		modifier = {
+			factor = 50
+		}
+
+		modifier = {
+			add = 500
+			exists = planet
+			planet = {
+				has_modifier = artistic_boom
+			}
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_amenities"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = special_member
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+# Swap type for VR duelists
+ssh_vr_gladiator = {
+	category = special_member
+
+	swappable_data = {
+		default = {
+			condition_string = BATTLE_THRALL_JOB_TRIGGER
+			building_icon = building_holo_theatres
+		}
+	}
+	possible = {
+		always = no
+	}
+}
+
+
+## Research
+# Universe Sandbox Player
+ssh_vr_universe_sandbox = {
+	category = special_member
+	### Might use this swappable data in another update for an additional Hyperdimensional Exodus Job
+	#swappable_data = {
+	#	default = {
+	#		condition_string = SPECIALIST_JOB_TRIGGER ###
+	#		building_icon = building_research_lab_1
+	#	}
+	#	# Astrometeorologists
+	#	swap_type = {
+	#		trigger = {
+	#			physicist_is_astrometeorologist_trigger = yes
+	#		}
+	#		name = astrometeorologist
+	#		desc = astrometeorologist
+	#		icon = astrometeorologist
+	#		building_icon = building_astrometeorology_observation_center
+	#		condition_string = SPECIALIST_JOB_TRIGGER
+	#		weight = 5
+	#	}
+	#	# Astral Researcher
+	#	swap_type = {
+	#		trigger = {
+	#			physicist_is_astral_researcher_trigger = yes
+	#		}
+	#		name = astral_researcher
+	#		desc = astral_researcher
+	#		icon = astral_researcher
+	#		building_icon = building_astral_siphon_1
+	#		weight = 5
+	#	}
+	#}
+
+	tags = { research }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job ###
+	possible = {
+		complex_specialist_job_check_trigger = yes ###
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			local_or_sector_governor_has_trait = {
+				TRAIT = leader_trait_academia_recruiter
+			}
+		}
+		country_naval_cap_add = 1
+		mult = planet.modifier:job_researcher_naval_cap_add
+	}
+
+	resources = {
+		category = planet_physicists
+		produces = {
+			physics_research = 6
+			engineering_research = 6
+			society_research = 6
+		}
+		produces = {
+			trigger = { owner = { has_ascension_perk = ap_cosmogenesis } }
+			advanced_logic = 0.5
+		}
+		produces = {
+			trigger = { owner = { has_ascension_perk = ap_hyperdimensional_exodus } }
+			interdim_insights = 0.5
+		}
+		inline_script = "output/researcher_output"
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_research
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			physics_research = 3
+			engineering_research = 3
+			society_research = 3
+		}
+	}
+
+	### Might use this later on for Horizon Brain Specialization
+	# Dimensional Portal Amenities
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		planet = {
+	#			has_modifier = dportal_trade_normal
+	#		}
+	#	}
+	#	planet_amenities_add = 600
+	#	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	#}
+
+	weight = {
+		weight = @specialist_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_universe_sandbox|RESOURCE|physics_research|
+		mult = value:job_weights_modifier|JOB|ssh_vr_universe_sandbox|RESOURCE|engineering_research|
+		mult = value:job_weights_modifier|JOB|ssh_vr_universe_sandbox|RESOURCE|society_research|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = { type = living_standard_academic_privilege }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 0.8
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_research
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = special_member
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Medical Researcher (+ Society Research, +Output of all Medical Workers)
+# Exotic Environments Researcher (+Habitability, +Society(Bio) Research)
+
+# Defense Engineer/Simulator (Pacifist)
+ssh_vr_defense_engineer = {
+	category = special_member
+
+	tags = { research }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			engineering_research = 5
+		}
+		produces = {
+			trigger = { owner = { has_tradition = tr_unyielding_finish } }
+			engineering_research = 0.5
+			unity = 2
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		country_naval_cap_add = 1
+		#starbases_upkeep_mult = -0.05
+		starbase_upgrade_cost_mult = -0.05
+		starbase_upgrade_speed_mult = 0.05
+		ship_shield_mult = 0.05
+		army_defense_health_mult = 0.05
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner
+				owner = { has_technology = "tech_ground_defense_planning" }
+			}
+		}
+		modifier = {
+			country_naval_cap_add = 2
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					is_councilor = yes
+					has_trait = leader_trait_bellicose
+				}
+			}
+		}
+		modifier = {
+			country_naval_cap_add = 2
+		}
+		mult = value:bellicose_naval_cap
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_councilor = { COUNCILOR = "councilor_private_military_companies" }
+		}
+
+		modifier = {
+			planet_stability_add = @councilor_private_military_companies_stability
+		}
+
+		mult = value:councilor_level|TYPE|councilor_private_military_companies|
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_research
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			engineering_research = 2.5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_defense_engineer|RESOURCE|engineering_research|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = { type = living_standard_academic_privilege }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 0.8
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_research
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = special_member
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Battle Engineer
+ssh_vr_battle_engineer = {
+	category = special_member
+
+	tags = { research }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			engineering_research = 5
+		}
+		produces = {
+			trigger = { owner = { has_tradition = tr_supremacy_finish } }
+			engineering_research = 0.5
+		}
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_research
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			engineering_research = 2.5
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = { always = yes }
+		country_naval_cap_add = 1
+		army_attack_health_mult = 0.05
+		army_attack_damage_mult = 0.05
+		ship_shield_damage_mult = 0.05
+		ship_armor_damage_mult = 0.05
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner
+				owner = { has_technology = "tech_ground_defense_planning" }
+			}
+		}
+		modifier = {
+			country_naval_cap_add = 2
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					is_councilor = yes
+					has_trait = leader_trait_bellicose
+				}
+			}
+		}
+
+		modifier = {
+			country_naval_cap_add = 2
+		}
+		mult = value:bellicose_naval_cap
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_battle_engineer|RESOURCE|engineering_research|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = { type = living_standard_academic_privilege }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 0.8
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_research
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = special_member
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Practical Philosopher
+ssh_vr_philosopher = {
+	category = special_member
+
+	tags = { research }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			society_research = 15
+			physics_research = 3
+			engineering_research = 3
+		}
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_research
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			society_research = 7.5
+			physics_research = 1.5
+			engineering_research = 1.5
+		}
+	}
+	
+	weight = {
+		weight = @specialist_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_philosopher|RESOURCE|society_research|
+		mult = value:job_weights_modifier|JOB|ssh_vr_philosopher|RESOURCE|physics_research|
+		mult = value:job_weights_modifier|JOB|ssh_vr_philosopher|RESOURCE|engineering_research|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = { type = living_standard_academic_privilege }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 0.8
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_research
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = special_member
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Extradimensional Simulator (+ Interdim Insights)
+
+
+## Other Resources
+# Netrunner (+ Intel Gain Speed, +Trade Value)
+ssh_vr_netrunner = {
+	category = special_member
+
+	tags = { research }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+
+	resources = {
+		category = planet_bureaucrats
+		produces = {
+			trigger = {
+				owner = {
+					OR = {
+						has_valid_civic = civic_individual_machine_predictive_analysis
+						has_valid_civic = civic_memory_vault
+						has_valid_civic = civic_memory_vault_corporate
+					}
+				}
+			}
+			unity = 0.5
+		}
+		produces = {
+			trigger = {
+				owner = {
+					is_capitalist = yes # Data is sold
+				}
+			}
+			trade = 2
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = { always = yes }
+		intel_decryption_add = 0.05 ###Check ingame
+		espionage_operation_skill_add = 0.05 ###
+		espionage_operation_speed_mult = 0.025 ###
+	}
+	
+	weight = {
+		weight = @specialist_job_weight
+		#mult = value:job_weights_modifier|JOB|ssh_vr_netrunner|RESOURCE|society_research|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = { type = living_standard_academic_privilege }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 0.8
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_research
+		}
+	}
+
+	#inline_script = "jobs/automodding_priority_amenities" ### Might Change that soon
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = special_member
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+
+### WORKER CATEGORY ###
+# Member - Regular (Clerk)
+ssh_vr_member = {
+	category = member
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER ### Not sure if this works
+			building_icon = building_residence
+			icon = ssh_vr_member
+		}
+		swap_type = {
+			trigger = {
+				member_is_communist = yes
+			}
+			name = ssh_vr_member_shared_burden
+			building_icon = building_communal_housing
+			icon = ssh_vr_member_shared_burden
+			desc = job_ssh_vr_member_shared_burden_desc
+			weight = 10
+		}
+		swap_type = {
+			trigger = {
+				member_is_peasant = yes
+			}
+			name = ssh_vr_peasant
+			icon = ssh_vr_peasant
+			desc = job_ssh_vr_peasant_desc
+			weight = 10
+		}
+	}
+
+	tags = { amenities trade }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		#is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_clerks
+		produces = {
+			trade = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { is_pacifist = yes }
+			}
+			unity = 0.5
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { is_capitalist = yes }
+			}
+			trade = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOR = {
+				member_is_communist = yes
+				member_is_peasant = yes
+			}
+		}
+		planet_jobs_trade_produces_mult = 0.025 # Regular Clerks produce 0.01
+	}
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_pacifist = yes
+			}
+		}
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	# True Equals Modifiers
+	triggered_planet_modifier = {
+		potential = { member_is_communist = yes }
+		planet_jobs_trade_produces_mult = 0.01
+		pop_government_ethic_attraction = 0.05
+	}
+	triggered_planet_modifier = {
+		potential = { member_is_communist = yes }
+		planet_amenities_add = 4 # 1 more than regular members
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+	triggered_planet_modifier = {
+		potential = { member_is_communist = yes }
+		planet_jobs_unity_produces_mult = 0.01
+	}
+	triggered_planet_modifier = {
+		potential = { member_is_communist = yes }
+		planet_stability_mult = 0.02
+	}
+
+	# VR Peasant Modifier
+	triggered_planet_modifier = {
+		potential = {
+			member_is_peasant = yes
+		}
+		planet_jobs_trade_produces_mult = 0.02 # Regular Clerks produce 0.01
+	}
+
+	#inline_script = "output/politician_output_modifier" ### Might make a custom one at some point
+
+	weight = {
+		weight = @worker_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_member|RESOURCE|trade|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		modifier = {
+			factor = 0.25
+			is_enslaved = yes
+			can_take_servant_job = no
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
+			}
+			can_take_servant_job = no
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
+			}
+			can_take_servant_job = no
+			can_fill_specialist_job_trigger = no
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			exists = owner
+			owner = { is_megacorp = yes }
+		}
+		modifier = {
+			factor = 0.5
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_trade"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = member
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+#Swap for shared burden
+ssh_vr_member_shared_burden = {
+	category = member
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_communal_housing_large
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+# Swap for ssh_vr_peasant
+ssh_vr_peasant = {
+	category = member
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_low_tech_farm
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+
+
+## Additional Worker Jobs (Building specific)
+# Gladiator Spectator
+ssh_vr_spectator = {
+	category = member
+
+	tags = { amenities unity }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		#is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_clerks
+		produces = {
+			unity = 0.5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		planet_amenities_add = 4
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_warrior_culture
+			}
+		}
+		planet_amenities_add = 1
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_spectator|RESOURCE|unity|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		modifier = {
+			factor = 0.25
+			is_enslaved = yes
+			can_take_servant_job = no
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
+			}
+			can_take_servant_job = no
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
+			}
+			can_take_servant_job = no
+			can_fill_specialist_job_trigger = no
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			exists = owner
+			owner = { is_megacorp = yes }
+		}
+		modifier = {
+			factor = 0.5
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_amenities"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = member
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+
+# VR Soldier/Trainee
+ssh_vr_soldier = {
+	category = member
+
+	tags = { soldier }
+
+	country_modifier = {
+		country_naval_cap_add = 4
+		army_starting_experience_add = 10
+		army_experience_gain_mult = 0.01
+	}
+
+	resources = {
+		category = planet_soldiers
+		inline_script = "output/soldier_output"
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner
+				owner = { has_technology = "tech_ground_defense_planning" }
+			}
+		}
+		modifier = {
+			country_naval_cap_add = 2
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					is_councilor = yes
+					has_trait = leader_trait_bellicose
+				}
+			}
+		}
+
+		modifier = {
+			country_naval_cap_add = 2
+		}
+		mult = value:bellicose_naval_cap
+	}
+
+	#pop_modifier = {
+	#	pop_defense_armies_add = 3
+	#}
+
+	planet_modifier = {
+		planet_stability_add = 0.25
+	}
+
+	#triggered_pop_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = {
+	#			any_owned_leader = {
+	#				is_councilor = yes
+	#				has_trait = leader_trait_bellicose
+	#			}
+	#		}
+	#	}
+	#
+	#	modifier = {
+	#		pop_defense_armies_add = 1
+	#	}
+	#	mult = value:bellicose_naval_cap
+	#}
+
+	triggered_planet_modifier = {
+		modifier = {
+			planet_stability_add = 1
+		}
+		mult = planet.modifier:job_soldier_stability_add
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				exists = owner
+				owner = { has_tradition = "tr_modularity_3" }
+			}
+		}
+		modifier = {
+			planet_stability_add = 0.25
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_councilor = { COUNCILOR = "councilor_private_military_companies" }
+		}
+		modifier = {
+			planet_stability_add = @councilor_private_military_companies_stability
+		}
+		mult = value:councilor_level|TYPE|councilor_private_military_companies|
+	}
+
+	inline_script = "output/soldier_triggered_modifiers"
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = { is_gestalt = no }
+	}
+
+	weight = {
+		weight = @soldier_job_weight
+		modifier = {
+			factor = 10
+			exists = planet
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			is_enslaved = yes
+			NOT = { has_slavery_type = { type = slavery_military } }
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_military }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_presapient_earthbound
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_limited_regeneration
+		}
+		modifier = {
+			factor = 0
+			species = { can_be_soldier = no }
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_war
+		}
+	}
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = worker
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+
+### Other Category
+# Meatfarm (Livestock)
+ssh_vr_livestock = {
+	category = member
+	is_capped_by_modifier = no
+
+	tags = { food }
+
+	possible_pre_triggers = {
+		is_enslaved = yes
+		is_sapient = yes
+		is_robotic = no
+	}
+
+	possible = {
+		OR = {
+			has_citizenship_type = {
+				type = citizenship_slavery
+				country = owner
+			}
+			has_citizenship_type = {
+				type = citizenship_exploited_drone
+				country = owner
+			}
+		}
+		has_slavery_type = { type = slavery_livestock }
+		is_lithoid = no
+
+		# Additional Check for HB Server Config building
+		planet = {
+			has_building = building_ssh_hb_server_livestock
+		}
+	}
+
+	resources = {
+		category = planet_livestock_farmers
+		produces = {
+			food = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_pop_modifier = {
+		potential = { always = yes }
+		pop_happiness = 0.5 # Additional Happiness
+		pop_housing_usage_add = -0.5
+		pop_political_power = -0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_evolutionary_predators }
+		}
+		custom_tooltip = evolutionary_predators_pops_tt
+	}
+
+	weight = {
+		weight = 999 #@special_job_weight
+	}
+}
+
+
+
+
+
+
+
+
+
+
+### Habitable Dyson Jobs
+# VR Trophy
+ssh_bio_trophy_vr = {
+	category = bio_trophy
+	can_be_automated = no
+
+	swappable_data = {
+		default = {
+			building_icon = building_organic_sanctuary
+		}
+	}
+	tags = { unity }
+
+	possible_pre_triggers = {
+		is_sapient = yes
+		is_robotic = no
+	}
+
+	possible = {
+		has_citizenship_type = { type = citizenship_organic_trophy country = owner }
+		OR = {
+			is_pop_category = bio_trophy
+			is_pop_category = bio_trophy_unemployment
+		}
+		#planet = { NOT = { is_planet_class = pc_cosmogenesis_world } }
+		planet = {
+			OR = {
+				is_planet_class = pc_habitable_dyson
+				is_planet_class = pc_horizon_brain
+			}
+		}
+	}
+
+	resources = {
+		category = planet_bio_trophies
+		produces = {
+			unity = 2
+			society_research = 0.5
+			physics_research = 0.5
+			engineering_research = 0.5
+		}
+	}
+
+	planet_modifier = {
+		pop_cat_complex_drone_bonus_workforce_mult = 0.01
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 5
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_pop_modifier = {
+		pop_housing_usage_add = -1
+	}
+
+	promotion = {
+		time = 0
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = bio_trophy
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	weight = {
+		weight = @special_job_weight
+	}
+}
+
+# VR Scientist
+ssh_vr_researcher = {
+	category = specialist
+
+	tags = { research }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			local_or_sector_governor_has_trait = {
+				TRAIT = leader_trait_academia_recruiter
+			}
+		}
+		country_naval_cap_add = 1
+		mult = planet.modifier:job_researcher_naval_cap_add
+	}
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			physics_research = 6
+			engineering_research = 6
+			society_research = 6
+		}
+		inline_script = "output/researcher_output"
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_research
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			physics_research = 3
+			engineering_research = 3
+			society_research = 3
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_researcher|RESOURCE|physics_research|
+		mult = value:job_weights_modifier|JOB|ssh_vr_researcher|RESOURCE|engineering_research|
+		mult = value:job_weights_modifier|JOB|ssh_vr_researcher|RESOURCE|society_research|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = { type = living_standard_academic_privilege }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 0.8
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_research
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Corrupt Code (-Stability -> Low amenities)
+
+# VR Prisoner (Blank Room) - +Government acceptance, society research, -crime
+# VR Prisoner (Hell) - -Government acceptance, society research, -crime
+
+## Purge
+# VR Damned (Terminator/Purifier) - all research, +unity
+ssh_vr_purge = {
+	category = purge
+	first_come_first_served = yes
+	is_capped_by_modifier = no
+
+	tags = { }
+
+	demotion = {
+		time = 0
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = purge
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+
+	ignores_sapience = yes
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = yes
+		is_robotic = no
+		is_being_purged = yes
+	}
+	
+	possible = {
+		OR = {
+			#has_citizenship_type = { type = citizenship_purge_machine country = owner }
+			#has_citizenship_type = { type = citizenship_purge country = owner }
+			NOR = {
+				has_purge_type = { country = owner type = purge_processing }
+				has_purge_type = { country = owner type = purge_labor_camps }
+				has_purge_type = { country = owner type = purge_matrix }
+			}
+			has_pop_group_flag = event_purge
+		}
+		has_purge_type = { type = purge_virtual_hell }
+		planet = {
+			OR = {
+				is_planet_class = pc_horizon_brain
+				is_planet_class = pc_habitable_dyson
+			}
+		}
+	}
+
+	resources = {
+		category = planet_jobs
+		produces = {
+			society_research = 5
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_valid_civic = civic_fanatic_purifiers }
+			}
+			unity = 2
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_valid_civic = civic_hive_devouring_swarm }
+			}
+			society_research = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_evolutionary_predators }
+		}
+		custom_tooltip = evolutionary_predators_pops_tt
+	}
+
+	weight = {
+		weight = @special_job_weight
+
+		modifier = {
+			factor = 200 # brings @special_job_weight up to 2
+			exists = planet
+			exists = planet.controller
+			OR = {
+				has_pop_group_flag = event_purge
+				planet.controller = {
+					OR = {
+						is_country_type = swarm
+						is_country_type = ai_empire
+					}
+				}
+			}
+		}
+
+		modifier = {
+			factor = 9999 # u die when flagged
+			has_pop_group_flag = event_purge
+		}
+
+		modifier = {
+			factor = 9999 # u die when crisis'd
+			exists = planet
+			exists = planet.controller
+			planet.controller = {
+				OR = {
+					is_country_type = swarm
+					is_country_type = ai_empire
+					# extradimensionals just bombard you
+				}
+			}
+		}
+	}
+}

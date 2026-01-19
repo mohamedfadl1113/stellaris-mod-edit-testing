@@ -1,0 +1,40 @@
+ssh_generate_special_start_buildings_and_districts = {
+	# Called after generate_start_buildings_and_districts
+	
+	## Origin
+	inline_script = "game_start/origin_ssh_gas_giant_shellworld"
+	inline_script = "game_start/origin_ssh_stellar_hoop"
+	inline_script = "game_start/origin_ssh_hoopworld"
+	inline_script = "game_start/origin_ssh_edersphere"
+	inline_script = "game_start/origin_ssh_freesphere"
+
+
+
+	### LATER UPDATE ###
+	# Tankbound civic (removes every farming districts so we want to do that at the end)
+	#inline_script = "game_start/civic_tankbound"
+	
+	# Apply rural districts depending on variable count - FOR SSH ORIGINS
+	inline_script = "game_start/ssh_rural_districts_placement"
+
+	give_starting_resources_effect = yes
+}
+
+ssh_spawn_company_enclave_system = {
+	random_system = {
+		limit = {
+			NOR = {
+				is_fe_cluster = yes
+				has_star_flag = empire_cluster
+			}
+		}
+		spawn_system = {
+			min_distance >= 7
+			max_distance <= 25
+			min_orientation_angle = 0
+			max_orientation_angle = 359
+			initializer = ssh_init_company
+			hyperlane = yes
+		}
+	}
+}

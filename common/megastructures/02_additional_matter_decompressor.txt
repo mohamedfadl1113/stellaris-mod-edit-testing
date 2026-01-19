@@ -1,0 +1,29 @@
+# Cosmogenesis Matter Decompressor
+matter_decompressor_cosmogenesis = {
+	entity = "matter_decompressor_stage_4_entity"
+	construction_entity = "matter_decompressor_stage_4_construction_entity"
+	portrait = "GFX_megastructure_matter_decompressor_background"
+	entity_offset = { x = -20 y = -20 }
+	rotate_to_center = yes
+	scale_offset = yes
+	place_entity_on_planet_plane = no
+	build_time = 4800
+
+	potential = {
+		always = no
+	}
+
+	resources = {
+		category = megastructures
+		
+		produces = {
+			food = 2000
+			sr_conscious_matter = 500
+			alloys = 500
+		}
+
+		upkeep = {
+			energy = 100
+		}
+	}
+}

@@ -1,0 +1,958 @@
+#Shellworlds Classes
+# Finished Shellworld
+pc_shellworld_core = {
+	entity = "ssh_shellworld_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_shellworld
+	icon_large = GFX_planet_type_shellworld
+	picture = pc_shellworld_core
+	enable_tilt = no
+	starting_planet = no
+
+	atmosphere_color = hsv { 0.3 0.1 0.1}
+	atmosphere_intensity = 1.0
+	atmosphere_width = 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+
+	climate = "cold"
+	colonizable = yes
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	spawn_odds = 0
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_normal
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	#is_artificial_planet = yes
+
+	ideal = yes
+
+	modifier = {
+		habitability_floor_add = 1.0
+		planet_jobs_energy_upkeep_mult = 0.1
+		planet_districts_upkeep_mult = 0.1
+		planet_max_buildings_add = 4
+	}
+}
+
+pc_shellworld_core_city = {
+	entity = "ssh_shellworld_city_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_city
+	icon_large = GFX_planet_type_city
+	picture = pc_shellworld_core_city
+	enable_tilt = yes #no
+	starting_planet = no
+
+	atmosphere_color = hsv { 0.3 0.1 0.1}
+	atmosphere_intensity = 1.0
+	atmosphere_width = 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+
+	#climate = "cold"
+	colonizable = yes
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	spawn_odds = 0
+	uses_alternative_skies_for_moons = no
+	district_set = city_world
+	carry_cap_per_free_district = @carry_cap_high
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	modifier = {
+		planet_jobs_produces_mult = 0.20
+		BIOLOGICAL_pop_growth_speed = 0.15
+		LITHOID_pop_growth_speed = 0.15
+		planet_pop_assembly_mult = 0.15
+		#planet_pop_assembly_organic_mult = 0.15
+		planet_pop_assembly_mult = 0.15
+		planet_max_buildings_add = 12
+		planet_resettlement_unemployed_destination_mult = 0.5
+		# ^Ecumenopolis Modifiers
+		#habitability_floor_add = 1.0
+		planet_jobs_energy_upkeep_mult = 0.1
+		planet_districts_upkeep_mult = 0.1
+		planet_max_buildings_add = 8
+	}
+
+	fixed_city_level = 6
+	ideal = yes
+}
+
+pc_shellworld_core_machine = {
+	entity = "ssh_shellworld_machine_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_machine
+	icon_large = GFX_planet_type_machine
+	picture = pc_shellworld_core_machine
+	enable_tilt = no
+	starting_planet = no
+
+	atmosphere_color = hsv { 0.09 0.8 0.7 }
+	atmosphere_intensity = 0.4
+	atmosphere_width = 1.0
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	#climate = "cold"
+	colonizable = yes
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	spawn_odds = 0
+	uses_alternative_skies_for_moons = no
+	district_set = machine_world
+	starting_district = district_nexus
+	carry_cap_per_free_district = @carry_cap_low
+
+	modifier = {
+		planet_jobs_produces_mult = 0.10
+		pop_housing_usage_mult = -0.10
+		pop_environment_tolerance = 0.0
+		planet_max_buildings_add = 12
+		job_replicator_add = 1
+		planet_resettlement_unemployed_destination_mult = 0.5
+		# ^Machineworld Modifiers
+		#habitability_floor_add = 1.0
+		planet_jobs_energy_upkeep_mult = 0.1
+		planet_districts_upkeep_mult = 0.1
+		planet_max_buildings_add = 8
+	}
+
+	#fixed_city_level = 6
+	show_city = no
+}
+
+pc_shellworld_core_hive = {
+	entity = "ssh_shellworld_hive_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_hive
+	icon_large = GFX_planet_type_hive
+	picture = pc_shellworld_core_hive
+	enable_tilt = no
+	starting_planet = no
+
+	atmosphere_color = hsv { 0.75 0.2 0.7 }
+	atmosphere_intensity = 0.1
+	atmosphere_width = 1.2
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	spawn_odds = 0
+	uses_alternative_skies_for_moons = no
+	district_set = hive_world
+	starting_district = district_hive
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	modifier = {
+		planet_jobs_produces_mult = 0.10
+		planet_max_buildings_add = 12
+		job_spawning_drone_add = 1
+		planet_resettlement_unemployed_destination_mult = 0.5
+		# ^Hiveworld Modifiers
+		planet_jobs_energy_upkeep_mult = 0.1
+		planet_districts_upkeep_mult = 0.1
+		planet_max_buildings_add = 8
+	}
+
+	colonizable = yes
+	#fixed_city_level = 6
+	ideal = yes
+	show_city = no
+	carry_cap_per_free_district = @carry_cap_high
+}
+
+pc_shellworld_core_gaia = {
+	entity = "ssh_shellworld_gaia_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_gaia
+	icon_large = GFX_planet_type_gaia
+	picture = pc_shellworld_core_gaia
+	enable_tilt = yes #no
+	starting_planet = no
+
+	atmosphere_color = hsv { 0.58 0.3 0.7 }
+	atmosphere_intensity = 1.0
+	atmosphere_width = 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
+
+	colonizable = yes
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	spawn_odds = 0
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	ideal = yes
+	carry_cap_per_free_district = @carry_cap_high
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	#is_artificial_planet = yes # -> deactivated for agri districts
+
+	modifier = {
+		planet_jobs_produces_mult = 0.10
+		pop_happiness = 0.10
+		planet_resettlement_unemployed_destination_mult = 0.5
+		# ^Gaia Modifiers
+		#habitability_floor_add = 1.0
+		planet_jobs_energy_upkeep_mult = 0.1
+		planet_districts_upkeep_mult = 0.1
+		planet_max_buildings_add = 8
+	}
+
+	fixed_city_level = 6
+}
+
+
+# Gas Giant Shellworld
+pc_gas_giant_shellworld = {
+	entity = "ssh_gas_giant_shellworld_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_gas_giant_shellworld
+	icon_large = GFX_planet_type_gas_giant_shellworld
+	picture = pc_gas_giant_shellworld
+	enable_tilt = no
+	starting_planet = no
+
+	atmosphere_color = hsv { 0.3 0.1 0.1}
+	atmosphere_intensity = 0.5
+	atmosphere_width = 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+
+	climate = "cold"
+	colonizable = yes
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size } #max = @habitable_planet_max_size
+	spawn_odds = 0
+	uses_alternative_skies_for_moons = no
+	district_set = gas_shell_world
+	starting_district = district_ssh_gas_shellworld_housing
+	carry_cap_per_free_district = @carry_cap_normal
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	modifier = {
+		habitability_floor_add = 2.0
+		planet_max_buildings_add = 12
+	}
+
+	ideal = yes
+}
+
+# Edersphere
+pc_edersphere = {
+	entity = "ssh_edersphere_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_edersphere
+	icon_large = GFX_planet_type_edersphere
+	picture = pc_edersphere
+	enable_tilt = no
+	starting_planet = no
+
+	atmosphere_color = hsv { 0.0 0.0 0.0}
+	atmosphere_intensity = 0.1
+	atmosphere_width = 0.5
+	city_color_lut = "gfx/portraits/misc/ssh_colorcorrection_dark.dds"
+
+	climate = "cold"
+	colonizable = yes
+	planet_size = { min = 30 max = 30 }
+	spawn_odds = 0
+	uses_alternative_skies_for_moons = no
+	district_set = edersphere_world
+	starting_district = district_ssh_edersphere_city
+	carry_cap_per_free_district = @carry_cap_normal
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	orbit_lines = no
+
+	modifier = {
+		habitability_floor_add = 2.0
+		planet_jobs_energy_upkeep_mult = 0.2
+		planet_max_buildings_add = 24
+		planet_housing_add = 12
+	}
+
+	ideal = yes
+}
+
+# Black Hole Shellworld
+pc_black_hole_shellworld = {
+	entity = "ssh_black_hole_shellworld_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_black_hole_shellworld
+	icon_large = GFX_planet_type_black_hole_shellworld
+	picture = pc_black_hole_shellworld
+	enable_tilt = no
+
+	climate = "cold"
+	starting_planet = no
+	spawn_odds = 0
+
+	atmosphere_color = hsv { 0.1 0.1 0.1 }
+	atmosphere_intensity = 1.0
+	atmosphere_width = 0.5
+
+	city_color_lut = "gfx/portraits/misc/ssh_colorcorrection_dark.dds"
+
+	planet_size = { min = 35 max = 40 }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	uses_alternative_skies_for_moons = no
+	district_set = black_hole_shell_world
+	starting_district = district_ssh_black_hole_shell_city
+	carry_cap_per_free_district = @carry_cap_normal
+	fixed_city_level = 6
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	orbit_lines = no
+
+	ideal = yes
+
+	modifier = {
+		#habitability_floor_add = 1.0
+		planet_max_buildings_add = 48
+		planet_housing_add = 20
+		#planet_jobs_produces_mult = 0.25
+		#planet_jobs_upkeep_mult = 0.25
+	}
+}
+
+##
+# Stellar Hoop
+pc_stellar_hoop = {
+	entity = "ssh_stellar_hoop_normal_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_stellar_hoop
+	icon_large = GFX_planet_type_stellar_hoop
+	picture = pc_stellar_hoop
+	enable_tilt = no
+	starting_planet = no
+
+	atmosphere_color = hsv { 2.0 1.6 0.0}
+	atmosphere_intensity = 1.0
+	atmosphere_width = 1
+	city_color_lut = "gfx/portraits/misc/ssh_colorcorrection_stellar.dds"
+
+	climate = "dry"
+	colonizable = yes
+	planet_size = { min = 10 max = 10 }
+	spawn_odds = 0
+	uses_alternative_skies_for_moons = no
+	district_set = stellar_hoop_world
+	starting_district = district_ssh_stellar_hoop_maintenance
+	carry_cap_per_free_district = @carry_cap_normal
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	orbit_lines = no
+
+	modifier = {
+		habitability_floor_add = 0.5
+		planet_pop_assembly_mult = 0.25
+		BIOLOGICAL_pop_growth_speed = -0.15
+	}
+
+	fixed_city_level = 5
+}
+
+##### BWC Megastructures #####
+# Hoopworld
+pc_hoopworld = {
+	entity = "ssh_hoopworld_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_hoopworld
+	icon_large = GFX_planet_type_hoopworld
+	picture = pc_hoopworld
+
+	climate = "wet"
+	starting_planet = no
+	spawn_odds = 0
+
+	atmosphere_color = hsv { 0.59 0.45 0.95 }
+	atmosphere_intensity = 1.0
+	atmosphere_width = 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	uses_alternative_skies_for_moons = no
+	district_set = bwc_world
+	starting_district = district_ssh_bwc_city
+	carry_cap_per_free_district = @carry_cap_normal
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	ideal = yes
+
+	modifier = {
+		habitability_floor_add = 1.0
+		pop_happiness = 0.2
+		BIOLOGICAL_pop_growth_from_immigration = 1.0
+		LITHOID_pop_growth_from_immigration = 1.0
+		BIOLOGICAL_pop_growth_speed = 0.15
+		district_farming_max = 30
+	}
+}
+
+pc_discworld = {
+	entity = "ssh_discworld_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_discworld
+	icon_large = GFX_planet_type_discworld
+	picture = pc_discworld
+
+	climate = "wet"
+	starting_planet = no
+	spawn_odds = 0
+
+	atmosphere_color = hsv { 0.59 0.45 0.95 }
+	atmosphere_intensity = 1.0
+	atmosphere_width = 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	uses_alternative_skies_for_moons = no
+	district_set = bwc_world
+	starting_district = district_ssh_bwc_city
+	carry_cap_per_free_district = @carry_cap_normal
+	
+	can_be_moon = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	ideal = yes
+
+	modifier = {
+		habitability_floor_add = 1.0
+		pop_happiness = 0.2
+		BIOLOGICAL_pop_growth_from_immigration = 1.0
+		LITHOID_pop_growth_from_immigration = 1.0
+		BIOLOGICAL_pop_growth_speed = 0.15
+		district_farming_max = 25
+	}
+}
+
+pc_freesphere = {
+	entity = "ssh_freesphere_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_freesphere
+	icon_large = GFX_planet_type_freesphere
+	picture = pc_freesphere
+
+	climate = "wet"
+	starting_planet = no
+	spawn_odds = 0
+
+	atmosphere_color = hsv { 0.59 0.45 0.95 }
+	atmosphere_intensity = 1.0
+	atmosphere_width = 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	uses_alternative_skies_for_moons = no
+	district_set = bwc_world
+	starting_district = district_ssh_bwc_city
+	carry_cap_per_free_district = @carry_cap_normal
+	
+	can_be_moon = yes
+	orbit_lines = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	show_city = no
+
+	ideal = yes
+
+	modifier = {
+		pop_happiness = 0.2
+		BIOLOGICAL_pop_growth_from_immigration = 1.0
+		LITHOID_pop_growth_from_immigration = 1.0
+		BIOLOGICAL_pop_growth_speed = 0.15
+		district_farming_max = 25
+	}
+}
+
+# Habitable Dyson Sphere
+pc_habitable_dyson = {
+	entity = "ssh_dyson_hab_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_habitable_dyson
+	icon_large = GFX_planet_type_habitable_dyson
+	picture = pc_habitable_dyson
+	enable_tilt = no
+	starting_planet = no
+
+	atmosphere_color = hsv { 0.3 0.3 0.3 }
+	atmosphere_intensity = 1.0
+	atmosphere_width = 1
+	city_color_lut = "gfx/portraits/misc/ssh_colorcorrection_dark.dds"
+
+	#climate = "dry"
+	colonizable = yes
+	planet_size = { min = 10 max = 30 }
+	spawn_odds = 0
+	uses_alternative_skies_for_moons = no
+	district_set = standard #hab_dyson_world
+	carry_cap_per_free_district = @carry_cap_normal
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+	is_artificial_planet = yes
+
+	orbit_lines = no
+
+	modifier = {
+		habitability_floor_add = 0.5
+		planet_pop_assembly_mult = 0.25
+		planet_max_buildings_add = 34
+		planet_housing_add = 15
+		#BIOLOGICAL_pop_growth_speed = -0.15
+	}
+
+	#fixed_city_level = 5
+}
+
+### Special Types ###
+# Horizon Brain - Regular
+pc_horizon_brain = {
+	#habitat = yes
+	entity = "orbital_habitat"
+	icon = GFX_planet_type_synaptic_lathe ###
+	icon_large = GFX_planet_type_synaptic_lathe
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	place_entity_on_planet_plane = yes
+	entity_face_object = no #disable rotation towards sun or planet we orbit around
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }		#DONE
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	show_city = no
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 10 #6
+	#moon_size = 1
+	colonizable = yes
+	district_set = horizon_brain_world
+	starting_district = district_ssh_horizon_brain_cpu
+	###building_set = horizon_brain_world
+	#holdings = no
+	#ideal = yes
+	starting_planet = no
+	orbit_lines = no
+	has_colonization_influence_cost = no			# applies when within own borders
+
+	is_artificial_planet = yes
+	default_planet_selection = yes
+	#inherit_country_building_modifiers = no
+
+	modifier = {
+		pop_environment_tolerance = 0.85
+		### Gotta check these but probably wont, thanks 4.0
+		BIOLOGICAL_pop_growth_speed = -2.0
+		LITHOID_pop_growth_speed = -2.0
+		planet_crime_mult = -1
+		#planet_max_buildings_add = 1
+	}
+
+	carry_cap_per_free_district = @carry_cap_low
+	can_be_invaded = no
+}
+
+
+# Neutron Star Stellar Hoop (special districts)?
+
+
+# Ascensionist Portal Planet class (to stay ingame; undestructible)
+pc_exodus_portal = {
+	entity = "ssh_exodus_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_black_hole
+	icon_large = GFX_planet_type_black_hole
+	picture = pc_exodus_portal
+
+	#climate = "wet"
+	starting_planet = no
+	spawn_odds = 0
+
+	atmosphere_color = hsv { 0.0 0.0 0.0 }
+	atmosphere_intensity = 1.0
+	atmosphere_width = 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+
+	planet_size = { min = 5 max = 10 }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	show_city = no
+	uses_alternative_skies_for_moons = no
+	district_set = exodus_portal
+	starting_district = district_ssh_exodus_portal
+	carry_cap_per_free_district = @carry_cap_normal
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+
+	is_artificial_planet = yes # No Ecu Project
+
+	modifier = {
+		#habitability_ceil_add = -2.0
+		planet_orbital_bombardment_damage = -5.0
+		planet_defense_armies_add = 150
+		army_defense_damage_mult = 5.0
+		army_defense_health_mult = 5.0
+	}
+
+	can_be_invaded = no
+}
+
+####### UNHABITABLE CLASSES #######
+
+pc_ssh_lava = {
+	entity = "ssh_lava_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_molten
+	icon_large = GFX_planet_type_molten
+	picture = pc_ssh_lava
+
+	atmosphere_color		= hsv { 0.05 0.65 1.4 }		#DONE
+	atmosphere_intensity	= 0.05
+	atmosphere_width		= 1.0
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 40
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 10 max = 20 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+}
+
+pc_ssh_disintegrated_matter = {
+	entity = "ssh_disintegrated_matter_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_ssh_disintegrated_star
+	icon_large = GFX_planet_type_ssh_disintegrated_star
+	picture = pc_disintegrated_planet
+
+	atmosphere_color		= hsv { 0.1 0.1 0.1 }
+	atmosphere_intensity	= 0.5
+	atmosphere_width		= 1.0
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 40
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 1 max = 30 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+}
+
+#pc_ssh_basement_universe_wormhole = {
+#	entity = "ssh_wormhole_planet"
+#	entity_scale = @planet_standard_scale
+#	icon = GFX_planet_type_black_hole #####
+#	picture = pc_black_hole
+#
+#	atmosphere_color		= hsv { 0.1 0.1 0.1 }
+#	atmosphere_intensity	= 0.5
+#	atmosphere_width		= 1.0
+#
+#	min_distance_from_sun = 0
+#	max_distance_from_sun = 40
+#	spawn_odds = 0
+#
+#	extra_orbit_size = 0
+#	extra_planet_count = 0
+#
+#	chance_of_ring = 0
+#
+#	planet_size = { min = 1 max = 60 }
+#	moon_size = { min = 6 max = 10 }
+#
+#	colonizable = no
+#}
+
+# ###########
+# Stars
+# ###########
+
+pc_ssh_empty_space = {
+	entity = "ssh_empty"
+	entity_scale = 1
+	icon = GFX_planet_type_ssh_empty_space
+	icon_large = GFX_planet_type_ssh_empty_space
+	picture = pc_ssh_empty_space
+
+	starting_planet = no
+	spawn_odds = 0
+
+	atmosphere_color = hsv { 0.0 0.0 0.0 }
+	atmosphere_intensity = 1.0
+	atmosphere_width = 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+
+	enable_tilt = no
+	colonizable = no
+	uses_alternative_skies_for_moons = no
+	orbit_lines = no
+	star = yes
+}
+
+pc_white_dwarf_star = {
+	entity = "ssh_d_star_class_star_entity"
+	entity_scale = 20.0
+	picture = "pc_d_star"
+	icon = GFX_planet_type_ssh_white_dwarf
+	icon_large = GFX_planet_type_ssh_white_dwarf
+
+	atmosphere_color		= hsv { 0.0 0.0 0.5 }
+	atmosphere_intensity	= 0.5
+	atmosphere_width		= 1.4
+
+
+	star = yes
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 10 max = 15 }
+
+	colonizable = no
+}
+
+pc_blue_dwarf_star = {
+	entity = "ssh_blue_dwarf_star_class_star_entity"
+	entity_scale = 20.0
+	picture = "pc_blue_dwarf_star"
+	icon = GFX_planet_type_ssh_blue_dwarf
+	icon_large = GFX_planet_type_ssh_blue_dwarf
+
+	atmosphere_color		= hsv { 0.6 0.55 0.57 }
+	atmosphere_intensity	= 0.5
+	atmosphere_width		= 1.4
+
+
+	star = yes
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 10 max = 15 }
+
+	colonizable = no
+}
+
+pc_black_dwarf_star = {
+	entity = "ssh_black_dwarf_star_class_star_entity"
+	entity_scale = 20.0
+	picture = "pc_black_dwarf_star"
+	icon = GFX_planet_type_ssh_black_dwarf
+	icon_large = GFX_planet_type_ssh_black_dwarf
+
+	atmosphere_color		= hsv { 0.0 0.1 0.4 }
+	atmosphere_intensity	= 0.6
+	atmosphere_width		= 1.4 #1.4
+
+
+	star = yes
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 10 max = 15 }
+
+	colonizable = no
+}
+
+pc_quark_star = {
+	entity = "ssh_quark_star_entity"
+	entity_scale = 20.0
+	icon = GFX_planet_type_ssh_quark_star
+	icon_large = GFX_planet_type_ssh_quark_star
+
+	atmosphere_color		= hsv { 0.74 0.4 0.78 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	star = yes
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 5 max = 15 }
+
+	colonizable = no
+}
+
+pc_zro_star = {
+	entity = "ssh_zro_star_class_star_entity"
+	entity_scale = 20.0
+	icon = GFX_planet_type_ssh_zro_star
+	icon_large = GFX_planet_type_ssh_zro_star
+
+	atmosphere_color		= hsv { 0.8 0.2 0.77 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	star = yes
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 1 max = 45 }
+
+	colonizable = no
+}
+
+pc_disintegrated_star = {
+	entity = "ssh_disintegrated_star_class_star_entity"
+	entity_scale = 20.0
+	icon = GFX_planet_type_ssh_disintegrated_star
+	icon_large = GFX_planet_type_ssh_disintegrated_star
+
+	atmosphere_color		= hsv { 0.2 0.2 0.2 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	star = yes
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 1 max = 30 }
+
+	colonizable = no
+}
+
+pc_fusion_candle = {
+	entity = "ssh_fusion_candle_entity"
+	entity_scale = 2.0
+	icon = GFX_planet_type_ssh_fusion_candle
+	icon_large = GFX_planet_type_ssh_fusion_candle
+
+	atmosphere_color		= hsv { 0.0 0.0 0.0 }
+	atmosphere_intensity	= 0.5
+	atmosphere_width		= 0.5
+
+	star = yes
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 20 max = 20 }
+
+	colonizable = no
+}
+
+
+################
+# Planet Lists #
+################
+random_list = {
+	name = "rl_ssh_stars"
+	planets = {
+		"pc_black_hole"
+		"pc_a_star"
+		"pc_b_star"
+		"pc_f_star"
+		"pc_g_star"
+		"pc_t_star"
+		"pc_k_star"
+		"pc_m_star"
+		"pc_neutron_star"
+		"pc_pulsar"
+	}
+}

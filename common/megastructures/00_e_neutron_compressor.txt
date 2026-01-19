@@ -1,0 +1,455 @@
+neutron_compressor_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	prerequisites = { ssh_tech_neutronium_compression }
+	potential = {
+		has_technology = ssh_tech_neutronium_compression
+		NOT = {
+			has_global_flag = ssh_neutronium_compressor_deactivated
+		}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					colonizable_planet = yes
+				}
+			}
+		}
+		# ---> binary neutron star systems exist
+		#custom_tooltip = {
+		#	fail_text = "ssh_requires_neutron"
+		#	OR = {
+		#		is_star_class = sc_pulsar
+		#		is_star_class = sc_neutron_star
+		#	}
+		#}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			influence = 50
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_neutron"
+				OR = {
+					is_planet_class = pc_neutron_star
+					is_planet_class = pc_pulsar
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOT = {
+					has_planet_flag = has_megastructure
+					#has_planet_flag = megastructure
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+				set_planet_flag = active_neutron_compressor_planet
+				save_event_target_as = neutron_compressor_planet
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		from = {
+			set_country_flag = ssh_is_constructing_neutron_compressor
+			country_event = { id = ssh_cn.98 }
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+		# Do we need the resources?
+		modifier = {
+			factor = 2.0
+			from = {
+				has_monthly_income = {
+					resource = sr_cultrobium
+					value < 50
+				}
+			}
+		}
+		# Are we constructing one already? (in case of unlimited mega build capacity)
+		modifier = {
+			factor = 0
+			from = { has_country_flag = ssh_is_constructing_neutron_compressor }
+		}
+		# Do we have enough resources?
+		modifier = {
+			factor = 0.1
+			from = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value < 25000
+				}
+				#resource_stockpile_compare = {
+				#	resource = sr_cultrobium
+				#	value < 2500
+				#}
+				resource_stockpile_compare = {
+					resource = minerals
+					value < 5000
+				}
+				resource_stockpile_compare = {
+					resource = energy
+					value < 10000
+				}
+			}
+		}
+		# Upkeep Affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				AND = {
+					has_monthly_income = {
+						resource = minerals
+						value < 1000
+					}
+					has_monthly_income = {
+						resource = energy
+						value < 2100
+					}
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 1.5
+			from = {
+				OR = {
+					has_ai_personality = erudite_explorers
+	
+					has_authority = auth_corporate
+					has_authority = auth_hive_mind
+					has_authority = auth_machine_intelligence
+					has_ethic = ethic_fanatic_materialist
+					has_civic = civic_technocracy
+				}
+			}
+		}
+	}
+}
+
+# Frame
+neutron_compressor_1 = {
+	entity = "ssh_neutron_compressor_1_entity"
+	construction_entity = "ssh_neutron_compressor_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 720 #2 years (smol star)
+	prerequisites = { ssh_tech_neutronium_compression }
+	potential = { has_technology = ssh_tech_neutronium_compression }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		neutron_compressor_0
+	}
+
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
+		from = { country_event = { id = ssh_cn.99 } }
+	}
+}
+
+# Shell
+neutron_compressor_2 = {
+	entity = "ssh_neutron_compressor_2_entity"
+	construction_entity = "ssh_neutron_compressor_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600 #10 years
+	prerequisites = { ssh_tech_neutronium_compression }
+	potential = { has_technology = ssh_tech_neutronium_compression }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		neutron_compressor_1
+	}
+
+	on_build_complete = {
+		fromfrom.planet = {
+			# Remove Outbursts
+			set_planet_entity = {
+				entity = "ssh_neutron_star_noburst_entity"
+			}
+		}
+		every_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					is_planet_class = pc_gas_giant
+					is_asteroid = yes
+					ssh_is_special_planet = yes
+					has_planet_flag = megastructure
+				}
+			}
+			change_pc = pc_frozen
+		}
+		from = { country_event = { id = ssh_cn.100 } }
+	}
+}
+
+# Matter Feeder
+neutron_compressor_3 = {
+	entity = "ssh_neutron_compressor_3_entity"
+	construction_entity = "ssh_neutron_compressor_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_neutronium_compression }
+	potential = { has_technology = ssh_tech_neutronium_compression }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		neutron_compressor_2
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.101 } }
+	}
+}
+
+# Matter Extractor
+neutron_compressor_4 = {
+	entity = "ssh_neutron_compressor_4_entity"
+	construction_entity = "ssh_neutron_compressor_4_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_neutronium_compression }
+	potential = { has_technology = ssh_tech_neutronium_compression }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 250
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		neutron_compressor_3
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.102 } }
+	}
+}
+
+# Begin Compression
+neutron_compressor_5 = {
+	entity = "ssh_neutron_compressor_4_entity"
+	construction_entity = "ssh_neutron_compressor_4_entity"
+	portrait = "GFX_mega_ssh_neutron_compressor"
+	build_time = 360 #1 year
+	prerequisites = { ssh_tech_neutronium_compression }
+	potential = { has_technology = ssh_tech_neutronium_compression }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 10000
+			minerals = 5000
+		}
+		upkeep = {
+			minerals = 2000
+			energy = 1000
+		}
+	}
+
+	upgrade_from = {
+		neutron_compressor_4
+	}
+
+	on_build_complete = {
+		remove_megastructure = fromfrom
+		spawn_megastructure = {
+			name = "Active Neutronium Compressor"
+			type = neutron_compressor_active
+			owner = from
+			orbit_angle = 0
+			orbit_distance = 0
+			planet = fromfrom.planet
+		}
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_e_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			country_event = { id = ssh_cn.103 }
+		}
+		fromfrom.planet = {
+			planet_event = {
+				id = ssh_me.10
+			}
+		}
+	}
+}
+
+# Active Compressor/Harvester
+neutron_compressor_active = {
+	entity = "ssh_neutron_compressor_active_entity"
+	construction_entity = "ssh_neutron_compressor_active_entity"
+	portrait = "GFX_mega_ssh_neutron_compressor"
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			sr_cultrobium = 750
+			physics_research = 150
+		}
+		upkeep = {
+			minerals = 1000
+			energy = 2000
+		}
+	}
+}

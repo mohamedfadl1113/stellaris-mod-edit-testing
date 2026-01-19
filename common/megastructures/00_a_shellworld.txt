@@ -1,0 +1,460 @@
+shellworld_0 = {
+	entity = "ssh_shellworld_0_entity"
+	construction_entity = "ssh_shellworld_0_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5 years
+	scales_with_planet = yes
+	prerequisites = {
+		ssh_tech_shellworlds
+	}
+	show_prereqs = yes
+	potential = {
+		has_technology = ssh_tech_shellworlds
+		NOT = { has_global_flag = ssh_shellworld_deactivated }
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 1000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_colonized_planet_orbital_ring"
+				is_colony = yes
+				exists = owner
+				exists = controller
+				controller = { is_same_value = prev.owner }
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_hostile_or_primitive"
+				NOR = {
+					planet_is_hostile_or_crisis = yes
+					AND = {
+						exists = owner
+						owner = {
+							is_country_type = primitive
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOR = {
+					AND = {
+						has_planet_flag = megastructure
+						NOT = { has_planet_flag = giga_planet_mega } # Gigas' Planetary Computers & Maginot Worlds can have shellworlds - Planet Flag giga_planetary_computer
+					}
+					AND = {
+						is_artificial = yes
+						NOT = { has_planet_flag = giga_planet_mega } # Gigas' Planetary Computers & Maginot Worlds can have shellworlds - Planet Flag giga_planetary_computer
+					}
+					#has_planet_flag = has_megastructure
+					#has_planet_flag = ruined_orbital_ring_planet
+					# ^ -> no has_megastructure so that gigas planetary rings planets can still be turned into shellworlds
+					has_planet_flag = shellworld
+					has_planet_flag = double_shellworld
+					has_planet_flag = triple_shellworld
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = shellworld
+			save_event_target_as = ssh_shellworld_planet
+		}
+		from = {
+			country_event = { id = ssh_cn.1 }
+		}
+	}
+
+	ai_weight = {
+		weight = 15
+		# Do we need it? (No districts left? No other colonies?)
+		# If more than 0 districts free: don't build it
+		modifier = {
+			factor = 0.1
+			fromfrom.planet = {
+				num_free_districts = {
+					type = any
+					value > 0
+				}
+			}
+		}
+		# Upkeep Affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				OR = {
+					has_monthly_income = {
+						resource = energy
+						value < 70
+					}
+					has_monthly_income = {
+						resource = alloys
+						value < 20
+					}
+				}
+			}
+		}
+		# Do we have enough resources?
+		modifier = {
+			factor = 0.1
+			from = {
+				AND = {
+					resource_stockpile_compare = {
+						resource = minerals
+						value < 15000
+					}
+					resource_stockpile_compare = {
+						resource = volatile_motes
+						value < 500
+					}
+					resource_stockpile_compare = {
+						resource = exotic_gases
+						value < 500
+					}
+				}
+			}
+		}
+		# Better habitable megastructures researched already?
+		modifier = {
+			factor = 0.1
+			from = {
+				OR = {
+					has_technology = ssh_tech_gas_giant_shellworlds
+					has_technology = ssh_tech_ederspheres
+					has_technology = ssh_tech_black_hole_shellworld
+					# TODO: Add giga's habitable megas to the list (alderson, birch world)
+				}
+			}
+		}
+		# Good System?
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 1.5
+			from = {
+				OR = {
+					has_ai_personality = xenophobic_isolationists
+					has_ai_personality = fanatic_purifiers
+					has_ai_personality = erudite_explorers
+					has_ai_personality = imperial_origin_overlord_ai
+					has_ai_personality = ruthless_capitalists
+	
+					has_authority = auth_corporate
+					has_authority = auth_hive_mind
+					has_authority = auth_machine_intelligence
+				}
+			}
+		}
+	}
+}
+
+shellworld_1 = {
+	entity = "ssh_shellworld_1_entity"
+	construction_entity = "ssh_shellworld_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600 #10 years
+	scales_with_planet = yes
+	prerequisites = {
+		ssh_tech_shellworlds
+	}
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 30
+			alloys = 5
+		}
+	}
+	upgrade_from = {
+		shellworld_0
+	}
+
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			save_event_target_as = shellworld_planet
+			if = {
+				limit = { is_wet = yes }
+				set_planet_flag = wet_planet
+			}
+			if = {
+				limit = { is_dry = yes }
+				set_planet_flag = dry_planet
+			}
+			if = {
+				limit = { is_cold = yes }
+				set_planet_flag = cold_planet
+			}
+			if = {
+				limit = {
+					is_starting_planet_type = yes
+					NOT = { is_planet_class = pc_volcanic }
+					#NOR = {
+					#	#ssh_is_special_planet = yes
+					#	#ssh_is_any_pd_arcology = yes
+					#	#ssh_is_any_pd_machine = yes
+					#	#ssh_is_any_pd_hive = yes
+					#	#is_planet_class = pc_gaia
+					#	#has_planet_flag = giga_planet_mega # Gigas' Maginot + Planetary Computer
+					#}
+				}
+				change_pc = pc_shellworld_core
+				set_planet_entity = {
+					entity = "barren_planet_01_entity"
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_city }
+				change_pc = pc_shellworld_core_city
+			}
+			else_if = {
+				limit = { is_planet_class = pc_machine }
+				change_pc = pc_shellworld_core_machine
+			}
+			else_if = {
+				limit = { is_planet_class = pc_hive }
+				change_pc = pc_shellworld_core_hive
+			}
+			else_if = {
+				limit = { is_planet_class = pc_gaia }
+				change_pc = pc_shellworld_core_gaia
+			}
+			else = {
+				set_planet_flag = is_artificial_shellworld_core
+				set_planet_entity = { picture = pc_shellworld_core }
+			}
+		}
+		from = {
+			country_event = { id = ssh_cn.2 }
+		}
+	}
+}
+
+shellworld_2 = {
+	entity = "ssh_shellworld_2_entity"
+	construction_entity = "ssh_shellworld_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5 years
+	scales_with_planet = yes
+	prerequisites = {
+		ssh_tech_shellworlds
+	}
+	potential = {
+		has_technology = ssh_tech_shellworlds
+	}
+	resources = {
+		category = megastructures
+		cost = {
+			minerals = 15000
+			volatile_motes = 500
+			exotic_gases = 500
+		}
+		upkeep = {
+			energy = 50
+			alloys = 10
+		}
+	}
+	upgrade_from = {
+		shellworld_1
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = ssh_has_built_or_repaired_tier_a_mega
+		}
+		fromfrom.planet = {
+			remove_planet_flag = has_megastructure
+			#set_planet_flag = megastructure
+			set_planet_flag = shellworld
+			remove_planet_flag = is_under_shellworld_construction
+			save_event_target_as = shellworld_planet
+			
+			if = {
+				limit = { is_planet_class = pc_shellworld_core_gaia }
+				ssh_set_gaia_shellworld_entity = yes
+			}
+			else_if = {
+				limit = { is_planet_class = pc_shellworld_core_city }
+				ssh_set_city_shellworld_entity = yes
+			}
+			else_if = {
+				limit = { is_planet_class = pc_shellworld_core_hive }
+				ssh_set_hive_shellworld_entity = yes
+			}
+			else_if = {
+				limit = { is_planet_class = pc_shellworld_core_machine }
+				ssh_set_machine_shellworld_entity = yes
+			}
+			else = {
+				ssh_set_shellworld_entity = yes
+			}
+			add_modifier = {
+				modifier = ssh_shellworld_planet_modifier
+				days = -1
+			}
+		}
+		remove_megastructure = fromfrom
+		from = {
+			country_event = { id = ssh_cn.3 }
+		}
+	}
+}
+
+# Ruined
+shellworld_ruined = {
+	entity = "ssh_shellworld_ruined_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	
+	potential = {
+		always = no
+	}
+}
+
+# Restored
+shellworld_restored = {
+	entity = "ssh_shellworld_2_entity"
+	construction_entity = "ssh_shellworld_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5 years
+	scales_with_planet = yes
+	
+	resources = {
+		category = megastructures
+		cost = {
+			# Always
+			minerals = 15000
+			volatile_motes = 500
+			exotic_gases = 500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+			alloys = 10
+		}
+	}
+	upgrade_from = {
+		shellworld_ruined
+	}
+
+	possible = {
+		from = {
+			has_technology = tech_mega_engineering
+		}
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = ssh_has_built_or_repaired_tier_a_mega
+		}
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				save_event_target_as = shellworld_planet
+				remove_planet_flag = has_megastructure
+				remove_planet_flag = is_under_shellworld_construction
+				#set_planet_flag = megastructure
+				set_planet_flag = shellworld
+				if = {
+					limit = { has_planet_flag = blecksbi_shellworld }
+					change_pc = pc_shellworld_core_gaia
+				}
+
+				# Change Appearance
+				set_planet_entity = {
+					entity = "ssh_shellworld_planet"
+				}
+				add_modifier = {
+					modifier = ssh_shellworld_planet_modifier
+					days = -1
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+		from = {
+			country_event = { id = ssh_cn.3 }
+		}
+	}
+}

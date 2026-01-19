@@ -1,0 +1,13 @@
+# Generated species derive their names from here
+
+### BRAINS
+
+BRAIN =  {
+	Brain =  {
+		name = SPEC_Brain
+		plural = SPEC_Brain_pl
+		home_planet = SPEC_Brain_planet
+		home_system = SPEC_Brain_system
+		name_list =  "BRAIN1"
+	}
+}

@@ -1,0 +1,122 @@
+# White Dwarf
+sc_ssh_white_dwarf = {
+	class 			= ssh_white_dwarf_star
+	planet			= { key = pc_white_dwarf_star }
+	spawn_odds 		= 0
+	num_planets 	= { min = 0 max = 10 }
+}
+
+# Blue Dwarf
+sc_ssh_blue_dwarf = {
+	class 			= ssh_blue_dwarf_star
+	planet			= { key = pc_blue_dwarf_star }
+	spawn_odds 		= 0
+	num_planets 	= { min = 0 max = 10 }
+
+	#is_environmental_hazard = yes
+    #modifier = { ship_shield_reduction = 1.0 }
+}
+
+# Black Dwarf
+sc_ssh_black_dwarf = {
+	class 			= ssh_black_dwarf_star
+	planet			= { key = pc_black_dwarf_star }
+	spawn_odds 		= 0
+	num_planets 	= { min = 0 max = 8 }
+}
+
+# Empty space
+sc_ssh_space = {
+	class 			= sc_ssh_space
+	planet			= { key = pc_ssh_empty_space }
+	spawn_odds 		= 0
+	num_planets 	= { min = 0 max = 0 }
+
+	is_environmental_hazard = yes
+    modifier = { ship_speed_reduction = 0.3 }
+}
+
+# Quark Star
+sc_ssh_quark_star = {
+	class 			= ssh_quark_star
+	planet			= { key = pc_quark_star }
+	spawn_odds 		= 0
+	num_planets 	= { min = 0 max = 10 }
+}
+
+# Zro-Infused / Shrouded Star
+sc_ssh_zro_star = {
+	class 			= ssh_zro_infused_star
+	planet			= { key = pc_zro_star }
+	spawn_odds 		= 0
+	num_planets 	= { min = 0 max = 10 }
+
+	is_environmental_hazard = yes
+    modifier = { ship_shield_reduction = 0.75 }
+}
+
+# Disintegrated Matter (Star)
+sc_ssh_disintegrated_star = {
+	class 			= ssh_disintegrated_star
+	planet			= { key = pc_disintegrated_star }
+	spawn_odds 		= 0
+	num_planets 	= { min = 0 max = 10 }
+
+	is_environmental_hazard = yes
+    modifier = { ship_speed_reduction = 0.5 }
+}
+
+# Black Hole Binary System (For lighting, especially black hole shellworlds orbited by stars)
+sc_ssh_binary_1 = { # Binary System: any red-ish star + black hole
+    class             = m_star #lighting
+    icon              = red_binary_bh_star
+	icon_scale		= 1.5
+	planet = {
+		key = pc_black_hole
+		class = black_hole
+	}
+	planet = {
+		key = pc_m_star
+		class = m_star
+	}
+    spawn_odds         = 0.005
+    num_planets     = { min = 0 max = 3 }
+}
+
+sc_ssh_binary_2 = { # Binary System: any blue-ish star + black hole
+    class             = a_star #lighting
+    icon              = blue_binary_bh_star
+	icon_scale		= 1.5
+	planet = {
+		key = pc_black_hole
+		class = black_hole
+	}
+	planet = {
+		key = pc_a_star
+		class = a_star
+	}
+    spawn_odds         = 0.001
+    num_planets     = { min = 0 max = 3 }
+}
+
+# Fusion Candle (Construction/Finished)
+sc_ssh_fusion_candle = {
+	class 			= ssh_fusion_candle #lighting
+	planet			= { key = pc_fusion_candle }
+	spawn_odds 		= 0
+	num_planets 	= { min = 0 max = 0 }
+
+	is_environmental_hazard = yes
+    modifier = { ship_speed_reduction = 0.3 }
+}
+
+# Decayed space
+sc_ssh_true_vacuum= {
+	class 			= ssh_true_vacuum
+	planet			= { key = pc_ssh_empty_space }
+	spawn_odds 		= 0
+	num_planets 	= { min = 0 max = 0 }
+
+	is_environmental_hazard = yes
+    modifier = { ship_speed_reduction = 0.9 }
+}

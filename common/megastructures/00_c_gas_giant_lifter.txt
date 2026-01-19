@@ -1,0 +1,509 @@
+gas_giant_lifter_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	show_prereqs = yes
+	scales_with_planet = no #yes
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -7
+		y = -7
+	}
+	prerequisites = { ssh_tech_gas_giant_lifting }
+	potential = {
+		has_technology = ssh_tech_gas_giant_lifting
+		NOT = {	has_global_flag = ssh_gas_giant_lifter_deactivated }
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_gas_giant"
+				#is_planet_class = pc_gas_giant
+				ssh_is_any_gas_giant = yes
+				OR = {
+					is_colonizable = no
+					is_colony = no
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					has_planet_flag = ruined_orbital_ring_planet
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					is_artificial = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_hostile_or_primitive"
+				NOR = {
+					planet_is_hostile_or_crisis = yes
+					AND = {
+						exists = owner
+						owner = {
+							is_country_type = primitive
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+				save_event_target_as = gas_giant_shellworld_planet
+			}
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.42
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 2
+		# Income needed?
+		modifier = {
+			factor = 10 # 2*10 = 20 = extremely likely
+			from = {
+				OR = {
+					has_monthly_income = {
+						resource = sr_hydrogen
+						value < 10
+					}
+					has_monthly_income = {
+						resource = exotic_gases
+						value < 10
+					}
+				}
+			}
+		}
+		# Upkeep affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				OR = {
+					has_monthly_income = {
+						resource = energy
+						value < 100
+					}
+					has_monthly_income = {
+						resource = alloys
+						value < 40
+					}
+				}
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 2
+			from = {
+				OR = {
+					has_ai_personality = decadent_capitalists
+					has_ai_personality = ruthless_capitalists
+					has_ai_personality = peaceful_traders
+					is_anthropocentric = yes # E&C
+				}
+			}
+		}
+		# Location?
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+	}
+}
+
+gas_giant_lifter_skip_rings = {
+	entity = "ssh_gas_giant_shellworld_1_entity"
+	construction_entity = "ssh_gas_giant_shellworld_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 2880
+	scales_with_planet = yes
+	place_entity_on_planet_plane = yes
+	prerequisites = { ssh_tech_gas_giant_lifting }
+	potential = {
+		has_country_flag = has_built_gas_giant_lifter_or_shell # Skip the rings after constructing it for once
+		has_technology = ssh_tech_gas_giant_lifting
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 15000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 17000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 17000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 17000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 30
+		}
+	}
+
+	upgrade_from = {
+		gas_giant_lifter_0
+	}
+
+	on_build_complete = {
+		spawn_megastructure = {
+			type = gas_giant_lifter_5
+			owner = from
+			planet = fromfrom.planet
+		}
+		remove_megastructure = fromfrom
+	}
+}
+
+
+gas_giant_lifter_1 = {
+	entity = "ssh_gas_giant_shellworld_1_entity"
+	construction_entity = "ssh_gas_giant_shellworld_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 720 # 2years
+	scales_with_planet = yes
+	place_entity_on_planet_plane = yes
+	prerequisites = { ssh_tech_gas_giant_lifting }
+	potential = { has_technology = ssh_tech_gas_giant_lifting }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 3000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 3000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 3000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 20
+		}
+	}
+
+	upgrade_from = {
+		gas_giant_lifter_0
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.43
+			}
+		}
+	}
+}
+
+gas_giant_lifter_2 = {
+	entity = "ssh_gas_giant_shellworld_3_entity"
+	construction_entity = "ssh_gas_giant_shellworld_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 720
+	scales_with_planet = yes
+	#place entity planet plane
+	prerequisites = { ssh_tech_gas_giant_lifting }
+	potential = { has_technology = ssh_tech_gas_giant_lifting }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 3000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 3000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 3000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 20
+		}
+	}
+
+	upgrade_from = {
+		gas_giant_lifter_1
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.44
+			}
+		}
+	}
+}
+
+gas_giant_lifter_3 = {
+	entity = "ssh_gas_giant_shellworld_4_entity"
+	construction_entity = "ssh_gas_giant_shellworld_4_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 720
+	scales_with_planet = yes
+	#place entity planet plane
+	prerequisites = { ssh_tech_gas_giant_lifting }
+	potential = { has_technology = ssh_tech_gas_giant_lifting }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 3000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 3000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 3000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 20
+		}
+	}
+
+	upgrade_from = {
+		gas_giant_lifter_2
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.45
+			}
+		}
+	}
+}
+
+gas_giant_lifter_4 = {
+	entity = "ssh_gas_giant_shellworld_5_entity"
+	construction_entity = "ssh_gas_giant_shellworld_5_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 720
+	scales_with_planet = yes
+	#place entity planet plane
+	prerequisites = { ssh_tech_gas_giant_lifting }
+	potential = { has_technology = ssh_tech_gas_giant_lifting }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 3000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 3000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 3000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 20
+		}
+	}
+
+	upgrade_from = {
+		gas_giant_lifter_3
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.46
+			}
+		}
+	}
+}
+
+gas_giant_lifter_5 = {
+	entity = "ssh_gas_giant_shellworld_6_entity"
+	construction_entity = "ssh_gas_giant_shellworld_6_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = yes
+	#place entity planet plane
+	prerequisites = { ssh_tech_gas_giant_lifting }
+	potential = { has_technology = ssh_tech_gas_giant_lifting }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 15000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 30
+		}
+	}
+
+	upgrade_from = {
+		gas_giant_lifter_4
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = ssh_cn.47
+			}
+		}
+	}
+}
+
+# Gas Giant Pump
+gas_giant_lifter_6 = {
+	entity = "ssh_gas_giant_shellworld_harvester_entity"
+	construction_entity = "ssh_gas_giant_shellworld_harvester_entity"
+	portrait = "GFX_mega_ssh_gas_giant_lifter"
+	build_time = 360 #1years
+	scales_with_planet = yes
+	#place entity planet plane
+	prerequisites = { ssh_tech_gas_giant_lifting }
+	potential = { has_technology = ssh_tech_gas_giant_lifting }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 200
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+		produces = {
+			energy = 300
+			sr_hydrogen = 150
+			exotic_gases = 75
+		}
+	}
+
+	upgrade_from = {
+		gas_giant_lifter_5
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_gas_giant_lifter_or_shell # Used to decrease stages after constructing it for the first time
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = ssh_has_built_or_repaired_tier_c_mega
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.28
+			}
+		}
+		fromfrom.planet = {
+			planet_event = {
+				id = ssh_me.1
+			}
+		}
+	}
+}

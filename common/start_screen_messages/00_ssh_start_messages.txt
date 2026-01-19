@@ -1,0 +1,11 @@
+part = {
+	location = 0
+	localization = "ssh_start_screen_shellworld"
+	trigger = { has_origin = origin_ssh_shellworld }
+}
+
+part = {
+	location = 0
+	localization = "ssh_start_screen_stellar_hoop"
+	trigger = { has_origin = origin_ssh_stellar_hoop }
+}

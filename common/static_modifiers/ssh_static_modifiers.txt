@@ -1,0 +1,389 @@
+#### PLANET MODIFIERS ####
+ssh_shellworld_planet_modifier = {
+	planet_max_districts_mult = 0.5
+	planet_housing_mult = 0.5
+	planet_jobs_engineering_research_produces_mult = 0.1
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_shellworld_planet_modifier.dds"
+	icon_frame = 1
+}
+
+ssh_double_shellworld_planet_modifier = {
+	planet_orbital_bombardment_damage = -0.2
+	planet_max_districts_mult = 1.0
+	planet_housing_mult = 1.0
+	planet_jobs_engineering_research_produces_mult = 0.15
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_shellworld_planet_modifier.dds"
+	icon_frame = 1
+}
+
+ssh_triple_shellworld_planet_modifier = {
+	planet_orbital_bombardment_damage = -0.4
+	planet_max_districts_mult = 1.5
+	planet_housing_mult = 1.5
+	planet_jobs_engineering_research_produces_mult = 0.2
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_shellworld_planet_modifier.dds"
+	icon_frame = 1
+}
+
+ssh_gas_giant_shellworld_planet_modifier = {
+	planet_farmers_food_produces_add = 1.0
+	planet_amenities_mult = 0.2
+	planet_jobs_energy_upkeep_mult = 0.1
+	planet_districts_upkeep_mult = 0.1
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_gas_giant_shellworld_planet_modifier.dds"
+	icon_frame = 1
+}
+
+ssh_edersphere_planet_modifier = {
+	planet_orbital_bombardment_damage = -0.4 #same as double-shellworld
+	planet_jobs_engineering_research_produces_mult = 0.15 # ^ because edersphere guys live inside the outer layer, not on the surface
+	planet_jobs_physics_research_produces_mult = 0.15
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_edersphere_planet_modifier.dds"
+	icon_frame = 1
+}
+
+ssh_stellar_hoop_planet_modifier = {
+	planet_jobs_physics_research_produces_mult = 0.5
+	planet_jobs_sr_cultrobium_produces_mult = 0.5
+	planet_jobs_alloys_produces_mult = 0.3
+	planet_jobs_energy_upkeep_mult = -1.0
+	planet_districts_energy_upkeep_mult = -1.0
+	planet_buildings_energy_upkeep_mult = -1.0
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_star.dds"
+	icon_frame = 1
+}
+
+ssh_black_hole_shellworld_planet_modifier = {
+	planet_jobs_physics_research_produces_mult = 0.75
+	planet_jobs_engineering_research_produces_mult = 0.25
+	planet_jobs_sr_dark_matter_produces_mult = 0.05
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_black_hole_shellworld_planet_modifier.dds"
+	icon_frame = 1
+}
+
+ssh_discworld_planet_modifier = {
+	planet_amenities_mult = 0.1
+	country_unity_produces_mult = 0.2
+	country_resource_max_sr_hydrogen_add = 10000
+	country_resource_max_sr_dark_matter_add = 10000
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_discworld_planet_modifier.dds"
+	icon_frame = 1
+}
+
+ssh_hoopworld_planet_modifier = {
+	planet_amenities_mult = 0.1
+	country_unity_produces_mult = 0.2
+	#country_base_unity_produces_add = 500 #doesnt work for whatever reason
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_hoopworld_planet_modifier.dds"
+	icon_frame = 1
+}
+
+ssh_freesphere_planet_modifier = {
+	planet_amenities_mult = 0.15
+	country_unity_produces_mult = 0.2
+	planet_jobs_society_research_produces_mult = 0.75
+	planet_jobs_physics_research_produces_mult = 0.25
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_freesphere_planet_modifier.dds"
+	icon_frame = 1
+}
+
+ssh_stellar_shellworld_planet_modifier = {
+	planet_jobs_energy_upkeep_mult = -1.0
+	planet_districts_energy_upkeep_mult = -1.0
+	planet_buildings_energy_upkeep_mult = -1.0
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_star.dds"
+	icon_frame = 1
+}
+
+ssh_pain_dimension_planet_modifier = {
+	planet_devastation = 0.3
+	pop_amenities_usage_mult = 0.5
+	planet_crime_add = 100
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_hunger_strike.dds"
+	icon_frame = 3
+}
+
+ssh_mirror_doorway_remnant_planet_modifier = {
+	job_dimensional_portal_researcher_add = 1
+	planet_jobs_physics_research_produces_mult = 0.2
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_celestial_tear.dds"
+	icon_frame = 1
+}
+
+ssh_eco_eder_planet_modifier = {
+	habitability_floor_mult = 0.15
+	planet_jobs_food_produces_mult = 0.15
+	pop_happiness = 0.1
+	planet_resettlement_unemployed_destination_mult = 0.15 #planet_immigration_pull_mult
+	logistic_growth_mult = 0.05 #pop_growth_speed
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ecosphere_pheromones.dds"
+	icon_frame = 1
+}
+
+ssh_black_dwarf_planet_modifier = {
+	planet_jobs_alloys_produces_mult = 0.5
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_black_dwarf.dds"
+	icon_frame = 2
+}
+
+ssh_subspace_blockade = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_celestial_tear.dds"
+	icon_frame = 2
+}
+
+ssh_interstellar_system_construction = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_drifting_gateway.dds"
+	icon_frame = 2
+}
+
+ssh_faceless_stalker_planet_modifier = {
+	pop_happiness = -0.2
+	planet_pops_trade_produces_mult = 0.15
+	planet_jobs_physics_research_produces_mult = 0.1
+	planet_jobs_society_research_produces_mult = 0.1
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_faceless_stalker.dds"
+	icon_frame = 2
+}
+
+# Special Black Hole Suprashell Decisions
+ssh_suprashell_horizon_prisons_planet_modifier = {
+	planet_crime_mult = -0.2
+	planet_enforcers_physics_research_produces_add = 0.2
+	pop_happiness = -0.15
+	pop_ethic_authoritarian_attraction_mult = 0.2
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_horizon_prisons.dds"
+	icon_frame = 2
+}
+ssh_suprashell_horizon_trains_planet_modifier = {
+	planet_pops_trade_produces_mult = 0.15
+	planet_building_build_speed_mult = 0.2
+	planet_jobs_upkeep_mult = -0.15
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_horizon_trains.dds"
+	icon_frame = 1
+}
+
+
+### Shellworld Flavor Modifiers ###
+ssh_shellworld_division_0_planet_modifier = {
+	pop_cat_ruler_happiness = 0.1
+	pop_amenities_usage_mult = 0.1
+	pop_cat_worker_happiness = -0.1
+	job_criminal_per_pop = 0.05
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_smugglers_in_bar.dds"
+	icon_frame = 2
+}
+ssh_shellworld_division_1_planet_modifier = {
+	pop_cat_ruler_happiness = 0.15
+	pop_amenities_usage_mult = 0.15
+	pop_cat_worker_happiness = -0.15
+	job_criminal_per_pop = 0.1
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_smugglers_in_bar.dds"
+	icon_frame = 2
+}
+ssh_shellworld_division_2_planet_modifier = {
+	pop_cat_ruler_happiness = 0.2
+	pop_amenities_usage_mult = 0.2
+	pop_cat_worker_happiness = -0.2
+	job_criminal_per_pop = 0.15
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_smugglers_in_bar.dds"
+	icon_frame = 2
+}
+ssh_shellworld_division_campaigns = {
+	planet_amenities_mult = 0.15
+	planet_crime_mult = -0.15
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_alien_propaganda.dds"
+	icon_frame = 1
+}
+
+
+
+#### RESOURCE MODIFIERS ####
+
+cultrobium_deficit = {
+	ship_armor_mult = -0.85
+	ship_fire_rate_mult = -0.85
+}
+
+hydrogen_deficit = {
+	planet_jobs_energy_produces_mult = -0.5
+	planet_jobs_consumer_goods_produces_mult = -0.5
+}
+
+conscious_matter_deficit = {
+	planet_jobs_society_research_produces_mult = -0.5
+	planet_jobs_physics_research_produces_mult = -0.25
+}
+
+nuclei_soup_deficit = {
+	custom_tooltip = nuclei_soup_deficit_tooltip
+}
+
+
+####### COUNTRY MODIFIERS #######
+
+ssh_origin_unity_boost = {
+	country_unity_produces_mult = 0.5
+}
+
+ssh_vacdec_research_boost = {
+	country_physics_research_produces_mult = 0.15
+	pop_happiness = 0.1
+
+	icon = "gfx/interface/icons/modifiers/mod_black_hole.dds"
+}
+
+ssh_vacdec_particle_field = {
+	country_physics_research_produces_mult = 0.05
+
+	icon = "gfx/interface/icons/modifiers/mod_black_hole.dds"
+}
+
+ssh_fe_machine_boost = {
+	country_society_research_produces_mult = 0.2
+	country_physics_research_produces_mult = 0.2
+	country_engineering_research_produces_mult = 0.2
+
+	icon = "gfx/interface/icons/modifiers/mod_black_hole.dds"
+}
+
+ssh_vacdec_crisis_path_nemesis = {
+	country_menace_produces_mult = 0.15
+
+	icon = "gfx/interface/icons/modifiers/mod_pop_purge_mult.dds"
+}
+ssh_vacdec_crisis_path_cosmogenesis = {
+	country_advanced_logic_produces_mult = 0.15
+
+	icon = "gfx/interface/icons/modifiers/mod_resource_advanced_logic_mult.dds"
+}
+
+ssh_vacdec_crisis_path_ap_hyperdimensional_exodus = {
+	country_interdim_insights_produces_mult = 0.15
+
+	icon = "gfx/interface/icons/modifiers/mod_black_hole.dds"
+}
+
+ssh_vacdec_half_galaxy_decayed_boost = {
+	country_society_research_produces_mult = 0.25
+	country_physics_research_produces_mult = 0.25
+	country_engineering_research_produces_mult = 0.25
+
+	icon = "gfx/interface/icons/modifiers/mod_black_hole.dds"
+}
+
+ssh_vacdec_galaxy_decayed_boost = {
+	country_society_research_produces_mult = 0.75
+	country_physics_research_produces_mult = 0.75
+	country_engineering_research_produces_mult = 0.75
+	planet_jobs_produces_mult = 0.5
+
+	icon = "gfx/interface/icons/modifiers/mod_black_hole.dds"
+}
+
+vacdec_defeated = {
+	pop_happiness = 0.2
+}
+
+# Ascensionist Country #
+ssh_exodus_empire = {
+	#country_base__produces_add = 100
+	country_produces_mult = 10.0
+	add_base_country_intel = 10000
+	intel_decryption_add = 1000.0
+	intel_encryption_add = 1000.0
+	intel_gain_speed = 10.0
+	ships_upkeep_mult = -2.0
+	armies_upkeep_mult = -2.0
+	edicts_upkeep_mult = -2.0
+	leaders_upkeep_mult = -2.0
+	stations_upkeep_mult = -2.0
+	diplomacy_upkeep_mult = -2.0
+	starbases_upkeep_mult = -2.0
+	operations_upkeep_mult = -2.0
+	jump_drive_cooldown = -0.9
+	ship_base_speed_mult = 1.0
+	starbase_building_build_speed_mult = -1.0
+
+	icon = "gfx/interface/icons/modifiers/mod_ascensionist_empire.dds"
+}
+
+ssh_shroud_espionage_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_black_hole.dds"
+	#pop_ethic_militarist_attraction_mult = 1.0
+}
+
+#### SHROUD INSIGHT Country MODIFIERS ####
+
+ssh_shroud_insight_technocracy = {
+	icon = "gfx/interface/icons/modifiers/mod_acceptlesson.dds"
+
+	pop_ethic_materialist_attraction_mult = 1.0
+	planet_researchers_consumer_goods_upkeep_mult = -0.2
+	planet_physicists_physics_research_produces_add = 1.5
+	planet_engineers_engineering_research_produces_add = 1.5
+	planet_biologists_society_research_produces_add = 1.5
+}
+
+ssh_shroud_insight_inward_perfection = {
+	icon = "gfx/interface/icons/modifiers/mod_acceptlesson.dds"
+
+	pop_ethic_spiritualist_attraction_mult = 1.0
+	country_unity_produces_mult = 0.15
+	pop_citizen_happiness = 0.2
+}
+
+
+#### SHROUD INSIGHT Planet MODIFIERS ####
+
+ssh_shroud_insight_agrarian_idyll_planet_modifier = {
+	pop_happiness = 0.1
+	planet_amenities_mult = 0.2
+	planet_jobs_produces_mult = 0.1
+	planet_jobs_society_research_produces_mult = 0.2
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_overgrowth.dds" #pm_animal_wildlife
+	icon_frame = 1
+}
+
+ssh_shroud_insight_zro_distribution_planet_modifier = {
+	planet_stability_add = 15
+	pop_cat_ruler_happiness = 0.15
+	pop_cat_specialist_happiness = 0.1
+	pop_cat_worker_happiness = -0.1
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_shroud_eaten_population.dds" #pm_strategic_resources
+	icon_frame = 1
+}
+
+#### Other country modifiers ####
+company_enclave_assets_contract = {
+	icon = "gfx/interface/icons/modifiers/mod_acceptlesson.dds"
+}
+
+# WMD'd
+ssh_wmd_victim = {
+	pop_ethic_militarist_attraction_mult = 0.5
+	pop_ethic_xenophobe_attraction_mult = 0.5
+}

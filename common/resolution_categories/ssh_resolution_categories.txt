@@ -1,0 +1,20 @@
+# Resolution Categories for Galactic Community
+
+### Megastructures
+resolution_category_ssh_megaconstruction = {
+	group = commerce_industry
+	icon = "GFX_resolution_ssh_megaconstruction"
+
+	resolution_types = {
+		"resolution_megaconstruction_repeal_1"
+		"resolution_megaconstruction_repeal_2"
+		"resolution_megaconstruction_repeal_3"
+		"resolution_megaconstruction_repeal_4"
+		"resolution_megaconstruction_repeal_5"
+		"resolution_megaconstruction_streamlined_protocols"
+		"resolution_megaconstruction_megastructure_subsidies"
+		"resolution_megaconstruction_architecural_renaissance"
+		"resolution_megaconstruction_extraction_initiative"
+		"resolution_megaconstruction_workforce_revolution"
+	}
+}

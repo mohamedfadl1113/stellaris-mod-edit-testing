@@ -1,0 +1,742 @@
+edersphere_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	show_prereqs = yes
+	build_time = 1800 # Since it instantly spawns/upgrades to edersphere_1 ####360 #1 year
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -50
+		y = -50
+	}
+	prerequisites = { ssh_tech_ederspheres }
+	potential = {
+		has_technology = ssh_tech_ederspheres
+		NOT = {
+			has_global_flag = ssh_edersphere_deactivated
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_colony"
+			NOT = {
+				any_system_planet = {
+					is_colony = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_2_planets"
+			num_planets_in_system > 2
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_min_one_gas_giant"
+			any_system_planet = {
+				ssh_is_any_gas_giant = yes #-> PD gas giants
+				#is_planet_class = pc_gas_giant
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			NOR = {
+				any_system_planet = {
+					has_any_megastructure = yes
+				}
+				#star = {
+				#	has_star_flag = has_megastructure
+				#}
+			}
+		}
+		#custom_tooltip = {
+		#	fail_text = "requires_no_existing_megastructure"
+		#	NOT = { has_star_flag = has_megastructure }
+		#}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 5000
+			#alloys = 15000 #5k (platform) + 10k for the frame
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 15000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_planets_for_material"
+				hidden:solar_system = {
+					any_system_planet = {
+						NAND = {
+							is_star = yes
+							ssh_is_special_planet = yes
+							is_artificial = yes
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+		}
+	}
+
+	on_build_complete = {
+		set_asteroid_belt = {
+			radius = 0
+		}
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_edersphere #not has_megastructure since the edersphere is not constructed around the star
+				save_event_target_as = edersphere_star
+			}
+		}
+		random_system_planet = {
+			limit = { 
+				NOR = {
+					is_star = yes
+					#ssh_is_any_gas_giant = yes
+					has_planet_flag = megastructure
+					is_artificial = yes
+					ssh_is_special_planet = yes
+					is_moon = yes
+					#has_moon = yes
+				} 
+			}
+			set_planet_flag = ssh_edersphere_planet
+			save_event_target_as = ssh_edersphere_planet
+		}
+		# Spawn megastructure on random planetso it 'replaces' that planets
+		fromfrom = { remove_megastructure = this }
+		spawn_megastructure = {
+			type = edersphere_1
+			owner = from
+			planet = event_target:ssh_edersphere_planet
+		}
+		from = {
+			set_country_flag = ssh_is_constructing_edersphere
+			#country_event = {
+			#	id = ssh_cn.21 # Spawns edersphere_1 so it pops up another event already
+			#}
+		}
+	}
+
+	ai_weight = {
+		weight = 15
+		# Do we need it? (Other colonies not maxed out yet?)
+		modifier = {
+			factor = 0.1
+			from = {
+				any_system_within_border = {
+					any_system_colony = {
+						num_free_districts = {
+							type = any
+							value > 2
+						}
+					}
+				}
+			}
+		}
+		# Do we have enough planets already?
+		# Are we constructing one already? (in case of unlimited mega build capacity)
+		modifier = {
+			factor = 0
+			from = {
+				has_country_flag = ssh_is_constructing_edersphere
+			}
+		}
+		# Do we have enough resources?
+		modifier = {
+			factor = 0.1
+			from = {
+				AND = {
+					resource_stockpile_compare = {
+						resource = energy
+						value < 30000
+					}
+					resource_stockpile_compare = {
+						resource = minerals
+						value < 30000
+					}
+					resource_stockpile_compare = {
+						resource = rare_crystals
+						value < 1000
+					}
+					resource_stockpile_compare = {
+						resource = alloys
+						value < 45000
+					}
+					resource_stockpile_compare = {
+						resource = sr_hydrogen
+						value < 10000
+					}
+				}
+			}
+		}
+		# Upkeep Affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 250
+				}
+			}
+		}
+		# Better habitable megastructures researched already + possibility to build them?
+		modifier = {
+			factor = 0
+			from = {
+				AND = {
+					has_technology = ssh_tech_black_hole_shellworld
+					# TODO: Add giga's habitable megas to the list (alderson, birch world)
+					any_system_within_border = { is_star_class = sc_black_hole }
+				}
+			}
+		}
+		# Good System?
+		modifier = {
+			factor = 0.5
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 1.15
+			from = {
+				OR = {
+					has_ai_personality = xenophobic_isolationists
+					has_ai_personality = fanatic_purifiers
+					has_ai_personality = erudite_explorers
+					has_ai_personality = imperial_origin_overlord_ai
+	
+					has_authority = auth_corporate
+					has_authority = auth_hive_mind
+					has_authority = auth_machine_intelligence
+				}
+			}
+		}
+	}
+}
+
+edersphere_1 = {
+	entity = "ssh_edersphere_1_entity"
+	construction_entity = "ssh_edersphere_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = no
+	#place_entity_on_planet_plane = no
+	#entity_offset = {
+	#	x = -50
+	#	y = -50
+	#}
+	#prerequisites = { ssh_tech_ederspheres }
+	potential = { always = no } #{ has_technology = ssh_tech_ederspheres }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		edersphere_0
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		random_system_planet = {
+			limit = { has_planet_flag = ssh_edersphere_planet }
+			#remove_planet = yes
+			set_planet_size = 1
+		}
+		every_system_planet = {
+			if = {
+				limit = { 
+					OR = {
+						is_planet_class = pc_asteroid
+						is_planet_class = pc_ice_asteroid
+						is_planet_class = pc_crystal_asteroid
+					}
+				}
+				remove_planet = yes
+			}
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.22
+			}
+		}
+	}
+}
+
+edersphere_2 = {
+	entity = "ssh_edersphere_2_entity"
+	construction_entity = "ssh_edersphere_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600 #10years
+	scales_with_planet = no
+	#place_entity_on_planet_plane = no
+	#entity_offset = {
+	#	x = -50
+	#	y = -50
+	#}
+	prerequisites = { ssh_tech_ederspheres }
+	potential = { has_technology = ssh_tech_ederspheres }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 20000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 20000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 20000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		edersphere_1
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		random_system_planet = {
+			if = {
+				limit = { 
+					NOR = {
+						is_star = yes
+						ssh_is_any_gas_giant = yes
+						has_planet_flag = megastructure
+						has_planet_flag = ssh_edersphere_planet
+					} 
+				}
+				remove_planet = yes
+			}
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.23
+			}
+		}
+	}
+}
+
+edersphere_3 = {
+	entity = "ssh_edersphere_3_entity"
+	construction_entity = "ssh_edersphere_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 720 #2years
+	scales_with_planet = no
+	#place_entity_on_planet_plane = no
+	#entity_offset = {
+	#	x = -50
+	#	y = -50
+	#}
+	prerequisites = { ssh_tech_ederspheres }
+	potential = { has_technology = ssh_tech_ederspheres }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 1000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		edersphere_2
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		random_system_planet = {
+			if = {
+				limit = { 
+					NOR = {
+						is_star = yes
+						ssh_is_any_gas_giant = yes
+						has_planet_flag = megastructure
+						has_planet_flag = ssh_edersphere_planet
+					} 
+				}
+				remove_planet = yes
+			}
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.24
+			}
+		}
+	}
+}
+
+edersphere_4 = {
+	entity = "ssh_edersphere_4_entity"
+	construction_entity = "ssh_edersphere_4_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600 #10years
+	scales_with_planet = no
+	#place_entity_on_planet_plane = no
+	#entity_offset = {
+	#	x = -50
+	#	y = -50
+	#}
+	prerequisites = { ssh_tech_ederspheres }
+	potential = { has_technology = ssh_tech_ederspheres }
+
+	resources = {
+		category = megastructures
+		cost = {
+			minerals = 30000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		edersphere_3
+	}
+
+	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		random_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					ssh_is_any_gas_giant = yes
+					has_planet_flag = megastructure
+					has_planet_flag = ssh_edersphere_planet
+				}
+			}
+			remove_planet = yes
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.25
+			}
+		}
+	}
+}
+
+edersphere_5 = {
+	entity = "ssh_edersphere_5_entity"
+	construction_entity = "ssh_edersphere_5_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = no
+	#place_entity_on_planet_plane = no
+	#entity_offset = {
+	#	x = -50
+	#	y = -50
+	#}
+	prerequisites = { ssh_tech_ederspheres }
+	potential = { has_technology = ssh_tech_ederspheres }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		edersphere_4
+	}
+
+	on_build_complete = {
+		random_system_planet = {
+			limit = {
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = ssh_edersphere_planet
+				}
+				ssh_is_any_gas_giant = yes
+			}
+			remove_planet = yes
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.26
+			}
+		}
+	}
+}
+
+edersphere_6 = {
+	entity = "ssh_edersphere_5_entity"
+	construction_entity = "ssh_edersphere_5_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	scales_with_planet = no
+	#place_entity_on_planet_plane = no
+	#entity_offset = {
+	#	x = -50
+	#	y = -50
+	#}
+	prerequisites = { ssh_tech_ederspheres }
+	potential = { has_technology = ssh_tech_ederspheres }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 15000
+			sr_hydrogen = 20000
+		}
+		upkeep = {
+			energy = 200
+		}
+	}
+
+	upgrade_from = {
+		edersphere_5
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_d_mega
+			remove_country_flag = ssh_is_constructing_edersphere
+			country_event = {
+				id = ssh_cn.27
+			}
+		}
+		random_system_planet = {
+			limit = { has_planet_flag = ssh_edersphere_planet }
+			save_event_target_as = ssh_edersphere_planet
+		}
+		spawn_planet = {
+			class = "pc_edersphere"
+			location = fromfrom #event_target:ssh_edersphere_planet #
+			#location = this.star
+			#orbit_distance_offset = 100
+			#orbit_angle_offset = random #30
+			init_effect = {
+				set_name = "Edersphere"
+				set_planet_entity = {
+					entity = "ssh_edersphere_planet"
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				set_planet_flag = megastructure
+				add_modifier = {
+					modifier = ssh_edersphere_planet_modifier
+					days = -1
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+		event_target:ssh_edersphere_planet = {
+			remove_planet = yes
+		}
+	}
+}
+
+# Ruined
+edersphere_ruined = {
+	entity = "ssh_edersphere_ruined_entity"
+	portrait = "GFX_megastructure_construction_background"
+	
+	potential = {
+		always = no
+	}
+}
+
+edersphere_restored = {
+	entity = "ssh_edersphere_5_entity"
+	construction_entity = "ssh_edersphere_5_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600 #10years
+	scales_with_planet = no
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 15000
+			sr_hydrogen = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 45000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 45000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 45000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 200
+		}
+	}
+
+	upgrade_from = {
+		edersphere_ruined
+	}
+
+	possible = {
+		from = {
+			has_technology = tech_mega_engineering
+		}
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = ssh_has_built_or_repaired_tier_d_mega
+		}
+		spawn_planet = {
+			class = "pc_edersphere"
+			location = fromfrom
+			init_effect = {
+				set_name = "Edersphere"
+				set_planet_entity = {
+					entity = "ssh_edersphere_planet"
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				set_planet_flag = megastructure
+				add_modifier = {
+					modifier = ssh_edersphere_planet_modifier
+					days = -1
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+		from = {
+			country_event = {
+				id = ssh_cn.27
+			}
+		}
+	}
+}

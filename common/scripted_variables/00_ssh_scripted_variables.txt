@@ -1,0 +1,88 @@
+# Compat
+@has_stellar_hyperconstructs = 1
+
+# Technology Cost
+@ssh_tech_tier_a_mega_cost = 30000
+@ssh_tech_tier_b_mega_cost = 35000
+@ssh_tech_tier_c_mega_cost = 40000
+@ssh_tech_tier_d_mega_cost = 48000
+@ssh_tech_tier_e_mega_cost = 48000
+@ssh_tech_tier_f_mega_cost = 60000
+@ssh_tech_tier_bwc_mega_cost = 48000
+
+@ssh_tech_microscale_1_cost = 48000
+@ssh_tech_microscale_2_cost = 30000
+@ssh_tech_microscale_3_cost = 30000
+@ssh_tech_microscale_4_cost = 35000
+@ssh_tech_microscale_5_cost = 40000
+@ssh_tech_microscale_6_cost = 52000
+@ssh_tech_microscale_7_cost = 75000
+
+# B.I.O. Brain Output
+@mega_brain_young_research_production = 350
+@mega_brain_juvenile_research_production = 700
+@mega_brain_grown_research_production = 1050
+
+# Horizon Brain
+@horizon_brain_half_research_production = 700
+@horizon_brain_research_production = 1050
+
+# Reality Collapse Crisis
+@ark_combined_physics_research_output = 1
+@ark_combined_society_research_output = 1
+@ark_combined_engineering_research_output = 1
+
+#@ark_current_physics_research_score = 0
+#@ark_current_society_research_score = 0
+#@ark_current_engineering_research_score = 0
+
+@ark_research_stage_1_goal = 500000
+@ark_research_stage_2_goal = 1000000
+@ark_research_stage_3_goal = 2500000
+@ark_research_stage_4_goal = 5000000
+@ark_research_stage_5_goal = 10000000
+
+@ark_stage_1_goal_alloys = 275000
+@ark_stage_1_goal_cultrobium = 500000
+
+@ark_stage_2_goal_energy = 750000
+@ark_stage_2_goal_crystals = 100000 #500000
+
+@ark_stage_3_goal_alloys = 500000
+@ark_stage_3_goal_minerals = 750000
+@ark_stage_3_goal_food = 100000
+
+@ark_stage_4_goal_gases = 100000 #500000
+@ark_stage_4_goal_motes = 100000 #500000
+
+@ark_stage_5_goal_dark_matter = 500000
+@ark_stage_5_goal_cultrobium = 750000
+
+@ark_stage_6_goal = 1500000
+
+@ark_combined_alloys_output = 1
+@ark_combined_cultrobium_output = 1
+@ark_combined_minerals_output = 1
+@ark_combined_energy_output = 1
+@ark_combined_crystals_output = 1
+@ark_combined_gases_output = 1
+@ark_combined_motes_output = 1
+@ark_combined_dark_matter_output = 1
+
+##################
+# DARK WMD SHIP
+##################
+
+@dark_wmd_collision_radius = 3
+@dark_wmd_formation_priority = 4
+
+@dark_wmd_hp = 15000 #0.5x colossus
+@dark_wmd_evasion = 2
+@dark_wmd_build_time = 1800 #0.5x colossus
+
+@dark_wmd_upkeep_energy = 30
+@dark_wmd_upkeep_dark_matter = 1
+@dark_wmd_upkeep_alloys = 10
+
+# Apparently this is required for the modded techs to appear, no idea why 4.0 changed that
+@ap_technological_ascendancy_rare_tech = 1

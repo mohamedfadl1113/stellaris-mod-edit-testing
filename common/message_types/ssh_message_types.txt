@@ -1,0 +1,133 @@
+message_type = {
+	key = "SYSTEM_DESTROYED_WMD"
+	icon = "GFX_message_star_destroyed"
+	icon_frame = 1
+
+	name = "MESSAGE_SYSTEM_DESTROYED_WMD"
+	sound = "event_air_raid_siren"
+	ping = "mixed_notification_red"
+
+	category = planets
+}
+
+message_type = {
+	key = "WMD_DETECTED"
+	icon = "GFX_message_fleet_detected"
+	icon_frame = 1
+
+	name = "MESSAGE_WMD_DETECTED"
+	sound = "event_red_alert"
+	#auto_opens = none
+	ping = "mixed_notification_red"
+
+	#default_toast = yes
+	#hidden_in_message_settings = yes
+
+	category = fleets
+	#message_setting_key = "MESSAGE_WMD_DETECTED_TEXT"
+}
+
+message_type = {
+	key = "SYSTEM_DISINTEGRATED"
+	icon = "GFX_message_ssh_exodus_wave_nullvoid"
+	icon_frame = 1
+
+	name = "MESSAGE_SYSTEM_DISINTEGRATED"
+	sound = "event_bad_omen"
+	ping = "mixed_notification_red"
+
+	category = planets
+}
+
+message_type = {
+	key = "SHIP_VACUUM_DECAYED"
+	icon = "GFX_message_fleet_detected"
+	icon_frame = 1
+
+	name = "MESSAGE_SHIP_VACUUM_DECAYED"
+	sound = "event_sensor_ping"
+	ping = "mixed_notification_red"
+
+	category = fleets
+}
+
+### Hyperdimensional Exodus Notifications
+message_type = {
+	key = "EXODUS_WAVE_NULLVOID"
+	icon = "GFX_message_ssh_exodus_wave_nullvoid"
+	icon_frame = 1
+
+	name = "MESSAGE_EXODUS_WAVE_NULLVOID"
+	sound = "event_air_raid_siren"
+	ping = "mixed_notification_red"
+
+	category = planets
+}
+message_type = {
+	key = "EXODUS_WAVE_HELL"
+	icon = "GFX_message_ssh_exodus_wave_hell"
+	icon_frame = 1
+
+	name = "MESSAGE_EXODUS_WAVE_HELL"
+	sound = "event_air_raid_siren"
+	ping = "mixed_notification_red"
+
+	category = planets
+}
+message_type = {
+	key = "EXODUS_WAVE_STATIC"
+	icon = "GFX_message_ssh_exodus_wave_static"
+	icon_frame = 1
+
+	name = "MESSAGE_EXODUS_WAVE_STATIC"
+	sound = "event_air_raid_siren"
+	ping = "mixed_notification_red"
+
+	category = planets
+}
+message_type = {
+	key = "EXODUS_WAVE_MIRROR"
+	icon = "GFX_message_ssh_exodus_wave_mirror"
+	icon_frame = 1
+
+	name = "MESSAGE_EXODUS_WAVE_MIRROR"
+	sound = "event_mystic_reveal"
+	ping = "mixed_notification_red"
+
+	category = planets
+}
+message_type = {
+	key = "EXODUS_WAVE_ENERGY"
+	icon = "GFX_message_ssh_exodus_wave_energy"
+	icon_frame = 1
+
+	name = "MESSAGE_EXODUS_WAVE_ENERGY"
+	sound = "event_air_raid_siren"
+	ping = "mixed_notification_red"
+
+	category = planets
+}
+message_type = {
+	key = "EXODUS_WAVE_CORRIDORS"
+	icon = "GFX_message_ssh_exodus_wave_corridors"
+	icon_frame = 1
+
+	name = "MESSAGE_EXODUS_WAVE_CORRIDORS"
+	sound = "event_mystic_reveal_light"
+	ping = "mixed_notification_red"
+
+	category = planets
+}
+
+# System Devoured
+message_type = {
+	key = "SYSTEM_DESTROYED_BRAIN_MAW"
+	icon = "GFX_message_star_destroyed"
+	icon_frame = 1
+
+	name = "MESSAGE_SYSTEM_DESTROYED_BRAIN_MAW"
+	sound = "event_air_raid_siren"
+	ping = "mixed_notification_red"
+
+	category = planets
+}

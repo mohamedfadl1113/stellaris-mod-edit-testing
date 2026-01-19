@@ -1,0 +1,134 @@
+# from = country
+# this = species
+
+# I have no mouth and I must scream
+purge_virtual_hell = {
+	pop_escape_chance = 0.01
+	pop_decline_rate = 5 # 5 pops per month, overrides BASE_POP_DECLINE, will only work on purge types
+
+	pop_group_modifier = {
+		pop_happiness = -20
+	}
+
+	potential = {
+		exists = from
+		from = {
+			#has_country_flag = ssh_has_horizon_brain
+			OR = {
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_fanatic_purifiers
+			}
+		}
+	}
+	allow = {
+		hidden_trigger = { exists = from }
+		from = {
+			OR = {
+				is_xenophobe = yes
+				is_gestalt = yes
+			}
+			any_owned_planet = {
+				OR = {
+					is_planet_class = pc_horizon_brain
+					is_planet_class = pc_habitable_dyson
+				}
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0
+			from = {
+				has_valid_ai_personality = yes
+				NOT = {
+					has_ai_personality_behaviour = purger
+				}
+			}
+		}
+		modifier = {
+			factor = 10
+			from = {
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+	}
+}
+
+# Brain
+purge_conmat = {
+	pop_escape_chance = 0.05
+	pop_decline_rate = 25 # 25 pops per month, overrides BASE_POP_DECLINE, will only work on purge types
+
+	pop_group_modifier = {
+		pop_happiness = -10
+	}
+
+	potential = {
+		exists = from
+		from = {
+			has_technology = ssh_tech_conscious_matter
+			OR = {
+				#has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+				has_ethic = ethic_fanatic_materialist
+			}
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		NOR = {
+			is_species_class = MACHINE
+			is_species_class = LITHOID
+		}
+		if = {
+			limit = {
+				OR = {
+					is_lonely_hive_mind_pop = yes
+					AND = {
+						is_disconnected_drone_pop = yes
+						from = {
+							has_policy_flag = disconnected_drones_purge
+						}
+					}
+				}
+			}
+			always = yes
+		}
+		else = {
+			custom_tooltip = {
+				fail_text = PURGES_ALLOWED
+				OR = {
+					from = {
+						OR = {
+							has_ethic = ethic_gestalt_consciousness
+							has_valid_civic = civic_fanatic_purifiers
+							has_policy_flag = purge_allowed
+						}
+					}
+					from = { is_robotic_species = yes }
+				}
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 2
+		modifier = {
+			factor = 0
+			from = {
+				has_valid_ai_personality = yes
+				NOT = {
+					has_ai_personality_behaviour = purger
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			from = {
+				is_materialist = yes
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+}

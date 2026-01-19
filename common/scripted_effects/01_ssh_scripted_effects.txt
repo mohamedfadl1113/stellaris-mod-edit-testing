@@ -1,0 +1,1047 @@
+###################################
+# Compatibility Effects           #
+###################################
+
+# Effect: Gas Giant Lifter -> Change PC depending on which mod is installed
+ssh_trigger_gas_giant_lifter_mined_effect = {
+	if = {
+		limit = {
+			#has_gigastructures = yes
+			has_planetary_diversity = yes
+		}
+		change_pc = pc_barren #pc_chthonian
+		add_modifier = {
+			modifier = pd_chthonian
+			days = -1
+		}
+	}
+	else_if = {
+		limit = {
+			has_gigastructures = yes
+			has_planetary_diversity = no
+		}
+		change_pc = pc_core_mined
+	}
+	else = {
+		change_pc = pc_barren
+	}
+	add_modifier = {
+		modifier = chthonian_planet
+		days = -1
+	}
+}
+
+## Nanite Disassembler ##
+ssh_trigger_nanite_disassembler_gas_giant_effect = {
+	if = {
+		limit = {
+			has_gigastructures = yes
+		}
+		# Always prefer the metallic hydrogen planet
+		change_pc = pc_metallic_hydrogen
+	}
+	else_if = {
+		limit = {
+			has_gigastructures = no
+			has_planetary_diversity = yes
+		}
+		change_pc = pc_gas_giant #pc_dwarf_gas_giant
+		add_modifier = {
+			modifier = pd_dwarf_gas
+			days = -1
+		}
+	}
+	else = {
+		change_pc = pc_gas_giant
+	}
+}
+
+ssh_trigger_nanite_disassembler_mined_effect = {
+	if = {
+		limit = {
+			NOR = {
+				is_planet_class = pc_asteroid
+				is_planet_class = pc_ice_asteroid
+				is_planet_class = pc_crystal_asteroid
+			}
+		}
+		change_pc = pc_ssh_lava
+	}
+}
+
+# Effect: Set correct shellworld entity depending on amount of shells and depending on climate
+ssh_set_shellworld_entity = {
+	if = {
+		limit = { has_planet_flag = shellworld }
+		if = {
+			limit = { has_climate = wet } #has_planet_flag = wet_planet
+			random_list = {
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_01_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_02_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_03_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_04_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_17_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_18_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_19_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_23_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_24_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_25_entity" } }
+			}
+		}
+		if = {
+			limit = { has_climate = dry }
+			random_list = {
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_11_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_12_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_13_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_14_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_15_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_16_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_20_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_21_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_22_entity" } }
+			}
+		}
+		if = {
+			limit = { has_climate = cold }
+			random_list = {
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_05_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_06_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_07_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_08_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_09_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_10_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_26_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_27_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_shellworld_planet_28_entity" } }
+			}
+		}
+	}
+	if = {
+		limit = { has_planet_flag = double_shellworld }
+		if = {
+			limit = { has_climate = wet }
+			random_list = {
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_01_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_02_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_03_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_04_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_17_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_18_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_19_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_23_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_24_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_25_entity" } }
+			}
+		}
+		if = {
+			limit = { has_climate = dry }
+			random_list = {
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_11_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_12_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_13_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_14_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_15_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_16_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_20_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_21_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_22_entity" } }
+			}
+		}
+		if = {
+			limit = { has_climate = cold }
+			random_list = {
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_05_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_06_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_07_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_08_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_09_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_10_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_26_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_27_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_double_shellworld_planet_28_entity" } }
+			}
+		}
+	}
+	if = {
+		limit = { has_planet_flag = triple_shellworld }
+		if = {
+			limit = { has_climate = wet }
+			random_list = {
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_01_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_02_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_03_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_04_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_17_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_18_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_19_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_23_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_24_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_25_entity" } }
+			}
+		}
+		if = {
+			limit = { has_climate = dry }
+			random_list = {
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_11_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_12_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_13_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_14_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_15_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_16_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_20_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_21_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_22_entity" } }
+			}
+		}
+		if = {
+			limit = { has_climate = cold }
+			random_list = {
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_05_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_06_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_07_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_08_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_09_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_10_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_26_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_27_entity" } }
+				5 = { set_planet_entity = { entity = "ssh_triple_shellworld_planet_28_entity" } }
+			}
+		}
+	}
+}
+
+ssh_set_city_shellworld_entity = {
+	if = {
+		limit = { has_planet_flag = shellworld }
+		set_planet_entity = {
+			entity = "ssh_shellworld_city_planet_01_entity"
+		}
+	}
+	if = {
+		limit = { has_planet_flag = double_shellworld }
+		set_planet_entity = {
+			entity = "ssh_double_shellworld_city_planet_01_entity"
+		}
+	}
+	if = {
+		limit = { has_planet_flag = triple_shellworld }
+		set_planet_entity = {
+			entity = "ssh_triple_shellworld_city_planet_01_entity"
+		}
+	}
+}
+ssh_set_hive_shellworld_entity = {
+	if = {
+		limit = { has_planet_flag = shellworld }
+		set_planet_entity = {
+			entity = "ssh_shellworld_hive_planet_01_entity"
+		}
+	}
+	if = {
+		limit = { has_planet_flag = double_shellworld }
+		set_planet_entity = {
+			entity = "ssh_double_shellworld_hive_planet_01_entity"
+		}
+	}
+	if = {
+		limit = { has_planet_flag = triple_shellworld }
+		set_planet_entity = {
+			entity = "ssh_triple_shellworld_hive_planet_01_entity"
+		}
+	}
+}
+ssh_set_machine_shellworld_entity = {
+	if = {
+		limit = { has_planet_flag = shellworld }
+		set_planet_entity = {
+			entity = "ssh_shellworld_machine_planet_01_entity"
+		}
+	}
+	if = {
+		limit = { has_planet_flag = double_shellworld }
+		set_planet_entity = {
+			entity = "ssh_double_shellworld_machine_planet_01_entity"
+		}
+	}
+	if = {
+		limit = { has_planet_flag = triple_shellworld }
+		set_planet_entity = {
+			entity = "ssh_triple_shellworld_machine_planet_01_entity"
+		}
+	}
+}
+ssh_set_gaia_shellworld_entity = {
+	if = {
+		limit = { has_planet_flag = shellworld }
+		set_planet_entity = {
+			entity = "ssh_shellworld_gaia_planet_01_entity"
+		}
+	}
+	if = {
+		limit = { has_planet_flag = double_shellworld }
+		set_planet_entity = {
+			entity = "ssh_double_shellworld_gaia_planet_01_entity"
+		}
+	}
+	if = {
+		limit = { has_planet_flag = triple_shellworld }
+		set_planet_entity = {
+			entity = "ssh_triple_shellworld_gaia_planet_01_entity"
+		}
+	}
+}
+
+### SHROUD (Mega Temple) Scripted Triggers ###
+# List all countries to spy on - for now 30 will do
+ssh_spy_event_save_countries = {
+	if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_1 } }
+		save_global_event_target_as = shroud_spy_country_1
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_2 } }
+		save_global_event_target_as = shroud_spy_country_2
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_3 } }
+		save_global_event_target_as = shroud_spy_country_3
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_4 } }
+		save_global_event_target_as = shroud_spy_country_4
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_5 } }
+		save_global_event_target_as = shroud_spy_country_5
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_6 } }
+		save_global_event_target_as = shroud_spy_country_6
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_7 } }
+		save_global_event_target_as = shroud_spy_country_7
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_8 } }
+		save_global_event_target_as = shroud_spy_country_8
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_9 } }
+		save_global_event_target_as = shroud_spy_country_9
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_10 } }
+		save_global_event_target_as = shroud_spy_country_10
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_11 } }
+		save_global_event_target_as = shroud_spy_country_11
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_12 } }
+		save_global_event_target_as = shroud_spy_country_12
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_13 } }
+		save_global_event_target_as = shroud_spy_country_13
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_14 } }
+		save_global_event_target_as = shroud_spy_country_14
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_15 } }
+		save_global_event_target_as = shroud_spy_country_15
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_16 } }
+		save_global_event_target_as = shroud_spy_country_16
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_17 } }
+		save_global_event_target_as = shroud_spy_country_17
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_18 } }
+		save_global_event_target_as = shroud_spy_country_18
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_19 } }
+		save_global_event_target_as = shroud_spy_country_19
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_20 } }
+		save_global_event_target_as = shroud_spy_country_20
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_21 } }
+		save_global_event_target_as = shroud_spy_country_21
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_22 } }
+		save_global_event_target_as = shroud_spy_country_22
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_23 } }
+		save_global_event_target_as = shroud_spy_country_23
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_24 } }
+		save_global_event_target_as = shroud_spy_country_24
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_25 } }
+		save_global_event_target_as = shroud_spy_country_25
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_26 } }
+		save_global_event_target_as = shroud_spy_country_26
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_27 } }
+		save_global_event_target_as = shroud_spy_country_27
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_28 } }
+		save_global_event_target_as = shroud_spy_country_28
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_29 } }
+		save_global_event_target_as = shroud_spy_country_29
+	}
+	else_if = {
+		limit = { NOT = { exists = event_target:shroud_spy_country_30 } }
+		save_global_event_target_as = shroud_spy_country_30
+	}
+}
+
+### Clear the list above
+ssh_spy_event_clear_list = {
+	if = {
+		limit = { exists = event_target:shroud_spy_country_1 }
+		clear_global_event_target = shroud_spy_country_1
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_2 }
+		clear_global_event_target = shroud_spy_country_2
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_3 }
+		clear_global_event_target = shroud_spy_country_3
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_4 }
+		clear_global_event_target = shroud_spy_country_4
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_5 }
+		clear_global_event_target = shroud_spy_country_5
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_6 }
+		clear_global_event_target = shroud_spy_country_6
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_7 }
+		clear_global_event_target = shroud_spy_country_7
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_8 }
+		clear_global_event_target = shroud_spy_country_8
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_9 }
+		clear_global_event_target = shroud_spy_country_9
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_10 }
+		clear_global_event_target = shroud_spy_country_10
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_11 }
+		clear_global_event_target = shroud_spy_country_11
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_12 }
+		clear_global_event_target = shroud_spy_country_12
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_13 }
+		clear_global_event_target = shroud_spy_country_13
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_14 }
+		clear_global_event_target = shroud_spy_country_14
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_15 }
+		clear_global_event_target = shroud_spy_country_15
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_16 }
+		clear_global_event_target = shroud_spy_country_16
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_17 }
+		clear_global_event_target = shroud_spy_country_17
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_18 }
+		clear_global_event_target = shroud_spy_country_18
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_19 }
+		clear_global_event_target = shroud_spy_country_19
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_20 }
+		clear_global_event_target = shroud_spy_country_20
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_21 }
+		clear_global_event_target = shroud_spy_country_21
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_22 }
+		clear_global_event_target = shroud_spy_country_22
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_23 }
+		clear_global_event_target = shroud_spy_country_23
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_24 }
+		clear_global_event_target = shroud_spy_country_24
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_25 }
+		clear_global_event_target = shroud_spy_country_25
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_26 }
+		clear_global_event_target = shroud_spy_country_26
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_27 }
+		clear_global_event_target = shroud_spy_country_27
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_28 }
+		clear_global_event_target = shroud_spy_country_28
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_29 }
+		clear_global_event_target = shroud_spy_country_29
+	}
+	if = {
+		limit = { exists = event_target:shroud_spy_country_30 }
+		clear_global_event_target = shroud_spy_country_30
+	}
+}
+
+# Remove system
+remove_star_system = {
+	set_star_class = sc_ssh_space
+	every_system_ambient_object = {
+		limit = {
+			# Preserve Unbidden crisis effects
+			NOR = {
+				has_ambient_object_flag = extradimensional_system_effect
+				has_ambient_object_flag = extradimensional_system_effect_2
+			}
+		}
+		destroy_ambient_object = this
+	}
+	# Handle Contingency Machine Worlds
+	every_system_planet = {
+		limit = {
+			is_planet_class = pc_ai
+			NOT = { has_planet_flag = machine_lair }
+		}
+		destroy_machine_world = yes
+	}
+	random_system_planet = {
+		limit = {
+			is_planet_class = pc_ai
+			has_planet_flag = machine_lair
+		}
+		from.owner = { save_event_target_as = final_machine_world_destroyer }
+		stop_crisis_sound = yes
+		planet_event = { id = crisis.2046 }
+	}
+	every_system_planet = {
+		limit = {
+			exists = orbital_station
+		}
+		orbital_station = { dismantle = yes }
+	}
+	every_system_planet = {
+		clear_deposits = yes
+		clear_planet_modifiers = yes
+		prevent_anomaly = yes
+	}
+	every_system_planet = {
+		limit = { is_star = no }
+		remove_planet = yes
+	}
+	every_fleet_in_system = {
+		limit = {
+			NOR = {
+				is_same_value = from
+				# except Extradimensionals
+				AND = {
+					exists = owner
+					owner = {
+						OR = {
+							is_country_type = portal_holder
+							is_country_type = extradimensional
+							is_country_type = extradimensional_2
+							is_country_type = extradimensional_3
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = event_target:crisis_country #i.e. not final destruction of all matter
+				is_mobile = yes
+			}
+			set_mia = mia_return_home
+		}
+		else = { destroy_fleet = this }
+	}
+	every_system_megastructure = {
+		set_ruined_megastructure = yes
+	}
+	star = {
+		create_ambient_object = {
+			type = "destroyed_system"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = destroyed_system_effect
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		change_pc = pc_ssh_empty_space
+		set_planet_size = 0
+	}
+}
+
+# Shroud Supernova
+ssh_destroy_star_system_shroud = {
+	#if = {
+	#	limit = { exists = event_target:crisis_country }
+	#	fire_on_action = {
+	#		on_action = on_destroy_star_system
+	#		scopes = { from = event_target:crisis_country }
+	#	}
+	#}
+	#else = {
+	#	fire_on_action = { on_action = on_destroy_star_system }
+	#}
+	set_star_flag = star_cracked
+	set_star_class = sc_ssh_white_dwarf
+	every_system_ambient_object = {
+		limit = {
+			# Preserve Unbidden crisis effects
+			NOR = {
+				has_ambient_object_flag = extradimensional_system_effect
+				has_ambient_object_flag = extradimensional_system_effect_2
+			}
+		}
+		destroy_ambient_object = this
+	}
+	every_system_planet = {
+		limit = { is_star = yes }
+		create_ambient_object = {
+			type = "star_explosion"
+			play_animation_once = yes
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		change_pc = pc_white_dwarf_star
+		if = {
+			limit = { planet_size > 5 }
+			change_planet_size = -5 # Shrink the star a bit
+		}
+	}
+	# Handle Contingency Machine Worlds
+	every_system_planet = {
+		limit = {
+			is_planet_class = pc_ai
+			NOT = { has_planet_flag = machine_lair }
+		}
+		destroy_machine_world = yes
+	}
+	random_system_planet = {
+		limit = {
+			is_planet_class = pc_ai
+			has_planet_flag = machine_lair
+		}
+		from.owner = { save_event_target_as = final_machine_world_destroyer }
+		stop_crisis_sound = yes
+		planet_event = { id = crisis.2046 }
+	}
+	every_system_planet = {
+		limit = {
+			is_star = no
+			is_asteroid = no
+			NOR = {
+				is_planet_class = pc_shattered
+				is_planet_class = pc_shattered_2
+				is_planet_class = pc_shielded
+				is_planet_class = pc_ringworld_habitable_damaged
+				is_planet_class = pc_ringworld_tech_damaged
+				is_planet_class = pc_ringworld_seam_damaged
+				is_astral_scar = yes
+			}
+		}
+		if = {
+			limit = { is_planet_class = pc_habitat } # uncolonized
+			spawn_habitat_cracker_effect = yes
+		}
+		if = {
+			limit = { is_colony = yes }
+			if = {
+				limit = {
+					exists = orbital_defence
+				}
+				destroy_fleet = orbital_defence
+			}
+			remove_all_buildings = yes
+			destroy_colony = yes
+			if = {
+				limit = { is_planet_class = pc_habitat }
+				spawn_habitat_cracker_effect = yes
+			}
+			else_if = {
+				limit = { is_ringworld = yes }
+				spawn_ringworld_cracker_effect = yes
+				change_pc = pc_ringworld_habitable_damaged
+			}
+			else = {
+				change_pc = pc_shattered
+			}
+		}
+		else_if = {
+			limit = { is_ringworld = yes }
+			spawn_ringworld_cracker_effect = yes
+			change_pc = pc_ringworld_habitable_damaged
+		}
+		else_if = {
+			limit = { is_planet_class = pc_ringworld_tech }
+			spawn_ringworld_cracker_effect = yes
+			change_pc = pc_ringworld_tech_damaged
+		}
+		else_if = {
+			limit = { is_planet_class = pc_ringworld_seam }
+			spawn_ringworld_cracker_effect = yes
+			change_pc = pc_ringworld_seam_damaged
+		}
+		else = {
+			change_pc = pc_shattered
+		}
+	}
+	every_system_planet = {
+		limit = {
+			exists = orbital_station
+		}
+		orbital_station = { dismantle = yes }
+	}
+	every_system_planet = {
+		clear_deposits = yes
+		clear_planet_modifiers = yes
+		prevent_anomaly = yes
+	}
+	every_system_planet = {
+		limit = { is_asteroid = yes }
+		clear_deposits = yes
+	}
+	every_fleet_in_system = {
+		limit = {
+			NOR = {
+				is_same_value = from
+				# except Extradimensionals
+				AND = {
+					exists = owner
+					owner = {
+						OR = {
+							is_country_type = portal_holder
+							is_country_type = extradimensional
+							is_country_type = extradimensional_2
+							is_country_type = extradimensional_3
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = event_target:crisis_country #i.e. not final destruction of all matter
+				is_mobile = yes
+			}
+			set_mia = mia_return_home
+		}
+		else = {
+			#Since its not am implosion and not as strong as a 'normal' supernova, the observing leaders either survives + becomes insane, or the ship is destroyed
+			random_list = {
+				50 = {
+					leader = {
+						if = {
+							limit = {
+								NOR = {
+									has_trait = leader_trait_ssh_psi_witness
+									has_trait = leader_trait_ssh_psi_witness_2
+									has_trait = leader_trait_ssh_psi_witness_3
+								}
+							}
+							add_trait = leader_trait_ssh_psi_witness
+						}
+						else_if = {
+							limit = { has_trait = leader_trait_ssh_psi_witness }
+							remove_trait = leader_trait_ssh_psi_witness
+							add_trait = leader_trait_ssh_psi_witness_2
+						}
+						else_if = {
+							limit = { has_trait = leader_trait_ssh_psi_witness }
+							remove_trait = leader_trait_ssh_psi_witness_2
+							add_trait = leader_trait_ssh_psi_witness_3
+							add_trait = leader_trait_arrested_development
+						}
+						if = {
+							limit = { NOT = { has_trait = leader_trait_melancholic } }
+							add_trait = leader_trait_melancholic
+						}
+						if = {
+							limit = { NOT = { has_trait = leader_trait_substance_abuser } }
+							add_trait = leader_trait_substance_abuser
+						}
+					}
+				}
+				50 = {
+					destroy_fleet = this
+				}
+			}
+		}
+	}
+	every_system_megastructure = {
+		set_ruined_megastructure = yes
+	}
+	star = {
+		create_ambient_object = {
+			type = "destroyed_system"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = destroyed_system_effect
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+# FOR ABYSSAL ANCHOR INSIGHT EVENT: Spawn the Blokkats
+ssh_insight_spawn_blokkats = {
+	country_event = {
+		id = giga_blokkat.1000 #You have just doomed the galaxy
+		days = 3600 random = 10800 # Triggers spawning sequence within 10 - 30 years (for balance purposes)
+	}
+}
+
+ssh_remove_company_scrap_flags = {
+	if = {
+		limit = { has_country_flag = company_enclave_scrapbox_alloys }
+		remove_country_flag = company_enclave_scrapbox_alloys
+	}
+	if = {
+		limit = { has_country_flag = company_enclave_scrapbox_alloys_minerals }
+		remove_country_flag = company_enclave_scrapbox_alloys_minerals
+	}
+	if = {
+		limit = { has_country_flag = company_enclave_scrapbox_strategic }
+		remove_country_flag = company_enclave_scrapbox_strategic
+	}
+	if = {
+		limit = { has_country_flag = company_enclave_scrapbox_alloys_food }
+		remove_country_flag = company_enclave_scrapbox_alloys_food
+	}
+	if = {
+		limit = { has_country_flag = company_enclave_scrapbox_consumer }
+		remove_country_flag = company_enclave_scrapbox_consumer
+	}
+	if = {
+		limit = { has_country_flag = company_enclave_scrapbox_zro }
+		remove_country_flag = company_enclave_scrapbox_zro
+	}
+	if = {
+		limit = { has_country_flag = company_enclave_scrapbox_nanites_living_metal }
+		remove_country_flag = company_enclave_scrapbox_nanites_living_metal
+	}
+	if = {
+		limit = { has_country_flag = company_enclave_scrapbox_artifacts }
+		remove_country_flag = company_enclave_scrapbox_artifacts
+	}
+	if = {
+		limit = { has_country_flag = company_enclave_scrapbox_corpses }
+		remove_country_flag = company_enclave_scrapbox_corpses
+	}
+	if = {
+		limit = { has_country_flag = company_enclave_scrapbox_cultrobium }
+		remove_country_flag = company_enclave_scrapbox_cultrobium
+	}
+}
+
+ssh_create_company_enclave_system = {
+	no_scope = {
+		spawn_system = {
+			min_distance >= 450
+			max_distance <= 500
+			min_orientation_angle = 0
+			max_orientation_angle = 180
+			initializer = ssh_init_company
+			hyperlane = no
+		}
+	}
+}
+
+ssh_bypass_remove_every_system_megastructure = {
+	every_system_megastructure = {
+		if = {
+			limit = { ssh_is_bypass_megastructure = yes }
+			upgrade_megastructure_to = ssh_bypass_remover
+			finish_upgrade = yes
+		}
+
+		else = {
+			#remove_megastructure = this
+			# No Upgrade
+		}
+		# Remove Mega afterwards anyways
+		remove_megastructure = this
+	}
+}
+
+spawn_horizon_brain_cracker_effect = {
+	create_ambient_object = {
+		location = this
+		type = habitat_cracker_object
+		play_animation_once = yes
+		duration = 5
+
+		use_3d_location = yes
+		base_angle_towards = star
+		entity_face_object = star
+
+		entity_offset = { min = 0 max = 0 }
+
+		entity_scale_to_size = yes
+		scale = 0.10
+	}
+	save_event_target_as = target_horizon_brain
+	solar_system = {
+		#spawn_megastructure = {
+		#	type = cosmogenesis_world_ruined
+		#	owner = this.owner
+		#	coords_from = PREV
+		#}
+		random_system_megastructure = {
+			limit = { is_megastructure_type = horizon_brain_4 }
+			remove_megastructure = this
+		}
+		random_system_planet = {
+			limit = {
+				has_planet_flag = horizon_brain_star
+			}
+			remove_planet_flag = horizon_brain_star
+			remove_planet_flag = has_megastructure
+		}
+	}
+	remove_planet = yes
+	random_country = {
+		limit = {
+			has_country_flag = ssh_has_horizon_brain
+			NOT = {
+				any_owned_planet = {
+					is_planet_class = pc_horizon_brain
+				}
+			}
+		}
+		remove_country_flag = ssh_has_horizon_brain
+	}
+}
+
+devour_galaxy = {
+	optimize_memory
+
+	# Count Systems?
+	# Probably best to 1. not fire it same time other countries get info event
+	# 2. do it in like 4 steps - 4x fire event that counts num of systems, then while = 1/4*num_systems = devour system
+
+	every_country = {
+		limit = { NOT = { is_country_type = behemoth_hatchling } }
+		destroy_country = yes
+	}
+
+	every_system = {
+		limit = {
+			NOR = {
+				has_star_flag = giga_galactic_center
+				has_star_flag = galactic_core
+			}
+		}
+		destroy_star_system_behemoth_brain_maw = yes
+		# Hyperlane stuff appears to crash game
+		#every_neighbor_system = {
+		#	remove_hyperlane = {
+		#		from = THIS
+		#		to = prev
+		#	}
+		#}
+	}
+}
+
+spawn_gargantuan_overmind_behemoth = {
+	create_fleet = {
+		name = "NAME_Brain_Behemoth_fleet"
+		settings = {
+			spawn_debris = no
+		}
+		effect = {
+			set_owner = $OWNER$
+			create_ship = {
+				name = "NAME_Brain_Behemoth_ship"
+				design = "NAME_Brain_Behemoth_06"
+				effect = {
+					set_ship_flag = behemoth_brain_ship
+					set_ship_flag = gargantuan_overmind
+				}
+			}
+			set_location = {
+				target = $TARGET_SYSTEM$
+				distance = 0
+				angle = 0
+				direction = in_system
+			}
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self #or return_point
+			set_aggro_range = 30000
+			set_fleet_bombardment_stance = behemoth_invasion
+		}
+	}
+}

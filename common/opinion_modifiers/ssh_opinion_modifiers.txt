@@ -1,0 +1,230 @@
+#########################################################################
+# OPINION MODIFIERS
+#########################################################################
+
+# Hoopworld Built - positive
+ssh_opinion_bwc_positive = {
+	opinion = {
+		base = 50
+	}
+}
+
+# Hoopworld Built - negative
+ssh_opinion_bwc_negative = {
+	opinion = {
+		base = -50
+	}
+}
+
+# Pre FTLs - Moon Disassembly stopped
+ssh_opinion_preftl_moon_mining_stopped = {
+	opinion = {
+		base = 200
+	}
+	unique = yes #> doesnt stack/prevents reapplying
+	monthly = yes
+	decay = 1
+}
+
+# Pre FTLs - Moon Disassembly Continued
+ssh_opinion_preftl_moon_mining_continued = {
+	opinion = {
+		base = -500
+	}
+	unique = yes
+}
+
+# Spiritualist FE - Shroud Espionage #1
+ssh_opinion_shroud_espionage_negative_1 = {
+	opinion = {
+		base = -150
+	}
+	unique = yes
+}
+
+# Spiritualist FE - Shroud Espionage #2
+ssh_opinion_shroud_espionage_negative_2 = {
+	opinion = {
+		base = -2500
+	}
+	unique = yes
+	monthly = yes
+	decay = 5
+}
+
+# Dimensional Tearer #
+ssh_opinion_base_dim_tearer_negative = {
+	opinion = {
+		base = -100
+	}
+}
+# Shroud Wave Effect
+ssh_opinion_shroud_wave_negative = {
+	opinion = {
+		base = -500
+	}
+	monthly = yes
+	decay = 2
+}
+
+# Mirror Wave Effect
+ssh_opinion_mirror_wave_negative = {
+	opinion = {
+		base = -200
+	}
+	monthly = yes
+	decay = 1
+}
+
+# Null Void Wave Effect
+ssh_opinion_nullvoid_wave_negative = {
+	opinion = {
+		base = -500
+	}
+	monthly = yes
+	decay = 1
+}
+
+# Suffering Wave Effect
+ssh_opinion_suffering_wave_negative = {
+	opinion = {
+		base = -500
+	}
+	monthly = yes
+	decay = 1
+}
+
+# Static Wave Effect
+ssh_opinion_static_wave_negative = {
+	opinion = {
+		base = -600
+	}
+	monthly = yes
+	decay = 1
+}
+
+# Energy Wave Effect
+ssh_opinion_energy_wave_negative = {
+	opinion = {
+		base = -150
+	}
+	monthly = yes
+	decay = 1
+}
+
+# Backrooms Effect
+ssh_opinion_corridors_wave_negative = {
+	opinion = {
+		base = -100
+	}
+	monthly = yes
+	decay = 1
+}
+
+# Dim Tearer Destroyed
+ssh_opinion_destroyed_dim_tearer_negative = {
+	opinion = {
+		base = -2000
+	}
+	unique = yes
+	monthly = yes
+	decay = 1
+}
+
+# System Disintegration Failed
+ssh_opinion_vacdec = {
+	opinion = {
+		base = -200
+	}
+	unique = yes
+	monthly = yes
+	decay = 1
+}
+
+# Galactic Custodian/Emperor Betrayal
+ssh_opinion_custodian_betrayal = {
+	opinion = {
+		base = -3000
+	}
+	unique = yes
+}
+
+# Ark Cooperation
+ssh_opinion_ark_cooperation = {
+	opinion = {
+		base = 100
+	}
+	unique = yes
+}
+
+# Destroyed a solar system with a WMD-Class Vessel (regular Empires' opinion of wmd vessels)
+opinion_destroyed_system_with_wmd = {
+	opinion = {
+		base = -100
+	}
+
+	accumulative = yes
+
+	min = -500
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_destroyed_my_colonized_system_with_wmd = {
+	opinion = {
+		base = -1000
+	}
+
+	accumulative = yes
+
+	min = -5000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_destroyed_my_system_with_wmd = {
+	opinion = {
+		base = -300
+	}
+
+	accumulative = yes
+
+	min = -1500
+
+	decay = {
+		base = 1
+	}
+}
+
+# Transfered planet into basement realm
+opinion_transferred_world_to_basement_realm = {
+	opinion = {
+		base = -20
+	}
+
+	accumulative = yes
+
+	min = -100
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_transferred_my_world_to_basement_realm = {
+	opinion = {
+		base = -200
+	}
+
+	accumulative = yes
+
+	min = -1000
+
+	decay = {
+		base = 1
+	}
+}

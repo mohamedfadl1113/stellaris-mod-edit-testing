@@ -1,0 +1,36 @@
+### Modifiers from Galcom/Empire Resolutions ###
+
+resolution_megaconstruction_streamlined_protocols = {
+	megastructure_build_speed_mult = 0.02
+	megastructures_upkeep_mult = 0.02
+}
+
+resolution_megaconstruction_megastructure_subsidies = {
+	megastructure_build_speed_mult = 0.03
+	megastructure_dismantle_refund_mult = 0.05
+	megastructures_upkeep_mult = 0.02
+	country_energy_produces_mult = -0.02
+}
+
+resolution_megaconstruction_architecural_renaissance = {
+	megastructure_build_speed_mult = 0.02
+	megastructure_dismantle_refund_mult = 0.05
+	megastructures_upkeep_mult = 0.02
+	country_energy_produces_mult = -0.02
+}
+
+resolution_megaconstruction_extraction_initiative = {
+	megastructure_build_speed_mult = 0.03
+	megastructure_dismantle_refund_mult = 0.05
+	megastructures_upkeep_mult = 0.02
+	planet_jobs_minerals_produces_mult = -0.15
+	country_energy_produces_mult = -0.02
+}
+
+resolution_megaconstruction_workforce_revolution = {
+	megastructure_build_speed_mult = 0.05
+	megastructure_dismantle_refund_mult = 0.05
+	megastructures_upkeep_mult = 0.02
+	planet_jobs_minerals_produces_mult = -0.15
+	country_energy_produces_mult = -0.04
+}

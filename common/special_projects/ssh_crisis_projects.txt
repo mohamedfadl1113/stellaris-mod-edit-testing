@@ -1,0 +1,236 @@
+### Become the Crisis
+
+### CRISIS SPECIAL PROJECT 1 - COMPLETION UNLOCKS CRISIS LEVEL 2
+# Regular
+special_project = {
+	key = "SSH_CRISIS_EXODUS_SPECIAL_PROJECT_1"
+	cost = 8000
+	days_to_research = 0
+	tech_department = physics_technology
+	picture = GFX_evt_alien_propaganda
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	event_chain = hyperdimensional_exodus_chain
+	location = no
+
+	event_scope = country_event
+
+	requirements = {
+	}
+
+	on_success = {
+		set_country_flag = ssh_hyperdim_exodus_special_project_1_complete
+		country_event = { id = ssh_crisis.10 }
+	}
+
+	on_fail = {
+	}
+}
+
+### CRISIS SPECIAL PROJECT 2 - COMPLETION UNLOCKS CRISIS LEVEL 3
+# Regular
+special_project = {
+	key = "SSH_CRISIS_EXODUS_SPECIAL_PROJECT_2"
+	cost = 12000
+	days_to_research = 0
+	tech_department = society_technology
+	picture = GFX_evt_zro_2
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	event_chain = hyperdimensional_exodus_chain
+	location = no
+
+	event_scope = country_event
+
+	requirements = {
+	}
+
+	on_success = {
+		set_country_flag = ssh_hyperdim_exodus_special_project_2_complete
+		country_event = { id = ssh_crisis.15 }
+	}
+
+	on_fail = {
+	}
+}
+
+### CRISIS SPECIAL PROJECT 3 - COMPLETION UNLOCKS CRISIS LEVEL 4
+# Regular
+special_project = {
+	key = "SSH_CRISIS_EXODUS_SPECIAL_PROJECT_3"
+	cost = 18000
+	days_to_research = 0
+	tech_department = physics_technology
+	picture = GFX_evt_physics_research
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	event_chain = hyperdimensional_exodus_chain
+	location = no
+
+	event_scope = country_event
+
+	requirements = {
+	}
+
+	on_success = {
+		set_country_flag = ssh_hyperdim_exodus_special_project_3_complete
+		country_event = { id = ssh_crisis.20 }
+	}
+
+	on_fail = {
+	}
+}
+
+### CRISIS SPECIAL PROJECT 4 - COMPLETION UNLOCKS CRISIS LEVEL 5
+# Regular
+special_project = {
+	key = "SSH_CRISIS_EXODUS_SPECIAL_PROJECT_4"
+	cost = 24000
+	days_to_research = 0
+	tech_department = engineering_technology
+	picture = GFX_evt_planet_beam
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	event_chain = hyperdimensional_exodus_chain
+	location = no
+
+	event_scope = country_event
+
+	requirements = {
+	}
+
+	on_success = {
+		set_country_flag = ssh_hyperdim_exodus_special_project_4_complete
+		country_event = { id = ssh_crisis.25 }
+	}
+
+	on_fail = {
+	}
+}
+
+########################
+##### Cosmogenesis #####
+########################
+special_project = {
+	key = "COSMOGENESIS_VICTORY_ARK"
+	event_chain = cosmogenesis_planet_pickup_chain
+	days_to_research = 720
+	tech_department = physics_technology
+	timelimit = -1
+	picture = GFX_evt_star_chart
+	icon = "gfx/interface/icons/situation_log/situation_log_scanning_beam.dds"
+
+	event_scope = ship_event
+
+	requirements = {
+		size_requirement = {
+			ship_size = monadic_qerr
+			count = 1
+		}
+	}
+
+	on_success = {
+		from = {
+			country_event = { id = ssh_crisis.7600 days = 1 }
+		}
+		solar_system = {
+			set_star_flag = cosmogenesis_project_ark
+		}
+	}
+}
+
+#########################
+##### Behemoth Fury #####
+#########################
+### CRISIS SPECIAL PROJECT 4 - COMPLETION UNLOCKS CRISIS LEVEL 5
+special_project = {
+	key = "BEHEMOTH_CRISIS_SPECIAL_PROJECT_4_MEGABRAIN"
+	event_chain = behemoth_crisis_chain
+	days_to_research = 360
+	tech_department = society_technology
+	timelimit = -1
+	picture = GFX_evt_ssh_megabrain_stage_3 #GFX_evt_behemoth_engineering
+	icon = "gfx/interface/icons/situation_log/situation_log_space_creature.dds"
+
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		size_requirement = {
+			ship_size = ssh_brain_behemoth_01 # BIO Brain Ship
+			count = 1
+		}
+	}
+
+	on_success = {
+		owner = {
+			#set_country_flag = crisis_special_project_4_megabrain_complete # Done in ssh_crisis.3015
+			country_event = { id = ssh_crisis.3015 }
+		}
+	}
+	#desc = {
+		#trigger = {
+		#	owner = {
+		#		is_hive_empire = no
+		#		is_machine_empire = no
+		#	}
+		#}
+		#text = BEHEMOTH_CRISIS_SPECIAL_PROJECT_4_MEGABRAIN_DESC
+	#}
+
+	on_fail = {
+	}
+}
+
+### Bio Brain Winning Project
+special_project = {
+	key = "BEHEMOTH_BRAIN_WINNING_PROJECT"
+	cost = 6000
+	days_to_research = 0
+	tech_department = society_technology
+	picture = GFX_evt_ssh_megabrain_stage_3
+	icon = "gfx/interface/icons/situation_log/situation_log_space_creature.dds"
+	event_chain = behemoth_crisis_chain
+	location = no
+
+	event_scope = country_event
+
+	on_success = {
+		country_event = { id = ssh_crisis.3061 }
+	}
+}
+
+### Bio Brain Winning Project - GALACTIC CORE
+special_project = {
+	key = "BEHEMOTH_BRAIN_WINNING_PROJECT_GALCORE"
+	cost = 48000
+	days_to_research = 0
+	tech_department = society_technology
+	picture = GFX_evt_ssh_megabrain_stage_3
+	icon = "gfx/interface/icons/situation_log/situation_log_space_creature.dds"
+	event_chain = behemoth_crisis_chain
+	location = no
+
+	event_scope = country_event
+
+	on_success = {
+		country_event = { id = ssh_crisis.3071 } # Roll the dice
+		every_playable_country = {
+			limit = { NOT = { is_same_value = prev } }
+			country_event = { id = ssh_crisis.3075 }
+		}
+	}
+}
+
+special_project = {
+	key = "GARGANTUAN_OVERMIND_FATE_PROJECT"
+	cost = 80000
+	days_to_research = 0
+	tech_department = physics_technology
+	picture = GFX_evt_physics_research
+	icon = "gfx/interface/icons/situation_log/situation_log_space_creature.dds"
+	location = no
+
+	event_scope = country_event
+
+	on_success = {
+		country_event = { id = ssh_crisis.3081 }
+	}
+}

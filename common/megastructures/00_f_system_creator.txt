@@ -1,0 +1,887 @@
+system_creator_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5 years
+	show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	prerequisites = { "ssh_tech_system_creator" }
+	potential = {
+		has_technology = ssh_tech_system_creator
+		NOT = {
+			has_global_flag = ssh_system_creator_deactivated
+		}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		#custom_tooltip = {
+		#	fail_text = "requires_no_existing_megastructure"
+		#	has_no_non_gate_megastructure = yes
+		#}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOR = {
+					has_anomaly = yes
+					any_moon = { has_anomaly = yes }
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		save_event_target_as = ssh_artificial_interstellar_system
+		#if = {
+		#	limit = { exists = fromfrom.planet }
+		#	fromfrom.planet = {
+		#		set_planet_flag = has_megastructure
+		#		set_planet_flag = ssh_artificial_system_creation_star
+		#		save_event_target_as = ssh_system_creator_star
+		#		orbital_station = {
+		#			dismantle = yes
+		#		}
+		#	}
+		#}
+		from = {
+			set_country_flag = ssh_is_currently_creating_system
+			country_event = { id = ssh_cn.124 }
+		}
+		fromfrom = {
+			remove_megastructure = this
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+		# Do we need the resources?
+		modifier = {
+			factor = 10.0
+			from = {
+				controlled_systems < 5
+			}
+		}
+		modifier = {
+			factor = 0
+			from = {
+				controlled_systems > 30
+			}
+		}
+		# Are we constructing one already? (in case of unlimited mega build capacity)
+		modifier = {
+			factor = 0
+			from = { has_country_flag = ssh_is_currently_creating_system }
+		}
+		# Do we have enough resources?
+		modifier = {
+			factor = 0.1
+			from = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value < 20000
+				}
+				resource_stockpile_compare = {
+					resource = sr_cultrobium
+					value < 7500
+				}
+			}
+		}
+		# Upkeep Affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 100
+				}
+			}
+		}
+		# Good System?
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 1.5
+			from = {
+				OR = {
+					has_ai_personality = erudite_explorers
+					has_civic = civic_inwards_perfection
+					has_authority = auth_corporate
+					has_authority = auth_hive_mind
+					has_authority = auth_machine_intelligence
+					has_ethic = ethic_fanatic_materialist
+					has_civic = civic_technocracy
+					is_anthropocentric = yes # E&C
+				}
+			}
+		}
+	}
+}
+
+# Fusion Candle Platform/Container
+system_creator_fusioncandle_1 = {
+	entity = "ssh_fusion_candle_0_entity"
+	construction_entity = "ssh_fusion_candle_0_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	build_time = 360 # spawned via event
+	prerequisites = { ssh_tech_system_creator }
+	potential = { always = no }
+
+	upgrade_from = {
+		system_creator_0
+	}
+}
+
+system_creator_fusioncandle_2 = {
+	entity = "ssh_fusion_candle_1_entity"
+	construction_entity = "ssh_fusion_candle_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1080 #3years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 25
+		}
+	}
+
+	upgrade_from = {
+		system_creator_fusioncandle_1
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.126 }
+		}
+	}
+}
+
+system_creator_fusioncandle_3 = {
+	entity = "ssh_fusion_candle_2_entity"
+	construction_entity = "ssh_fusion_candle_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1080 #3years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 750
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 40
+		}
+	}
+
+	upgrade_from = {
+		system_creator_fusioncandle_2
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.127 }
+		}
+	}
+}
+
+system_creator_fusioncandle_4 = {
+	entity = "ssh_fusion_candle_2_entity"
+	construction_entity = "ssh_fusion_candle_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_hydrogen = 75000
+		}
+		upkeep = {
+			energy = 40
+		}
+	}
+
+	upgrade_from = {
+		system_creator_fusioncandle_3
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.128 }
+		}
+		fromfrom = {
+			set_name = "Inactive Fusion Candle"
+		}
+	}
+}
+
+system_creator_fusioncandle_5 = {
+	entity = "ssh_fusion_candle_3_entity"
+	construction_entity = "ssh_fusion_candle_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 60
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 20000
+		}
+	}
+
+	upgrade_from = {
+		system_creator_fusioncandle_4
+	}
+
+	on_build_complete = {
+		set_star_class = sc_ssh_fusion_candle
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_f_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			country_event = { id = ssh_cn.129 }
+		}
+		# spawn fusion candle planet (uninhabitable)
+		#spawn_planet = {
+		#	class = pc_fusion_candle
+		#	location = fromfrom
+		#	orbit_angle_offset = 0
+		#	init_effect = {
+		#		set_name = "Fusion Candle"
+		#		set_surveyed = {
+		#			surveyed = yes
+		#			surveyor = fromfrom
+		#		}
+		#		set_all_comms_surveyed = yes
+		#		clear_blockers = yes
+		#		trigger_megastructure_icon = yes
+		#		save_event_target_as = artificial_planet
+		#		set_planet_flag = ssh_artificial_star
+		#	}
+		#}
+		#event_target:artificial_planet = { set_planet_flag = ssh_artificial_star }
+		star = {
+			set_planet_size = 20
+			change_pc = pc_fusion_candle
+			set_name = "Fusion Candle"
+			clear_blockers = yes
+			set_planet_flag = ssh_artificial_star
+		}
+		remove_megastructure = fromfrom
+	}
+}
+
+# Star Platform/Container
+system_creator_star_1 = {
+	entity = "ssh_fusion_candle_0_entity"
+	construction_entity = "ssh_fusion_candle_0_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	build_time = 360 # spawned via event
+	prerequisites = { ssh_tech_system_creator }
+	potential = { always = no }
+
+	upgrade_from = {
+		system_creator_0
+	}
+}
+
+system_creator_star_2 = {
+	entity = "ssh_art_star_1_entity"
+	construction_entity = "ssh_art_star_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 15000
+			sr_cultrobium = 12500
+			sr_dark_matter = 7500
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_creator_star_1
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.130 }
+		}
+	}
+}
+
+system_creator_star_3 = {
+	entity = "ssh_art_star_2_entity"
+	construction_entity = "ssh_art_star_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1080 #3years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_creator_star_2
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.131 }
+		}
+	}
+}
+
+system_creator_star_4 = {
+	entity = "ssh_art_star_3_entity"
+	construction_entity = "ssh_art_star_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 2520 # 7 years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_hydrogen = 125000
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_creator_star_3
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_f_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			country_event = { id = ssh_cn.132 }
+		}
+		set_star_class = sc_ssh_blue_dwarf
+		#spawn_planet = {
+		#	class = pc_blue_dwarf_star
+		#	size = 6
+		#	location = fromfrom
+		#	orbit_angle_offset = 0
+		#	init_effect = {
+		#		set_name = "Artificial Star"
+		#		set_surveyed = {
+		#			surveyed = yes
+		#			surveyor = fromfrom
+		#		}
+		#		set_all_comms_surveyed = yes
+		#		clear_blockers = yes
+		#		save_event_target_as = artificial_planet
+		#		set_planet_flag = ssh_artificial_star
+		#	}
+		#}
+		#event_target:artificial_planet = { set_planet_flag = ssh_artificial_star }
+		star = {
+			set_planet_size = 11
+			change_pc = pc_blue_dwarf_star
+			set_name = "Artificial Star"
+			clear_blockers = yes
+			set_planet_flag = ssh_artificial_star
+		}
+		remove_megastructure = fromfrom
+	}
+}
+
+system_creator_star_4_m = {
+	entity = "ssh_art_star_3_entity"
+	construction_entity = "ssh_art_star_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 2880 # 8 years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_hydrogen = 175000
+			sr_dark_matter = 500
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_creator_star_3
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_f_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			country_event = { id = ssh_cn.132 }
+		}
+		set_star_class = sc_m
+		#spawn_planet = {
+		#	class = pc_m_star
+		#	size = 8
+		#	location = fromfrom
+		#	orbit_angle_offset = 0
+		#	init_effect = {
+		#		set_name = "Artificial Star"
+		#		set_surveyed = {
+		#			surveyed = yes
+		#			surveyor = fromfrom
+		#		}
+		#		set_all_comms_surveyed = yes
+		#		clear_blockers = yes
+		#		save_event_target_as = artificial_planet
+		#		set_planet_flag = ssh_artificial_star
+		#	}
+		#}
+		#event_target:artificial_planet = { set_planet_flag = ssh_artificial_star }
+		star = {
+			set_planet_size = 12
+			change_pc = pc_m_star
+			set_name = "Artificial Star"
+			clear_blockers = yes
+			set_planet_flag = ssh_artificial_star
+		}
+		remove_megastructure = fromfrom
+	}
+}
+
+system_creator_star_4_g = {
+	entity = "ssh_art_star_3_entity"
+	construction_entity = "ssh_art_star_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 3600 # 10 years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_hydrogen = 250000
+			sr_dark_matter = 750
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_creator_star_3
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_f_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			country_event = { id = ssh_cn.132 }
+		}
+		set_star_class = sc_g
+		#spawn_planet = {
+		#	class = pc_g_star
+		#	size = 9
+		#	location = fromfrom
+		#	orbit_angle_offset = 0
+		#	init_effect = {
+		#		set_name = "Artificial Star"
+		#		set_surveyed = {
+		#			surveyed = yes
+		#			surveyor = fromfrom
+		#		}
+		#		set_all_comms_surveyed = yes
+		#		clear_blockers = yes
+		#		save_event_target_as = artificial_planet
+		#		set_planet_flag = ssh_artificial_star
+		#	}
+		#}
+		#event_target:artificial_planet = { set_planet_flag = ssh_artificial_star }
+		star = {
+			set_planet_size = 14
+			change_pc = pc_g_star
+			set_name = "Artificial Star"
+			clear_blockers = yes
+			set_planet_flag = ssh_artificial_star
+		}
+		remove_megastructure = fromfrom
+	}
+}
+
+system_creator_star_4_a = {
+	entity = "ssh_art_star_3_entity"
+	construction_entity = "ssh_art_star_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 4320 # 12 years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_hydrogen = 450000
+			sr_dark_matter = 950
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_creator_star_3
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_f_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			country_event = { id = ssh_cn.132 }
+		}
+		set_star_class = sc_a
+		#spawn_planet = {
+		#	class = pc_a_star
+		#	size = 10
+		#	location = fromfrom
+		#	orbit_angle_offset = 0
+		#	init_effect = {
+		#		set_name = "Artificial Star"
+		#		set_surveyed = {
+		#			surveyed = yes
+		#			surveyor = fromfrom
+		#		}
+		#		set_all_comms_surveyed = yes
+		#		clear_blockers = yes
+		#		save_event_target_as = artificial_planet
+		#		set_planet_flag = ssh_artificial_star
+		#	}
+		#}
+		#event_target:artificial_planet = { set_planet_flag = ssh_artificial_star }
+		star = {
+			set_planet_size = 15
+			change_pc = pc_a_star
+			set_name = "Artificial Star"
+			clear_blockers = yes
+			set_planet_flag = ssh_artificial_star
+		}
+		remove_megastructure = fromfrom
+	}
+}
+
+#> Black Hole:
+#			- Make Big Dense Object
+#			- Much smaller than the ones that naturally form
+#			- You can now tap it for power by dumping mass down inside (-> Mineral/Hydrogen Upkeep)
+system_creator_bh_1 = {
+	entity = "ssh_fusion_candle_0_entity"
+	construction_entity = "ssh_fusion_candle_0_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	build_time = 360 # spawned via event
+	prerequisites = { ssh_tech_system_creator }
+	potential = { always = no }
+
+	upgrade_from = {
+		system_creator_0
+	}
+}
+
+# Giant Iron Sphere
+system_creator_bh_2 = {
+	entity = "ssh_art_bh_1_entity"
+	construction_entity = "ssh_art_bh_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			#alloys = 30000
+			minerals = 85000
+			sr_dark_matter = 150
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		system_creator_bh_1
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.139 }
+		}
+	}
+}
+
+# Eplosives
+system_creator_bh_3 = {
+	entity = "ssh_art_bh_2_entity"
+	construction_entity = "ssh_art_bh_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 15000
+			volatile_motes = 750
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		system_creator_bh_2
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.140 }
+		}
+	}
+}
+
+# Blow up the BH
+system_creator_bh_4 = {
+	entity = "ssh_art_bh_2_entity"
+	construction_entity = "ssh_art_bh_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 30
+	prerequisites = { ssh_tech_system_creator }
+	potential = { has_technology = ssh_tech_system_creator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 150
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	upgrade_from = {
+		system_creator_bh_3
+	}
+
+	on_build_complete = {
+		set_star_class = sc_black_hole
+		set_star_flag = ssh_interstellar_black_hole_system
+		#spawn_planet = {
+		#	class = pc_black_hole
+		#	size = 5
+		#	location = fromfrom
+		#	orbit_angle_offset = 0
+		#	init_effect = {
+		#		set_name = "Artificial Black Hole"
+		#		set_surveyed = {
+		#			surveyed = yes
+		#			surveyor = fromfrom
+		#		}
+		#		set_all_comms_surveyed = yes
+		#		clear_blockers = yes
+		#		save_event_target_as = artificial_planet
+		#		set_planet_flag = ssh_artificial_star # Does not work. wtf!
+		#	}
+		#}
+		#event_target:artificial_planet = { set_planet_flag = ssh_artificial_star }
+		star = {
+			create_ambient_object = {
+				type = "star_explosion"
+				play_animation_once = yes
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+			set_planet_size = 5
+			change_pc = pc_black_hole
+			set_name = "Artificial Black Hole"
+			clear_blockers = yes
+			set_planet_flag = ssh_artificial_star
+		}
+		remove_megastructure = fromfrom
+		from = {
+			country_event = { id = ssh_cn.141 }
+		}
+	}
+}
+
+# If Heliocentric:
+# Hoopworld or Discworld
+# Foundation + Same steps as the normal ones but 3x as expensive (due to transport logistics etc)
+# + Fusion Candle orbiting

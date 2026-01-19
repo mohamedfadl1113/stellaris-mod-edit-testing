@@ -1,0 +1,413 @@
+horizon_brain_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	prerequisites = { "ssh_tech_horizon_brain" }
+	potential = {
+		has_technology = ssh_tech_horizon_brain
+		NOT = {
+			has_global_flag = ssh_horizon_brain_deactivated
+		}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		#custom_tooltip = {
+		#	fail_text = "requires_no_habitable_planets"
+		#	NOT = {
+		#		any_system_planet = {
+		#			colonizable_planet = yes
+		#		}
+		#	}
+		#}
+		custom_tooltip = {
+			fail_text = "ssh_horizon_brain_already_built"
+			from = {
+				NOT = { has_country_flag = ssh_has_horizon_brain }
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_black_hole"
+			is_star_class = sc_black_hole
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOR = {
+					has_anomaly = yes
+					any_moon = { has_anomaly = yes }
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					is_planet_class = pc_habitat
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_black_hole"
+				is_planet_class = pc_black_hole
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+				set_planet_flag = horizon_brain_star
+				save_event_target_as = ssh_horizon_brain_star
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		set_star_flag = horizon_brain_system
+		from = {
+			set_country_flag = ssh_has_horizon_brain
+			country_event = { id = ssh_cn.145 }
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+		modifier = {
+			factor = 0.001
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_country_flag = ssh_has_horizon_brain
+			}
+		}
+	}
+}
+
+# Penrose Sphere
+horizon_brain_1 = {
+	entity = "ssh_horizon_brain_1_entity"
+	construction_entity = "ssh_horizon_brain_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 3600
+	prerequisites = { ssh_tech_horizon_brain }
+	potential = { has_technology = ssh_tech_horizon_brain }
+
+	resources = {
+		category = megastructures
+		produces = {
+			energy = 500
+		}
+		cost = {
+			rare_crystals = 1500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 20000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 20000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 20000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		horizon_brain_0
+	}
+
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_entity = {
+				entity = "ssh_black_hole_norings_entity"
+			}
+		}
+		from = { country_event = { id = ssh_cn.146 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+horizon_brain_2 = {
+	entity = "ssh_horizon_brain_2_entity"
+	construction_entity = "ssh_horizon_brain_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_horizon_brain }
+	potential = { has_technology = ssh_tech_horizon_brain }
+
+	resources = {
+		category = megastructures
+		produces = {
+			energy = 250
+			physics_research = 150
+		}
+		cost = {
+			sr_cultrobium = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	upgrade_from = {
+		horizon_brain_1
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.147 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+horizon_brain_3 = {
+	entity = "ssh_horizon_brain_3_entity"
+	construction_entity = "ssh_horizon_brain_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 3600 #5years
+	prerequisites = { ssh_tech_horizon_brain }
+	potential = { has_technology = ssh_tech_horizon_brain }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 20000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 20000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 20000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 15
+		}
+		produces = {
+			physics_research = @horizon_brain_half_research_production
+		}
+	}
+
+	upgrade_from = {
+		horizon_brain_2
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.148 } }
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+horizon_brain_4 = {
+	entity = "ssh_horizon_brain_4_entity"
+	construction_entity = "ssh_horizon_brain_4_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_horizon_brain }
+	potential = { has_technology = ssh_tech_horizon_brain }
+
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 1500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		produces = {
+			physics_research = @horizon_brain_research_production
+		}
+		upkeep = {
+			alloys = 20
+		}
+	}
+
+	upgrade_from = {
+		horizon_brain_3
+	}
+
+	country_modifier = {
+		planet_jobs_society_research_produces_mult = 0.1
+		planet_jobs_physics_research_produces_mult = 0.15
+		planet_jobs_engineering_research_produces_mult = 0.1
+		#pop_amenities_usage_mult = -0.15
+	}
+
+	on_build_complete = {
+		save_event_target_as = horizon_brain_megastructure
+		from = { country_event = { id = ssh_cn.149 } }
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_f_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+		}
+		spawn_planet = {
+			class = pc_horizon_brain
+			location = fromfrom.planet
+			size = 10
+			orbit_distance = 50
+			orbit_angle = 25
+			orbit_angle_offset = 0
+			init_effect = {
+				set_name = "Neural Grid"
+				set_surveyed = {
+					surveyed = yes
+					surveyor = fromfrom
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				trigger_megastructure_icon = yes
+				set_planet_flag = megastructure
+				save_event_target_as = horizon_brain_planet
+			}
+		}
+		#event_target:horizon_brain_planet = {
+		#	if = {
+		#		limit = { from = { is_gestalt = no } }
+		#		add_modifier = {
+		#			modifier = ssh_hb_main_server_default
+		#			days = -1
+		#		}
+		#	}
+		#	else = {
+		#		add_modifier = {
+		#			modifier = ssh_hb_main_server_gestalt
+		#			days = -1
+		#		}
+		#	}
+		#}
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+# Horizon Brain Administrative Focus
+# Horizon Brain Science Focus

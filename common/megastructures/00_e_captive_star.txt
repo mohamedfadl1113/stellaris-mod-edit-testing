@@ -1,0 +1,805 @@
+captive_star_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 720 #2 years
+	show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	prerequisites = { ssh_tech_captive_star }
+	potential = {
+		has_technology = ssh_tech_captive_star
+		NOT = {
+			has_global_flag = ssh_captive_star_deactivated
+		}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_binary_star = yes
+				is_trinary_star = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_colony"
+			NOT = {
+				any_system_planet = {
+					is_colony = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_black_hole"
+			NOT = { is_star_class = sc_black_hole }
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_special_star"
+			NOT = { ssh_is_special_star = yes }
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_neutron"
+			NOR = { 
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+				is_star_class = sc_ssh_quark_star
+				# Hypo Stars
+				is_star_class = sc_strange_star
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_black_dwarf"
+			NOT = {
+				is_star_class = sc_ssh_black_dwarf
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			influence = 50
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+				NOR = {
+					is_planet_class = pc_black_dwarf_star
+					is_planet_class = pc_black_hole
+					is_planet_class = pc_pulsar
+					is_planet_class = pc_neutron_star
+					is_planet_class = pc_quark_star
+					ssh_is_special_star = yes #Gigas Galactic Core etc
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOT = {
+					has_planet_flag = has_megastructure
+					#has_planet_flag = megastructure
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+				set_planet_flag = captive_star_planet
+				save_event_target_as = stellar_harvester_planet
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		from = {
+			set_country_flag = ssh_is_constructing_captive_star
+			country_event = { id = ssh_cn.150 }
+		}
+	}
+
+	ai_weight = {
+		weight = 15
+		# Any OP rival?
+		modifier = {
+			factor = 5.0
+			from = {
+				num_rivals > 0
+				any_rival_country = {
+					relative_power = {
+						who = prev
+						category = fleet
+						value = pathetic #overwhelming
+					}
+				}
+			}
+		}
+		# Are we constructing one already? (in case of unlimited mega build capacity)
+		modifier = {
+			factor = 0
+			from = { has_country_flag = ssh_is_constructing_captive_star }
+		}
+		# Do we have enough resources?
+		modifier = {
+			factor = 0.1
+			from = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value < 10000
+				}
+			}
+		}
+		# Upkeep Affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				has_monthly_income = {
+					resource = alloys
+					value < 20
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 1.5
+			from = {
+				OR = {
+					is_militarist = yes
+					is_gestalt = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			from = {
+				is_pacifist = yes
+			}
+		}
+	}
+}
+
+captive_star_1 = {
+	entity = "dyson_sphere_phase_01_entity"
+	construction_entity = "dyson_sphere_frame_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	prerequisites = { ssh_tech_captive_star }
+	potential = { has_technology = ssh_tech_captive_star }
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_colonies"
+			NOT = {
+				any_system_planet = {
+					is_colony = yes
+					is_artificial = no
+					exists = owner
+					owner = {
+						is_primitive = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "blocked_by_pre_ftl_policy"
+			if = {
+				limit = {
+					any_system_planet = {
+						exists = owner
+						owner = {
+							is_primitive = yes
+						}
+					}
+				}
+				from = {
+					has_policy_flag = interference_aggressive
+				}
+			}
+		}
+	}
+
+	upgrade_from = {
+		captive_star_0
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+		#produces = {
+		#	energy = 250
+		#}
+	}
+
+	on_build_complete = {
+		fromfrom.planet = { set_planet_flag = has_megastructure }
+		set_asteroid_belt = {
+			radius = 0
+		}
+		remove_system_terraforming_candidates = yes
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+		from = { country_event = { id = ssh_cn.151 } }
+	}
+}
+
+captive_star_2 = {
+	entity = "dyson_sphere_phase_02_entity"
+	construction_entity = "dyson_sphere_part_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	prerequisites = { ssh_tech_captive_star }
+	potential = { has_technology = ssh_tech_captive_star }
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_colonies"
+			NOT = {
+				any_system_planet = {
+					is_colony = yes
+					is_artificial = no
+					exists = owner
+					owner = {
+						is_primitive = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "blocked_by_pre_ftl_policy"
+			if = {
+				limit = {
+					any_system_planet = {
+						exists = owner
+						owner = {
+							is_primitive = yes
+						}
+					}
+				}
+				from = {
+					has_policy_flag = interference_aggressive
+				}
+			}
+		}
+	}
+
+	upgrade_from = {
+		captive_star_1
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 15
+		}
+		produces = {
+			energy = 1000
+		}
+	}
+
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					ssh_is_special_planet = yes
+				}
+			}
+			remove_planet = yes
+		}
+		from = { country_event = { id = ssh_cn.152 } }
+	}
+}
+
+captive_star_3 = {
+	entity = "dyson_sphere_phase_03_entity"
+	construction_entity = "dyson_sphere_part_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	prerequisites = { ssh_tech_captive_star }
+	potential = { has_technology = ssh_tech_captive_star }
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_colonies"
+			NOT = {
+				any_system_planet = {
+					is_colony = yes
+					is_artificial = no
+					exists = owner
+					owner = {
+						is_primitive = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "blocked_by_pre_ftl_policy"
+			if = {
+				limit = {
+					any_system_planet = {
+						exists = owner
+						owner = {
+							is_primitive = yes
+						}
+					}
+				}
+				from = {
+					has_policy_flag = interference_aggressive
+				}
+			}
+		}
+	}
+
+	upgrade_from = {
+		captive_star_2
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 15
+		}
+		produces = {
+			energy = 2000
+		}
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.153 } }
+	}
+}
+
+# Thrusters
+captive_star_4 = {
+	entity = "dyson_sphere_phase_04_entity"
+	construction_entity = "dyson_sphere_part_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	prerequisites = { ssh_tech_captive_star }
+	potential = { has_technology = ssh_tech_captive_star }
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_colonies"
+			NOT = {
+				any_system_planet = {
+					is_colony = yes
+					is_artificial = no
+					exists = owner
+					owner = {
+						is_primitive = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "blocked_by_pre_ftl_policy"
+			if = {
+				limit = {
+					any_system_planet = {
+						exists = owner
+						owner = {
+							is_primitive = yes
+						}
+					}
+				}
+				from = {
+					has_policy_flag = interference_aggressive
+				}
+			}
+		}
+	}
+
+	upgrade_from = {
+		captive_star_3
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 25
+		}
+		produces = {
+			energy = 3000
+		}
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = ssh_has_built_or_repaired_tier_e_mega
+			set_country_flag = has_built_or_repaired_megastructure # Galwonders
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+		}
+		create_fleet = {
+			name = "Captive Star"
+			settings = {
+				spawn_debris = no
+				#can_change_composition = no
+			}
+			effect = {
+				set_owner = from
+				set_fleet_flag = captive_star
+				create_ship = {
+					name = "Captive Star"
+					#graphical_culture = root.from
+					random_existing_design = ssh_captive_star
+					effect = { set_ship_flag = ssh_captive_star }
+				}
+				if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_a_star } }
+					set_fleet_flag = ssh_captive_star_a
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_b_star } }
+					set_fleet_flag = ssh_captive_star_b
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_f_star } }
+					set_fleet_flag = ssh_captive_star_f
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_g_star } }
+					set_fleet_flag = ssh_captive_star_g
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_k_star } }
+					set_fleet_flag = ssh_captive_star_k
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_m_star } }
+					set_fleet_flag = ssh_captive_star_m
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_m_giant_star } }
+					set_fleet_flag = ssh_captive_star_m_giant
+				}
+				else = { set_fleet_flag = ssh_captive_star_t }
+			}
+		}
+		last_created_fleet = { set_location = fromfrom.planet }
+		fromfrom.planet = {
+			clear_deposits = yes
+			set_planet_size = 0
+		}
+		remove_megastructure = fromfrom
+		set_star_class = sc_ssh_space
+		from = {
+			if = {
+				limit = { has_country_flag = ssh_is_constructing_captive_star }
+				remove_country_flag = ssh_is_constructing_captive_star
+			}
+			country_event = { id = ssh_cn.154 }
+			if = {
+				limit = { NOT = { has_country_flag = ssh_wmd_captive_star } }
+				set_country_flag = ssh_wmd_captive_star
+				every_country = {
+					limit = {
+						is_ai = no
+						NOT = { is_same_value = prev }
+						root = { # Not sure if this is the right way of checking if country has intel on the system
+							is_surveyed = {
+								who = prev
+								status = yes
+							}
+						}
+					}
+					country_event = { id = ssh_on.82 }
+				}
+			}
+		}
+	}
+}
+
+
+##### CONTINGENCY CAPTIVE STARS #####
+captive_star_contingency_0 = {
+	entity = "dyson_sphere_phase_01_entity"
+	construction_entity = "dyson_sphere_frame_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360
+	#prerequisites = { ssh_tech_captive_star }
+	potential = { is_country_type = ai_empire }
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_colonies"
+			NOT = {
+				any_system_planet = {
+					is_planet_class = pc_ai
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			alloys = 10
+		}
+		#produces = {
+		#	energy = 250
+		#}
+	}
+
+	on_build_complete = {
+		fromfrom.planet = { set_planet_flag = has_megastructure }
+		set_asteroid_belt = {
+			radius = 0
+		}
+		remove_system_terraforming_candidates = yes
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+captive_star_contingency_1 = {
+	entity = "dyson_sphere_phase_04_entity"
+	construction_entity = "dyson_sphere_part_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	#prerequisites = { ssh_tech_captive_star }
+	potential = { is_country_type = ai_empire }
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_colonies"
+			NOT = {
+				any_system_planet = {
+					is_planet_class = pc_ai
+				}
+			}
+		}
+	}
+
+	upgrade_from = {
+		captive_star_contingency_0
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+			rare_crystals = 500
+		}
+		upkeep = {
+			alloys = 25
+		}
+		produces = {
+			energy = 3000
+		}
+	}
+
+	on_build_complete = {
+		every_system_planet = {
+			limit = { is_star = no }
+			remove_planet = yes
+		}
+		create_fleet = {
+			name = "Captive Star"
+			settings = {
+				spawn_debris = no
+				#can_change_composition = no
+			}
+			effect = {
+				set_owner = from
+				set_fleet_flag = captive_star
+				set_fleet_flag = captive_star_contingency
+				create_ship = {
+					name = "Captive Star"
+					#graphical_culture = root.from
+					random_existing_design = ssh_captive_star
+					effect = { set_ship_flag = ssh_captive_star }
+				}
+				if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_a_star } }
+					set_fleet_flag = ssh_captive_star_a
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_b_star } }
+					set_fleet_flag = ssh_captive_star_b
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_f_star } }
+					set_fleet_flag = ssh_captive_star_f
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_g_star } }
+					set_fleet_flag = ssh_captive_star_g
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_k_star } }
+					set_fleet_flag = ssh_captive_star_k
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_m_star } }
+					set_fleet_flag = ssh_captive_star_m
+				}
+				else_if = {
+					limit = { fromfrom.planet = { is_planet_class = pc_m_giant_star } }
+					set_fleet_flag = ssh_captive_star_m_giant
+				}
+				else = { set_fleet_flag = ssh_captive_star_t }
+				# Target closest colonized system
+				#fleet_event = {
+				#	id = ssh_crisis.9005
+				#	days = 90
+				#}
+			}
+		}
+		last_created_fleet = { set_location = fromfrom.planet }
+		fromfrom.planet = {
+			clear_deposits = yes
+			set_planet_size = 0
+		}
+		remove_megastructure = fromfrom
+		set_star_class = sc_ssh_space
+		from = {
+			if = {
+				limit = { has_country_flag = ssh_is_constructing_captive_star }
+				remove_country_flag = ssh_is_constructing_captive_star
+			}
+			# Target closest colonized system
+			country_event = {
+				id = ssh_crisis.9005
+				days = 30
+			}
+			if = {
+				limit = { NOT = { has_country_flag = ssh_contingency_captive_star_message } }
+				set_country_flag = ssh_contingency_captive_star_message
+				every_playable_country = {
+					limit = {
+						is_ai = no
+						NOT = { is_same_value = prev }
+						root = { # Not sure if this is the right way of checking if country has intel on the system
+							is_surveyed = {
+								who = prev
+								status = yes
+							}
+						}
+					}
+					country_event = { id = ssh_crisis.9001 }
+				}
+			}
+		}
+	}
+}

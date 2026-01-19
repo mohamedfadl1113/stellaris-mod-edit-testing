@@ -1,0 +1,66 @@
+### Planet Modifiers
+pm_ssh_hot_gas_giant = {
+	spawn_chance = {
+		modifier = {
+			add = 10
+			is_planet_class = "pc_gas_giant"
+			#this.solar_system = {
+			#	star = {
+			#		OR = {
+			#			is_star_class = sc_a
+			#			is_star_class = sc_b
+			#			#is_star_class = sc_giga_o_star
+			#		}
+			#	}
+			#}
+		}
+		modifier = {
+			factor = 0
+			has_planet_modifier = "pm_ssh_hot_gas_giant"
+		}
+		modifier = {
+			factor = 0
+			num_modifiers > 3
+		}
+	}
+
+	modifier = "ssh_hot_gas_giant"
+}
+
+pm_ssh_cloudless_gas_giant = {
+	spawn_chance = {
+		modifier = {
+			add = 10
+			is_planet_class = "pc_gas_giant"
+		}
+		modifier = {
+			factor = 0
+			has_planet_modifier = "pm_ssh_cloudless_gas_giant"
+		}
+		modifier = {
+			factor = 0
+			num_modifiers > 3
+		}
+	}
+	modifier = "ssh_cloudless_gas_giant"
+}
+
+pm_ssh_dwarf_gas_giant = {
+	spawn_chance = {
+		modifier = {
+			add = 50
+			is_planet_class = "pc_gas_giant"
+			planet_size <= 21
+		}
+		modifier = {
+			factor = 0
+			has_planet_modifier = "pm_ssh_dwarf_gas_giant"
+		}
+		modifier = {
+			factor = 0
+			num_modifiers > 3
+		}
+	}
+
+	modifier = "ssh_dwarf_gas_giant"
+}

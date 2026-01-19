@@ -1,0 +1,680 @@
+################
+# GESTALT JOBS #
+################
+
+#### Hive
+## Specialist
+
+# VR Brain
+# VR Researcher Drones
+ssh_vr_brain_drone = {
+	category = virtual_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_research_lab_3
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = { can_think = yes }
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			physics_research = 6
+			engineering_research = 6
+			society_research = 6
+		}
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_research
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			physics_research = 1.5
+			engineering_research = 1.5
+			society_research = 1.5
+		}
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+		mult = value:job_weights_research_modifier|JOB|ssh_vr_brain_drone|
+		modifier = {
+			factor = 0.9
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+}
+
+ssh_vr_calculator = {
+	category = virtual_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_research_lab_1
+			icon = physicist
+		}
+		#Brain Drone - auth_hive ### WIP
+		#swap_type = {
+		#	trigger = {
+		#		exists = owner
+		#		owner = {
+		#			is_hive_empire = yes
+		#			is_wilderness_empire = no
+		#		}
+		#	}
+		#	name = brain_drone_physicist
+		#	desc = brain_drone_physicist
+		#	icon = brain_drone_physicist
+		#	building_icon = building_research_lab_1
+		#	condition_string = DRONE_JOB_TRIGGER
+		#	weight = 50
+		#}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = { can_think = yes }
+
+	resources = {
+		category = planet_researchers
+		produces = {
+			physics_research = 6
+			engineering_research = 6
+			society_research = 6
+		}
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_research
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			physics_research = 3
+			engineering_research = 3
+			society_research = 3
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			local_or_sector_governor_has_trait = {
+				TRAIT = leader_trait_academia_recruiter
+			}
+		}
+		country_naval_cap_add = 1
+		mult = planet.modifier:job_researcher_naval_cap_add
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_calculator|RESOURCE|physics_research|
+		mult = value:job_weights_modifier|JOB|ssh_vr_calculator|RESOURCE|engineering_research|
+		mult = value:job_weights_modifier|JOB|ssh_vr_calculator|RESOURCE|society_research|
+		modifier = {
+			factor = 0.9
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = virtual_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# VR Coordinator/Archive Drone
+ssh_vr_coordinator = {
+	category = virtual_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_machine_capital
+		}
+		# Synpase Drone - auth_hive_mind
+		#swap_type = {
+		#	trigger = {
+		#		exists = owner
+		#		owner = {
+		#			is_hive_empire = yes
+		#			#is_wilderness_empire = no
+		#		}
+		#	}
+		#	name = synapse_drone
+		#	desc = synapse_drone
+		#	icon = synapse_drone
+		#	building_icon = building_hive_capital
+		#	condition_string = DRONE_JOB_TRIGGER
+		#	weight = 2
+		#}
+		# Chronicle Drone
+		swap_type = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_memorialist_empire = yes
+				}
+			}
+			name = ssh_vr_archive_drone
+			desc = ssh_vr_archive_drone
+			icon = ssh_vr_archive_drone
+			building_icon = building_galactic_memorial_1
+			condition_string = DRONE_JOB_TRIGGER
+			weight = 10
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = { can_think = yes }
+
+	resources = {
+		category = planet_bureaucrats
+		produces = {
+			unity = 5
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_memorialist_empire = yes
+				}
+			}
+			unity = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_memorialist_empire = yes
+			}
+		}
+		modifier = {
+			planet_stability_add = 0.5
+		}
+	}
+	triggered_country_modifier = {
+		potential = { always = yes }
+		empire_size_mult = -0.005
+	}
+
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		always = yes
+	#	}
+	#	planet_amenities_add = 300
+	#	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	#}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				has_active_building = building_league_offices
+			}
+		}
+		planet_amenities_no_happiness_add = 100
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			OR = {
+					has_modifier = planet_artifact_relays_machine
+					has_modifier = planet_artifact_relays_hivemind
+				}
+		}
+		modifier = {
+			planet_stability_add = 2
+			planet_jobs_simple_drone_produces_mult = 0.01
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				exists = owner
+				owner = {
+					has_tradition = tr_modularity_4
+				}
+			}
+		}
+		planet_jobs_simple_drone_produces_mult = 0.02
+	}
+
+	weight = {
+		weight = @synapse_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_coordinator|RESOURCE|unity|
+		modifier = {
+			factor = 0.9
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = virtual_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+#Swap for is_memorialist_empire
+# Archive Drone
+ssh_vr_archive_drone = {
+	category = virtual_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_galactic_memorial_1
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+
+
+# Hunter-Seeker Drone (Less corruption on other colonies)
+ssh_vr_antivirus = {
+	category = virtual_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stronghold
+		}
+		# Antivirus - auth_machine_intelligence
+		swap_type = {
+			trigger = {
+				exists = owner
+				owner = {
+					#is_gestalt = yes
+					is_hive_empire = yes
+				}
+			}
+			name = ssh_vr_patrol_drone
+			desc = ssh_vr_patrol_drone
+			icon = ssh_vr_patrol_drone
+			#building_icon = building_machine_capital
+			condition_string = DRONE_JOB_TRIGGER
+			weight = 2
+		}
+	}
+
+	tags = { crime enforcer }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = { can_think = yes }
+
+	resources = {
+		category = planet_jobs
+		produces = {
+			unity = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_no_happiness_add = -20
+		planet_defense_armies_add = 2
+	}
+	country_modifier = {
+		planet_crime_mult = -0.1 ### Check if this works
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_patrol_drone|RESOURCE|unity|FACTOR|0.25|
+		modifier = {
+			factor = 50
+		}
+		modifier = {
+			weight = 20
+			exists = owner
+			owner = { is_at_war = yes }
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 3
+			planet = { planet_crime > 0 }
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 2
+			planet = { planet_crime > 0 }
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+		modifier = {
+			factor = 1.2
+			has_trait = trait_cybernetic
+		}
+	}
+	inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = virtual_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+# Swap type for hive empires
+ssh_vr_patrol_drone = {
+	category = virtual_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stronghold
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+
+# Warrior
+ssh_vr_warrior_drone = {
+	category = virtual_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stronghold
+		}
+	}
+
+	tags = { soldier }
+
+	country_modifier = {
+		country_naval_cap_add = 6
+		army_experience_gain_mult = 0.1
+		army_starting_experience_add = 10
+	}
+
+	resources = {
+		category = planet_soldiers
+		inline_script = "output/soldier_output"
+	}
+
+	inline_script = "output/soldier_triggered_modifiers"
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	planet_modifier = {
+		planet_stability_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		modifier = {
+			planet_stability_add = 1
+		}
+		mult = planet.modifier:job_soldier_stability_add
+	}
+
+	weight = {
+		weight = 5
+		modifier = {
+			weight = 100
+			exists = owner
+			owner = { is_at_war = yes }
+		}
+		modifier = {
+			factor = 10
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 4
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 4
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.9
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 0
+			planet = { pop_amount < 1200 }
+			owner = { is_ai = yes }
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+		modifier = {
+			factor = 1.2
+			has_trait = trait_cybernetic
+		}
+	}
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = virtual_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+
+# Spyware/Infiltration Drone
+ssh_vr_spyware = {
+	category = virtual_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_machine_capital
+		}
+		# Synpase Drone - auth_hive_mind
+		swap_type = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_hive_empire = yes
+				}
+			}
+			name = ssh_vr_infiltration_drone
+			desc = ssh_vr_infiltration_drone
+			icon = ssh_vr_infiltration_drone
+			building_icon = building_hive_capital
+			condition_string = DRONE_JOB_TRIGGER
+			weight = 10
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = { can_think = yes }
+
+	resources = {
+		category = planet_synapse_drones
+		produces = {
+			trigger = {
+				owner = {
+					has_valid_civic = civic_memory_vault_hive
+				}
+			}
+			unity = 0.5
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = no }
+		}
+		intel_decryption_add = 0.1 ###Check ingame
+		espionage_operation_skill_add = 0.1 ###
+		espionage_operation_speed_mult = 0.05 ###
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		intel_decryption_add = 0.1 ###Check ingame
+		espionage_operation_skill_add = 0.05 ###
+		espionage_operation_speed_mult = 0.025 ###
+	}
+
+	weight = {
+		weight = @synapse_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_vr_coordinator|RESOURCE|unity|
+		modifier = {
+			factor = 0.9
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+	}
+
+	#inline_script = "jobs/automodding_priority_unity"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = virtual_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Swap type for machine empires
+ssh_vr_infiltration_drone = {
+	category = virtual_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_hive_capital
+		}
+	}
+
+	possible = {
+		always = no
+	}
+}
+
+# Malware-Drone - WIP

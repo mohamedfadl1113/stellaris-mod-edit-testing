@@ -1,0 +1,171 @@
+# MENACE PERKS
+# menp_name = {
+#	portrait = "GFX_crisis_1_perk_1"	# Icon that will be used to display the perk
+#	modifier = {						# static modifier added to the country for as long as they have the perk
+#		pop_purge_mult = 5.0
+#	}
+#	on_unlock = {						# Effect that will be executed when the country receives perk
+#		log = "Country [This.GetName] received menace perk 'menp_name'"
+#	}
+#	resources = {						# resources for the country that has the perk. Only upkeep and produces are hooked in
+#		category = menace_perks
+#		produces = {
+#			alloys = 1
+#		}
+#		upkeep = {
+#			energy = 1
+#		}
+#	}
+# }
+
+###Hyperdimensional Exodus
+menp_hyperdim_exodus_objectives = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_objectives"
+
+	modifier = {
+		country_physics_research_produces_mult = 0.1
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_interdim_insights_objectives
+	}
+}
+
+menp_dimensional_observer = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_interdim_observer"
+
+	modifier = {
+		country_astral_rift_speed_mult = 1.0
+	}
+
+	#on_unlock = {
+	#	custom_tooltip = unlocks_purge
+	#}
+}
+
+menp_system_disintegration = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_system_disintegration"
+
+	on_unlock = {
+		custom_tooltip = unlocks_system_disintegrator
+	}
+}
+
+# Stage 2
+menp_micro_dimensions = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_micro_dimensions"
+
+	modifier = {
+		country_physics_research_produces_mult = 0.15
+	}
+}
+
+menp_in_depth_defense = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_in_depth_defense"
+
+	modifier = {
+		starbase_defense_platform_capacity_add = 5
+		starbase_upgrade_cost_mult = -0.25
+		starbase_upgrade_speed_mult = 0.25
+		#starbase_shipyard_build_speed_mult = 0.5
+	}
+}
+
+menp_scientific_focus = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_science_1"
+
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.2
+		planet_jobs_society_research_produces_mult = 0.2
+		planet_jobs_engineering_research_produces_mult = 0.2
+	}
+}
+
+# Stage 3
+# Give Null Void Beam
+menp_hyperdim_exodus_dimensional_techs = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_dimensional_techs"
+
+	on_unlock = {
+		custom_tooltip = unlocks_hyperdim_dimensional_techs
+		#### Nullvoid Colossus & Other Doorway Expanded Technologies!
+	}
+}
+
+menp_scientific_integration = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_science_2"
+
+	modifier = {
+		planet_researchers_produces_mult = 0.15
+		planet_researchers_upkeep_mult = -0.5
+	}
+}
+
+menp_astral_skills = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_astral_skills"
+
+	modifier = {
+		country_astral_threads_produces_mult = 0.15
+		ship_astral_rift_clues_add = 3
+		astral_rift_difficulty_add = -4
+	}
+}
+
+menp_anomaly_master = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_anomaly_master"
+
+	modifier = {
+		ship_anomaly_generation_chance_mult = 1.0
+		ship_anomaly_research_speed_mult = 0.5
+	}
+}
+
+# Stage 4
+menp_hyperdim_exodus_dark_matter_techs = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_dark_matter"
+
+	modifier = {
+		ships_sr_dark_matter_upkeep_mult = -0.2
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_hyperdim_dark_matter_techs
+	}
+}
+
+menp_jump_drive_enhancements = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_jump_drive_enhancements"
+
+	modifier = {
+		ship_ftl_jumpdrive_range_mult = 0.25
+		ship_speed_mult = 0.15
+	}
+}
+
+menp_defensive_deterrence = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_defensive_deterrence"
+
+	modifier = {
+		country_starbase_capacity_add = 5
+		shipclass_starbase_hull_mult = 0.5
+		starbase_defensive_war_ship_build_speed_mult = 1.5
+	}
+}
+
+
+# Stage 5
+menp_dimensional_tearer = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_dim_tearer"
+
+	on_unlock = {
+		custom_tooltip = unlocks_dimensional_tearer
+	}
+}
+
+menp_reality_shaping = {
+	portrait = "GFX_crisis_icon_hyperdim_exodus_reality_shaping"
+
+	on_unlock = {
+		custom_tooltip = unlocks_reality_shaping_tech
+	}
+}

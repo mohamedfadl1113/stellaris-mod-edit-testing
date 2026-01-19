@@ -1,0 +1,801 @@
+# Check if Hypothetical Stars is installed
+has_hypothetical_stars = {
+    has_global_flag = has_hypothetical_stars_mod
+}
+
+# Check if any big megastructure has been constructed/restored
+ssh_has_built_or_repaired_galactic_wonders_mega = {
+    OR = {
+        any_owned_megastructure = {
+            OR = {
+                is_megastructure_type = dyson_sphere_5
+                is_megastructure_type = dyson_sphere_restored
+                is_megastructure_type = ring_world_restored
+                is_megastructure_type = ring_world_3_intermediate
+                is_megastructure_type = matter_decompressor_4
+                is_megastructure_type = matter_decompressor_restored
+            }
+        }  
+    }
+    AND = {
+        has_country_flag = has_built_or_repaired_megastructure
+        any_owned_planet = { is_planet_class = pc_ringworld_habitable }  
+    }
+}
+
+# For gas giant lifter + shellworld + compressor: check if it's any gas giant (vanilla + PD)
+ssh_is_any_gas_giant = {
+    OR = {
+        is_planet_class = pc_gas_giant
+        #is_planet_class = pc_t_star
+        # Planetary Diversity
+        has_modifier = pd_hot_gas_giant
+        has_modifier = pd_cloudless_gas_giant
+        has_modifier = pd_cold_gas_giant
+        has_modifier = pd_dwarf_gas
+        # Gigas
+        is_planet_class = pc_gigabrown_dwarf
+    }
+}
+
+ssh_is_any_regular_star = {
+    OR = {
+        is_planet_class = pc_a_star
+        is_planet_class = pc_b_star
+        is_planet_class = pc_f_star
+        is_planet_class = pc_g_star
+        is_planet_class = pc_k_star
+        is_planet_class = pc_m_star
+        is_planet_class = pc_m_giant_star
+        is_planet_class = pc_blue_dwarf_star
+        is_planet_class = pc_white_dwarf_star
+        # Gigas
+        is_planet_class = pc_gigaignited_star
+    }
+}
+
+# Check if any important/special planet/star is in this system (Vanilla + Giga + PD)
+#ssh_is_special_planet = {
+#    OR = {
+#        # Hyperconstructs Types
+#        is_planet_class = pc_fusion_candle
+#        is_planet_class = pc_exodus_portal
+#        # Special Vanilla Types
+#        is_planet_class = pc_ai
+#        is_planet_class = pc_cybrex
+#        is_planet_class = pc_machine_broken
+#        is_planet_class = pc_egg_cracked
+#        is_planet_class = pc_infested
+#        is_planet_class = pc_gray_goo
+#        is_planet_class = pc_toxoid_star
+#        is_planet_class = pc_astral_scar
+#        is_planet_class = pc_rift_star
+#        is_planet_class = pc_warden_guardian
+#        is_planet_class = pc_rare_crystal_asteroid
+#        # PD Types
+#        is_planet_class = pc_pd_orange_warform
+#        is_planet_class = pc_pd_zro
+#        is_planet_class = pc_pd_red_warform
+#        is_planet_class = pc_pd_blue_warform
+#        is_planet_class = pc_pd_scrapyard
+#        is_planet_class = pc_crystal
+#        is_planet_class = pc_floating
+#        is_planet_class = pc_graveyard 
+#        is_planet_class = pc_technoorganic
+#        is_planet_class = pc_archive
+#        is_planet_class = pc_crucible
+#        is_planet_class = pc_shroud_crucible
+#        is_planet_class = pc_clean_crucible
+#        # Gigastructures Types
+#        is_planet_class = pc_core_black_hole
+#        is_planet_class = pc_core_quasar
+#        is_planet_class = pc_birch
+#        is_planet_class = pc_origin_birch
+#        is_planet_class = pc_origin_dummy_birch
+#        is_planet_class = pc_giga_edge_of_eternity
+#        is_planet_class = pc_giga_frameworld
+#        is_planet_class = pc_giga_empty_space_asteroid
+#        is_planet_class = pc_void_birch
+#        is_planet_class = pc_flusion_gaia_ecu
+#        is_planet_class = pc_pki_flusion_ecu
+#        # Secrets of the Shroud
+#        is_planet_class = pc_acot_soulsphere
+#        # Guillis PM
+#        is_planet_class = pc_gpm_precursor_tomb
+#    }
+#}
+
+ssh_is_special_planet = {
+    OR = {
+        # Hyperconstructs Types
+        is_ssh_fusion_candle = yes
+        is_ssh_exodus_portal = yes
+        # Special Vanilla Types
+        is_planet_class = pc_ai
+        is_planet_class = pc_cybrex
+        is_planet_class = pc_machine_broken
+        is_planet_class = pc_egg_cracked
+        is_planet_class = pc_infested
+        is_planet_class = pc_gray_goo
+        is_planet_class = pc_toxoid_star
+        is_planet_class = pc_astral_scar
+        is_planet_class = pc_rift_star
+        is_planet_class = pc_warden_guardian
+        is_planet_class = pc_rare_crystal_asteroid
+        # Gigastructures Types
+        giga_is_black_hole = yes
+        giga_is_birch_world = yes
+        giga_is_pc_giga_edge_of_eternity = yes
+        giga_is_pc_giga_frameworld = yes
+        giga_is_pc_flusion_gaia_ecu = yes
+        is_pki_flusion_ecu = yes
+        # Secrets of the Shroud
+        is_sots_soulsphere = yes
+        # Guillis PM
+        is_gpm_precursor_tomb = yes
+    }
+}
+
+# Special PD Arcologies (for shellworld effects)
+ssh_is_any_pd_arcology = {
+    OR = {
+        # Lets see if I can use pd's scripted triggers instead of a list of the pc's
+        # Arcologies
+        is_planet_class = pc_city #Vanilla Arcology
+        is_pd_arcology = yes
+        is_pd_hive_arcology = yes
+        is_pd_robot_arcology = yes
+        #is_planet_class = pc_necrohive
+        #is_planet_class = pc_machine_necropolis
+        #is_planet_class = pc_capitalarc
+        #is_planet_class = pc_palacearc
+        #is_planet_class = pc_milarc
+        #is_planet_class = pc_ecocity
+        #is_planet_class = pc_bioforge
+        #is_planet_class = pc_biofort
+        #is_planet_class = pc_biocapital
+        #is_planet_class = pc_machine_factory
+        #is_planet_class = pc_machine_fort
+        #is_planet_class = pc_milarc_relic
+        #is_planet_class = pc_shroudcity
+        #is_planet_class = pc_shroudecocity
+        #is_planet_class = pc_shroudcapitalarc
+        #is_planet_class = pc_shroudpalacearc
+        #is_planet_class = pc_shroudmilarc
+        #is_planet_class = pc_machine_capital
+        #is_planet_class = pc_corpoarc
+        #is_planet_class = pc_shroudcorpoarc
+        # Necro planets
+        #is_planet_class = pc_necropolis
+        #is_planet_class = pc_necroecocity
+        #is_planet_class = pc_necrocapitalarc
+        #is_planet_class = pc_necropalacearc
+        #is_planet_class = pc_necromilarc
+        #is_planet_class = pc_pd_necro
+    }
+}
+
+ssh_is_any_pd_machine = {
+    OR = {
+        # Machine worlds
+        is_planet_class = pc_machine #Vanilla 
+        is_planet_class = pc_machine_broken #Vanilla
+        is_pd_machine = yes
+    }
+}
+
+ssh_is_any_pd_hive = {
+    OR = {
+        # Machine worlds
+        is_planet_class = pc_hive
+        is_pd_hive_world = yes
+    }
+}
+
+# Important digsites etc
+# secrets of the shroud compat
+ssh_is_special_system = {
+    OR = {
+        has_star_flag = ralu_digsite_star # Golden Archives
+        has_star_flag = sobrak_digsite_star # Celeste
+    }
+}
+
+# Gigas Special Stars
+ssh_is_special_star = {
+    OR = {
+        is_star_class = sc_ssh_fusion_candle
+        is_star_class = sc_toxoid_star
+        is_star_class = sc_ssh_quark_star
+        is_star_class = sc_ssh_black_dwarf
+        is_star_class = sc_ssh_space
+        is_star_class = sc_rift_star
+        # Gigas
+        is_star_class = sc_giga_o_star
+        is_star_class = sc_birch
+		is_star_class = sc_dyson_star
+		is_star_class = sc_habitat
+		is_star_class = sc_birch_built
+		is_star_class = sc_quasar
+		is_star_class = sc_white_hole
+		is_star_class = sc_annihilator
+        is_star_class = sc_ehof_black_hole
+        is_star_class = sc_empty_space
+        # Hypo Stars
+        is_star_class = sc_white_hole
+    }
+}
+
+########### Nanite Disassembler Checks ##############
+ssh_is_any_crystal_planet = {
+    if = {
+        limit = {
+            has_planetary_diversity = yes
+        }
+        OR = {
+            # Vanilla Crystal Planets
+            is_planet_class = pc_molten
+            is_planet_class = pc_crystal_asteroid
+            is_planet_class = pc_rare_crystal_asteroid
+            # PD Crystal Planets
+            has_modifier = pd_diamond
+            has_modifier = pd_volcanic
+            has_modifier = pd_subglacial
+            has_modifier = pd_salt
+            has_modifier = pd_geothermal
+            has_modifier = pd_crystal
+            has_modifier = pd_biolumen
+            has_modifier = pd_glacio
+            has_modifier = pd_sulfur
+        }
+    }
+    else = {
+        # Vanilla Crystal Planets
+        OR = {
+            is_planet_class = pc_molten
+            is_planet_class = pc_crystal_asteroid
+            is_planet_class = pc_rare_crystal_asteroid
+        }
+    }
+}
+
+ssh_is_any_alloy_planet = {
+    OR = {
+        # Vanilla Alloy Planets
+        is_planet_class = pc_city
+        is_planet_class = pc_habitat
+        is_planet_class = pc_machine
+        # PD Alloy Planets
+        has_modifier = pd_iron
+        has_modifier = pd_chthonian
+        has_modifier = pd_technoorganic
+        has_modifier = pd_ash
+        has_modifier = pd_lanthanide
+        has_modifier = pd_basalt
+        # Midas Colossus Planets
+        is_planet_class = pc_midas_city
+        is_planet_class = pc_midas
+        is_planet_class = pc_midas_barren    
+    }
+}
+
+ssh_is_any_toxic_planet = {
+    if = {
+        limit = {
+            has_planetary_diversity = yes
+        }
+        OR = {
+            # Vanilla Planets
+            is_planet_class = pc_toxic
+            # PD Crystal Planets
+            has_modifier = pd_ethane_ocean
+        }
+    }
+    else = {
+        # Vanilla Planets
+        is_planet_class = pc_toxic
+    }
+}
+
+
+ssh_is_pre_industrial_preftl = {
+    OR = {
+        has_pre_ftl_age = stone_age
+        has_pre_ftl_age = iron_age
+        has_pre_ftl_age = bronze_age
+        has_pre_ftl_age = late_medieval_age
+        has_pre_ftl_age = renaissance_age
+        has_pre_ftl_age = steam_age
+        # More Primitives Ages
+        has_pre_ftl_age = philosophy_age
+        has_pre_ftl_age = purifying_age
+        # Gigass Ages
+        has_pre_ftl_age = giga_ezic_age
+        has_pre_ftl_age = giga_corrona_age
+    }
+}
+
+ssh_is_post_industrial_preftl = {
+    OR = {
+        has_pre_ftl_age = industrial_age
+        has_pre_ftl_age = machine_age
+        has_pre_ftl_age = atomic_age
+        has_pre_ftl_age = early_space_age
+        # More Primitives Ages
+        has_pre_ftl_age = late_purifying_age
+        has_pre_ftl_age = apocalyptic_age
+        has_pre_ftl_age = post_apocalyptic_age
+        has_pre_ftl_age = regression_age
+        # Gigass Ages
+        has_pre_ftl_age = giga_fusion_age
+    }
+}
+
+
+# Colossus Stuff
+can_destroy_planet_with_PLANET_KILLER_ZOMBIE = {
+    can_destroy_planet_with_PLANET_KILLER_DEVOLUTION = yes
+}
+can_destroy_planet_with_PLANET_KILLER_BASEMENT_UNIVERSE = {
+    can_destroy_planet_with_PLANET_KILLER_SHIELDER = yes
+}
+can_destroy_planet_with_PLANET_KILLER_BRAIN_MAW = {
+    NOR = {
+        custom_tooltip = {
+            fail_text = is_own_colony
+            AND = {
+                exists = owner
+                owner = {
+                    is_same_value = from.owner
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = is_undigestible_star
+            OR = {
+                is_star = yes
+                ssh_is_star_pc = yes
+                is_planet_class = pc_black_hole
+                is_planet_class = pc_neutron_star
+                is_planet_class = pc_pulsar
+            }
+        }
+        custom_tooltip = {
+            fail_text = lathe_cant_colossus
+            is_planet_class = pc_cosmogenesis_world
+        }
+        custom_tooltip = {
+            fail_text = fotd_cant_collossus
+            AND = {
+                has_planet_flag = fotd_seperatist_planet@from.owner
+                exists = from.owner
+                from.owner = { 
+                    NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+                }  
+            }
+        }
+    }
+}
+
+can_destroy_planet_with_sk_brain_maw = {
+    is_star = yes
+    NOT = { has_planet_flag = devoured_star }
+    #NOR = { # Not digestible
+    #    is_planet_class = pc_ssh_empty_space
+    #    # Gigas special stars
+    #    is_planet_class = pc_ehof_planet
+    #    is_planet_class = pc_core_black_hole
+    #    is_planet_class = pc_core_quasar
+    #    is_planet_class = pc_birch
+    #    is_planet_class = pc_origin_birch
+    #    is_planet_class = pc_rift_star
+    #    custom_tooltip = {
+    #        fail_text = is_own_colony
+    #        AND = {
+    #            exists = space_owner
+    #            #owner = { is_same_value = from.owner }
+    #            any_system_planet = {
+    #                is_colony = yes
+    #                owner = { is_same_value = from.owner }
+    #            }
+    #        }
+    #    }
+    #}
+    #OR = {
+     #   NOT = { is_planet_class = pc_black_hole }
+      #  NOT = { is_planet_class = pc_neutron_star }
+       # NOT = { is_planet_class = pc_pulsar }
+        #NOT = { is_planet_class = pc_quark_star }
+        #NOT = { is_planet_class = pc_disintegrated_star }
+        #AND = {
+        #    is_planet_class = pc_black_hole
+        #}
+    #}
+    NOR = {
+        is_planet_class = pc_ssh_empty_space
+        # Gigas special stars
+        is_planet_class = pc_ehof_planet
+        is_planet_class = pc_core_black_hole
+        is_planet_class = pc_core_quasar
+        is_planet_class = pc_birch
+        is_planet_class = pc_origin_birch
+        is_planet_class = pc_rift_star
+        custom_tooltip = {
+            fail_text = is_own_colony
+            AND = {
+                exists = space_owner
+                #owner = { is_same_value = from.owner }
+                any_system_planet = {
+                    is_colony = yes
+                    owner = { is_same_value = from.owner }
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = cannot_eat_neutron_yet
+            #NOT = { has_country_flag = behemoth_crisis_megabrain_can_eat_neutron }
+            AND = {
+                from.owner = {
+                    NOT = { has_country_flag = behemoth_crisis_megabrain_can_eat_neutron }
+                }
+                #NOT = { owner = { has_country_flag = behemoth_crisis_megabrain_can_eat_neutron } }
+                OR = {
+                    #is_planet_class = pc_black_hole
+                    is_planet_class = pc_neutron_star
+                    is_planet_class = pc_pulsar
+                    is_planet_class = pc_quark_star
+                    is_planet_class = pc_disintegrated_star
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = cannot_eat_black_hole_yet
+            #NOT = { has_country_flag = behemoth_crisis_megabrain_can_eat_black_hole }
+            AND = {
+                from.owner = { NOT = { has_country_flag = behemoth_crisis_megabrain_can_eat_black_hole } }
+                is_planet_class = pc_black_hole
+            }
+        }
+    }
+}
+
+
+# For final brain event
+ssh_has_all_bio_brain_technologies = {
+    if = {
+        limit = {
+            #host_has_dlc = Apocalypse
+            has_necroids = yes
+            has_country_flag = colossus_project
+            #has_ascension_perk = ap_colossus
+        }
+        AND = {
+            has_technology = ssh_tech_pk_zombie
+            has_technology = ssh_tech_neural_tampering
+            has_technology = ssh_tech_conmat_computer
+            has_technology = ssh_tech_conmat_hull
+            has_technology = ssh_tech_genetic_databanks
+        }
+    }
+    else = {
+        AND = {
+            has_technology = ssh_tech_neural_tampering
+            has_technology = ssh_tech_conmat_computer
+            has_technology = ssh_tech_conmat_hull
+            has_technology = ssh_tech_genetic_databanks
+        }
+    }
+}
+
+### SHROUD Megatemple Spy stuff ###
+# No FEs, No Rivals
+ssh_is_regular_shroud_spy_candidate = {
+    AND = {
+        has_communications = root
+        OR = {
+            is_country_type = default
+            is_country_type = awakened_marauders
+        }
+    }
+}
+
+# Rivals
+ssh_is_rival_shroud_spy_candidate = {
+    AND = {
+        has_communications = root
+        is_rival = root
+    }
+}
+
+# Fallen Empires
+ssh_is_fe_shroud_spy_candidate = {
+    AND = {
+        has_communications = root
+        OR = {
+            is_country_type = fallen_empire
+            is_country_type = awakened_fallen_empire
+        }
+    }
+}
+
+# Check for all Shroud Insight Techs/Modifiers
+ssh_has_all_base_shroud_insights = {
+    AND = {
+        has_country_flag = ssh_has_shroud_insight_collectivist
+        has_country_flag = ssh_has_shroud_insight_agrarian
+        has_country_flag = ssh_has_shroud_insight_technocracy
+        has_country_flag = ssh_has_shroud_insight_anarchist
+        has_country_flag = ssh_has_shroud_insight_inward_perfection
+        has_country_flag = ssh_has_shroud_insight_death_cult
+    }
+}
+
+ssh_has_all_special_shroud_insights = {
+    AND = {
+        has_country_flag = ssh_has_shroud_insight_1984
+        has_country_flag = ssh_has_shroud_insight_bnw
+        has_country_flag = ssh_has_shroud_insight_extradimensional
+        has_country_flag = ssh_has_shroud_insight_prethoryn
+        has_country_flag = ssh_has_shroud_insight_neutrals
+    }
+}
+
+ssh_half_galaxy_decayed = {
+    # Check if 50% of galaxy has been annihilated by the true vacuum
+    OR = {
+        AND = {
+            has_global_flag = ssh_vacdec_speed_tiny_modded
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 50
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_tiny
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 100
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_small
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 200
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_medium
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 300
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_large
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 400
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_huge
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 500
+            }
+        }
+        #AND = {
+        #    has_global_flag = ssh_vacdec_speed_huge_modded
+        #    count_system = {
+        #        limit = { has_star_flag = ssh_decayed_system }
+        #        count > 600
+        #    }
+        #}
+    }
+}
+
+ssh_galaxy_decayed = {
+    # Check if 90% of galaxy has been annihilated by the true vacuum
+    OR = {
+        AND = {
+            has_global_flag = ssh_vacdec_speed_tiny_modded
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 100
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_tiny
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 180
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_small
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 360
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_medium
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 540
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_large
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 720
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_huge
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 900
+            }
+        }
+        AND = {
+            has_global_flag = ssh_vacdec_speed_huge_modded
+            count_system = {
+                limit = { has_star_flag = ssh_decayed_system }
+                count > 950
+            }
+        }
+    }
+}
+
+### VR Scripted Triggers ###
+ssh_is_noble_society = {
+    OR = {
+        has_civic = civic_aristocratic_elite
+        has_civic = civic_imperial_cult
+        has_civic = civic_feudal_realm
+        #has_civic = civic_pleasure_seekers
+        #has_civic = civic_corporate_hedonism
+        has_civic = civic_galactic_sovereign
+        has_civic = civic_galactic_sovereign_megacorp
+        has_civic = civic_philosopher_king
+        has_civic = civic_dystopian_society
+        has_civic = civic_exalted_priesthood
+    }
+}
+
+ssh_is_warrior_society = {
+    OR = {
+        has_civic = civic_warrior_culture
+        has_civic = civic_citizen_service
+        has_civic = civic_distinguished_admiralty
+        has_civic = civic_individual_machine_warbots
+        has_civic = civic_fanatic_purifiers
+        has_civic = civic_barbaric_despoilers
+        has_civic = civic_private_military_companies
+        has_civic = civic_naval_contractors
+        # Letters of marque?
+    }
+}
+
+# Check for stars suitable for stellar collision
+ssh_is_crackable_star = {
+    NOR = {
+        is_planet_class = pc_black_hole
+        is_planet_class = pc_neutron_star
+        is_planet_class = pc_pulsar
+        is_planet_class = pc_quark_star
+        is_planet_class = pc_fusion_candle
+        is_planet_class = pc_disintegrated_star
+        is_planet_class = pc_ssh_empty_space
+        is_planet_class = pc_toxoid_star
+        is_planet_class = pc_rift_star
+        # Gigas special stars
+        is_planet_class = pc_ehof_planet
+        is_planet_class = pc_core_black_hole
+        is_planet_class = pc_core_quasar
+        is_planet_class = pc_birch
+        is_planet_class = pc_origin_birch
+
+        has_planet_flag = destroyed_star
+    }
+}
+
+# Check for star (non-center) system planets
+ssh_is_star_pc = {
+    OR = {
+        is_planet_class = pc_a_star
+        is_planet_class = pc_b_star
+        is_planet_class = pc_f_star
+        is_planet_class = pc_g_star
+        is_planet_class = pc_k_star
+        is_planet_class = pc_m_star
+        is_planet_class = pc_t_star
+        is_planet_class = pc_zro_star
+        is_planet_class = pc_blue_dwarf_star
+        is_planet_class = pc_white_dwarf_star
+        is_planet_class = pc_black_dwarf_star
+        is_planet_class = pc_black_hole
+        is_planet_class = pc_neutron_star
+        is_planet_class = pc_pulsar
+        is_planet_class = pc_quark_star
+        is_planet_class = pc_fusion_candle
+        is_planet_class = pc_disintegrated_star
+        is_planet_class = pc_ssh_empty_space
+        is_planet_class = pc_toxoid_star
+        is_planet_class = pc_rift_star
+        # Gigas special stars
+        is_planet_class = pc_ehof_planet
+        is_planet_class = pc_core_black_hole
+        is_planet_class = pc_core_quasar
+        is_planet_class = pc_birch
+        is_planet_class = pc_origin_birch
+    }
+}
+
+#### Gigas Triggers ####
+is_blokkats_country_type = {
+    # Blokkats
+	OR = {
+        is_country_type = blokkat_stripminers
+		is_country_type = blokkat_stripminers_defeated
+		is_country_type = blokkat_stripminers_blokkwork
+		is_country_type = blokkat_stripminers_ascended_country
+		is_country_type = swarm_fleeing_blokkats
+    }
+}
+
+is_any_ssh_district_set = {
+    OR = {
+        uses_district_set = gas_shell_world
+		uses_district_set = stellar_hoop_world
+		uses_district_set = edersphere_world
+		uses_district_set = black_hole_shell_world
+        uses_district_set = bwc_world
+    }
+}
+
+
+### Fallen Empire Triggers ###
+can_be_wmd_fallen_empire = {
+    OR = {
+        is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
+    }
+    NOR = {
+        is_pacifist = yes
+        is_gestalt = yes
+    }
+}
+
+is_fe_with_wmd_launch_site = {
+    has_country_flag = fe_with_wmd_launch_site
+}
+
+is_wmd_launch_site_system = {
+    OR = {
+        has_star_flag = fe_wmd_launch_site
+        any_system_megastructure = {
+            OR = {
+                is_megastructure_type = quantum_catapult_restored
+                is_megastructure_type = quantum_catapult_1
+                is_megastructure_type = quantum_catapult_2
+                is_megastructure_type = quantum_catapult_3
+                is_megastructure_type = quantum_catapult_restored_slingshot
+                is_megastructure_type = quantum_catapult_improved_slingshot
+            }
+        }
+    }
+}
+
+has_wmd_launch_site = {
+    any_system_within_border = {
+        is_wmd_launch_site_system = yes
+    }
+}
+
+fe_is_producing_warheads = {
+	has_country_flag = active_dark_warhead_production
+}

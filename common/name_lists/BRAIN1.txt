@@ -1,0 +1,221 @@
+﻿### Brain 1
+
+BRAIN1 = {
+	category = "Brain"
+	ship_names = {
+
+		generic = {
+			BRAIN1_SHIP_Neuron BRAIN1_SHIP_Signal BRAIN1_SHIP_Neuralnet BRAIN1_SHIP_Mush
+		}
+
+		corvette = {
+		}
+
+		destroyer = {
+		}
+
+		cruiser = {
+		}
+
+		battleship = {
+		}
+
+		titan = {
+		}
+
+		colossus = {
+		}
+
+		science = {
+		}
+
+		colonizer = {
+		}
+
+		constructor = {
+		}
+
+		transport = {
+		}
+
+		military_station_small = {
+		}
+
+		ion_cannon = {
+		}
+	}
+
+	fleet_names = {
+		random_names = {
+			BRAIN1_FLEET_NeuralStellarCluster
+		}
+		sequential_name = BRAIN1_STELLARCLUSTER
+	}
+
+	army_names = {
+
+		machine_defense = {
+			sequential_name = FUN1_DEFENSECONTINGENT
+		}
+
+		machine_assault_1 = {
+			sequential_name = FUN1_BATTLEPHALANX
+		}
+
+		machine_assault_2 = {
+			sequential_name = FUN1_BATTLEPHALANX
+		}
+
+		machine_assault_3 = {
+			sequential_name = FUN1_BATTLEPHALANX
+		}
+
+		defense_army = {
+			sequential_name = FUN1_DEFENSECONTINGENT
+		}
+
+		assault_army = {
+			sequential_name = FUN1_BATTLEPHALANX
+		}
+
+		slave_army = {
+			sequential_name = FUN1_SERFCONTINGENT
+		}
+
+		clone_army = {
+			sequential_name = FUN1_CLONEGUARD
+		}
+
+		undead_army = {
+			sequential_name = FUN1_DREADPHALANX
+		}
+
+		robotic_army = {
+			sequential_name = FUN1_MECHANIZEDCOMBATANTS
+		}
+
+		robotic_defense_army = {
+			sequential_name = FUN1_MECHANIZEDDEFENDERS
+		}
+
+		psionic_army = {
+			sequential_name = FUN1_THECHOSEN
+		}
+
+		xenomorph_army = {
+			sequential_name = FUN1_BATTLEBROOD
+		}
+
+		gene_warrior_army = {
+			sequential_name = FUN1_SHOCKINFANTRY
+		}
+
+		occupation_army = {
+			sequential_name = FUN1_OCCUPATIONCONTINGENT
+		}
+
+		robotic_occupation_army = {
+			sequential_name = FUN1_MECHANIZEDWATCHERS
+		}
+
+		primitive_army = {
+			sequential_name = FUN1_PRIMITIVEARMY
+		}
+		industrial_army = {
+			sequential_name = FUN1_INDUSTRIALARMY
+		}
+		postatomic_army = {
+			sequential_name = FUN1_POSTATOMICARMY
+		}
+	}
+
+	planet_names = {
+
+		generic = {
+			names = {
+				FUN1_PLANET_Qeni-Habraal FUN1_PLANET_Qeni-Efiguukh FUN1_PLANET_Qeni-Ghirgaam FUN1_PLANET_Sara-Flugeer FUN1_PLANET_Sara-Marfeem FUN1_PLANET_Sara-Kenjaal FUN1_PLANET_Jem-Karanaagh FUN1_PLANET_Jem-Fhengoorem FUN1_PLANET_Jem-Kaquused FUN1_PLANET_Thrus-Sanguur FUN1_PLANET_Thrus-Klejaamen FUN1_PLANET_Thrus-Ythoruum
+			}
+		}
+
+		pc_desert = {
+			names = {
+				FUN1_PLANET_Qeni-Falmareen FUN1_PLANET_Qeni-Quurem FUN1_PLANET_Qeni-Fheerdaga FUN1_PLANET_Qeni-Helgeph FUN1_PLANET_Qeni-Lirabeem FUN1_PLANET_Qeni-Seraphuus FUN1_PLANET_Qeni-Quopaluus FUN1_PLANET_Qeni-Sarabaadh
+			}
+		}
+
+		pc_tropical = {
+			names = {
+				FUN1_PLANET_Sara-Sharaaq FUN1_PLANET_Sara-Faleegh FUN1_PLANET_Sara-Qlaruumen FUN1_PLANET_Sara-Knuumjal FUN1_PLANET_Sara-Falaghoor FUN1_PLANET_Sara-Qraluen FUN1_PLANET_Sara-Pabdeelen FUN1_PLANET_Sara-Batoorgh FUN1_PLANET_Sara-Onadraakh FUN1_PLANET_Sara-Qeejuuq FUN1_PLANET_Sara-Krombeed FUN1_PLANET_Sara-Ulaasaira
+			}
+		}
+
+		pc_arid = {
+			names = {
+				 FUN1_PLANET_Jem-Ruloodeph FUN1_PLANET_Jem-Pyrrhenne FUN1_PLANET_Jem-Falqeeg FUN1_PLANET_Jem-Julkoduur FUN1_PLANET_Jem-Jalmeedegh FUN1_PLANET_Jem-Jormuung FUN1_PLANET_Jem-Ghandreel FUN1_PLANET_Jem-Pholtuug FUN1_PLANET_Jem-Phogiseen FUN1_PLANET_Jem-Kharoqaag FUN1_PLANET_Jem-Kaljpheed
+			}
+		}
+
+		pc_continental = {
+			names = {
+				FUN1_PLANET_Thrus-Laryphoor FUN1_PLANET_Thrus-Odalkhaan FUN1_PLANET_Thrus-Bhangheer FUN1_PLANET_Thrus-Jhivareed FUN1_PLANET_Thrus-Ophaluud FUN1_PLANET_Thrus-Cufferaan FUN1_PLANET_Thrus-Kharndoor FUN1_PLANET_Thrus-Quupherem FUN1_PLANET_Thrus-Nihisquur FUN1_PLANET_Thrus-Paraluhaad
+			}
+		}
+
+		pc_ocean = {
+			names = {
+				FUN1_PLANET_Thrus-Laryphoor FUN1_PLANET_Thrus-Odalkhaan FUN1_PLANET_Thrus-Bhangheer FUN1_PLANET_Thrus-Jhivareed FUN1_PLANET_Thrus-Ophaluud FUN1_PLANET_Thrus-Cufferaan FUN1_PLANET_Thrus-Kharndoor FUN1_PLANET_Thrus-Quupherem FUN1_PLANET_Thrus-Nihisquur FUN1_PLANET_Thrus-Paraluhaad
+			}
+		}
+
+		pc_tundra = {
+			names = {
+				FUN1_PLANET_Thrus-Laryphoor FUN1_PLANET_Thrus-Odalkhaan FUN1_PLANET_Thrus-Bhangheer FUN1_PLANET_Thrus-Jhivareed FUN1_PLANET_Thrus-Ophaluud FUN1_PLANET_Thrus-Cufferaan FUN1_PLANET_Thrus-Kharndoor FUN1_PLANET_Thrus-Quupherem FUN1_PLANET_Thrus-Nihisquur FUN1_PLANET_Thrus-Paraluhaad
+			}
+		}
+
+		pc_arctic = {
+			names = {
+				FUN1_PLANET_Thrus-Laryphoor FUN1_PLANET_Thrus-Odalkhaan FUN1_PLANET_Thrus-Bhangheer FUN1_PLANET_Thrus-Jhivareed FUN1_PLANET_Thrus-Ophaluud FUN1_PLANET_Thrus-Cufferaan FUN1_PLANET_Thrus-Kharndoor FUN1_PLANET_Thrus-Quupherem FUN1_PLANET_Thrus-Nihisquur FUN1_PLANET_Thrus-Paraluhaad
+			}
+		}
+
+		pc_savannah = {
+			names = {
+				FUN1_PLANET_Thrus-Laryphoor FUN1_PLANET_Thrus-Odalkhaan FUN1_PLANET_Thrus-Bhangheer FUN1_PLANET_Thrus-Jhivareed FUN1_PLANET_Thrus-Ophaluud FUN1_PLANET_Thrus-Cufferaan FUN1_PLANET_Thrus-Kharndoor FUN1_PLANET_Thrus-Quupherem FUN1_PLANET_Thrus-Nihisquur FUN1_PLANET_Thrus-Paraluhaad
+			}
+		}
+
+		pc_alpine = {
+			names = {
+				FUN1_PLANET_Thrus-Laryphoor FUN1_PLANET_Thrus-Odalkhaan FUN1_PLANET_Thrus-Bhangheer FUN1_PLANET_Thrus-Jhivareed FUN1_PLANET_Thrus-Ophaluud FUN1_PLANET_Thrus-Cufferaan FUN1_PLANET_Thrus-Kharndoor FUN1_PLANET_Thrus-Quupherem FUN1_PLANET_Thrus-Nihisquur FUN1_PLANET_Thrus-Paraluhaad
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			# A complete name
+			full_names = {
+				BRAIN1_CHR_Node BRAIN1_CHR_Sparble BRAIN1_CHR_Aurore BRAIN1_CHR_Destinee BRAIN1_CHR_Monarch
+			}
+
+			# Always combined with a second name
+			first_names = {
+				BRAIN1_CHR_Sparble
+			}
+
+			# Always combined with a first name
+			second_names = {
+				BRAIN1_CHR_Monarch
+			}
+
+			regnal_first_names = {
+				BRAIN1_CHR_Node BRAIN1_CHR_Sparble BRAIN1_CHR_Aurore BRAIN1_CHR_Destinee BRAIN1_CHR_Monarch
+			}
+
+			regnal_second_names = {
+				BRAIN1_CHR_Node
+			}
+		}
+	}
+}

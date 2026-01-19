@@ -1,0 +1,205 @@
+nanite_disassembler_s_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	show_prereqs = yes
+	scales_with_planet = no #yes
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = 0
+		y = -7
+	}
+	prerequisites = { ssh_tech_star_disassembler }
+	potential = {
+		always = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "ssh_requires_star"
+				is_star = yes
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+			}
+		}
+		# Since in vanilla you can only build one mega at a time it makes more sense to spawn them via decisions
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
+
+nanite_disassembler_s_1 = {
+	entity = "ssh_nanite_disassembler_star_entity"
+	construction_entity = "ssh_nanite_disassembler_star_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_atomic_manipulation ssh_tech_star_disassembler }
+	potential = {
+		has_technology = ssh_tech_star_disassembler
+		has_technology = ssh_tech_atomic_manipulation
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			nanites = 50
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		nanite_disassembler_s_0
+	}
+
+	on_build_complete = {
+		fromfrom = {
+			remove_megastructure = this
+		}
+		if = {
+			limit = {
+				fromfrom.planet = {
+					is_planet_class = pc_black_dwarf_star
+				}
+			}
+			spawn_megastructure = {
+				name = "Stellar Nanite Disassembling Complex"
+				type = nanite_disassembler_s_black_dwarf
+				orbit_angle = 0
+				orbit_distance = 0
+				owner = fromfrom.owner
+				planet = fromfrom.planet
+			}
+		}
+		else = {
+			#change_pc = pc_barren #### Placeholder
+			spawn_megastructure = {
+				name = "Stellar Nanite Disassembling Complex"
+				type = nanite_disassembler_s_brown_dwarf
+				orbit_angle = 0
+				orbit_distance = 0
+				owner = fromfrom.owner
+				planet = fromfrom.planet
+			}
+		}
+		fromfrom.planet = {
+			planet_event = {
+				id = ssh_me.9
+			}
+		}
+		from = {
+			country_event = {
+				id = ssh_cn.91
+			}
+		}
+	}
+}
+
+nanite_disassembler_s_black_dwarf = {
+	entity = "ssh_nanite_disassembler_star_active_entity"
+	construction_entity = "ssh_nanite_disassembler_star_active_entity"
+	portrait = "GFX_mega_ssh_nanite_disassembler"
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_atomic_manipulation ssh_tech_star_disassembler }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			trigger = { has_gigastructures = no }
+			minerals = 750
+			alloys = 500
+		}
+		produces = {
+			trigger = { has_gigastructures = yes }
+			minerals = 750
+			alloys = 500
+			giga_sr_bulk_matter = 1
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		nanite_disassembler_s_1
+	}
+
+	on_build_complete = {}
+}
+
+nanite_disassembler_s_brown_dwarf = {
+	entity = "ssh_nanite_disassembler_star_active_entity"
+	construction_entity = "ssh_nanite_disassembler_star_active_entity"
+	portrait = "GFX_mega_ssh_nanite_disassembler"
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_atomic_manipulation ssh_tech_star_disassembler }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			trigger = { has_gigastructures = no }
+			sr_hydrogen = 500
+			minerals = 300
+			alloys = 250
+		}
+		produces = {
+			trigger = { has_gigastructures = yes }
+			sr_hydrogen = 500
+			minerals = 300
+			alloys = 250
+			giga_sr_bulk_matter = 1
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		nanite_disassembler_s_1
+	}
+
+	on_build_complete = {}
+}

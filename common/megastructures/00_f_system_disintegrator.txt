@@ -1,0 +1,2091 @@
+system_disintegrator_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 360 #1year
+	show_prereqs = yes
+	scales_with_planet = no
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -15
+		y = -15
+	}
+	prerequisites = { "ssh_tech_system_disintegrator" }
+	potential = {
+		has_technology = ssh_tech_system_disintegrator
+		NOT = {
+			has_global_flag = ssh_system_disintegrator_deactivated
+		}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_colony"
+			NOT = {
+				any_system_planet = {
+					is_colony = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_special_star"
+			NOT = { ssh_is_special_star = yes } # No O stars, no galactic core, no white holes
+		}
+		custom_tooltip = {
+			fail_text = "ssh_requires_no_black_hole"
+			NOT = { is_star_class = sc_black_hole } # No O stars, no galactic core, no white holes
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 2500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 2500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = { # prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOR = {
+					has_anomaly = yes
+					any_moon = { has_anomaly = yes }
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					is_planet_class = pc_habitat
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		if = {
+			limit = { exists = fromfrom.planet }
+			fromfrom.planet = {
+				set_planet_flag = has_megastructure
+				set_planet_flag = ssh_system_disintegrator_star
+				save_event_target_as = ssh_system_disintegrator_star
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		every_system_planet = {
+			limit = {
+				is_star = no
+			}
+			set_planet_flag = has_megastructure #So that the player/ai cannot utilise any of the system's planets
+		}
+		from = {
+			set_country_flag = ssh_is_constructing_system_disintegrator
+			country_event = { id = ssh_cn.118 }
+		}
+	}
+
+	ai_weight = {
+		weight = 15
+		# Do we need the resources?
+		modifier = {
+			factor = 2.0
+			from = {
+				has_monthly_income = {
+					resource = minerals
+					value < 250
+				}
+			}
+		}
+		# Are we constructing one already? (in case of unlimited mega build capacity)
+		modifier = {
+			factor = 0
+			from = { has_country_flag = ssh_is_constructing_system_disintegrator }
+		}
+		# Do we have enough resources?
+		modifier = {
+			factor = 0.1
+			from = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value < 20000
+				}
+				resource_stockpile_compare = {
+					resource = sr_cultrobium
+					value < 6000
+				}
+			}
+		}
+		# Upkeep Affordable?
+		modifier = {
+			factor = 0.1
+			from = {
+				has_monthly_income = {
+					resource = energy
+					value < 200
+				}
+			}
+		}
+		# Good System?
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		# Personality?
+		modifier = {
+			factor = 1.5
+			from = {
+				OR = {
+					has_ai_personality = erudite_explorers
+					has_authority = auth_corporate
+					has_authority = auth_hive_mind
+					has_authority = auth_machine_intelligence
+					has_ethic = ethic_fanatic_materialist
+					has_civic = civic_technocracy
+					is_anthropocentric = yes # E&C
+				}
+			}
+		}
+		# Crisis Empires
+		modifier = {
+			factor = 2.0
+			from = { has_ascension_perk = ap_hyperdimensional_exodus }
+		}
+	}
+}
+
+# Star (Energy) Tapper BASE + Coils for extreme magnetic field
+system_disintegrator_1 = {
+	entity = "ssh_system_disintegrator_1_entity"
+	construction_entity = "ssh_system_disintegrator_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = no
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals = 300
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_0
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			country_event = { id = ssh_cn.119 }
+		}
+		# Spawn mega depending on star class
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_b_star
+						is_planet_class = pc_quasi_star # Hypo Stars
+					}
+				}
+				solar_system = {
+					spawn_megastructure = {
+						type = system_disintegrator_2_b_star
+						owner = event_target:ssh_system_disintegrator_owner
+						planet = prev
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_m_giant_star }
+				solar_system = {
+					spawn_megastructure = {
+						type = system_disintegrator_2_m_giant_star
+						owner = event_target:ssh_system_disintegrator_owner
+						planet = prev
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_a_star }
+				solar_system = {
+					spawn_megastructure = {
+						type = system_disintegrator_2_a_star
+						owner = event_target:ssh_system_disintegrator_owner
+						planet = prev
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_f_star }
+				solar_system = {
+					spawn_megastructure = {
+						type = system_disintegrator_2_f_star
+						owner = event_target:ssh_system_disintegrator_owner
+						planet = prev
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_g_star }
+				solar_system = {
+					spawn_megastructure = {
+						type = system_disintegrator_2_g_star
+						owner = event_target:ssh_system_disintegrator_owner
+						planet = prev
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_k_star }
+				solar_system = {
+					spawn_megastructure = {
+						type = system_disintegrator_2_k_star
+						owner = event_target:ssh_system_disintegrator_owner
+						planet = prev
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_m_star }
+				solar_system = {
+					spawn_megastructure = {
+						type = system_disintegrator_2_m_star
+						owner = event_target:ssh_system_disintegrator_owner
+						planet = prev
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_blue_dwarf_star }
+				solar_system = {
+					spawn_megastructure = {
+						type = system_disintegrator_2_blue_dwarf_star
+						owner = event_target:ssh_system_disintegrator_owner
+						planet = prev
+					}
+				}
+			}
+			else = { # most expensive energy accumulation, but also cheapest & fastest to be built -> white dwarves, neutron stars, pulsars, quark stars; also gigas artificial star
+				#limit = { is_planet_class = pc_white_dwarf_star }
+				solar_system = {
+					spawn_megastructure = {
+						type = system_disintegrator_2_white_dwarf_star
+						owner = event_target:ssh_system_disintegrator_owner
+						planet = prev
+					}
+				}
+			}
+		}
+	}
+}
+
+# B STAR - Star (Energy) Tapper
+system_disintegrator_2_b_star = {
+	entity = "ssh_system_disintegrator_1_entity"
+	construction_entity = "ssh_system_disintegrator_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_1
+	}
+
+	on_build_complete = {
+		# Remove asteroid belt
+		set_asteroid_belt = { radius = 0 }
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+
+# B STAR - Highly energetic Field Generator
+system_disintegrator_3_b_star = {
+	entity = "ssh_system_disintegrator_2_entity"
+	construction_entity = "ssh_system_disintegrator_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		cost = {
+			mult = solar_system.trigger:num_planets_in_system #Each planet will increase the amount of exotic gases needed for the force field
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_2_b_star
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.120 } }
+	}
+}
+
+system_disintegrator_4_b_star = {
+	entity = "ssh_system_disintegrator_3_entity"
+	construction_entity = "ssh_system_disintegrator_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 250
+			sr_cultrobium = 1000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_3_b_star
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.121 }
+		}
+	}
+}
+
+# Accumulate Energy - COST DEPENDING ON STAR CLASS (Black Hole = Max Cost, B Star = Min Cost)
+#
+# ENERGY COST - Lowest to highest
+#
+# B Star = 17500 (+ Hypo Stars Quasi-Star)
+# M Giant = 20000
+# A Star = 22500
+# F Star = 25000
+# G Star = 27500
+# K Star = 30000
+# M Star + Neutron Stars = 32500
+# Blue Dwarf = 35000
+# White Dwarf = 37500
+#
+# Rest (Black Dwarves, Black Holes, Hypo Stars) = 40000
+system_disintegrator_5_b_star = {
+	entity = "ssh_system_disintegrator_accumulating_entity"
+	construction_entity = "ssh_system_disintegrator_accumulating_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 17500
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_4_b_star
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			country_event = { id = ssh_cn.122 }
+		}
+		# Spawn ready mega
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			solar_system = {
+				spawn_megastructure = {
+					type = system_disintegrator_ready
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = prev
+				}
+			}
+		}
+	}
+}
+
+### M Giant Star ###
+# Energy Tapper
+system_disintegrator_2_m_giant_star = {
+	entity = "ssh_system_disintegrator_1_entity"
+	construction_entity = "ssh_system_disintegrator_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 3600 #10years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_1
+	}
+
+	on_build_complete = {
+		# Remove asteroid belt
+		set_asteroid_belt = { radius = 0 }
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+
+# Highly energetic Field Generator
+system_disintegrator_3_m_giant_star = {
+	entity = "ssh_system_disintegrator_2_entity"
+	construction_entity = "ssh_system_disintegrator_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 3600 #10years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 15000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		cost = {
+			mult = solar_system.trigger:num_planets_in_system #Each planet will increase the amount of exotic gases needed for the force field
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_2_m_giant_star
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.120 } }
+	}
+}
+
+system_disintegrator_4_m_giant_star = {
+	entity = "ssh_system_disintegrator_3_entity"
+	construction_entity = "ssh_system_disintegrator_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 250
+			sr_cultrobium = 1000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_3_m_giant_star
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.121 }
+		}
+	}
+}
+
+# Accumulate Energy
+system_disintegrator_5_m_giant_star = {
+	entity = "ssh_system_disintegrator_accumulating_entity"
+	construction_entity = "ssh_system_disintegrator_accumulating_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 20000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_4_m_giant_star
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			country_event = { id = ssh_cn.122 }
+		}
+		# Spawn ready mega
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			solar_system = {
+				spawn_megastructure = {
+					type = system_disintegrator_ready
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = prev
+				}
+			}
+		}
+	}
+}
+
+
+### A Star ###
+# Energy Tapper
+system_disintegrator_2_a_star = {
+	entity = "ssh_system_disintegrator_1_entity"
+	construction_entity = "ssh_system_disintegrator_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_1
+	}
+
+	on_build_complete = {
+		# Remove asteroid belt
+		set_asteroid_belt = { radius = 0 }
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+
+# Highly energetic Field Generator
+system_disintegrator_3_a_star = {
+	entity = "ssh_system_disintegrator_2_entity"
+	construction_entity = "ssh_system_disintegrator_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		cost = {
+			mult = solar_system.trigger:num_planets_in_system #Each planet will increase the amount of exotic gases needed for the force field
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_2_a_star
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.120 } }
+	}
+}
+
+system_disintegrator_4_a_star = {
+	entity = "ssh_system_disintegrator_3_entity"
+	construction_entity = "ssh_system_disintegrator_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 250
+			sr_cultrobium = 1000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_3_a_star
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.121 }
+		}
+	}
+}
+
+# Accumulate Energy
+system_disintegrator_5_a_star = {
+	entity = "ssh_system_disintegrator_accumulating_entity"
+	construction_entity = "ssh_system_disintegrator_accumulating_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 22500
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_4_a_star
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			country_event = { id = ssh_cn.122 }
+		}
+		# Spawn ready mega
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			solar_system = {
+				spawn_megastructure = {
+					type = system_disintegrator_ready
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = prev
+				}
+			}
+		}
+	}
+}
+
+
+### F Star ###
+# Energy Tapper
+system_disintegrator_2_f_star = {
+	entity = "ssh_system_disintegrator_1_entity"
+	construction_entity = "ssh_system_disintegrator_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_1
+	}
+
+	on_build_complete = {
+		# Remove asteroid belt
+		set_asteroid_belt = { radius = 0 }
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+
+# Highly energetic Field Generator
+system_disintegrator_3_f_star = {
+	entity = "ssh_system_disintegrator_2_entity"
+	construction_entity = "ssh_system_disintegrator_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 3000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		cost = {
+			mult = solar_system.trigger:num_planets_in_system #Each planet will increase the amount of exotic gases needed for the force field
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_2_f_star
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.120 } }
+	}
+}
+
+system_disintegrator_4_f_star = {
+	entity = "ssh_system_disintegrator_3_entity"
+	construction_entity = "ssh_system_disintegrator_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 250
+			sr_cultrobium = 1000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_3_f_star
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.121 }
+		}
+	}
+}
+
+# Accumulate Energy
+system_disintegrator_5_f_star = {
+	entity = "ssh_system_disintegrator_accumulating_entity"
+	construction_entity = "ssh_system_disintegrator_accumulating_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 25000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_4_f_star
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			country_event = { id = ssh_cn.122 }
+		}
+		# Spawn ready mega
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			solar_system = {
+				spawn_megastructure = {
+					type = system_disintegrator_ready
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = prev
+				}
+			}
+		}
+	}
+}
+
+
+### G Star ###
+# Energy Tapper
+system_disintegrator_2_g_star = {
+	entity = "ssh_system_disintegrator_1_entity"
+	construction_entity = "ssh_system_disintegrator_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_1
+	}
+
+	on_build_complete = {
+		# Remove asteroid belt
+		set_asteroid_belt = { radius = 0 }
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+
+# Highly energetic Field Generator
+system_disintegrator_3_g_star = {
+	entity = "ssh_system_disintegrator_2_entity"
+	construction_entity = "ssh_system_disintegrator_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 3000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 7500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 7500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 7500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		cost = {
+			mult = solar_system.trigger:num_planets_in_system #Each planet will increase the amount of exotic gases needed for the force field
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_2_g_star
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.120 } }
+	}
+}
+
+system_disintegrator_4_g_star = {
+	entity = "ssh_system_disintegrator_3_entity"
+	construction_entity = "ssh_system_disintegrator_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 250
+			sr_cultrobium = 1000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_3_g_star
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.121 }
+		}
+	}
+}
+
+# Accumulate Energy
+system_disintegrator_5_g_star = {
+	entity = "ssh_system_disintegrator_accumulating_entity"
+	construction_entity = "ssh_system_disintegrator_accumulating_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 27500
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_4_g_star
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			country_event = { id = ssh_cn.122 }
+		}
+		# Spawn ready mega
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			solar_system = {
+				spawn_megastructure = {
+					type = system_disintegrator_ready
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = prev
+				}
+			}
+		}
+	}
+}
+
+
+### K Star ###
+# Energy Tapper
+system_disintegrator_2_k_star = {
+	entity = "ssh_system_disintegrator_1_entity"
+	construction_entity = "ssh_system_disintegrator_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_1
+	}
+
+	on_build_complete = {
+		# Remove asteroid belt
+		set_asteroid_belt = { radius = 0 }
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+
+# Highly energetic Field Generator
+system_disintegrator_3_k_star = {
+	entity = "ssh_system_disintegrator_2_entity"
+	construction_entity = "ssh_system_disintegrator_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1400
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 2500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 6000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 6000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 6000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		cost = {
+			mult = solar_system.trigger:num_planets_in_system #Each planet will increase the amount of exotic gases needed for the force field
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_2_k_star
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.120 } }
+	}
+}
+
+system_disintegrator_4_k_star = {
+	entity = "ssh_system_disintegrator_3_entity"
+	construction_entity = "ssh_system_disintegrator_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 250
+			sr_cultrobium = 1000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_3_k_star
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.121 }
+		}
+	}
+}
+
+# Accumulate Energy
+system_disintegrator_5_k_star = {
+	entity = "ssh_system_disintegrator_accumulating_entity"
+	construction_entity = "ssh_system_disintegrator_accumulating_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 30000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_4_k_star
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			country_event = { id = ssh_cn.122 }
+		}
+		# Spawn ready mega
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			solar_system = {
+				spawn_megastructure = {
+					type = system_disintegrator_ready
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = prev
+				}
+			}
+		}
+	}
+}
+
+
+### M Star ###
+# Energy Tapper
+system_disintegrator_2_m_star = {
+	entity = "ssh_system_disintegrator_1_entity"
+	construction_entity = "ssh_system_disintegrator_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_1
+	}
+
+	on_build_complete = {
+		# Remove asteroid belt
+		set_asteroid_belt = { radius = 0 }
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+
+# Highly energetic Field Generator
+system_disintegrator_3_m_star = {
+	entity = "ssh_system_disintegrator_2_entity"
+	construction_entity = "ssh_system_disintegrator_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1200
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 2000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		cost = {
+			mult = solar_system.trigger:num_planets_in_system #Each planet will increase the amount of exotic gases needed for the force field
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_2_m_star
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.120 } }
+	}
+}
+
+system_disintegrator_4_m_star = {
+	entity = "ssh_system_disintegrator_3_entity"
+	construction_entity = "ssh_system_disintegrator_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 250
+			sr_cultrobium = 1000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_3_m_star
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.121 }
+		}
+	}
+}
+
+# Accumulate Energy
+system_disintegrator_5_m_star = {
+	entity = "ssh_system_disintegrator_accumulating_entity"
+	construction_entity = "ssh_system_disintegrator_accumulating_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 32500
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_4_m_star
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			country_event = { id = ssh_cn.122 }
+		}
+		# Spawn ready mega
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			solar_system = {
+				spawn_megastructure = {
+					type = system_disintegrator_ready
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = prev
+				}
+			}
+		}
+	}
+}
+
+
+### blue_dwarf Star ###
+# Energy Tapper
+system_disintegrator_2_blue_dwarf_star = {
+	entity = "ssh_system_disintegrator_1_entity"
+	construction_entity = "ssh_system_disintegrator_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_1
+	}
+
+	on_build_complete = {
+		# Remove asteroid belt
+		set_asteroid_belt = { radius = 0 }
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+
+# Highly energetic Field Generator
+system_disintegrator_3_blue_dwarf_star = {
+	entity = "ssh_system_disintegrator_2_entity"
+	construction_entity = "ssh_system_disintegrator_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1200
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 2000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		cost = {
+			mult = solar_system.trigger:num_planets_in_system #Each planet will increase the amount of exotic gases needed for the force field
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_2_blue_dwarf_star
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.120 } }
+	}
+}
+
+system_disintegrator_4_blue_dwarf_star = {
+	entity = "ssh_system_disintegrator_3_entity"
+	construction_entity = "ssh_system_disintegrator_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 250
+			sr_cultrobium = 1000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_3_blue_dwarf_star
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.121 }
+		}
+	}
+}
+
+# Accumulate Energy
+system_disintegrator_5_blue_dwarf_star = {
+	entity = "ssh_system_disintegrator_accumulating_entity"
+	construction_entity = "ssh_system_disintegrator_accumulating_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 35000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_4_blue_dwarf_star
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			country_event = { id = ssh_cn.122 }
+		}
+		# Spawn ready mega
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			solar_system = {
+				spawn_megastructure = {
+					type = system_disintegrator_ready
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = prev
+				}
+			}
+		}
+	}
+}
+
+
+### white_dwarf Star ###
+# Energy Tapper
+system_disintegrator_2_white_dwarf_star = {
+	entity = "ssh_system_disintegrator_1_entity"
+	construction_entity = "ssh_system_disintegrator_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 50
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_1
+	}
+
+	on_build_complete = {
+		# Remove asteroid belt
+		set_asteroid_belt = { radius = 0 }
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			remove_planet = yes
+		}
+	}
+}
+
+# Highly energetic Field Generator
+system_disintegrator_3_white_dwarf_star = {
+	entity = "ssh_system_disintegrator_2_entity"
+	construction_entity = "ssh_system_disintegrator_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1200
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_cultrobium = 2000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		cost = {
+			mult = solar_system.trigger:num_planets_in_system #Each planet will increase the amount of exotic gases needed for the force field
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 75
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_2_white_dwarf_star
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = ssh_cn.120 } }
+	}
+}
+
+system_disintegrator_4_white_dwarf_star = {
+	entity = "ssh_system_disintegrator_3_entity"
+	construction_entity = "ssh_system_disintegrator_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			sr_dark_matter = 250
+			sr_cultrobium = 1000
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_3_white_dwarf_star
+	}
+
+	on_build_complete = {
+		from = {
+			country_event = { id = ssh_cn.121 }
+		}
+	}
+}
+
+# Accumulate Energy
+system_disintegrator_5_white_dwarf_star = {
+	entity = "ssh_system_disintegrator_accumulating_entity"
+	construction_entity = "ssh_system_disintegrator_accumulating_entity"
+	portrait = "GFX_megastructure_construction_background"
+	scales_with_planet = yes
+	build_time = 1800 #5years
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 37500
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_4_white_dwarf_star
+	}
+
+	on_build_complete = {
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			country_event = { id = ssh_cn.122 }
+		}
+		# Spawn ready mega
+		remove_megastructure = fromfrom
+		fromfrom.planet = {
+			solar_system = {
+				spawn_megastructure = {
+					type = system_disintegrator_ready
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = prev
+				}
+			}
+		}
+	}
+}
+
+
+
+# Ready (Generate Force Field/Shut off electromagnetic force)
+system_disintegrator_ready = {
+	entity = "ssh_system_disintegrator_ready_entity"
+	construction_entity = "ssh_system_disintegrator_ready_entity"
+	portrait = "GFX_mega_ssh_system_disintegrator"
+	scales_with_planet = yes
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 100
+			sr_dark_matter = 1
+		}
+	}
+
+	#upgrade_from = {
+	#	system_disintegrator_3_b_star
+	#}
+
+	#on_build_complete = {
+	#	from = {
+	#		country_event = { id = ssh_cn.122 }
+	#	}
+	#}
+}
+
+system_disintegrator_fire = {
+	entity = "ssh_system_disintegrator_firing_entity"
+	construction_entity = "ssh_system_disintegrator_firing_entity"
+	portrait = "GFX_mega_ssh_system_disintegrator"
+	scales_with_planet = yes
+	build_time = 60
+	prerequisites = { ssh_tech_system_disintegrator }
+	potential = { has_technology = ssh_tech_system_disintegrator }
+
+	resources = {
+		category = megastructures
+		cost = {
+			#mult = solar_system.trigger:num_planets_in_system #Doesn't work for whatever reason, always shows up the same amount in every system
+			trigger = { NOT = { has_ascension_perk = ap_hyperdimensional_exodus } }
+			sr_dark_matter = 300 #50 dark matter / planet #nvm
+		}
+		cost = { # 50% off for curious exodus aspirants
+			trigger = { has_ascension_perk = ap_hyperdimensional_exodus }
+			sr_dark_matter = 150
+		}
+		upkeep = {
+			energy = 100
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_ready
+	}
+
+	on_build_complete = {
+		star = {
+			starbase = {
+				fleet = {
+					save_event_target_as = system_starbase
+				}
+			}
+		}
+		every_fleet_in_system = { # Destroy any ship in the system
+			limit = { NOT = { is_same_value = event_target:system_starbase } } # So the owner keeps the system
+			destroy_fleet = this
+		}
+		every_system_megastructure = {
+			if = {
+				limit = {
+					OR = {
+						is_megastructure_type = gateway_restored
+						is_megastructure_type = gateway_final
+						is_megastructure_type = hyper_relay
+						is_megastructure_type = hyper_relay_restored
+						is_megastructure_type = lgate_base
+						is_megastructure_type = quantum_catapult_3
+						is_megastructure_type = quantum_catapult_improved_slingshot
+						is_megastructure_type = quantum_catapult_restored
+						is_megastructure_type = quantum_catapult_restored_slingshot
+						# Gigas
+						is_megastructure_type = ehof_pgate_gateway
+						is_megastructure_type = gateway_final
+						is_megastructure_type = ehof_megastructure_wormhole_destination
+						is_megastructure_type = compound_wormhole_portal
+						is_megastructure_type = ehof_trader_wormhole_01
+						is_megastructure_type = ehof_trader_wormhole_external
+						is_megastructure_type = hyper_relay
+						is_megastructure_type = hyper_relay_restored
+						#is_megastructure_type = hyper_relay_ruined
+						is_megastructure_type = blokkat_gigarelay_2
+					}
+				}
+				upgrade_megastructure_to = ssh_bypass_remover
+				finish_upgrade = yes
+			}
+			remove_megastructure = this
+		}
+		from = {
+			save_event_target_as = ssh_system_disintegrator_owner
+			set_country_flag = has_built_or_repaired_gigastructure # Unlocks Gigastructures' AP
+			if = {
+				limit = { NOT = { has_country_flag = has_disintegrated_a_system } }
+				set_country_flag = has_disintegrated_a_system
+				country_event = {
+					id = ssh_cn.123
+					days = 3 #so you can first watch the beautifully disintegrated system
+				}
+			}
+			create_message = {
+				type = SYSTEM_DISINTEGRATED
+				localization = MESSAGE_SYSTEM_DISINTEGRATED_TEXT
+				days = 30
+				target = prev
+				variable = {
+					type = name
+					localization = SYSTEM
+					scope = prev
+				}
+			}
+			# Check for potential GC breaches
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				set_timed_country_flag = { 
+					flag = resolution_breached_terraformed days = 3600 
+				}
+			}
+		}
+		# Change star class, change all planets, shrink planets etc
+		system_event = {
+			id = ssh_me.12
+		}
+		# Spawn ready mega
+		#remove_megastructure = fromfrom
+		fromfrom.planet = {
+			solar_system = {
+				spawn_megastructure = {
+					type = system_disintegrator_harvester_idle
+					owner = event_target:ssh_system_disintegrator_owner
+					planet = prev
+				}
+			}
+		}
+		# Check for Holy Worlds
+		if = {
+			limit = { any_system_planet = { has_modifier = holy_planet } }
+			random_system_planet = {
+				limit = { has_modifier = holy_planet }
+				planet_event = { id = planet_destruction.605 }
+			}
+		}
+	}
+}
+
+# System Disintegrator - Idle (waiting for system to fully collapse into wormhole)
+system_disintegrator_harvester_idle = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_mega_ssh_system_disintegrator_idle"
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = 0
+		y = 0
+	}
+
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		upkeep = {
+			energy = 20
+		}
+	}
+
+	upgrade_from = {
+		system_disintegrator_ready
+	}
+
+	on_build_complete = {
+		from = {
+			remove_country_flag = ssh_is_constructing_system_disintegrator
+		}
+	}
+}
+
+# Active Disintegrator
+system_disintegrator_harvester_active = {
+	entity = "ssh_system_disintegrator_harvester_active_entity"
+	construction_entity = "ssh_system_disintegrator_harvester_active_entity"
+	portrait = "GFX_mega_ssh_system_disintegrator_harvesting"
+	potential = { always = no }
+
+	resources = {
+		category = megastructures
+		produces = {
+			trigger = {
+				has_gigastructures = no
+				planet = {
+					NOR = {
+						has_planet_flag = ssh_disintegrated_star_minerals
+						has_planet_flag = ssh_disintegrated_star_alloys
+					}
+				}
+			}
+			# OUTPUT DEPENDING ON HOW MANY STARS (planets; binary-trinary systems) ARE LEFT IN THE SYSTEM
+			# binary stars = 2x output, trinary = 3x
+			#mult = solar_system.trigger:num_planets_in_system -> idk spawns 2 of these structures anyways so yeah
+			sr_nuclei_soup = 1000
+			energy = 500
+		}
+		produces = {
+			trigger = {
+				has_gigastructures = yes
+				planet = {
+					NOR = {
+						has_planet_flag = ssh_disintegrated_star_minerals
+						has_planet_flag = ssh_disintegrated_star_alloys
+					}
+				}
+			}
+			sr_nuclei_soup = 1000
+			giga_sr_bulk_matter = 10
+			energy = 500
+		}
+		# Minerals Output
+		produces = {
+			trigger = {
+				has_gigastructures = no
+				planet = { has_planet_flag = ssh_disintegrated_star_minerals }
+			}
+			minerals = 2000
+			energy = 500
+		}
+		produces = {
+			trigger = {
+				has_gigastructures = yes
+				planet = { has_planet_flag = ssh_disintegrated_star_minerals }
+			}
+			minerals = 2000
+			giga_sr_bulk_matter = 10
+			energy = 500
+		}
+		# Alloys Output
+		produces = {
+			trigger = {
+				has_gigastructures = no
+				planet = { has_planet_flag = ssh_disintegrated_star_alloys }
+			}
+			alloys = 1500 #1.5x nuclei soup
+			energy = 500
+		}
+		produces = {
+			trigger = {
+				has_gigastructures = yes
+				planet = { has_planet_flag = ssh_disintegrated_star_alloys }
+			}
+			alloys = 1500
+			giga_sr_bulk_matter = 10
+			energy = 500
+		}
+		#upkeep = {
+		#	energy = 200
+		#}
+	}
+
+	upgrade_from = {
+		system_disintegrator_harvester_idle
+	}
+
+	on_build_complete = {
+		from = {
+			if = {
+				limit = {
+					NOR = {
+						has_global_flag = ssh_vacdec_crisis_deactivated
+						has_global_flag = ssh_vacdec_warning_happened
+					}
+				}
+				country_event = {
+					id = ssh_on.42 # Warning about potential vacuum decay
+					days = 121
+					random = 360
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = ssh_vacdec_warning_happened
+					NOT = { has_country_flag = ssh_vacdec_blocked }
+				}
+				if = {
+					limit = { NOT = { has_global_flag = ssh_vacdec_fields } }
+					random_list = {
+						95 = {
+							# Nothing happens
+						}
+						5 = {
+							set_global_flag = ssh_vacdec_fields
+							# Reality Might Collapse
+							country_event = {
+								id = ssh_on.44
+								days = 95
+								random = 120
+							}
+						}
+					}
+				}
+			}
+			if = { # Blokkats comment
+				limit = {
+					has_gigastructures = yes
+					has_global_flag = blokkat_crisis_ongoing
+					NOT = { has_country_flag = blokkats_commented_system_disintegrator }
+				}
+				set_country_flag = blokkats_commented_system_disintegrator
+				country_event = {
+					id = ssh_on.69
+					days = 29
+					random = 91
+				}
+			}
+		}
+	}
+}

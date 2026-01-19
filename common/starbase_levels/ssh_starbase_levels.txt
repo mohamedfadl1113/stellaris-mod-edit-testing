@@ -1,0 +1,9 @@
+# Disabled bc bugged
+
+#starbase_level_starbase_company = {
+#	ship_size = starbase_company
+#	display_empire_shield = yes
+#	level_weight = 5
+#	collects_trade = no
+#	ai_weight = { weight = 5 }
+#}

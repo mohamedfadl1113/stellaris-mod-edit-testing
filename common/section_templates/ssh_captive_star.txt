@@ -1,0 +1,14 @@
+# Captive Star system destroyer
+ship_section_template = {
+	key = "captive_star_key"
+	ship_size = ssh_captive_star
+	fits_on_slot = ship
+	#fits_on_slot = bow
+	entity = "ssh_ship_captive_star_section_entity"
+	icon = "GFX_ship_part_core_mid"
+
+	#component_slot = { name = "PLANET_KILLER_01"	template = "invisible_planet_killer_fixed"		locatorname = "locator_center" }
+
+	aux_utility_slots = 4
+	large_utility_slots = 10 #1
+}

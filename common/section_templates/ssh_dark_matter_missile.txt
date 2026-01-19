@@ -1,0 +1,11 @@
+# Dark Missile system destroyer
+ship_section_template = {
+	key = "dark_matter_missile_key"
+	ship_size = ssh_dark_matter_missile
+	fits_on_slot = ship
+	entity = "ssh_ship_dark_matter_missile_section_entity"
+	icon = "GFX_ship_part_core_mid"
+
+	aux_utility_slots = 1
+	large_utility_slots = 2
+}

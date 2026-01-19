@@ -1,0 +1,118 @@
+sr_cultrobium = {
+	tradable = yes
+	market_amount = 100
+	market_price = 150
+	max = 10000
+	deficit_modifier = cultrobium_deficit
+	ai_weight = {
+		### Alloys have a weight of 5
+		weight = 15
+		modifier = {
+			factor = 1.5
+			has_ascension_perk = ap_hyperdimensional_exodus
+		}
+	}
+	ai_wants = {
+		base = 750
+		### Alloys have a weight of 500
+		modifier = {
+			factor = 2.0
+			has_ascension_perk = ap_hyperdimensional_exodus
+		}
+		modifier = { # AI wants more if building a system disintegrator
+			factor = 2.0
+			has_country_flag = ssh_is_constructing_system_disintegrator
+		}
+	}
+	prerequisites = { ssh_tech_nuclei_modification }
+	#visibility_prerequisite = { always = yes }
+
+	tradable_in_market = {
+		### Example used for consumer goods
+		has_technology = ssh_tech_nuclei_modification
+		#NOT = {
+		#	has_valid_civic = civic_machine_obsessional_directive
+		#}
+	}
+}
+
+sr_hydrogen = {
+	tradable = yes
+	market_amount = 100
+	market_price = 50
+	max = 15000
+	deficit_modifier = hydrogen_deficit
+	ai_weight = {
+		weight = 1
+	}
+	ai_wants = {
+		base = 10
+	}
+	prerequisites = { ssh_tech_hydrogen }
+	#visibility_prerequisite = { always = yes }
+	tradable_in_market = {
+		has_technology = ssh_tech_hydrogen
+	}
+}
+
+sr_conscious_matter = {
+	tradable = yes
+	max = 10000
+	deficit_modifier = conscious_matter_deficit
+	ai_weight = {
+		weight = 5
+	}
+	ai_wants = {
+		base = 500
+		modifier = {
+			factor = 2
+			has_country_flag = ssh_has_mega_brain
+		}
+	}
+	prerequisites = { ssh_tech_conscious_matter }
+	#visibility_prerequisite = { always = yes }
+}
+
+sr_nuclei_soup = {
+	tradable = yes
+	max = 150000
+	deficit_modifier = nuclei_soup_deficit
+	ai_weight = {
+		weight = 0.5
+		modifier = {
+			factor = 5
+			has_technology = ssh_tech_system_disintegrator
+		}
+	}
+	ai_wants = {
+		base = 2
+		modifier = {
+			factor = 250 # Once dependent on this resource it wants much of it
+			any_owned_planet = {
+				is_colony = yes
+				OR = {
+					has_building = building_ssh_nuclei_soup_foundry
+					has_building = building_ssh_nuclei_soup_transmuter_food
+					has_building = building_ssh_nuclei_soup_transmuter_minerals
+					has_building = building_ssh_nuclei_soup_transmuter_nano
+					has_building = building_ssh_nuclei_soup_transmuter_sr
+				}
+			}
+		}
+	}
+	prerequisites = { ssh_tech_system_disintegrator }
+	#visibility_prerequisite = { always = yes }
+}
+
+########################
+###	Crisis Resources ###
+########################
+
+interdim_insights = {
+	tradable = no
+	category = other
+
+	ai_weight = {
+		weight = 1
+	}
+}

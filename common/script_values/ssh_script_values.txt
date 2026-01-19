@@ -1,0 +1,59 @@
+# Depending on the amount of stars/galaxy size, the vacuum decay will expand faster/slower
+# The more stars there are the faster it expands
+#vacdec_expansion_speed_value = {
+#	base = 1
+#	modifier = {
+#		set = 420
+#		galaxy_size = tiny
+#	}
+#	modifier = {
+#		set = 360
+#		galaxy_size = small
+#	}
+#	modifier = {
+#		set = 300
+#		galaxy_size = medium
+#	}
+#	modifier = {
+#		set = 240
+#		galaxy_size = large
+#	}
+#	modifier = {
+#		set = 180
+#		galaxy_size = huge
+#	}
+#	################# Higher Fallen Empire Limit - Bigger Galaxies Mod ######################
+#	modifier = {
+#		# 1250 stars
+#		set = 120
+#		galaxy_size = "HFE 1250"
+#	}
+#	modifier = {
+#		# 1500 stars
+#		set = 90
+#		galaxy_size = "HFE 1500"
+#	}
+#	modifier = {
+#		# 2000 stars
+#		set = 60
+#		galaxy_size = "HFE 2000"
+#	}
+#	modifier = {
+#		# 2500 stars
+#		set = 30
+#		galaxy_size = "HFE 2500"
+#	}
+#}
+
+# Thanks Elowiny!
+# distance from the selected player capital for picking a spawn point
+vacdec_spawn_distance = {
+	complex_trigger_modifier = {
+		trigger = distance
+		parameters = {
+			source = event_target:ssh_vacdec_player_system
+			type = euclidean
+		}
+		mode = weight
+	}
+}

@@ -1,0 +1,74 @@
+##### SHROUD PROJECTS
+special_project = {
+	key = "SSH_SHROUD_TEMPLE_CANDIDATE"
+	cost = 0
+	days_to_research = 1800 #5years
+	tech_department = society_technology
+	#timelimit = 1080
+	picture = GFX_evt_astral_rift_microverse
+
+	event_scope = country_event
+	
+	#event_scope = ship_event
+	
+	#requirements = {
+	#	shipclass_science_ship = 1
+	#	leader = scientist
+	#}
+	
+	on_success = {
+		owner = {
+			country_event = { id = ssh_on.31 }
+		}
+	}
+}
+
+special_project = {
+	key = "SSH_SHROUD_SUPERNOVA"
+	cost = 10000
+	days_to_research = 1080 #3years
+	tech_department = society_technology
+	#timelimit = 1080
+	picture = GFX_evt_supernova
+
+	event_scope = country_event
+	
+	on_success = {
+		owner = {
+			country_event = { id = ssh_on.34 }
+		}
+	}
+}
+special_project = {
+	key = "SSH_SHROUD_SUPERNOVA_GESTALT"
+	cost = 10000
+	days_to_research = 1080 #3years
+	tech_department = society_technology
+	#timelimit = 1080
+	picture = GFX_evt_supernova
+
+	event_scope = country_event
+	
+	on_success = {
+		owner = {
+			country_event = { id = ssh_on.34 }
+		}
+	}
+}
+
+special_project = {
+	key = "SSH_VACDEC_PREVENTION"
+	cost = 10000
+	#days_to_research = 1080 #3years
+	tech_department = physics_technology
+	#timelimit = 1080
+	picture = GFX_evt_ssh_nullvoid
+
+	event_scope = country_event
+	
+	on_success = {
+		owner = {
+			country_event = { id = ssh_on.43 }
+		}
+	}
+}

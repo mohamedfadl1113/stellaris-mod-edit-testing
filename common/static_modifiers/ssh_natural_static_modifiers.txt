@@ -1,0 +1,30 @@
+###############################
+# Modifiers that affect Megas #
+###############################
+
+# Gas Giants -> Gas Giant Shellworld
+ssh_hot_gas_giant = {
+	planet_jobs_alloys_produces_mult = 0.25
+	planet_jobs_sr_cultrobium_produces_mult = 0.25
+	planet_jobs_energy_upkeep_mult = -0.3
+
+	icon_frame = 1
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_hot_gas_giant.dds"
+}
+
+ssh_cloudless_gas_giant = {
+	planet_amenities_mult = 0.1
+	planet_jobs_exotic_gases_produces_mult = -0.15
+
+	icon_frame = 2
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_cloudless_gas_giant.dds"
+}
+
+ssh_dwarf_gas_giant = {
+	planet_building_build_speed_mult = 0.25
+	planet_districts_cost_mult = -0.5
+	planet_buildings_cost_mult = -0.25
+	planet_max_districts_mult = -0.1
+	icon_frame = 2
+	icon = "gfx/interface/icons/planet_modifiers/pm_ssh_dwarf_gas_giant.dds"
+}

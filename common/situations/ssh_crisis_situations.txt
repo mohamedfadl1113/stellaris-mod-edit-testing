@@ -1,0 +1,274 @@
+behemoth_finale_situation_megabrain = {
+	picture = GFX_evt_ssh_brain_behemoth_dominance #GFX_evt_mechromancy
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_challenge
+	category = positive
+	initial_progress = 0
+
+	on_progress_complete = {
+		custom_tooltip = behemoth_finale_situation_megabrain_outcome
+		hidden_effect = {
+			situation_event = { id = ssh_crisis.3050 }
+			owner = {
+				remove_modifier = voidspawn_boss_invincible
+				set_country_flag = finished_behemoth_brain_situation #finished_behemoth_situation # Changed as a different event is fired when winning
+			}
+		}
+	}
+
+	stages = {
+		stage_1 = { # Ability to eat planets
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 160
+			on_first_enter = {
+				situation_event = { id = ssh_crisis.3030 days = 30 }
+			}
+			custom_tooltip = "stage_behemoth_brain_finale_effects_regular"
+		}
+		stage_2 = { # Ability to eat star systems at once
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 320
+			on_first_enter = {
+				situation_event = { id = biocrisis.150 } #Spawn the Voidspawn
+				situation_event = { id = ssh_crisis.3035 days = 7 }
+				owner = {
+					add_modifier = {
+						modifier = behemoth_transference
+						days = -1
+						mult = 2
+					}
+					# Grow Behemoth
+					random_owned_fleet = {
+						limit = {
+							is_ship_size = ssh_brain_behemoth_02
+						}
+						save_event_target_as = ssh_brain_behemoth_fleet
+					}
+					create_fleet = {
+						name = "NAME_Brain_Behemoth_fleet"
+						settings = {
+							spawn_debris = no
+						}
+						effect = {
+							set_owner = prev
+							create_ship = {
+								name = "NAME_Brain_Behemoth_ship"
+								design = "NAME_Brain_Behemoth_03"
+								effect = {
+									set_ship_flag = behemoth_brain_ship
+								}
+							}
+							set_location = {
+								target = event_target:ssh_brain_behemoth_fleet
+								distance = 0
+								angle = 90
+								direction = in_system
+							}
+							set_fleet_stance = aggressive
+							set_aggro_range_measure_from = self #or return_point
+							set_aggro_range = 30000
+							set_fleet_bombardment_stance = behemoth_invasion
+						}
+					}
+					event_target:ssh_brain_behemoth_fleet = { delete_fleet = this }
+				}
+			}
+			custom_tooltip = "stage_behemoth_brain_finale_effects_regular"
+		} # Ability to eat neutron stars + pulsars
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 640
+			on_first_enter = {
+				situation_event = { id = ssh_crisis.3040 days = 2 }
+				owner = {
+					set_country_flag = behemoth_crisis_megabrain_can_eat_neutron
+					add_modifier = {
+						modifier = behemoth_transference
+						days = -1
+						mult = 3
+					}
+					# Grow Behemoth
+					random_owned_fleet = {
+						limit = {
+							is_ship_size = ssh_brain_behemoth_03
+						}
+						save_event_target_as = ssh_brain_behemoth_fleet
+					}
+					create_fleet = {
+						name = "NAME_Brain_Behemoth_fleet"
+						settings = {
+							spawn_debris = no
+						}
+						effect = {
+							set_owner = prev
+							create_ship = {
+								name = "NAME_Brain_Behemoth_ship"
+								design = "NAME_Brain_Behemoth_04"
+								effect = {
+									set_ship_flag = behemoth_brain_ship
+								}
+							}
+							set_location = {
+								target = event_target:ssh_brain_behemoth_fleet
+								distance = 0
+								angle = 90
+								direction = in_system
+							}
+							set_fleet_stance = aggressive
+							set_aggro_range_measure_from = self #or return_point
+							set_aggro_range = 30000
+							set_fleet_bombardment_stance = behemoth_invasion
+						}
+					}
+					event_target:ssh_brain_behemoth_fleet = { delete_fleet = this }
+				}
+			}
+			custom_tooltip = "stage_behemoth_brain_finale_effects_regular"
+		}
+		stage_4 = { # Ability to devour small black holes
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_blue
+			end = 1280
+			on_first_enter = {
+				situation_event = { id = ssh_crisis.3045 days = 2 }
+				owner = {
+					set_country_flag = behemoth_crisis_megabrain_can_eat_black_hole
+					# Set Variable for amount of black holes eaten -> required for special ending
+					set_variable = {
+						which = singularities_eaten_amount
+						value = 0
+					}
+					add_modifier = {
+						modifier = behemoth_transference
+						days = -1
+						mult = 4
+					}
+					# Grow Behemoth
+					random_owned_fleet = {
+						limit = {
+							is_ship_size = ssh_brain_behemoth_04
+						}
+						save_event_target_as = ssh_brain_behemoth_fleet
+					}
+					create_fleet = {
+						name = "NAME_Brain_Behemoth_fleet"
+						settings = {
+							spawn_debris = no
+						}
+						effect = {
+							set_owner = prev
+							create_ship = {
+								name = "NAME_Brain_Behemoth_ship"
+								design = "NAME_Brain_Behemoth_05"
+								effect = {
+									set_ship_flag = behemoth_brain_ship
+								}
+							}
+							set_location = {
+								target = event_target:ssh_brain_behemoth_fleet
+								distance = 0
+								angle = 90
+								direction = in_system
+							}
+							set_fleet_stance = aggressive
+							set_aggro_range_measure_from = self #or return_point
+							set_aggro_range = 30000
+							set_fleet_bombardment_stance = behemoth_invasion
+						}
+					}
+					event_target:ssh_brain_behemoth_fleet = { delete_fleet = this }
+				}
+			}
+			custom_tooltip = "stage_behemoth_brain_finale_effects_regular"
+		}
+	}
+
+	monthly_progress = {
+		add = 1
+		modifier = {
+			add = 2
+			desc = approach_digestion
+			current_situation_approach = behemoth_finale_approach_digestion
+		}
+		modifier = {
+			add = -0.75
+			desc = approach_brawn
+			current_situation_approach = behemoth_finale_approach_brawn
+		}
+		modifier = {
+			mult = value:growth_factor
+			desc = growth_factor_desc
+		}
+		modifier = {
+			mult = owner.value:negative_empire_size_percent
+			desc = behemoth_empire_size_desc
+		}
+		modifier = {
+			owner = { is_wilderness_empire = yes }
+			add = 1
+			desc = wilderness_behemoth
+		}
+	}
+
+	approach = { # Brawn
+		name = behemoth_finale_approach_brawn
+		icon = GFX_situation_approach_fight
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = behemoth_finale_approach_brawn_tooltip
+		}
+		modifier = {
+			ship_fire_rate_mult = 0.15
+			ship_armor_hardening_add = 0.5
+		}
+		resources = {
+			cost = {
+				food = 2500
+			}
+		}
+	}
+
+	approach = { # Digestion
+		name = behemoth_finale_approach_digestion
+		icon = GFX_situation_approach_digestion
+		icon_background = GFX_situation_approach_bg_green
+		on_select = {
+			custom_tooltip = behemoth_finale_approach_digestion_tooltip
+		}
+		modifier = {
+			ship_speed_reduction = 0.3
+			ship_fire_rate_mult = -0.25
+			ship_hull_regen_add_perc = 0.25
+		}
+		resources = {
+			cost = {
+				food = 2500
+			}
+		}
+	}
+
+	approach = { # Speed
+		name = behemoth_finale_approach_speed
+		icon = GFX_situation_approach_flight
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		modifier = {
+			ship_speed_mult = 0.25
+			ship_evasion_add = 5
+		}
+		resources = {
+			cost = {
+				food = 2500
+			}
+		}
+	}
+
+
+
+	on_monthly = {
+
+	}
+}

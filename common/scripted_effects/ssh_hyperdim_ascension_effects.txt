@@ -1,0 +1,933 @@
+### Will Change Tier 1 in a future update - to prevent tech spam ###
+add_hyperdim_exodus_level_1_perks = {
+	# All Prereqs for system disintegrators
+	give_technology = { tech = ssh_tech_microscale_engineering }
+	give_technology = { tech = ssh_tech_advanced_dna_resequencing }
+	give_technology = { tech = tech_nanite_transmutation }
+	give_technology = { tech = ssh_tech_molecular_bond_manipulation }
+	give_technology = { tech = tech_zero_point_power }
+	give_technology = { tech = ssh_tech_atomic_manipulation }
+	give_technology = { tech = ssh_tech_nuclei_modification }
+	give_technology = { tech = tech_mine_dark_matter }
+	give_technology = { tech = ssh_tech_elementary_tampering }
+	give_technology = { tech = tech_disruptors_3 }
+	give_technology = { tech = ssh_tech_basement_universe }
+	if = {
+		limit = { NOT = { has_technology = ssh_tech_system_disintegrator } }
+		#add_research_option = ssh_tech_system_disintegrator
+		add_tech_progress = {
+			tech = ssh_tech_system_disintegrator
+			progress = 0.25
+		}
+	}
+}
+
+add_hyperdim_exodus_level_2_perks = {
+	if = {
+		limit = { NOT = { has_technology = tech_zero_point_power } }
+		add_research_option = tech_zero_point_power
+	}
+}
+
+add_hyperdim_exodus_level_3_perks = {
+	if = {
+		limit = { NOT = { has_technology = null_void_beam } }
+		add_research_option = null_void_beam
+	}
+	if = {
+		limit = { NOT = { has_technology = tech_psionic_barrier } }
+		add_research_option = tech_psionic_barrier
+	}
+	if = {
+		limit = { NOT = { has_technology = tech_psi_jump_drive_1 } }
+		add_research_option = tech_psi_jump_drive_1
+	}
+	if = {
+		limit = { has_doorway_expanded = yes }
+		add_research_option = dwe_tech_energy_dimension_power_core
+		add_research_option = dwe_tech_static_disintegrator
+		if = {
+			limit = { host_has_dlc = "Apocalypse" }
+			add_research_option = dwe_tech_pk_nullvoidcolossus
+		}
+	}
+}
+
+add_hyperdim_exodus_level_4_perks = {
+	if = {
+		limit = { NOT = { has_technology = tech_dark_matter_deflector } }
+		add_research_option = tech_dark_matter_deflector
+	}
+	if = {
+		limit = { NOT = { has_technology = tech_extradimensional_weapon_1 } }
+		add_research_option = tech_extradimensional_weapon_1
+	}
+}
+
+add_hyperdim_exodus_level_5_perks = {
+	#give_technology = { tech = ssh_tech_elementary_tampering } # Gained at crisis level 1
+	add_research_option = ssh_tech_reality_shaping
+}
+
+store_hyperdim_exodus_country_backup_data = {
+	random_playable_country = {
+		limit = {
+			has_country_flag = ssh_dimensional_ascension_empire
+		}
+		store_country_backup_data = {
+			flag = $FLAG|no$
+			room = $ROOM|no$
+			name = $NAME|no$
+			ethics = $ETHICS|no$
+			government = $GOVERNMENT|no$
+		}
+	}
+}
+
+restore_hyperdim_exodus_country_backup_data = {
+	random_playable_country = {
+		limit = {
+			has_country_flag = ssh_dimensional_ascension_empire
+		}
+		restore_country_backup_data = yes
+	}
+}
+
+### Roll Dimension ###
+ssh_roll_dim_tearer_rift = {
+	random_list = {
+		20 = {
+			# Nullvoid
+			modifier = {
+				factor = 0
+				has_global_flag = ssh_dim_tearer_opened_nullvoid
+			}
+			set_global_flag = ssh_dim_tearer_opened_nullvoid
+			country_event = {
+				id = ssh_tearer.50
+				days = 1
+			}
+		}
+		20 = {
+			# Hell
+			modifier = {
+				factor = 0
+				has_global_flag = ssh_dim_tearer_opened_hell
+			}
+			set_global_flag = ssh_dim_tearer_opened_hell
+			country_event = {
+				id = ssh_tearer.55
+				days = 1
+			}
+		}
+		20 = {
+			# Static
+			modifier = {
+				factor = 0
+				has_global_flag = ssh_dim_tearer_opened_static
+			}
+			set_global_flag = ssh_dim_tearer_opened_static
+			country_event = {
+				id = ssh_tearer.60
+				days = 1
+			}
+		}
+		20 = {
+			# Mirror
+			modifier = {
+				factor = 0
+				has_global_flag = ssh_dim_tearer_opened_mirror
+			}
+			set_global_flag = ssh_dim_tearer_opened_mirror
+			country_event = {
+				id = ssh_tearer.65
+				days = 1
+			}
+		}
+		20 = {
+			# Pure Energy
+			modifier = {
+				factor = 0
+				has_global_flag = ssh_dim_tearer_opened_energy
+			}
+			set_global_flag = ssh_dim_tearer_opened_energy
+			country_event = {
+				id = ssh_tearer.70
+				days = 1
+			}
+		}
+		# The Corridors (Doorway Expanded Lore)
+		10 = {
+			#modifier = {
+			#	factor = 0
+			#	NOT = { has_doorway_expanded = yes }
+			#}
+			modifier = {
+				factor = 2
+				any_owned_planet = { has_planet_flag = dportal_corridors }
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = ssh_dim_tearer_opened_corridors
+			}
+			set_global_flag = ssh_dim_tearer_opened_corridors
+			country_event = {
+				id = ssh_tearer.75
+				days = 1
+			}
+		}
+		# The Unbidden's Realm
+		15 = {
+			#modifier = {
+			#	factor = 1.5
+			#	OR = {
+			#		has_technology = tech_jump_drive_1
+			#		has_technology = tech_psi_jump_drive_1
+			#	}
+			#}
+			modifier = {
+				factor = 0
+				has_global_flag = extradimensional_invasion_happened
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = ssh_dim_tearer_opened_unbidden
+			}
+			set_global_flag = ssh_dim_tearer_opened_unbidden
+			set_country_flag = has_opened_unbidden_realm # Used for diplomacy lines
+			country_event = {
+				id = ssh_tearer.80
+				days = 1
+			}
+		}
+	}
+}
+
+# Resettle Exodus Empire to the Tearer System
+create_exodus_empire_capital = {
+	save_event_target_as = ssh_exodus_country
+	owner_main_species = { save_event_target_as = ssh_colony_species }
+	# Spawn Temporary Planet - so player doesn't lose game
+	event_target:ssh_dim_tearer_system = {
+		spawn_planet = {
+			class = pc_exodus_portal
+			location = star
+			orbit_distance = 15
+			orbit_angle_offset = 15
+			init_effect = {
+				set_name = "Dimensional Anchor"
+				set_planet_entity = { entity = "ssh_exodus_planet_01_entity" }
+				set_surveyed = {
+					surveyed = yes
+					surveyor = fromfrom
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				set_planet_flag = megastructure
+				set_planet_flag = has_megastructure
+				set_planet_flag = shellworld # Prevent shellworld construction
+				set_planet_flag = double_shellworld
+				set_planet_flag = triple_shellworld
+				# Colonize
+				create_colony = {
+					owner = event_target:ssh_exodus_country
+					species = event_target:ssh_colony_species
+				}
+				add_colony_progress = 1.0
+				create_pop_group = {
+					species = event_target:ssh_colony_species
+					size = 5
+				}
+				set_capital = yes
+			}
+		}
+	}
+}
+
+# Effect when Exodus
+trigger_hyperdimensional_exodus = {
+	optimize_memory
+	#trigger_ssh_exodus_species_effect = yes
+	trigger_ssh_exodus_effect = yes
+}
+# Fire the Exodus Cannon
+trigger_ssh_exodus_effect = {
+	set_country_flag = ssh_completed_exodus_country # Used for decision --- Unused for now as players no longer stay ingame
+	# Unnecessary as players no longer stay ingame
+	#add_modifier = {
+	#	modifier = ssh_exodus_empire
+	#	days = -1
+	#}
+	add_victory_score = {
+		source = SSH_HYPERDIMENSIONAL_EXODUS_SCORE
+		score = 50000
+	}
+
+	random_system_within_border = {
+		limit = { has_star_flag = ssh_dimensional_tearer_system }
+		# Done via the event itself
+		#if = {
+		#	limit = { exists = space_owner }
+		#	space_owner = {
+		#		save_event_target_as = ssh_exodus_country
+		#		#species = { save_event_target_as = ssh_colony_species }
+		#	}
+		#}
+		set_star_class = sc_black_hole
+		set_name = "Fundament's Gate"
+		star = {
+			create_ambient_object = {
+				type = "star_explosion"
+				play_animation_once = yes
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+			set_planet_size = 3
+			set_planet_flag = has_megastructure
+		}
+		set_asteroid_belt = {
+			radius = 0
+		}
+		every_system_planet = {
+			limit = {
+				is_star = no
+				NOT = { is_planet_class = pc_exodus_portal }
+			}
+			remove_planet = yes
+		}
+		ssh_bypass_remove_every_system_megastructure = yes # Check for bypass megas + remove
+		isolate_system = yes # Remove Hyperlanes
+
+		# Spawn Exodus Species' Entity
+		create_country = {
+			name = exodus_species_entity
+			type = shroud_spirits
+			flag = {
+				icon = {
+					category = "special"
+					file = "extradimensional_03.dds" #the_shroud.dds
+				}
+				background= {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors = {
+					"yellow"
+					"burgundy"
+					"null"
+					"null"
+				}
+			}
+		}
+		last_created_country = {
+			save_global_event_target_as = exodus_country_entity
+		}
+		create_fleet = {
+			name = "Visitors from the Fundament"
+			settings = {
+				spawn_debris = no
+				is_boss = yes
+			}
+			effect = {
+				set_owner = event_target:exodus_country_entity
+				set_fleet_flag = exodus_country_entity_fleet # Used for event when attacked
+				create_ship = {
+					name = exodus_species_entity
+					design = "NAME_Corrupted_Avatar" ### Might make a stronger design at some point
+				}
+				set_location = {
+					target = prev.star
+					distance = 100
+					angle = random
+				}
+				set_fleet_stance = passive
+				#set_aggro_range_measure_from = return_point
+				#set_aggro_range = 2000
+			}
+		}
+	}
+
+	# Handle Exodus Country Stuff
+	#event_target:ssh_exodus_country = {
+	#	every_owned_leader = {
+	#		kill_leader = {
+	#			class = envoy
+	#			show_notification = no
+	#		}
+	#		kill_leader = {
+	#			class = commander
+	#			show_notification = no
+	#		}
+	#		kill_leader = {
+	#			class = scientist
+	#			show_notification = no
+	#		}
+	#		kill_leader = {
+	#			class = official
+	#			show_notification = no
+	#		}
+	#	}
+	#	
+	#	#if = {
+	#	#	limit = { is_ai = no }
+	#	#	country_event = {
+	#	#		id = ssh_crisis.50
+	#	#		days = 10
+	#	#	}
+	#	#}
+	#	#else = {
+	#	#	win = yes # For players, done via ssh_crisis.50 ##########
+	#	#}
+	#}
+}
+
+trigger_ssh_exodus_species_effect = {
+	if = {
+		limit = { NOT = { is_machine_empire = yes } }
+		every_owned_pop_group = {
+			limit = { is_same_species = root }
+			modify_species = {
+				species = this
+				add_trait = trait_ssh_ascensionist
+				portrait = "fundament_entity1"
+				ideal_planet_class = root.species
+				effect = {
+					save_event_target_as = ssh_hyperdimensional_exodus_species
+				}
+			}
+		}
+	}
+	else = {
+		every_owned_pop_group = {
+			limit = { is_same_species = root }
+			modify_species = {
+				species = this
+				add_trait = trait_ssh_ascensionist_machine
+				#portrait = "fundament_entity1"
+				ideal_planet_class = root.species
+				effect = {
+					save_event_target_as = ssh_hyperdimensional_exodus_species
+				}
+			}
+		}
+	}
+	change_dominant_species = {
+		species = event_target:ssh_hyperdimensional_exodus_species
+		change_all = yes
+	}
+	change_dominant_species = { species = event_target:ssh_hyperdimensional_exodus_species }
+} 
+
+# Declare War on Crisis Country
+# Used for AI countries
+declare_war_on_exodus_country = {
+	random_country = {
+		limit = { has_country_flag = built_dimensional_tearer }
+		save_event_target_as = ssh_exodus_country
+	}
+	declare_war = {
+		target = event_target:ssh_exodus_country
+		name = {
+			key = "NAME_Declared_Crisis_War"
+			variable_string = "[This.MainDefender.GetAdj]"
+		}
+		attacker_war_goal = "wg_ssh_stop_ascensionists"
+		effect = {
+			set_war_flag = exodus_war
+		}
+	}
+	if = {
+		limit = { is_federation_leader = yes }
+		every_federation_ally = {
+			join_war = prev
+		}
+	}
+	every_subject = {
+		join_war = prev
+	}
+}
+# Stop War
+# Used when Tearer is destroyed
+stop_war_on_exodus_country = {
+	random_country = {
+		limit = { has_country_flag = built_dimensional_tearer }
+		save_event_target_as = ssh_exodus_country
+	}
+	random_war = {
+		limit = {
+			has_war_flag = exodus_war
+			# Below Doesnt work
+			#OR = {
+			#	using_war_goal = {
+			#		type = wg_ssh_stop_ascensionists
+			#		owner = from #event_target:ssh_exodus_country
+			#	}
+			#	using_war_goal = {
+			#		type = wg_ssh_bring_into_the_fold
+			#		owner = from #event_target:ssh_exodus_country
+			#	}
+			#}
+		}
+		remove_war_participant = from
+		#every_war_participant = {
+		#	limit = {
+		#		NOT = { is_same_value = event_target:ssh_exodus_country }
+		#	}
+		#	country_event = { id = crisis.4110 }
+		#}
+		#every_war_participant = {
+		#	prev = {
+		#		remove_war_participant = root
+		#	}
+		#	#prev = {
+		#	#	remove_war_participant = prev
+		#	#}
+		#}
+	}
+}
+
+#### WAVE EFFECTS ####
+# Nullvoid - System Disappears
+ssh_dimensional_wave_effect_nullvoid = {
+	remove_star_flag = ssh_dimensional_wave_marked_system
+	set_star_flag = ssh_dimensional_wave_hit_system
+	set_asteroid_belt = { radius = 0 }
+	# Handle Contingency Machine Worlds
+	every_system_planet = {
+		limit = {
+			is_planet_class = pc_ai
+			NOT = { has_planet_flag = machine_lair }
+		}
+		destroy_machine_world = yes
+	}
+	random_system_planet = {
+		limit = {
+			is_planet_class = pc_ai
+			has_planet_flag = machine_lair
+		}
+		from.owner = { save_event_target_as = final_machine_world_destroyer }
+		stop_crisis_sound = yes
+		planet_event = { id = crisis.2046 }
+	}
+	every_system_planet = {
+		limit = { is_star = no }
+		remove_planet = yes
+	}
+	set_star_class = sc_ssh_space
+	every_system_planet = {
+		limit = { is_star = yes } # Binary/Trinary systems
+		change_pc = pc_ssh_empty_space
+		clear_deposits = yes
+		set_planet_size = 0
+	}
+	#every_system_megastructure = {
+	#	if = {
+	#		limit = {
+	#			OR = {
+	#				is_megastructure_type = gateway_restored
+	#				is_megastructure_type = gateway_final
+	#				is_megastructure_type = hyper_relay
+	#				is_megastructure_type = hyper_relay_restored
+	#				is_megastructure_type = lgate_base
+	#				is_megastructure_type = quantum_catapult_3
+	#				is_megastructure_type = quantum_catapult_improved_slingshot
+	#				is_megastructure_type = quantum_catapult_restored
+	#				is_megastructure_type = quantum_catapult_restored_slingshot
+	#				# Gigas
+	#				is_megastructure_type = ehof_pgate_gateway
+	#				is_megastructure_type = gateway_final
+	#				is_megastructure_type = ehof_megastructure_wormhole_destination
+	#				is_megastructure_type = compound_wormhole_portal
+	#				is_megastructure_type = ehof_trader_wormhole_01
+	#				is_megastructure_type = ehof_trader_wormhole_external
+	#				is_megastructure_type = hyper_relay
+	#				is_megastructure_type = hyper_relay_restored
+	#				#is_megastructure_type = hyper_relay_ruined
+	#				is_megastructure_type = blokkat_gigarelay_2
+	#			}
+	#		}
+	#		upgrade_megastructure_to = ssh_bypass_remover
+	#		finish_upgrade = yes
+	#	}
+	#	remove_megastructure = this
+	#}
+	#every_system_megastructure = {
+	#	if = {
+	#		limit = { ssh_is_bypass_megastructure = yes }
+	#		#upgrade_megastructure_to = ssh_bypass_remover
+	#		#finish_upgrade = yes
+	#		#set_owner = event_target:global_event_country # TEST
+	#		# Do Nothing
+	#	}
+	#	else = {
+	#		remove_megastructure = this
+	#	}
+	#	#remove_megastructure = this
+	#}
+	ssh_bypass_remove_every_system_megastructure = yes # Check for bypass megas + remove
+	every_system_ambient_object = {
+		limit = {
+			# Preserve Unbidden crisis effects
+			NOR = {
+				has_ambient_object_flag = extradimensional_system_effect
+				has_ambient_object_flag = extradimensional_system_effect_2
+			}
+		}
+		destroy_ambient_object = this
+	}
+	# Fleets
+	every_fleet_in_system = {
+		limit = {
+			NOR = {
+				# except Extradimensionals or Blokkats
+				exists = owner
+				owner = {
+					OR = {
+						is_country_type = portal_holder
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						# Blokkats
+						is_country_type = blokkat_stripminers
+						is_country_type = blokkat_stripminers_defeated
+						is_country_type = blokkat_stripminers_blokkwork
+						is_country_type = blokkat_stripminers_ascended_country
+						is_country_type = swarm_fleeing_blokkats
+					}
+				}
+			}
+		}
+		if = {
+			limit = { is_mobile = yes }
+			set_mia = mia_return_home
+		}
+		else = {
+			destroy_fleet = this
+		}
+	}
+	# If space owner exists, notify owner + opinion modifier
+	if = {
+		limit = { exists = space_owner }
+		save_event_target_as = ssh_dimensional_wave_system
+		space_owner = {
+			# If not at war yet, declare war
+			if = {
+				limit = {
+					is_ai = yes
+					is_country_type = default
+					ssh_meets_exodus_war_criteria = yes
+				}
+				declare_war_on_exodus_country = yes
+			}
+			else_if = {
+				limit = { is_ai = no }
+				if = {
+					limit = { NOT = { has_country_flag = ssh_exodus_wave_nullvoid } }
+					set_country_flag = ssh_exodus_wave_nullvoid
+					country_event = {
+						id = ssh_tearer.201
+						days = 1
+					}
+				}
+				else = {
+					create_message = {
+						type = EXODUS_WAVE_NULLVOID
+						localization = MESSAGE_EXODUS_WAVE_NULLVOID_TEXT
+						days = 30
+						target = prev
+						variable = {
+							type = name
+							localization = SYSTEM
+							scope = prev
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Hell - Modifier
+ssh_dimensional_wave_effect_hell = {
+	remove_star_flag = ssh_dimensional_wave_marked_system
+	set_star_flag = ssh_dimensional_wave_hit_system
+	every_system_planet = {
+		limit = { is_colony = yes }
+		add_planet_devastation = 90
+		add_modifier = {
+			modifier = ssh_pain_dimension_planet_modifier
+			days = 1800
+		}
+		random_owned_pop_group = {
+			#limit = { is_organic_species = yes }
+			#kill_single_pop = yes
+			kill_pop_group = {
+				pop_group = THIS
+				amount = 100
+			}
+		}
+	}
+	# If space owner exists, notify owner + opinion modifier
+	if = {
+		limit = { exists = space_owner }
+		save_event_target_as = ssh_dimensional_wave_system
+		space_owner = {
+			# If not at war yet, declare war
+			if = {
+				limit = {
+					is_ai = yes
+					is_country_type = default
+					ssh_meets_exodus_war_criteria = yes
+				}
+				declare_war_on_exodus_country = yes
+			}
+			else_if = {
+				limit = { is_ai = no }
+				if = {
+					limit = { NOT = { has_country_flag = ssh_exodus_wave_hell } }
+					set_country_flag = ssh_exodus_wave_hell
+					country_event = {
+						id = ssh_tearer.202
+						days = 1
+					}
+				}
+				else = {
+					create_message = {
+						type = EXODUS_WAVE_HELL
+						localization = MESSAGE_EXODUS_WAVE_HELL_TEXT
+						days = 30
+						target = prev
+						variable = {
+							type = name
+							localization = SYSTEM
+							scope = prev
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Static Dimension - Destroy Solar System
+ssh_dimensional_wave_effect_static = {
+	remove_star_flag = ssh_dimensional_wave_marked_system
+	set_star_flag = ssh_dimensional_wave_hit_system
+	destroy_star_system = yes
+	# If space owner exists, notify owner + opinion modifier
+	if = {
+		limit = { exists = space_owner }
+		save_event_target_as = ssh_dimensional_wave_system
+		space_owner = {
+			# If not at war yet, declare war
+			if = {
+				limit = {
+					is_ai = yes
+					is_country_type = default
+					ssh_meets_exodus_war_criteria = yes
+				}
+				declare_war_on_exodus_country = yes
+			}
+			else_if = {
+				limit = { is_ai = no }
+				if = {
+					limit = { NOT = { has_country_flag = ssh_exodus_wave_static } }
+					set_country_flag = ssh_exodus_wave_static
+					country_event = {
+						id = ssh_tearer.203
+						days = 1
+					}
+				}
+				else = {
+					create_message = {
+						type = EXODUS_WAVE_STATIC
+						localization = MESSAGE_EXODUS_WAVE_STATIC_TEXT
+						days = 30
+						target = prev
+						variable = {
+							type = name
+							localization = SYSTEM
+							scope = prev
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Mirror Dimension - Change planet classes + star class
+ssh_dimensional_wave_effect_mirror = {
+	remove_star_flag = ssh_dimensional_wave_marked_system
+	set_star_flag = ssh_dimensional_wave_hit_system
+	every_system_planet = {
+		limit = {
+			is_star = no
+			is_artificial = no
+			is_asteroid = no
+			is_colony = no
+		}
+		change_pc = rl_all_normal_planets
+	}
+	every_system_planet = {
+		limit = {
+			is_star = no
+			is_artificial = no
+			is_asteroid = no
+			is_colony = yes
+		}
+		add_planet_devastation = 25
+		change_pc = rl_habitable_normal
+	}
+	random_list = {
+		15 = { set_star_class = sc_a }
+		15 = { set_star_class = sc_b }
+		15 = { set_star_class = sc_ssh_white_dwarf }
+		15 = { set_star_class = sc_ssh_blue_dwarf }
+		15 = { set_star_class = sc_ssh_black_dwarf }
+		15 = { set_star_class = sc_black_hole }
+	}
+	# If space owner exists, notify owner + opinion modifier
+	if = {
+		limit = { exists = space_owner }
+		save_event_target_as = ssh_dimensional_wave_system
+		space_owner = {
+			if = {
+				limit = { NOT = { has_country_flag = ssh_exodus_wave_mirror } }
+				set_country_flag = ssh_exodus_wave_mirror
+				country_event = {
+					id = ssh_tearer.204
+					days = 1
+				}
+			}
+			else = {
+				create_message = {
+					type = EXODUS_WAVE_MIRROR
+					localization = MESSAGE_EXODUS_WAVE_MIRROR_TEXT
+					days = 30
+					target = prev
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = prev
+					}
+				}
+			}
+		}
+	}
+}
+
+# Pure Energy Dimension - 'Inflate' star, neutron beam effect on all system planets
+ssh_dimensional_wave_effect_energy = {
+	remove_star_flag = ssh_dimensional_wave_marked_system
+	set_star_flag = ssh_dimensional_wave_hit_system
+	every_system_planet = {
+		limit = {
+			is_star = no
+		}
+		add_planet_devastation = 75
+		add_modifier = {
+			modifier = neutron_bombarded
+			days = 1800
+		}
+	}
+	if = {
+		limit = { has_gigastructures = yes }
+		set_star_class = sc_o
+	}
+	else = { set_star_class = sc_b }
+	# If space owner exists, notify owner + opinion modifier
+	if = {
+		limit = {
+			exists = space_owner
+			any_system_planet = { is_colony = yes }
+		}
+		save_event_target_as = ssh_dimensional_wave_system
+		space_owner = {
+			# If not at war yet, declare war
+			if = {
+				limit = {
+					is_ai = yes
+					is_country_type = default
+					ssh_meets_exodus_war_criteria = yes
+				}
+				declare_war_on_exodus_country = yes
+			}
+			else_if = {
+				limit = { is_ai = no }
+				if = {
+					limit = { NOT = { has_country_flag = ssh_exodus_wave_energy } }
+					set_country_flag = ssh_exodus_wave_energy
+					country_event = {
+						id = ssh_tearer.205
+						days = 1
+					}
+				}
+				else = {
+					create_message = {
+						type = EXODUS_WAVE_ENERGY
+						localization = MESSAGE_EXODUS_WAVE_ENERGY_TEXT
+						days = 30
+						target = prev
+						variable = {
+							type = name
+							localization = SYSTEM
+							scope = prev
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Corridors Dimension - Pops noclip out of reality
+ssh_dimensional_wave_effect_corridors = {
+	remove_star_flag = ssh_dimensional_wave_marked_system
+	set_star_flag = ssh_dimensional_wave_hit_system
+	every_system_planet = {
+		limit = { is_colony = yes }
+		random_owned_pop_group = {
+			kill_pop_group = {
+				pop_group = THIS
+				amount = 500
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = space_owner
+			any_system_planet = { is_colony = yes }
+		}
+		save_event_target_as = ssh_dimensional_wave_system
+		space_owner = {
+			if = {
+				limit = { NOT = { has_country_flag = ssh_exodus_wave_corridors } }
+				set_country_flag = ssh_exodus_wave_corridors
+				country_event = {
+					id = ssh_tearer.206
+					days = 1
+				}
+			}
+			else = {
+				create_message = {
+					type = EXODUS_WAVE_CORRIDORS
+					localization = MESSAGE_EXODUS_WAVE_CORRIDORS_TEXT
+					days = 30
+					target = prev
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = prev
+					}
+				}
+			}
+		}
+	}
+}

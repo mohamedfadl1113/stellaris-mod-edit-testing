@@ -1,0 +1,541 @@
+#Gasgiant Shellworld Jobs
+ssh_gas_collector_drone = {
+	category = simple_drone #complex drone? -> Mote harvesting drones are also complex drones
+	building_icon = building_gas_extractors
+
+	tags = { strategic_resource exotic_gases }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = { can_think = yes }
+
+	resources = {
+		category = planet_sr_miners
+		produces = {
+			sr_hydrogen = 5
+			exotic_gases = 2
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	weight = {
+		weight = @simple_drone_job_weight #@complex_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_gas_collector_drone|RESOURCE|exotic_gases|
+		mult = value:job_weights_modifier|JOB|ssh_gas_collector_drone|RESOURCE|sr_hydrogen|
+		modifier = {
+			factor = 1.1
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+	}
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = simple_drone #complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Stellar Hoop Jobs
+ssh_stellar_technician_drone = {
+	category = simple_drone
+
+	# Might add wilderness support in the future. For now not though
+	#swappable_data = {
+	#	default = {
+	#		condition_string = DRONE_JOB_TRIGGER
+	#		building_icon = building_energy_grid
+	#	}
+	#	swap_type = {
+	#		trigger = {
+	#			exists = owner
+	#			owner = {
+	#				is_wilderness_empire = yes
+	#			}
+	#		}
+	#		name = photosymbiont
+	#		desc = photosymbiont
+	#		icon = photosymbiont
+	#		building_icon = bio_electric_stimulator_3
+	#		condition_string = DRONE_JOB_TRIGGER
+	#		weight = 10
+	#	}
+	#}
+
+	tags = { energy }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	resources = {
+		category = planet_technician
+		produces = {
+			energy = 12 #Twice as a regular technician drone. Used to be 13 pre-4.0.
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_robot_empire = yes
+				}
+			}
+			energy = 2
+		}
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_energy_requisitorium
+				}
+			}
+			energy = @requisitorium_energy_reduction
+		}
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_energy
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_energy_requisitorium
+				}
+			}
+			energy = @requisitorium_energy_overlord
+		}
+	}
+
+	weight = {
+		weight = @simple_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_stellar_technician_drone|RESOURCE|energy|
+
+		modifier = {
+			factor = 0.9
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value > 50
+				}
+			}
+		}
+
+		modifier = {
+			factor = 1.1
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_energy"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = simple_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Stellar Lifter Drone
+ssh_stellar_lifter_drone = {
+	category = simple_drone
+	tags = { minerals strategic_resource }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			sr_hydrogen = 15
+			minerals = 10
+		}
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_material_requisitorium
+				}
+			}
+			minerals = @requisitorium_minerals_reduction
+		}
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_minerals
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_material_requisitorium
+				}
+			}
+			minerals = @requisitorium_minerals_overlord
+		}
+	}
+
+	weight = {
+		weight = @simple_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_stellar_lifter_drone|RESOURCE|minerals|
+		mult = value:job_weights_modifier|JOB|ssh_stellar_lifter_drone|RESOURCE|sr_hydrogen|
+		modifier = {
+			factor = 1.1
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 0.9
+		 	owner = {
+		 		has_monthly_income = {
+		 			resource = minerals
+		 			value > 85
+		 		}
+		 	}
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = simple_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Cultrobium Job
+ssh_cultrobium_foundry_drone = {
+	category = complex_drone
+	building_icon = building_foundry_1
+
+	tags = { alloys }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+
+	resources = {
+		category = planet_jobs
+		produces = {
+			sr_cultrobium = 5
+		}
+		upkeep = {
+			minerals = 6
+		}
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_material_requisitorium
+				}
+			}
+			sr_cultrobium = @requisitorium_alloys_reduction
+		}
+
+		upkeep = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_material_requisitorium
+				}
+			}
+			minerals = 2
+		}
+	}
+
+	#overlord_resources = {
+	#}
+
+	weight = {
+		weight = @simple_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_cultrobium_foundry_drone|RESOURCE|sr_cultrobium|
+		modifier = {
+			factor = 1.1
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+	}
+
+	#inline_script = "jobs/automodding_priority_cultrobium" ### Might make an own inline script at some point
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+ssh_matter_decompressor_drone = {
+	category = simple_drone
+	tags = { minerals strategic_resource }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	resources = {
+		category = planet_miners
+		produces = {
+			minerals = 6
+			sr_dark_matter = 1 #2 Pre 4.0
+		}
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_material_requisitorium
+				}
+			}
+			minerals = @requisitorium_minerals_reduction
+		}
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_minerals
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_material_requisitorium
+				}
+			}
+			minerals = @requisitorium_minerals_overlord
+		}
+	}
+
+	weight = {
+		weight = @simple_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_matter_decompressor_drone|RESOURCE|minerals|
+		mult = value:job_weights_modifier|JOB|ssh_matter_decompressor_drone|RESOURCE|sr_dark_matter|
+		modifier = {
+			factor = 1.1
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 0.9
+		 	owner = {
+		 		has_monthly_income = {
+		 			resource = minerals
+		 			value > 85
+		 		}
+		 	}
+		}
+		modifier = {
+			factor = 1.2
+		 	owner = {
+		 		has_monthly_income = {
+		 			resource = sr_dark_matter
+		 			value < 5
+		 		}
+		 	}
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = simple_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Conmat Biologist Drone
+ssh_conmat_biologist_drone = {
+	category = complex_drone
+	tags = { strategic_resource }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	resources = {
+		category = planet_biologists
+		produces = {
+			sr_conscious_matter = 5
+		}
+		upkeep = {
+			food = 8 #originally used to be 15
+			volatile_motes = 0.5
+		}
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_conmat_biologist_drone|RESOURCE|sr_conscious_matter|
+		modifier = {
+			factor = 1.1
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 0.9
+		 	owner = {
+		 		has_monthly_income = {
+		 			resource = sr_conscious_matter
+		 			value > 20
+		 		}
+		 	}
+		}
+		modifier = {
+			factor = 1.2
+		 	owner = {
+		 		has_monthly_income = {
+		 			resource = sr_conscious_matter
+		 			value < 1
+		 		}
+		 	}
+		}
+	}
+
+	#inline_script = "jobs/automodding_priority_conmat" ### Might make an own inline script at some point
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+# Scrap Collector
+ssh_scrap_collector_drone = {
+	category = simple_drone
+	tags = { minerals strategic_resource }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	resources = {
+		category = planet_jobs
+		produces = {
+			alloys = 5
+			minerals = 7
+			engineering_research = 1
+		}
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_material_requisitorium
+				}
+			}
+			minerals = @requisitorium_minerals_reduction
+		}
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_minerals
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_material_requisitorium
+				}
+			}
+			minerals = @requisitorium_minerals_overlord
+		}
+	}
+
+	weight = {
+		weight = @simple_drone_job_weight
+		mult = value:job_weights_modifier|JOB|ssh_scrap_collector_drone|RESOURCE|minerals|
+		mult = value:job_weights_modifier|JOB|ssh_scrap_collector_drone|RESOURCE|alloys|
+		modifier = {
+			factor = 1.1
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_minerals"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = simple_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
