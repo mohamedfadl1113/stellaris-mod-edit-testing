@@ -1,0 +1,162 @@
+spriteTypes = {
+
+	## Crisis perks
+	# Hyperdim Exodus
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_objectives"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_objectives.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_dark_matter"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_dark_matter.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_interdim_observer"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_interdim_observer.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_system_disintegration"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_system_disintegration.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_micro_dimensions"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_micro_dimensions.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_in_depth_defense"
+ 		texturefile = "gfx/interface/icons/crisis/interdim_insights_icon_in_depth_defense.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_science_1"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_science_1.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_science_2"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_science_2.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_defensive_deterrence"
+ 		texturefile = "gfx/interface/icons/crisis/interdim_insights_icon_defensive_deterrence.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_dimensional_techs"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_dimensional_techs.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_astral_skills"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_astral_skills.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_anomaly_master"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_anomaly_master.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_jump_drive_enhancements"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_jump_drive_enhancements.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_dim_tearer"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_dim_tearer.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_icon_hyperdim_exodus_reality_shaping"
+ 		texturefile = "gfx/interface/icons/crisis/hyperdim_exodus_icon_reality_shaping.dds"
+  		noOfFrames = 2			
+  	}
+
+	spriteType = {
+		name = "GFX_crisis_hyperdim_exodus_level_1_btn"
+ 		texturefile = "gfx/interface/icons/crisis/Hyperdim_Exodus_Lvl1_btn.dds"
+  		noOfFrames = 2			
+  	}
+  	spriteType = {
+		name = "GFX_crisis_hyperdim_exodus_level_2_btn"
+  		texturefile = "gfx/interface/icons/crisis/Hyperdim_Exodus_Lvl2_btn.dds"
+  		noOfFrames = 2			
+	}
+   	spriteType = {
+  		name = "GFX_crisis_hyperdim_exodus_level_3_btn"
+   		texturefile = "gfx/interface/icons/crisis/Hyperdim_Exodus_lvl3_btn.dds"
+  		noOfFrames = 2	
+  	}		
+	spriteType = {
+   		name = "GFX_crisis_hyperdim_exodus_level_4_btn"
+   		texturefile = "gfx/interface/icons/crisis/Hyperdim_Exodus_Lvl4_btn.dds"
+  		noOfFrames = 2			
+   	}
+  	spriteType = {
+  		name = "GFX_crisis_hyperdim_exodus_level_5_btn"
+  		texturefile = "gfx/interface/icons/crisis/Hyperdim_Exodus_Lvl5_btn.dds"
+  		noOfFrames = 2			
+  	}
+	spriteType = {
+		name = "GFX_crisis_hyperdim_exodus_level_1_btn_small"
+		texturefile = "gfx/interface/icons/crisis/Hyperdim_Exodus_Lvl1_btn_small.dds"
+		noOfFrames = 2			
+	}
+	spriteType = {
+		name = "GFX_crisis_hyperdim_exodus_level_2_btn_small"
+		texturefile = "gfx/interface/icons/crisis/Hyperdim_Exodus_Lvl2_btn_small.dds"
+		noOfFrames = 2			
+	}
+	 spriteType = {
+		name = "GFX_crisis_hyperdim_exodus_level_3_btn_small"
+		texturefile = "gfx/interface/icons/crisis/Hyperdim_Exodus_lvl3_btn_small.dds"
+		noOfFrames = 2	
+	}		
+	spriteType = {
+		name = "GFX_crisis_hyperdim_exodus_level_4_btn_small"
+		texturefile = "gfx/interface/icons/crisis/Hyperdim_Exodus_Lvl4_btn_small.dds"
+		noOfFrames = 2			
+	}
+	spriteType = {
+		name = "GFX_crisis_hyperdim_exodus_level_5_btn_small"
+		texturefile = "gfx/interface/icons/crisis/Hyperdim_Exodus_Lvl5_btn_small.dds"
+		noOfFrames = 2			
+	}
+
+	progressbarType = {
+		name = "GFX_hyperdim_exodus_path_progressbar"
+		color = { 1.0 1.0 1.0 }
+		colorTwo = { 1.0 1.0 1.0 }
+		textureFile1 = "gfx/interface/crisis/hyperdim_exodus_crisis_progress_bar.dds"
+		textureFile2 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
+		size = { x = 10 y = 432 }
+		effectFile = "gfx/FX/progress.shader"
+		horizontal = no
+		flipdirection = yes
+	}
+
+	corneredTileSpriteType = {
+		name = "GFX_hyperdim_exodus_path_bg"
+		texturefile = "gfx/interface/crisis/exodus_crisisBG.dds"
+		borderSize = { x = 0 y = 0 }
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+
+	#progressbarType = {
+	#	name = "GFX_hyperdim_exodus_path_progressbar"
+	#	color = { 1.0 1.0 1.0 }
+	#	colorTwo = { 1.0 1.0 1.0 }
+	#	textureFile1 = "gfx/interface/crisis/cosmogenesis_crisis_progress_bar.dds"
+	#	textureFile2 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
+	#	size = { x = 10 y = 432 }
+	#	effectFile = "gfx/FX/progress.shader"
+	#	horizontal = no
+	#	flipdirection = yes
+	#}
+}

@@ -1,0 +1,601 @@
+spriteTypes = {
+	#Event Pictures
+	spriteType = {
+		name = "GFX_evt_ssh_gas_shellworld_1"
+		texturefile = "gfx/event_pictures/gas_shellworld_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_gas_shellworld_2"
+		texturefile = "gfx/event_pictures/gas_shellworld_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_gas_shellworld_3"
+		texturefile = "gfx/event_pictures/gas_shellworld_3.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_gas_shellworld_4"
+		texturefile = "gfx/event_pictures/gas_shellworld_4.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_gas_shellworld_5"
+		texturefile = "gfx/event_pictures/gas_shellworld_5.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_gas_shellworld_6"
+		texturefile = "gfx/event_pictures/gas_shellworld_6.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_gas_shellworld_7"
+		texturefile = "gfx/event_pictures/gas_shellworld_7.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_edersphere"
+		texturefile = "gfx/event_pictures/edersphere.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_edersphere_2"
+		texturefile = "gfx/event_pictures/edersphere_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_edersphere_coil"
+		texturefile = "gfx/event_pictures/edersphere_coil.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_stellar_hoop_frame"
+		texturefile = "gfx/event_pictures/stellar_hoop_frame.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_stellar_hoop_shell"
+		texturefile = "gfx/event_pictures/stellar_hoop_shell.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_stellar_hoop_pipes"
+		texturefile = "gfx/event_pictures/stellar_hoop_pipes.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_stellar_hoop_tethers"
+		texturefile = "gfx/event_pictures/stellar_hoop_elevators.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_stellar_hoop"
+		texturefile = "gfx/event_pictures/stellar_hoop_finished1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_stellar_hoop_2"
+		texturefile = "gfx/event_pictures/stellar_hoop_finished2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_hoopworld_construction"
+		texturefile = "gfx/event_pictures/hoopworld_construction.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_hoopworld_shell"
+		texturefile = "gfx/event_pictures/hoopworld_shell.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_hoopworld"
+		texturefile = "gfx/event_pictures/hoopworld_finished.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_discworld_shell"
+		texturefile = "gfx/event_pictures/discworld_shell.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_discworld_tubes"
+		texturefile = "gfx/event_pictures/discworld_tubes.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_discworld"
+		texturefile = "gfx/event_pictures/discworld.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_dim_tearer"
+		texturefile = "gfx/event_pictures/dim_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_dim_tearer_stage_1"
+		texturefile = "gfx/event_pictures/dim_tearer_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_dim_tearer_stage_2"
+		texturefile = "gfx/event_pictures/dim_tearer_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_dim_tearer_stage_3"
+		texturefile = "gfx/event_pictures/dim_tearer_3.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_suffering_dimension"
+		texturefile = "gfx/event_pictures/suffering_dimension.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_mirror_dimension"
+		texturefile = "gfx/event_pictures/mirror_dimension.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_nullvoid"
+		texturefile = "gfx/event_pictures/nullvoid.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_black_hole"
+		texturefile = "gfx/event_pictures/ssh_black_hole.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_black_hole_interior"
+		texturefile = "gfx/event_pictures/black_hole_interior.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_black_hole_shellworld"
+		texturefile = "gfx/event_pictures/black_hole_shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_black_hole_shell_1"
+		texturefile = "gfx/event_pictures/black_hole_shell_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_black_hole_shell_2"
+		texturefile = "gfx/event_pictures/black_hole_shell_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_black_hole_shell_3"
+		texturefile = "gfx/event_pictures/black_hole_shell_3.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_black_hole_shell_4"
+		texturefile = "gfx/event_pictures/black_hole_shell_4.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_shellworld"
+		texturefile = "gfx/event_pictures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_dyson_shell"
+		texturefile = "gfx/event_pictures/dyson_shell_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_dyson_shell_2"
+		texturefile = "gfx/event_pictures/dyson_shell_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_fusion_accelerators"
+		texturefile = "gfx/event_pictures/stellar_fusion_accelerators.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_active_fusion_acceleration"
+		texturefile = "gfx/event_pictures/active_fusion_accelerator.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_black_dwarf"
+		texturefile = "gfx/event_pictures/black_dwarf.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_freefall_frame"
+		texturefile = "gfx/event_pictures/freefall_frame.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_freefall_membrane"
+		texturefile = "gfx/event_pictures/freefall_membrane.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_freefall_pumps"
+		texturefile = "gfx/event_pictures/freefall_pumps.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_freefall_environment"
+		texturefile = "gfx/event_pictures/freefall_environment.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_neutronium_compressor_frame"
+		texturefile = "gfx/event_pictures/neutron_compressor_frame.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_neutronium_compressor_shell"
+		texturefile = "gfx/event_pictures/neutron_compressor_shell.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_neutronium_compressor_injector"
+		texturefile = "gfx/event_pictures/neutron_compressor_injector.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_neutronium_compressor_extractor"
+		texturefile = "gfx/event_pictures/neutron_compressor_extractor.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_neutronium_compressor_active_1"
+		texturefile = "gfx/event_pictures/neutron_compressor_active1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_neutronium_compressor_active_2"
+		texturefile = "gfx/event_pictures/neutron_compressor_active2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_quark_star"
+		texturefile = "gfx/event_pictures/quark_star.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_false_vacuum"
+		texturefile = "gfx/event_pictures/false_vacuum.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_vacuum_decay"
+		texturefile = "gfx/event_pictures/vacuum_decay.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_tech_frame"
+		texturefile = "gfx/event_pictures/ark_tech_frame.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_tech_kugelblitz"
+		texturefile = "gfx/event_pictures/ark_tech_kugelblitz.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_tech_habitation"
+		texturefile = "gfx/event_pictures/ark_tech_habitation.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_tech_rift_gen"
+		texturefile = "gfx/event_pictures/ark_tech_rift_gen.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_tech_drive"
+		texturefile = "gfx/event_pictures/ark_tech_drive.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_frame"
+		texturefile = "gfx/event_pictures/ark_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_kugelblitz"
+		texturefile = "gfx/event_pictures/ark_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_habitation_rings"
+		texturefile = "gfx/event_pictures/ark_3.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_rift_gen"
+		texturefile = "gfx/event_pictures/ark_4.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_drive"
+		texturefile = "gfx/event_pictures/ark_5.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_unused"
+		texturefile = "gfx/event_pictures/ark_unused.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_project"
+		texturefile = "gfx/event_pictures/ark_project.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_ready"
+		texturefile = "gfx/event_pictures/ark_ready.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_launch"
+		texturefile = "gfx/event_pictures/ark_launch.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_launch_unused"
+		texturefile = "gfx/event_pictures/ark_launch_unused.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_ark_launch_unused1"
+		texturefile = "gfx/event_pictures/ark_launch_unused1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_wormhole_spherical"
+		texturefile = "gfx/event_pictures/spherical_wormhole.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_static_dimension"
+		texturefile = "gfx/event_pictures/static_dimension.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_corridors_dimension"
+		texturefile = "gfx/event_pictures/corridors_dimension.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_fundament_white"
+		texturefile = "gfx/event_pictures/fundament_white.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_fundament_realm"
+		texturefile = "gfx/event_pictures/fundament.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_fundament_tunnels"
+		texturefile = "gfx/event_pictures/fundament_gateways.dds"
+	}
+	# Megabrain
+	spriteType = {
+		name = "GFX_evt_ssh_megabrain_jar"
+		texturefile = "gfx/event_pictures/megabrain_jar.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_megabrain_jar_full"
+		texturefile = "gfx/event_pictures/megabrain_jar_full.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_megabrain_clump"
+		texturefile = "gfx/event_pictures/megabrain_clump.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_megabrain_stage_1"
+		texturefile = "gfx/event_pictures/megabrain_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_megabrain_stage_2"
+		texturefile = "gfx/event_pictures/megabrain_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_megabrain_stage_3"
+		texturefile = "gfx/event_pictures/megabrain_3.dds"
+	}
+	# Mega Temple (as you can see I am still unsure about the final name)
+	spriteType = {
+		name = "GFX_evt_ssh_megatemple_stage_1"
+		texturefile = "gfx/event_pictures/mega_temple_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_megatemple_stage_2"
+		texturefile = "gfx/event_pictures/mega_temple_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_megatemple_stage_3"
+		texturefile = "gfx/event_pictures/mega_temple_3.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_megatemple_stage_4"
+		texturefile = "gfx/event_pictures/mega_temple_4.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_megatemple_stage_5"
+		texturefile = "gfx/event_pictures/mega_temple_5.dds"
+	}
+	# Zro Infuser
+	spriteType = {
+		name = "GFX_evt_ssh_zro_infuser_stage_1"
+		texturefile = "gfx/event_pictures/zro_infuser_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_zro_infuser_stage_2"
+		texturefile = "gfx/event_pictures/zro_infuser_2.dds"
+	}
+	# System Disintegrator
+	spriteType = {
+		name = "GFX_evt_ssh_system_disintegrator_1"
+		texturefile = "gfx/event_pictures/system_disintegrator_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_system_disintegrator_2"
+		texturefile = "gfx/event_pictures/system_disintegrator_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_system_disintegrator_3"
+		texturefile = "gfx/event_pictures/system_disintegrator_3.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_system_disintegrator_finished"
+		texturefile = "gfx/event_pictures/system_disintegrator_finished.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_system_disintegrator_harvesting"
+		texturefile = "gfx/event_pictures/system_disintegrator_harvesting.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_disintegrated_system"
+		texturefile = "gfx/event_pictures/disintegrated_system.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_basement_universe"
+		texturefile = "gfx/event_pictures/basement_universe.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_system_disintegrator_unused"
+		texturefile = "gfx/event_pictures/system_disintegrator_unused.dds"
+	}
+	# Fusion Candle
+	spriteType = {
+		name = "GFX_evt_ssh_fusion_candle_construction"
+		texturefile = "gfx/event_pictures/fusion_candle_shell.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_fusion_candle_reactor"
+		texturefile = "gfx/event_pictures/fusion_candle_reactor.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_fusion_candle_inactive"
+		texturefile = "gfx/event_pictures/fusion_candle_inactive.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_fusion_candle"
+		texturefile = "gfx/event_pictures/fusion_candle.dds"
+	}
+	# Artificial Star
+	spriteType = {
+		name = "GFX_evt_ssh_dark_matter_storage"
+		texturefile = "gfx/event_pictures/dark_matter_storage.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_artificial_star_construction"
+		texturefile = "gfx/event_pictures/artificial_star_construction.dds"
+	}
+	# Habitable Dyson
+	spriteType = {
+		name = "GFX_evt_ssh_habitable_dyson_lamps"
+		texturefile = "gfx/event_pictures/dyson_hab_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_habitable_dyson"
+		texturefile = "gfx/event_pictures/dyson_hab_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_habitable_dyson_unused"
+		texturefile = "gfx/event_pictures/dyson_hab_unused.dds"
+	}
+	# Horizon Brain
+	spriteType = {
+		name = "GFX_evt_ssh_horizon_brain"
+		texturefile = "gfx/event_pictures/horizon_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_horizon_brain_sphere"
+		texturefile = "gfx/event_pictures/horizon_brain_construction.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_horizon_brain_spine"
+		texturefile = "gfx/event_pictures/horizon_brain_construction_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_horizon_brain_grid"
+		texturefile = "gfx/event_pictures/horizon_brain_construction_1.dds"
+	}
+	# Captive Star
+	spriteType = {
+		name = "GFX_evt_ssh_captive_star_construction"
+		texturefile = "gfx/event_pictures/captive_star_construction_1.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_captive_star_construction_1"
+		texturefile = "gfx/event_pictures/captive_star_construction_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_captive_star"
+		texturefile = "gfx/event_pictures/captive_star.dds"
+	}
+	# Dark Matter Missile
+	spriteType = {
+		name = "GFX_evt_ssh_dark_missile"
+		texturefile = "gfx/event_pictures/dark_missile.dds"
+	}
+	# Iron Sphere
+	spriteType = {
+		name = "GFX_evt_ssh_iron_sphere"
+		texturefile = "gfx/event_pictures/iron_sphere.dds"
+	}
+	# Behemoth Brain
+	spriteType = {
+		name = "GFX_evt_ssh_brain_behemoth_devouring_singularity"
+		texturefile = "gfx/event_pictures/behemoth_brain_devouring_singularity.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_brain_behemoth_devoured_by_singularity"
+		texturefile = "gfx/event_pictures/behemoth_brain_devoured.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_brain_behemoth_devoured_by_singularity_2"
+		texturefile = "gfx/event_pictures/behemoth_brain_devoured_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_brain_behemoth_departure"
+		texturefile = "gfx/event_pictures/behemoth_brain_leaving.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_brain_behemoth_departure_2"
+		texturefile = "gfx/event_pictures/behemoth_brain_leaving_2.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_brain_behemoth_voidspawn"
+		texturefile = "gfx/event_pictures/behemoth_brain_voidspawn.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_brain_behemoth_dominance"
+		texturefile = "gfx/event_pictures/behemoth_brain_dominance.dds"
+	}
+	spriteType = {
+		name = "GFX_evt_ssh_party"
+		texturefile = "gfx/event_pictures/party.dds"
+	}
+	### Origins ###
+	spriteType = {
+		name = "GFX_origin_ssh_shellworld"
+		texturefile = "gfx/event_pictures/origins/origin_ssh_shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_origin_ssh_gas_giant_shellworld"
+		texturefile = "gfx/event_pictures/origins/origin_ssh_gas_giant_shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_origin_ssh_stellar_hoop"
+		texturefile = "gfx/event_pictures/origins/origin_ssh_stellar_hoop.dds"
+	}
+	spriteType = {
+		name = "GFX_origin_ssh_hoopworld"
+		texturefile = "gfx/event_pictures/origins/origin_ssh_hoopworld.dds"
+	}
+	spriteType = {
+		name = "GFX_origin_ssh_edersphere"
+		texturefile = "gfx/event_pictures/origins/origin_ssh_edersphere.dds"
+	}
+	spriteType = {
+		name = "GFX_origin_ssh_freesphere"
+		texturefile = "gfx/event_pictures/origins/origin_ssh_freesphere.dds"
+	}
+	spriteType = {
+		name = "GFX_origin_ssh_habitable_dyson"
+		texturefile = "gfx/event_pictures/origins/origin_ssh_habitable_dyson.dds"
+	}
+	# Mega Backgrounds
+	spriteType = {
+		name = "GFX_mega_ssh_gas_giant_lifter"
+		texturefile = "gfx/interface/planetview/mega_gas_giant_lifter.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_gas_giant_compressor"
+		texturefile = "gfx/interface/planetview/mega_gas_giant_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_nanite_disassembler"
+		texturefile = "gfx/interface/planetview/mega_nanite_disassembler.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_stellar_harvester"
+		texturefile = "gfx/interface/planetview/mega_stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_dimensional_tearer"
+		texturefile = "gfx/interface/planetview/mega_dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_neutron_compressor"
+		texturefile = "gfx/interface/planetview/mega_neutron_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_bio_brain_0"
+		texturefile = "gfx/interface/planetview/mega_biobrain_0.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_bio_brain_1"
+		texturefile = "gfx/interface/planetview/mega_biobrain_1.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_bio_brain_2"
+		texturefile = "gfx/interface/planetview/mega_biobrain_2.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_bio_brain_3"
+		texturefile = "gfx/interface/planetview/mega_biobrain_3.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_shroud_anchor"
+		texturefile = "gfx/interface/planetview/mega_shroud_temple.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_zro_infuser"
+		texturefile = "gfx/interface/planetview/mega_zro_infuser.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_system_disintegrator"
+		texturefile = "gfx/interface/planetview/mega_system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_system_disintegrator_idle"
+		texturefile = "gfx/interface/planetview/mega_system_disintegrator_idle.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_ssh_system_disintegrator_harvesting"
+		texturefile = "gfx/interface/planetview/mega_system_disintegrator_active.dds"
+	}
+}

@@ -1,0 +1,113 @@
+spriteTypes = {
+	# Icons shown in the megastructure selection view.
+
+	spriteType = {
+		name = "GFX_shellworld_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_shellworlds.dds"
+	}
+	spriteType = {
+		name = "GFX_double_shellworld_0_build_icon"
+		textureFile = "gfx/interface/icons/megastructures/megastructures_build_menu/build_menu_double_shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_triple_shellworld_0_build_icon"
+		textureFile = "gfx/interface/icons/megastructures/megastructures_build_menu/build_menu_triple_shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_lifter_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_gas_giant_lifting.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_gas_giant_shellworlds.dds"
+	}
+	spriteType = {
+		name = "GFX_edersphere_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_ederspheres.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_compressor_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_gas_giant_compression.dds"
+	}
+	spriteType = {
+		name = "GFX_black_hole_shellworld_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_black_hole_shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_neutron_compressor_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_neutronium_compression.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_harvester_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_hoop_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_stellar_hoop.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_zro_detonator_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_shroud_supernova.dds"
+	}
+	spriteType = {
+		name = "GFX_basement_gateway_0_build_icon"
+		textureFile = "gfx/interface/icons/megastructures/megastructures_build_menu/build_menu_basement_gateway.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_0_build_icon"
+		textureFile = "gfx/interface/icons/megastructures/megastructures_build_menu/build_menu_dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_brain_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_mega_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_temple_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_mega_temple.dds"
+	}
+	spriteType = {
+		name = "GFX_system_creator_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_system_creator.dds"
+	}
+	spriteType = {
+		name = "GFX_system_disintegrator_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_interdim_ark_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_vacdec_energy.dds"
+	}
+	spriteType = {
+		name = "GFX_discworld_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_discworld.dds"
+	}
+	spriteType = {
+		name = "GFX_hoopworld_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_hoopworld.dds"
+	}
+	spriteType = {
+		name = "GFX_freesphere_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_freesphere.dds"
+	}
+	spriteType = {
+		name = "GFX_horizon_brain_0_build_icon"
+		textureFile = "gfx/interface/icons/megastructures/megastructures_build_menu/build_menu_horizon_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_captive_star_0_build_icon"
+		textureFile = "gfx/interface/icons/megastructures/megastructures_build_menu/build_menu_captive_star.dds"
+	}
+	# Unused but still for completions sake
+	spriteType = {
+		name = "GFX_nanite_disassembler_p_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_star_disassembler.dds"
+	}
+	spriteType = {
+		name = "GFX_terravore_digester_p_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_terravore_digester.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_s_0_build_icon"
+		textureFile = "gfx/interface/icons/technologies/ssh_tech_star_disassembler.dds"
+	}
+}

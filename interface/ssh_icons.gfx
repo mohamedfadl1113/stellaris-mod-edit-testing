@@ -1,0 +1,1152 @@
+spriteTypes = {
+	# Text Icons
+	spriteType = {
+		name = "GFX_text_sr_cultrobium"
+		texturefile = "gfx/interface/icons/resources/sr_cultrobium.dds"
+	}
+	spriteType = {
+		name = "GFX_text_sr_hydrogen"
+		texturefile = "gfx/interface/icons/resources/sr_hydrogen.dds"
+	}
+	spriteType = {
+		name = "GFX_text_sr_conscious_matter"
+		texturefile = "gfx/interface/icons/resources/sr_conscious_matter.dds"
+	}
+	spriteType = {
+		name = "GFX_text_sr_nuclei_soup"
+		texturefile = "gfx/interface/icons/resources/sr_nuclei_soup.dds"
+	}
+	# Ascension Perks
+	spriteType = {
+		name = "GFX_ap_galactic_hyperstructures"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_galactic_hyperstructures.dds"
+	}
+	spriteType = {
+		name = "GFX_ap_hyperdimensional_exodus"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_hyperdimensional_exodus.dds"
+	}
+	# Bombardment Stances
+	spriteType = {
+		name = "GFX_planet_modifier_ground_support_ssh_nanites"
+		sprite_sheet_sprite_type = "GFX_planet_view_bombarded"
+		default_frame = 5
+	}
+	spriteType = {
+		name = "GFX_fleet_order_button_ground_support_ssh_nanites"
+		texturefile = "gfx/interface/fleet_view/fleet_task_ground_support_ssh_nanites_action.dds"
+		effectFile = "gfx/FX/buttonstate.lua"
+		noOfFrames = 3
+		animation = {
+			animationmaskfile = "gfx/interface/fleet_view/fleet_task_button_mask.dds"
+			animationtexturefile = "gfx/interface/fleet_view/action_button_texture.dds"
+			animationrotation = 180.0
+			animationlooping = yes
+			animationtime = 12.0
+			animationdelay = 0.0
+			animationblendmode = "overlay"		# add, multiply, overlay
+			animationtype = "scrolling"		# scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 2 3 }
+		}
+	}
+	spriteType = {
+		name = "GFX_fleet_order_button_ground_support_ssh_nanites_selected"
+		texturefile = "gfx/interface/fleet_view/fleet_task_ground_support_ssh_nanites_selected.dds"
+		effectFile = "gfx/FX/buttonstate.lua"
+		noOfFrames = 3
+		animation = {
+			animationmaskfile = "gfx/interface/fleet_view/fleet_task_button_mask.dds"
+			animationtexturefile = "gfx/interface/fleet_view/action_button_texture.dds"
+			animationrotation = 180.0
+			animationlooping = yes
+			animationtime = 12.0
+			animationdelay = 0.0
+			animationblendmode = "overlay"		# add, multiply, overlay
+			animationtype = "scrolling"		# scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 2 3 }
+		}
+	}
+	spriteType = {
+		name = "GFX_planet_modifier_ground_support_ssh_virus"
+		sprite_sheet_sprite_type = "GFX_planet_view_bombarded"
+		default_frame = 5
+	}
+	spriteType = {
+		name = "GFX_fleet_order_button_ground_support_ssh_virus"
+		texturefile = "gfx/interface/fleet_view/fleet_task_ground_support_pox_action.dds"
+		effectFile = "gfx/FX/buttonstate.lua"
+		noOfFrames = 3
+		animation = {
+			animationmaskfile = "gfx/interface/fleet_view/fleet_task_button_mask.dds"
+			animationtexturefile = "gfx/interface/fleet_view/action_button_texture.dds"
+			animationrotation = 180.0
+			animationlooping = yes
+			animationtime = 12.0
+			animationdelay = 0.0
+			animationblendmode = "overlay"		# add, multiply, overlay
+			animationtype = "scrolling"		# scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 2 3 }
+		}
+	}
+	spriteType = {
+		name = "GFX_fleet_order_button_ground_support_ssh_virus_selected"
+		texturefile = "gfx/interface/fleet_view/fleet_task_ground_support_pox_selected.dds"
+		effectFile = "gfx/FX/buttonstate.lua"
+		noOfFrames = 3
+		animation = {
+			animationmaskfile = "gfx/interface/fleet_view/fleet_task_button_mask.dds"
+			animationtexturefile = "gfx/interface/fleet_view/action_button_texture.dds"
+			animationrotation = 180.0
+			animationlooping = yes
+			animationtime = 12.0
+			animationdelay = 0.0
+			animationblendmode = "overlay"		# add, multiply, overlay
+			animationtype = "scrolling"		# scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 2 3 }
+		}
+	}
+	# War Goals
+	spriteType = {
+		name = "GFX_wg_ssh_bring_into_the_fold"
+		texturefile = "gfx/interface/icons/diplomacy/diplomacy_isvassal.dds"
+	}
+	spriteType = {
+		name = "GFX_wg_ssh_stop_ascensionists"
+		texturefile = "gfx/interface/icons/diplomacy/diplomacy_force_ideology.dds"
+	}
+	# Planet Classes
+	spriteType = {
+		name = "GFX_planet_type_shellworld"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_shellworld_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_gas_giant_shellworld"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_gas_giant_shellworld_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_edersphere"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_edersphere_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_black_hole_shellworld"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_black_hole_shellworld_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_stellar_hoop"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_stellar_hoop_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_discworld"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_discworld_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_hoopworld"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_hoopworld_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_freesphere"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_freesphere_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_ssh_empty_space"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_empty_space_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_ssh_white_dwarf"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_white_dwarf_star_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_ssh_blue_dwarf"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_blue_dwarf_star_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_ssh_black_dwarf"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_black_dwarf_star_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_ssh_quark_star"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_quark_star_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_ssh_zro_star"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_zro_star_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_ssh_disintegrated_star"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_disintegrated_star_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_ssh_fusion_candle"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_fusion_candle_icon.dds"
+	}
+	spriteType = {
+		name = "GFX_planet_type_habitable_dyson"
+		texturefile = "gfx/interface/icons/planet_classes/ssh_habitable_dyson_icon.dds"
+	}
+	# Ship Parts
+	spriteType = {
+		name = "GFX_ship_part_armor_cultrobium"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_armor_cultrobium.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_auto_repair_nanobots"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_nanobot_repair_system.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_auto_repair_conmat"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_auto_repair_conmat.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_pk_zombie"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_pk_zombie.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_pk_basement_universe"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_pk_basement_universe.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_sk_star"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_sk_star.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_sk_dark_matter_missile"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_sk_dark_matter_missile.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_sk_dark_matter_missile_large"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_sk_dark_matter_missile_large.dds"
+	}
+	spriteType = { # Behemoth Brain Maw
+		name = "GFX_ship_part_sk_brain_maw"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_sk_brain_maw.dds"
+	}
+	# Drives
+	spriteType = {
+		name = "GFX_ship_part_interdim_jump_drive_1"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_interdim_jump_drive_1.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_thruster_captive_star"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_thruster_captive_star.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_thruster_dark_matter_missile"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_thruster_dark_matter_missile.dds"
+	}
+	# Reactors
+	spriteType = {
+		name = "GFX_ship_part_reactor_star"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_reactor_star.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_reactor_dark_matter_missile"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_reactor_dark_matter_missile.dds"
+	}
+	# Computers
+	spriteType = {
+		name = "GFX_ship_part_computer_swarm_conmat"
+		texturefile = "gfx/interface/icons/ship_parts/computers/ship_part_computer_role_swarm_conmat.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_computer_platform_conmat"
+		texturefile = "gfx/interface/icons/ship_parts/computers/ship_part_computer_role_platform_conmat.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_computer_picket_conmat"
+		texturefile = "gfx/interface/icons/ship_parts/computers/ship_part_computer_role_picket_conmat.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_computer_line_conmat"
+		texturefile = "gfx/interface/icons/ship_parts/computers/ship_part_computer_role_line_conmat.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_computer_carrier_conmat"
+		texturefile = "gfx/interface/icons/ship_parts/computers/ship_part_computer_role_carrier_conmat.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_computer_artillery_conmat"
+		texturefile = "gfx/interface/icons/ship_parts/computers/ship_part_computer_role_artillery_conmat.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_computer_conmat"
+		texturefile = "gfx/interface/icons/ship_parts/computers/ship_part_computer_conmat.dds"
+	}
+	# Leader Traits
+	spriteType = {
+		name = "GFX_leader_trait_ssh_brain_symbiosis"
+		texturefile = "gfx/interface/icons/traits/leader_trait_icons/brain_symbiosis.dds"
+	}
+	spriteType = {
+		name = "GFX_leader_trait_ssh_psi_witness"
+		texturefile = "gfx/interface/icons/traits/leader_trait_icons/psi_witness.dds"
+	}
+	# Galactic Focuses
+	spriteType = {
+		name = "GFX_galactic_focus_escape_the_reality_collapse"
+		texturefile = "gfx/interface/icons/galactic_focus/galactic_focus_escape_the_reality_collapse.dds"
+	}
+	# Resolutions
+	spriteType = {
+		name = "GFX_resolution_ssh_megaconstruction"
+		texturefile = "gfx/interface/icons/resolutions/resolution_ssh_megaconstruction.dds"
+	}
+	# Specimens
+	spriteType = {
+		name = "GFX_specimen_ssh_iron_sphere"
+		texturefile = "gfx/interface/icons/specimens/ssh_iron_sphere.dds"
+	}
+	spriteType = {
+		name = "GFX_specimen_ssh_page"
+		texturefile = "gfx/interface/icons/specimens/ssh_faceless_stalker_page.dds"
+	}
+	spriteType = {
+		name = "GFX_specimen_ssh_dimensional_compass"
+		texturefile = "gfx/interface/icons/specimens/ssh_dimensional_compass.dds"
+	}
+	#### Message Icons ####
+	spriteType = {
+		name = "GFX_message_ssh_exodus_wave_nullvoid"
+		texturefile = "gfx/interface/icons/message/exodus_wave_nullvoid.dds"
+	}
+	spriteType = {
+		name = "GFX_message_ssh_exodus_wave_hell"
+		texturefile = "gfx/interface/icons/message/exodus_wave_hell.dds"
+	}
+	spriteType = {
+		name = "GFX_message_ssh_exodus_wave_static"
+		texturefile = "gfx/interface/icons/message/exodus_wave_static.dds"
+	}
+	spriteType = {
+		name = "GFX_message_ssh_exodus_wave_mirror"
+		texturefile = "gfx/interface/icons/message/exodus_wave_mirror.dds"
+	}
+	spriteType = {
+		name = "GFX_message_ssh_exodus_wave_energy"
+		texturefile = "gfx/interface/icons/message/exodus_wave_energy.dds"
+	}
+	spriteType = {
+		name = "GFX_message_ssh_exodus_wave_corridors"
+		texturefile = "gfx/interface/icons/message/exodus_wave_corridors.dds"
+	}
+	#### Megastructures ####
+	#Shellworld
+	spriteType = {
+		name = "GFX_shellworld_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_shellworld_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_shellworld_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_shellworld_ruined_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_shellworld_restored_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	#Shellworld Double
+	spriteType = {
+		name = "GFX_double_shellworld_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_double_shellworld_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_double_shellworld_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_double_shellworld_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	#Shellworld Triple
+	spriteType = {
+		name = "GFX_triple_shellworld_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_triple_shellworld_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_triple_shellworld_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_triple_shellworld_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_triple_shellworld_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	# Gas Giant Lifter
+	spriteType = {
+		name = "GFX_gas_giant_lifter_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_lifter.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_lifter_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_lifter.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_lifter_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_lifter.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_lifter_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_lifter.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_lifter_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_lifter.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_lifter_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_lifter.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_lifter_6_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_lifter.dds"
+	}
+	# Gas Giant Shellworld
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_6_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_7_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_ruined_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_shellworld_restored_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	# Edersphere
+	spriteType = {
+		name = "GFX_edersphere_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/edersphere.dds"
+	}
+	spriteType = {
+		name = "GFX_edersphere_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/edersphere.dds"
+	}
+	spriteType = {
+		name = "GFX_edersphere_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/edersphere.dds"
+	}
+	spriteType = {
+		name = "GFX_edersphere_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/edersphere.dds"
+	}
+	spriteType = {
+		name = "GFX_edersphere_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/edersphere.dds"
+	}
+	spriteType = {
+		name = "GFX_edersphere_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/edersphere.dds"
+	}
+	spriteType = {
+		name = "GFX_edersphere_6_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/edersphere.dds"
+	}
+	spriteType = {
+		name = "GFX_edersphere_ruined_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/edersphere.dds"
+	}
+	spriteType = {
+		name = "GFX_edersphere_restored_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/edersphere.dds"
+	}
+	# Gas Giant Compressor
+	spriteType = {
+		name = "GFX_gas_giant_compressor_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_compressor_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_compressor_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_compressor_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_compressor_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_gas_giant_compressor_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/gas_giant_compressor.dds"
+	}
+	# Nanite Disassembler
+	spriteType = {
+		name = "GFX_nanite_disassembler_p_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_p_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_p_rocky_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_p_gas_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_p_artificial_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_p_crystal_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_p_zro_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_p_toxic_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_p_core_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler.dds"
+	}
+	# Stellar Hoop
+	spriteType = {
+		name = "GFX_stellar_hoop_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_hoop.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_hoop_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_hoop.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_hoop_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_hoop.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_hoop_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_hoop.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_hoop_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_hoop.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_hoop_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_hoop.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_hoop_6_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_hoop.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_hoop_ruined_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_hoop.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_hoop_restored_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_hoop.dds"
+	}
+	# Discworld
+	spriteType = {
+		name = "GFX_discworld_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/discworld.dds"
+	}
+	spriteType = {
+		name = "GFX_discworld_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/discworld.dds"
+	}
+	spriteType = {
+		name = "GFX_discworld_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/discworld.dds"
+	}
+	spriteType = {
+		name = "GFX_discworld_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/discworld.dds"
+	}
+	spriteType = {
+		name = "GFX_discworld_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/discworld.dds"
+	}
+	spriteType = {
+		name = "GFX_discworld_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/discworld.dds"
+	}
+	spriteType = {
+		name = "GFX_discworld_6_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/discworld.dds"
+	}
+	# Hoopworld
+	spriteType = {
+		name = "GFX_hoopworld_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/hoopworld.dds"
+	}
+	spriteType = {
+		name = "GFX_hoopworld_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/hoopworld.dds"
+	}
+	spriteType = {
+		name = "GFX_hoopworld_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/hoopworld.dds"
+	}
+	spriteType = {
+		name = "GFX_hoopworld_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/hoopworld.dds"
+	}
+	spriteType = {
+		name = "GFX_hoopworld_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/hoopworld.dds"
+	}
+	# Dimensional Tearer
+	spriteType = {
+		name = "GFX_dimensional_tearer_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_6_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_7_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_8_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_9_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_10_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_11_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	spriteType = {
+		name = "GFX_dimensional_tearer_12_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/dimensional_tearer.dds"
+	}
+	# Black Hole Shellworld
+	spriteType = {
+		name = "GFX_black_hole_shellworld_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_black_hole_shellworld_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_black_hole_shellworld_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_black_hole_shellworld_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_black_hole_shellworld_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_black_hole_shellworld_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_black_hole_shellworld_6_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_black_hole_shellworld_ruined_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	spriteType = {
+		name = "GFX_black_hole_shellworld_restored_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/shellworld.dds"
+	}
+	# Stellar Harvester
+	spriteType = {
+		name = "GFX_stellar_harvester_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_harvester_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_harvester_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_harvester_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_harvester_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_harvester_active_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_harvester_dismantle_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_harvester_ruined_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_harvester_restored_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	# > Dyson Sphere upgrades 
+	spriteType = {
+		name = "stellar_harvester_dyson_upgrade_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	spriteType = {
+		name = "stellar_harvester_dyson_upgrade_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_harvester.dds"
+	}
+	# Stellar Nanite Disassembler
+	spriteType = {
+		name = "GFX_nanite_disassembler_s_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler_big.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_s_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler_big.dds"
+	}
+	spriteType = {
+		name = "GFX_nanite_disassembler_s_black_dwarf_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/nanite_disassembler_big.dds"
+	}
+	# Freesphere
+	spriteType = {
+		name = "GFX_freesphere_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/freesphere.dds"
+	}
+	spriteType = {
+		name = "GFX_freesphere_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/freesphere.dds"
+	}
+	spriteType = {
+		name = "GFX_freesphere_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/freesphere.dds"
+	}
+	spriteType = {
+		name = "GFX_freesphere_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/freesphere.dds"
+	}
+	spriteType = {
+		name = "GFX_freesphere_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/freesphere.dds"
+	}
+	spriteType = {
+		name = "GFX_freesphere_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/freesphere.dds"
+	}
+	# Neutronium Compressor
+	spriteType = {
+		name = "GFX_neutron_compressor_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/neutron_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_neutron_compressor_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/neutron_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_neutron_compressor_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/neutron_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_neutron_compressor_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/neutron_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_neutron_compressor_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/neutron_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_neutron_compressor_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/neutron_compressor.dds"
+	}
+	spriteType = {
+		name = "GFX_neutron_compressor_active_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/neutron_compressor.dds"
+	}
+	# Mega Brain
+	spriteType = {
+		name = "GFX_mega_brain_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_brain_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_brain_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_brain_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_brain_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_brain_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_brain_6_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_brain_7_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_brain.dds"
+	}
+	# Abyssal Anchor
+	spriteType = {
+		name = "GFX_mega_temple_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_temple.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_temple_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_temple.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_temple_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_temple.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_temple_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_temple.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_temple_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_temple.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_temple_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_temple.dds"
+	}
+	spriteType = {
+		name = "GFX_mega_temple_6_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/mega_temple.dds"
+	}
+	# Stellar Zro Detonator
+	spriteType = {
+		name = "GFX_stellar_zro_detonator_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_zro_detonator.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_zro_detonator_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_zro_detonator.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_zro_detonator_minerals_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_zro_detonator.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_zro_detonator_hydrogen_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_zro_detonator.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_zro_detonator_ready_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_zro_detonator.dds"
+	}
+	spriteType = {
+		name = "GFX_stellar_zro_detonator_firing_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/stellar_zro_detonator.dds"
+	}
+	# System Disintegrator
+	spriteType = {
+		name = "GFX_system_disintegrator_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_system_disintegrator_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_system_disintegrator_2_b_star_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_system_disintegrator_3_b_star_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_system_disintegrator_4_b_star_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_system_disintegrator_5_b_star_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_system_disintegrator_ready_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_system_disintegrator_fire_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_system_disintegrator_harvester_idle_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/system_disintegrator.dds"
+	}
+	spriteType = {
+		name = "GFX_system_disintegrator_harvester_active_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/system_disintegrator.dds"
+	}
+	# Terravore Digester
+	spriteType = {
+		name = "GFX_terravore_digester_p_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/terravore_digester.dds"
+	}
+	spriteType = {
+		name = "GFX_terravore_digester_p_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/terravore_digester.dds"
+	}
+	spriteType = {
+		name = "GFX_terravore_digester_p_rocky_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/terravore_digester.dds"
+	}
+	spriteType = {
+		name = "GFX_terravore_digester_p_gas_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/terravore_digester.dds"
+	}
+	spriteType = {
+		name = "GFX_terravore_digester_p_artificial_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/terravore_digester.dds"
+	}
+	spriteType = {
+		name = "GFX_terravore_digester_p_crystal_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/terravore_digester.dds"
+	}
+	spriteType = {
+		name = "GFX_terravore_digester_p_zro_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/terravore_digester.dds"
+	}
+	spriteType = {
+		name = "GFX_terravore_digester_p_toxic_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/terravore_digester.dds"
+	}
+	spriteType = {
+		name = "GFX_terravore_digester_p_core_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/terravore_digester.dds"
+	}
+	# Fusion Candle
+	spriteType = {
+		name = "GFX_system_creator_fusioncandle_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/fusion_candle.dds"
+	}
+	spriteType = {
+		name = "GFX_system_creator_fusioncandle_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/fusion_candle.dds"
+	}
+	spriteType = {
+		name = "GFX_system_creator_fusioncandle_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/fusion_candle.dds"
+	}
+	spriteType = {
+		name = "GFX_system_creator_fusioncandle_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/fusion_candle.dds"
+	}
+	spriteType = {
+		name = "GFX_system_creator_fusioncandle_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/fusion_candle.dds"
+	}
+	# Artificial Star
+	spriteType = {
+		name = "GFX_system_creator_star_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/artificial_star.dds"
+	}
+	spriteType = {
+		name = "GFX_system_creator_star_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/artificial_star.dds"
+	}
+	spriteType = {
+		name = "GFX_system_creator_star_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/artificial_star.dds"
+	}
+	spriteType = {
+		name = "GFX_system_creator_star_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/artificial_star.dds"
+	}
+	# Basement Gateway
+	spriteType = {
+		name = "GFX_basement_gateway_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/basement_gateway.dds"
+	}
+	spriteType = {
+		name = "GFX_basement_gateway_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/basement_gateway.dds"
+	}
+	spriteType = {
+		name = "GFX_basement_gateway_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/basement_gateway.dds"
+	}
+	spriteType = {
+		name = "GFX_basement_gateway_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/basement_gateway.dds"
+	}
+	spriteType = {
+		name = "GFX_basement_gateway_5_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/basement_gateway.dds"
+	}
+	spriteType = {
+		name = "GFX_basement_gateway_6_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/basement_gateway.dds"
+	}
+	spriteType = {
+		name = "GFX_basement_gateway_7_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/basement_gateway.dds"
+	}
+	spriteType = {
+		name = "GFX_basement_gateway_8_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/basement_gateway.dds"
+	}
+	# Horizon Brain
+	spriteType = {
+		name = "GFX_horizon_brain_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/horizon_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_horizon_brain_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/horizon_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_horizon_brain_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/horizon_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_horizon_brain_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/horizon_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_horizon_brain_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/horizon_brain.dds"
+	}
+	# Captive Star
+	spriteType = {
+		name = "GFX_captive_star_0_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/captive_star.dds"
+	}
+	spriteType = {
+		name = "GFX_captive_star_1_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/captive_star.dds"
+	}
+	spriteType = {
+		name = "GFX_captive_star_2_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/captive_star.dds"
+	}
+	spriteType = {
+		name = "GFX_captive_star_3_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/captive_star.dds"
+	}
+	spriteType = {
+		name = "GFX_captive_star_4_outliner_icon"
+		texturefile = "gfx/interface/icons/megastructures/captive_star.dds"
+	}
+	### Text Icons ###
+	spriteType = {
+		name = "GFX_text_ap_hyperdimensional_exodus"
+		texturefile = "gfx/interface/icons/text_icons/ap_hyperdimensional_exodus.dds"
+	}
+	spriteType = {
+		name = "GFX_text_ap_galactic_hyperstructures"
+		texturefile = "gfx/interface/icons/text_icons/ap_galactic_hyperstructures.dds"
+	}
+	spriteType = {
+		name = "GFX_text_bio_brain"
+		texturefile = "gfx/interface/icons/text_icons/bio_brain.dds"
+	}
+	spriteType = {
+		name = "GFX_text_ssh_placeholder"
+		texturefile = "gfx/interface/icons/text_icons/ssh_placeholder.dds"
+	}
+}

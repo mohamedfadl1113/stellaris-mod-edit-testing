@@ -1,0 +1,44 @@
+spriteTypes = {	
+	
+	spriteType = {
+		name = "GFX_resource_sr_hydrogen"
+		textureFile = "gfx/interface/icons/resources/sr_hydrogen.dds"
+	}
+	spriteType = {
+		name = "GFX_resource_sr_cultrobium"
+		textureFile = "gfx/interface/icons/resources/sr_cultrobium.dds"
+	}
+	spriteType = {
+		name = "GFX_resource_sr_conscious_matter"
+		textureFile = "gfx/interface/icons/resources/sr_conscious_matter.dds"
+	}
+	spriteType = {
+		name = "GFX_resource_sr_nuclei_soup"
+		textureFile = "gfx/interface/icons/resources/sr_nuclei_soup.dds"
+	}
+	spriteType = {
+		name = "GFX_resource_interdim_insights"
+		textureFile = "gfx/interface/icons/resources/interdim_insights.dds"
+	}
+	# LARGE ICONS
+	spriteType = {
+		name = "GFX_resource_sr_hydrogen_large"
+		textureFile = "gfx/interface/icons/resources/sr_hydrogen_large.dds"
+	}
+	spriteType = {
+		name = "GFX_resource_sr_cultrobium_large"
+		textureFile = "gfx/interface/icons/resources/sr_cultrobium_large.dds"
+	}
+	spriteType = {
+		name = "GFX_resource_sr_conscious_matter_large"
+		textureFile = "gfx/interface/icons/resources/sr_conscious_matter_large.dds"
+	}
+	spriteType = {
+		name = "GFX_resource_sr_nuclei_soup_large"
+		textureFile = "gfx/interface/icons/resources/sr_nuclei_soup_large.dds"
+	}
+	spriteType = {
+		name = "GFX_resource_interdim_insights_large"
+		textureFile = "gfx/interface/icons/resources/interdim_insights_large.dds"
+	}
+}
