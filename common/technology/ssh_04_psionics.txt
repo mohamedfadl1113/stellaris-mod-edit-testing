@@ -1,0 +1,111 @@
+# TRIANGLE THEORY
+ssh_tech_triangle_theory = {
+	cost = 25000
+	area = society
+	tier = 4
+	category = { psionics }
+	prerequisites = { "ssh_tech_nuclei_modification" }
+	potential = {
+		#has_tradition = tr_psionics_finish
+		#has_ascension_perk = ap_mind_over_matter
+		has_technology = tech_mine_zro
+		has_country_flag = breached_shroud
+		#NOR = {
+		#	is_machine_empire = yes
+		#	is_hive_empire = yes
+		#}
+	}
+	is_rare = yes
+	#is_dangerous = yes
+	weight = @tier3weight2
+
+	modifier = {
+		category_psionics_research_speed_mult = 0.05
+	}
+
+	weight_modifier = {
+		#factor = 10
+		modifier = {
+			factor = 5
+			is_spiritualist = yes
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_triangle_theory }
+			}
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_mega_temple = {
+	cost = @ssh_tech_tier_f_mega_cost #20000
+	area = society
+	tier = 4
+	category = { psionics }
+	prerequisites = { "ssh_tech_triangle_theory" }
+	potential = {
+		has_technology = ssh_tech_nuclei_modification
+		#NOR = {
+		#	is_machine_empire = yes
+		#	is_hive_empire = yes
+		#}
+	}
+	is_rare = yes
+	weight = 0
+
+	modifier = {
+		country_sr_zro_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		factor = 1000
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_shroud_supernova = {
+	cost = 25000
+	area = society
+	tier = 5
+	category = { psionics }
+	prerequisites = { "ssh_tech_mega_temple" }
+	potential = {
+		has_technology = ssh_tech_mega_temple
+		#NOR = {
+		#	is_machine_empire = yes
+		#	is_hive_empire = yes
+		#}
+	}
+	is_dangerous = yes
+	weight = 0
+
+	ai_weight = {
+		factor = 1000
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}

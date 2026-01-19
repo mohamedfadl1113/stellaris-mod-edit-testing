@@ -1,0 +1,310 @@
+##################
+# SPECIAL TRAITS #
+##################
+
+leader_trait_ssh_brain_symbiosis = {
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_ssh_brain_symbiosis"
+		RARITY = common
+		COUNCIL = triggered
+		TIER = none
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = commander
+		}
+		ship_experience_gain_mult = 0.2
+		ship_starting_experience_add = 400
+		command_limit_add = 50
+		ship_sensor_range_add = 3
+		ship_evasion_mult = 0.25
+		ship_disengage_chance_mult = 0.35
+		#ship_hull_regen_add_perc = 0.005
+		#ship_armor_regen_add_perc = 0.01
+	}
+	triggered_self_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = scientist
+		}
+		# Same as erudite
+		leader_trait_selection_options_add = 1
+	}
+	triggered_self_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = scientist
+		}
+		ship_speed_mult = 0.25
+		science_ship_survey_speed = 0.5
+		ship_archaeological_site_excavation_speed_mult = 0.75
+		#leader_scientists_physics_research_produces_add = 2.5
+		#leader_scientists_society_research_produces_add = 2.5
+		#leader_scientists_engineering_research_produces_add = 2.5
+		shipclass_science_ship_build_cost_mult = -0.5
+	}
+	triggered_army_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = commander
+		}
+		army_damage_mult = 0.2
+		army_attack_morale_mult = 0.75
+		army_defense_morale_mult = 1.0
+		army_disengage_chance_mult = 0.25
+		armies_upkeep_mult = -0.25
+	}
+	triggered_planet_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = official
+		}
+		planet_jobs_physics_research_produces_mult = 0.1
+		planet_jobs_society_research_produces_mult = 0.1
+		planet_jobs_engineering_research_produces_mult = 0.1
+		planet_researchers_upkeep_mult = -0.15
+		country_unity_produces_mult = 0.15
+		#trade_value_mult = 0.25
+		planet_jobs_trade_produces_mult = 0.25
+	}
+	triggered_sector_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = official
+		}
+		planet_jobs_physics_research_produces_mult = 0.05
+		planet_jobs_society_research_produces_mult = 0.05
+		planet_jobs_engineering_research_produces_mult = 0.05
+		planet_researchers_upkeep_mult = -0.1
+		#trade_value_mult = 0.1
+		planet_jobs_trade_produces_mult = 0.1
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			is_ruler = yes
+		}
+		num_tech_alternatives_add = 1
+		all_technology_research_speed = 0.05
+	}
+	leader_class = { commander scientist official }
+	initial = no
+	randomized = no
+}
+
+leader_trait_ssh_brain_symbiosis_hive = {
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_ssh_brain_symbiosis"
+		RARITY = common
+		COUNCIL = triggered
+		TIER = none
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = commander
+		}
+		ship_experience_gain_mult = 0.25
+		command_limit_add = 70
+		#ship_sensor_range_add = 3
+		ship_evasion_mult = 0.25
+		ship_disengage_chance_mult = 0.35
+		ship_hull_regen_add_perc = 0.005
+		ship_armor_regen_add_perc = 0.01
+	}
+	triggered_self_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = scientist
+		}
+		# Same as erudite
+		leader_trait_selection_options_add = 1
+	}
+	triggered_self_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = scientist
+		}
+		ship_speed_mult = 0.25
+		science_ship_survey_speed = 0.5
+		ship_archaeological_site_excavation_speed_mult = 0.75
+		leader_scientists_physics_research_produces_add = 2.5
+		leader_scientists_society_research_produces_add = 2.5
+		leader_scientists_engineering_research_produces_add = 2.5
+	}
+	triggered_army_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = commander
+		}
+		army_damage_mult = 0.25
+		army_attack_morale_mult = 1.0
+		army_defense_morale_mult = 1.5
+		army_disengage_chance_mult = 0.3
+		armies_upkeep_mult = -0.25
+	}
+	triggered_planet_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = official
+		}
+		planet_jobs_physics_research_produces_mult = 0.1
+		planet_jobs_society_research_produces_mult = 0.1
+		planet_jobs_engineering_research_produces_mult = 0.1
+		planet_researchers_upkeep_mult = -0.15
+		country_unity_produces_mult = 0.2
+		#planet_pop_assembly_organic_mult = 0.5
+		planet_pop_assembly_mult = 0.5
+	}
+	triggered_sector_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = official
+		}
+		planet_jobs_physics_research_produces_mult = 0.05
+		planet_jobs_society_research_produces_mult = 0.05
+		planet_jobs_engineering_research_produces_mult = 0.05
+		planet_researchers_upkeep_mult = -0.1
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			is_ruler = yes
+		}
+		num_tech_alternatives_add = 1
+		all_technology_research_speed = 0.05
+	}
+	leader_class = { commander scientist official }
+	initial = no
+	randomized = no
+}
+
+# Psi-Nova Survivor
+leader_trait_ssh_psi_witness = {
+	inline_script = {
+		script = trait/icon_psionic
+		CLASS = leader
+		ICON = "GFX_leader_trait_ssh_psi_witness"
+		RARITY = common
+		COUNCIL = triggered
+		TIER = none
+	}
+	# Any Class - Ruler
+	triggered_councilor_modifier = {
+		potential = {
+			is_ruler = yes
+		}
+		leader_skill_levels = 1
+		leader_lifespan_add = -10
+	}
+	# Scientist - Science Ship Modifier
+	triggered_modifier = {
+		potential = {
+			has_astral_planes_dlc = no
+			is_ruler = no
+			leader_class = scientist
+		}
+		ship_anomaly_generation_chance_mult = 0.15
+		ship_anomaly_research_speed_mult = 0.10
+	}
+	triggered_modifier = {
+		potential = {
+			has_astral_planes_dlc = yes
+			is_ruler = no
+			leader_class = scientist
+		}
+		ship_astral_rift_clues_add = 1
+		ship_astral_rift_speed_mult = 0.1
+	}
+	leader_class = { scientist }
+	#opposites = { }
+	initial = no
+	randomized = no
+}
+
+leader_trait_ssh_psi_witness_2 = {
+	inline_script = {
+		script = trait/icon_psionic
+		CLASS = leader
+		ICON = "GFX_leader_trait_ssh_psi_witness"
+		RARITY = common
+		COUNCIL = triggered
+		TIER = none
+	}
+	# Any Class - Ruler
+	triggered_councilor_modifier = {
+		potential = {
+			is_ruler = yes
+		}
+		leader_skill_levels = 2
+		leader_lifespan_add = -15
+	}
+	# Scientist - Science Ship Modifier
+	triggered_modifier = {
+		potential = {
+			has_astral_planes_dlc = no
+			is_ruler = no
+			leader_class = scientist
+		}
+		ship_anomaly_generation_chance_mult = 0.25
+		ship_anomaly_research_speed_mult = 0.2
+	}
+	triggered_modifier = {
+		potential = {
+			has_astral_planes_dlc = yes
+			is_ruler = no
+			leader_class = scientist
+		}
+		ship_astral_rift_clues_add = 2
+		ship_astral_rift_speed_mult = 0.2
+	}
+	leader_class = { scientist }
+	#opposites = { }
+	initial = no
+	randomized = no
+}
+
+leader_trait_ssh_psi_witness_3 = {
+	inline_script = {
+		script = trait/icon_psionic
+		CLASS = leader
+		ICON = "GFX_leader_trait_ssh_psi_witness"
+		RARITY = common
+		COUNCIL = triggered
+		TIER = none
+	}
+	# Any Class - Ruler
+	triggered_councilor_modifier = {
+		potential = {
+			is_ruler = yes
+		}
+		leader_skill_levels = 3
+		leader_lifespan_add = -20
+	}
+	# Scientist - Science Ship Modifier
+	triggered_modifier = {
+		potential = {
+			has_astral_planes_dlc = no
+			is_ruler = no
+			leader_class = scientist
+		}
+		ship_anomaly_generation_chance_mult = 0.35
+		ship_anomaly_research_speed_mult = 0.3
+	}
+	triggered_modifier = {
+		potential = {
+			has_astral_planes_dlc = yes
+			is_ruler = no
+			leader_class = scientist
+		}
+		ship_astral_rift_clues_add = 3
+		ship_astral_rift_speed_mult = 0.3
+	}
+	leader_class = { scientist }
+	#opposites = { }
+	initial = no
+	randomized = no
+}

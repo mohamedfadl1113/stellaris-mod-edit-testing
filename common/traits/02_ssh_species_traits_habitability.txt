@@ -1,0 +1,225 @@
+@primary = 0.80
+@secondary = 0.60
+@tertiary = 0.20
+@machine_primary = 0.75
+@machine_secondary = 0.50
+@machine_tertiary = 0.25
+
+
+trait_pc_shellworld_core_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_habitat_preference.dds"
+	short_name = "trait_pc_shellworld_core_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+		hidden_trigger = { exists = from }
+		from = {
+			has_origin = origin_ssh_shellworld
+		}
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	#species_possible_remove = {
+	#	NOT = { has_trait = trait_void_dweller_1 }
+	#}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	modifier = {
+		pc_shellworld_core_habitability = @primary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+trait_pc_gas_giant_shellworld_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_habitat_preference.dds"
+	short_name = "trait_pc_gas_giant_shellworld_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+		hidden_trigger = { exists = from }
+		from = {
+			has_origin = origin_ssh_gas_giant_shellworld
+		}
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	#species_possible_remove = {
+	#	NOT = { has_trait = trait_void_dweller_1 }
+	#}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID MACHINE }
+	sorting_priority = 30
+	modifier = {
+		pc_gas_giant_shellworld_habitability = @primary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+trait_pc_edersphere_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_habitat_preference.dds"
+	short_name = "trait_pc_edersphere_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+		hidden_trigger = { exists = from }
+		from = {
+			has_origin = origin_ssh_edersphere
+		}
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID MACHINE }
+	sorting_priority = 30
+	modifier = {
+		pc_edersphere_habitability = @primary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+trait_pc_black_hole_shellworld_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_habitat_preference.dds"
+	short_name = "trait_pc_black_hole_shellworld_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+		hidden_trigger = { exists = from }
+		#from = {
+		#	has_origin = origin_ssh_edersphere
+		#}
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID MACHINE }
+	sorting_priority = 30
+	modifier = {
+		pc_black_hole_shellworld_habitability = @primary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+trait_pc_stellar_hoop_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_habitat_preference.dds"
+	short_name = "trait_pc_stellar_hoop_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+		hidden_trigger = { exists = from }
+		from = {
+			has_origin = origin_ssh_stellar_hoop
+		}
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID MACHINE }
+	sorting_priority = 30
+	modifier = {
+		pc_stellar_hoop_habitability = @primary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+trait_pc_hoopworld_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_habitat_preference.dds"
+	short_name = "trait_pc_hoopworld_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+		hidden_trigger = { exists = from }
+		from = {
+			has_origin = origin_ssh_hoopworld
+		}
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	modifier = {
+		pc_hoopworld_habitability = @primary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+trait_pc_discworld_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_habitat_preference.dds"
+	short_name = "trait_pc_discworld_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+		hidden_trigger = { exists = from }
+		#from = {
+		#	has_origin = origin_ssh_freesphere
+		#}
+		from = {
+			is_fallen_empire_xenophile = yes
+		}
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	modifier = {
+		pc_discworld_habitability = @primary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+trait_pc_freesphere_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_habitat_preference.dds"
+	short_name = "trait_pc_freesphere_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+		hidden_trigger = { exists = from }
+		from = {
+			OR = {
+				has_origin = origin_ssh_freesphere
+				is_fallen_empire_xenophile = yes
+			}
+		}
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	modifier = {
+		pc_freesphere_habitability = @primary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+trait_pc_habitable_dyson_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_habitat_preference.dds"
+	short_name = "trait_pc_habitable_dyson_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+		hidden_trigger = { exists = from }
+		always = no # Till Improved Dyson Update
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID MACHINE }
+	sorting_priority = 30
+	modifier = {
+		pc_habitable_dyson_habitability = @primary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}

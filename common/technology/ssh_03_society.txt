@@ -1,0 +1,612 @@
+ssh_tech_advanced_dna_resequencing = {
+	cost = @ssh_tech_microscale_2_cost
+	area = society
+	tier = 4
+	category = { biology }
+	prerequisites = { "ssh_tech_microscale_engineering" }
+	weight = @tier4weight1
+	is_rare = yes
+	prereqfor_desc = {
+		ship = {
+			title = "ssh_dna_resequencing_tooltip"
+		}
+	}
+
+	modifier = {
+		country_society_tech_research_speed = 0.1
+		BIOLOGICAL_species_trait_points_add = 1
+		BIOLOGICAL_species_trait_picks_add = 1
+		LITHOID_species_trait_points_add = 1
+		LITHOID_species_trait_picks_add = 1
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology } 
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_advanced_dna_resequencing }
+			}
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_because_we_can = {
+	cost = @ssh_tech_tier_bwc_mega_cost
+	area = society
+	tier = 4
+	category = { new_worlds }
+	prerequisites = { "tech_mega_engineering" }
+	potential = {
+		#OR = {
+		#	has_ascension_perk = ap_galactic_wonders_utopia
+		#	has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+		#}
+		has_ascension_perk = ap_galactic_hyperstructures
+		has_galactic_wonders = yes
+		OR = {
+			has_country_flag = ssh_has_built_or_repaired_tier_d_mega
+			has_country_flag = ssh_has_built_or_repaired_tier_e_mega
+			has_country_flag = ssh_has_mega_brain
+			has_country_flag = ssh_has_mega_temple
+			has_country_flag = ssh_has_horizon_brain
+		}
+	}
+	weight = @tier4weight1
+	is_rare = yes
+	prereqfor_desc = {
+		ship = {
+			title = "ssh_bwc"
+			desc = "ssh_bwc_desc"
+		}
+	}
+
+	modifier = {
+		country_society_tech_research_speed = 0.1
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds } 
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_because_we_can }
+			}
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_civic = civic_galactic_sovereign
+				has_civic = civic_galactic_sovereign_megacorp
+				has_civic = civic_imperial_cult
+			}
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_materialist
+		}
+		modifier = { 
+			factor = 0.1
+			is_spiritualist = yes
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_conscious_matter = {
+	cost = 16000
+	area = society
+	tier = 3
+	category = { biology }
+	prerequisites = { "tech_gene_tailoring" }
+	potential = {
+		OR = {
+			has_ascension_perk = ap_engineered_evolution
+			has_ascension_perk = ap_evolutionary_mastery
+		}
+	} #{ has_tradition = tr_genetics_finish }
+	weight = @tier3weight2
+	is_rare = yes
+
+	weight_modifier = {
+		modifier = {
+			factor = 5
+			has_active_tradition = tr_genetics_finish # 5x chance of appearing after finishing genetics tradition
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology } 
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_conscious_matter }
+			}
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_mega_brain = {
+	cost = @ssh_tech_tier_f_mega_cost #48000
+	area = society
+	tier = 4
+	category = { biology }
+	prerequisites = { "ssh_tech_conscious_matter" }
+	potential = {
+		has_ascension_perk = ap_galactic_hyperstructures
+		NOT = {
+			is_machine_empire = yes # So it doesnt get randomly chosen by relics/etc that gift bio techs for machines
+		}
+	}
+	is_rare = yes
+	is_dangerous = yes
+	weight = @tier4weight1
+
+	modifier = {
+		country_society_research_produces_mult = 0.05
+	}
+
+	weight_modifier = {
+		#factor = 10
+		modifier = {
+			factor = 5
+			has_active_tradition = tr_genetics_finish # 5x chance of appearing after finishing genetics tradition
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology } 
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_mega_brain }
+			}
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# BRAIN TECHNOLOGIES
+ssh_tech_genetic_databanks = {
+	cost = 16000
+	area = society
+	tier = 4
+	category = { biology }
+	#prerequisites = { "ssh_tech_mega_brain" }
+	#potential = { always = no } #always = no
+	weight = 0 #@tier4weight1
+	is_rare = yes
+
+	modifier = {
+		empire_size_pops_mult = -0.25
+		BIOLOGICAL_species_trait_picks_add = 2
+		LITHOID_species_trait_picks_add = 2
+	}
+
+	weight_modifier = {
+		factor = 0		# Received through BIO Brain
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_conmat_computer = {
+	cost = 20000 #same as Sapient Combat Simulations
+	area = society
+	tier = 4
+	category = { biology }
+	#potential = { always = no } #always = no
+	weight = 0
+	is_dangerous = yes
+
+	modifier = {
+		country_society_research_produces_mult = 0.05
+	}
+
+	weight_modifier = {
+		factor = 0		# Received through BIO Brain
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_conmat_hull = {
+	cost = 20000
+	area = society
+	tier = 4
+	category = { biology }
+	#potential = { always = no } #always = no
+	weight = 0
+	is_dangerous = yes
+
+	modifier = {
+		ship_hull_mult = 0.1
+	}
+
+	weight_modifier = {
+		factor = 0		# Received through BIO Brain
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_pk_zombie = {
+	cost = 48000 #colossus value
+	area = society
+	tier = 5
+	category = { biology }
+	potential = {
+		host_has_dlc = Apocalypse
+		has_country_flag = colossus_project
+	}
+	weight = 0 #@tier5weight1
+	is_rare = yes
+
+	weight_modifier = {
+		factor = 0		# Received through BIO Brain
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# bio hull/shields?
+
+# neural tampering tech -> +++bio traits, assimilation/+++gene modifying speed
+ssh_tech_neural_tampering = {
+	cost = 20000
+	area = society
+	tier = 4
+	category = { biology }
+	#potential = { always = no } #always = no
+	weight = 0
+	is_rare = yes
+
+	modifier = {
+		modify_species_cost_mult = -0.75
+		BIOLOGICAL_species_trait_points_add = 4
+		LITHOID_species_trait_points_add = 4
+	}
+
+	weight_modifier = {
+		factor = 0		# Received through BIO Brain
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+######### SHROUD Insight Techs ########
+
+# Collectivist Society
+ssh_tech_insight_collectivist = {
+	cost = 7500
+	area = society
+	tier = 4
+	category = { statecraft }
+	#potential = { always = no }
+	weight = 0
+	is_rare = yes
+
+	modifier = {
+		planet_stability_add = 5
+		pop_demotion_time_mult = -0.5
+	}
+
+	weight_modifier = {
+		factor = 0		# Received through Shroud Insight
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# Agrarian Idyll
+ssh_tech_insight_agrarian_idyll = {
+	cost = 15000
+	area = society
+	tier = 4
+	category = { new_worlds }
+	#potential = { always = no }
+	weight = 0
+	is_rare = yes
+
+	modifier = {
+		terraform_speed_mult = 0.2
+	}
+
+	weight_modifier = {
+		factor = 0		# Received through Shroud Insight
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# Anarchist Society
+ssh_tech_insight_anarchist = {
+	cost = 12500
+	area = society
+	tier = 4
+	category = { statecraft }
+	#potential = { always = no }
+	weight = 0
+	is_rare = yes
+
+	modifier = {
+		pop_ethic_xenophile_attraction_mult = 0.15
+		planet_pops_unemployed_consumer_goods_upkeep_add = -1.0
+		planet_crime_mult = -0.25
+	}
+
+	weight_modifier = {
+		factor = 0		# Received through Shroud Insight
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# Death Cult Society
+ssh_tech_insight_death_cult = {
+	cost = 12500
+	area = society
+	tier = 4
+	category = { statecraft }
+	#potential = { always = no }
+	weight = 0
+	is_rare = yes
+
+	modifier = {
+		country_war_exhaustion_mult = -0.15
+		planet_crime_mult = -0.15
+	}
+
+	weight_modifier = {
+		factor = 0		# Received through Shroud Insight
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# Ingsoc Society
+ssh_tech_insight_ingsoc = {
+	cost = 15000
+	area = society
+	tier = 4
+	category = { statecraft }
+	#potential = { always = no }
+	weight = 0
+	is_rare = yes
+
+	modifier = {
+		country_influence_produces_mult = 0.15
+		# + Unlocks Edict
+	}
+
+	weight_modifier = {
+		factor = 0		# Received through Shroud Insight
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# Utterly Neutral Society
+ssh_tech_insight_neutrals = {
+	cost = 12500
+	area = society
+	tier = 4
+	category = { statecraft }
+	#potential = { always = no }
+	weight = 0
+	is_rare = yes
+
+	modifier = {
+		diplo_action_acceptance_add = 25
+		country_trust_growth = 0.1
+	}
+
+	weight_modifier = {
+		factor = 0		# Received through Shroud Insight
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# Hyperstructures
+# Terravore Celestial Digester
+ssh_tech_terravore_digester = {
+	cost = 20000
+	area = society
+	tier = 4
+	category = { biology }
+	prerequisites = { "tech_mega_engineering" }
+	potential = {
+		#is_lithoid = yes
+		#has_valid_civic = civic_hive_devouring_swarm
+		OR = {
+			is_lithoid_devouring_swarm = yes
+			has_civic = civic_bugged_hive_terravore # Bug Branch Terravore
+		}
+	}
+	weight = @tier4weight1
+	is_rare = yes
+	modifier = {
+		country_minerals_produces_mult = 0.05
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_terravore_digester }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+	ai_weight = {
+		factor = 50
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}

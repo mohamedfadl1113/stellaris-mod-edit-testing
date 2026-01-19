@@ -1,0 +1,283 @@
+############################################################
+#                                                          #
+# TRAITS added through one of the BIO Brain's technologies #
+#                                                          #
+############################################################
+
+#Biologische Waste Reduction (turns waste into xyz)
+trait_ssh_waste_bacteria = {
+	cost = 4
+	initial = no
+	randomized = no
+
+	prerequisites = { "ssh_tech_neural_tampering" }
+
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+
+	potential_crossbreeding_chance = 1.0
+
+	opposites = { "trait_wasteful" "trait_hive_mind" "trait_ssh_forced_recycling" "trait_ssh_waste_bacteria_lithoid" "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL }
+
+	modifier = {
+		planet_pops_consumer_goods_upkeep_mult = -0.50
+		planet_pops_food_upkeep_mult = 0.05
+	}
+	icon = "gfx/interface/icons/traits/trait_ssh_waste_bacteria.dds"
+	slave_cost = {
+		energy = 1250
+	}
+}
+
+# Artificially Grown Byproducts
+trait_ssh_useful_byproducts = {
+	cost = 4
+	species_potential_add = { can_do_advanced_gene_modding = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+
+	prerequisites = { "ssh_tech_neural_tampering" }
+
+	potential_crossbreeding_chance = 0.5
+
+	initial = no
+	randomized = no
+
+	advanced_trait = yes
+
+	opposites = { "trait_ssh_useful_byproducts_lithoid" "trait_invasive" } #species can be both delicious and have useful byproducts
+	allowed_archetypes = { BIOLOGICAL }
+
+	tags = { organic positive pop_output food livestock }
+
+	modifier = {
+		trader_jobs_bonus_workforce_mult = 0.15
+		livestock_jobs_bonus_workforce_mult = 1.5 ### Temporary
+	}
+
+	resources = {
+		category = planet_pops
+		produces = {
+			trigger = {
+				is_enslaved = yes
+				has_slavery_type = { type = slavery_livestock }
+			}
+			food = 0.015
+			minerals = 0.01
+			rare_crystals = 0.002
+			exotic_gases = 0.002
+			volatile_motes = 0.002
+		}
+	}
+
+	icon = "gfx/interface/icons/traits/trait_ssh_useful_byproducts.dds"
+	slave_cost = {
+		energy = 1250
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_farming_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+
+############ LITHOID EXCLUSIVE TRAITS #############
+
+trait_ssh_waste_bacteria_lithoid = {
+	cost = 4
+	initial = no
+	randomized = no
+
+	prerequisites = { "ssh_tech_neural_tampering" }
+
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+
+	potential_crossbreeding_chance = 1.0
+
+	opposites = { "trait_wasteful" "trait_hive_mind" "trait_ssh_forced_recycling" "trait_ssh_waste_bacteria" "trait_invasive" }
+	allowed_archetypes = { LITHOID }
+
+	modifier = {
+		planet_pops_consumer_goods_upkeep_mult = -0.50
+		planet_pops_minerals_upkeep_mult = 0.05
+	}
+	icon = "gfx/interface/icons/traits/trait_ssh_waste_bacteria_lithoid.dds"
+	slave_cost = {
+		energy = 1250
+	}
+
+	assembly_score = {
+		modifier = {
+			add = 1 #always good
+		}
+	}
+}
+
+# Artificially Grown Byproducts (Lithoid)
+trait_ssh_useful_byproducts_lithoid = {
+	cost = 4
+	species_potential_add = { can_do_advanced_gene_modding = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+
+	prerequisites = { "ssh_tech_neural_tampering" }
+
+	potential_crossbreeding_chance = 0.5
+
+	initial = no
+	randomized = no
+
+	advanced_trait = yes
+
+	opposites = { "trait_invasive" "trait_ssh_useful_byproducts" } #species can be both delicious and have useful byproducts
+	allowed_archetypes = { LITHOID }
+	modifier = {
+		trader_jobs_bonus_workforce_mult = 0.15
+		livestock_jobs_bonus_workforce_mult = 1.5 ### TEMPORARY
+
+		#pop_job_trade_mult = 0.15
+	}
+
+	resources = {
+		category = planet_pops
+		produces = {
+			trigger = {
+				is_enslaved = yes
+				has_slavery_type = { type = slavery_livestock }
+			}
+			energy = 0.025
+			minerals = 0.015
+			rare_crystals = 0.002
+			exotic_gases = 0.002
+			volatile_motes = 0.002
+		}
+	}
+
+	icon = "gfx/interface/icons/traits/trait_ssh_useful_byproducts_lithoid.dds"
+	slave_cost = {
+		energy = 1250
+	}
+}
+
+# Diamondoid Skin (ultra robust)
+trait_ssh_lithoid_diamond_skin = {
+	cost = 4
+	initial = no
+	randomized = no
+
+	prerequisites = { "ssh_tech_neural_tampering" }
+
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+
+	potential_crossbreeding_chance = 1.0
+
+	opposites = { "trait_invasive" } #{ "trait_drake_scaled" } #You have biologically ascended. Combine positive traits. Be free.
+	allowed_archetypes = { LITHOID }
+	#custom_tooltip = TRAIT_LITHOID_GASEOUS_BYPRODUCTS_EFFECT
+
+	modifier = {
+		army_damage_mult = 0.5
+		army_attack_health_mult = 0.75 #1.5
+		army_defense_health_mult = 1.0
+		army_defense_morale_mult = 1.0
+		leader_lifespan_add = 75
+		#planet_livestock_rare_crystals_produces_add = 0.5
+	}
+
+	resources = {
+		category = planet_pops
+		produces = {
+			trigger = {
+				is_enslaved = yes
+				has_slavery_type = { type = slavery_livestock }
+			}
+			rare_crystals = 0.01 # .01/pop = 1 per 100 Pops
+			#mult = 1
+		}
+	}
+
+	icon = "gfx/interface/icons/traits/trait_ssh_lithoid_diamondoid_skin.dds"
+	slave_cost = {
+		energy = 1250
+	}
+}
+
+
+####### Brain Symbiosis Traits #######
+trait_ssh_brain_symbiosis = {
+	cost = 0
+	initial = no
+	randomized = no
+
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+
+	potential_crossbreeding_chance = 1.0
+	improves_leaders = yes
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.25
+		planet_jobs_society_research_produces_mult = 0.25
+		planet_jobs_engineering_research_produces_mult = 0.25
+		negative_leader_traits_species = -2
+		leaders_upkeep_mult = -0.15
+	}
+	icon = "gfx/interface/icons/traits/trait_ssh_brain_symbiosis.dds"
+	slave_cost = {
+		energy = 3000
+	}
+}
+
+trait_ssh_brain_symbiosis_hive = {
+	cost = 0
+	initial = no
+	randomized = no
+
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+
+	potential_crossbreeding_chance = 1.0
+	improves_leaders = yes
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.25
+		planet_jobs_society_research_produces_mult = 0.25
+		planet_jobs_engineering_research_produces_mult = 0.25
+		negative_leader_traits_species = -2
+		leaders_upkeep_mult = -0.15
+		#planet_pop_assembly_organic_mult = 0.5
+		planet_pop_assembly_mult = 0.5
+		biological_logistic_growth_mult = 0.5
+		LITHOID_logistic_growth_mult = 0.5
+		#LITHOID_pop_growth_speed = 0.5
+	}
+	icon = "gfx/interface/icons/traits/trait_ssh_brain_symbiosis.dds"
+	slave_cost = {
+		energy = 3000
+	}
+}
+
+#### TODO ####
+# Toxic Blood (+ Army Damage?)
+
+# Ultra-Immune System (+100% Bio Army Health)

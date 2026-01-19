@@ -1,0 +1,50 @@
+@gaiaCost = 7500
+@gaiaTime = 3600
+
+@highestCost = 12500
+@highestTime = 9000
+
+@machineCost = 10000
+@machineTime = 7200
+
+@hiveCost = 10000
+@hiveTime = 7200
+
+@lClusterCost = 1000
+
+###########################
+## Volcanic - Core World ##
+###########################
+
+terraform_link = {
+	from = "pc_ssh_lava"
+	to = "pc_volcanic"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 8000
+			volatile_motes = 500
+			#alloys = 500
+		}
+	}
+
+	duration = 7200
+
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 10
+			is_infernal = yes
+			should_terraform_trigger = {
+				CLASS_FROM = pc_ssh_lava
+				CLASS_TO = pc_volcanic
+			}
+		}
+	}
+}

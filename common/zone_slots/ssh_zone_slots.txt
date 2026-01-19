@@ -1,0 +1,237 @@
+# Planet District Zones
+#
+# Documentation: ./99_HOW_TO_ZONE.txt
+
+#Gas Giant Shellworld
+slot_ssh_gas_shell_world_urban_01 = {
+	included_zone_sets = {
+		ssh_gas_shell_world #arcology ###
+	}
+
+	unlock = { # planet scope
+		uses_district_set = gas_shell_world
+	}
+}
+slot_ssh_gas_shell_world_urban_02 = {
+	included_zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = gas_shell_world
+	}
+}
+slot_ssh_gas_shell_world_urban_03 = {
+	included_zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = gas_shell_world
+	}
+}
+slot_ssh_gas_extraction = {
+	included_zone_sets = {
+		ssh_gas_shell_world_extraction
+	}
+	unlock = { # planet scope
+		uses_district_set = gas_shell_world
+		custom_tooltip = {
+			fail_text = zone_unavailable_tech_gas_harvesting
+			exists = owner
+			owner = {
+				OR = {
+					has_technology = tech_mine_exotic_gases
+					has_technology = ssh_tech_hydrogen
+				}
+				#has_tech_or_functional_civic = { TECH = tech_mine_exotic_gases }
+			}
+		}
+	}
+}
+
+
+### Edersphere ###
+slot_ssh_edersphere_urban_01 = {
+	included_zone_sets = {
+		ssh_edersphere_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = edersphere_world
+	}
+}
+slot_ssh_edersphere_urban_02 = {
+	included_zone_sets = {
+		ssh_edersphere_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = edersphere_world
+	}
+}
+slot_ssh_edersphere_urban_03 = {
+	included_zone_sets = {
+		ssh_edersphere_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = edersphere_world
+	}
+}
+slot_ssh_edersphere_urban_04 = {
+	included_zone_sets = {
+		ssh_edersphere_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = edersphere_world
+	}
+}
+
+
+### Black Hole Suprashell ###
+slot_ssh_black_hole_shell_urban_01 = {
+	included_zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = black_hole_shell_world
+	}
+}
+slot_ssh_black_hole_shell_urban_02 = {
+	included_zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = black_hole_shell_world
+	}
+}
+slot_ssh_black_hole_shell_urban_03 = {
+	included_zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = black_hole_shell_world
+	}
+}
+slot_ssh_black_hole_shell_urban_04 = {
+	included_zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = black_hole_shell_world
+	}
+}
+slot_ssh_black_hole_shell_decompressing = {
+	included_zone_sets = {
+		ssh_black_hole_shell_world_decompressing
+	}
+	unlock = { # planet scope
+		uses_district_set = black_hole_shell_world
+		custom_tooltip = {
+			fail_text = zone_unavailable_tech_matter_decompressing
+			exists = owner
+			owner = {
+				#has_technology = tech_matter_decompressor
+				has_tech_or_functional_civic = { TECH = tech_matter_decompressor }
+			}
+		}
+	}
+}
+
+
+## Stellar Hoop
+
+# Starlifting Zone Slot
+slot_ssh_stellar_hoop_starlifting = {
+	included_zone_sets = {
+		ssh_stellar_hoop_starlifting
+	}
+	unlock = { # planet scope
+		uses_district_set = stellar_hoop_world
+		custom_tooltip = {
+			fail_text = zone_unavailable_tech_starlifting
+			exists = owner
+			owner = {
+				#has_technology = tech_matter_decompressor
+				has_tech_or_functional_civic = { TECH = ssh_tech_stellar_hoop }
+			}
+			### TODO: Add Gigas' Starlifter Tech
+		}
+	}
+}
+
+slot_ssh_stellar_hoop_urban_01 = {
+	included_zone_sets = {
+		ssh_stellar_hoop_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = stellar_hoop_world
+	}
+}
+slot_ssh_stellar_hoop_urban_02 = {
+	included_zone_sets = {
+		ssh_stellar_hoop_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = stellar_hoop_world
+	}
+}
+
+
+### Because We Can-Habitables ###
+slot_ssh_bwc_urban_01 = {
+	included_zone_sets = {
+		ssh_bwc_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = bwc_world
+	}
+}
+slot_ssh_bwc_urban_02 = {
+	included_zone_sets = {
+		ssh_bwc_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = bwc_world
+	}
+}
+slot_ssh_bwc_urban_03 = {
+	included_zone_sets = {
+		ssh_bwc_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = bwc_world
+	}
+}
+
+
+### Horizon Brain - Server Configuration Slots
+slot_ssh_horizon_brain_server_01 = {
+	included_zone_sets = {
+		ssh_horizon_brain_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = horizon_brain_world
+	}
+}
+slot_ssh_horizon_brain_server_02 = {
+	included_zone_sets = {
+		ssh_horizon_brain_world
+	}
+
+	unlock = { # planet scope
+		uses_district_set = horizon_brain_world
+	}
+}

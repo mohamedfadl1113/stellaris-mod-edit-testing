@@ -1,0 +1,1191 @@
+# Zones in this file are for secondary districts on habitable megastructures to ensure they have the correct district swaps.
+
+# Gas Giant Shellworld Zones
+
+zone_industrial_gas_shell = {
+	inline_script = {
+		script = zones/shared_industrial_zone # Should work fine
+		AMOUNT = @gas_giant_shellworld_district_2_jobs #@doubled_scaling_district_2_jobs
+	}
+	swap_type = district_ssh_gas_shellworld_mixed_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+zone_foundry_gas_shell = {
+	inline_script = {
+		script = zones/shared_industrial_foundry_zone ### Should work FOR NOW - not sure about Cultrobium
+		AMOUNT = @gas_giant_shellworld_district_1_job #@doubled_scaling_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_arms_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+# Cultrobium Foundry
+zone_cultrobium_gas_shell = {
+	inline_script = {
+		script = zones/ssh_shared_cultrobium_zone
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_cultrobium_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	show_in_tech = ssh_tech_nuclei_modification
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+
+zone_factory_gas_shell = {
+	inline_script = {
+		script = zones/shared_industrial_factory_zone # Should work fine
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_civilian_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+zone_research_gas_shell = {
+	inline_script = {
+		script = zones/shared_research_zone
+		AMOUNT = @gas_giant_shellworld_district_3_jobs #@doubled_scaling_district_3_jobs
+	}
+
+	swap_type = district_ssh_gas_shellworld_research
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+zone_research_physics_gas_shell = {
+	inline_script = {
+		script = zones/shared_research_physics_zone
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_research_physics
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+zone_research_society_gas_shell = {
+	inline_script = {
+		script = zones/shared_research_society_zone
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_research_society
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+zone_research_engineering_gas_shell = {
+	inline_script = {
+		script = zones/shared_research_engineering_zone
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_research_engineering
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+zone_unity_gas_shell = {
+	inline_script = {
+		script = zones/shared_unity_zone
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_administrative
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+
+	convert_to = {
+		zone_unity_spiritualist_gas_shell
+		zone_unity_bio_trophy_gas_shell
+	}
+}
+
+zone_unity_spiritualist_gas_shell = {
+	inline_script = {
+		script = zones/shared_unity_spiritualist_zone
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_spiritualist
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+
+	convert_to = {
+		zone_unity_gas_shell
+		zone_unity_bio_trophy_gas_shell
+	}
+}
+
+zone_unity_bio_trophy_gas_shell = {
+	inline_script = {
+		script = zones/shared_unity_bio_trophy_zone
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_organic_housing
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	triggered_district_planet_modifier = {
+		planet_housing_add = -1500 ### Might have to increase this number; 1500 is from arcology
+	}
+
+	convert_to = {
+		zone_unity_gas_shell
+		zone_unity_spiritualist_gas_shell
+	}
+}
+
+zone_fortress_gas_shell = {
+	inline_script = {
+		script = zones/shared_fortress_zone
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_fortress
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+zone_trade_gas_shell = {
+	inline_script = {
+		script = zones/shared_trade_zone
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	swap_type = district_ssh_gas_shellworld_trade
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+# For Resort Shellworlds - WIP
+#zone_leisure_gas_shell = {
+#	inline_script = {
+#		script = zones/shared_trade_zone
+#		AMOUNT = @doubled_scaling_district_1_job
+#	}
+#
+#	swap_type = district_ssh_gas_shellworld_trade
+#	swap_type_weight = 5
+#
+#	zone_sets = {
+#		ssh_gas_shell_world
+#	}
+#
+#	inline_script = {
+#		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+#	}
+#}
+
+# Gas Extraction Zones
+zone_gas_extraction_gas_shell = {
+	inline_script = {
+		script = zones/ssh_gas_extraction_zone
+		AMOUNT = @gas_giant_shellworld_district_1_job
+	}
+
+	#swap_type = district_ssh_gas_shellworld_trade
+	#swap_type_weight = 5
+
+	zone_sets = {
+		ssh_gas_shell_world_extraction
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_gas_shellworld_zone_modifiers
+	}
+}
+
+
+
+
+##### Ederspheres #####
+zone_industrial_edersphere = {
+	inline_script = {
+		script = zones/shared_industrial_zone
+		AMOUNT = @edersphere_district_1_job #@doubled_scaling_district_2_jobs
+	}
+	swap_type = district_ssh_edersphere_mixed_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+}
+
+zone_foundry_edersphere = {
+	inline_script = {
+		script = zones/shared_industrial_foundry_zone
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_arms_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+}
+
+zone_cultrobium_edersphere = {
+	inline_script = {
+		script = zones/ssh_shared_cultrobium_zone
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_cultrobium_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+}
+
+
+zone_factory_edersphere = {
+	inline_script = {
+		script = zones/shared_industrial_factory_zone # Should work fine
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_civilian_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+}
+
+zone_research_edersphere = {
+	inline_script = {
+		script = zones/shared_research_zone
+		AMOUNT = @edersphere_district_3_jobs
+	}
+
+	swap_type = district_ssh_edersphere_research
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+}
+
+zone_research_physics_edersphere = {
+	inline_script = {
+		script = zones/shared_research_physics_zone
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_research_physics
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+}
+
+zone_research_society_edersphere = {
+	inline_script = {
+		script = zones/shared_research_society_zone
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_research_society
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+}
+
+zone_research_engineering_edersphere = {
+	inline_script = {
+		script = zones/shared_research_engineering_zone
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_research_engineering
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+}
+
+zone_unity_edersphere = {
+	inline_script = {
+		script = zones/shared_unity_zone
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_administrative
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+
+	convert_to = {
+		zone_unity_spiritualist_edersphere
+		zone_unity_bio_trophy_edersphere
+	}
+}
+
+zone_unity_spiritualist_edersphere = {
+	inline_script = {
+		script = zones/shared_unity_spiritualist_zone
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_spiritualist
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+
+	convert_to = {
+		zone_unity_edersphere
+		zone_unity_bio_trophy_edersphere
+	}
+}
+
+zone_unity_bio_trophy_edersphere = {
+	inline_script = {
+		script = zones/shared_unity_bio_trophy_zone
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_organic_housing
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	triggered_district_planet_modifier = {
+		planet_housing_add = -1500 ### Might have to increase this number; 1500 is from arcology
+	}
+
+	convert_to = {
+		zone_unity_edersphere
+		zone_unity_spiritualist_edersphere
+	}
+}
+
+zone_fortress_edersphere = {
+	inline_script = {
+		script = zones/shared_fortress_zone
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_fortress
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+}
+
+zone_trade_edersphere = {
+	inline_script = {
+		script = zones/shared_trade_zone
+		AMOUNT = @edersphere_district_1_job
+	}
+
+	swap_type = district_ssh_edersphere_trade
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_edersphere_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_edersphere_zone_modifiers
+	}
+}
+
+
+### Black Hole Suprashell
+zone_industrial_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_industrial_zone
+		AMOUNT = @suprashell_district_2_jobs
+	}
+	swap_type = district_ssh_black_hole_shell_mixed_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_foundry_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_industrial_foundry_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_arms_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_cultrobium_black_hole_shell = {
+	inline_script = {
+		script = zones/ssh_shared_cultrobium_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_cultrobium_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+
+zone_factory_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_industrial_factory_zone # Should work fine
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_civilian_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_research_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_research_zone
+		AMOUNT = @suprashell_district_3_jobs
+	}
+
+	swap_type = district_ssh_black_hole_shell_research
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_research_physics_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_research_physics_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_research_physics
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_research_society_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_research_society_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_research_society
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_research_engineering_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_research_engineering_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_research_engineering
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_unity_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_unity_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_administrative
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+
+	convert_to = {
+		zone_unity_spiritualist_black_hole_shell
+		zone_unity_bio_trophy_black_hole_shell
+	}
+}
+
+zone_unity_spiritualist_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_unity_spiritualist_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_spiritualist
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+
+	convert_to = {
+		zone_unity_black_hole_shell
+		zone_unity_bio_trophy_black_hole_shell
+	}
+}
+
+zone_unity_bio_trophy_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_unity_bio_trophy_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_organic_housing
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	triggered_district_planet_modifier = {
+		planet_housing_add = -1500 ### Might have to increase this number; 1500 is from arcology
+	}
+
+	convert_to = {
+		zone_unity_black_hole_shell
+		zone_unity_spiritualist_black_hole_shell
+	}
+}
+
+zone_fortress_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_fortress_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_fortress
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_trade_black_hole_shell = {
+	inline_script = {
+		script = zones/shared_trade_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	swap_type = district_ssh_black_hole_shell_trade
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_black_hole_shell_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+# Matter Decompressing
+zone_matdec_black_hole_shell = {
+	inline_script = {
+		script = zones/ssh_matdec_zone
+		AMOUNT = @suprashell_district_1_job
+	}
+
+	zone_sets = {
+		ssh_black_hole_shell_world_decompressing
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+
+### Stellar Hoops
+# Star Lifter
+zone_starlifting_stellar_hoop = {
+	inline_script = {
+		script = zones/ssh_starlifting_zone
+		AMOUNT = @stellar_hoop_district_1_job
+	}
+
+	zone_sets = {
+		ssh_stellar_hoop_starlifting
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_stellar_hoop_zone_modifiers
+	}
+}
+
+# Secondary District Zones
+zone_foundry_stellar_hoop = {
+	inline_script = {
+		script = zones/shared_industrial_foundry_zone
+		AMOUNT = @stellar_hoop_district_1_job
+	}
+
+	swap_type = district_ssh_stellar_hoop_arms_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_stellar_hoop_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_cultrobium_stellar_hoop = {
+	inline_script = {
+		script = zones/ssh_shared_cultrobium_zone
+		AMOUNT = @stellar_hoop_district_1_job
+	}
+
+	swap_type = district_ssh_stellar_hoop_cultrobium_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_stellar_hoop_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_research_stellar_hoop = {
+	inline_script = {
+		script = zones/shared_research_zone
+		AMOUNT = @stellar_hoop_district_3_jobs
+	}
+
+	swap_type = district_ssh_stellar_hoop_research
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_stellar_hoop_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_research_physics_stellar_hoop = {
+	inline_script = {
+		script = zones/shared_research_physics_zone
+		AMOUNT = @stellar_hoop_district_1_job
+	}
+
+	swap_type = district_ssh_stellar_hoop_research_physics
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_stellar_hoop_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_research_society_stellar_hoop = {
+	inline_script = {
+		script = zones/shared_research_society_zone
+		AMOUNT = @stellar_hoop_district_1_job
+	}
+
+	swap_type = district_ssh_stellar_hoop_research_society
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_stellar_hoop_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+zone_research_engineering_stellar_hoop = {
+	inline_script = {
+		script = zones/shared_research_engineering_zone
+		AMOUNT = @stellar_hoop_district_1_job
+	}
+
+	swap_type = district_ssh_stellar_hoop_research_engineering
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_stellar_hoop_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_suprashell_zone_modifiers
+	}
+}
+
+
+### Because-We-Can-Habitables
+zone_industrial_bwc = {
+	inline_script = {
+		script = zones/shared_industrial_zone
+		AMOUNT = @bwc_district_1_job #@doubled_scaling_district_2_jobs
+	}
+	swap_type = district_ssh_bwc_mixed_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+}
+
+zone_foundry_bwc = {
+	inline_script = {
+		script = zones/shared_industrial_foundry_zone
+		AMOUNT = @bwc_district_1_job
+	}
+
+	swap_type = district_ssh_bwc_arms_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+}
+
+#zone_cultrobium_bwc = {
+#	inline_script = {
+#		script = zones/ssh_shared_cultrobium_zone
+#		AMOUNT = @bwc_district_1_job
+#	}
+#
+#	swap_type = district_ssh_bwc_cultrobium_industry
+#	swap_type_weight = 5
+#
+#	zone_sets = {
+#		ssh_bwc_world
+#	}
+#
+#	inline_script = {
+#		script = zones/ssh_shared_bwc_zone_modifiers
+#	}
+#}
+
+
+zone_factory_bwc = {
+	inline_script = {
+		script = zones/shared_industrial_factory_zone # Should work fine
+		AMOUNT = @bwc_district_1_job
+	}
+
+	swap_type = district_ssh_bwc_civilian_industry
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+}
+
+zone_research_bwc = {
+	inline_script = {
+		script = zones/shared_research_zone
+		AMOUNT = @bwc_district_3_jobs
+	}
+
+	swap_type = district_ssh_bwc_research
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+}
+
+zone_research_physics_bwc = {
+	inline_script = {
+		script = zones/shared_research_physics_zone
+		AMOUNT = @bwc_district_1_job
+	}
+
+	swap_type = district_ssh_bwc_research_physics
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+}
+
+zone_research_society_bwc = {
+	inline_script = {
+		script = zones/shared_research_society_zone
+		AMOUNT = @bwc_district_1_job
+	}
+
+	swap_type = district_ssh_bwc_research_society
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+}
+
+zone_research_engineering_bwc = {
+	inline_script = {
+		script = zones/shared_research_engineering_zone
+		AMOUNT = @bwc_district_1_job
+	}
+
+	swap_type = district_ssh_bwc_research_engineering
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+}
+
+zone_unity_bwc = {
+	inline_script = {
+		script = zones/shared_unity_zone
+		AMOUNT = @bwc_district_1_job
+	}
+
+	swap_type = district_ssh_bwc_administrative
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+
+	convert_to = {
+		zone_unity_spiritualist_bwc
+		zone_unity_bio_trophy_bwc
+	}
+}
+
+zone_unity_spiritualist_bwc = {
+	inline_script = {
+		script = zones/shared_unity_spiritualist_zone
+		AMOUNT = @bwc_district_1_job
+	}
+
+	swap_type = district_ssh_bwc_spiritualist
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+
+	convert_to = {
+		zone_unity_bwc
+		zone_unity_bio_trophy_bwc
+	}
+}
+
+zone_unity_bio_trophy_bwc = {
+	inline_script = {
+		script = zones/shared_unity_bio_trophy_zone
+		AMOUNT = @bwc_district_1_job
+	}
+
+	swap_type = district_ssh_bwc_organic_housing
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	triggered_district_planet_modifier = {
+		planet_housing_add = -1500 ### Might have to increase this number; 1500 is from arcology
+	}
+
+	convert_to = {
+		zone_unity_bwc
+		zone_unity_spiritualist_bwc
+	}
+}
+
+zone_fortress_bwc = {
+	inline_script = {
+		script = zones/shared_fortress_zone
+		AMOUNT = @bwc_district_1_job
+	}
+
+	swap_type = district_ssh_bwc_fortress
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+}
+
+zone_trade_bwc = {
+	inline_script = {
+		script = zones/shared_trade_zone
+		AMOUNT = @bwc_district_1_job
+	}
+
+	swap_type = district_ssh_bwc_trade
+	swap_type_weight = 5
+
+	zone_sets = {
+		ssh_bwc_world
+	}
+
+	inline_script = {
+		script = zones/ssh_shared_bwc_zone_modifiers
+	}
+}

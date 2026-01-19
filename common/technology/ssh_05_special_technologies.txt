@@ -1,0 +1,432 @@
+ssh_tech_vacdec_logistics = {
+	cost = 25000
+	area = engineering
+	tier = 4
+	category = { industry }
+	#prerequisites = { "tech_mega_engineering" "ssh_tech_atomic_manipulation" }
+	potential = {
+		has_country_flag = ssh_ark_project_country
+	}
+	weight = 0
+	is_rare = yes
+	modifier = {
+		megastructure_build_speed_mult = 0.15
+		ship_base_speed_mult = 0.05
+	}
+
+	ai_weight = {
+		factor = 100
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_vacdec_energy = {
+	cost = 30000
+	area = physics
+	tier = 4
+	category = { field_manipulation }
+	potential = {
+		has_country_flag = ssh_ark_project_country
+	}
+	weight = 0
+	is_rare = yes
+	modifier = {
+		country_resource_max_energy_add = 500000
+	}
+
+	ai_weight = {
+		factor = 100
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_vacdec_habitation = {
+	cost = 35000
+	area = society
+	tier = 4
+	category = { new_worlds }
+	potential = {
+		has_country_flag = ssh_ark_project_country
+	}
+	weight = 0
+	is_rare = yes
+	modifier = {
+		habitability_floor_mult = 0.1
+	}
+
+	ai_weight = {
+		factor = 100
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_vacdec_warp_field = {
+	cost = 40000
+	area = physics
+	tier = 5
+	category = { particles }
+	ai_update_type = all
+	is_reverse_engineerable = no
+	potential = {
+		has_country_flag = ssh_ark_project_country
+	}
+	weight = 0
+	is_rare = yes
+	
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		custom = {
+			title = "TECH_UNLOCK_INTERDIM_JUMPDRIVE_TITLE"
+			desc = "TECH_UNLOCK_INTERDIM_JUMPDRIVE_DESC"
+		}
+	}
+
+	ai_weight = {
+		factor = 100
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# Vacuum Decay Slowdown
+ssh_tech_vacdec_slowdown = {
+	cost = 45000
+	area = physics
+	tier = 5
+	category = { field_manipulation }
+	is_reverse_engineerable = no
+	potential = {
+		has_country_flag = ssh_ark_project_country
+	}
+	weight = 0
+
+	ai_weight = {
+		factor = 100
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# Ark Research Progress Tech
+ssh_tech_ark_boost_physics = {
+	cost = 30000
+	area = physics
+	tier = 4
+	category = { computing }
+	is_reverse_engineerable = no
+	potential = {
+		has_country_flag = ssh_ark_project_country
+		OR = {
+			has_global_flag = ssh_ark_research_stage_1
+			has_global_flag = ssh_ark_research_stage_2
+			has_global_flag = ssh_ark_research_stage_3
+			has_global_flag = ssh_ark_research_stage_4
+			has_global_flag = ssh_ark_research_stage_5
+		}
+	}
+	weight = @tier4weight1
+	
+	modifier = {
+		country_physics_research_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		factor = 10
+		#modifier = { 
+		#	factor = 2.0
+		#	check_variable = {
+		#		which = @ark_research_stage_1_goal
+		#		value < 250000
+		#	}
+		#}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_ark_boost_society = {
+	cost = 30000
+	area = society
+	tier = 4
+	category = { biology }
+	is_reverse_engineerable = no
+	potential = {
+		has_country_flag = ssh_ark_project_country
+		OR = {
+			has_global_flag = ssh_ark_research_stage_1
+			has_global_flag = ssh_ark_research_stage_2
+			has_global_flag = ssh_ark_research_stage_3
+			has_global_flag = ssh_ark_research_stage_4
+			has_global_flag = ssh_ark_research_stage_5
+		}
+	}
+	weight = @tier4weight1
+	
+	modifier = {
+		country_society_research_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		factor = 10
+		#modifier = { 
+		#	factor = 2.0
+		#	check_variable = {
+		#		which = @ark_research_stage_1_goal
+		#		value < 250000
+		#	}
+		#}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_ark_boost_engineering = {
+	cost = 30000
+	area = engineering
+	tier = 4
+	category = { biology }
+	is_reverse_engineerable = no
+	potential = {
+		has_country_flag = ssh_ark_project_country
+		OR = {
+			has_global_flag = ssh_ark_research_stage_1
+			has_global_flag = ssh_ark_research_stage_2
+			has_global_flag = ssh_ark_research_stage_3
+			has_global_flag = ssh_ark_research_stage_4
+			has_global_flag = ssh_ark_research_stage_5
+		}
+	}
+	weight = @tier4weight1
+	
+	modifier = {
+		country_engineering_research_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		factor = 10
+		#modifier = { 
+		#	factor = 2.0
+		#	check_variable = {
+		#		which = @ark_research_stage_1_goal
+		#		value < 250000
+		#	}
+		#}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+
+#### Basement Universe Escape Path ####
+# Decision Unlock
+ssh_tech_basement_universe_probing = {
+	cost = 75000
+	area = physics
+	tier = 1
+	category = { field_manipulation }
+	is_reverse_engineerable = no
+	is_rare = yes
+	prerequisites = {
+		ssh_tech_basement_universe
+	}
+	potential = { has_country_flag = ssh_vacdec_basement_uni_country }
+	weight = 1000
+
+	ai_weight = {
+		factor = 9999
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_basement_gateway_1 = { # Creation
+	cost = 100000
+	area = physics
+	tier = 4
+	category = { field_manipulation }
+	is_reverse_engineerable = no
+	is_rare = yes
+	prerequisites = {
+		ssh_tech_basement_universe
+	}
+	potential = {
+		has_country_flag = ssh_vacdec_basement_uni_country
+		has_country_flag = ssh_vacdec_basement_uni_probing_completed
+	}
+	weight = 0
+
+	modifier = {
+		country_resource_max_sr_cultrobium_add = 50000
+	}
+
+	ai_weight = {
+		factor = 9999
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+ssh_tech_basement_gateway_2 = { # Stabilized Borders
+	cost = 125000
+	area = physics
+	tier = 1
+	category = { field_manipulation }
+	is_reverse_engineerable = no
+	is_rare = yes
+	prerequisites = {
+		ssh_tech_basement_gateway_1
+	}
+	potential = {
+		has_country_flag = ssh_vacdec_basement_uni_country
+		has_country_flag = ssh_vacdec_basement_uni_probing_completed
+	}
+	weight = 1000
+
+	modifier = {
+		country_resource_max_sr_dark_matter_add = 150000
+	}
+
+	ai_weight = {
+		factor = 9999
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+ssh_tech_basement_gateway_3 = { # Energy Infusion Inflation
+	cost = 150000
+	area = physics
+	tier = 1
+	category = { particles }
+	is_reverse_engineerable = no
+	is_rare = yes
+	prerequisites = {
+		ssh_tech_basement_gateway_2
+	}
+	potential = {
+		has_country_flag = ssh_vacdec_basement_uni_country
+		has_country_flag = ssh_vacdec_basement_uni_probing_completed
+	}
+	weight = 1000
+
+	modifier = {
+		country_resource_max_energy_add = 500000
+	}
+
+	ai_weight = {
+		factor = 9999
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+ssh_tech_basement_gateway_4 = { # Distribute Minerals OR Nuclei Soup etc
+	cost = 250000
+	area = society
+	tier = 1
+	category = { new_worlds }
+	is_reverse_engineerable = no
+	is_rare = yes
+	prerequisites = {
+		ssh_tech_basement_gateway_3
+	}
+	potential = {
+		has_country_flag = ssh_vacdec_basement_uni_country
+		has_country_flag = ssh_vacdec_basement_uni_probing_completed
+	}
+	weight = 1000
+
+	modifier = {
+		country_resource_max_sr_hydrogen_add = 135000
+		country_resource_max_sr_nuclei_soup_add = 150000
+	}
+
+	ai_weight = {
+		factor = 9999
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+#### Hyperdimensional Exodus ####
+# Consciousness Adaptation
+ssh_tech_exodus_stage_4_biological = {
+	cost = 75000
+	area = society
+	tier = 4
+	category = { biology }
+	is_reverse_engineerable = no
+	#prerequisites = {
+	#	ssh_tech_basement_universe
+	#}
+	potential = {
+		has_ascension_perk = ap_hyperdimensional_exodus
+		has_crisis_level = crisis_hyperdim_exodus_level_4
+		NOT = { has_crisis_level = crisis_hyperdim_exodus_level_5 }
+		NOR = {
+			is_machine_empire = yes
+			is_individual_machine = yes
+		}
+	}
+	weight = 50 # auto added after reaching crisis stage 4
+
+	modifier = {
+	}
+
+	ai_weight = {
+		factor = 9999
+	}
+}
+ssh_tech_exodus_stage_4_machine = {
+	cost = 75000
+	area = physics
+	tier = 4
+	category = { computing }
+	is_reverse_engineerable = no
+	#prerequisites = {
+	#	ssh_tech_basement_universe
+	#}
+	potential = {
+		has_ascension_perk = ap_hyperdimensional_exodus
+		has_crisis_level = crisis_hyperdim_exodus_level_4
+		NOT = { has_crisis_level = crisis_hyperdim_exodus_level_5 }
+		OR = {
+			is_machine_empire = yes
+			is_individual_machine = yes
+		}
+	}
+	weight = 50 # auto added after reaching crisis stage 4
+
+	modifier = {
+	}
+
+	ai_weight = {
+		factor = 9999
+	}
+}

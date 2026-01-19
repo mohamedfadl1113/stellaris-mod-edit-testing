@@ -1,0 +1,231 @@
+trait_ssh_hyperadaptive = {
+	cost = 3
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 0.5	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		pop_environment_tolerance = 0.3
+	}
+	icon = "gfx/interface/icons/traits/trait_ssh_hyperadaptive.dds"
+	initial = no
+	randomized = no
+	#advanced_trait = yes #?
+	prerequisites = {
+		"ssh_tech_advanced_dna_resequencing"
+	}
+	opposites = { "trait_nonadaptive" "trait_extremely_adaptive" "trait_robust" "trait_adaptive" "trait_invasive" }
+	slave_cost = {
+		energy = 750
+	}
+}
+
+trait_ssh_enduring_metabolism = {
+	cost = 3
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = { leader_lifespan_add = 50 }
+	icon = "gfx/interface/icons/traits/trait_ssh_enduring_metabolism.dds"
+	initial = no
+	randomized = no
+	#advanced_trait = yes #?
+	prerequisites = { "ssh_tech_advanced_dna_resequencing" }
+	opposites = { "trait_enduring" "trait_fleeting" "trait_fleeting_lithoid" "trait_invasive" }
+	slave_cost = {
+		energy = 750
+	}
+}
+
+trait_ssh_rapid_learners = {
+	cost = 3
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+	potential_crossbreeding_chance = 1.0
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = { species_leader_exp_gain = 0.3 }
+	icon = "gfx/interface/icons/traits/trait_ssh_rapid_learners.dds"
+	initial = no
+	randomized = no
+	#advanced_trait = yes #?
+	prerequisites = { "ssh_tech_advanced_dna_resequencing" }
+	opposites = { "trait_slow_learners" "trait_quick_learners" }
+	slave_cost = {
+		energy = 750
+	}
+}
+
+trait_ssh_enhanced_power = {
+	cost = 3
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+	potential_crossbreeding_chance = 1.0
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		army_damage_mult = 0.40
+		army_defense_damage_mult = 1.0
+		army_attack_health_mult = 0.25
+		army_defense_health_mult = 0.25
+		planet_jobs_worker_produces_mult = 0.025
+	}
+	icon = "gfx/interface/icons/traits/trait_ssh_enhanced_power.dds"
+	initial = no
+	randomized = no
+	#advanced_trait = yes #?
+	prerequisites = { "ssh_tech_advanced_dna_resequencing" }
+	opposites = { "trait_invasive" "trait_strong" "trait_juiced_power" } #you can still add very strong because why not have overkill pops
+	slave_cost = {
+		energy = 850
+	}
+}
+
+trait_ssh_forced_recycling = {
+	cost = 3
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+	potential_crossbreeding_chance = 1.0
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_pops_consumer_goods_upkeep_mult = -0.3
+	}
+	icon = "gfx/interface/icons/traits/trait_ssh_forced_recycling.dds"
+	initial = no
+	randomized = no
+	#advanced_trait = yes #?
+	prerequisites = { "ssh_tech_advanced_dna_resequencing" }
+	opposites = { "trait_invasive" "trait_wasteful" "trait_hive_mind" } #you can still add very strong because why not have overkill pops
+	slave_cost = {
+		energy = 850
+	}
+}
+
+#### Machine Traits ####
+trait_ssh_robot_organic_layers = {
+	cost = 3
+	opposites = { "trait_robot_uncanny" }
+	initial = no
+	randomized = no
+	prerequisites = { "ssh_tech_advanced_dna_resequencing" }
+
+	allowed_archetypes = { ROBOT MACHINE }
+
+	modifier = {
+		pop_job_amenities_mult = 0.3
+		op_cat_infiltration_difficulty_mult = -0.15
+		op_cat_infiltration_speed_mult = 0.1
+	}
+	slave_cost = {
+		energy = 750
+	}
+}
+
+trait_ssh_robot_neuronal_network = {
+	cost = 3
+	opposites = { "trait_robot_learning_algorithms" "trait_cyborg_learning_algorithms" "trait_robot_logic_engines" "trait_cyborg_logic_engines" }
+	initial = no
+	randomized = no
+	prerequisites = { "ssh_tech_advanced_dna_resequencing" }
+
+	allowed_archetypes = { ROBOT MACHINE }
+
+	# Synth or Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				#has_technology = tech_droid_workers
+				has_technology = tech_synthetic_leaders
+			}
+			NOR = {
+				has_policy_flag = ai_outlawed
+				has_civic = civic_machine_terminator
+			}
+		}
+	}
+	modifier = {
+		species_leader_exp_gain = 0.5
+		planet_jobs_physics_research_produces_mult = 0.15
+		planet_jobs_society_research_produces_mult = 0.15
+		planet_jobs_engineering_research_produces_mult = 0.15
+	}
+	slave_cost = {
+		energy = 750
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_research_designation = yes }
+		}
+	}
+}
+
+########################### SPECIAL TRAITS ##########################
+trait_ssh_ascensionist = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_ssh_ascensionist.dds"
+	initial = no
+	randomized = no
+	ideal_planet_class = pc_exodus_portal
+
+	species_potential_add = { always = no }
+	species_potential_remove = { always = no }
+
+	species_possible_remove = { always = no }
+	species_possible_merge_remove = { always = no }
+
+	forced_happiness = yes
+	immortal_leaders = yes
+
+	modifier = {
+		leader_skill_levels = 10
+		species_leader_exp_gain = 10.0
+		pop_environment_tolerance = 2.0
+		planet_jobs_upkeep_mult = -1.0
+		#pop_growth_speed = -0.75
+	}
+	#custom_tooltip_with_modifiers = ""
+}
+
+trait_ssh_ascensionist_machine = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_ssh_ascensionist_machine.dds"
+	initial = no
+	randomized = no
+	ideal_planet_class = pc_exodus_portal
+
+	species_potential_add = { always = no }
+	species_potential_remove = { always = no }
+
+	species_possible_remove = { always = no }
+	species_possible_merge_remove = { always = no }
+
+	forced_happiness = yes
+	immortal_leaders = yes
+
+	modifier = {
+		leader_skill_levels = 10
+		species_leader_exp_gain = 5.0
+		army_damage_mult = 1.0
+		army_defense_damage_mult = 1.0
+		planet_jobs_physics_research_produces_mult = 0.5
+		planet_jobs_society_research_produces_mult = 0.5
+		planet_jobs_engineering_research_produces_mult = 0.5
+		pop_environment_tolerance = 2.0
+		planet_jobs_upkeep_mult = -1.0
+	}
+	#custom_tooltip_with_modifiers = ""
+}

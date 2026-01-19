@@ -1,0 +1,1097 @@
+#ssh_tech_penalty_mirror = {
+#	cost = 10000
+#	area = engineering
+#	tier = 3
+#	category = { voidcraft }
+#	prerequisites = { "tech_starbase_3" }
+#	weight = @tier3weight2
+#	#modifier = {
+#	#	
+#	#}
+#
+#	weight_modifier = {
+#		modifier = {
+#			factor = 0.5
+#			is_pacifist = yes
+#		}
+#		modifier = {
+#			factor = 1.5
+#			has_ethic = ethic_fanatic_materialist
+#		}
+#		modifier = {
+#			factor = 3.0
+#			is_authoritarian = yes
+#		}
+#		modifier = { 
+#			factor = value:tech_weight_likelihood 
+#			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+#		}
+#		modifier = { 
+#			factor = 0 
+#			has_utopia = no 
+#		}
+#	}
+#
+#	ai_weight = {
+#		modifier = { 
+#			factor = value:tech_weight_likelihood 
+#			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+#		}
+#		modifier = {
+#			factor = 3.0
+#			is_authoritarian = yes
+#		}
+#		modifier = {
+#			factor = 0.1
+#			is_pacifist = yes
+#		}
+#		modifier = { 
+#			factor = 0 
+#			has_utopia = no 
+#		}
+#	}
+#}
+
+ssh_tech_shellworlds = {
+	cost = @ssh_tech_tier_a_mega_cost
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { tech_starbase_5 } #Citadels Tech
+	weight = @tier4weight1
+	is_rare = yes
+	prereqfor_desc = {
+		ship = {
+			title = "ssh_needed_for_larger_housing_megas"
+			desc = "ssh_tech_matrioshka_worlds_desc"
+		}
+	}
+
+	modifier = {
+		country_resource_max_add = 5000
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_pompous_purists
+				has_civic = civic_machine_builder
+			}
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_shellworlds }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 100
+		modifier = {
+			factor = 1.5
+			NOR = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = habitat_central_complex
+						is_megastructure_type = habitat_central_complex_restored
+					}
+				}
+				any_owned_planet = {
+					is_planet_class = pc_habitat
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			count_owned_planet = {
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				count > 3
+			}
+		}
+		#modifier = {
+		#	factor = 2
+		#	has_origin = origin_ssh_shellworld
+		#}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_matrioshka_worlds = {
+	cost = @ssh_tech_tier_b_mega_cost
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "ssh_tech_shellworlds" "tech_mega_engineering" }
+	weight = @tier4weight2
+	is_rare = yes
+	modifier = {
+		country_resource_max_add = 10000
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_matrioshka_worlds }
+			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_pompous_purists
+				has_civic = civic_machine_builder
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = {
+			factor = 2 #if they don't use habitats, they are very likely to research this tech
+			NOR = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = habitat_central_complex
+						is_megastructure_type = habitat_central_complex_restored
+					}
+				}
+				any_owned_planet = {
+					is_planet_class = pc_habitat
+				}
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_gas_giant_shellworlds = {
+	cost = @ssh_tech_tier_c_mega_cost
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "ssh_tech_shellworlds" }
+	weight = @tier4weight2
+	is_rare = yes
+	modifier = {
+		megastructure_build_speed_mult = 0.05
+	}
+	
+	prereqfor_desc = {
+		ship = {
+			title = "ssh_needed_for_larger_housing_megas"
+			desc = "ssh_tech_ederspheres_desc"
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_gas_giant_shellworlds }
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_pompous_purists
+				has_civic = civic_machine_builder
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 100
+		#modifier = {
+		#	factor = 2
+		#	has_origin = origin_void_dwellers
+		#}
+		# Gonna remove the materialist-spiritualist modifier for now since this tech is a base requirement for further bigger megastructures in this mod
+		#modifier = {
+		#	factor = 5
+		#	is_materialist = yes
+		#}
+		#modifier = {
+		#	factor = 0.5
+		#	is_spiritualist = yes
+		#}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_gas_giant_lifting = {
+	cost = @ssh_tech_tier_c_mega_cost #40000
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "ssh_tech_shellworlds" "tech_rare_crystals" }
+	weight = @tier4weight2
+	is_rare = yes
+	modifier = {
+		megastructure_build_speed_mult = 0.05
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_gas_giant_shellworlds }
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_pompous_purists
+				has_civic = civic_machine_builder
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 100
+		#modifier = {
+		#	factor = 1.5
+		#	has_origin = origin_void_dwellers
+		#}
+		modifier = {
+			factor = 5
+			is_materialist = yes
+		}
+		modifier = {
+			factor = 0.5
+			is_spiritualist = yes
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+
+ssh_tech_ederspheres = {
+	cost = @ssh_tech_tier_d_mega_cost
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "ssh_tech_gas_giant_shellworlds" }
+	potential = {
+		#has_galactic_wonders = yes
+		has_ascension_perk = ap_voidborn
+	}
+	weight = @tier4weight3
+	is_rare = yes
+	modifier = {
+		megastructure_build_speed_mult = 0.05
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_ederspheres }
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_civic = civic_inwards_perfection
+				has_civic = civic_pompous_purists
+				has_civic = civic_machine_builder
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 50
+		#modifier = {
+		#	factor = 2
+		#	has_origin = origin_void_dwellers
+		#}
+		modifier = {
+			factor = 1.5
+			is_materialist = yes
+		}
+		modifier = {
+			factor = 0.5
+			is_spiritualist = yes
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_gas_giant_compression = {
+	cost = @ssh_tech_tier_d_mega_cost
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "tech_mega_engineering" }
+	potential = { has_ascension_perk = ap_galactic_hyperstructures }
+
+	weight = @tier4weight1
+	is_rare = yes
+	modifier = {
+		country_resource_max_minerals_add = 10000
+		country_resource_max_energy_add = 10000
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_gas_giant_compression }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_stellar_hoop = {
+	cost = @ssh_tech_tier_e_mega_cost
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "tech_mega_engineering" "ssh_tech_molecular_bond_manipulation" }
+	potential = {
+		OR = {
+			has_ascension_perk = ap_galactic_hyperstructures
+			# Machines can research it without the need of the AP
+			is_synthetic_empire = yes
+			is_machine_empire = yes
+		}
+	}
+	weight = @tier4weight1
+	is_rare = yes
+	modifier = {
+		country_resource_max_energy_add = 10000
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_stellar_hoop }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 2
+			is_machine_empire = yes
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 10
+			is_gestalt = yes
+		}
+		modifier = {
+			factor = 10
+			is_machine_empire = yes
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_hoopworld = {
+	cost = @ssh_tech_tier_bwc_mega_cost
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "ssh_tech_because_we_can" "ssh_tech_nuclei_modification" }
+	potential = { has_ascension_perk = ap_galactic_hyperstructures }
+	weight = @tier4weight1
+	is_rare = yes
+	modifier = {
+		country_unity_produces_mult = 0.05
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_hoopworld }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+	ai_weight = {
+		factor = 1
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 10
+			has_ethic = ethic_fanatic_materialist
+		}
+		modifier = { 
+			factor = 0 
+			is_spiritualist = yes
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_discworld = {
+	cost = @ssh_tech_tier_bwc_mega_cost
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "ssh_tech_because_we_can" "ssh_tech_nuclei_modification" }
+	potential = { has_ascension_perk = ap_galactic_hyperstructures }
+	weight = @tier4weight1
+	is_rare = yes
+	modifier = {
+		country_unity_produces_mult = 0.05
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_discworld }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+	ai_weight = {
+		factor = 1
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 10
+			has_ethic = ethic_fanatic_materialist
+		}
+		modifier = { 
+			factor = 0 
+			is_spiritualist = yes
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_freesphere = {
+	cost = @ssh_tech_tier_bwc_mega_cost #same as ringworld/dyson/matter decomp
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "ssh_tech_because_we_can" }
+	potential = { has_ascension_perk = ap_galactic_hyperstructures }
+	weight = @tier4weight1
+	is_rare = yes
+	modifier = {
+		country_unity_produces_mult = 0.05
+	}
+
+	weight_modifier = {
+		modifier = { 
+			factor = 0.5
+			NOR = {
+				is_species_class = PLANT
+				is_species_class = FUN
+				is_species_class = AVI
+				is_species_class = AQUATIC
+				is_species_class = ART
+			}
+		}
+		modifier = { 
+			factor = 1.5
+			has_origin = origin_ssh_freesphere
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_freesphere }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+	ai_weight = {
+		factor = 1
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 10
+			has_ethic = ethic_fanatic_materialist
+		}
+		modifier = { 
+			factor = 0 
+			NOR = {
+				is_species_class = PLANT
+				is_species_class = FUN
+				is_species_class = AVI
+				is_species_class = AQUATIC
+				is_species_class = ART
+			}
+		}
+		modifier = { 
+			factor = 0 
+			is_machine_empire = yes
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_black_hole_shellworld = {
+	cost = @ssh_tech_tier_e_mega_cost
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "tech_mega_engineering" "ssh_tech_nuclei_modification" }
+	potential = {
+		has_ascension_perk = ap_galactic_hyperstructures
+		has_galactic_wonders = yes
+	}
+	weight = @tier4weight1
+	is_rare = yes
+	modifier = {
+		megastructure_build_speed_mult = 0.05
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_black_hole_shellworld }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+	ai_weight = {
+		factor = 50
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_stellar_harvester = {
+	cost = @ssh_tech_tier_e_mega_cost
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "tech_mega_engineering" "tech_dyson_sphere" }
+	potential = {
+		has_ascension_perk = ap_galactic_hyperstructures
+		has_galactic_wonders = yes
+	}
+	weight = @tier4weight1
+	is_rare = yes
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.05
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_stellar_harvester }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+	ai_weight = {
+		factor = 50
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_star_disassembler = {
+	cost = 25000 #@ssh_tech_tier_e_mega_cost
+	area = engineering
+	tier = 4
+	category = { industry }
+	prerequisites = { "tech_mega_engineering" "ssh_tech_stellar_harvester" "ssh_tech_nanite_disassembler" }
+	potential = { has_ascension_perk = ap_galactic_hyperstructures }
+	weight = @tier4weight1
+	is_rare = yes
+	modifier = {
+		country_nanites_produces_mult = 0.1
+	}
+
+	prereqfor_desc = {
+		ship = {
+			title = "ssh_star_disassembler_info"
+			desc = "ssh_on.23.desc"
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_stellar_harvester }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+		modifier = { 
+			factor = 0 
+			has_distar = no
+		}
+	}
+	ai_weight = {
+		factor = 25
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+		modifier = { 
+			factor = 0 
+			has_distar = no
+		}
+	}
+}
+
+ssh_tech_neutronium_compression = {
+	cost = @ssh_tech_tier_e_mega_cost
+	area = engineering
+	tier = 4
+	category = { materials }
+	prerequisites = { "tech_mega_engineering" "ssh_tech_atomic_manipulation" }
+	potential = { has_ascension_perk = ap_galactic_hyperstructures }
+	weight = @tier4weight1
+	is_rare = yes
+	modifier = {
+		planet_jobs_sr_cultrobium_produces_mult = 0.1
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_neutronium_compression }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_materials } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+	ai_weight = {
+		factor = 25
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_materials } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+ssh_tech_dyson_hab = {
+	cost = @ssh_tech_tier_bwc_mega_cost
+	area = engineering
+	tier = 4
+	category = { materials }
+	prerequisites = { "ssh_tech_because_we_can" "tech_dyson_sphere" "ssh_tech_nuclei_modification" }
+	potential = {
+		always = no # Deactivated till rework/improvement
+
+		has_ascension_perk = ap_galactic_hyperstructures
+	}
+	weight = @tier4weight1
+	is_rare = yes
+	#modifier = {
+	#	planet_jobs_sr_cultrobium_produces_mult = 0.1
+	#}
+	
+	#prereqfor_desc = {
+	#	ship = {
+	#		title = "ssh_tech_dyson_hab_tt"
+	#		desc = "ssh_tech_dyson_hab_tt"
+	#	}
+	#}
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_dyson_hab }
+			}
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_materials } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+	ai_weight = {
+		factor = 25
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_materials } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+# Nanite Disassemblers
+ssh_tech_nanite_disassembler = {
+	cost = @ssh_tech_tier_d_mega_cost
+	area = engineering
+	tier = 3
+	category = { materials }
+	prerequisites = { "tech_nanite_transmutation" }
+	potential = {
+		OR = {
+			has_technology = ssh_tech_molecular_bond_manipulation
+			is_active_resolution = "resolution_megaconstruction_workforce_revolution"
+		}
+	}
+	weight = @tier3weight3
+
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_materials } 
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = ssh_tech_nanite_disassembler }
+			}
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+
+	ai_weight = {
+		factor = 100
+		modifier = { 
+			factor = value:tech_weight_likelihood 
+			has_trait_in_council = { TRAIT = leader_trait_expertise_materials } 
+		}
+		modifier = { 
+			factor = 0 
+			has_utopia = no 
+		}
+	}
+}
+
+####### Non-Megastructures ######
+ssh_tech_hydrogen = {
+	cost = @tier2cost1
+	area = engineering
+	tier = 2
+	category = { materials }
+	prerequisites = { "tech_space_construction" }
+	weight = @tier2weight1
+
+	weight_modifier = {
+		factor = 2
+
+		modifier = {
+			factor = 0.5
+			NOT = {
+				any_owned_planet = {
+					OR = {
+						has_deposit = d_hydrogen_deposit
+					}
+				}
+				any_planet_within_border = {
+					OR = {
+						has_deposit = d_hydrogen_deposit
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = @strategic_resource_ai_tech_factor #important resource
+	}
+}
